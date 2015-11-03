@@ -10,9 +10,9 @@
                     <RowDefinition Height="492*" />
                 </Grid.RowDefinitions>
                 <Label Content="Teacher Name" Height="28" HorizontalAlignment="Left" Margin="115,43,0,0" Name="lblClassName" VerticalAlignment="Top" />
-                <TextBox Height="23" HorizontalAlignment="Right" Margin="0,50,420,0" Name="txtName" VerticalAlignment="Top" Width="178" />
+                <TextBox Height="23" HorizontalAlignment="Right" Margin="0,50,420,0" Name="txtName" VerticalAlignment="Top" Width="178" ToolTip="Enter Teacher Name" />
                 <Label Content="Short Name" Height="28" HorizontalAlignment="Left" Margin="443,45,0,0" Name="lblshortname" VerticalAlignment="Top" />
-                <TextBox Height="26" HorizontalAlignment="Left" Margin="522,47,0,0" Name="txtShortName" VerticalAlignment="Top" Width="178" />
+                <TextBox Height="26" HorizontalAlignment="Left" Margin="522,47,0,0" Name="txtShortName" VerticalAlignment="Top" Width="178" ToolTip="Enter Teacher ShortName" />
                 <Label Content="Full / Part" Height="28" HorizontalAlignment="Left" Margin="140,82,0,0" Name="lblType" VerticalAlignment="Top" />
                 <ComboBox Height="23" HorizontalAlignment="Left" Margin="207,87,0,0" Name="cbJobType" VerticalAlignment="Top" Width="126" />
                 <Button Content="Add" Height="30" HorizontalAlignment="Left" Margin="22,578,0,0" Name="btnAdd" VerticalAlignment="Top" Width="75" Grid.Row="1" />
