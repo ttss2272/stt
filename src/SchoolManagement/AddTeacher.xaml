@@ -1,0 +1,116 @@
+﻿<Window x:Class="SchoolManagement.AddTeacher"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AddTeacher" Height="755" Width="863">
+    <Grid>
+        <GroupBox Header="Teacher Details" Height="637" HorizontalAlignment="Left" Margin="10,10,0,0" Name="TeachaerDetails" VerticalAlignment="Top" Width="819">
+            <Grid Height="687" Width="805">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="142*" />
+                    <RowDefinition Height="473*" />
+                </Grid.RowDefinitions>
+                <Label Content="Teacher Name" Height="28" HorizontalAlignment="Left" Margin="115,43,0,0" Name="lblClassName" VerticalAlignment="Top" />
+                <TextBox Height="23" HorizontalAlignment="Right" Margin="0,50,420,0" Name="txtName" VerticalAlignment="Top" Width="178" />
+                <Label Content="Short Name" Height="28" HorizontalAlignment="Left" Margin="443,45,0,0" Name="lblshortname" VerticalAlignment="Top" />
+                <TextBox Height="26" HorizontalAlignment="Left" Margin="522,47,0,0" Name="txtShortName" VerticalAlignment="Top" Width="178" />
+                <Label Content="Full / Part" Height="28" HorizontalAlignment="Left" Margin="140,82,0,0" Name="lblType" VerticalAlignment="Top" />
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="207,87,0,0" Name="cbJobType" VerticalAlignment="Top" Width="126" />
+                <Button Content="Add" Height="30" HorizontalAlignment="Left" Margin="22,578,0,0" Name="btnAdd" VerticalAlignment="Top" Width="75" Grid.Row="1" />
+                <Button Content="Edit" Height="30" HorizontalAlignment="Left" Margin="135,578,0,0" Name="btnEdit" VerticalAlignment="Top" Width="75" Grid.Row="1" />
+                <Button Content="Delete" Height="30" HorizontalAlignment="Left" Margin="248,578,0,0" Name="btnDelete" VerticalAlignment="Top" Width="75" Grid.Row="1" />
+                <Button Content="Cancel" Height="30" HorizontalAlignment="Left" Margin="361,578,0,0" Name="btnCancel" VerticalAlignment="Top" Width="75" Grid.Row="1" />
+                <Label Content="Time From" Height="28" HorizontalAlignment="Left" Margin="450,82,0,0" Name="label2" VerticalAlignment="Top" />
+                <ComboBox Height="23" Margin="517,83,249,0" Name="cbFromhr" VerticalAlignment="Top" />
+                <Label Content="Hr" Height="28" HorizontalAlignment="Left" Margin="555,82,0,0" Name="label3" VerticalAlignment="Top" />
+                <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,83,180,0" Name="cbFrommin" VerticalAlignment="Top" Width="40" />
+                <Label Content="Min" Height="28" HorizontalAlignment="Left" Margin="637,82,0,0" Name="label4" VerticalAlignment="Top" />
+                <Label Content="To Time" Height="28" HorizontalAlignment="Left" Margin="450,111,0,0" Name="label1" VerticalAlignment="Top" />
+                <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,116,249,0" Name="cbtohr" VerticalAlignment="Top" Width="39" />
+                <Label Content="Hr" Height="28" HorizontalAlignment="Left" Margin="559,114,0,0" Name="label5" VerticalAlignment="Top" />
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="583,116,0,0" Name="cbtoMin" VerticalAlignment="Top" Width="42" />
+                <Label Content="Min" Height="28" HorizontalAlignment="Left" Margin="637,114,0,0" Name="label6" VerticalAlignment="Top" />
+                <Label Content="Branch Allocate Code" Height="28" HorizontalAlignment="Left" Margin="6,307,0,0" Name="label7" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="140,311,0,0" Name="cbBranchAllocate" VerticalAlignment="Top" Width="126" Grid.Row="1" />
+                <Button Content="Add Branch" Height="23" HorizontalAlignment="Left" Margin="280,312,0,0" Name="button1" VerticalAlignment="Top" Width="75" Grid.Row="1" />
+                <Label Content="Number of Days Available" HorizontalAlignment="Left" Margin="302,0,0,446" Name="label8" Grid.Row="1" />
+                <Label Content="Time" Grid.Row="1" Height="28" HorizontalAlignment="Left" Margin="201,13,0,0" Name="label10" VerticalAlignment="Top" />
+                <Label Content="To" Grid.Row="1" Height="28" HorizontalAlignment="Left" Margin="223,45,0,0" Name="label13" VerticalAlignment="Top" />
+                <Label Content="Time" Height="28" HorizontalAlignment="Left" Margin="586,12,0,0" Name="label17" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" Margin="89,46,0,0" Name="cbMonfrmHr" VerticalAlignment="Top" Grid.Row="1" HorizontalAlignment="Left" Width="39" />
+                <Label Content="Hr" Height="28" HorizontalAlignment="Left" Margin="128,45,0,0" Name="label25" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,47,613,0" Name="cbMonFrmMin" VerticalAlignment="Top" Width="40" Grid.Row="1" />
+                <Label Content="Min" Height="28" HorizontalAlignment="Left" Margin="191,47,0,0" Name="label26" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" Margin="252,48,514,0" Name="cbMonToHr" VerticalAlignment="Top" Grid.Row="1" />
+                <Label Content="Hr" Height="28" HorizontalAlignment="Left" Margin="291,47,0,0" Name="label27" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,49,450,0" Name="cbToMonMin" VerticalAlignment="Top" Width="40" Grid.Row="1" />
+                <Label Content="Min" Height="28" HorizontalAlignment="Left" Margin="354,47,0,0" Name="label28" VerticalAlignment="Top" Grid.Row="1" />
+                <Label Content="To" Height="28" HorizontalAlignment="Left" Margin="223,80,0,0" Name="label14" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="89,81,0,0" Name="cbFrmTueHr" VerticalAlignment="Top" Width="39" Grid.Row="1" />
+                <Label Content="Hr" Height="28" HorizontalAlignment="Left" Margin="128,80,0,0" Name="label29" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,82,613,0" Name="cbFrmTueMin" VerticalAlignment="Top" Width="40" Grid.Row="1" />
+                <Label Content="Min" Height="28" HorizontalAlignment="Left" Margin="191,82,0,0" Name="label30" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" Margin="252,83,0,0" Name="cbToTueHr" VerticalAlignment="Top" Grid.Row="1" HorizontalAlignment="Left" Width="39" />
+                <Label Content="Hr" Height="28" HorizontalAlignment="Left" Margin="291,82,0,0" Name="label31" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,84,450,0" Name="cbToTueMin" VerticalAlignment="Top" Width="40" Grid.Row="1" />
+                <Label Content="Min" Height="28" HorizontalAlignment="Left" Margin="354,84,0,0" Name="label32" VerticalAlignment="Top" Grid.Row="1" />
+                <Label Content="To" Height="28" HorizontalAlignment="Left" Margin="223,114,0,0" Name="label15" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="89,115,0,0" Name="cbWedFrmHr" VerticalAlignment="Top" Width="39" Grid.Row="1" />
+                <Label Content="Hr" Height="28" HorizontalAlignment="Left" Margin="128,114,0,0" Name="label33" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,116,613,0" Name="cbWedFrmMin" VerticalAlignment="Top" Width="40" Grid.Row="1" />
+                <Label Content="Min" Height="28" HorizontalAlignment="Left" Margin="191,116,0,0" Name="label34" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" Margin="252,117,514,0" Name="cbWedToHr" VerticalAlignment="Top" Grid.Row="1" />
+                <Label Content="Hr" Height="28" HorizontalAlignment="Left" Margin="291,116,0,0" Name="label35" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,118,450,0" Name="cbWedToMin" VerticalAlignment="Top" Width="40" Grid.Row="1" />
+                <Label Content="Min" Height="28" HorizontalAlignment="Left" Margin="354,118,0,0" Name="label36" VerticalAlignment="Top" Grid.Row="1" />
+                <Label Content="To" Height="28" HorizontalAlignment="Left" Margin="599,48,0,0" Name="label20" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="465,48,0,0" Name="cbThurFrmHr" VerticalAlignment="Top" Width="39" Grid.Row="1" />
+                <Label Content="Hr" Height="28" HorizontalAlignment="Left" Margin="504,47,0,0" Name="label21" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,48,237,0" Name="cbThurFrmMin" VerticalAlignment="Top" Width="40" Grid.Row="1" />
+                <Label Content="Min" Height="28" HorizontalAlignment="Left" Margin="567,48,0,0" Name="label22" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" Margin="628,49,138,0" Name="cbThursToHr" VerticalAlignment="Top" Grid.Row="1" />
+                <Label Content="Hr" Height="28" HorizontalAlignment="Left" Margin="667,48,0,0" Name="label24" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,50,74,0" Name="cbThursToMin" VerticalAlignment="Top" Width="40" Grid.Row="1" />
+                <Label Content="Min" Height="28" HorizontalAlignment="Left" Margin="730,50,0,0" Name="label37" VerticalAlignment="Top" Grid.Row="1" />
+                <Label Content="To" Height="28" HorizontalAlignment="Left" Margin="599,81,0,0" Name="label38" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="465,82,0,0" Name="cbFridFrmHr" VerticalAlignment="Top" Width="39" Grid.Row="1" />
+                <Label Content="Hr" Height="28" HorizontalAlignment="Left" Margin="504,81,0,0" Name="label39" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,83,237,0" Name="cbFridFrmMin" VerticalAlignment="Top" Width="40" Grid.Row="1" />
+                <Label Content="Min" Height="28" HorizontalAlignment="Left" Margin="567,83,0,0" Name="label40" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" Margin="628,84,138,0" Name="cbFridToHr" VerticalAlignment="Top" Grid.Row="1" />
+                <Label Content="Hr" Height="28" HorizontalAlignment="Left" Margin="667,83,0,0" Name="label41" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,85,74,0" Name="cbFridToMin" VerticalAlignment="Top" Width="40" Grid.Row="1" />
+                <Label Content="Min" Height="28" HorizontalAlignment="Left" Margin="730,85,0,0" Name="label42" VerticalAlignment="Top" Grid.Row="1" />
+                <Label Content="To" Height="28" HorizontalAlignment="Left" Margin="599,113,0,0" Name="label43" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="465,114,0,0" Name="cbSatFrmHr" VerticalAlignment="Top" Width="39" Grid.Row="1" />
+                <Label Content="Hr" Height="28" HorizontalAlignment="Left" Margin="504,113,0,0" Name="label44" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,115,237,0" Name="cbSatFrmMin" VerticalAlignment="Top" Width="40" Grid.Row="1" />
+                <Label Content="Min" Height="28" HorizontalAlignment="Left" Margin="567,115,0,0" Name="label45" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" Margin="628,116,138,0" Name="cbSatToHr" VerticalAlignment="Top" Grid.Row="1" />
+                <Label Content="Hr" Height="28" HorizontalAlignment="Left" Margin="667,115,0,0" Name="label46" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,117,74,0" Name="cbSatToMin" VerticalAlignment="Top" Width="40" Grid.Row="1" />
+                <Label Content="Min" Height="28" HorizontalAlignment="Left" Margin="730,117,0,0" Name="label47" VerticalAlignment="Top" Grid.Row="1" />
+                <Label Content="To" Height="28" HorizontalAlignment="Left" Margin="599,148,0,0" Name="label48" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="465,149,0,0" Name="cbSunFrmHr" VerticalAlignment="Top" Width="39" Grid.Row="1" />
+                <Label Content="Hr" Height="28" HorizontalAlignment="Left" Margin="504,148,0,0" Name="label49" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,150,237,0" Name="cbSunFrmMin" VerticalAlignment="Top" Width="40" Grid.Row="1" />
+                <Label Content="Min" Height="28" HorizontalAlignment="Left" Margin="567,150,0,0" Name="label50" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" Margin="628,151,138,0" Name="cbSunToHr" VerticalAlignment="Top" Grid.Row="1" />
+                <Label Content="Hr" Height="28" HorizontalAlignment="Left" Margin="667,150,0,0" Name="label51" VerticalAlignment="Top" Grid.Row="1" />
+                <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,152,74,0" Name="cbSunToMin" VerticalAlignment="Top" Width="40" Grid.Row="1" />
+                <Label Content="Min" Height="28" HorizontalAlignment="Left" Margin="730,152,0,0" Name="label52" VerticalAlignment="Top" Grid.Row="1" />
+                <CheckBox Content="Mon" Grid.Row="1" Height="16" HorizontalAlignment="Left" Margin="41,50,0,0" Name="chkMon" VerticalAlignment="Top" />
+                <CheckBox Content="Tue" Height="16" HorizontalAlignment="Left" Margin="41,85,0,0" Name="chkTue" VerticalAlignment="Top" Grid.Row="1" />
+                <CheckBox Content="Wed" Height="16" HorizontalAlignment="Left" Margin="41,119,0,0" Name="chkWed" VerticalAlignment="Top" Grid.Row="1" />
+                <CheckBox Content="Thurs" Height="16" HorizontalAlignment="Left" Margin="418,52,0,0" Name="chkThurs" VerticalAlignment="Top" Grid.Row="1" />
+                <CheckBox Content="Frid" HorizontalAlignment="Left" Margin="420,86,0,256" Name="chkFrid" Grid.Row="1" />
+                <CheckBox Content="Sat" Height="16" HorizontalAlignment="Left" Margin="420,118,0,0" Name="chkSat" VerticalAlignment="Top" Grid.Row="1" />
+                <CheckBox Content="Sun" Height="16" HorizontalAlignment="Left" Margin="420,153,0,0" Name="chkSun" VerticalAlignment="Top" Grid.Row="1" />
+                <Label Content="Subjects" Height="28" HorizontalAlignment="Left" Margin="41,189,0,0" Name="label9" VerticalAlignment="Top" Grid.Row="1" />
+                <ListBox Grid.Row="1" Height="90" HorizontalAlignment="Left" Margin="101,201,0,0" Name="listBox1" VerticalAlignment="Top" Width="630" />
+                <Label Content="No.of Sub.Teaching" Grid.Row="1" Height="28" HorizontalAlignment="Left" Margin="15,341,0,0" Name="label11" VerticalAlignment="Top" />
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="140,341,0,0" Name="cbNoOfSubTech" VerticalAlignment="Top" Width="126" Grid.Row="1" />
+                <ListBox Grid.Row="1" Height="82" HorizontalAlignment="Left" Margin="142,370,0,0" Name="listBox2" VerticalAlignment="Top" Width="589" />
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>
