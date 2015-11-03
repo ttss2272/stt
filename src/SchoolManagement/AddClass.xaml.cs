@@ -22,5 +22,42 @@ namespace SchoolManagement
         {
             InitializeComponent();
         }
+
+
+        #region---------------------------Validate()-----------------------------------------
+        public bool Validate()
+        {
+
+            if (string.IsNullOrEmpty(txtClassName.Text))
+            {
+                MessageBox.Show("Please Enter Class Name..");
+                txtClassName.Focus();
+                return false;
+            }
+            else if (string.IsNullOrEmpty(txtShortName.Text))
+            {
+                MessageBox.Show("Please Enter Short Name..");
+                txtShortName.Focus();
+                return false;
+            }
+            else if (string.IsNullOrEmpty(txtcolor.Text))
+            {
+                MessageBox.Show("Please Enter Short Name..");
+                txtcolor.Focus();
+                return false;
+            }
+            else if (cbBoard.SelectedIndex == 0)
+            {
+                MessageBox.Show("Pleas Select Board...");
+                cbBoard.Focus();
+                return false;
+            }
+
+            else
+            {
+                return true;
+            }
+        }
+        #endregion
     }
 }
