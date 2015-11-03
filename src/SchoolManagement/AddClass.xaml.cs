@@ -42,7 +42,7 @@ namespace SchoolManagement
             }
             else if (string.IsNullOrEmpty(txtcolor.Text))
             {
-                MessageBox.Show("Please Enter Short Name..");
+                MessageBox.Show("Please Enter Color Detail..");
                 txtcolor.Focus();
                 return false;
             }

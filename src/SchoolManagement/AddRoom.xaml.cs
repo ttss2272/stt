@@ -22,5 +22,41 @@ namespace SchoolManagement
         {
             InitializeComponent();
         }
+
+        #region---------------------------Validate()-----------------------------------------
+        public bool Validate()
+        {
+
+            if (string.IsNullOrEmpty(txtName.Text))
+            {
+                MessageBox.Show("Please Enter Room Name..");
+                txtName.Focus();
+                return false;
+            }
+            else if (string.IsNullOrEmpty(txtShortName.Text))
+            {
+                MessageBox.Show("Please Enter Short Name..");
+                txtShortName.Focus();
+                return false;
+            }
+            else if (string.IsNullOrEmpty(txtColor.Text))
+            {
+                MessageBox.Show("Please Enter Color Detail..");
+                txtColor.Focus();
+                return false;
+            }
+            else if (cbCapacity.SelectedIndex == 0)
+            {
+                MessageBox.Show("Pleas Select Room Capacity...");
+                cbCapacity.Focus();
+                return false;
+            }
+
+            else
+            {
+                return true;
+            }
+        }
+        #endregion
     }
 }
