@@ -10,6 +10,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BusinessLayer;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace SchoolManagement
 {
@@ -18,6 +21,8 @@ namespace SchoolManagement
     /// </summary>
     public partial class Manage : Window
     {
+        string ConnectionString = ConfigurationManager.ConnectionStrings["conn"].ConnectionString;
+        BLAddClass obj_AddClass = new BLAddClass();
         public Manage()
         {
             InitializeComponent();
@@ -59,5 +64,110 @@ namespace SchoolManagement
             }
         }
         #endregion
+
+
+        #region----------------------------------------btnAdd_Click-------------------------------------------
+        private void btnadd_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (Validate())
+                {
+                    if (btnadd.Text == "Add")
+                    {
+                        int id = 0;
+                        string ClassName = txtClassName.Text;
+                        string ShortName = txtShortName.Text;
+                        int Board = Convert.ToInt32(cbBoard.SelectedValue.ToString());
+                        string Color = txtcolor.Text;
+                        //string IsActive;
+                        //string IsDelete;                       
+                        //if (cbActive.Checked == true)
+                        //{
+                        //    IsActive = "Yes";
+                        //    IsDelete = "No";
+                        //}
+                        //else
+                        //{
+                        //    IsActive = "No";
+                        //    IsDelete = "Yes";
+                        //}
+                        string result = obj_AddClass.saveAddClass(id, ClassName, ShortName, Board, Color);
+                        if (result == "1")
+                        {
+                            MessageBox.Show("Class Details Added Successfully...");
+                            //Usp_BindDoctorGrid();
+                            clearFields();
+                        }
+                        else
+                        {
+                            MessageBox.Show("This Class Details Already Exist...");
+                            clearFields();
+                        }
+
+                    }
+                    else
+                    {
+                        //int Id = Convert.ToInt32(lblid.Text);
+                        string ClassName = txtClassName.Text;
+                        string ShortName = txtShortName.Text;
+                        int Board = Convert.ToInt32(cbBoard.SelectedValue.ToString());
+                        string Color = txtcolor.Text;
+                        //string IsActive;
+                        //string IsDelete;                       
+                        //if (cbActive.Checked == true)
+                        //{
+                        //    IsActive = "Yes";
+                        //    IsDelete = "No";
+                        //}
+                        //else
+                        //{
+                        //    IsActive = "No";
+                        //    IsDelete = "Yes";
+                        //}
+                        string result = obj_AddClass.saveAddClass(id, ClassName, ShortName, Board, Color);
+                        if (result == "1")
+                        {
+                            MessageBox.Show("Class Details Updated successfully...");
+                            //Usp_BindDoctorGrid();
+                            clearFields();
+                            //lblid.Text = "";
+                        }
+                        //lbProductList.Enabled = true;
+                        btnadd.Text = "Add";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        #endregion
+
+        #region-----------------------------clearFields()------------------------------------------
+        private void clearFields()
+        {
+            txtClassName.Text = "";
+            txtShortName.Text = "";
+            cbBoard.Text = "";
+            txtcolor.Text = "";
+        }
+        #endregion
+
+        private void btncancel_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+
+        }
     }
 }
+    
+
