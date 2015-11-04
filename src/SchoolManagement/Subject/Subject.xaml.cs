@@ -107,6 +107,7 @@ namespace SchoolManagement.Subject
         {
             txtSubjectName.Text = "";
             txtSubjectShortName.Text = "";
+            BindGridview();
         }
         #endregion
 
@@ -262,6 +263,8 @@ namespace SchoolManagement.Subject
         }
         #endregion
 
+
+        #region-------------------------------------grvSubject_MouseDoubleClick---------------------------------------
         private void grdvSubject_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             try
@@ -273,5 +276,18 @@ namespace SchoolManagement.Subject
                 MessageBox.Show(ex.Message.ToString());
             }
         }
+        #endregion
+
+        #region----------------------------------grvSubjectBind----------------------------------------------------
+        private void BindGridview()
+        {
+            DataSet ds = objSubject.BindSubject(0);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                grdvSubject.ItemsSource = ds.Tables[0].DefaultView;
+                grdvSubject.Columns[0].Visibility = Visibility.Collapsed;
+            }
+        }
+        #endregion
     }
 }
