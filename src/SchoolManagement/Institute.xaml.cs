@@ -22,5 +22,37 @@ namespace SchoolManagement
         {
             InitializeComponent();
         }
+
+
+        #region---------------------------Validate()-----------------------------------------
+        public bool Validate()
+        {
+            if (string.IsNullOrEmpty(txtInstituteName.Text))
+            {
+                MessageBox.Show("Pleas Enter Institute Name...");
+                txtInstituteName.Focus();
+                return false;
+            }
+            else if (string.IsNullOrEmpty(txtTimeTableforCreatedMonth.Text))
+            {
+                MessageBox.Show("Pleas Enter Time of the month...");
+                txtTimeTableforCreatedMonth.Focus();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        #endregion
+
+        #region-----------------------------clearFields()------------------------------------------
+        private void clearFields()
+        {
+            txtInstituteName.Text = "";
+            txtTimeTableforCreatedMonth.Text = "";
+
+        }
+        #endregion
     }
 }
