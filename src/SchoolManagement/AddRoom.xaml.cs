@@ -10,6 +10,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BusinessLayer;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace SchoolManagement
 {
@@ -18,11 +21,14 @@ namespace SchoolManagement
     /// </summary>
     public partial class Open : Window
     {
+       
+        BLRoom obj_Room = new BLRoom();
+        
         public Open()
         {
             InitializeComponent();
         }
-
+        
         #region---------------------------Validate()-----------------------------------------
         public bool Validate()
         {
@@ -45,10 +51,10 @@ namespace SchoolManagement
                 txtColor.Focus();
                 return false;
             }
-            else if (cbCapacity.SelectedIndex == 0)
+            else if (cmbCapacity.SelectedIndex == 0)
             {
                 MessageBox.Show("Pleas Select Room Capacity...");
-                cbCapacity.Focus();
+                cmbCapacity.Focus();
                 return false;
             }
 
@@ -58,5 +64,44 @@ namespace SchoolManagement
             }
         }
         #endregion
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+                if (Validate())
+                {
+                    if (btnAdd.Text == "Add")
+                    {
+                        string RoomName = txtName.Text;
+                        string ShortName = txtShortName.Text;
+                        int Campacity = Convert.ToInt32(cmbCapacity.SelectedValue.ToString());
+                        string IsActive = "Yes";
+                        string IsDelete = "No";
+                        string result = obj_Room.addRoom( RoomName, ShortName, Campacity, Col, IsActive, IsDelete);
+                        if (result == "1")
+                        {
+                            MessageBox.Show("Room Details are added Successfully...");
+                        }
+                        else
+                        {
+                            MessageBox.Show("This Room is Already exist");
+                        }
+                        clearFields();
+                    }
+                    else
+                    {
+                        //write the update code here
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        }
     }
 }
