@@ -263,7 +263,13 @@ namespace SchoolManagement.Subject
         }
         #endregion
 
-
+        /*
+         * Created By:- PriTesh D. Sortee
+         * Ctreated Date :- 4 Nov 2015
+         * StartTime:-PM
+         * EndTime:-PM
+         * Purpose:- SaveDetails
+         */
         #region-------------------------------------grvSubject_MouseDoubleClick---------------------------------------
         private void grdvSubject_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -277,6 +283,14 @@ namespace SchoolManagement.Subject
             }
         }
         #endregion
+
+        /*
+         * Created By:- PriTesh D. Sortee
+         * Ctreated Date :- 4 Nov 2015
+         * StartTime:-PM
+         * EndTime:-PM
+         * Purpose:- Bind Grid
+         */
 
         #region----------------------------------grvSubjectBind----------------------------------------------------
         private void BindGridview()
