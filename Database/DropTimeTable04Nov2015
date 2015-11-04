@@ -1,0 +1,691 @@
+/* ---------------------------------------------------------------------- */
+/* Script generated with: DeZign for Databases V8.1.2                     */
+/* Target DBMS:           MS SQL Server 2008                              */
+/* Project file:          timetable.dez                                   */
+/* Project name:          School Time Table                               */
+/* Author:                PriTesh D. Sortee                               */
+/* Script type:           Database drop script                            */
+/* Created on:            2015-11-04 12:01                                */
+/* ---------------------------------------------------------------------- */
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop foreign key constraints                                           */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+ALTER TABLE [Users].[User] DROP CONSTRAINT [UserType_User]
+GO
+
+
+ALTER TABLE [Branch].[Branch] DROP CONSTRAINT [Institute_Branch]
+GO
+
+
+ALTER TABLE [BranchAcadmicYear].[BranchAcadamicYear] DROP CONSTRAINT [Branch_BranchAcadamicYear]
+GO
+
+
+ALTER TABLE [Class].[Class] DROP CONSTRAINT [Branch_Class]
+GO
+
+
+ALTER TABLE [Btaches].[Batches] DROP CONSTRAINT [Class_Batches]
+GO
+
+
+ALTER TABLE [BatchLectLunch].[BatchLectLunch] DROP CONSTRAINT [Batches_BatchLectLunch]
+GO
+
+
+ALTER TABLE [BatchDays].[BatchDays] DROP CONSTRAINT [Batches_BatchDays]
+GO
+
+
+ALTER TABLE [BatchSubject] DROP CONSTRAINT [Batches_BatchSubject]
+GO
+
+
+ALTER TABLE [Teacher].[Teacher] DROP CONSTRAINT [Color_Teacher]
+GO
+
+
+ALTER TABLE [TeacherAvailable] DROP CONSTRAINT [Teacher_TeacherAvailable]
+GO
+
+
+ALTER TABLE [TeacherBranch] DROP CONSTRAINT [Teacher_TeacherBranch]
+GO
+
+
+ALTER TABLE [TeacherBranch] DROP CONSTRAINT [Branch_TeacherBranch]
+GO
+
+
+ALTER TABLE [TeacherSubject] DROP CONSTRAINT [BatchSubject_TeacherSubject]
+GO
+
+
+ALTER TABLE [TeacherSubject] DROP CONSTRAINT [TeacherBranch_TeacherSubject]
+GO
+
+
+ALTER TABLE [TeacherRule] DROP CONSTRAINT [Teacher_TeacherRule]
+GO
+
+
+ALTER TABLE [BatchRule] DROP CONSTRAINT [Batches_BatchRule]
+GO
+
+
+ALTER TABLE [RoomRuleID] DROP CONSTRAINT [BranchesRooms_RoomRuleID]
+GO
+
+
+ALTER TABLE [TimeTable] DROP CONSTRAINT [Batches_TimeTable]
+GO
+
+
+ALTER TABLE [TimeTableDetail] DROP CONSTRAINT [TimeTable_TimeTableDetail]
+GO
+
+
+ALTER TABLE [TimeTableDetail] DROP CONSTRAINT [BranchesRooms_TimeTableDetail]
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop table "Users.User"                                                */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* Drop constraints */
+
+ALTER TABLE [Users].[User] DROP CONSTRAINT [UserID]
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Users', 'TABLE', N'User', 'COLUMN', N'UserID'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Users', 'TABLE', N'User', 'COLUMN', N'UserName'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Users', 'TABLE', N'User', 'COLUMN', N'ContactNo'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Users', 'TABLE', N'User', 'COLUMN', N'User Address'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Users', 'TABLE', N'User', 'COLUMN', N'LoginName'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Users', 'TABLE', N'User', 'COLUMN', N'Password'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Users', 'TABLE', N'User', 'COLUMN', N'CreatedDate'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Users', 'TABLE', N'User', 'COLUMN', N'UpdatedDate'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Users', 'TABLE', N'User', 'COLUMN', N'UserTypeID'
+GO
+
+
+DROP TABLE [Users].[User]
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop table "TimeTableDetail"                                           */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* Drop constraints */
+
+ALTER TABLE [TimeTableDetail] DROP CONSTRAINT [TimeTableDetailID]
+GO
+
+
+DROP TABLE [TimeTableDetail]
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop table "TimeTable"                                                 */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* Drop constraints */
+
+ALTER TABLE [TimeTable] DROP CONSTRAINT [TimeTableID]
+GO
+
+
+DROP TABLE [TimeTable]
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop table "RoomRuleID"                                                */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* Drop constraints */
+
+ALTER TABLE [RoomRuleID] DROP CONSTRAINT [RoomRuleID]
+GO
+
+
+DROP TABLE [RoomRuleID]
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop table "BatchRule"                                                 */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* Drop constraints */
+
+ALTER TABLE [BatchRule] DROP CONSTRAINT [BatchRuleID]
+GO
+
+
+DROP TABLE [BatchRule]
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop table "TeacherRule"                                               */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* Drop constraints */
+
+ALTER TABLE [TeacherRule] DROP CONSTRAINT [TeacherRuleID]
+GO
+
+
+DROP TABLE [TeacherRule]
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop table "TeacherSubject"                                            */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* Drop constraints */
+
+ALTER TABLE [TeacherSubject] DROP CONSTRAINT [TeacherSubjectID]
+GO
+
+
+DROP TABLE [TeacherSubject]
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop table "TeacherBranch"                                             */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* Drop constraints */
+
+ALTER TABLE [TeacherBranch] DROP CONSTRAINT [TeacherBranchID]
+GO
+
+
+DROP TABLE [TeacherBranch]
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop table "TeacherAvailable"                                          */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* Drop constraints */
+
+ALTER TABLE [TeacherAvailable] DROP CONSTRAINT [TeacherAvailableID]
+GO
+
+
+DROP TABLE [TeacherAvailable]
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop table "Teacher.Teacher"                                           */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* Drop constraints */
+
+ALTER TABLE [Teacher].[Teacher] DROP CONSTRAINT [TeacherID]
+GO
+
+
+DROP TABLE [Teacher].[Teacher]
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop table "Color.Color"                                               */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* Drop constraints */
+
+ALTER TABLE [Color].[Color] DROP CONSTRAINT [ColorID]
+GO
+
+
+DROP TABLE [Color].[Color]
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop table "BatchSubject"                                              */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* Drop constraints */
+
+ALTER TABLE [BatchSubject] DROP CONSTRAINT [BatchSubjectID]
+GO
+
+
+DROP TABLE [BatchSubject]
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop table "BatchDays.BatchDays"                                       */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* Drop constraints */
+
+ALTER TABLE [BatchDays].[BatchDays] DROP CONSTRAINT [BatchDayID]
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'BatchDays', 'TABLE', N'BatchDays', 'COLUMN', N'BatchDayID'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'BatchDays', 'TABLE', N'BatchDays', 'COLUMN', N'BatchID'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'BatchDays', 'TABLE', N'BatchDays', 'COLUMN', N'Days'
+GO
+
+
+DROP TABLE [BatchDays].[BatchDays]
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop table "BatchLectLunch.BatchLectLunch"                             */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* Drop constraints */
+
+ALTER TABLE [BatchLectLunch].[BatchLectLunch] DROP CONSTRAINT [LectLunchID]
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'BatchLectLunch', 'TABLE', N'BatchLectLunch', 'COLUMN', N'LectLunchID'
+GO
+
+
+DROP TABLE [BatchLectLunch].[BatchLectLunch]
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop table "BranchDistance.BranchDistance"                             */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* Drop constraints */
+
+ALTER TABLE [BranchDistance].[BranchDistance] DROP CONSTRAINT [BranchDistaceID]
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'BranchDistance', 'TABLE', N'BranchDistance', 'COLUMN', N'BranchDistaceID'
+GO
+
+
+DROP TABLE [BranchDistance].[BranchDistance]
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop table "Btaches.Batches"                                           */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* Drop constraints */
+
+ALTER TABLE [Btaches].[Batches] DROP CONSTRAINT [BatchID]
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Btaches', 'TABLE', N'Batches', 'COLUMN', N'BatchID'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Btaches', 'TABLE', N'Batches', 'COLUMN', N'BatchName'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Btaches', 'TABLE', N'Batches', 'COLUMN', N'BatchCode'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Btaches', 'TABLE', N'Batches', 'COLUMN', N'ClassID'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Btaches', 'TABLE', N'Batches', 'COLUMN', N'CreatedByUserID'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Btaches', 'TABLE', N'Batches', 'COLUMN', N'UpdatedByUserID'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Btaches', 'TABLE', N'Batches', 'COLUMN', N'CreatedDate'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Btaches', 'TABLE', N'Batches', 'COLUMN', N'UpdatedDate'
+GO
+
+
+DROP TABLE [Btaches].[Batches]
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop table "Class.Class"                                               */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* Drop constraints */
+
+ALTER TABLE [Class].[Class] DROP CONSTRAINT [ClassID]
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Class', 'TABLE', N'Class', 'COLUMN', N'ClassID'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Class', 'TABLE', N'Class', 'COLUMN', N'ClassName'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Class', 'TABLE', N'Class', 'COLUMN', N'ClassShortName'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Class', 'TABLE', N'Class', 'COLUMN', N'Board'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Class', 'TABLE', N'Class', 'COLUMN', N'Color'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Class', 'TABLE', N'Class', 'COLUMN', N'CreatedByUserID'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Class', 'TABLE', N'Class', 'COLUMN', N'UpdatedByUserID'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Class', 'TABLE', N'Class', 'COLUMN', N'CreatedDate'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Class', 'TABLE', N'Class', 'COLUMN', N'UpdatedDate'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Class', 'TABLE', N'Class', 'COLUMN', N'BranchID'
+GO
+
+
+DROP TABLE [Class].[Class]
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop table "BranchRooms.BranchesRooms"                                 */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* Drop constraints */
+
+ALTER TABLE [BranchRooms].[BranchesRooms] DROP CONSTRAINT [RoomID]
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'BranchRooms', 'TABLE', N'BranchesRooms', 'COLUMN', N'RoomID'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'BranchRooms', 'TABLE', N'BranchesRooms', 'COLUMN', N'RoomName'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'BranchRooms', 'TABLE', N'BranchesRooms', 'COLUMN', N'RoomShortName'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'BranchRooms', 'TABLE', N'BranchesRooms', 'COLUMN', N'RoomColor'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'BranchRooms', 'TABLE', N'BranchesRooms', 'COLUMN', N'Capacity'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'BranchRooms', 'TABLE', N'BranchesRooms', 'COLUMN', N'BranchID'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'BranchRooms', 'TABLE', N'BranchesRooms', 'COLUMN', N'CreatedByUserID'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'BranchRooms', 'TABLE', N'BranchesRooms', 'COLUMN', N'UpdatedByUserID'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'BranchRooms', 'TABLE', N'BranchesRooms', 'COLUMN', N'CreatedDate'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'BranchRooms', 'TABLE', N'BranchesRooms', 'COLUMN', N'UpdatedDate'
+GO
+
+
+DROP TABLE [BranchRooms].[BranchesRooms]
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop table "BranchAcadmicYear.BranchAcadamicYear"                      */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* Drop constraints */
+
+ALTER TABLE [BranchAcadmicYear].[BranchAcadamicYear] DROP CONSTRAINT [AcadmicYearID]
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'BranchAcadmicYear', 'TABLE', N'BranchAcadamicYear', 'COLUMN', N'AcadmicYearID'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'BranchAcadmicYear', 'TABLE', N'BranchAcadamicYear', 'COLUMN', N'BranchID'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'BranchAcadmicYear', 'TABLE', N'BranchAcadamicYear', 'COLUMN', N'AcadmicYearStartDate'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'BranchAcadmicYear', 'TABLE', N'BranchAcadamicYear', 'COLUMN', N'AcadmicYearEndDate'
+GO
+
+
+DROP TABLE [BranchAcadmicYear].[BranchAcadamicYear]
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop table "Branch.Branch"                                             */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* Drop constraints */
+
+ALTER TABLE [Branch].[Branch] DROP CONSTRAINT [BranchID]
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Branch', 'TABLE', N'Branch', 'COLUMN', N'BranchID'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Branch', 'TABLE', N'Branch', 'COLUMN', N'BranchName'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Branch', 'TABLE', N'Branch', 'COLUMN', N'BranchCode'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Branch', 'TABLE', N'Branch', 'COLUMN', N'CreatedByUserID'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Branch', 'TABLE', N'Branch', 'COLUMN', N'UpdatedByUserID'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Branch', 'TABLE', N'Branch', 'COLUMN', N'CreatedDate'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'Branch', 'TABLE', N'Branch', 'COLUMN', N'UpdatedDate'
+GO
+
+
+DROP TABLE [Branch].[Branch]
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop table "UserType.UserType"                                         */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* Drop constraints */
+
+ALTER TABLE [UserType].[UserType] DROP CONSTRAINT [UserTypeID]
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'UserType', 'TABLE', N'UserType', 'COLUMN', N'UserTypeID'
+GO
+
+
+EXECUTE sp_dropextendedproperty N'MS_Description', 'SCHEMA', N'UserType', 'TABLE', N'UserType', 'COLUMN', N'UserTypeName'
+GO
+
+
+DROP TABLE [UserType].[UserType]
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Drop table "Institute.Institute"                                       */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* Drop constraints */
+
+ALTER TABLE [Institute].[Institute] DROP CONSTRAINT [InstituteID]
+GO
+
+
+DROP TABLE [Institute].[Institute]
+GO
+

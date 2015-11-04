@@ -1,0 +1,833 @@
+/* ---------------------------------------------------------------------- */
+/* Script generated with: DeZign for Databases V8.1.2                     */
+/* Target DBMS:           MS SQL Server 2008                              */
+/* Project file:          timetable.dez                                   */
+/* Project name:          School Time TABLE                               */
+/* Author:                PriTesh D. Sortee                               */
+/* Script type:           Database creation script                        */
+/* Created on:            2015-11-04 12:01                                */
+/* ---------------------------------------------------------------------- */
+
+
+/* ---------------------------------------------------------------------- */
+/* Add tables                                                             */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add table "Institute.Institute"                                        */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+CREATE TABLE [Institute].[Institute] (
+    [InstituteID] INTEGER IDENTITY(1,1) NOT NULL,
+    [InstituteName] NVARCHAR(40) NOT NULL,
+    [Logo] NVARCHAR(40),
+    [CreatedDate] DATETIME NOT NULL,
+    [UpdatedDate] DATETIME NOT NULL,
+    [CreatedByUserID] INTEGER NOT NULL,
+    [UpdatedByUserID] INTEGER NOT NULL,
+    [IsActive] BIT NOT NULL,
+    CONSTRAINT [InstituteID] PRIMARY KEY ([InstituteID])
+)
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add table "UserType.UserType"                                          */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+CREATE TABLE [UserType].[UserType] (
+    [UserTypeID] INTEGER IDENTITY(1,1) NOT NULL,
+    [UserTypeName] NVARCHAR(max) NOT NULL,
+    [IsActive] BIT NOT NULL,
+    CONSTRAINT [UserTypeID] PRIMARY KEY ([UserTypeID])
+)
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'User Type ID', 'SCHEMA', N'UserType', 'TABLE', N'UserType', 'COLUMN', N'UserTypeID'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'User Type Name', 'SCHEMA', N'UserType', 'TABLE', N'UserType', 'COLUMN', N'UserTypeName'
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add table "Branch.Branch"                                              */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+CREATE TABLE [Branch].[Branch] (
+    [BranchID] INTEGER IDENTITY(1,1) NOT NULL,
+    [BranchName] NVARCHAR(max) NOT NULL,
+    [BranchCode] NVARCHAR(10) NOT NULL,
+    [CreatedByUserID] INTEGER NOT NULL,
+    [UpdatedByUserID] INTEGER NOT NULL,
+    [CreatedDate] DATETIME NOT NULL,
+    [UpdatedDate] DATETIME NOT NULL,
+    [InstituteID] INTEGER NOT NULL,
+    [IsActive] INTEGER NOT NULL,
+    CONSTRAINT [BranchID] PRIMARY KEY ([BranchID])
+)
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'BranchID', 'SCHEMA', N'Branch', 'TABLE', N'Branch', 'COLUMN', N'BranchID'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Branch Name', 'SCHEMA', N'Branch', 'TABLE', N'Branch', 'COLUMN', N'BranchName'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'BranchCode', 'SCHEMA', N'Branch', 'TABLE', N'Branch', 'COLUMN', N'BranchCode'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Created By UserID', 'SCHEMA', N'Branch', 'TABLE', N'Branch', 'COLUMN', N'CreatedByUserID'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'UpdatedByUserID', 'SCHEMA', N'Branch', 'TABLE', N'Branch', 'COLUMN', N'UpdatedByUserID'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Cereated Date', 'SCHEMA', N'Branch', 'TABLE', N'Branch', 'COLUMN', N'CreatedDate'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'UpdatedDate', 'SCHEMA', N'Branch', 'TABLE', N'Branch', 'COLUMN', N'UpdatedDate'
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add table "BranchAcadmicYear.BranchAcadamicYear"                       */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+CREATE TABLE [BranchAcadmicYear].[BranchAcadamicYear] (
+    [AcadmicYearID] INTEGER IDENTITY(1,1) NOT NULL,
+    [BranchID] INTEGER NOT NULL,
+    [AcadmicYearStartDate] DATE NOT NULL,
+    [AcadmicYearEndDate] DATE NOT NULL,
+    CONSTRAINT [AcadmicYearID] PRIMARY KEY ([AcadmicYearID])
+)
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'acadmicYearId', 'SCHEMA', N'BranchAcadmicYear', 'TABLE', N'BranchAcadamicYear', 'COLUMN', N'AcadmicYearID'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'BranchId', 'SCHEMA', N'BranchAcadmicYear', 'TABLE', N'BranchAcadamicYear', 'COLUMN', N'BranchID'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'AcadmicYearStartDate', 'SCHEMA', N'BranchAcadmicYear', 'TABLE', N'BranchAcadamicYear', 'COLUMN', N'AcadmicYearStartDate'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Acadmic Year End Date', 'SCHEMA', N'BranchAcadmicYear', 'TABLE', N'BranchAcadamicYear', 'COLUMN', N'AcadmicYearEndDate'
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add table "BranchRooms.BranchesRooms"                                  */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+CREATE TABLE [BranchRooms].[BranchesRooms] (
+    [RoomID] INTEGER IDENTITY(1,1) NOT NULL,
+    [RoomName] NVARCHAR(max) NOT NULL,
+    [RoomShortName] NVARCHAR(10) NOT NULL,
+    [RoomColor] NVARCHAR(20) NOT NULL,
+    [Capacity] INTEGER NOT NULL,
+    [BranchID] INTEGER NOT NULL,
+    [CreatedByUserID] INTEGER NOT NULL,
+    [UpdatedByUserID] INTEGER NOT NULL,
+    [CreatedDate] DATETIME NOT NULL,
+    [UpdatedDate] DATETIME NOT NULL,
+    [IsActive] BIT NOT NULL,
+    CONSTRAINT [RoomID] PRIMARY KEY ([RoomID])
+)
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'RoomID', 'SCHEMA', N'BranchRooms', 'TABLE', N'BranchesRooms', 'COLUMN', N'RoomID'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'RoomName', 'SCHEMA', N'BranchRooms', 'TABLE', N'BranchesRooms', 'COLUMN', N'RoomName'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'RoomShortName', 'SCHEMA', N'BranchRooms', 'TABLE', N'BranchesRooms', 'COLUMN', N'RoomShortName'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'RoomColor', 'SCHEMA', N'BranchRooms', 'TABLE', N'BranchesRooms', 'COLUMN', N'RoomColor'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'RoomCapoacity', 'SCHEMA', N'BranchRooms', 'TABLE', N'BranchesRooms', 'COLUMN', N'Capacity'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'BranchId', 'SCHEMA', N'BranchRooms', 'TABLE', N'BranchesRooms', 'COLUMN', N'BranchID'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Creatd by user ID', 'SCHEMA', N'BranchRooms', 'TABLE', N'BranchesRooms', 'COLUMN', N'CreatedByUserID'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Updated by User ID', 'SCHEMA', N'BranchRooms', 'TABLE', N'BranchesRooms', 'COLUMN', N'UpdatedByUserID'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Created Date And Time', 'SCHEMA', N'BranchRooms', 'TABLE', N'BranchesRooms', 'COLUMN', N'CreatedDate'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'UpdatedDate And Time', 'SCHEMA', N'BranchRooms', 'TABLE', N'BranchesRooms', 'COLUMN', N'UpdatedDate'
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add table "Class.Class"                                                */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+CREATE TABLE [Class].[Class] (
+    [ClassID] INTEGER IDENTITY(1,1) NOT NULL,
+    [ClassName] NVARCHAR(max) NOT NULL,
+    [ClassShortName] NVARCHAR(10) NOT NULL,
+    [Board] NVARCHAR(20) NOT NULL,
+    [Color] NVARCHAR(20) NOT NULL,
+    [CreatedByUserID] INTEGER NOT NULL,
+    [UpdatedByUserID] INTEGER NOT NULL,
+    [CreatedDate] DATETIME NOT NULL,
+    [UpdatedDate] DATETIME NOT NULL,
+    [BranchID] INTEGER NOT NULL,
+    [IsActive] BIT,
+    CONSTRAINT [ClassID] PRIMARY KEY ([ClassID])
+)
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Class ID', 'SCHEMA', N'Class', 'TABLE', N'Class', 'COLUMN', N'ClassID'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Class Name', 'SCHEMA', N'Class', 'TABLE', N'Class', 'COLUMN', N'ClassName'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Class Short Name', 'SCHEMA', N'Class', 'TABLE', N'Class', 'COLUMN', N'ClassShortName'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Board Name', 'SCHEMA', N'Class', 'TABLE', N'Class', 'COLUMN', N'Board'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Class Color', 'SCHEMA', N'Class', 'TABLE', N'Class', 'COLUMN', N'Color'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Created By User ID', 'SCHEMA', N'Class', 'TABLE', N'Class', 'COLUMN', N'CreatedByUserID'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Updated By User ID', 'SCHEMA', N'Class', 'TABLE', N'Class', 'COLUMN', N'UpdatedByUserID'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'CreatedDate', 'SCHEMA', N'Class', 'TABLE', N'Class', 'COLUMN', N'CreatedDate'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'UpdatedDate ', 'SCHEMA', N'Class', 'TABLE', N'Class', 'COLUMN', N'UpdatedDate'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'BranchID', 'SCHEMA', N'Class', 'TABLE', N'Class', 'COLUMN', N'BranchID'
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add table "Btaches.Batches"                                            */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+CREATE TABLE [Btaches].[Batches] (
+    [BatchID] INTEGER IDENTITY(1,1) NOT NULL,
+    [BatchName] NVARCHAR(max) NOT NULL,
+    [BatchCode] NVARCHAR(10) NOT NULL,
+    [ClassID] INTEGER NOT NULL,
+    [CreatedByUserID] INTEGER NOT NULL,
+    [UpdatedByUserID] INTEGER NOT NULL,
+    [CreatedDate] DATETIME NOT NULL,
+    [UpdatedDate] DATETIME NOT NULL,
+    [IsActive] BIT NOT NULL,
+    CONSTRAINT [BatchID] PRIMARY KEY ([BatchID])
+)
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Batch ID', 'SCHEMA', N'Btaches', 'TABLE', N'Batches', 'COLUMN', N'BatchID'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Batch Name', 'SCHEMA', N'Btaches', 'TABLE', N'Batches', 'COLUMN', N'BatchName'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'BatchCode', 'SCHEMA', N'Btaches', 'TABLE', N'Batches', 'COLUMN', N'BatchCode'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Class ID Fk', 'SCHEMA', N'Btaches', 'TABLE', N'Batches', 'COLUMN', N'ClassID'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Created UserID', 'SCHEMA', N'Btaches', 'TABLE', N'Batches', 'COLUMN', N'CreatedByUserID'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Updated By User ID', 'SCHEMA', N'Btaches', 'TABLE', N'Batches', 'COLUMN', N'UpdatedByUserID'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Created Date Time', 'SCHEMA', N'Btaches', 'TABLE', N'Batches', 'COLUMN', N'CreatedDate'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Updated Date Time', 'SCHEMA', N'Btaches', 'TABLE', N'Batches', 'COLUMN', N'UpdatedDate'
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add table "BranchDistance.BranchDistance"                              */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+CREATE TABLE [BranchDistance].[BranchDistance] (
+    [BranchDistaceID] INTEGER IDENTITY(1,1) NOT NULL,
+    [From_BranchID] INTEGER NOT NULL,
+    [To_BranchID] INTEGER NOT NULL,
+    [DistanceTime] INTEGER NOT NULL,
+    CONSTRAINT [BranchDistaceID] PRIMARY KEY ([BranchDistaceID])
+)
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'BranchDistanceId', 'SCHEMA', N'BranchDistance', 'TABLE', N'BranchDistance', 'COLUMN', N'BranchDistaceID'
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add table "BatchLectLunch.BatchLectLunch"                              */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+CREATE TABLE [BatchLectLunch].[BatchLectLunch] (
+    [LectLunchID] INTEGER IDENTITY(1,1) NOT NULL,
+    [LectureDuration] INTEGER NOT NULL,
+    [IsLunchBreak] BIT NOT NULL,
+    [LunchBreakStartTime] INTEGER NOT NULL,
+    [LunchBreakEndTime] INTEGER NOT NULL,
+    [BatchID] INTEGER NOT NULL,
+    [CreatedDate] DATETIME NOT NULL,
+    CONSTRAINT [LectLunchID] PRIMARY KEY ([LectLunchID])
+)
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Lecture LunchID', 'SCHEMA', N'BatchLectLunch', 'TABLE', N'BatchLectLunch', 'COLUMN', N'LectLunchID'
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add table "BatchDays.BatchDays"                                        */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+CREATE TABLE [BatchDays].[BatchDays] (
+    [BatchDayID] INTEGER IDENTITY(1,1) NOT NULL,
+    [BatchID] INTEGER NOT NULL,
+    [Days] NVARCHAR(15) NOT NULL,
+    [StartTime] TIME NOT NULL,
+    [EndTime] TIME NOT NULL,
+    [CreatedDate] DATETIME,
+    CONSTRAINT [BatchDayID] PRIMARY KEY ([BatchDayID])
+)
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'BatchID', 'SCHEMA', N'BatchDays', 'TABLE', N'BatchDays', 'COLUMN', N'BatchDayID'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Batch ID', 'SCHEMA', N'BatchDays', 'TABLE', N'BatchDays', 'COLUMN', N'BatchID'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Day Name I.e. Sun,Mon etc', 'SCHEMA', N'BatchDays', 'TABLE', N'BatchDays', 'COLUMN', N'Days'
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add table "BatchSubject"                                               */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+CREATE TABLE [BatchSubject] (
+    [BatchSubjectID] INTEGER IDENTITY(1,1) NOT NULL,
+    [SubjectName] NVARCHAR(max) NOT NULL,
+    [SubjectShortName] NVARCHAR(10) NOT NULL,
+    [BatchID] INTEGER NOT NULL,
+    [CreatedByUserID] INTEGER NOT NULL,
+    [UpdatedByUserID] INTEGER NOT NULL,
+    [FrequencyPerDay] INTEGER NOT NULL,
+    [FrequencyPerWeek] INTEGER NOT NULL,
+    [CreatedDate] DATETIME NOT NULL,
+    [UpdatedDate] DATETIME NOT NULL,
+    [IsActive] BIT NOT NULL,
+    CONSTRAINT [BatchSubjectID] PRIMARY KEY ([BatchSubjectID])
+)
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add table "Color.Color"                                                */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+CREATE TABLE [Color].[Color] (
+    [ColorID] INTEGER IDENTITY(1,1) NOT NULL,
+    [ColorName] NVARCHAR(40) NOT NULL,
+    [CreatedByUserID] INTEGER NOT NULL,
+    [UpdatedByUserID] INTEGER NOT NULL,
+    [CreatedDate] DATETIME NOT NULL,
+    [UpdatedDate] DATETIME NOT NULL,
+    [IsActive] BIT NOT NULL,
+    CONSTRAINT [ColorID] PRIMARY KEY ([ColorID])
+)
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add table "Teacher.Teacher"                                            */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+CREATE TABLE [Teacher].[Teacher] (
+    [TeacherID] INTEGER IDENTITY(1,1) NOT NULL,
+    [TeacherName] NVARCHAR(max) NOT NULL,
+    [TeacherSurname] NVARCHAR(max) NOT NULL,
+    [TeacherShortName] NVARCHAR(10) NOT NULL,
+    [ColorID] INTEGER NOT NULL,
+    [CreatedByUserID] INTEGER NOT NULL,
+    [UpadatedByUserID] INTEGER NOT NULL,
+    [CreatedDate] DATETIME NOT NULL,
+    [UpdatedDate] DATETIME NOT NULL,
+    [IsActive] BIT NOT NULL,
+    [NoOfBranches] INTEGER NOT NULL,
+    [NoOfDaysAvailable] INTEGER NOT NULL,
+    CONSTRAINT [TeacherID] PRIMARY KEY ([TeacherID])
+)
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add table "TeacherAvailable"                                           */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+CREATE TABLE [TeacherAvailable] (
+    [TeacherAvailableID] INTEGER NOT NULL,
+    [Day] NVARCHAR(15) NOT NULL,
+    [StartTime] TIME NOT NULL,
+    [EndTime] TIME NOT NULL,
+    [TeacherID] INTEGER NOT NULL,
+    [CreatedByUserID] INTEGER NOT NULL,
+    [UpdatedByUserID] INTEGER NOT NULL,
+    [CreatedDate] DATETIME,
+    [UpdatedDate] DATETIME,
+    CONSTRAINT [TeacherAvailableID] PRIMARY KEY ([TeacherAvailableID])
+)
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add table "TeacherBranch"                                              */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+CREATE TABLE [TeacherBranch] (
+    [TeacherBranchID] INTEGER IDENTITY(1,1) NOT NULL,
+    [TeacherID] INTEGER NOT NULL,
+    [BranchID] INTEGER NOT NULL,
+    [NoOfSubject] INTEGER NOT NULL,
+    [CreatedByUserID] INTEGER NOT NULL,
+    [UpdatedByUserID] INTEGER NOT NULL,
+    [CreatedDate] DATETIME NOT NULL,
+    [UpdatedDate] DATETIME NOT NULL,
+    [IsActive] BIT NOT NULL,
+    CONSTRAINT [TeacherBranchID] PRIMARY KEY ([TeacherBranchID])
+)
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add table "TeacherSubject"                                             */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+CREATE TABLE [TeacherSubject] (
+    [TeacherSubjectID] INTEGER NOT NULL,
+    [TeacherBranchID] INTEGER NOT NULL,
+    [BatchSubjectID] INTEGER NOT NULL,
+    [CreatedByUserID] INTEGER NOT NULL,
+    [UpdatedByUserID] INTEGER NOT NULL,
+    [CreatedDate] INTEGER NOT NULL,
+    [UpdatedDate] INTEGER NOT NULL,
+    [IsActive] INTEGER,
+    CONSTRAINT [TeacherSubjectID] PRIMARY KEY ([TeacherSubjectID])
+)
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add table "TeacherRule"                                                */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+CREATE TABLE [TeacherRule] (
+    [TeacherRuleID] INTEGER IDENTITY(1,1) NOT NULL,
+    [TeacherID] INTEGER NOT NULL,
+    [NoOfMovesInBranch] INTEGER,
+    [MaxNoLecturesDay] INTEGER,
+    [MaxNoLectureWeek] INTEGER,
+    [AllowMoreThanOneLectInBatch] BIT,
+    [MaxNoOfLectureInRow] INTEGER,
+    [FirstLect] BIT,
+    [LastLect] BIT,
+    [FreeTimeStart] TIME,
+    [FreeTimeEnd] TIME,
+    [CreatedByUserID] INTEGER,
+    [UpdatedByUserID] INTEGER,
+    [CreatedDate] DATETIME,
+    [UpdatedDate] DATETIME,
+    CONSTRAINT [TeacherRuleID] PRIMARY KEY ([TeacherRuleID])
+)
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add table "BatchRule"                                                  */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+CREATE TABLE [BatchRule] (
+    [BatchRuleID] INTEGER IDENTITY(1,1) NOT NULL,
+    [BatchID] INTEGER NOT NULL,
+    [NoOfMovesInBranch] INTEGER,
+    [MaxNoLecturesDay] INTEGER,
+    [MaxNoLecturesWeek] INTEGER,
+    [AllowMoreThanOneLectInBatch] INTEGER,
+    [MaxNoOfLecureInRow] INTEGER,
+    [FirstLect] BIT,
+    [LastLect] BIT,
+    [FreeTimeStart] TIME,
+    [FreeTimeEnd] TIME,
+    [CreatedByUserID] INTEGER,
+    [UpdatedByUserID] INTEGER,
+    [CreatedDate] DATETIME,
+    [UpdatedDate] DATETIME,
+    CONSTRAINT [BatchRuleID] PRIMARY KEY ([BatchRuleID])
+)
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add table "RoomRuleID"                                                 */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+CREATE TABLE [RoomRuleID] (
+    [RoomRuleID] INTEGER IDENTITY(1,1) NOT NULL,
+    [RoomID] INTEGER,
+    [NoOfMovesInBranch] INTEGER,
+    [MaxNoLecturesDay] INTEGER,
+    [MaxNoLecturesWeek] INTEGER,
+    [AllowMoreThanOneLectInBatch] BIT,
+    [MaxNoOflectureInRow] INTEGER,
+    [FirstLect] BIT,
+    [LastLect] BIT,
+    [FreeTimeStart] TIME,
+    [FreeTimeEnd] TIME,
+    [CreatedByUserID] INTEGER,
+    [UpdatedByUserID] INTEGER,
+    [CreatedDate] DATETIME,
+    [UpdatedDate] DATETIME,
+    CONSTRAINT [RoomRuleID] PRIMARY KEY ([RoomRuleID])
+)
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add table "TimeTable"                                                  */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+CREATE TABLE [TimeTable] (
+    [TimeTableID] INTEGER IDENTITY(1,1) NOT NULL,
+    [TimeTableStartDate] DATE NOT NULL,
+    [BatchID] INTEGER NOT NULL,
+    [CreatedByUserID] INTEGER NOT NULL,
+    [UpdatedByUserID] INTEGER NOT NULL,
+    [CreatedDate] DATETIME NOT NULL,
+    [UpdatedDate] DATETIME NOT NULL,
+    [IsActive] INTEGER NOT NULL,
+    CONSTRAINT [TimeTableID] PRIMARY KEY ([TimeTableID])
+)
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add table "TimeTableDetail"                                            */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+CREATE TABLE [TimeTableDetail] (
+    [TimeTableDetailID] INTEGER IDENTITY(1,1) NOT NULL,
+    [RoomID] INTEGER NOT NULL,
+    [Day] NVARCHAR(15) NOT NULL,
+    [LectStartTime] TIME NOT NULL,
+    [LectEndTime] TIME NOT NULL,
+    [TeacherSubjectID] INTEGER NOT NULL,
+    [CreatedByUserID] INTEGER NOT NULL,
+    [UpdatedByUserID] INTEGER NOT NULL,
+    [CreatedDate] DATETIME NOT NULL,
+    [UpdatedDate] DATETIME NOT NULL,
+    [TimeTableID] INTEGER NOT NULL,
+    CONSTRAINT [TimeTableDetailID] PRIMARY KEY ([TimeTableDetailID], [TimeTableID])
+)
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add table "Users.User"                                                 */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+CREATE TABLE [Users].[User] (
+    [UserID] INTEGER IDENTITY(1,1) NOT NULL,
+    [UserName] NVARCHAR(50) NOT NULL,
+    [ContactNo] NVARCHAR(10) NOT NULL,
+    [User Address] NVARCHAR(max) NOT NULL,
+    [UserMailID] NVARCHAR(50) NOT NULL,
+    [LoginName] NVARCHAR(50) NOT NULL,
+    [Password] NVARCHAR(50) NOT NULL,
+    [CreatedDate] DATETIME NOT NULL,
+    [UpdatedDate] DATETIME NOT NULL,
+    [UserTypeID] INTEGER NOT NULL,
+    [IsActive] BIT NOT NULL,
+    CONSTRAINT [UserID] PRIMARY KEY ([UserID])
+)
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'USER ID Auto genrated', 'SCHEMA', N'Users', 'TABLE', N'User', 'COLUMN', N'UserID'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'User Name', 'SCHEMA', N'Users', 'TABLE', N'User', 'COLUMN', N'UserName'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'User Contact No', 'SCHEMA', N'Users', 'TABLE', N'User', 'COLUMN', N'ContactNo'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'User Address', 'SCHEMA', N'Users', 'TABLE', N'User', 'COLUMN', N'User Address'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'User Login Name  TO Login in APplicatiotion', 'SCHEMA', N'Users', 'TABLE', N'User', 'COLUMN', N'LoginName'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'Password Of User', 'SCHEMA', N'Users', 'TABLE', N'User', 'COLUMN', N'Password'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'User Created Date', 'SCHEMA', N'Users', 'TABLE', N'User', 'COLUMN', N'CreatedDate'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'User Update Time', 'SCHEMA', N'Users', 'TABLE', N'User', 'COLUMN', N'UpdatedDate'
+GO
+
+
+EXECUTE sp_addextendedproperty N'MS_Description', N'UserType ID', 'SCHEMA', N'Users', 'TABLE', N'User', 'COLUMN', N'UserTypeID'
+GO
+
+
+/* ---------------------------------------------------------------------- */
+/* Add foreign key constraints                                            */
+/* ---------------------------------------------------------------------- */
+
+GO
+
+
+ALTER TABLE [Users].[User] ADD CONSTRAINT [UserType_User] 
+    FOREIGN KEY ([UserTypeID]) REFERENCES [UserType].[UserType] ([UserTypeID])
+GO
+
+
+ALTER TABLE [Branch].[Branch] ADD CONSTRAINT [Institute_Branch] 
+    FOREIGN KEY ([InstituteID]) REFERENCES [Institute].[Institute] ([InstituteID])
+GO
+
+
+ALTER TABLE [BranchAcadmicYear].[BranchAcadamicYear] ADD CONSTRAINT [Branch_BranchAcadamicYear] 
+    FOREIGN KEY ([BranchID]) REFERENCES [Branch].[Branch] ([BranchID])
+GO
+
+
+ALTER TABLE [Class].[Class] ADD CONSTRAINT [Branch_Class] 
+    FOREIGN KEY ([BranchID]) REFERENCES [Branch].[Branch] ([BranchID])
+GO
+
+
+ALTER TABLE [Btaches].[Batches] ADD CONSTRAINT [Class_Batches] 
+    FOREIGN KEY ([ClassID]) REFERENCES [Class].[Class] ([ClassID])
+GO
+
+
+ALTER TABLE [BatchLectLunch].[BatchLectLunch] ADD CONSTRAINT [Batches_BatchLectLunch] 
+    FOREIGN KEY ([BatchID]) REFERENCES [Btaches].[Batches] ([BatchID])
+GO
+
+
+ALTER TABLE [BatchDays].[BatchDays] ADD CONSTRAINT [Batches_BatchDays] 
+    FOREIGN KEY ([BatchID]) REFERENCES [Btaches].[Batches] ([BatchID])
+GO
+
+
+ALTER TABLE [BatchSubject] ADD CONSTRAINT [Batches_BatchSubject] 
+    FOREIGN KEY ([BatchID]) REFERENCES [Btaches].[Batches] ([BatchID])
+GO
+
+
+ALTER TABLE [Teacher].[Teacher] ADD CONSTRAINT [Color_Teacher] 
+    FOREIGN KEY ([ColorID]) REFERENCES [Color].[Color] ([ColorID])
+GO
+
+
+ALTER TABLE [TeacherAvailable] ADD CONSTRAINT [Teacher_TeacherAvailable] 
+    FOREIGN KEY ([TeacherID]) REFERENCES [Teacher].[Teacher] ([TeacherID])
+GO
+
+
+ALTER TABLE [TeacherBranch] ADD CONSTRAINT [Teacher_TeacherBranch] 
+    FOREIGN KEY ([TeacherID]) REFERENCES [Teacher].[Teacher] ([TeacherID])
+GO
+
+
+ALTER TABLE [TeacherBranch] ADD CONSTRAINT [Branch_TeacherBranch] 
+    FOREIGN KEY ([BranchID]) REFERENCES [Branch].[Branch] ([BranchID])
+GO
+
+
+ALTER TABLE [TeacherSubject] ADD CONSTRAINT [BatchSubject_TeacherSubject] 
+    FOREIGN KEY ([BatchSubjectID]) REFERENCES [BatchSubject] ([BatchSubjectID])
+GO
+
+
+ALTER TABLE [TeacherSubject] ADD CONSTRAINT [TeacherBranch_TeacherSubject] 
+    FOREIGN KEY ([TeacherBranchID]) REFERENCES [TeacherBranch] ([TeacherBranchID])
+GO
+
+
+ALTER TABLE [TeacherRule] ADD CONSTRAINT [Teacher_TeacherRule] 
+    FOREIGN KEY ([TeacherID]) REFERENCES [Teacher].[Teacher] ([TeacherID])
+GO
+
+
+ALTER TABLE [BatchRule] ADD CONSTRAINT [Batches_BatchRule] 
+    FOREIGN KEY ([BatchID]) REFERENCES [Btaches].[Batches] ([BatchID])
+GO
+
+
+ALTER TABLE [RoomRuleID] ADD CONSTRAINT [BranchesRooms_RoomRuleID] 
+    FOREIGN KEY ([RoomID]) REFERENCES [BranchRooms].[BranchesRooms] ([RoomID])
+GO
+
+
+ALTER TABLE [TimeTable] ADD CONSTRAINT [Batches_TimeTable] 
+    FOREIGN KEY ([BatchID]) REFERENCES [Btaches].[Batches] ([BatchID])
+GO
+
+
+ALTER TABLE [TimeTableDetail] ADD CONSTRAINT [TimeTable_TimeTableDetail] 
+    FOREIGN KEY ([TimeTableID]) REFERENCES [TimeTable] ([TimeTableID])
+GO
+
+
+ALTER TABLE [TimeTableDetail] ADD CONSTRAINT [BranchesRooms_TimeTableDetail] 
+    FOREIGN KEY ([RoomID]) REFERENCES [BranchRooms].[BranchesRooms] ([RoomID])
+GO
+
