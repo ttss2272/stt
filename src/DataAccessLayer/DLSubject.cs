@@ -15,7 +15,7 @@ namespace DataAccessLayer
         {
             string Result = null;
             conn = con.getConnection();
-            SqlCommand cmd = new SqlCommand("SaveLog_SP", conn);
+            SqlCommand cmd = new SqlCommand("SaveSubject_SP", conn);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@SubjectID", SubjectID);
