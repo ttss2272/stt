@@ -3,12 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Branch" Height="448" Width="738">
     <Grid>
-        <ComboBox Height="23" HorizontalAlignment="Left" Margin="323,47,0,0" Name="cbBranchName" VerticalAlignment="Top" Width="181" />
-        <ComboBox Height="23" HorizontalAlignment="Left" Margin="323,93,0,0" Name="cbBranchCode" VerticalAlignment="Top" Width="181" />
-        <Label Content="Branch Name" Height="28" HorizontalAlignment="Left" Margin="209,47,0,0" Name="lblBranchName" VerticalAlignment="Top" />
-        <Label Content="Branch Code" Height="28" HorizontalAlignment="Left" Margin="213,93,0,0" Name="lblBranchCode" VerticalAlignment="Top" />
-        <Button Content="Display" Height="30" HorizontalAlignment="Left" Margin="305,163,0,0" Name="btnDisplay" VerticalAlignment="Top" Width="75" />
-        <Button Content="Close" Height="30" HorizontalAlignment="Left" Margin="429,163,0,0" Name="btnClose" VerticalAlignment="Top" Width="75" />
-        <DataGrid AutoGenerateColumns="False" Height="116" HorizontalAlignment="Left" Margin="156,256,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="512" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="275,24,0,0" Name="cbBranchName" VerticalAlignment="Top" Width="181" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="275,70,0,0" Name="cbBranchCode" VerticalAlignment="Top" Width="181" />
+        <Label Content="Branch Name" Height="28" HorizontalAlignment="Left" Margin="161,24,0,0" Name="lblBranchName" VerticalAlignment="Top" />
+        <Label Content="Branch Code" Height="28" HorizontalAlignment="Left" Margin="165,70,0,0" Name="lblBranchCode" VerticalAlignment="Top" />
+        <Button Content="Display" Height="30" HorizontalAlignment="Left" Margin="257,140,0,0" Name="btnDisplay" VerticalAlignment="Top" Width="75" />
+        <Button Content="Close" Height="30" HorizontalAlignment="Left" Margin="381,140,0,0" Name="btnClose" VerticalAlignment="Top" Width="75" />
+        <DataGrid AutoGenerateColumns="False" Height="174" HorizontalAlignment="Left" Margin="90,212,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="512" />
     </Grid>
 </Window>

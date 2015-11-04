@@ -18,11 +18,11 @@
         <CheckBox Content="" Height="16" HorizontalAlignment="Left" Margin="18,142,0,0" Name="checkBox7" VerticalAlignment="Top" />
         <CheckBox Content="" Height="16" HorizontalAlignment="Left" Margin="380,175,0,0" Name="checkBox8" VerticalAlignment="Top" />
         <Label Content="Lecture Duration" Height="28" HorizontalAlignment="Left" Margin="8,226,0,0" Name="label1" VerticalAlignment="Top" />
-        <Label Content="Is there any lunch break" Height="28" HorizontalAlignment="Left" Margin="490,234,0,0" Name="label2" VerticalAlignment="Top" />
-        <CheckBox Content="Yes/No" Height="16" HorizontalAlignment="Left" Margin="632,240,0,0" Name="checkBox9" VerticalAlignment="Top" />
-        <Label Content="Lunch Time:" Height="28" HorizontalAlignment="Left" Margin="461,267,0,0" Name="label3" VerticalAlignment="Top" />
-        <Button Content="Close" Height="30" HorizontalAlignment="Left" Margin="500,312,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="button1_Click" />
-        <Button Content="Delete" Height="30" HorizontalAlignment="Left" Margin="383,312,0,0" Name="button2" VerticalAlignment="Top" Width="75" />
+        <Label Content="Is there any lunch break" Height="28" HorizontalAlignment="Left" Margin="510,223,0,0" Name="label2" VerticalAlignment="Top" />
+        <CheckBox Content="Yes/No" Height="16" HorizontalAlignment="Left" Margin="652,229,0,0" Name="checkBox9" VerticalAlignment="Top" />
+        <Label Content="Lunch Time:" Height="28" HorizontalAlignment="Left" Margin="452,256,0,0" Name="label3" VerticalAlignment="Top" />
+        <Button Content="Close" Height="30" HorizontalAlignment="Left" Margin="500,309,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="button1_Click" />
+        <Button Content="Delete" Height="30" HorizontalAlignment="Left" Margin="383,310,0,0" Name="button2" VerticalAlignment="Top" Width="75" />
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="118,106,0,0" Name="comboBox2" VerticalAlignment="Top" Width="35" />
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="155,141,0,0" Name="comboBox1" VerticalAlignment="Top" Width="35" />
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="263,109,0,0" Name="comboBox3" VerticalAlignment="Top" Width="35" />
@@ -71,11 +71,11 @@
         <Label Content="To" Height="28" HorizontalAlignment="Left" Margin="606,150,0,0" Name="label18" VerticalAlignment="Top" />
         <Label Content="To" Height="28" HorizontalAlignment="Left" Margin="606,183,0,0" Name="label19" VerticalAlignment="Top" />
         <Label Content="To" Height="28" HorizontalAlignment="Left" Margin="222,230,0,0" Name="label14" VerticalAlignment="Top" />
-        <ComboBox Height="23" HorizontalAlignment="Left" Margin="544,271,0,0" Name="comboBox33" VerticalAlignment="Top" Width="35" />
-        <ComboBox Height="23" HorizontalAlignment="Left" Margin="683,271,0,0" Name="comboBox34" VerticalAlignment="Top" Width="35" />
-        <ComboBox Height="23" HorizontalAlignment="Left" Margin="643,271,0,0" Name="comboBox35" VerticalAlignment="Top" Width="35" />
-        <ComboBox Height="23" HorizontalAlignment="Left" Margin="584,271,0,0" Name="comboBox36" VerticalAlignment="Top" Width="35" />
-        <Label Content="To" Height="28" HorizontalAlignment="Left" Margin="620,271,0,0" Name="label20" VerticalAlignment="Top" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="535,260,0,0" Name="comboBox33" VerticalAlignment="Top" Width="35" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="673,259,0,0" Name="comboBox34" VerticalAlignment="Top" Width="35" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="634,260,0,0" Name="comboBox35" VerticalAlignment="Top" Width="35" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="575,260,0,0" Name="comboBox36" VerticalAlignment="Top" Width="35" />
+        <Label Content="To" Height="28" HorizontalAlignment="Left" Margin="611,257,0,0" Name="label20" VerticalAlignment="Top" />
         <DataGrid AutoGenerateColumns="False" Height="156" HorizontalAlignment="Left" Margin="88,373,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="512" />
     </Grid>
 </Window>
