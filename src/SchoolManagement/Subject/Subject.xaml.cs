@@ -248,7 +248,7 @@ namespace SchoolManagement.Subject
         private void SaveDetails()
         {
             string Result = objSubject.SaveSubject(SubjectID, SubjectName, SubjectShortName, UpdatedByUserID, UpdatedDate, IsActive);
-            if (Result == "Save Sucessfully...!!!")
+            if (Result == "Save Sucessfully...!!!" && Result == "Updated Sucessfully...!!!")
             {
                 MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
                 ClearFields();
