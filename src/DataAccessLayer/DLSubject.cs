@@ -11,6 +11,7 @@ namespace DataAccessLayer
     {
         DBConnection  con = new DBConnection();
         SqlConnection conn = new SqlConnection();
+        
         public string SaveSubject(int SubjectID, string SubjectName, string SubjectShortName, int UpdatedByUserID, string UpdatedDate, int IsActive)
         {
             string Result = null;
@@ -31,6 +32,58 @@ namespace DataAccessLayer
             return Result;
 
             
+        }
+        //To Bind DropDown
+        public DataSet GetSubject(int SubjectID)
+        {
+            conn = con.getConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("GetSubject_SP", conn);
+            cmd.Parameters.AddWithValue("@SubjectID", SubjectID);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
+        }
+        //To Bind Gridview
+        public DataSet BindSubject(int SubjectID)
+        {
+            conn = con.getConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("BindSubject_SP", conn);
+            cmd.Parameters.AddWithValue("@SubjectID", SubjectID);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
+        }
+
+        //For Edit Details
+        public DataSet GetSubjectDetail(int SubjectID)
+        {
+            conn = con.getConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("GetSubjectDetail_SP", conn);
+            cmd.Parameters.AddWithValue("@SubjectID", SubjectID);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
         }
     }
 }
