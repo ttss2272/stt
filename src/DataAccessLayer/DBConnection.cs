@@ -10,10 +10,10 @@ namespace DataAccessLayer
 {
     public class DBConnection
     {
-        public SqlConnection getConnection()
-        {
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["conn"].ToString());
-            return conn;
-        }
+        public SqlConnection getConnection();
+
+        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["conn"].ToString());
+        
+
     }
 }
