@@ -64,6 +64,7 @@ namespace SchoolManagement.Subject
             {
                 Validate();
                 SetParameters();
+                SaveDetails();
 
             }
             catch (Exception ex)
@@ -119,6 +120,7 @@ namespace SchoolManagement.Subject
         #region-------------------------------------------------SetParameters()-------------------------------------
         private void SetParameters()
         {
+            SubjectID = 0;
             SubjectName = txtSubjectName.Text.Trim();
             SubjectShortName = txtSubjectShortName.Text.Trim();
             UpdatedByUserID = 1;
