@@ -25,6 +25,8 @@ namespace SchoolManagement.Room
     public partial class Room1 : Window
     {
         BLRoom obj_Room = new BLRoom();
+        int IsActive;
+        int IsDeleted;
 
         public Room1()
         {
@@ -106,9 +108,21 @@ namespace SchoolManagement.Room
                         string Color1 = txtColor.Text;
                         int UpdatedByUserID = 1;
                         string UpdatedDate = DateTime.Now.ToString();
-                        int IsActive = 1;
-                      //  string IsDelete = "No";
-                        string Result = obj_Room.saveAddRoom(RoomId, RoomName, ShortName,Color1, Capacity, UpdatedByUserID,UpdatedDate, IsActive);
+                      //  int IsActive;
+                       // int IsDeleted;
+                        if (rdbActive.IsChecked == true)
+                        {
+                            IsActive = 1;
+                            IsDeleted = 0;
+
+                        }
+                        else if (rdbInactive.IsChecked == true)
+                        {
+                            IsActive = 0;
+                            IsDeleted = 1;
+
+                        }
+                        string Result = obj_Room.saveAddRoom(RoomId, RoomName, ShortName,Color1, Capacity, UpdatedByUserID,UpdatedDate, IsActive,IsDeleted);
                         if (Result == "Save Sucessfully...!!!" )
                        {
                         MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -136,16 +150,29 @@ namespace SchoolManagement.Room
             {
                 if (Validate())
                 {
-                       // int RoomId= 0;
+                        int RoomId= 0;
                         string RoomName = txtRoomName.Text;
                         string ShortName = txtShortName.Text;
                         int Capacity = Convert.ToInt32(cmbCapacity.SelectedValue.ToString());
                         string Color1 = txtColor.Text;
-                      //  int UpdatedByUserID = 1;
+                        int UpdatedByUserID = 1;
                         string UpdatedDate = DateTime.Now.ToString();
-                        int IsActive = 1;
-                      //  string IsDelete = "No";
-                        string Result = obj_Room.UpdateRoom(RoomName, ShortName,Color1, Capacity,UpdatedDate,IsActive);
+                       // int IsActive;
+                       // int IsDeleted;
+                        if (rdbActive.IsChecked == true)
+                        {
+                            IsActive = 1;
+                            IsDeleted = 0;
+
+                        }
+                        else if (rdbInactive.IsChecked == true)
+                        {
+                           IsActive = 0;
+                           IsDeleted = 1;
+
+                        }
+                        
+                        string Result = obj_Room.UpdateRoom(RoomId, RoomName, ShortName, Color1, Capacity, UpdatedByUserID,UpdatedDate, IsActive, IsDeleted);
                         if (Result == "Updated Sucessfully...!!!" )
                        {
                         MessageBox.Show(Result, "Updated SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);

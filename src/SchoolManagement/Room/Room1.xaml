@@ -5,25 +5,29 @@
     <Grid>
         <GroupBox Header="Room" Height="275" HorizontalAlignment="Left" Margin="82,12,0,0" Name="groupBox1" VerticalAlignment="Top" Width="500">
             <Grid>
-                <Label Content="Room Name" Height="28" HorizontalAlignment="Left" Margin="40,50,0,0" Name="label1" VerticalAlignment="Top" Width="108" />
-                <Label Content="Branch Name" Height="28" HorizontalAlignment="Left" Margin="40,10,0,0" Name="label2" VerticalAlignment="Top" Width="108" />
-                <Label Content="Short Name" Height="28" HorizontalAlignment="Left" Margin="40,86,0,0" Name="label3" VerticalAlignment="Top" Width="108" />
-                <Label Content="Color" Height="28" HorizontalAlignment="Left" Margin="40,120,0,0" Name="label4" VerticalAlignment="Top" Width="108" />
-                <Label Content="Room Capacity" Height="28" Margin="40,154,340,0" Name="label5" VerticalAlignment="Top" />
-                <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFEB3030" Height="28" HorizontalAlignment="Left" Margin="154,10,0,0" Name="label6" VerticalAlignment="Top" Width="31" />
-                <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFF51F1F" Height="28" HorizontalAlignment="Left" Margin="154,50,0,0" Name="label8" VerticalAlignment="Top" Width="31" />
-                <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFF51F1F" Height="28" HorizontalAlignment="Left" Margin="154,120,0,0" Name="label9" VerticalAlignment="Top" Width="31" />
-                <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFE81B1B" Height="28" HorizontalAlignment="Left" Margin="154,86,0,0" Name="label10" VerticalAlignment="Top" Width="31" />
-                <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFE83030" Height="28" HorizontalAlignment="Left" Margin="154,154,0,0" Name="label11" VerticalAlignment="Top" Width="31" />
-                <ComboBox Height="28" HorizontalAlignment="Left" Margin="211,10,0,0" Name="cmbBranchName" VerticalAlignment="Top" Width="157" ItemsSource="{Binding }" />
-                <TextBox Height="28" HorizontalAlignment="Left" Margin="211,50,0,0" Name="txtRoomName" VerticalAlignment="Top" Width="157" />
-                <TextBox Height="28" HorizontalAlignment="Left" Margin="211,120,0,0" Name="txtColor" VerticalAlignment="Top" Width="157" />
-                <TextBox Height="28" HorizontalAlignment="Left" Margin="211,86,0,0" Name="txtShortName" VerticalAlignment="Top" Width="157" />
-                <ComboBox Height="28" HorizontalAlignment="Left" Margin="211,154,0,0" Name="cmbCapacity" VerticalAlignment="Top" Width="157"  />
-                <Button Content="Add" Height="31" HorizontalAlignment="Left" Margin="40,204,0,0" Name="btnAdd" VerticalAlignment="Top" Width="75" Click="btnAdd_Click" />
-                <Button Content="Update" Height="31" HorizontalAlignment="Left" Margin="144,204,0,0" Name="btnUpdate" VerticalAlignment="Top" Width="75" />
-                <Button Content="Delete" Height="31" HorizontalAlignment="Left" Margin="241,204,0,0" Name="btnDelete" VerticalAlignment="Top" Width="75" Click="btnClose_Click" />
-                <Button Content="Close" Height="31" HorizontalAlignment="Left" Margin="344,204,0,0" Name="btnClose" VerticalAlignment="Top" Width="75" />
+                <Label Content="Room Name" Height="28" HorizontalAlignment="Left" Margin="56,40,0,0" Name="label1" VerticalAlignment="Top" Width="108" />
+                <Label Content="Branch Name" Height="28" HorizontalAlignment="Left" Margin="56,0,0,0" Name="label2" VerticalAlignment="Top" Width="108" />
+                <Label Content="Short Name" Height="28" HorizontalAlignment="Left" Margin="56,76,0,0" Name="label3" VerticalAlignment="Top" Width="108" />
+                <Label Content="Color" Height="28" HorizontalAlignment="Left" Margin="56,110,0,0" Name="label4" VerticalAlignment="Top" Width="108" />
+                <Label Content="Room Capacity" Height="28" Margin="56,144,324,0" Name="label5" VerticalAlignment="Top" />
+                <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFEB3030" Height="28" HorizontalAlignment="Left" Margin="170,0,0,0" Name="label6" VerticalAlignment="Top" Width="31" />
+                <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFF51F1F" Height="28" HorizontalAlignment="Left" Margin="170,40,0,0" Name="label8" VerticalAlignment="Top" Width="31" />
+                <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFF51F1F" Height="28" HorizontalAlignment="Left" Margin="170,110,0,0" Name="label9" VerticalAlignment="Top" Width="31" />
+                <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFE81B1B" Height="28" HorizontalAlignment="Left" Margin="170,76,0,0" Name="label10" VerticalAlignment="Top" Width="31" />
+                <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFE83030" Height="28" HorizontalAlignment="Left" Margin="170,144,0,0" Name="label11" VerticalAlignment="Top" Width="31" />
+                <ComboBox Height="28" HorizontalAlignment="Left" Margin="227,0,0,0" Name="cmbBranchName" VerticalAlignment="Top" Width="157" ItemsSource="{Binding }" />
+                <TextBox Height="28" HorizontalAlignment="Left" Margin="227,40,0,0" Name="txtRoomName" VerticalAlignment="Top" Width="157" />
+                <TextBox Height="28" HorizontalAlignment="Left" Margin="227,110,0,0" Name="txtColor" VerticalAlignment="Top" Width="157" />
+                <TextBox Height="28" HorizontalAlignment="Left" Margin="227,76,0,0" Name="txtShortName" VerticalAlignment="Top" Width="157" />
+                <ComboBox Height="28" HorizontalAlignment="Left" Margin="227,144,0,0" Name="cmbCapacity" VerticalAlignment="Top" Width="157"  />
+                <Button Content="Add" Height="31" HorizontalAlignment="Left" Margin="51,215,0,0" Name="btnAdd" VerticalAlignment="Top" Width="75" Click="btnAdd_Click" />
+                <Button Content="Update" Height="31" HorizontalAlignment="Left" Margin="155,215,0,0" Name="btnUpdate" VerticalAlignment="Top" Width="75" />
+                <Button Content="Delete" Height="31" HorizontalAlignment="Left" Margin="252,215,0,0" Name="btnDelete" VerticalAlignment="Top" Width="75" Click="btnClose_Click" />
+                <Button Content="Close" Height="31" HorizontalAlignment="Left" Margin="355,215,0,0" Name="btnClose" VerticalAlignment="Top" Width="75" />
+                <Label Content="Status" Height="28" HorizontalAlignment="Left" Margin="56,181,0,0" Name="label7" VerticalAlignment="Top" Width="108" />
+                <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFE83030" Height="28" HorizontalAlignment="Left" Margin="170,181,0,0" Name="label12" VerticalAlignment="Top" Width="31" />
+                <RadioButton Content="Acative" Height="16" HorizontalAlignment="Left" Margin="227,186,0,0" Name="rdbActive" VerticalAlignment="Top" />
+                <RadioButton Content="InAcative" Height="16" HorizontalAlignment="Left" Margin="338,186,0,0" Name="rdbInactive" VerticalAlignment="Top" />
             </Grid>
         </GroupBox>
         <DataGrid AutoGenerateColumns="False" Height="128" HorizontalAlignment="Left" Margin="82,293,0,0" Name="dgRoom" VerticalAlignment="Top" Width="513" >
