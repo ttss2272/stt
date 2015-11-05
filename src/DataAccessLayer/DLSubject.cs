@@ -12,7 +12,7 @@ namespace DataAccessLayer
         DBConnection  con = new DBConnection();
         SqlConnection conn = new SqlConnection();
         
-        public string SaveSubject(int SubjectID, string SubjectName, string SubjectShortName, int UpdatedByUserID, string UpdatedDate, int IsActive)
+        public string SaveSubject(int SubjectID, string SubjectName, string SubjectShortName, int UpdatedByUserID, string UpdatedDate, int IsActive,int IsDeleted)
         {
             string Result = null;
             conn = con.getConnection();
@@ -25,6 +25,7 @@ namespace DataAccessLayer
             cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
             cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
             cmd.Parameters.AddWithValue("@IsActive", IsActive);
+            cmd.Parameters.AddWithValue("@IsDeleted", IsDeleted);
 
             conn.Open();
             Result = cmd.ExecuteScalar().ToString();
@@ -69,13 +70,14 @@ namespace DataAccessLayer
         }
 
         //For Edit Details
-        public DataSet GetSubjectDetail(int SubjectID)
+        public DataSet GetSubjectDetail(string SubjectName, string ShortName)
         {
             conn = con.getConnection();
             conn.Open();
 
             SqlCommand cmd = new SqlCommand("GetSubjectDetail_SP", conn);
-            cmd.Parameters.AddWithValue("@SubjectID", SubjectID);
+            cmd.Parameters.AddWithValue("@SubjectName", SubjectName);
+            cmd.Parameters.AddWithValue("@ShortName", ShortName);
 
             cmd.CommandType = CommandType.StoredProcedure;
 
@@ -84,6 +86,24 @@ namespace DataAccessLayer
             sqlDa.Fill(ds);
             conn.Close();
             return ds;
+        }
+
+        public string DeleteSubject(int SubjectID, int UpdatedByUserID, string UpdatedDate)
+        {
+            string Result = null;
+            conn = con.getConnection();
+            SqlCommand cmd = new SqlCommand("DeleteSubject_SP", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@SubjectID", SubjectID);
+            cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
+            cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
+
+            conn.Open();
+            Result = cmd.ExecuteScalar().ToString();
+            conn.Close();
+            return Result;
+ 
         }
     }
 }
