@@ -30,8 +30,8 @@ namespace SchoolManagement.Branch
           * Purpose:- Declare Global Variables
           */
         #region------------------------Declare Variables Globally()--------------------
-        int ClassID,BranchID, UpdatedByUserID, IsActive,Board;
-        string ClassName, ShortName, UpdatedDate ,Color;
+        int ClassID,BranchID, UpdatedByUserID, IsActive;
+        string ClassName, ShortName, UpdatedDate, Color, Board;
         BLAddClass obj_AddClass = new BLAddClass();
         #endregion
 
@@ -58,7 +58,7 @@ namespace SchoolManagement.Branch
             {
                 Validate();
                 SetParameters();
-
+                SaveDetails();
             }
             catch (Exception ex)
             {
@@ -77,7 +77,7 @@ namespace SchoolManagement.Branch
          #region--------------------------------------SaveDetails()-------------------------------------
         private void SaveDetails()
         {
-            string Result = obj_AddClass.saveAddClass(ClassID, ClassName, ShortName, Board, Color, UpdatedByUserID, UpdatedDate, IsActive);
+            string Result = obj_AddClass.saveAddClass(ClassID, ClassName, ShortName, Board, Color,BranchID, UpdatedByUserID, UpdatedDate, IsActive);
             if (Result == "Save Sucessfully...!!!" && Result == "Updated Sucessfully...!!!")
             {
          MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -168,8 +168,9 @@ namespace SchoolManagement.Branch
             //BranchID = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
             ClassName = txtClassName.Text.Trim();
             ShortName = txtShortName.Text.Trim();
-            Board = Convert.ToInt32(cbBoard.SelectedValue.ToString());
+            Board = Convert.ToString(cbBoard.SelectedValue.ToString());
             Color = txtcolor.Text.Trim();
+            BranchID = Convert.ToInt32(cbBranchName.SelectedValue);
             UpdatedByUserID = 1;
             UpdatedDate = DateTime.Now.ToString();
             IsActive = 1;
