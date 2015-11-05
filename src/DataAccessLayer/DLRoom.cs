@@ -13,7 +13,8 @@ namespace DataAccessLayer
     {
         SqlConnection conn = new SqlConnection();
         DBConnection con = new DBConnection();
-        public string saveAddRoom(int RoomId,string RoomName, string ShortName,string Color1, int Capacity,int UpdatedByUserID, string UpdatedDate, int IsActive)
+
+        public string saveAddRoom(int RoomId,string RoomName, string ShortName,string Color1, int Capacity,int UpdatedByUserID, string UpdatedDate, int IsActive,int IsDeleted)
         {
             string result = null;
             conn = con.getConnection();
@@ -30,30 +31,31 @@ namespace DataAccessLayer
         //    cmd.Parameters.AddWithValue("@CreatedDate", CreatedDate);
             cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
             cmd.Parameters.AddWithValue("@IsActive", IsActive);
-            // cmd.Parameters.AddWithValue("@IsDelete", IsDelete);
+            cmd.Parameters.AddWithValue("@IsDelete", IsDeleted);
             conn.Open();
             result = cmd.ExecuteNonQuery().ToString();
             conn.Close();
             return result;
 
         }
-        public string UpdateRoom(string RoomName, string ShortName, string Color1, int Capacity,string UpdatedDate, int IsActive)
+        public string UpdateRoom(int RoomId,string RoomName, string ShortName, string Color1, int Capacity,int UpdatedByUserID,string UpdatedDate, int IsActive,int IsDeleted)
         {
             string result = null;
             conn = con.getConnection();
-            SqlCommand cmd = new SqlCommand("UpdateRoom_SP", conn);
+            SqlCommand cmd = new SqlCommand("SaveRoom_SP", conn);
             cmd.CommandType = CommandType.StoredProcedure;
-          //  cmd.Parameters.AddWithValue("@RoomID", RoomId);
+            cmd.Parameters.AddWithValue("@RoomID", RoomId);
             cmd.Parameters.AddWithValue("@RoomName", RoomName);
             cmd.Parameters.AddWithValue("@ShortName", ShortName);
             cmd.Parameters.AddWithValue("@Color", Color1);
             cmd.Parameters.AddWithValue("@Capacity", Capacity);
-            //   cmd.Parameters.AddWithValue("@BranchId",BranchId);
+           // cmd.Parameters.AddWithValue("@BranchId",BranchId);
             //  cmd.Parameters.AddWithValue("@CreatedByUserID",CreatedByUserId);
-           // cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
+            cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
             //    cmd.Parameters.AddWithValue("@CreatedDate", CreatedDate);
             cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
             cmd.Parameters.AddWithValue("@IsActive", IsActive);
+            cmd.Parameters.AddWithValue("@IsDelete", IsDeleted);
             conn.Open();
             result = cmd.ExecuteNonQuery().ToString();
             conn.Close();
