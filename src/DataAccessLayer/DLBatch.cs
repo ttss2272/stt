@@ -13,7 +13,7 @@ namespace DataAccessLayer
     {
         SqlConnection conn = new SqlConnection();
         DBConnection con = new DBConnection();
-        public string saveBatch(int id, int ClassID, string BatchName, string BatchCode)
+        public string saveBatch(int id, int ClassID, string BatchName, string BatchCode, int UpdatedByUserID, string UpdatedDate, int IsActive)
         {
             string result = null;
             conn = con.getConnection();
@@ -23,10 +23,28 @@ namespace DataAccessLayer
             cmd.Parameters.AddWithValue("ClassID", ClassID);
             cmd.Parameters.AddWithValue("BatchName", BatchName);
             cmd.Parameters.AddWithValue("BatchCode", BatchCode);
+            cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
+            cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
+            cmd.Parameters.AddWithValue("@IsActive", IsActive);
             conn.Open();
-            result = cmd.ExecuteNonQuery().ToString();
+            result = cmd.ExecuteScalar().ToString();
             conn.Close();
             return result;
+        }
+
+        //To Bind Gridview
+        public DataSet BindBatch(int BatchID)
+        {
+            conn = con.getConnection();
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("BindBatch_SP", conn);
+            cmd.Parameters.AddWithValue("BatchID", BatchID);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
         }
     }
 }
