@@ -11,9 +11,9 @@ namespace BusinessLayer
     {
         DLSubject objSubject = new DLSubject();
 
-        public string SaveSubject(int SubjectID, string SubjectName, string SubjectShortName, int UpdatedByUserID, string UpdatedDate, int IsActive)
+        public string SaveSubject(int SubjectID, string SubjectName, string SubjectShortName, int UpdatedByUserID, string UpdatedDate, int IsActive,int IsDeleted)
         {
-            string Result = objSubject.SaveSubject(SubjectID, SubjectName, SubjectShortName, UpdatedByUserID, UpdatedDate, IsActive);
+            string Result = objSubject.SaveSubject(SubjectID, SubjectName, SubjectShortName, UpdatedByUserID, UpdatedDate, IsActive,IsDeleted);
                 return Result;
         }
 
@@ -31,10 +31,16 @@ namespace BusinessLayer
             return ds;
         }
         //For Edit Details
-        public DataSet GetSubjectDetail(int SubjectID)
+        public DataSet GetSubjectDetail(string SubjectName,string ShortName)
         {
-            DataSet ds = objSubject.GetSubjectDetail(SubjectID);
+            DataSet ds = objSubject.GetSubjectDetail(SubjectName,ShortName);
             return ds;
         }
+
+        public string DeleteSubject(int SubjectID, int UpdatedByUserID, string UpdatedDate)
+        {
+            string Result = objSubject.DeleteSubject(SubjectID, UpdatedByUserID, UpdatedDate);
+            return Result;
+            }
     }
 }
