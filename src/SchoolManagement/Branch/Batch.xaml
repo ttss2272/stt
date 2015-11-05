@@ -6,7 +6,7 @@
         <GroupBox Header="Batch Details" Height="324" HorizontalAlignment="Left" Margin="14,0,0,0" Name="CalssDetails" VerticalAlignment="Top" Width="603">
             <Grid Height="294" Width="573">
                 <Label Content="Batch Name" Height="28" Margin="91,59,389,0" Name="lblClassName" VerticalAlignment="Top" />
-                <TextBox Height="23" HorizontalAlignment="Right" Margin="0,63,196,0" Name="txtBatchName" VerticalAlignment="Top" Width="178" />
+                <TextBox Height="23" HorizontalAlignment="Right" Margin="0,63,196,0" Name="txtBatchName" VerticalAlignment="Top" Width="178" TextChanged="txtBatchName_TextChanged" />
                 <Label Content="Batch Code" Height="28" HorizontalAlignment="Left" Margin="91,104,0,0" Name="lblshortname" VerticalAlignment="Top" />
                 <TextBox Height="26" HorizontalAlignment="Left" Margin="199,105,0,0" Name="txtBatchCode" VerticalAlignment="Top" Width="178" />
                 <Button Content="Add" Height="30" HorizontalAlignment="Left" Margin="22,314,0,0" Name="btnAdd" VerticalAlignment="Top" Width="75" />
@@ -27,6 +27,6 @@
                 <CheckBox Content="Yes/No" Height="16" HorizontalAlignment="Left" Margin="199,175,0,0" Name="cbLunchPeriod" VerticalAlignment="Top" />
             </Grid>
         </GroupBox>
-        <DataGrid AutoGenerateColumns="False" Height="162" HorizontalAlignment="Left" Margin="48,346,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="540" />
+        <DataGrid AutoGenerateColumns="False" Height="162" HorizontalAlignment="Left" Margin="48,346,0,0" Name="dgvBatch" VerticalAlignment="Top" Width="540" />
     </Grid>
 </Window>

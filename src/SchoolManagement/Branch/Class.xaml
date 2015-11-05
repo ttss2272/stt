@@ -6,9 +6,9 @@
         <GroupBox Header="Class Details" Height="324" HorizontalAlignment="Left" Margin="14,0,0,0" Name="CalssDetails" VerticalAlignment="Top" Width="587">
             <Grid Height="281" Width="562">
                 <Label Content="Class Name" Height="28" Margin="91,62,389,0" Name="lblClassName" VerticalAlignment="Top" />
-                <TextBox Height="23" HorizontalAlignment="Right" Margin="0,64,185,0" Name="txtClassName" VerticalAlignment="Top" Width="178" />
+                <TextBox Height="23" HorizontalAlignment="Right" Margin="0,64,185,0" Name="txtClassName" VerticalAlignment="Top" Width="178" TextChanged="txtClassName_TextChanged" />
                 <Label Content="Short Name" Height="28" HorizontalAlignment="Left" Margin="91,104,0,0" Name="lblshortname" VerticalAlignment="Top" />
-                <TextBox Height="26" HorizontalAlignment="Left" Margin="199,105,0,0" Name="txtShortName" VerticalAlignment="Top" Width="178" />
+                <TextBox Height="26" HorizontalAlignment="Left" Margin="199,105,0,0" Name="txtShortName" VerticalAlignment="Top" Width="178" TextChanged="txtShortName_TextChanged" />
                 <Label Content="Color" Height="28" HorizontalAlignment="Left" Margin="125,184,0,0" Name="lblColor" VerticalAlignment="Top" />
                 <TextBox Height="24" HorizontalAlignment="Right" Margin="0,186,185,0" Name="txtcolor" VerticalAlignment="Top" Width="178" />
                 <Label Content="Board" Height="28" HorizontalAlignment="Left" Margin="123,142,0,0" Name="iblboard" VerticalAlignment="Top" />
@@ -22,14 +22,14 @@
                 <Label Content="*" Height="20" HorizontalAlignment="Left" Margin="178,145,0,0" Name="label2" VerticalAlignment="Top" />
                 <Label Content="*" Height="20" HorizontalAlignment="Left" Margin="178,187,0,0" Name="label3" VerticalAlignment="Top" />
                 <Label Content="Branch Name" Height="28" HorizontalAlignment="Left" Margin="83,21,0,0" Name="lblBranchName" VerticalAlignment="Top" />
-                <ComboBox Height="23" HorizontalAlignment="Left" Margin="199,24,0,0" Name="comboBox1" VerticalAlignment="Top" Width="178" />
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="199,24,0,0" Name="cbBranchName" VerticalAlignment="Top" Width="178" />
                 <Label Content="*" Height="20" HorizontalAlignment="Left" Margin="178,24,0,0" Name="label7" VerticalAlignment="Top" />
                 <Button Content="Add" Height="30" HorizontalAlignment="Left" Margin="59,234,0,0" Name="btnadd" VerticalAlignment="Top" Width="75" Click="btnadd_Click" />
                 <Button Content="Edit" Height="30" HorizontalAlignment="Left" Margin="172,234,0,0" Name="btnedit" VerticalAlignment="Top" Width="75" />
-                <Button Content="Delete" Height="30" HorizontalAlignment="Left" Margin="285,234,0,0" Name="btndelete" VerticalAlignment="Top" Width="75" />
+                <Button Content="Delete" Height="30" HorizontalAlignment="Left" Margin="285,234,0,0" Name="btndelete" VerticalAlignment="Top" Width="75" Click="btndelete_Click" />
                 <Button Content="Close" Height="30" HorizontalAlignment="Left" Margin="398,234,0,0" Name="btnClose" VerticalAlignment="Top" Width="75" Click="btncancel_Click" />
             </Grid>
         </GroupBox>
-        <DataGrid AutoGenerateColumns="False" Height="162" HorizontalAlignment="Left" Margin="48,346,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="540" />
+        <DataGrid AutoGenerateColumns="False" Height="162" HorizontalAlignment="Left" Margin="48,346,0,0" Name="dgvClass" VerticalAlignment="Top" Width="540" />
     </Grid>
 </Window>
