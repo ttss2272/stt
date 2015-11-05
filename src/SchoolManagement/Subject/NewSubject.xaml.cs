@@ -31,7 +31,7 @@ namespace SchoolManagement.Subject
        */
         #region-------------------------------------------Declare Variables Globally()---------------------------------------------------
         BLSubject objSubject = new BLSubject();
-        int SubjectID, UpdatedByUserID, Active;
+        int SubjectID, UpdatedByUserID, Active,IsDeleted,UpID;
         string SubjectName, SubjectShortName, UpdatedDate;
 
         #endregion
@@ -71,6 +71,8 @@ namespace SchoolManagement.Subject
             txtSubjectName.Text="";
             txtSubjectShortName.Text="";
             bindSubjectGrid();
+            cmbActive.IsChecked = true;
+            UpID = 0;
         }
         #endregion
 
@@ -193,12 +195,24 @@ namespace SchoolManagement.Subject
         #region-------------------------------------------------SetParameters()-------------------------------------
         private void SetParameters()
         {
-            SubjectID = 0;
+            
+            SubjectID = UpID;
             SubjectName = txtSubjectName.Text.Trim();
             SubjectShortName = txtSubjectShortName.Text.Trim();
             UpdatedByUserID = 1;
             UpdatedDate = DateTime.Now.ToString();
-            Active = 1;
+            if (cmbActive.IsChecked == true)
+            {
+                Active = 1;
+                IsDeleted=0;
+            }
+            else
+            {
+                Active = 0;
+                IsDeleted = 0;
+
+            }
+
 
         }
         #endregion
@@ -287,7 +301,7 @@ namespace SchoolManagement.Subject
         #region--------------------------------------SaveDetails()-------------------------------------
         private void SaveDetails()
         {
-            string Result = objSubject.SaveSubject(SubjectID, SubjectName, SubjectShortName, UpdatedByUserID, UpdatedDate, Active);
+            string Result = objSubject.SaveSubject(SubjectID, SubjectName, SubjectShortName, UpdatedByUserID, UpdatedDate, Active,IsDeleted);
           
             if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
             {
@@ -301,20 +315,87 @@ namespace SchoolManagement.Subject
         }
         #endregion
 
+        /*
+         * Created By:- PriTesh D. Sortee
+         * Ctreated Date :- 4 Nov 2015
+         * StartTime:-1:00PM
+         * EndTime:-7:13PM
+         * Purpose:- griddview cell click
+         */
+        #region--------------------------------------gridview cell click()-------------------------------------
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             try
             {
-                //txtSubjectName.Text = grdvSubject.sel
+                //txtSubjectName.Text = grdvSubject.SelectedItem.ToString();
+                //grdvSubject.se
+                object item = grdvSubject.SelectedItem;
+                //string Id = (grdvSubject.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                string SubName = (grdvSubject.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+                string ShortName = (grdvSubject.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
+
+                DataSet ds = objSubject.GetSubjectDetail(SubName, ShortName);
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        UpID = Convert.ToInt32(ds.Tables[0].Rows[0]["SubjectID"]);
+                        txtSubjectName.Text = ds.Tables[0].Rows[0]["SubjectName"].ToString();
+                        txtSubjectShortName.Text = ds.Tables[0].Rows[0]["SubjectShortName"].ToString();
+                        int act = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
+                        int del = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDeleted"]);
+                        if (act == 1 && del == 0)
+                        {
+                            cmbActive.IsChecked = true;
+                        }
+                        else if (act == 0 && del == 0)
+                        {
+                            cmbDelete.IsChecked = true;
+                        }
+                        
+                    }
+                }
+
                 
 
             }
             catch (Exception ex)
             {
                 
-                throw;
+                MessageBox.Show (ex.Message.ToString());
+            }
+        }
+        #endregion
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SetParameters();
+                DeleteSubject();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message.ToString()); 
             }
         }
 
+        private void DeleteSubject()
+        {
+            string Result= objSubject.DeleteSubject(SubjectID,UpdatedByUserID,UpdatedDate);
+            if (Result == "Deleted Sucessfully.")
+            {
+                MessageBox.Show(Result);
+                ClearFields();
+            }
+            else
+            {
+                MessageBox.Show(Result);
+            }
+
+        }
+
+        
     }
 }
