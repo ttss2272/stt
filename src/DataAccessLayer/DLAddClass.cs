@@ -13,17 +13,18 @@ namespace DataAccessLayer
     {
         SqlConnection conn = new SqlConnection();
         DBConnection con = new DBConnection();
-        public string saveAddClass(int ClassID, string ClassName, string ShortName, int Board, string Color, int UpdatedByUserID, string UpdatedDate, int IsActive)
+        public string saveAddClass(int ClassID, string ClassName, string ShortName, string Board, string Color,int BranchID, int UpdatedByUserID, string UpdatedDate, int IsActive)
         {
             string result = null;
             conn = con.getConnection();
-            SqlCommand cmd = new SqlCommand("Usp_SaveClass", conn);
+            SqlCommand cmd = new SqlCommand("SaveClass_SP", conn);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("ClassID", ClassID);
-            cmd.Parameters.AddWithValue("ClassName", ClassName);
-            cmd.Parameters.AddWithValue("ShortName", ShortName);
-            cmd.Parameters.AddWithValue("Board", Board);
-            cmd.Parameters.AddWithValue("Color", Color);
+            cmd.Parameters.AddWithValue("@ClassID", ClassID);
+            cmd.Parameters.AddWithValue("@ClassName", ClassName);
+            cmd.Parameters.AddWithValue("@ClassShortName", ShortName);
+            cmd.Parameters.AddWithValue("@Board", Board);
+            cmd.Parameters.AddWithValue("@Color", Color);
+            cmd.Parameters.AddWithValue("@BranchID", Color);
             cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
             cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
             cmd.Parameters.AddWithValue("@IsActive", IsActive);
