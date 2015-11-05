@@ -12,14 +12,14 @@ namespace BusinessLayer
         DLRoom obj_Room = new DLRoom();
 
 
-        public string saveAddRoom(int RoomId, string RoomName, string ShortName, string Color1, int Capacity,int UpdatedByUserID, string UpdatedDate, int IsActive)
+        public string saveAddRoom(int RoomId, string RoomName, string ShortName, string Color1, int Capacity,int UpdatedByUserID, string UpdatedDate, int IsActive,int IsDeleted)
         {
-            string result = obj_Room.saveAddRoom(RoomId,RoomName,ShortName,Color1,Capacity,UpdatedByUserID,UpdatedDate, IsActive);
+            string result = obj_Room.saveAddRoom(RoomId,RoomName,ShortName,Color1,Capacity,UpdatedByUserID,UpdatedDate, IsActive,IsDeleted);
             return result;
         }
-        public string UpdateRoom( string RoomName, string ShortName, string Color1, int Capacity, string UpdatedDate, int IsActive)
+        public string UpdateRoom(int RoomId, string RoomName, string ShortName, string Color1, int Capacity, int UpdatedByUserID, string UpdatedDate, int IsActive,int IsDeleted)
         {
-            string result = obj_Room.UpdateRoom(RoomName, ShortName, Color1, Capacity, UpdatedDate, IsActive);
+            string result = obj_Room.UpdateRoom(RoomId,RoomName,ShortName, Color1, Capacity, UpdatedByUserID, UpdatedDate, IsActive,IsDeleted);
             return result;
         }
         public DataSet BindFullGrid(int RoomId)
