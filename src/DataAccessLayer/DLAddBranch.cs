@@ -11,7 +11,7 @@ namespace DataAccessLayer
     {
       SqlConnection con = new SqlConnection();
       DBConnection conn = new DBConnection();
-        public string SaveBranch(int BranchID, string BranchName, string BranchCode, string InstituteName, string Logo, int UpdatedByUserID, string UpdatedDate,int IsActive)
+        public string SaveBranch(int BranchID, string BranchName, string BranchCode, string InstituteName, string Logo, int CreatedByUserID, int UpdatedByUserID, string UpdatedDate,int IsActive)
         {
             string Result = null;
             con = conn.getConnection();
@@ -21,7 +21,10 @@ namespace DataAccessLayer
             cmd.Parameters.AddWithValue("@BranchID", BranchID);
             cmd.Parameters.AddWithValue("@BranchName", BranchName);
             cmd.Parameters.AddWithValue("@BranchCode", BranchCode);
-            cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
+            cmd.Parameters.AddWithValue("@InstituteName", InstituteName);
+            cmd.Parameters.AddWithValue("@Logo", Logo);
+            cmd.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
+            cmd.Parameters.AddWithValue("@UpdateByUserId", UpdatedByUserID);
             cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
             cmd.Parameters.AddWithValue("@IsActive", IsActive);
 
@@ -46,6 +49,20 @@ namespace DataAccessLayer
             sqlDa.Fill(ds);
             con.Close();
             return ds;
+        }
+
+        public string DeleteBranch(string BranchName)
+        {
+            string Result = null;
+            con = conn.getConnection();
+            con.Open();
+            SqlCommand cmd = new SqlCommand("DeleteBranch_SP", con);
+            cmd.Parameters.AddWithValue("@BranchName", BranchName);
+            cmd.CommandType = CommandType.StoredProcedure;
+            con.Open();
+            Result = cmd.ExecuteScalar().ToString();
+            con.Close();
+            return Result;
         }
     }
 }
