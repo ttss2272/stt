@@ -107,13 +107,14 @@ namespace SchoolManagement.Subject
         #region----------------------------------------------btnSave_Click-----------------------------------------------------------
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
+            
                 try
             {
-                Validate();
-                SetParameters();
-                SaveDetails();
+                if (Validate())
+                {
+                    SetParameters();
+                    SaveDetails();
+                }
 
             }
             catch (Exception ex)
@@ -121,11 +122,8 @@ namespace SchoolManagement.Subject
                 MessageBox.Show(ex.Message.ToString());
             }
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
+            
+            
         }
         #endregion
 
@@ -317,7 +315,7 @@ namespace SchoolManagement.Subject
 
         /*
          * Created By:- PriTesh D. Sortee
-         * Ctreated Date :- 4 Nov 2015
+         * Ctreated Date :- 5 Nov 2015
          * StartTime:-1:00PM
          * EndTime:-7:13PM
          * Purpose:- griddview cell click
@@ -367,6 +365,14 @@ namespace SchoolManagement.Subject
         }
         #endregion
 
+        /*
+         * Created By:- PriTesh D. Sortee
+         * Ctreated Date :- 5 Nov 2015
+         * StartTime:-1:00PM
+         * EndTime:-7:13PM
+         * Purpose:- griddview cell click
+         */
+        #region--------------------------------------gridview cell click()-------------------------------------
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -380,7 +386,15 @@ namespace SchoolManagement.Subject
                 MessageBox.Show(ex.Message.ToString()); 
             }
         }
-
+        #endregion
+        /*
+         * Created By:- PriTesh D. Sortee
+         * Ctreated Date :- 5Nov 2015
+         * StartTime:-1:00PM
+         * EndTime:-7:13PM
+         * Purpose:- griddview cell click
+         */
+        #region--------------------------------------gridview cell click()-------------------------------------
         private void DeleteSubject()
         {
             string Result= objSubject.DeleteSubject(SubjectID,UpdatedByUserID,UpdatedDate);
@@ -395,7 +409,7 @@ namespace SchoolManagement.Subject
             }
 
         }
+        #endregion
 
-        
     }
 }
