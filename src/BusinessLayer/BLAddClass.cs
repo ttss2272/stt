@@ -11,9 +11,9 @@ namespace BusinessLayer
     public class BLAddClass
     {
         DLAddClass obj_AddClass = new DLAddClass();
-        public string saveAddClass(int id, string ClassName, string ShortName, string Board, string Color,int BranchID, int UpdatedByUserID, string UpdatedDate, int IsActive)
+        public string saveAddClass(int id, string ClassName, string ShortName, string Board, string Color,int BranchID, int UpdatedByUserID, string UpdatedDate, int IsActive,int IsDeleted)
         {
-            string result = obj_AddClass.saveAddClass(id, ClassName, ShortName, Board, Color,BranchID, UpdatedByUserID, UpdatedDate, IsActive);
+            string result = obj_AddClass.saveAddClass(id, ClassName, ShortName, Board, Color,BranchID, UpdatedByUserID, UpdatedDate, IsActive,IsDeleted);
             return result;
         }
 
@@ -22,6 +22,18 @@ namespace BusinessLayer
         {
             DataSet ds = obj_AddClass.BindClass(ClassID);
                 return ds;
+        }
+
+        public string DeleteClass(int ClassID, int UpdatedByUserID, string UpdatedDate)
+        {
+            string result =obj_AddClass.DeleteClass(ClassID,UpdatedByUserID,UpdatedDate);
+            return result;
+        }
+
+        public DataSet GetClassDetail(string ClassName, string ShortName, string Board, string Color)
+        {
+            DataSet ds = obj_AddClass.GetClassDetail(ClassName, ShortName, Board, Color);
+            return ds;
         }
     }
 }
