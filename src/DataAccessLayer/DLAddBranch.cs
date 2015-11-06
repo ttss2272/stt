@@ -86,5 +86,21 @@ namespace DataAccessLayer
             con.Close();
             return ds;
         }
+
+        public DataSet SearchBranch(string BranchName)
+        {
+            con = conn.getConnection();
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SearchBranch_SP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@BranchName", BranchName);
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+
+            sqlDa.Fill(ds);
+            con.Close();
+            return ds;
+        }
     }
 }
