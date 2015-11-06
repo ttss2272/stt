@@ -25,17 +25,17 @@ namespace SchoolManagement.Room
     public partial class Room1 : Window
     {
         BLRoom obj_Room = new BLRoom();
-        BLAddBranch obj_Branch=new BLAddBranch();
+        BLAddBranch obj_Branch = new BLAddBranch();
 
-        int RoomId,Capacity,BranchID,UpdatedByUserID,IsActive,IsDeleted;
+        int RoomId, Capacity, BranchID, UpdatedByUserID, IsActive, IsDeleted, UpID;
         string RoomName, ShortName, Color1, UpdatedDate;
-        
+
 
         public Room1()
         {
             InitializeComponent();
-            clearFields();     
-            
+            clearFields();
+
         }
 
         #region---------------------------Validate()-----------------------------------------
@@ -87,8 +87,38 @@ namespace SchoolManagement.Room
             txtShortName.Text = "";
             cmbCapacity.Text = "";
             txtColor.Text = "";
+            cmbCapacity_Items();
             BindFullGrid();
             BindBranchName();
+        }
+        #endregion
+
+        #region------------------SetParameters---------------------------------------
+
+        private void SetParameters()
+        {
+            RoomId = 0;
+            RoomName = txtRoomName.Text;
+            ShortName = txtShortName.Text;
+            Capacity = Convert.ToInt32(cmbCapacity.SelectedValue.ToString());
+            Color1 = txtColor.Text;
+            BranchID = Convert.ToInt32(cmbBranchName.SelectedValue.ToString());
+            UpdatedByUserID = 1;
+            UpdatedDate = DateTime.Now.ToString();
+
+            if (rdbActive.IsChecked == true)
+            {
+                IsActive = 1;
+                IsDeleted = 0;
+
+            }
+            else if (rdbInactive.IsChecked == true)
+            {
+                IsActive = 0;
+                IsDeleted = 0;
+
+            }
+            
         }
         #endregion
 
@@ -96,44 +126,24 @@ namespace SchoolManagement.Room
         #region---------------AddRoom()--------------------------------------
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-           try
+            try
             {
                 if (Validate())
                 {
-                        RoomId= 0;
-                        RoomName = txtRoomName.Text;
-                        ShortName = txtShortName.Text;
-                        Capacity = Convert.ToInt32(cmbCapacity.SelectedValue.ToString());
-                        Color1 = txtColor.Text;
-                        BranchID = Convert.ToInt32(cmbBranchName.SelectedValue.ToString());
-                        UpdatedByUserID = 1;
-                        UpdatedDate = DateTime.Now.ToString();
-                      
-                        if (rdbActive.IsChecked == true)
-                        {
-                            IsActive = 1;
-                            IsDeleted = 0;
-
-                        }
-                        else if (rdbInactive.IsChecked == true)
-                        {
-                            IsActive = 0;
-                            IsDeleted = 0;
-
-                        }
-                        string Result = obj_Room.saveAddRoom(RoomId, RoomName, ShortName,Color1, Capacity,BranchID,UpdatedByUserID,UpdatedDate, IsActive,IsDeleted);
-                        if (Result == "Save Sucessfully...!!!" )
-                       {
+                    SetParameters();
+                    string Result = obj_Room.saveAddRoom(RoomId, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
+                    if (Result == "Save Sucessfully...!!!")
+                    {
                         MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
-                            clearFields();
-                       }
-                       else
-                       {
-                          MessageBox.Show(Result, "Error To Save", MessageBoxButton.OK, MessageBoxImage.Warning);
-                       }
-                  }
-             }    
-            
+                        clearFields();
+                    }
+                    else
+                    {
+                        MessageBox.Show(Result, "Error To Save", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+            }
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
@@ -149,41 +159,20 @@ namespace SchoolManagement.Room
             {
                 if (Validate())
                 {
-                        RoomId= 0;
-                        RoomName = txtRoomName.Text;
-                        ShortName = txtShortName.Text;
-                        Capacity = Convert.ToInt32(cmbCapacity.SelectedValue.ToString());
-                        Color1 = txtColor.Text;
-                        BranchID = Convert.ToInt32(cmbBranchName.SelectedValue.ToString());
-                        UpdatedByUserID = 1;
-                        UpdatedDate = DateTime.Now.ToString();
-                      
-                        if (rdbActive.IsChecked == true)
-                        {
-                            IsActive = 1;
-                            IsDeleted = 0;
-
-                        }
-                        else if (rdbInactive.IsChecked == true)
-                        {
-                           IsActive = 0;
-                           IsDeleted = 0;
-
-                        }
-                        
-                        string Result = obj_Room.UpdateRoom(RoomId, RoomName, ShortName, Color1, Capacity,BranchID,UpdatedByUserID,UpdatedDate, IsActive, IsDeleted);
-                        if (Result == "Updated Sucessfully...!!!" )
-                       {
+                    SetParameters();
+                    string Result = obj_Room.UpdateRoom(RoomId, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
+                    if (Result == "Updated Sucessfully...!!!")
+                    {
                         MessageBox.Show(Result, "Updated SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
-                            clearFields();
-                       }
-                       else
-                       {
-                          MessageBox.Show(Result, "Error To Update", MessageBoxButton.OK, MessageBoxImage.Warning);
-                       }
-                  }
-             }    
-            
+                        clearFields();
+                    }
+                    else
+                    {
+                        MessageBox.Show(Result, "Error To Update", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+            }
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
@@ -209,84 +198,116 @@ namespace SchoolManagement.Room
                     dgRoom.ItemsSource = ds.Tables[0].DefaultView;
 
                 }
-                
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-        #endregion  
+        #endregion
 
 
-       #region-------------bindbranch()--------------------------------------
+        #region-------------bindbranch()--------------------------------------
 
         private void BindBranchName()
         {
-            
-                try
-                {
-                    DataSet ds=obj_Branch.BindBranchName();
-                   
 
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        cmbBranchName.DataContext= ds.Tables[0].DefaultView;
-                        cmbBranchName.DisplayMemberPath = ds.Tables[0].Columns["BranchName"].ToString();
-                        cmbBranchName.SelectedValuePath = ds.Tables[0].Columns["BranchID"].ToString();
-                       
-                    }
+            try
+            {
+                DataSet ds = obj_Branch.BindBranchName();
+
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    cmbBranchName.DataContext = ds.Tables[0].DefaultView;
+                    cmbBranchName.DisplayMemberPath = ds.Tables[0].Columns["BranchName"].ToString();
+                    cmbBranchName.SelectedValuePath = ds.Tables[0].Columns["BranchID"].ToString();
 
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message.ToString());
-                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
 
-        #endregion  
+        #endregion
 
- 
-             
-  /*   private void btnDelete_Click(object sender, EventArgs e)
+
+
+        #region------------Delete()--------------------------
+        
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Do You Want to delete?", "Delete", MessageBoxButtons.OKCancel);
-            if (result.Equals(MessageBoxResult.OK))
+            try
             {
-                deleteRoom();
-             //   Usp_BindRoomGrid();
-                MessageBox.Show("Record Deleted Succesfully");
-                clearFields(); 
+                MessageBoxResult Result = MessageBox.Show("Do You Really Want To Delete?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                if (Result.Equals(MessageBoxResult.Yes))
+                {
+                    SetParameters();
+                    DeleteRoom();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void DeleteRoom()
+        {
+            if (UpID != 0)
+            {
+                RoomId = UpID;
+
+                string Result = obj_Room.DeleteRoom(RoomId, UpdatedByUserID, UpdatedDate);
+                if (Result == "Deleted Sucessfully.")
+                {
+                    MessageBox.Show(Result, "Delete Sucessfully", MessageBoxButton.OK, MessageBoxImage.Information);
+                    clearFields();
+                }
+                else
+                {
+                    MessageBox.Show(Result, "Error To Delete", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
             else
             {
+                MessageBox.Show("Please Select Subject From Subject", "Delete Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+
             }
-        }*/
+        }
+
+        #endregion
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            //App.Current.Shutdown();
+            
         }
+
+
+        #region-------------LoadCapacity-------------------------------
         private void cmbCapacity_Items()
-        { 
+        {
             cmbCapacity.Items.Add("select");
             int i;
             for (i = 1; i <= 60; i++)
             {
                 cmbCapacity.Items.Add(i);
-                
+
             }
             cmbCapacity.SelectedIndex = 0;
 
         }
+        #endregion
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            cmbCapacity_Items();
-        }
-        
-        
-     }
+
+    }
  
  }
 
