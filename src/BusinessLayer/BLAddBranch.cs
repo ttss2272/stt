@@ -10,9 +10,9 @@ namespace BusinessLayer
     {
      DLAddBranch obj_AddBranch = new DLAddBranch();
 
-     public string SaveBranch(int BranchID, string BranchName, string BranchCode, string InstituteName, string Logo, int CreatedByUserID,int UpdatedByUserID, string UpdatedDate, int IsActive)
+     public string SaveBranch(int BranchID, string BranchName, string BranchCode, string InstituteName, string Logo, int CreatedByUserID,int UpdatedByUserID, string UpdatedDate, int IsActive,int IsDelete)
         {
-            string result = obj_AddBranch.SaveBranch(BranchID, BranchName, BranchCode, InstituteName, Logo, CreatedByUserID,UpdatedByUserID,UpdatedDate, IsActive);
+            string result = obj_AddBranch.SaveBranch(BranchID, BranchName, BranchCode, InstituteName, Logo, CreatedByUserID,UpdatedByUserID,UpdatedDate, IsActive,IsDelete);
             return result;
         }
 
@@ -22,9 +22,9 @@ namespace BusinessLayer
             return getBranch;
         }
 
-        public string DeleteBranch(string BranchName)
+        public string DeleteBranch(int BranchID,int UpdatedByUserID,string Updateddate)
         {
-            string result = obj_AddBranch.DeleteBranch(BranchName);
+            string result = obj_AddBranch.DeleteBranch(BranchID,UpdatedByUserID,Updateddate);
             return result;
         }
     }
