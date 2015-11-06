@@ -25,15 +25,16 @@
                 <RadioButton Content="Inactive" GroupName="Status" Height="16" HorizontalAlignment="Right" Margin="0,170,379,0" Name="rbtnInactive" VerticalAlignment="Top" FontWeight="Bold" />
             </Grid>
         </GroupBox>
-        <GroupBox Header="Branch List" Height="204" HorizontalAlignment="Left" Margin="72,316,0,0" Name="grpList" VerticalAlignment="Top" Width="522">
+        <GroupBox Header="Branch List" Height="204" HorizontalAlignment="Left" Margin="81,316,0,0" Name="grpList" VerticalAlignment="Top" Width="505">
             <Grid>
-                <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Height="195" Width="508" HorizontalAlignment="Left" Margin="2,6,0,0" Name="grdvBranch" VerticalAlignment="Top" IsReadOnly="True" CanUserResizeColumns="False"  ItemsSource="{Binding}">
+                <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Height="195" Width="494" HorizontalAlignment="Left" Margin="2,6,0,0" Name="grdvBranch" VerticalAlignment="Top" IsReadOnly="True" CanUserResizeColumns="False"  ItemsSource="{Binding}">
 
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding BranchID}" Header="Branch ID" Visibility="Hidden"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding BranchName}" Header="Branch Name" Width="241"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding BranchCode}" Header="Branch Code" Width="233"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding InstituteName}" Header="Institute Name" Width="233"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding BranchName}" Header="Branch Name" Width="190"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding BranchCode}" Header="Branch Code" Width="150"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding InstituteName}" Header="Institute Name" Width="150"></DataGridTextColumn>
+
 
                     </DataGrid.Columns>
                     <DataGrid.ItemContainerStyle>
