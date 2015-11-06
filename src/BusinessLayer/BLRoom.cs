@@ -12,14 +12,14 @@ namespace BusinessLayer
         DLRoom obj_Room = new DLRoom();
 
 
-        public string saveAddRoom(int RoomId, string RoomName, string ShortName, string Color1, int Capacity,int UpdatedByUserID, string UpdatedDate, int IsActive,int IsDeleted)
+        public string saveAddRoom(int RoomId, string RoomName, string ShortName, string Color1, int Capacity, int BranchID, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
         {
-            string result = obj_Room.saveAddRoom(RoomId,RoomName,ShortName,Color1,Capacity,UpdatedByUserID,UpdatedDate, IsActive,IsDeleted);
+            string result = obj_Room.saveAddRoom(RoomId, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
             return result;
         }
-        public string UpdateRoom(int RoomId, string RoomName, string ShortName, string Color1, int Capacity, int UpdatedByUserID, string UpdatedDate, int IsActive,int IsDeleted)
+        public string UpdateRoom(int RoomId, string RoomName, string ShortName, string Color1, int Capacity, int BranchID, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
         {
-            string result = obj_Room.UpdateRoom(RoomId,RoomName,ShortName, Color1, Capacity, UpdatedByUserID, UpdatedDate, IsActive,IsDeleted);
+            string result = obj_Room.UpdateRoom(RoomId, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
             return result;
         }
         public DataSet BindFullGrid(int RoomId)
@@ -27,12 +27,10 @@ namespace BusinessLayer
             DataSet ds = obj_Room.BindFullGrid(RoomId);
             return ds;
         }
-      /*  public int deleteDoctor(EntDoctor objent)
+        public string DeleteRoom(int RoomID, int UpdatedByUserID, string UpdatedDate)
         {
-            DLRoom objdl = new DLRoom();
-            int result = objdl.deleteDoctor(objent);
-            return result;
-        }*/
-
+            string Result = obj_Room.DeleteRoom(RoomID, UpdatedByUserID, UpdatedDate);
+            return Result;
+        }  
     }
 }
