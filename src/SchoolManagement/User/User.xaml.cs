@@ -31,6 +31,73 @@ namespace SchoolManagement.User
         
         int UserID, IsActive, IsDeleted, UserTypeID=1;
         string UserName, ContactNo, Address, MailId, LoginName, Password, UpdatedDate ;
+
+        #region---------------------------Validate()-----------------------------------------
+        public bool Validate()
+        {
+
+            if (string.IsNullOrEmpty(txtFullName.Text))
+            {
+                MessageBox.Show("Please Enter Full Name..");
+                txtFullName.Focus();
+                return false;
+            }
+            else if (string.IsNullOrEmpty(txtAddress.Text))
+            {
+                MessageBox.Show("Please Enter Address..");
+                txtAddress.Focus();
+                return false;
+            }
+            else if (string.IsNullOrEmpty(txtEmailID.Text))
+            {
+                MessageBox.Show("Please Enter EmailID..");
+                txtEmailID.Focus();
+                return false;
+            }
+            else if(txtEmailID.Text != "")
+            {
+       //         string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
+       //@"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+       //   @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+       //         Regex re = new Regex(strRegex);
+       //         if (re.IsMatch(txtEmailID.Text))
+       //             return (true);
+       //         else
+       //             MessageBox.Show("Please Enter Poper Email ID");
+       //         txtEmailID.Focus();
+       //         return (false);
+            }
+            else if (string.IsNullOrEmpty(txtContactNo.Text))
+            {
+                MessageBox.Show("Please Enter contact Number..");
+                txtContactNo.Focus();
+                return false;
+            }
+            else if (txtContactNo.Text.Length > 10)
+            {
+                MessageBox.Show("Invalid Contact Number..");
+                txtLoginID.Focus();
+                return false;
+            }
+            else if (string.IsNullOrEmpty(txtLoginID.Text))
+            {
+                MessageBox.Show("Please Enter LoginID..");
+                txtLoginID.Focus();
+                return false;
+            }
+            else if (string.IsNullOrEmpty(txtPassword.Text))
+            {
+                MessageBox.Show("Please Enter Password..");
+                txtPassword.Focus();
+                return false;
+            }
+
+            else
+            {
+                return true;
+            }
+        }
+        #endregion
         
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
