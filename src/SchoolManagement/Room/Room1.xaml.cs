@@ -97,7 +97,7 @@ namespace SchoolManagement.Room
 
         private void SetParameters()
         {
-            RoomId = 0;
+            RoomId = UpID;
             RoomName = txtRoomName.Text;
             ShortName = txtShortName.Text;
             Capacity = Convert.ToInt32(cmbCapacity.SelectedValue.ToString());
@@ -155,28 +155,28 @@ namespace SchoolManagement.Room
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                if (Validate())
-                {
-                    SetParameters();
-                    string Result = obj_Room.UpdateRoom(RoomId, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
-                    if (Result == "Updated Sucessfully...!!!")
-                    {
-                        MessageBox.Show(Result, "Updated SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
-                        clearFields();
-                    }
-                    else
-                    {
-                        MessageBox.Show(Result, "Error To Update", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                }
-            }
+            //try
+            //{
+            //    if (Validate())
+            //    {
+            //        SetParameters();
+            //        string Result = obj_Room.UpdateRoom(RoomId, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
+            //        if (Result == "Updated Sucessfully...!!!")
+            //        {
+            //            MessageBox.Show(Result, "Updated SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
+            //            clearFields();
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show(Result, "Error To Update", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //        }
+            //    }
+            //}
 
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message.ToString());
+            //}
 
 
         }
@@ -190,9 +190,9 @@ namespace SchoolManagement.Room
         {
             try
             {
-                DataSet ds = new DataSet();
+                DataSet ds = obj_Room.BindFullGrid(0,txtRoomName.Text);
 
-                ds = obj_Room.BindFullGrid(0);
+               // ds = obj_Room.BindFullGrid(0);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     dgRoom.ItemsSource = ds.Tables[0].DefaultView;
@@ -306,6 +306,90 @@ namespace SchoolManagement.Room
         }
         #endregion
 
+        
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            BindFullGrid();
+        }
+        /* Created By:- Sameer Shinde
+        * Created Date :- 5 Nov 2015
+        * Purpose:- griddview cell click
+       */
+        #region--------------------------------------gridview cell click()-------------------------------------
+        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+
+                object item = dgRoom.SelectedItem;
+                string BranchName = (dgRoom.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+                string RoomName = (dgRoom.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
+                string ShortName = (dgRoom.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
+                string Color = (dgRoom.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
+                string Capacity = (dgRoom.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text;
+
+                DataSet ds = obj_Room.BindFullGrid(0,txtRoomName.Text);
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        UpID = Convert.ToInt32(ds.Tables[0].Rows[0]["RoomID"]);
+                        cmbBranchName.Text = ds.Tables[0].Rows[0]["BranchName"].ToString();
+                        txtRoomName.Text = ds.Tables[0].Rows[0]["RoomName"].ToString();
+                        txtShortName.Text = ds.Tables[0].Rows[0]["RoomShortName"].ToString();
+                        txtColor.Text = ds.Tables[0].Rows[0]["RoomColor"].ToString();
+                        cmbCapacity.Text = ds.Tables[0].Rows[0]["Capacity"].ToString();
+
+                        int act = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
+                        int del = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDeleted"]);
+                        if (act == 1 && del == 0)
+                        {
+                            rdbActive.IsChecked = true;
+                        }
+                        else if (act == 0 && del == 0)
+                        {
+                            rdbInactive.IsChecked = true;
+                        }
+                        btnDelete.IsEnabled = true;
+                    }
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        #endregion
+
+        private void btnUpdate_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (Validate())
+                {
+                    SetParameters();
+                    string Result = obj_Room.UpdateRoom(RoomId, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
+                    if (Result == "Updated Sucessfully...!!!")
+                    {
+                        MessageBox.Show(Result, "Updated SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
+                        clearFields();
+                    }
+                    else
+                    {
+                        MessageBox.Show(Result, "Error To Update", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
 
     }
  
