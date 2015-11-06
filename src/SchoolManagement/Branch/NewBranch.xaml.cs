@@ -227,6 +227,34 @@ namespace SchoolManagement.Branch
                     ImageSourceConverter isc = new ImageSourceConverter();
                     image1.SetValue(Image.SourceProperty, isc.ConvertFromString(imageName));
                     txtUploadPath.Text = strName;
+
+                    string fileName = "ImgLogo";
+                    //string imagename1 = "" + imageName;
+                   // string imagename1 = image1.
+                    string sourcePath = imageName;
+                    string targetPath = @"C:\Users\TTS\Desktop\ImgLogo\";
+
+                    string sourceFile = System.IO.Path.Combine(sourcePath);
+                    string destFile = System.IO.Path.Combine(targetPath,fileName);
+                    if (!System.IO.Directory.Exists(targetPath))
+                    {
+                        System.IO.Directory.CreateDirectory(targetPath);
+                    }
+                    System.IO.File.Copy(sourceFile, destFile, true);
+                    if (System.IO.Directory.Exists(sourcePath))
+                    {
+                        string[] files = System.IO.Directory.GetFiles(sourcePath);
+
+                        // Copy the files and overwrite destination files if they already exist.
+                        foreach (string s in files)
+                        {
+                            // Use static Path methods to extract only the file name from the path.
+                            fileName = System.IO.Path.GetFileName(s);
+                            destFile = System.IO.Path.Combine(targetPath, fileName);
+                            System.IO.File.Copy(s, destFile, true);
+                        }
+                    }
+                    
                     //string imgsource = imageName;
 
                     //string _finalPath;

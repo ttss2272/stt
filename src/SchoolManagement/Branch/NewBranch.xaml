@@ -15,7 +15,7 @@
                 <Label Content="Branch Code" FontSize="13" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="59,57,0,0" Name="label3" VerticalAlignment="Top" />
                 <TextBox Height="23" HorizontalAlignment="Left" Margin="173,60,0,0" Name="txtBranchCode" VerticalAlignment="Top" Width="187" TabIndex="2" />
                 <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="152,60,0,0" Name="label4" VerticalAlignment="Top" />
-                <Image Height="131" HorizontalAlignment="Left" Margin="443,24,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="187" />
+                <Image Height="131" HorizontalAlignment="Left" Margin="443,24,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="187" Source="%7bBinding%7d" />
                 <Label Content="Institute Name" FontSize="13" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="45,96,0,0" Name="label5" VerticalAlignment="Top" />
                 <TextBox Height="23" HorizontalAlignment="Left" Margin="173,99,0,0" Name="txtInstituteName" VerticalAlignment="Top" Width="187" TextChanged="txtInstituteName_TextChanged_1" TabIndex="3" />
                 <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="152,99,0,0" Name="label6" VerticalAlignment="Top" />
@@ -27,7 +27,7 @@
         </GroupBox>
         <GroupBox Header="Branch List" Height="204" HorizontalAlignment="Left" Margin="72,316,0,0" Name="grpList" VerticalAlignment="Top" Width="522">
             <Grid>
-                <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Height="181" HorizontalAlignment="Left" Margin="2,6,0,0" Name="grdvBranch" VerticalAlignment="Top" Width="508" ItemsSource="{Binding}" />
+                <DataGrid AutoGenerateColumns="True" CanUserAddRows="False" CanUserDeleteRows="False" Height="181" HorizontalAlignment="Left" Margin="2,6,0,0" Name="grdvBranch" VerticalAlignment="Top" Width="508" ItemsSource="{Binding}" />
                 
                 
             </Grid>
