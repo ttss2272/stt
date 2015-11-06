@@ -63,7 +63,6 @@ namespace DataAccessLayer
             cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
              
             cmd.CommandType = CommandType.StoredProcedure;
-            con.Open();
             Result = cmd.ExecuteScalar().ToString();
             con.Close();
             return Result;
