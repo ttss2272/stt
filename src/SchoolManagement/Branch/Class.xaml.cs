@@ -30,7 +30,7 @@ namespace SchoolManagement.Branch
           * Purpose:- Declare Global Variables
           */
         #region------------------------Declare Variables Globally()--------------------
-        int ClassID,BranchID, UpdatedByUserID, IsActive;
+        int ClassID, BranchID, UpdatedByUserID, IsActive, IsDeleted, UpID;
         string ClassName, ShortName, UpdatedDate, Color, Board;
         BLAddClass obj_AddClass = new BLAddClass();
         #endregion
@@ -40,6 +40,7 @@ namespace SchoolManagement.Branch
         {
             InitializeComponent();
             clearFields();
+            BindGridview();
         }
 
         #endregion
@@ -77,7 +78,7 @@ namespace SchoolManagement.Branch
          #region--------------------------------------SaveDetails()-------------------------------------
         private void SaveDetails()
         {
-            string Result = obj_AddClass.saveAddClass(ClassID, ClassName, ShortName, Board, Color,BranchID, UpdatedByUserID, UpdatedDate, IsActive);
+            string Result = obj_AddClass.saveAddClass(ClassID, ClassName, ShortName, Board, Color,BranchID, UpdatedByUserID, UpdatedDate, IsActive,IsDeleted);
             if (Result == "Save Sucessfully...!!!" && Result == "Updated Sucessfully...!!!")
             {
          MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -172,8 +173,17 @@ namespace SchoolManagement.Branch
             Color = txtcolor.Text.Trim();
             BranchID = Convert.ToInt32(cbBranchName.SelectedValue);
             UpdatedByUserID = 1;
-            UpdatedDate = DateTime.Now.ToString();
-            IsActive = 1;
+            UpdatedDate = DateTime.Now.ToString();           
+            if (rdoActive.IsChecked==true)
+            {
+                IsActive = 1;
+                IsDeleted = 0;
+            }
+            else
+            {
+                IsActive = 0;
+                IsDeleted = 0;
+            }
 
         }
         #endregion
@@ -195,10 +205,52 @@ namespace SchoolManagement.Branch
         }
         #endregion                    
 
+        #region-------------------------btndelete_Click-------------------------------
         private void btndelete_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+               
+                MessageBoxResult Result = MessageBox.Show("Do You Really Want To Delete?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                if (Result.Equals(MessageBoxResult.Yes))
+                {
+                    SetParameters();
+                    //DeleteSubject();
+                }
+            }
+            catch (Exception ex)
+            {
 
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
+        #endregion
+
+        #region----------------------------DeleteSubject()----------------------------------
+        private void DeleteSubject()
+        {
+            if (UpID != 0)
+            {
+                ClassID = UpID;
+
+                string Result = obj_AddClass.DeleteClass(ClassID, UpdatedByUserID, UpdatedDate);
+                if (Result == "Deleted Sucessfully.")
+                {
+                    MessageBox.Show(Result, "Delete Sucessfully", MessageBoxButton.OK, MessageBoxImage.Information);
+                    clearFields();
+                }
+                else
+                {
+                    MessageBox.Show(Result, "Error To Delete", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please Select Class From Class", "Delete Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            }
+        }
+        #endregion
 
         /*
         * Created By:- Pravin
@@ -290,6 +342,89 @@ namespace SchoolManagement.Branch
             {
                 dgvClass.ItemsSource = ds.Tables[0].DefaultView;
                 dgvClass.Columns[0].Visibility = Visibility.Collapsed;
+            }
+        }
+        #endregion
+
+
+        #region------------------------BindBranchName()---------------------------------------
+        private void BindBranchName()
+        {
+            SqlConnection con = new SqlConnection();
+            {
+                try
+                {
+
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("BindBranchName_SP", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    // DataTable dt = new DataTable();
+                    DataSet ds = new DataSet();
+                    da.Fill(ds, "Branch");
+
+                    if (ds.Tables["Branch"].Rows.Count > 0)
+                    {
+                        cbBranchName.DataContext = ds.Tables["Branch"].DefaultView;
+                        cbBranchName.DisplayMemberPath = ds.Tables["Branch"].Columns["BranchName"].ToString();
+                        cbBranchName.SelectedValuePath = ds.Tables["Branch"].Columns["BranchID"].ToString();
+                    }
+                }
+                catch (Exception eo)
+                {
+                    MessageBox.Show(eo.Message.ToString());
+                }
+                finally
+                {
+                    //cmd.Dispose();
+                    con.Close();
+                    con.Dispose();
+                }
+            }
+        }
+        #endregion
+
+        #region--------------------------------------gridview cell click()-------------------------------------
+        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {               
+                object item = dgvClass.SelectedItem;
+                //string Id = (dgvClass.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                string ClassName = (dgvClass.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+                string ShortName = (dgvClass.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
+                string Board =     (dgvClass.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
+                string Color = (dgvClass.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
+                
+                DataSet ds = obj_AddClass.GetClassDetail(ClassName, ShortName,Board,Color);
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        UpID = Convert.ToInt32(ds.Tables[0].Rows[0]["ClassID"]);
+                        txtClassName.Text = ds.Tables[0].Rows[0]["ClassName"].ToString();
+                        txtShortName.Text = ds.Tables[0].Rows[0]["ShortName"].ToString();
+                        int act = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
+                        int del = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDeleted"]);
+                        if (act == 1 && del == 0)
+                        {
+                            rdoActive.IsChecked = true;
+                        }
+                        else if (act == 0 && del == 0)
+                        {
+                            rdoDeActive.IsChecked = true;
+                        }
+                        btnDelete.IsEnabled = true;
+                    }
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message.ToString());
             }
         }
         #endregion
