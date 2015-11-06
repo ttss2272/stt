@@ -27,9 +27,21 @@
         </GroupBox>
         <GroupBox Header="Branch List" Height="204" HorizontalAlignment="Left" Margin="72,316,0,0" Name="grpList" VerticalAlignment="Top" Width="522">
             <Grid>
-                <DataGrid AutoGenerateColumns="True" CanUserAddRows="False" CanUserDeleteRows="False" Height="181" HorizontalAlignment="Left" Margin="2,6,0,0" Name="grdvBranch" VerticalAlignment="Top" Width="508" ItemsSource="{Binding}" />
-                
-                
+                <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Height="195" Width="508" HorizontalAlignment="Left" Margin="2,6,0,0" Name="grdvBranch" VerticalAlignment="Top" IsReadOnly="True" CanUserResizeColumns="False"  ItemsSource="{Binding}">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding BranchID}" Header="Branch ID" Visibility="Hidden"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding BranchName}" Header="Branch Name" Width="241"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding BranchCode}" Header="Branch Code" Width="233"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding InstituteName}" Header="Institute Name" Width="233"></DataGridTextColumn>
+
+                    </DataGrid.Columns>
+                    <DataGrid.ItemContainerStyle>
+                        <Style TargetType="DataGridRow">
+                            <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick" HandledEventsToo="True" />
+                        </Style>
+                    </DataGrid.ItemContainerStyle>
+                </DataGrid>
             </Grid>
         </GroupBox>
         <GroupBox Header="" Height="72" HorizontalAlignment="Left" Margin="74,246,0,0" Name="groupBox2" VerticalAlignment="Top" Width="522">

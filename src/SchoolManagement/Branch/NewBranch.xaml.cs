@@ -28,62 +28,22 @@ namespace SchoolManagement.Branch
             rbtnActive.IsChecked = true;
             
         }
+        /*
+      * Created By:- Sameer Shinde
+      * Ctreated Date :- 5 Nov 2015
+      * Purpose:- Declare Global Variables
+      */
         #region-----------------Declare Variables GlobalVariables()----------------
         BLAddBranch obj_AddBranch = new BLAddBranch();
-        int BranchID, CreatedByUserID, UpdatedByUserID, IsActive;
+        int BranchID, CreatedByUserID, UpdatedByUserID, IsActive,IsDelete,UpID;
         string BranchName, BranchCode, InstituteName, Logo, UpdatedDate, strName, imageName;
         #endregion
-        private void btnBrowse_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                FileDialog fldlg = new OpenFileDialog();
-                fldlg.InitialDirectory = Environment.SpecialFolder.MyPictures.ToString();
-                fldlg.Filter = "Image File (*.jpg;*.bmp;*.gif)|*.jpg;*.bmp;*.gif";
-                fldlg.ShowDialog();
-                {
-                    strName = fldlg.SafeFileName;
-                    imageName = fldlg.FileName;
-                    ImageSourceConverter isc = new ImageSourceConverter();
-                    image1.SetValue(Image.SourceProperty, isc.ConvertFromString(imageName));
-                    txtUploadPath.Text = strName;
-                    //string imgsource = imageName;
-
-                    //string _finalPath;
-                    //string filepath=@"D:\SVN_SchoolTimeTable\src\SchoolManagement\ImgLogo\";
-
-                    //var files = (System.IO.Directory.GetFiles(imageName, "*.jpg*")); 
-
-                    //foreach (var file in files)
-                    //{
-                    //    var filename = file.Substring(file.LastIndexOf("\\") + 1);
-                    //    _finalPath = filepath; 
-                    //    if (System.IO.Directory.Exists(_finalPath))
-                    //    {
-                    //        _finalPath = System.IO.Path.Combine(_finalPath, filename);
-
-                    //        System.IO.File.Copy(file, _finalPath, true);
-                    //    }
-                    //}
-                }
-                fldlg = null;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
-        }
-
-        private void txtBranchName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-           
-        }
-
-        private void txtInstituteName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-           
-        }
-
+        /*
+       * Created By:- Sameer Shinde
+       * Ctreated Date :- 5 Nov 2015
+       * Purpose:- Save click Code
+       */
+        #region------------BtnSaveClick-------------------------------
         private void btnSave_Click_1(object sender, RoutedEventArgs e)
         {
             try
@@ -91,6 +51,7 @@ namespace SchoolManagement.Branch
                 Validate();
                 SetParameters();
                 SaveDetails();
+                BindGridview();
 
             }
             catch (Exception ex)
@@ -98,10 +59,16 @@ namespace SchoolManagement.Branch
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-
+        #endregion
+        /*
+       * Created By:- Sameer Shinde
+       * Ctreated Date :- 5 Nov 2015
+       * Purpose:- Save Detail Function
+       */
+        #region-----------------SaveDetails()-----------------
         private void SaveDetails()
         {
-            string Result = obj_AddBranch.SaveBranch(BranchID, BranchName, BranchCode, InstituteName, Logo, CreatedByUserID, UpdatedByUserID, UpdatedDate, IsActive);
+            string Result = obj_AddBranch.SaveBranch(BranchID, BranchName, BranchCode, InstituteName, Logo, CreatedByUserID, UpdatedByUserID, UpdatedDate, IsActive,IsDelete);
             if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
             {
                 MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -112,18 +79,32 @@ namespace SchoolManagement.Branch
                 MessageBox.Show(Result, "Error To Save", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-
+        #endregion
+        /*
+       * Created By:- Sameer Shinde
+       * Ctreated Date :- 5 Nov 2015
+       * Purpose:- Clear All fields
+       */
+        #region-----------ClearFields()-----------------
         private void ClearFields()
         {
+            UpID = 0;
             txtBranchName.Text = "";
             txtBranchCode.Text = "";
             txtInstituteName.Text = "";
             txtUploadPath.Text = "";
+            image1.Source = null;
         }
-
+        #endregion
+        /*
+       * Created By:- Sameer Shinde
+       * Ctreated Date :- 5 Nov 2015
+       * Purpose:- Set Paramaters for save
+       */
+        #region---------------SetParameters()-----------------
         private void SetParameters()
         {
-            BranchID = 0;
+            BranchID = UpID;
             BranchName = txtBranchName.Text.Trim();
             BranchCode = txtBranchCode.Text.Trim();
             InstituteName = txtInstituteName.Text.Trim();
@@ -134,11 +115,19 @@ namespace SchoolManagement.Branch
             if (rbtnActive.IsChecked == true)
             {
                 IsActive = 1;
+                IsDelete = 0;
             }
             else
                 IsActive = 0;
+            IsDelete = 0;
         }
-
+        #endregion
+        /*
+       * Created By:- Sameer Shinde
+       * Ctreated Date :- 5 Nov 2015
+       * Purpose:- Validation for fields
+       */
+        #region------------------Validate()-----------------
         private bool Validate()
         {
             if (txtBranchName.Text.Trim() == "")
@@ -171,19 +160,50 @@ namespace SchoolManagement.Branch
 
             }
         }
-
+        #endregion
+        /*
+       * Created By:- Sameer Shinde
+       * Ctreated Date :- 5 Nov 2015
+       * Purpose:- Delete Record
+       */
+        #region------------------DeleteClick()---------------------------
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Do You Want to delete?", "Delete", MessageBoxButton.YesNoCancel);
-            if (result.Equals(MessageBoxResult.Yes))
+            try
             {
-                DeleteBranch();
-                string Result = obj_AddBranch.DeleteBranch(BranchName);
-                if (Result == "Branch Delete Sucessfully!!!")
+                MessageBoxResult result = MessageBox.Show("Do You Want to delete?", "Delete", MessageBoxButton.YesNoCancel);
+                if (result.Equals(MessageBoxResult.Yes))
                 {
-                    MessageBox.Show(Result, "Delete SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
+                    SetParameters();
+                    DeleteBranch();
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        #endregion
+        /*
+       * Created By:- Sameer Shinde
+       * Ctreated Date :- 5 Nov 2015
+       * Purpose:- Delete Function Call
+       */
+        #region--------------------DeleteBranch()---------------------
+        private void DeleteBranch()
+        {
+            if (UpID != 0)
+            {
+                BranchID = UpID;
+
+                string Result = obj_AddBranch.DeleteBranch(BranchID,UpdatedByUserID,UpdatedDate);
+                if (Result == "Branch Deleted Sucessfully!!!")
+                {
+                    MessageBox.Show(Result, "Branch Delete Sucessfully", MessageBoxButton.OK, MessageBoxImage.Information);
                     ClearFields();
-                    BindGridview();
                 }
                 else
                 {
@@ -192,17 +212,17 @@ namespace SchoolManagement.Branch
             }
             else
             {
-                MessageBox.Show("Please Select Branch Name from  list", "Selct Branch Name", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Please Select Branch Name ", "Delete Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+
             }
-            BindGridview();
-            ClearFields();
         }
-
-        private void DeleteBranch()
-        {
-            string BranchName = grdvBranch.SelectedCells[0].Item.ToString();
-        }
-
+        #endregion
+        /*
+       * Created By:- Sameer Shinde
+       * Ctreated Date :- 5 Nov 2015
+       * Purpose:- Display data on grid view
+       */
+        #region------------------BindGridview()-------------------
         private void BindGridview()
         {
             DataSet ds = obj_AddBranch.BindBranch(0);
@@ -212,7 +232,13 @@ namespace SchoolManagement.Branch
                // grdvBranch.Columns[0].Visibility = Visibility.Collapsed;
             }
         }
-
+        #endregion
+        /*
+       * Created By:- Sameer Shinde
+       * Ctreated Date :- 5 Nov 2015
+       * Purpose:- Browse Image
+       */
+        #region-------------------BtnBrowseClick()-------------------------
         private void btnBrowse_Click_1(object sender, RoutedEventArgs e)
         {
             try
@@ -229,8 +255,7 @@ namespace SchoolManagement.Branch
                     txtUploadPath.Text = strName;
 
                     string fileName = "ImgLogo";
-                    //string imagename1 = "" + imageName;
-                   // string imagename1 = image1.
+                    
                     string sourcePath = imageName;
                     string targetPath = @"C:\Users\TTS\Desktop\ImgLogo\";
 
@@ -255,24 +280,7 @@ namespace SchoolManagement.Branch
                         }
                     }
                     
-                    //string imgsource = imageName;
-
-                    //string _finalPath;
-                    //string filepath=@"D:\SVN_SchoolTimeTable\src\SchoolManagement\ImgLogo\";
-
-                    //var files = (System.IO.Directory.GetFiles(imageName, "*.jpg*")); 
-
-                    //foreach (var file in files)
-                    //{
-                    //    var filename = file.Substring(file.LastIndexOf("\\") + 1);
-                    //    _finalPath = filepath; 
-                    //    if (System.IO.Directory.Exists(_finalPath))
-                    //    {
-                    //        _finalPath = System.IO.Path.Combine(_finalPath, filename);
-
-                    //        System.IO.File.Copy(file, _finalPath, true);
-                    //    }
-                    //}
+                    
                 }
                 fldlg = null;
             }
@@ -281,7 +289,13 @@ namespace SchoolManagement.Branch
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-
+        #endregion
+        /*
+       * Created By:- Sameer Shinde
+       * Ctreated Date :- 5 Nov 2015
+       * Purpose:- Check validation on entering text of Branch Name
+       */
+        #region-------------------------BtanchNameTectChange()-------------------------
         private void txtBranchName_TextChanged_1(object sender, TextChangedEventArgs e)
         {
             try
@@ -308,7 +322,13 @@ namespace SchoolManagement.Branch
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-
+        #endregion
+        /*
+       * Created By:- Sameer Shinde
+       * Ctreated Date :- 5 Nov 2015
+       * Purpose:- Check validation on entering text of Institute  name
+       */
+        #region----------------InstituteNameTextChange----------------------------------
         private void txtInstituteName_TextChanged_1(object sender, TextChangedEventArgs e)
         {
             try
@@ -335,15 +355,81 @@ namespace SchoolManagement.Branch
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-
+        #endregion
+        /*
+       * Created By:- Sameer Shinde
+       * Ctreated Date :- 5 Nov 2015
+       * Purpose:- To Exit from current form
+       */
+        #region----------------BtnCancelClick()------------------------------------
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+        #endregion
+        /*
+       * Created By:- Sameer Shinde
+       * Ctreated Date :- 5 Nov 2015
+       * Purpose:- Window Load event
+       */
+        /*
+   * Created By:- PriTesh D. Sortee
+   * Ctreated Date :- 5 Nov 2015
+   * StartTime:-1:00PM
+   * EndTime:-7:13PM
+   * Purpose:- griddview cell click
+   */
+        #region--------------------------------------gridview cell click()-------------------------------------
+        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                
+                object item = grdvBranch.SelectedItem;
+                string BranchName = (grdvBranch.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+                string BranchCode = (grdvBranch.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
+                string InstituteName = (grdvBranch.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
 
+                DataSet ds = obj_AddBranch.BindBranch(0);
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        UpID = Convert.ToInt32(ds.Tables[0].Rows[0]["BranchID"]);
+                        txtBranchName.Text = ds.Tables[0].Rows[0]["BranchName"].ToString();
+                        txtBranchCode.Text= ds.Tables[0].Rows[0]["BranchCode"].ToString();
+                        txtInstituteName.Text = ds.Tables[0].Rows[0]["InstituteName"].ToString();
+                        txtUploadPath.Text = ds.Tables[0].Rows[0]["Logo"].ToString();
+                        int act = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
+                        int del = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDeleted"]);
+                        if (act == 1 && del == 0)
+                        {
+                            rbtnActive.IsChecked = true;
+                        }
+                        else if (act == 0 && del == 0)
+                        {
+                            rbtnInactive.IsChecked = true;
+                        }
+                        btnDelete.IsEnabled = true;
+                    }
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        #endregion
+        #region-------------WindowLoaded------------------------------------
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            BindGridview();
+           BindGridview();
+           btnDelete.IsEnabled = false;
         }
+        #endregion
     }
 }
