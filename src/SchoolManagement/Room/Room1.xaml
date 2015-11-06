@@ -1,7 +1,7 @@
 ﻿<Window x:Class="SchoolManagement.Room.Room1"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Room1" Height="472" Width="710">
+        Title="Room1" Height="472" Width="710" ">
     <Grid>
         <GroupBox Header="Room" Height="275" HorizontalAlignment="Left" Margin="82,12,0,0" Name="groupBox1" VerticalAlignment="Top" Width="500">
             <Grid>

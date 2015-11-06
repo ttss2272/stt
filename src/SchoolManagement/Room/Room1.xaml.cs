@@ -25,20 +25,17 @@ namespace SchoolManagement.Room
     public partial class Room1 : Window
     {
         BLRoom obj_Room = new BLRoom();
-        int IsActive;
-        int IsDeleted;
+        BLAddBranch obj_Branch=new BLAddBranch();
+
+        int RoomId,Capacity,BranchID,UpdatedByUserID,IsActive,IsDeleted;
+        string RoomName, ShortName, Color1, UpdatedDate;
+        
 
         public Room1()
         {
             InitializeComponent();
-            BindFullGrid();
-            BindBranchName();
-            clearFields();
+            clearFields();     
             
-        }
-        private void Room1_Loaded()
-        {
-            cmbCapacity_Items();
         }
 
         #region---------------------------Validate()-----------------------------------------
@@ -69,7 +66,7 @@ namespace SchoolManagement.Room
                 cmbCapacity.Focus();
                 return false;
             }
-            else if (cmbBranchName.SelectedIndex == 0)
+            else if (cmbBranchName.SelectedIndex == -1)
             {
                 MessageBox.Show("Please Select Branch Name...");
                 cmbCapacity.Focus();
@@ -90,6 +87,8 @@ namespace SchoolManagement.Room
             txtShortName.Text = "";
             cmbCapacity.Text = "";
             txtColor.Text = "";
+            BindFullGrid();
+            BindBranchName();
         }
         #endregion
 
@@ -101,15 +100,15 @@ namespace SchoolManagement.Room
             {
                 if (Validate())
                 {
-                        int RoomId= 0;
-                        string RoomName = txtRoomName.Text;
-                        string ShortName = txtShortName.Text;
-                        int Capacity = Convert.ToInt32(cmbCapacity.SelectedValue.ToString());
-                        string Color1 = txtColor.Text;
-                        int UpdatedByUserID = 1;
-                        string UpdatedDate = DateTime.Now.ToString();
-                      //  int IsActive;
-                       // int IsDeleted;
+                        RoomId= 0;
+                        RoomName = txtRoomName.Text;
+                        ShortName = txtShortName.Text;
+                        Capacity = Convert.ToInt32(cmbCapacity.SelectedValue.ToString());
+                        Color1 = txtColor.Text;
+                        BranchID = Convert.ToInt32(cmbBranchName.SelectedValue.ToString());
+                        UpdatedByUserID = 1;
+                        UpdatedDate = DateTime.Now.ToString();
+                      
                         if (rdbActive.IsChecked == true)
                         {
                             IsActive = 1;
@@ -119,10 +118,10 @@ namespace SchoolManagement.Room
                         else if (rdbInactive.IsChecked == true)
                         {
                             IsActive = 0;
-                            IsDeleted = 1;
+                            IsDeleted = 0;
 
                         }
-                        string Result = obj_Room.saveAddRoom(RoomId, RoomName, ShortName,Color1, Capacity, UpdatedByUserID,UpdatedDate, IsActive,IsDeleted);
+                        string Result = obj_Room.saveAddRoom(RoomId, RoomName, ShortName,Color1, Capacity,BranchID,UpdatedByUserID,UpdatedDate, IsActive,IsDeleted);
                         if (Result == "Save Sucessfully...!!!" )
                        {
                         MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -150,15 +149,15 @@ namespace SchoolManagement.Room
             {
                 if (Validate())
                 {
-                        int RoomId= 0;
-                        string RoomName = txtRoomName.Text;
-                        string ShortName = txtShortName.Text;
-                        int Capacity = Convert.ToInt32(cmbCapacity.SelectedValue.ToString());
-                        string Color1 = txtColor.Text;
-                        int UpdatedByUserID = 1;
-                        string UpdatedDate = DateTime.Now.ToString();
-                       // int IsActive;
-                       // int IsDeleted;
+                        RoomId= 0;
+                        RoomName = txtRoomName.Text;
+                        ShortName = txtShortName.Text;
+                        Capacity = Convert.ToInt32(cmbCapacity.SelectedValue.ToString());
+                        Color1 = txtColor.Text;
+                        BranchID = Convert.ToInt32(cmbBranchName.SelectedValue.ToString());
+                        UpdatedByUserID = 1;
+                        UpdatedDate = DateTime.Now.ToString();
+                      
                         if (rdbActive.IsChecked == true)
                         {
                             IsActive = 1;
@@ -168,11 +167,11 @@ namespace SchoolManagement.Room
                         else if (rdbInactive.IsChecked == true)
                         {
                            IsActive = 0;
-                           IsDeleted = 1;
+                           IsDeleted = 0;
 
                         }
                         
-                        string Result = obj_Room.UpdateRoom(RoomId, RoomName, ShortName, Color1, Capacity, UpdatedByUserID,UpdatedDate, IsActive, IsDeleted);
+                        string Result = obj_Room.UpdateRoom(RoomId, RoomName, ShortName, Color1, Capacity,BranchID,UpdatedByUserID,UpdatedDate, IsActive, IsDeleted);
                         if (Result == "Updated Sucessfully...!!!" )
                        {
                         MessageBox.Show(Result, "Updated SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -203,17 +202,14 @@ namespace SchoolManagement.Room
             try
             {
                 DataSet ds = new DataSet();
-                BLRoom objBL = new BLRoom();
-                ds = objBL.BindFullGrid(0);
+
+                ds = obj_Room.BindFullGrid(0);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     dgRoom.ItemsSource = ds.Tables[0].DefaultView;
+
                 }
-                else 
-                {
-                    dgRoom.ItemsSource = null;
-                }
-                dgRoom.Items.Refresh();
+                
             }
             catch (Exception ex)
             {
@@ -227,39 +223,25 @@ namespace SchoolManagement.Room
 
         private void BindBranchName()
         {
-            SqlConnection con = new SqlConnection();
-            {
+            
                 try
                 {
+                    DataSet ds=obj_Branch.BindBranchName();
+                   
 
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand("BindBranchName_SP", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                   // DataTable dt = new DataTable();
-                    DataSet ds= new DataSet();
-                    da.Fill(ds,"Branch");
-
-                    if (ds.Tables["Branch"].Rows.Count > 0)
+                    if (ds.Tables[0].Rows.Count > 0)
                     {
-                        cmbBranchName.DataContext= ds.Tables["Branch"].DefaultView;
-                        cmbBranchName.DisplayMemberPath = ds.Tables["Branch"].Columns["BranchName"].ToString();
-                        cmbBranchName.SelectedValuePath = ds.Tables["Branch"].Columns["BranchID"].ToString();
+                        cmbBranchName.DataContext= ds.Tables[0].DefaultView;
+                        cmbBranchName.DisplayMemberPath = ds.Tables[0].Columns["BranchName"].ToString();
+                        cmbBranchName.SelectedValuePath = ds.Tables[0].Columns["BranchID"].ToString();
                        
                     }
 
                 }
-                catch (Exception eo)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(eo.Message.ToString());
+                    MessageBox.Show(ex.Message.ToString());
                 }
-                finally
-                {
-                    //cmd.Dispose();
-                    con.Close();
-                    con.Dispose();
-                }
-            }
         }
 
         #endregion  
@@ -286,16 +268,23 @@ namespace SchoolManagement.Room
             this.Close();
         }
         private void cmbCapacity_Items()
-        {
-            ComboBox cmb = new ComboBox(); 
+        { 
+            cmbCapacity.Items.Add("select");
             int i;
             for (i = 1; i <= 60; i++)
             {
-                cmb.Items.Add(i);
-            }  
+                cmbCapacity.Items.Add(i);
+                
+            }
+            cmbCapacity.SelectedIndex = 0;
 
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            cmbCapacity_Items();
+        }
+        
         
      }
  
