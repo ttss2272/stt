@@ -11,7 +11,7 @@ namespace DataAccessLayer
     {
       SqlConnection con = new SqlConnection();
       DBConnection conn = new DBConnection();
-        public string SaveBranch(int BranchID, string BranchName, string BranchCode, string InstituteName, string Logo, int CreatedByUserID, int UpdatedByUserID, string UpdatedDate,int IsActive)
+        public string SaveBranch(int BranchID, string BranchName, string BranchCode, string InstituteName, string Logo, int CreatedByUserID, int UpdatedByUserID, string UpdatedDate,int IsActive,int IsDelete)
         {
             string Result = null;
             con = conn.getConnection();
@@ -27,6 +27,7 @@ namespace DataAccessLayer
             cmd.Parameters.AddWithValue("@UpdateByUserId", UpdatedByUserID);
             cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
             cmd.Parameters.AddWithValue("@IsActive", IsActive);
+            cmd.Parameters.AddWithValue("@IsDelete", IsDelete);
 
             con.Open();
             Result = cmd.ExecuteScalar().ToString();
@@ -46,19 +47,24 @@ namespace DataAccessLayer
 
             SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
+
             sqlDa.Fill(ds);
             con.Close();
             return ds;
         }
 
-        public string DeleteBranch(string BranchName)
+        public string DeleteBranch(int BranchID,int UpdatedByUserId,string UpdatedDate)
         {
             string Result = null;
             con = conn.getConnection();
-            con.Open();
+
             SqlCommand cmd = new SqlCommand("DeleteBranch_SP", con);
-            cmd.Parameters.AddWithValue("@BranchName", BranchName);
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@BranchID", BranchID);
+            cmd.Parameters.AddWithValue("@UpdatedByUserId", UpdatedByUserId);
+            cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
+
+           
             con.Open();
             Result = cmd.ExecuteScalar().ToString();
             con.Close();
