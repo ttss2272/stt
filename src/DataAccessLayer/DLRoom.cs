@@ -63,12 +63,14 @@ namespace DataAccessLayer
 
         }
         // To Bind Grid 
-        public DataSet BindFullGrid(int RoomID)
+        public DataSet BindFullGrid(int RoomID,string RoomName)
         {
             conn = con.getConnection();
             conn.Open();
             SqlCommand cmd = new SqlCommand("BindRoom_SP", conn);
             cmd.Parameters.AddWithValue("@RoomID", RoomID);
+            cmd.Parameters.AddWithValue("@RoomName", RoomName);
+
             cmd.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
