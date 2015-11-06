@@ -41,6 +41,13 @@ namespace BusinessLayer
         {
             string Result = objSubject.DeleteSubject(SubjectID, UpdatedByUserID, UpdatedDate);
             return Result;
-            }
+        }
+
+        public DataSet SearchSubject(string SubjectName)
+        {
+            DataSet ds = objSubject.SearchSubject(SubjectName);
+            return ds;
+        }
+
     }
 }
