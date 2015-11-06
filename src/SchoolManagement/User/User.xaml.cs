@@ -31,7 +31,7 @@ namespace SchoolManagement.User
         BLUser obj_User = new BLUser();
 
         int UserID, IsActive, IsDeleted, UserTypeID = 1, UpID;
-        string UserName, ContactNo, Address, MailId, LoginName, Password, UpdatedDate ;
+        string UserName, ContactNo, Address, MailId, LoginName, Password, UpdatedDate;
 
         #region---------------------------Validate()-----------------------------------------
         public bool Validate()
@@ -55,18 +55,18 @@ namespace SchoolManagement.User
                 txtEmailID.Focus();
                 return false;
             }
-            else if(txtEmailID.Text != "")
+            else if (txtEmailID.Text != "")
             {
-       //         string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
-       //@"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
-       //   @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
-       //         Regex re = new Regex(strRegex);
-       //         if (re.IsMatch(txtEmailID.Text))
-       //             return (true);
-       //         else
-       //             MessageBox.Show("Please Enter Poper Email ID");
-       //         txtEmailID.Focus();
-       //         return (false);
+                //         string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
+                //@"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+                //   @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+                //         Regex re = new Regex(strRegex);
+                //         if (re.IsMatch(txtEmailID.Text))
+                //             return (true);
+                //         else
+                //             MessageBox.Show("Please Enter Poper Email ID");
+                //         txtEmailID.Focus();
+                //         return (false);
             }
             else if (string.IsNullOrEmpty(txtContactNo.Text))
             {
@@ -99,7 +99,7 @@ namespace SchoolManagement.User
             }
         }
         #endregion
-        
+
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -135,8 +135,8 @@ namespace SchoolManagement.User
             UserName = txtFullName.Text.Trim();
             ContactNo = txtContactNo.Text.Trim();
             Address = txtAddress.Text.Trim();
-            MailId =txtEmailID.Text.Trim();
-            LoginName =txtLoginID.Text.Trim();
+            MailId = txtEmailID.Text.Trim();
+            LoginName = txtLoginID.Text.Trim();
             Password = txtPassword.Text.Trim();
             UserTypeID = 1;
             UpdatedDate = DateTime.Now.ToString();
@@ -235,7 +235,7 @@ namespace SchoolManagement.User
 
         private void bindUserGrid()
         {
-            DataSet ds = obj_User.GetUser(0,txtSearchUser.Text);
+            DataSet ds = obj_User.GetUser(0, txtSearchUser.Text);
             if (ds.Tables[0].Rows.Count > 0)
             {
                 gvUser.ItemsSource = ds.Tables[0].DefaultView;
@@ -276,7 +276,7 @@ namespace SchoolManagement.User
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString(),"Exception Error");
+                MessageBox.Show(ex.Message.ToString(), "Exception Error");
             }
         }
     }
