@@ -27,5 +27,11 @@ namespace BusinessLayer
             string result = obj_AddBranch.DeleteBranch(BranchID,UpdatedByUserID,Updateddate);
             return result;
         }
+        public DataSet BindBranchName()
+        {
+            DataSet getBranchName = obj_AddBranch.GetBranchName();
+            return getBranchName;
+        }
+
     }
 }
