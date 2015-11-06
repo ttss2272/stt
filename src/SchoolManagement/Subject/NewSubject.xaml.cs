@@ -77,6 +77,7 @@ namespace SchoolManagement.Subject
             cmbActive.IsChecked = true;
             UpID = 0;
             btnDelete.IsEnabled = false;
+            txtSearchSubject.Text = "";
         }
         #endregion
 
@@ -406,7 +407,7 @@ namespace SchoolManagement.Subject
         #region--------------------------------------gridview cell click()-------------------------------------
         private void DeleteSubject()
         {
-            if (UpID == 0)
+            if (UpID != 0)
             {
                 SubjectID = UpID;
 

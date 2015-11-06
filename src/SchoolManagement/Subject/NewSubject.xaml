@@ -10,8 +10,8 @@
                 <Label Content="Subject Short Name" HorizontalAlignment="Left" Margin="33,50,0,0" VerticalAlignment="Top" Width="124" Name="lblSubShortName"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="205,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="163" Name="txtSubjectShortName" TextChanged="txtSubjectShortName_TextChanged" TabIndex="2"/>
                 <Label Content="lblhdn" HorizontalAlignment="Left" Margin="406,9,0,0" VerticalAlignment="Top" Visibility="Collapsed"/>
-                <RadioButton Content="Active" HorizontalAlignment="Left" Margin="204,88,0,0" VerticalAlignment="Top" GroupName="Status" IsChecked="True" Name="cmbActive"/>
-                <RadioButton Content="InActive" HorizontalAlignment="Left" Margin="306,88,0,0" VerticalAlignment="Top" GroupName="Status" Name="cmbDelete"/>
+                <RadioButton Content="Active" HorizontalAlignment="Left" Margin="204,88,0,0" VerticalAlignment="Top" GroupName="Status" IsChecked="True" Name="cmbActive" TabIndex="3"/>
+                <RadioButton Content="InActive" HorizontalAlignment="Left" Margin="306,88,0,0" VerticalAlignment="Top" GroupName="Status" Name="cmbDelete" TabIndex="4"/>
                 <Label Content="Status" HorizontalAlignment="Left" Margin="35,81,0,0" VerticalAlignment="Top" Width="71" Name="lblStatus"/>
                 <Label Content="*" HorizontalAlignment="Left" Margin="178,10,0,0" VerticalAlignment="Top" ToolTip="Mednatory" FontWeight="Bold" Foreground="Red"/>
                 <Label Content="*" HorizontalAlignment="Left" Margin="178,50,0,0" VerticalAlignment="Top" ToolTip="Mednatory" FontWeight="Bold" Foreground="Red" RenderTransformOrigin="0.4,2.077"/>
@@ -21,8 +21,8 @@
         </GroupBox>
 
 
-        <Button Content="Save" HorizontalAlignment="Left" Margin="93,167,0,0" VerticalAlignment="Top" Width="75" Name="btnSave" FontWeight="SemiBold" Click="btnSave_Click" TabIndex="3" Height="30" />
-        <Button Content="Clear" HorizontalAlignment="Left" Margin="322,167,0,0" VerticalAlignment="Top" Width="75" Name="btnClear" FontWeight="SemiBold" Height="30" Click="btnClear_Click" TabIndex="4"/>
+        <Button Content="Save" HorizontalAlignment="Left" Margin="93,167,0,0" VerticalAlignment="Top" Width="75" Name="btnSave" FontWeight="SemiBold" Click="btnSave_Click" TabIndex="5" Height="30" />
+        <Button Content="Clear" HorizontalAlignment="Left" Margin="322,167,0,0" VerticalAlignment="Top" Width="75" Name="btnClear" FontWeight="SemiBold" Height="30" Click="btnClear_Click" TabIndex="6"/>
 
 
 
@@ -51,7 +51,7 @@
         <Button Content="Delete" HorizontalAlignment="Left" Margin="203,167,0,0" VerticalAlignment="Top" Width="83" Height="30" Name="btnDelete" FontWeight="SemiBold" Click="btnDelete_Click"/>
         <Label Content="Search Subject" HorizontalAlignment="Left" Margin="40,230,0,0" VerticalAlignment="Top" Width="96" Name="lblSearch" />
         <TextBox HorizontalAlignment="Left" Height="23" Margin="178,234,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="143" Name="txtSearchSubject"/>
-        <Button Content="Search" HorizontalAlignment="Left" Margin="366,230,0,0" VerticalAlignment="Top" Width="83" Height="27" Name="btnSearch" FontWeight="SemiBold" Click="btnSearch_Click"/>
+        <Button Content="Search" HorizontalAlignment="Left" Margin="366,230,0,0" VerticalAlignment="Top" Width="83" Height="27" Name="btnSearch" FontWeight="SemiBold" Click="btnSearch_Click" TabIndex="7"/>
 
 
 
