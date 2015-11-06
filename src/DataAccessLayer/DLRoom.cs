@@ -14,31 +14,7 @@ namespace DataAccessLayer
         SqlConnection conn = new SqlConnection();
         DBConnection con = new DBConnection();
 
-        public string saveAddRoom(int RoomId,string RoomName, string ShortName,string Color1, int Capacity,int UpdatedByUserID, string UpdatedDate, int IsActive,int IsDeleted)
-        {
-            string result = null;
-            conn = con.getConnection();
-            SqlCommand cmd = new SqlCommand("SaveRoom_SP", conn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@RoomID",RoomId);
-            cmd.Parameters.AddWithValue("@RoomName", RoomName);
-            cmd.Parameters.AddWithValue("@ShortName", ShortName);
-            cmd.Parameters.AddWithValue("@Color", Color1);
-            cmd.Parameters.AddWithValue("@Capacity", Capacity);
-         //   cmd.Parameters.AddWithValue("@BranchId",BranchId);
-          //  cmd.Parameters.AddWithValue("@CreatedByUserID",CreatedByUserId);
-            cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
-        //    cmd.Parameters.AddWithValue("@CreatedDate", CreatedDate);
-            cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
-            cmd.Parameters.AddWithValue("@IsActive", IsActive);
-            cmd.Parameters.AddWithValue("@IsDelete", IsDeleted);
-            conn.Open();
-            result = cmd.ExecuteNonQuery().ToString();
-            conn.Close();
-            return result;
-
-        }
-        public string UpdateRoom(int RoomId,string RoomName, string ShortName, string Color1, int Capacity,int UpdatedByUserID,string UpdatedDate, int IsActive,int IsDeleted)
+        public string saveAddRoom(int RoomId, string RoomName, string ShortName, string Color1, int Capacity, int BranchID, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
         {
             string result = null;
             conn = con.getConnection();
@@ -46,23 +22,47 @@ namespace DataAccessLayer
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@RoomID", RoomId);
             cmd.Parameters.AddWithValue("@RoomName", RoomName);
-            cmd.Parameters.AddWithValue("@ShortName", ShortName);
+            cmd.Parameters.AddWithValue("@RoomShortName", ShortName);
             cmd.Parameters.AddWithValue("@Color", Color1);
             cmd.Parameters.AddWithValue("@Capacity", Capacity);
-           // cmd.Parameters.AddWithValue("@BranchId",BranchId);
+            cmd.Parameters.AddWithValue("@BranchID", BranchID);
             //  cmd.Parameters.AddWithValue("@CreatedByUserID",CreatedByUserId);
             cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
             //    cmd.Parameters.AddWithValue("@CreatedDate", CreatedDate);
             cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
             cmd.Parameters.AddWithValue("@IsActive", IsActive);
-            cmd.Parameters.AddWithValue("@IsDelete", IsDeleted);
+            cmd.Parameters.AddWithValue("@IsDeleted", IsDeleted);
             conn.Open();
-            result = cmd.ExecuteNonQuery().ToString();
+            result = cmd.ExecuteScalar().ToString();
             conn.Close();
             return result;
 
         }
-         // To Bind Grid 
+        public string UpdateRoom(int RoomId, string RoomName, string ShortName, string Color1, int Capacity, int BranchID, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
+        {
+            string result = null;
+            conn = con.getConnection();
+            SqlCommand cmd = new SqlCommand("SaveRoom_SP", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@RoomID", RoomId);
+            cmd.Parameters.AddWithValue("@RoomName", RoomName);
+            cmd.Parameters.AddWithValue("@RoomShortName", ShortName);
+            cmd.Parameters.AddWithValue("@Color", Color1);
+            cmd.Parameters.AddWithValue("@Capacity", Capacity);
+            cmd.Parameters.AddWithValue("@BranchID", BranchID);
+            //  cmd.Parameters.AddWithValue("@CreatedByUserID",CreatedByUserId);
+            cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
+            //    cmd.Parameters.AddWithValue("@CreatedDate", CreatedDate);
+            cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
+            cmd.Parameters.AddWithValue("@IsActive", IsActive);
+            cmd.Parameters.AddWithValue("@IsDeleted", IsDeleted);
+            conn.Open();
+            result = cmd.ExecuteScalar().ToString();
+            conn.Close();
+            return result;
+
+        }
+        // To Bind Grid 
         public DataSet BindFullGrid(int RoomID)
         {
             conn = con.getConnection();
@@ -76,28 +76,25 @@ namespace DataAccessLayer
             conn.Close();
             return ds;
         }
-        
-      /*      public int deleteRoom( EntRoom objent)
-        {
-            string ConnectionString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
-            SqlConnection con = new SqlConnection(ConnectionString);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand("DelelteRoom_SP", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            
-                cmd.Parameters.AddWithValue("@RoomID", objent.RoomName);
-                int result = cmd.ExecuteNonQuery();
-                
-                con.Close();
-            
-                cmd.Dispose();
-                con.Close();
-                con.Dispose();
-                return result;
-            
-        }*/
-           
 
+       
+        public string DeleteRoom(int RoomID, int UpdatedByUserID, string UpdatedDate)
+        {
+            string Result = null;
+            conn = con.getConnection();
+            SqlCommand cmd = new SqlCommand("DeleteRoom_SP", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@RoomID", RoomID);
+            cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
+            cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
+
+            conn.Open();
+            Result = cmd.ExecuteScalar().ToString();
+            conn.Close();
+            return Result;
+
+        }
         
     }      
  }
