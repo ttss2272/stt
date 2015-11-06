@@ -105,5 +105,22 @@ namespace DataAccessLayer
             return Result;
  
         }
+        public DataSet SearchSubject(string SubjectName)
+        {
+            conn = con.getConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("SearchSubject_SP", conn);
+            cmd.Parameters.AddWithValue("@SubjectName", SubjectName);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
+ 
+        }
     }
 }
