@@ -1,7 +1,7 @@
 ﻿<Window x:Class="SchoolManagement.Subject.NewSubject"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Subject" Height="469" Width="497" WindowStartupLocation="CenterScreen" MinHeight="469" MinWidth="497" ResizeMode="NoResize">
+        Title="Subject" Height="512" Width="497" WindowStartupLocation="CenterScreen"  ResizeMode="NoResize">
     <Grid>
         <GroupBox Header="Subject" HorizontalAlignment="Center" Margin="6,10,6,0" VerticalAlignment="Top" Height="143" Width="479" Name="grpMain">
             <Grid>
@@ -13,6 +13,9 @@
                 <RadioButton Content="Active" HorizontalAlignment="Left" Margin="204,88,0,0" VerticalAlignment="Top" GroupName="Status" IsChecked="True" Name="cmbActive"/>
                 <RadioButton Content="InActive" HorizontalAlignment="Left" Margin="306,88,0,0" VerticalAlignment="Top" GroupName="Status" Name="cmbDelete"/>
                 <Label Content="Status" HorizontalAlignment="Left" Margin="35,81,0,0" VerticalAlignment="Top" Width="71" Name="lblStatus"/>
+                <Label Content="*" HorizontalAlignment="Left" Margin="178,10,0,0" VerticalAlignment="Top" ToolTip="Mednatory" FontWeight="Bold" Foreground="Red"/>
+                <Label Content="*" HorizontalAlignment="Left" Margin="178,50,0,0" VerticalAlignment="Top" ToolTip="Mednatory" FontWeight="Bold" Foreground="Red" RenderTransformOrigin="0.4,2.077"/>
+                <Label Content="*" HorizontalAlignment="Left" Margin="178,81,0,0" VerticalAlignment="Top" ToolTip="Mednatory" FontWeight="Bold" Foreground="Red" RenderTransformOrigin="0.4,2.077"/>
 
             </Grid>
         </GroupBox>
@@ -24,7 +27,7 @@
 
 
 
-        <GroupBox Header="Subject List" HorizontalAlignment="Center" Margin="0,212,0,0" VerticalAlignment="Top" Height="217" Width="489">
+        <GroupBox Header="Subject List" HorizontalAlignment="Center" Margin="0,257,2,0" VerticalAlignment="Top" Height="217" Width="489">
             <Grid>
                 <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Height="195" Width="477" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" Name="grdvSubject" CanUserResizeColumns="False">
                     <DataGrid.Columns>
@@ -46,6 +49,9 @@
             </Grid>
         </GroupBox>
         <Button Content="Delete" HorizontalAlignment="Left" Margin="203,167,0,0" VerticalAlignment="Top" Width="83" Height="30" Name="btnDelete" FontWeight="SemiBold" Click="btnDelete_Click"/>
+        <Label Content="Search Subject" HorizontalAlignment="Left" Margin="40,230,0,0" VerticalAlignment="Top" Width="96" Name="lblSearch" />
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="178,234,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="143" Name="txtSearchSubject"/>
+        <Button Content="Search" HorizontalAlignment="Left" Margin="366,230,0,0" VerticalAlignment="Top" Width="83" Height="27" Name="btnSearch" FontWeight="SemiBold" Click="btnSearch_Click"/>
 
 
 

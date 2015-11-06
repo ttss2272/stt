@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using BusinessLayer;
 using System.Data;
 
+
 namespace SchoolManagement.Subject
 {
     /// <summary>
@@ -48,8 +49,10 @@ namespace SchoolManagement.Subject
         {
             try
             {
-            InitializeComponent();
+                InitializeComponent();
                 ClearFields();
+
+
             }
             catch (Exception ex)
             {
@@ -73,6 +76,7 @@ namespace SchoolManagement.Subject
             bindSubjectGrid();
             cmbActive.IsChecked = true;
             UpID = 0;
+            btnDelete.IsEnabled = false;
         }
         #endregion
 
@@ -160,7 +164,7 @@ namespace SchoolManagement.Subject
         #region-------------------------------------------------Validate()-------------------------------------
         private bool Validate()
         {
-            if (txtSubjectName.Text.Trim() == "")
+            if (txtSubjectName.Text.Trim() == "" || string.IsNullOrEmpty(txtSubjectName.Text))
             {
                 MessageBox.Show("Please Enter Subject Name.", "Subject Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 txtSubjectName.Focus();
@@ -350,7 +354,7 @@ namespace SchoolManagement.Subject
                         {
                             cmbDelete.IsChecked = true;
                         }
-                        
+                        btnDelete.IsEnabled = true;
                     }
                 }
 
@@ -370,15 +374,20 @@ namespace SchoolManagement.Subject
          * Ctreated Date :- 5 Nov 2015
          * StartTime:-1:00PM
          * EndTime:-7:13PM
-         * Purpose:- griddview cell click
+         * Purpose:- Delete Button Click
          */
-        #region--------------------------------------gridview cell click()-------------------------------------
+        #region--------------------------------------Delete button click()-------------------------------------
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                SetParameters();
-                DeleteSubject();
+                //DialogResult Result = MessageBox.Show("Do You Really Want To Delete?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                MessageBoxResult Result = MessageBox.Show("Do You Really Want To Delete?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                if (Result.Equals(MessageBoxResult.Yes))
+                {
+                    SetParameters();
+                    DeleteSubject();
+                }
             }
             catch (Exception ex)
             {
@@ -397,19 +406,69 @@ namespace SchoolManagement.Subject
         #region--------------------------------------gridview cell click()-------------------------------------
         private void DeleteSubject()
         {
-            string Result= objSubject.DeleteSubject(SubjectID,UpdatedByUserID,UpdatedDate);
-            if (Result == "Deleted Sucessfully.")
+            if (UpID == 0)
             {
-                MessageBox.Show(Result);
-                ClearFields();
+                SubjectID = UpID;
+
+                string Result = objSubject.DeleteSubject(SubjectID, UpdatedByUserID, UpdatedDate);
+                if (Result == "Deleted Sucessfully.")
+                {
+                    MessageBox.Show(Result,"Delete Sucessfully",MessageBoxButton.OK,MessageBoxImage.Information);
+                    ClearFields();
+                }
+                else
+                {
+                    MessageBox.Show(Result,"Error To Delete",MessageBoxButton.OK,MessageBoxImage.Warning);
+                }
             }
             else
             {
-                MessageBox.Show(Result);
+                MessageBox.Show("Please Select Subject From Subject","Delete Error",MessageBoxButton.OK,MessageBoxImage.Warning);
+            
             }
-
         }
         #endregion
 
+        /*
+         * Created By:- PriTesh D. Sortee
+         * Ctreated Date :- 5Nov 2015
+         * StartTime:-1:00PM
+         * EndTime:-7:13PM
+         * Purpose:- griddview cell click
+         */
+        #region---------------------------------btn Search click-------------------------------------------------
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(txtSearchSubject.Text.Trim()))
+                {
+                    DataSet ds = objSubject.SearchSubject(txtSearchSubject.Text);
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        grdvSubject.ItemsSource = ds.Tables[0].DefaultView;
+                        //grdvSubject.DataContext = ds.Tables[0].DefaultView;
+                        //grdvSubject.Columns[0].Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        grdvSubject.ItemsSource = null;
+                        MessageBox.Show("No Data Available");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Please Enter Subject Name","Message",MessageBoxButton.OK,MessageBoxImage.Warning);
+                    txtSearchSubject.Focus();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        #endregion
     }
 }
