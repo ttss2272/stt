@@ -367,16 +367,9 @@ namespace SchoolManagement.Branch
             this.Close();
         }
         #endregion
-        /*
-       * Created By:- Sameer Shinde
-       * Ctreated Date :- 5 Nov 2015
-       * Purpose:- Window Load event
-       */
-        /*
-   * Created By:- PriTesh D. Sortee
-   * Ctreated Date :- 5 Nov 2015
-   * StartTime:-1:00PM
-   * EndTime:-7:13PM
+      
+   /* Created By:- Sameer Shinde
+   * Created Date :- 5 Nov 2015
    * Purpose:- griddview cell click
    */
         #region--------------------------------------gridview cell click()-------------------------------------
@@ -400,6 +393,7 @@ namespace SchoolManagement.Branch
                         txtBranchCode.Text= ds.Tables[0].Rows[0]["BranchCode"].ToString();
                         txtInstituteName.Text = ds.Tables[0].Rows[0]["InstituteName"].ToString();
                         txtUploadPath.Text = ds.Tables[0].Rows[0]["Logo"].ToString();
+                       
                         int act = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
                         int del = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDeleted"]);
                         if (act == 1 && del == 0)
@@ -424,11 +418,57 @@ namespace SchoolManagement.Branch
             }
         }
         #endregion
+          /*
+       * Created By:- Sameer Shinde
+       * Created Date :- 5 Nov 2015
+       * Purpose:- Window Load event
+       */
+      
         #region-------------WindowLoaded------------------------------------
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
            BindGridview();
            btnDelete.IsEnabled = false;
+        }
+        #endregion
+          /*
+       * Created By:- Sameer Shinde
+       * Created Date :- 6 Nov 2015
+       * Purpose:- Search Branch name
+       */
+       
+        #region-----------------------btnSearchClick()
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(txtSearchBranch.Text.Trim()))
+                {
+                    DataSet ds =obj_AddBranch.SearchBranch(txtSearchBranch.Text);
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        grdvBranch.ItemsSource = ds.Tables[0].DefaultView;
+                        //grdvSubject.DataContext = ds.Tables[0].DefaultView;
+                        //grdvSubject.Columns[0].Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        grdvBranch.ItemsSource = null;
+                        MessageBox.Show("No Data Available");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Please Enter Subject Name", "Message", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    txtSearchBranch.Focus();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
         #endregion
     }
