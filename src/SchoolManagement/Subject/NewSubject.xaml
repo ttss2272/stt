@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Subject" Height="512" Width="497" WindowStartupLocation="CenterScreen"  ResizeMode="NoResize">
     <Grid>
+        
         <GroupBox Header="Subject" HorizontalAlignment="Center" Margin="6,10,6,0" VerticalAlignment="Top" Height="143" Width="479" Name="grpMain">
             <Grid>
                 <Label Content="Subject Name" HorizontalAlignment="Left" Margin="33,10,0,0" VerticalAlignment="Top" Width="87" Name="lblSubjectname"/>
@@ -53,7 +54,7 @@
         <TextBox HorizontalAlignment="Left" Height="23" Margin="178,234,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="143" Name="txtSearchSubject"/>
         <Button Content="Search" HorizontalAlignment="Left" Margin="366,230,0,0" VerticalAlignment="Top" Width="83" Height="27" Name="btnSearch" FontWeight="SemiBold" Click="btnSearch_Click" TabIndex="7"/>
 
-
+        
 
     </Grid>
 </Window>
