@@ -33,5 +33,11 @@ namespace BusinessLayer
             return getBranchName;
         }
 
+
+        public DataSet SearchBranch(string BranchName)
+        {
+            DataSet ds = obj_AddBranch.SearchBranch(BranchName);
+            return ds;
+        }
     }
 }
