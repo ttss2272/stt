@@ -22,5 +22,30 @@ namespace BusinessLayer
             return ds;
         
         }
+
+        public string DeleteTeacher(int TeacherID, int UpdatedByUserID, string UpdatedDate)
+        {
+            string Result = objTeacher.DeleteTeacher(TeacherID, UpdatedByUserID, UpdatedDate);
+            return Result;
+        }
+
+        public DataSet BindTeacher(int TeacherID)
+        {
+            DataSet ds = objTeacher.BindTeacher(TeacherID);
+            return ds;
+
+        }
+
+        public DataSet BindTeacherAvail()
+        {
+            DataSet ds = objTeacher.BindTeacherAvail();
+            return ds;
+        }
+
+        public DataSet GetTeacherAvailableDetail(int TeacherID)
+        {
+            DataSet ds = objTeacher.GetTeacherAvailableDetail(TeacherID);
+            return ds;
+        }
     }
 }
