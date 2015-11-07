@@ -88,7 +88,7 @@ namespace SchoolManagement.Room
             cmbCapacity.Text = "";
             txtColor.Text = "";
             cmbCapacity_Items();
-            BindFullGrid();
+           // BindFullGrid();
             BindBranchName();
         }
         #endregion
@@ -151,39 +151,6 @@ namespace SchoolManagement.Room
         }
         #endregion
 
-        #region-------------Update()------------------------------------
-
-        private void btnUpdate_Click(object sender, RoutedEventArgs e)
-        {
-            //try
-            //{
-            //    if (Validate())
-            //    {
-            //        SetParameters();
-            //        string Result = obj_Room.UpdateRoom(RoomId, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
-            //        if (Result == "Updated Sucessfully...!!!")
-            //        {
-            //            MessageBox.Show(Result, "Updated SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
-            //            clearFields();
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show(Result, "Error To Update", MessageBoxButton.OK, MessageBoxImage.Warning);
-            //        }
-            //    }
-            //}
-
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message.ToString());
-            //}
-
-
-        }
-
-
-
-        #endregion
 
         #region----------------------------bindgrid()-----------------------
         private void BindFullGrid()
@@ -236,38 +203,6 @@ namespace SchoolManagement.Room
         #endregion
 
 
-
-        #region------------Delete()--------------------------
-        
-        private void DeleteRoom()
-        {
-            if (UpID != 0)
-            {
-                RoomId = UpID;
-
-                string Result = obj_Room.DeleteRoom(RoomId, UpdatedByUserID, UpdatedDate);
-                if (Result == "Deleted Sucessfully...!!")
-                {
-                    MessageBox.Show(Result, "Delete Sucessfully", MessageBoxButton.OK, MessageBoxImage.Information);
-                    clearFields();
-                }
-                else
-                {
-                    MessageBox.Show(Result, "Error To Delete", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please Select Subject From Subject", "Delete Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-
-            }
-        }
-
-        #endregion
-
-        
-
-
         #region-------------LoadCapacity-------------------------------
         private void cmbCapacity_Items()
         {
@@ -288,11 +223,13 @@ namespace SchoolManagement.Room
         {
             BindFullGrid();
         }
+
         /* Created By:- Sameer Shinde
         * Created Date :- 5 Nov 2015
-        * Purpose:- griddview cell click
-       */
-        #region--------------------------------------gridview cell click()-------------------------------------
+        * Purpose:- griddview cell click */
+       
+
+        #region----------------------gridview cell click()-------------------------
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             try
@@ -341,10 +278,11 @@ namespace SchoolManagement.Room
             }
         }
         #endregion
-        /* Created By:- Pranjali
+       
+        /* Created By:- Pranjali Vidhate
         * Created Date :- 6 Nov 2015
-        * Purpose:- Update  cell click
-       */
+        * Purpose:- Update  cell click*/
+       
 
         #region-----------------UpdateRoom()--------------------------------
         private void btnUpdate_Click_1(object sender, RoutedEventArgs e)
@@ -374,17 +312,20 @@ namespace SchoolManagement.Room
         }
         #endregion
 
-        
 
+        #region---------------DeleteRoom()------------------------------
         private void btnDelete_Click_1(object sender, RoutedEventArgs e)
         {
             try
             {
-                MessageBoxResult Result = MessageBox.Show("Do You Really Want To Delete?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Information);
-                if (Result.Equals(MessageBoxResult.Yes))
+                if (Validate())
                 {
-                    SetParameters();
-                    DeleteRoom();
+                    MessageBoxResult Result = MessageBox.Show("Do You Really Want To Delete?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                    if (Result.Equals(MessageBoxResult.Yes))
+                    {
+                        SetParameters();
+                        DeleteRoom();
+                    }
                 }
             }
             catch (Exception ex)
@@ -393,6 +334,33 @@ namespace SchoolManagement.Room
                 MessageBox.Show(ex.Message.ToString());
             }
         }
+
+        private void DeleteRoom()
+        {
+            if (UpID != 0)
+            {
+                RoomId = UpID;
+
+                string Result = obj_Room.DeleteRoom(RoomId, UpdatedByUserID, UpdatedDate);
+                if (Result == "Deleted Sucessfully...!!")
+                {
+                    MessageBox.Show(Result, "Delete Sucessfully", MessageBoxButton.OK, MessageBoxImage.Information);
+                    clearFields();
+                }
+                else
+                {
+                    MessageBox.Show(Result, "Error To Delete", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please Select Subject From Subject", "Delete Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            }
+        }
+
+        #endregion
+
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
