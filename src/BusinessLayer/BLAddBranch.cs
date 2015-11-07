@@ -39,5 +39,11 @@ namespace BusinessLayer
             DataSet ds = obj_AddBranch.SearchBranch(BranchName);
             return ds;
         }
+
+        public DataSet BindInstituteName()
+        {
+            DataSet ds = obj_AddBranch.BindInsituteName();
+            return ds;
+        }
     }
 }
