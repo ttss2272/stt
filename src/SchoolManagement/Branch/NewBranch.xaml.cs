@@ -25,8 +25,6 @@ namespace SchoolManagement.Branch
         public NewBranch()
         {
             InitializeComponent();
-            rbtnActive.IsChecked = true;
-            
         }
         /*
       * Created By:- Sameer Shinde
@@ -52,7 +50,6 @@ namespace SchoolManagement.Branch
                 SetParameters();
                 SaveDetails();
                 BindGridview();
-
             }
             catch (Exception ex)
             {
@@ -157,7 +154,6 @@ namespace SchoolManagement.Branch
             else
             {
                 return true;
-
             }
         }
         #endregion
@@ -176,8 +172,6 @@ namespace SchoolManagement.Branch
                 {
                     SetParameters();
                     DeleteBranch();
-
-
                 }
             }
             catch (Exception ex)
@@ -229,7 +223,6 @@ namespace SchoolManagement.Branch
             if (ds.Tables[0].Rows.Count > 0)
             {
                 grdvBranch.ItemsSource = ds.Tables[0].DefaultView;
-               
             }
         }
         #endregion
@@ -279,8 +272,6 @@ namespace SchoolManagement.Branch
                             System.IO.File.Copy(s, destFile, true);
                         }
                     }
-                    
-                    
                 }
                 fldlg = null;
             }
@@ -313,7 +304,6 @@ namespace SchoolManagement.Branch
                             txtBranchName.Text = "";
                             txtBranchName.Focus();
                         }
-
                     }
                 }
             }
@@ -346,7 +336,6 @@ namespace SchoolManagement.Branch
                             txtInstituteName.Text = "";
                             txtInstituteName.Focus();
                         }
-
                     }
                 }
             }
@@ -377,7 +366,6 @@ namespace SchoolManagement.Branch
         {
             try
             {
-                
                 object item = grdvBranch.SelectedItem;
                 string BranchName = (grdvBranch.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
                 string BranchCode = (grdvBranch.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
@@ -407,13 +395,9 @@ namespace SchoolManagement.Branch
                         btnDelete.IsEnabled = true;
                     }
                 }
-
-
-
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message.ToString());
             }
         }
@@ -456,13 +440,11 @@ namespace SchoolManagement.Branch
                         grdvBranch.ItemsSource = null;
                         MessageBox.Show("No Data Available");
                     }
-
                 }
                 else
                 {
-                    MessageBox.Show("Please Enter Subject Name", "Message", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Please Enter Branch Name", "Message", MessageBoxButton.OK, MessageBoxImage.Warning);
                     txtSearchBranch.Focus();
-
                 }
             }
             catch (Exception ex)
