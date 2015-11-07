@@ -104,7 +104,7 @@ namespace SchoolManagement.Branch
         {
             try
             {
-                this.Close();
+                clearFields();
             }
             catch (Exception ex)
             {
@@ -198,6 +198,10 @@ namespace SchoolManagement.Branch
             txtBatchName.Text = "";
             txtBatchCode.Text = "";
             cbClassName.Text = "";
+            txtlecDuration.Text = "";
+            txtMaxnoLecDay.Text = "";
+            txtMaxnoLecWeek.Text = "";
+            txtMaxLecRow.Text = "";
            
         }
         #endregion
@@ -234,11 +238,11 @@ namespace SchoolManagement.Branch
         #region----------------------------------grvBatchBind------------------------------
         private void BindGridview()
         {
-            DataSet ds = obj_Batch.BindBatch(0);
+            DataSet ds = obj_Batch.BindBatch(0, txtBatchName.Text);
             if (ds.Tables[0].Rows.Count > 0)
             {
                 dgvBatch.ItemsSource = ds.Tables[0].DefaultView;
-                dgvBatch.Columns[0].Visibility = Visibility.Collapsed;
+                //dgvBatch.Columns[0].Visibility = Visibility.Collapsed;
             }
         }
         #endregion

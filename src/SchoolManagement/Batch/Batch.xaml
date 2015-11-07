@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Batch" Height="842" Width="989">
     <Grid Width="915" Height="841">
-        <GroupBox Header="Batch Details" Height="473" HorizontalAlignment="Left" Margin="14,12,0,0" Name="CalssDetails" VerticalAlignment="Top" Width="874" FontWeight="Bold">
-            <Grid Height="434" Width="853">
+        <GroupBox Header="Batch Details" Height="328" HorizontalAlignment="Left" Margin="14,12,0,0" Name="CalssDetails" VerticalAlignment="Top" Width="864" FontWeight="Bold">
+            <Grid Height="297" Width="851">
                 <Label Content="Batch Name" Height="28" Margin="534,12,229,0" Name="lblClassName" VerticalAlignment="Top" />
                 <TextBox Height="23" HorizontalAlignment="Right" Margin="0,17,33,0" Name="txtBatchName" VerticalAlignment="Top" Width="178" TextChanged="txtBatchName_TextChanged" />
                 <Label Content="Batch Code" Height="28" HorizontalAlignment="Left" Margin="91,52,0,0" Name="lblshortname" VerticalAlignment="Top" />
@@ -40,16 +40,35 @@
                 <TextBox Height="26" HorizontalAlignment="Left" Margin="642,177,0,0" Name="txtMaxLecRow" VerticalAlignment="Top" Width="178" />
             </Grid>
         </GroupBox>
-        <DataGrid AutoGenerateColumns="False" Height="172" HorizontalAlignment="Left" Margin="76,620,0,0" Name="dgvBatch" VerticalAlignment="Top" Width="788" />
-        <GroupBox Header="" Height="69" HorizontalAlignment="Left" Margin="168,491,0,0" Name="groupBox1" VerticalAlignment="Top" Width="573">
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Height="172" HorizontalAlignment="Left" Margin="14,473,0,0" Name="dgvBatch" VerticalAlignment="Top" Width="864" IsReadOnly="True" CanUserResizeColumns="False" ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding BatchID}" Header="BatchID" Visibility="Hidden"></DataGridTextColumn>
+                <DataGridTextColumn  Header="ClassName" Width="100" Binding="{Binding ClassName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="BatchName" Width="100" Binding="{Binding BatchName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="BatchCode" Width="100" Binding="{Binding BatchCode}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Lecture_Dur_Time" Width="100" Binding="{Binding Lecture_Dur_Time}"></DataGridTextColumn>
+                <DataGridTextColumn Header="LunchBreak" Width="100" Binding="{Binding LunchBreak}"></DataGridTextColumn>
+                <DataGridTextColumn Header="MaxLectureDay" Width="100" Binding="{Binding MaxLectureDay}"></DataGridTextColumn>
+                <DataGridTextColumn Header="MaxLectureWeek" Width="100" Binding="{Binding MaxLectureWeek}"></DataGridTextColumn>
+                <DataGridTextColumn Header="MoreThanOneLec" Width="100" Binding="{Binding MoreThanOneLec}"></DataGridTextColumn>
+                <DataGridTextColumn Header="MaxLectureRow" Width="100" Binding="{Binding MaxLectureRow}"></DataGridTextColumn>
+            </DataGrid.Columns>
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick" HandledEventsToo="True" />
+                </Style>
+            </DataGrid.ItemContainerStyle>
+
+        </DataGrid >
+        <GroupBox Header="" Height="69" HorizontalAlignment="Left" Margin="163,350,0,0" Name="groupBox1" VerticalAlignment="Top" Width="573">
             <Grid>
                 <Button Content="Add" Height="30" HorizontalAlignment="Left" Margin="107,8,0,0" Name="btnadd" VerticalAlignment="Top" Width="75" Click="btnadd_Click" />
                 <Button Content="Delete" Height="30" HorizontalAlignment="Left" Margin="333,7,0,0" Name="btnDelete" VerticalAlignment="Top" Width="75" Click="btndelete_Click" />
-                <Button Content="Close" Height="30" HorizontalAlignment="Right" Margin="0,7,259,0" Name="btnClose" VerticalAlignment="Top" Width="75" Click="btncancel_Click" />
+                <Button Content="Clear" Height="30" HorizontalAlignment="Right" Margin="0,7,259,0" Name="btnClose" VerticalAlignment="Top" Width="75" Click="btncancel_Click" />
             </Grid>
         </GroupBox>
-        <Label Content="Search Batch" HorizontalAlignment="Left" Margin="293,579,0,0" Name="lblSearch" VerticalAlignment="Top" Width="81" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="387,581,0,0" Name="txtSearchBatch" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" />
-        <Button Content="Search" FontWeight="SemiBold" Height="27" HorizontalAlignment="Left" Margin="555,578,0,0" Name="btnSearch" TabIndex="7" VerticalAlignment="Top" Width="83" Click="btnSearch_Click" />
+        <Label Content="Search Batch" HorizontalAlignment="Left" Margin="282,426,0,0" Name="lblSearch" VerticalAlignment="Top" Width="81" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="376,428,0,0" Name="txtSearchBatch" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" />
+        <Button Content="Search" FontWeight="SemiBold" Height="27" HorizontalAlignment="Left" Margin="544,425,0,0" Name="btnSearch" TabIndex="7" VerticalAlignment="Top" Width="83" Click="btnSearch_Click" />
     </Grid>
 </Window>
