@@ -3,26 +3,33 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Institute" Height="641" Width="729" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
-        <GroupBox Header="Branch Details" Height="226" HorizontalAlignment="Left" Margin="12,14,0,0" Name="groupBox1" VerticalAlignment="Top" Width="683">
-            <Grid Height="200">
-                <Label Content="Branch Name" FontSize="13" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="54,57,0,0" Name="lblInstName" VerticalAlignment="Top" />
-                <Label Content="Logo" FontSize="13" FontWeight="Bold" Height="28" Margin="105,130,0,0" Name="lbllogo" VerticalAlignment="Top" HorizontalAlignment="Left" Width="41" />
-                <Button Content="Browse" FontWeight="Bold" Height="29" HorizontalAlignment="Right" Margin="0,132,242,0" Name="btnBrowse" VerticalAlignment="Top" Width="52" Click="btnBrowse_Click_1" TabIndex="5" />
-                <TextBox Height="23" HorizontalAlignment="Left" Margin="173,58,0,0" Name="txtBranchName" VerticalAlignment="Top" Width="187" TextChanged="txtBranchName_TextChanged_1" AcceptsTab="False" TabIndex="2" />
-                <TextBox Height="23" HorizontalAlignment="Left" Margin="173,133,0,0" Name="txtUploadPath" VerticalAlignment="Top" Width="187" TabIndex="4" />
-                <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="152,58,0,0" Name="label1" VerticalAlignment="Top" />
-                <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="152,133,0,0" Name="label2" VerticalAlignment="Top" />
-                <Label Content="Branch Code" FontSize="13" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="59,93,0,0" Name="label3" VerticalAlignment="Top" />
-                <TextBox Height="23" HorizontalAlignment="Right" Margin="0,96,311,0" Name="txtBranchCode" VerticalAlignment="Top" Width="187" TabIndex="3" />
-                <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="152,94,0,0" Name="label4" VerticalAlignment="Top" />
+        <GroupBox Header="Branch Details" Height="271" HorizontalAlignment="Left" Margin="12,0,0,0" Name="groupBox1" VerticalAlignment="Top" Width="683">
+            <Grid Height="240">
+                <Label Content="Branch Name" FontSize="13" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="54,90,0,0" Name="lblInstName" VerticalAlignment="Top" />
+                <Label Content="Logo" FontSize="13" FontWeight="Bold" Height="28" Margin="105,163,0,0" Name="lbllogo" VerticalAlignment="Top" HorizontalAlignment="Left" Width="41" />
+                <Button Content="Browse" FontWeight="Bold" Height="25" HorizontalAlignment="Right" Margin="0,169,244,0" Name="btnBrowse" VerticalAlignment="Top" Width="52" Click="btnBrowse_Click_1" TabIndex="5" />
+                <TextBox Height="23" HorizontalAlignment="Right" Margin="0,91,311,0" Name="txtBranchName" VerticalAlignment="Top" Width="187" TextChanged="txtBranchName_TextChanged_1" AcceptsTab="False" TabIndex="2" />
+                <TextBox Height="23" HorizontalAlignment="Left" Margin="173,166,0,0" Name="txtUploadPath" VerticalAlignment="Top" Width="187" TabIndex="4" />
+                <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="152,91,0,0" Name="label1" VerticalAlignment="Top" />
+                <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="152,166,0,0" Name="label2" VerticalAlignment="Top" />
+                <Label Content="Branch Code" FontSize="13" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="59,125,0,0" Name="label3" VerticalAlignment="Top" />
+                <TextBox Height="23" HorizontalAlignment="Right" Margin="0,128,311,0" Name="txtBranchCode" VerticalAlignment="Top" Width="187" TabIndex="3" />
+                <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="152,126,0,0" Name="label4" VerticalAlignment="Top" />
                 <Image Height="131" HorizontalAlignment="Left" Margin="443,24,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="187" Source="%7bBinding%7d" />
-                <Label Content="Institute Name" FontSize="13" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="45,21,0,0" Name="label5" VerticalAlignment="Top" />
-                <TextBox Height="23" HorizontalAlignment="Right" Margin="0,24,311,0" Name="txtInstituteName" VerticalAlignment="Top" Width="187" TextChanged="txtInstituteName_TextChanged_1" TabIndex="1" />
-                <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="152,24,0,0" Name="label6" VerticalAlignment="Top" />
-                <Label Content="IsActive" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="87,164,0,8" Name="label7" Width="59" />
-                <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="152,167,0,0" Name="label8" VerticalAlignment="Top" />
-                <RadioButton Content="Active" Height="16" HorizontalAlignment="Left" Margin="173,170,0,0" Name="rbtnActive" VerticalAlignment="Top" GroupName="Status" FontWeight="Bold" TabIndex="6" IsChecked="True" />
-                <RadioButton Content="Inactive" GroupName="Status" Height="16" HorizontalAlignment="Right" Margin="0,170,379,0" Name="rbtnInactive" VerticalAlignment="Top" FontWeight="Bold" TabIndex="7" />
+                <Label Content="Institute Name" FontSize="13" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="45,47,0,0" Name="label5" VerticalAlignment="Top" />
+                <TextBox Height="23" HorizontalAlignment="Right" Margin="0,50,311,0" Name="txtInstituteName" VerticalAlignment="Top" Width="187" TextChanged="txtInstituteName_TextChanged_1" TabIndex="1" />
+                <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="152,50,0,0" Name="label6" VerticalAlignment="Top" />
+                <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="152,197,0,0" Name="label8" VerticalAlignment="Top" />
+                <RadioButton Content="Active" Height="16" HorizontalAlignment="Left" Margin="173,200,0,0" Name="rbtnActive" VerticalAlignment="Top" GroupName="Status" FontWeight="Bold" TabIndex="6" IsChecked="True" />
+                <RadioButton Content="Inactive" GroupName="Status" Height="16" HorizontalAlignment="Right" Margin="0,200,379,0" Name="rbtnInactive" VerticalAlignment="Top" FontWeight="Bold" TabIndex="7" />
+                <Label Content="IsActive" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="87,193,0,15" Name="label7" Width="59" />
+                <Label Content="Select Type" FontSize="13" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="66,12,0,0" Name="label9" VerticalAlignment="Top" />
+                <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="151,16,0,0" Name="label10" VerticalAlignment="Top" />
+                <ComboBox Height="23" Margin="173,15,311,0" Name="cmbSelectType" VerticalAlignment="Top" SelectionChanged="cmbSelectType_SelectionChanged">
+                    <ComboBoxItem Content="Institute" />
+                    <ComboBoxItem Content="Branch" />
+                </ComboBox>
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="375,209,0,0" Name="cmbBindInstitute" VerticalAlignment="Top" Width="187" ItemsSource="{Binding}" />
             </Grid>
         </GroupBox>
         <GroupBox Header="Branch List" Height="204" HorizontalAlignment="Left" Margin="81,379,0,0" Name="grpList" VerticalAlignment="Top" Width="505">
@@ -43,7 +50,7 @@
                 </DataGrid>
             </Grid>
         </GroupBox>
-        <GroupBox Header="" Height="72" HorizontalAlignment="Left" Margin="74,246,0,0" Name="groupBox2" VerticalAlignment="Top" Width="522">
+        <GroupBox Header="" Height="72" HorizontalAlignment="Left" Margin="74,261,0,0" Name="groupBox2" VerticalAlignment="Top" Width="522">
             <Grid>
                 <Button Click="btnSave_Click_1" Content="Save" FontWeight="Bold" Height="37" HorizontalAlignment="Left" Margin="75,6,0,0" Name="btnSave" VerticalAlignment="Top" Width="75" TabIndex="8" />
                 <Button Click="btnCancel_Click" Content="Cancel" FontWeight="Bold" Height="37" HorizontalAlignment="Right" Margin="0,6,94,0" Name="btnCancel" VerticalAlignment="Top" Width="75" TabIndex="10" />

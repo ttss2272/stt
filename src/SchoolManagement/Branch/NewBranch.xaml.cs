@@ -104,7 +104,14 @@ namespace SchoolManagement.Branch
             BranchID = UpID;
             BranchName = txtBranchName.Text.Trim();
             BranchCode = txtBranchCode.Text.Trim();
-            InstituteName = txtInstituteName.Text.Trim();
+            if (cmbSelectType.SelectedValue.ToString() == "System.Windows.Controls.ComboBoxItem: Branch")
+            {
+                InstituteName = cmbBindInstitute.SelectedValue.ToString();
+            }
+            else
+            {
+                InstituteName = txtInstituteName.Text.Trim();
+            }
             Logo = txtUploadPath.Text.Trim();
             CreatedByUserID = 1;
             UpdatedByUserID = 1;
@@ -139,7 +146,7 @@ namespace SchoolManagement.Branch
                 txtBranchCode.Focus();
                 return false;
             }
-            else if (txtInstituteName.Text.Trim() == "")
+            else if (txtInstituteName.Text.Trim() == "" && cmbBindInstitute.SelectedValue.ToString()=="")
             {
                 MessageBox.Show("Please Enter Institute Name.", "Institute Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 txtInstituteName.Focus();
@@ -148,7 +155,7 @@ namespace SchoolManagement.Branch
             else if (txtUploadPath.Text.Trim() == "")
             {
                 MessageBox.Show("Please Select Institute logo.", "Institute Logo Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                txtUploadPath.Focus();
+                btnBrowse.Focus();
                 return false;
             }
             else
@@ -367,9 +374,10 @@ namespace SchoolManagement.Branch
             try
             {
                 object item = grdvBranch.SelectedItem;
-                string BranchName = (grdvBranch.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
-                string BranchCode = (grdvBranch.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
-                string InstituteName = (grdvBranch.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
+                string InstituteName = (grdvBranch.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+                string BranchName = (grdvBranch.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
+                string BranchCode = (grdvBranch.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
+               
 
                 DataSet ds = obj_AddBranch.BindBranch(0,BranchName,BranchCode);
                 if (ds.Tables.Count > 0)
@@ -412,8 +420,52 @@ namespace SchoolManagement.Branch
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
            BindGridview();
+           cmbBindInstitute.Visibility = Visibility.Hidden;
            btnDelete.IsEnabled = false;
+           txtUploadPath.IsReadOnly = true;
         }
+
+        private void DisplayInstituteNameField()
+        {
+
+            string value = cmbSelectType.SelectedValue.ToString();
+            if (value == "System.Windows.Controls.ComboBoxItem: Branch")
+            {
+                txtInstituteName.Visibility = Visibility.Hidden;
+                cmbBindInstitute.Visibility = Visibility.Visible;
+                cmbBindInstitute.Margin = new Thickness(172, 50, 311, 0);
+                bindInstituteName();
+            }
+            else
+            {
+                cmbBindInstitute.Visibility = Visibility.Hidden;
+                txtInstituteName.Visibility = Visibility.Visible;
+                
+            }
+        }
+
+        private void bindInstituteName()
+        {
+           try
+            {
+                DataSet ds = obj_AddBranch.BindInstituteName();
+
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    cmbBindInstitute.DataContext = ds.Tables[0].DefaultView;
+                    cmbBindInstitute.DisplayMemberPath = ds.Tables[0].Columns["InstituteName"].ToString();
+                    cmbBindInstitute.SelectedValuePath = ds.Tables[0].Columns["InstituteName"].ToString();
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        
         #endregion
           /*
        * Created By:- Sameer Shinde
@@ -453,5 +505,10 @@ namespace SchoolManagement.Branch
             }
         }
         #endregion
+
+        private void cmbSelectType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DisplayInstituteNameField();
+        }
     }
 }
