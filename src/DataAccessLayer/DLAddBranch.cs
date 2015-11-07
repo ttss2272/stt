@@ -35,13 +35,15 @@ namespace DataAccessLayer
             return Result;
         }
 
-        public DataSet GetBranchDetail(int BranchID)
+        public DataSet GetBranchDetail(int BranchID, string BranchName,string BranchCode)
         {
             con = conn.getConnection();
             con.Open();
 
             SqlCommand cmd = new SqlCommand("GetBranch_SP", con);
             cmd.Parameters.AddWithValue("@BranchID", BranchID);
+            cmd.Parameters.AddWithValue("@BranchName", BranchName);
+            cmd.Parameters.AddWithValue("@BranchCode", BranchCode);
 
             cmd.CommandType = CommandType.StoredProcedure;
 
