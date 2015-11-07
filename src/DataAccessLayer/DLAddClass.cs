@@ -36,13 +36,14 @@ namespace DataAccessLayer
         }
 
         //To Bind Gridview
-        public DataSet BindClass(int ClassID)
+        public DataSet BindClass(int ClassID,string ClassName)
         {
             conn = con.getConnection();
             conn.Open();
 
             SqlCommand cmd = new SqlCommand("BindClass_SP", conn);
             cmd.Parameters.AddWithValue("@ClassID", ClassID);
+            cmd.Parameters.AddWithValue("@ClassName", ClassName);
 
             cmd.CommandType = CommandType.StoredProcedure;
 

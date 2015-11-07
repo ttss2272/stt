@@ -43,12 +43,14 @@ namespace DataAccessLayer
         }
 
         //To Bind Gridview
-        public DataSet BindBatch(int BatchID)
+        public DataSet BindBatch(int BatchID, string BatchName)
         {
             conn = con.getConnection();
             conn.Open();
             SqlCommand cmd = new SqlCommand("BindBatch_SP", conn);
             cmd.Parameters.AddWithValue("BatchID", BatchID);
+            cmd.Parameters.AddWithValue("BatchName", BatchName);
+
             cmd.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
