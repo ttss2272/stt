@@ -41,15 +41,13 @@ namespace DataAccessLayer
             con.Open();
 
             SqlCommand cmd = new SqlCommand("GetBranch_SP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@BranchID", BranchID);
             cmd.Parameters.AddWithValue("@BranchName", BranchName);
             cmd.Parameters.AddWithValue("@BranchCode", BranchCode);
-
-            cmd.CommandType = CommandType.StoredProcedure;
-
+           
             SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
-
             sqlDa.Fill(ds);
             con.Close();
             return ds;
@@ -97,6 +95,22 @@ namespace DataAccessLayer
             SqlCommand cmd = new SqlCommand("SearchBranch_SP", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@BranchName", BranchName);
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+
+            sqlDa.Fill(ds);
+            con.Close();
+            return ds;
+        }
+
+        public DataSet BindInsituteName()
+        {
+            con = conn.getConnection();
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("BindInstituteName_SP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
             SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
 
