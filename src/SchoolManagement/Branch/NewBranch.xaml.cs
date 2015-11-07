@@ -91,6 +91,7 @@ namespace SchoolManagement.Branch
             txtInstituteName.Text = "";
             txtUploadPath.Text = "";
             image1.Source = null;
+            cmbBindInstitute.Text = "";
         }
         #endregion
         /*
@@ -387,7 +388,13 @@ namespace SchoolManagement.Branch
                         UpID = Convert.ToInt32(ds.Tables[0].Rows[0]["BranchID"]);
                         txtBranchName.Text = ds.Tables[0].Rows[0]["BranchName"].ToString();
                         txtBranchCode.Text= ds.Tables[0].Rows[0]["BranchCode"].ToString();
-                        txtInstituteName.Text = ds.Tables[0].Rows[0]["InstituteName"].ToString();
+                        //txtInstituteName.Text = ds.Tables[0].Rows[0]["InstituteName"].ToString();
+                        txtInstituteName.Visibility = Visibility.Hidden;
+                        cmbBindInstitute.Visibility = Visibility.Visible;
+                        cmbBindInstitute.Margin = new Thickness(172, 50, 311, 0);
+                       
+                        cmbBindInstitute.Text = ds.Tables[0].Rows[0]["InstituteName"].ToString();
+                        cmbSelectType.Text = "Branch";
                         txtUploadPath.Text = ds.Tables[0].Rows[0]["Logo"].ToString();
                        
                         int act = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
@@ -421,19 +428,44 @@ namespace SchoolManagement.Branch
         {
            BindGridview();
            cmbBindInstitute.Visibility = Visibility.Hidden;
+           CountBranch();
            btnDelete.IsEnabled = false;
-           txtUploadPath.IsReadOnly = true;
+           txtUploadPath.IsReadOnly = false;
+        }
+
+        private void CountBranch()
+        {
+            try
+            {
+                DataSet ds = obj_AddBranch.GetBranchCount();
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    cmbSelectType.Text = "Branch";
+                    cmbSelectType.IsEnabled = false;
+                }
+                else
+                {
+                    cmbSelectType.Text = "Institute";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                
+                 MessageBox.Show(ex.Message.ToString());
+            }
         }
 
         private void DisplayInstituteNameField()
         {
-
+           // cmbBindInstitute.Items.Add("Select");
             string value = cmbSelectType.SelectedValue.ToString();
             if (value == "System.Windows.Controls.ComboBoxItem: Branch")
             {
                 txtInstituteName.Visibility = Visibility.Hidden;
                 cmbBindInstitute.Visibility = Visibility.Visible;
                 cmbBindInstitute.Margin = new Thickness(172, 50, 311, 0);
+               
                 bindInstituteName();
             }
             else
@@ -442,6 +474,7 @@ namespace SchoolManagement.Branch
                 txtInstituteName.Visibility = Visibility.Visible;
                 
             }
+           // cmbBindInstitute.SelectedIndex = 0;
         }
 
         private void bindInstituteName()
