@@ -56,28 +56,22 @@ namespace SchoolManagement.User
                 txtEmailID.Focus();
                 return false;
             }
-            else if (txtEmailID.Text != "")
-            {
-                string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
-                @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
-                @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
-                Regex re = new Regex(strRegex);
-                if (re.IsMatch(txtEmailID.Text))
-                    return (true);
-                else
-                    MessageBox.Show("Please Enter Poper Email ID");
-                txtEmailID.Focus();
-                return (false);
-            }
+            
             else if (string.IsNullOrEmpty(txtContactNo.Text))
             {
                 MessageBox.Show("Please Enter contact Number..");
                 txtContactNo.Focus();
                 return false;
             }
-            else if (txtContactNo.Text.Length > 10)
+            else if (txtContactNo.Text.Length != 0 && txtContactNo.Text.Length < 10)
             {
                 MessageBox.Show("Invalid Contact Number..");
+                txtLoginID.Focus();
+                return false;
+            }
+            else if (txtContactNo.Text.Length > 10)
+            {
+                MessageBox.Show("Contact Number Must be 10 Digits..");
                 txtLoginID.Focus();
                 return false;
             }
@@ -93,6 +87,21 @@ namespace SchoolManagement.User
                 txtPassword.Focus();
                 return false;
             }
+            else if (txtEmailID.Text != "")
+            {
+                string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
+                @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+                @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+                Regex re = new Regex(strRegex);
+                if (re.IsMatch(txtEmailID.Text))
+                    return (true);
+                else
+                {
+                    MessageBox.Show("Please Enter Poper Email ID");
+                    txtEmailID.Focus();
+                    return (false);
+                }
+            }
 
             else
             {
@@ -103,16 +112,21 @@ namespace SchoolManagement.User
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                SetParameters();
-                SaveUpdateUser();
-                ClearFields();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Exception Error");
-            }
+                try
+                {
+                    if (Validate())
+                    {
+                       SetParameters();
+                       SaveUpdateUser();
+                       ClearFields();
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString(), "Exception Error");
+                }
+            
         }
 
         private void SaveUpdateUser()
@@ -157,11 +171,14 @@ namespace SchoolManagement.User
         {
             try
             {
-                MessageBoxResult Result = MessageBox.Show("Do You Really Want To Delete?", "Delete User", MessageBoxButton.YesNo, MessageBoxImage.Information);
-                if (Result.Equals(MessageBoxResult.Yes))
+                if (Validate())
                 {
-                    SetParameters();
-                    DeleteUser();
+                    MessageBoxResult Result = MessageBox.Show("Do You Really Want To Delete?", "Delete User", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                    if (Result.Equals(MessageBoxResult.Yes))
+                    {
+                        SetParameters();
+                        DeleteUser();
+                    }
                 }
             }
             catch (Exception ex)
