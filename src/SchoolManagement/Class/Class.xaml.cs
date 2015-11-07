@@ -62,6 +62,7 @@ namespace SchoolManagement.Branch
                 Validate();
                 SetParameters();
                 SaveDetails();
+                BindGridview();
             }
             catch (Exception ex)
             {
@@ -81,7 +82,7 @@ namespace SchoolManagement.Branch
         private void SaveDetails()
         {
             string Result = obj_AddClass.saveAddClass(ClassID, ClassName, ShortName, Board, Color,BranchID, UpdatedByUserID, UpdatedDate, IsActive,IsDeleted);
-            if (Result == "Save Sucessfully...!!!" && Result == "Updated Sucessfully...!!!")
+            if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
             {
          MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
          clearFields();
@@ -171,7 +172,7 @@ namespace SchoolManagement.Branch
             //BranchID = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
             ClassName = txtClassName.Text.Trim();
             ShortName = txtShortName.Text.Trim();
-            Board = Convert.ToString(cbBoard.SelectedValue.ToString());
+            Board = Convert.ToString(cbBoard.SelectedValue);
             Color = txtcolor.Text.Trim();
             BranchID = Convert.ToInt32(cbBranchName.SelectedValue);
             UpdatedByUserID = 1;
@@ -203,7 +204,7 @@ namespace SchoolManagement.Branch
             txtClassName.Text = "";
             txtShortName.Text = "";
             cbBoard.Text = "";
-            txtcolor.Text = "";
+            txtcolor.Text = "";                      
         }
         #endregion                    
 
@@ -217,7 +218,9 @@ namespace SchoolManagement.Branch
                 if (Result.Equals(MessageBoxResult.Yes))
                 {
                     SetParameters();
-                    //DeleteSubject();
+                    DeleteSubject();
+                    dgvClass.Items.Refresh();
+                    BindGridview();
                 }
             }
             catch (Exception ex)
@@ -237,6 +240,7 @@ namespace SchoolManagement.Branch
 
                 string Result = obj_AddClass.DeleteClass(ClassID, UpdatedByUserID, UpdatedDate);
                 if (Result == "Deleted Sucessfully.")
+
                 {
                     MessageBox.Show(Result, "Delete Sucessfully", MessageBoxButton.OK, MessageBoxImage.Information);
                     clearFields();
@@ -345,6 +349,7 @@ namespace SchoolManagement.Branch
                 dgvClass.ItemsSource = ds.Tables[0].DefaultView;
                 //dgvClass.Columns[0].Visibility = Visibility.Collapsed;
             }
+            dgvClass.Items.Refresh();
         }
         #endregion
 
@@ -380,20 +385,25 @@ namespace SchoolManagement.Branch
             try
             {               
                 object item = dgvClass.SelectedItem;
-                string Id = (dgvClass.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                string ClassName = (dgvClass.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
-                string ShortName = (dgvClass.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
-                string Board =     (dgvClass.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
-                string Color = (dgvClass.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
-                string BranchName = (dgvClass.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text;
+               // string Id = (dgvClass.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                string BranchName = (dgvClass.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+                string ClassName = (dgvClass.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
+                string ShortName = (dgvClass.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
+                string Board =     (dgvClass.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
+                string Color = (dgvClass.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text;
+
                 DataSet ds = obj_AddClass.GetClassDetail(ClassName, ShortName,Board,Color);
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         UpID = Convert.ToInt32(ds.Tables[0].Rows[0]["ClassID"]);
+                        cbBranchName.Text = ds.Tables[0].Rows[0]["BranchName"].ToString();
                         txtClassName.Text = ds.Tables[0].Rows[0]["ClassName"].ToString();
-                        txtShortName.Text = ds.Tables[0].Rows[0]["ShortName"].ToString();
+                        txtShortName.Text = ds.Tables[0].Rows[0]["ClassShortName"].ToString();
+                        cbBoard.Text = ds.Tables[0].Rows[0]["Board"].ToString();
+                        txtcolor.Text = ds.Tables[0].Rows[0]["Color"].ToString();
+
                         int act = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
                         int del = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDeleted"]);
                         if (act == 1 && del == 0)
