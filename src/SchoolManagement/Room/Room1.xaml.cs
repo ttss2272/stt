@@ -27,8 +27,10 @@ namespace SchoolManagement.Room
         BLRoom obj_Room = new BLRoom();
         BLAddBranch obj_Branch = new BLAddBranch();
 
-        int RoomId, Capacity, BranchID, UpdatedByUserID, IsActive, IsDeleted, UpID;
-        string RoomName, ShortName, Color1, UpdatedDate;
+        int RoomId,Capacity,BranchID,UpdatedByUserID,IsActive,IsDeleted,UpID;
+        int IsAllow,MaxLectDay,MaxLectWeek,MaxLectRow,SHr,SMin,EHr,EMin;
+        string RoomName, ShortName, Color1, UpdatedDate,Sign=":";
+        DateTime StartTime, EndTime;
 
 
         public Room1()
@@ -66,10 +68,44 @@ namespace SchoolManagement.Room
                 cmbCapacity.Focus();
                 return false;
             }
+            else if (cmbSHr.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please Select start Hours...");
+                cmbSHr.Focus();
+                return false;
+            }
+            else if (cmbSMin.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please Select Start Minutes...");
+                cmbSMin.Focus();
+                return false;
+            }
+            else if (cmbEHr.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please Select End Hours...");
+                cmbEHr.Focus();
+                return false;
+            }
+            else if (cmbEMin.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please Select End Minutes...");
+                cmbEMin.Focus();
+                return false;
+            }
             else if (cmbBranchName.SelectedIndex == -1)
             {
                 MessageBox.Show("Please Select Branch Name...");
-                cmbCapacity.Focus();
+                cmbBranchName.Focus();
+                return false;
+            }
+            else if (rdbActive.IsChecked == false && rdbInactive.IsChecked == false)
+            {
+                MessageBox.Show("Please Select Status...");
+                return false;
+            }
+            else if (chkAllowLect.IsChecked == false )
+            {
+                MessageBox.Show("Please Select Allow Lectures...");
                 return false;
             }
             else
@@ -85,9 +121,18 @@ namespace SchoolManagement.Room
             cmbBranchName.Text = "";
             txtRoomName.Text = "";
             txtShortName.Text = "";
-            cmbCapacity.Text = "";
             txtColor.Text = "";
+            txtLectDay.Text = "";
+            txtLectWeek.Text = "";
+            txtLectRow.Text = "";
+            rdbActive.IsChecked = false;
+            rdbInactive.IsChecked = false;
+            chkAllowLect.IsChecked = false;
             cmbCapacity_Items();
+            cmbSHr_Items();
+            cmbSMin_Items();
+            cmbEHr_Items();
+            cmbEMin_Items();
             BindFullGrid();
             BindBranchName();
         }
@@ -105,6 +150,15 @@ namespace SchoolManagement.Room
             BranchID = Convert.ToInt32(cmbBranchName.SelectedValue.ToString());
             UpdatedByUserID = 1;
             UpdatedDate = DateTime.Now.ToString();
+            MaxLectDay = Convert.ToInt32(txtLectDay.Text.ToString());
+            MaxLectWeek = Convert.ToInt32(txtLectWeek.Text.ToString());
+            MaxLectRow = Convert.ToInt32(txtLectRow.Text.ToString());
+            SHr = Convert.ToInt32(cmbSHr.SelectedValue.ToString());
+            SMin = Convert.ToInt32(cmbSMin.SelectedValue.ToString());
+            EHr = Convert.ToInt32(cmbEHr.SelectedValue.ToString());
+            EMin = Convert.ToInt32(cmbEMin.SelectedValue.ToString());
+            StartTime =Convert.ToDateTime( SHr + Sign + SMin);
+            EndTime = Convert.ToDateTime(EHr + Sign + EMin);
 
             if (rdbActive.IsChecked == true)
             {
@@ -118,7 +172,10 @@ namespace SchoolManagement.Room
                 IsDeleted = 0;
 
             }
-            
+            if (chkAllowLect.IsChecked == true)
+                IsAllow = 1;
+            else
+                IsAllow = 0;
         }
         #endregion
 
@@ -131,7 +188,7 @@ namespace SchoolManagement.Room
                 if (Validate())
                 {
                     SetParameters();
-                    string Result = obj_Room.saveAddRoom(RoomId, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
+                    string Result = obj_Room.saveAddRoom(RoomId, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted,MaxLectDay,MaxLectWeek,MaxLectRow,StartTime,EndTime,IsAllow);
                     if (Result == "Save Sucessfully...!!!")
                     {
                         MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -218,6 +275,56 @@ namespace SchoolManagement.Room
         }
         #endregion
 
+        #region--------------LoadHrMin()-----------------------------------
+        private void cmbSHr_Items()
+        {
+            cmbSHr.Items.Add("select");
+            int i;
+            for (i = 1; i <= 12; i++)
+            {
+                cmbSHr.Items.Add(i);
+
+            }
+            cmbSHr.SelectedIndex = 0;
+
+        }
+        private void cmbSMin_Items()
+        {
+            cmbSMin.Items.Add("select");
+            int i;
+            for (i = 0; i <= 60; i+=5)
+            {
+                cmbSMin.Items.Add(i);
+
+            }
+            cmbSMin.SelectedIndex = 0;
+
+        }
+        private void cmbEHr_Items()
+        {
+            cmbEHr.Items.Add("select");
+            int i;
+            for (i = 1; i <= 12; i++)
+            {
+                cmbEHr.Items.Add(i);
+
+            }
+            cmbEHr.SelectedIndex = 0;
+
+        }
+        private void cmbEMin_Items()
+        {
+            cmbEMin.Items.Add("select");
+            int i;
+            for (i = 0; i <= 60; i+=5)
+            {
+                cmbEMin.Items.Add(i);
+
+            }
+            cmbEMin.SelectedIndex = 0;
+
+        }
+      #endregion
         
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -253,9 +360,14 @@ namespace SchoolManagement.Room
                         txtShortName.Text = ds.Tables[0].Rows[0]["RoomShortName"].ToString();
                         txtColor.Text = ds.Tables[0].Rows[0]["RoomColor"].ToString();
                         cmbCapacity.Text = ds.Tables[0].Rows[0]["Capacity"].ToString();
+                        txtLectDay.Text=ds.Tables[0].Rows[0]["MaxNoLecturesDay"].ToString();
+                        txtLectWeek.Text = ds.Tables[0].Rows[0]["MaxNoLecturesWeek"].ToString();
+                        txtLectRow.Text=ds.Tables[0].Rows[0]["MaxNoOfLectureInRow"].ToString();
+
 
                         IsActive  = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
                         IsDeleted  = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDeleted"]);
+                        IsAllow = Convert.ToInt32(ds.Tables[0].Rows[0]["IsAllowMoreThanOneLectInBatch"]);
                         if (IsActive == 1 && IsDeleted == 0)
                         {
                             rdbActive.IsChecked = true;
@@ -263,6 +375,14 @@ namespace SchoolManagement.Room
                         else if (IsActive  == 0 && IsDeleted == 0)
                         {
                             rdbInactive.IsChecked = true;
+                        }
+                        if (IsAllow == 1)
+                        {
+                            chkAllowLect.IsChecked = true;
+                        }
+                        else 
+                        { 
+                            chkAllowLect.IsChecked = false; 
                         }
                         btnDelete.IsEnabled = true;
                     }
@@ -292,7 +412,7 @@ namespace SchoolManagement.Room
                 if (Validate())
                 {
                     SetParameters();
-                    string Result = obj_Room.UpdateRoom(RoomId, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
+                    string Result = obj_Room.UpdateRoom(RoomId, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted, MaxLectDay, MaxLectWeek, MaxLectRow, StartTime, EndTime, IsAllow);
                     if (Result == "Updated Sucessfully...!!!")
                     {
                         MessageBox.Show(Result, "Updated SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);

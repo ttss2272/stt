@@ -19,7 +19,7 @@
                 <TextBox Height="28" HorizontalAlignment="Left" Margin="198,52,0,0" Name="txtRoomName" VerticalAlignment="Top" Width="157" />
                 <TextBox Height="28" HorizontalAlignment="Left" Margin="198,122,0,0" Name="txtColor" VerticalAlignment="Top" Width="157" />
                 <TextBox Height="28" HorizontalAlignment="Left" Margin="198,88,0,0" Name="txtShortName" VerticalAlignment="Top" Width="157" />
-                <ComboBox Height="28" HorizontalAlignment="Left" Margin="198,156,0,0" Name="cmbCapacity" VerticalAlignment="Top" Width="157" ItemsSource="{Binding}"  />
+                <ComboBox Height="28" HorizontalAlignment="Left" Margin="200,156,0,0" Name="cmbCapacity" VerticalAlignment="Top" Width="157" ItemsSource="{Binding}"  />
                 <Button Content="Add" Height="31" HorizontalAlignment="Left" Margin="177,250,0,0" Name="btnAdd" VerticalAlignment="Top" Width="75" Click="btnAdd_Click" />
                 <Button Content="Update" Height="31" HorizontalAlignment="Left" Margin="282,250,0,0" Name="btnUpdate" VerticalAlignment="Top" Width="75" Click="btnUpdate_Click_1" />
                
@@ -40,15 +40,15 @@
                 <TextBox Height="28" HorizontalAlignment="Right" Margin="0,92,29,0" Name="txtLectRow" VerticalAlignment="Top" Width="157" />
                 <Label Content="Break Time" Height="28" HorizontalAlignment="Left" Margin="389,122,0,0" Name="label19" VerticalAlignment="Top" Width="90" />
                 <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFF51F1F" Height="28" HorizontalAlignment="Left" Margin="536,127,0,0" Name="label20" VerticalAlignment="Top" Width="31" />
-                <ComboBox Height="23" HorizontalAlignment="Left" Margin="573,127,0,0" Name="cmbSHr" VerticalAlignment="Top" Width="49" />
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="573,127,0,0" Name="cmbSHr" VerticalAlignment="Top" Width="49" ItemsSource="{Binding}"/>
                 <Label Content="Hr" Height="28" HorizontalAlignment="Right" Margin="0,127,113,0" Name="label21" VerticalAlignment="Top" />
                 <Label Content="Min" Height="28" HorizontalAlignment="Right" Margin="0,127,32,0" Name="label22" VerticalAlignment="Top" />
-                <ComboBox Height="23" HorizontalAlignment="Left" Margin="649,127,0,0" Name="cmbSMin" VerticalAlignment="Top" Width="49" />
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="649,127,0,0" Name="cmbSMin" VerticalAlignment="Top" Width="49" ItemsSource="{Binding}"/>
                 <Label Content="To" Height="28" HorizontalAlignment="Right" Margin="0,148,113,0" Name="label23" VerticalAlignment="Top" />
-                <ComboBox Height="23" HorizontalAlignment="Left" Margin="573,170,0,0" Name="cmbEHr" VerticalAlignment="Top" Width="49" />
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="573,170,0,0" Name="cmbEHr" VerticalAlignment="Top" Width="49" ItemsSource="{Binding}"/>
                 <Label Content="Hr" Height="28" HorizontalAlignment="Right" Margin="0,170,113,0" Name="label24" VerticalAlignment="Top" />
                 <Label Content="Min" Height="28" HorizontalAlignment="Right" Margin="0,170,32,0" Name="label25" VerticalAlignment="Top" />
-                <ComboBox Height="23" HorizontalAlignment="Left" Margin="649,170,0,0" Name="cmbEMin" VerticalAlignment="Top" Width="49" />
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="649,170,0,0" Name="cmbEMin" VerticalAlignment="Top" Width="49" ItemsSource="{Binding}"/>
                 <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFF51F1F" Height="28" HorizontalAlignment="Left" Margin="536,198,0,0" Name="label27" VerticalAlignment="Top" Width="31" />
                 <CheckBox Content="More Than 1 Lect. In Batch" Height="21" HorizontalAlignment="Left" Margin="573,205,0,0" Name="chkAllowLect" VerticalAlignment="Top" Width="157" />
             </Grid>
