@@ -190,7 +190,7 @@ namespace SchoolManagement.Room
         {
             try
             {
-                DataSet ds = obj_Room.BindFullGrid(0,txtRoomName.Text);
+                DataSet ds = obj_Room.BindFullGrid(0,cmbBranchName.Text,txtRoomName.Text);
 
                // ds = obj_Room.BindFullGrid(0);
                 if (ds.Tables[0].Rows.Count > 0)
@@ -239,24 +239,6 @@ namespace SchoolManagement.Room
 
         #region------------Delete()--------------------------
         
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                MessageBoxResult Result = MessageBox.Show("Do You Really Want To Delete?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Information);
-                if (Result.Equals(MessageBoxResult.Yes))
-                {
-                    SetParameters();
-                    DeleteRoom();
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message.ToString());
-            }
-        }
-
         private void DeleteRoom()
         {
             if (UpID != 0)
@@ -264,7 +246,7 @@ namespace SchoolManagement.Room
                 RoomId = UpID;
 
                 string Result = obj_Room.DeleteRoom(RoomId, UpdatedByUserID, UpdatedDate);
-                if (Result == "Deleted Sucessfully.")
+                if (Result == "Deleted Sucessfully...!!")
                 {
                     MessageBox.Show(Result, "Delete Sucessfully", MessageBoxButton.OK, MessageBoxImage.Information);
                     clearFields();
@@ -283,12 +265,7 @@ namespace SchoolManagement.Room
 
         #endregion
 
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-            //App.Current.Shutdown();
-            
-        }
+        
 
 
         #region-------------LoadCapacity-------------------------------
@@ -328,7 +305,7 @@ namespace SchoolManagement.Room
                 string Color = (dgRoom.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
                 string Capacity = (dgRoom.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text;
 
-                DataSet ds = obj_Room.BindFullGrid(0,txtRoomName.Text);
+                DataSet ds = obj_Room.BindFullGrid(0,BranchName,RoomName);
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
@@ -392,6 +369,31 @@ namespace SchoolManagement.Room
             {
                 MessageBox.Show(ex.Message.ToString());
             }
+        }
+
+        
+
+        private void btnDelete_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MessageBoxResult Result = MessageBox.Show("Do You Really Want To Delete?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                if (Result.Equals(MessageBoxResult.Yes))
+                {
+                    SetParameters();
+                    DeleteRoom();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
     }

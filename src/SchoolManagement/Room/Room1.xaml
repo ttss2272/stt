@@ -22,12 +22,13 @@
                 <ComboBox Height="28" HorizontalAlignment="Left" Margin="227,144,0,0" Name="cmbCapacity" VerticalAlignment="Top" Width="157" ItemsSource="{Binding}"  />
                 <Button Content="Add" Height="31" HorizontalAlignment="Left" Margin="51,215,0,0" Name="btnAdd" VerticalAlignment="Top" Width="75" Click="btnAdd_Click" />
                 <Button Content="Update" Height="31" HorizontalAlignment="Left" Margin="155,215,0,0" Name="btnUpdate" VerticalAlignment="Top" Width="75" Click="btnUpdate_Click_1" />
-                <Button Content="Delete" Height="31" HorizontalAlignment="Left" Margin="252,215,0,0" Name="btnDelete" VerticalAlignment="Top" Width="75" Click="btnClose_Click" />
-                <Button Content="Close" Height="31" HorizontalAlignment="Left" Margin="355,215,0,0" Name="btnClose" VerticalAlignment="Top" Width="75" />
+               
                 <Label Content="Status" Height="28" HorizontalAlignment="Left" Margin="56,181,0,0" Name="label7" VerticalAlignment="Top" Width="108" />
                 <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFE83030" Height="28" HorizontalAlignment="Left" Margin="170,181,0,0" Name="label12" VerticalAlignment="Top" Width="31" />
                 <RadioButton Content="Acative" Height="16" HorizontalAlignment="Left" Margin="227,186,0,0" Name="rdbActive" VerticalAlignment="Top" />
                 <RadioButton Content="InAcative" Height="16" HorizontalAlignment="Left" Margin="338,186,0,0" Name="rdbInactive" VerticalAlignment="Top" />
+                <Button Content="Delete" Height="31" HorizontalAlignment="Left" Margin="262,215,0,0" Name="btnDelete" VerticalAlignment="Top" Width="75" Click="btnDelete_Click_1" />
+                <Button Content="Cancel" Height="31" HorizontalAlignment="Left" Margin="371,215,0,0" Name="btnCancel" VerticalAlignment="Top" Width="75" Click="btnCancel_Click" />
             </Grid>
         </GroupBox>
         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Height="128" HorizontalAlignment="Left" Margin="82,293,0,0" Name="dgRoom" VerticalAlignment="Top" Width="500" IsReadOnly="True" CanUserResizeColumns="False" ItemsSource="{Binding}" >
