@@ -71,7 +71,7 @@ namespace DataAccessLayer
             return Result;
         }
 
-        public DataSet GetBranchName()
+        public DataSet BindBranchName()
         {
             con = conn.getConnection();
             con.Open();
