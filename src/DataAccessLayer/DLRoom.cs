@@ -14,7 +14,7 @@ namespace DataAccessLayer
         SqlConnection conn = new SqlConnection();
         DBConnection con = new DBConnection();
 
-        public string saveAddRoom(int RoomId, string RoomName, string ShortName, string Color1, int Capacity, int BranchID, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
+        public string saveAddRoom(int RoomId, string RoomName, string ShortName, string Color1, int Capacity, int BranchID, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted, int MaxLectday, int MaxLectWeek, int MaxLectRow, DateTime STime, DateTime ETime, int IsAllow)
         {
             string result = null;
             conn = con.getConnection();
@@ -32,13 +32,19 @@ namespace DataAccessLayer
             cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
             cmd.Parameters.AddWithValue("@IsActive", IsActive);
             cmd.Parameters.AddWithValue("@IsDeleted", IsDeleted);
+            cmd.Parameters.AddWithValue("@MaxLectDay", MaxLectday);
+            cmd.Parameters.AddWithValue("@MaxLectWeek", MaxLectWeek);
+            cmd.Parameters.AddWithValue("@MaxLectRow", MaxLectRow);
+            cmd.Parameters.AddWithValue("@STime", STime);
+            cmd.Parameters.AddWithValue("@ETime", ETime);
+            cmd.Parameters.AddWithValue("@IsAllow", IsAllow);
             conn.Open();
             result = cmd.ExecuteScalar().ToString();
             conn.Close();
             return result;
 
         }
-        public string UpdateRoom(int RoomId, string RoomName, string ShortName, string Color1, int Capacity, int BranchID, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
+        public string UpdateRoom(int RoomId, string RoomName, string ShortName, string Color1, int Capacity, int BranchID, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted, int MaxLectday, int MaxLectWeek, int MaxLectRow, DateTime STime, DateTime ETime, int IsAllow)
         {
             string result = null;
             conn = con.getConnection();
@@ -56,6 +62,12 @@ namespace DataAccessLayer
             cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
             cmd.Parameters.AddWithValue("@IsActive", IsActive);
             cmd.Parameters.AddWithValue("@IsDeleted", IsDeleted);
+            cmd.Parameters.AddWithValue("@MaxLectDay", MaxLectday);
+            cmd.Parameters.AddWithValue("@MaxLectWeek", MaxLectWeek);
+            cmd.Parameters.AddWithValue("@MaxLectRow", MaxLectRow);
+            cmd.Parameters.AddWithValue("@STime", STime);
+            cmd.Parameters.AddWithValue("@ETime", ETime);
+            cmd.Parameters.AddWithValue("@IsAllow", IsAllow);
             conn.Open();
             result = cmd.ExecuteScalar().ToString();
             conn.Close();
