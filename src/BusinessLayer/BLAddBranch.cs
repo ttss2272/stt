@@ -29,7 +29,7 @@ namespace BusinessLayer
         }
         public DataSet BindBranchName()
         {
-            DataSet getBranchName = obj_AddBranch.GetBranchName();
+            DataSet getBranchName = obj_AddBranch.BindBranchName();
             return getBranchName;
         }
 
