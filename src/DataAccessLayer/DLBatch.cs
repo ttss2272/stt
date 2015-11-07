@@ -13,7 +13,7 @@ namespace DataAccessLayer
     {
         SqlConnection conn = new SqlConnection();
         DBConnection con = new DBConnection();
-        public string saveBatch(int BatchID, int ClassID, string BatchName, string BatchCode, int LectureDuration, int IsLunchBreak, int LunchBreakStartTime, int LunchBreakEndTime, int MaxNoLecturesDay, int MaxNoLecturesWeek, int IsAllowMoreThanOneLectInBatch, int MaxNoOfLecureInRow, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
+        public string saveBatch(int BatchID, int ClassID, string BatchName, string BatchCode, int LectureDuration, int IsLunchBreak, string LunchBreakStartTime, string LunchBreakEndTime, int MaxNoLecturesDay, int MaxNoLecturesWeek, int IsAllowMoreThanOneLectInBatch, int MaxNoOfLecureInRow, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
         {
             string result = null;
             conn = con.getConnection();
@@ -77,14 +77,15 @@ namespace DataAccessLayer
         }
 
         //For Edit Details
-        public DataSet GetBatchDetail(string BatchName, string BatchCode )
+        public DataSet GetBatchDetail(string BatchName, string BatchCode)
         {
             conn = con.getConnection();
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand("GetBatchDetail_SP", conn);
+            SqlCommand cmd = new SqlCommand("GetBatchDetail_SP", conn);        
             cmd.Parameters.AddWithValue("@BatchName", BatchName);
             cmd.Parameters.AddWithValue("@BatchCode", BatchCode);
+                       
             //cmd.Parameters.AddWithValue("@ClassID", ClassID);           
 
             cmd.CommandType = CommandType.StoredProcedure;
