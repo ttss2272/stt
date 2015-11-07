@@ -12,9 +12,9 @@ namespace BusinessLayer
     public class BLBatch
     {
         DLBatch obj_Batch = new DLBatch();
-        public string saveBatch(int id, int ClassID, string BatchName, string BatchCode, int UpdatedByUserID, string UpdatedDate, int IsActive,int IsDeleted)
+        public string saveBatch(int BatchID, int ClassID, string BatchName, string BatchCode, int LectureDuration, int IsLunchBreak, int LunchBreakStartTime, int LunchBreakEndTime, int MaxNoLecturesDay, int MaxNoLecturesWeek, int IsAllowMoreThanOneLectInBatch, int MaxNoOfLecureInRow, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
         {
-            string result = obj_Batch.saveBatch(id, ClassID, BatchName, BatchCode, UpdatedByUserID, UpdatedDate, IsActive,IsDeleted);
+            string result = obj_Batch.saveBatch(BatchID, ClassID, BatchName, BatchCode, LectureDuration, IsLunchBreak, LunchBreakStartTime, LunchBreakEndTime, MaxNoLecturesDay, MaxNoLecturesWeek, IsAllowMoreThanOneLectInBatch, MaxNoOfLecureInRow, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
                return result;
         }
 
@@ -35,6 +35,12 @@ namespace BusinessLayer
             DataSet ds = obj_Batch.GetBatchDetail(BatchName, BatchCode);
             return ds;
 
+        }
+
+        public DataSet SearchBatch(string BatchName)
+        {
+            DataSet ds = obj_Batch.SearchBatch(BatchName);
+            return ds;
         }
     }
 }

@@ -35,5 +35,17 @@ namespace BusinessLayer
             DataSet ds = obj_AddClass.GetClassDetail(ClassName, ShortName, Board, Color);
             return ds;
         }
+
+        public DataSet SearchClass(string ClassName)
+        {
+            DataSet ds = obj_AddClass.SearchClass(ClassName);
+            return ds;
+        }
+
+        public DataSet BindClassName()
+        {
+            DataSet getClassName = obj_AddClass.BindClassName();
+            return getClassName;
+        }
     }
 }
