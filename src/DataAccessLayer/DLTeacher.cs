@@ -44,5 +44,22 @@ namespace DataAccessLayer
             conn.Close();
             return Result;
         }
+
+        public DataSet GetTeacher(int TeacherID)
+        {
+            conn = con.getConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("GetTeacher_SP", conn);
+            cmd.Parameters.AddWithValue("@TeacherID", TeacherID);
+            
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
+        }
     }
 }
