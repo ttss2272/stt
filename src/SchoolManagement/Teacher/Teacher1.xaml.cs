@@ -27,7 +27,7 @@ namespace SchoolManagement.Teacher
          * EndTime:-
          */
         #region---------------------------------Declare variables Globally-------------------------------------
-        int TeacherID, UID, MaxNoOfMovesInBranch, MaxLecturePerDay, MaxLectPerWeek, MaxNoOfLectInRow, Active, IsDeleted, IsMoreThanOneLecture, IsFirstLecture, IsLastLecture,UpdatedByUserID;
+        int TeacherID, UPID, MaxNoOfMovesInBranch, MaxLecturePerDay, MaxLectPerWeek, MaxNoOfLectInRow, Active, IsDeleted, IsMoreThanOneLecture, IsFirstLecture, IsLastLecture,UpdatedByUserID;
         string TeacherName, TeacherSurname, TeacherShortName,StartFreeTimeHrs, StartFreeTimeMin, EndFreeTimeHrs, EndFreeTimeMin,FreeTimeStart,FreeTimeEnd,UpdatedDate;
         BLTeacher objTeacher = new BLTeacher();
         #endregion
@@ -63,6 +63,7 @@ namespace SchoolManagement.Teacher
                 if (Validate())
                 {
                     SetParameters();
+                    SaveDetails();
                 }
             }
             catch (Exception ex)
@@ -133,7 +134,10 @@ namespace SchoolManagement.Teacher
             MaxLectPerWeek1();
             BindYesNo();
             MaxLectInRow();
-            UID = 0;
+            UPID = 0;
+            BindGrid();
+            btnDelete.IsEnabled = false;
+            btnSave.Content="Save"
         }
         #endregion
 
@@ -413,7 +417,7 @@ namespace SchoolManagement.Teacher
         private void SetParameters()
         
         {
-            TeacherID = UID;
+            TeacherID = UPID;
             TeacherName = txtName.Text.Trim();
             TeacherSurname = txtSurname.Text.Trim();
             TeacherShortName = txtShortName.Text.Trim();
@@ -467,7 +471,8 @@ namespace SchoolManagement.Teacher
 
             FreeTimeEnd = cmbFreeTimeEndHrs.SelectedValue.ToString();
             FreeTimeEnd += ":" + cmbFreeTimeEndMin.SelectedValue.ToString();
-
+            UpdatedByUserID = 1;
+            UpdatedDate = DateTime.Now.ToString();
             
         }
         #endregion
@@ -482,8 +487,8 @@ namespace SchoolManagement.Teacher
 
         #region---------------------------------------------SaveDeltails()-------------------------------------------
         private void SaveDetails()
-        { 
-            string Result = objTeacher.SaveTeacher(TeacherID,TeacherName,TeacherSurname,TeacherShortName,MaxNoOfMovesInBranch,MaxLecturePerDay,MaxLectPerWeek,IsMoreThanOneLecture,MaxNoOfLectInRow,IsFirstLecture,IsLastLecture,FreeTimeStart,FreeTimeEnd,UpdatedByUserID,UpdatedDate,Active,IsDeleted)
+        {
+            string Result = objTeacher.SaveTeacher(TeacherID, TeacherName, TeacherSurname, TeacherShortName, MaxNoOfMovesInBranch, MaxLecturePerDay, MaxLectPerWeek, IsMoreThanOneLecture, MaxNoOfLectInRow, IsFirstLecture, IsLastLecture, FreeTimeStart, FreeTimeEnd, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
                 if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
                 {
                      MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -497,5 +502,90 @@ namespace SchoolManagement.Teacher
         #endregion
 
 
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 07Nov2015
+         * Purpose:-
+         * StartTime:-
+         * EndTime:-
+         */
+        #region-------------------------------------BindGrid()-------------------------------------------------------------------
+        private void BindGrid()
+        {
+            DataSet ds = objTeacher.GetTeacher(0);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                dgvTeacher.ItemsSource = ds.Tables[0].DefaultView;
+            }
+            else
+            {
+                dgvTeacher.ItemsSource = null;
+                MessageBox.Show("Data Not Found", "Message");
+                
+            }
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 07Nov2015
+         * Purpose:-
+         * StartTime:-
+         * EndTime:-
+         */
+        #region----------------------------------------Row Double Click()-------------------------------------------------------------------
+        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                object item = dgvTeacher.SelectedItem;
+                UPID = Convert.ToInt32(((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[0].ToString());
+                txtName.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[1].ToString();
+                txtSurname.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[2].ToString();
+                txtShortName.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[3].ToString();
+                
+                cmbMaxMoves.Text =  ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[4].ToString();
+                cmbMaxLectPerDay.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[5].ToString();
+                cmbMaxLectPerWeek.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[6].ToString();
+                cmbMaxNoLectInRow.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[7].ToString();
+                cmbFirstLect.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[8].ToString();
+                cmbLastLect.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[9].ToString();
+                cmbAllowMoreLect.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[14].ToString();
+               
+                 bool act = Convert.ToBoolean(((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[13].ToString());
+                //bool del = Convert.ToBoolean(((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[11].ToString());
+                 string time = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[10].ToString();
+                 string [] a= time.Split(':');
+                 cmbFreeTimeStartHrs.Text = a[0];
+                 if (a[1] == "00")
+                 { cmbFreeTimeStartMin.Text = "0"; }
+                 else
+                 {cmbFreeTimeStartMin.Text = a[1];}
+                 
+                 string ENDtime = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[11].ToString();
+                 string[] b = ENDtime.Split(':');
+                 cmbFreeTimeEndHrs.Text = b[0];
+                if (b[1]=="00")
+                {cmbFreeTimeEndMin.Text="0";}
+                else
+                {cmbFreeTimeEndMin.Text = b[1];}
+                 
+                if (act == true )
+                {
+                    rdbActive.IsChecked = true;
+                }
+                else if (act == false)
+                {
+                    rdbInActive.IsChecked = false;
+                }
+                btnDelete.IsEnabled = true;
+                btnSave.Content = "Update";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception Error");
+            }
+        }
+        #endregion
     }
 }
