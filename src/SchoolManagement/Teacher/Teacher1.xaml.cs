@@ -85,6 +85,12 @@ namespace SchoolManagement.Teacher
         {
             try
             {
+                MessageBoxResult Result = MessageBox.Show("Do You Really Want To Delete?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                if (Result.Equals(MessageBoxResult.Yes))
+                {
+                    SetParameters();
+                    DeleteTeacher();
+                }
 
             }
             catch (Exception ex)
@@ -137,7 +143,7 @@ namespace SchoolManagement.Teacher
             UPID = 0;
             BindGrid();
             btnDelete.IsEnabled = false;
-            btnSave.Content="Save"
+            btnSave.Content = "Save";
         }
         #endregion
 
@@ -587,5 +593,30 @@ namespace SchoolManagement.Teacher
             }
         }
         #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 07Nov2015
+         * Purpose:-
+         * StartTime:-
+         * EndTime:-
+         */
+
+        #region--------------------------------------------DeleteTeacher()--------------------------------------------------------------
+        private void DeleteTeacher()
+        {
+            string Result = objTeacher.DeleteTeacher(TeacherID, UpdatedByUserID, UpdatedDate);
+            if (Result == "Deleted Sucessfully.")
+            {
+                MessageBox.Show(Result, "Delete Sucessfully", MessageBoxButton.OK, MessageBoxImage.Information);
+                ClearFields();
+            }
+            else
+            {
+                MessageBox.Show(Result, "Error To Delete", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
+
     }
 }
