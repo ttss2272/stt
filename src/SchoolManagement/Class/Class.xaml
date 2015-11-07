@@ -34,7 +34,22 @@
                 <Label Content="*" Height="22" HorizontalAlignment="Left" Margin="178,221,0,0" Name="label5" VerticalAlignment="Top" Foreground="Red" FontWeight="Bold" />
             </Grid>
         </GroupBox>
-        <DataGrid AutoGenerateColumns="False" Height="162" HorizontalAlignment="Left" Margin="48,424,0,0" Name="dgvClass" VerticalAlignment="Top" Width="540" />
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Height="162" HorizontalAlignment="Left" Margin="48,424,0,0" Name="dgvClass" VerticalAlignment="Top" Width="540" IsReadOnly="True" CanUserResizeColumns="False" ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding RoomID}" Header="ClassID" Visibility="Hidden"></DataGridTextColumn>
+                <DataGridTextColumn  Header="ClassName" Width="100" Binding="{Binding ClassName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="ClassShortName" Width="100" Binding="{Binding ClassShortName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Board" Width="100" Binding="{Binding Board}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Color" Width="100" Binding="{Binding Color}"></DataGridTextColumn>
+                <DataGridTextColumn Header="BranchName" Width="100" Binding="{Binding BranchName}"></DataGridTextColumn>
+            </DataGrid.Columns>
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick" HandledEventsToo="True" />
+                </Style>
+            </DataGrid.ItemContainerStyle>
+
+        </DataGrid >
         <GroupBox Header="" Height="71" HorizontalAlignment="Left" Margin="14,294,0,0" Name="groupBox1" VerticalAlignment="Top" Width="586">
             <Grid>
                 <Button Content="Add" Height="30" HorizontalAlignment="Left" Margin="96,10,0,0" Name="btnadd" VerticalAlignment="Top" Width="75" Click="btnadd_Click" />

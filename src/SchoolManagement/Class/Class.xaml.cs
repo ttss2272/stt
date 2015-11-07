@@ -42,7 +42,7 @@ namespace SchoolManagement.Branch
             InitializeComponent();
             //clearFields();
             //BindBranchName();
-            //BindGridview();
+           
         }
 
         #endregion
@@ -105,7 +105,7 @@ namespace SchoolManagement.Branch
         {
             try
             {
-                this.Close();
+                clearFields();
             }
             catch (Exception ex)
             {
@@ -339,7 +339,7 @@ namespace SchoolManagement.Branch
         #region----------------------------------grvClassBind----------------------------------------------------
         private void BindGridview()
         {
-            DataSet ds = obj_AddClass.BindClass(0);
+            DataSet ds = obj_AddClass.BindClass(0,txtClassName.Text);
             if (ds.Tables[0].Rows.Count > 0)
             {
                 dgvClass.ItemsSource = ds.Tables[0].DefaultView;
@@ -459,6 +459,7 @@ namespace SchoolManagement.Branch
             clearFields();
             BindBranchName();
             BindGridview();
+            
         }
     }
 }
