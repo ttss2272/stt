@@ -225,11 +225,11 @@ namespace SchoolManagement.Branch
         #region------------------BindGridview()-------------------
         private void BindGridview()
         {
-            DataSet ds = obj_AddBranch.BindBranch(0);
+            DataSet ds = obj_AddBranch.BindBranch(0,txtBranchName.Text,txtBranchCode.Text);
             if (ds.Tables[0].Rows.Count > 0)
             {
                 grdvBranch.ItemsSource = ds.Tables[0].DefaultView;
-               // grdvBranch.Columns[0].Visibility = Visibility.Collapsed;
+               
             }
         }
         #endregion
@@ -383,7 +383,7 @@ namespace SchoolManagement.Branch
                 string BranchCode = (grdvBranch.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
                 string InstituteName = (grdvBranch.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
 
-                DataSet ds = obj_AddBranch.BindBranch(0);
+                DataSet ds = obj_AddBranch.BindBranch(0,BranchName,BranchCode);
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
