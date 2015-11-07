@@ -317,13 +317,13 @@ namespace SchoolManagement.Room
                         txtColor.Text = ds.Tables[0].Rows[0]["RoomColor"].ToString();
                         cmbCapacity.Text = ds.Tables[0].Rows[0]["Capacity"].ToString();
 
-                        int act = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
-                        int del = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDeleted"]);
-                        if (act == 1 && del == 0)
+                        IsActive  = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
+                        IsDeleted  = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDeleted"]);
+                        if (IsActive == 1 && IsDeleted == 0)
                         {
                             rdbActive.IsChecked = true;
                         }
-                        else if (act == 0 && del == 0)
+                        else if (IsActive  == 0 && IsDeleted == 0)
                         {
                             rdbInactive.IsChecked = true;
                         }
@@ -345,6 +345,8 @@ namespace SchoolManagement.Room
         * Created Date :- 6 Nov 2015
         * Purpose:- Update  cell click
        */
+
+        #region-----------------UpdateRoom()--------------------------------
         private void btnUpdate_Click_1(object sender, RoutedEventArgs e)
         {
             try
@@ -370,6 +372,7 @@ namespace SchoolManagement.Room
                 MessageBox.Show(ex.Message.ToString());
             }
         }
+        #endregion
 
         
 
