@@ -50,7 +50,7 @@ namespace DataAccessLayer
             conn = con.getConnection();
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand("GetTeacher_SP", conn);
+            SqlCommand cmd = new SqlCommand("BindTeacher_SP", conn);
             cmd.Parameters.AddWithValue("@TeacherID", TeacherID);
             
             cmd.CommandType = CommandType.StoredProcedure;
@@ -60,6 +60,77 @@ namespace DataAccessLayer
             sqlDa.Fill(ds);
             conn.Close();
             return ds;
+        }
+
+        public string DeleteTeacher(int TeacherID, int UpdatedByUserID, string UpdatedDate)
+        {
+            string Result = null;
+            conn = con.getConnection();
+            SqlCommand cmd = new SqlCommand("DeleteTeacher_SP", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@TeacherID", TeacherID);
+            cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
+            cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
+
+            conn.Open();
+            Result = cmd.ExecuteScalar().ToString();
+            conn.Close();
+            return Result;
+ 
+        }
+
+        public DataSet BindTeacher(int TeacherID)
+        {
+            conn = con.getConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("BindTeacher_SP", conn);
+            cmd.Parameters.AddWithValue("@TeacherID", TeacherID);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
+        }
+
+        public DataSet BindTeacherAvail()
+        {
+            conn = con.getConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("GetNoOfDaysTeacherAvailable_SP", conn);
+            
+
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
+        }
+
+        public DataSet GetTeacherAvailableDetail(int TeacherID)
+        {
+            conn = con.getConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("GetTeacherAvailableDetail_SP", conn);
+
+
+            cmd.Parameters.AddWithValue("@TeacherID", TeacherID);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
+ 
         }
     }
 }
