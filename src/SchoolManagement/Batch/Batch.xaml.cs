@@ -31,8 +31,8 @@ namespace SchoolManagement.Branch
      * Purpose:- Declare Global Variables
      */
         #region------------------------Declare Variables Globally()--------------------
-        int BatchID, UpdatedByUserID, IsActive, IsDeleted, ClassID, UpID, LectureDuration, IsLunchBreak, LunchBreakStartTime, LunchBreakEndTime, MaxNoLecturesDay, MaxNoLecturesWeek, IsAllowMoreThanOneLectInBatch, MaxNoOfLecureInRow;
-        string BatchName, BatchCode, UpdatedDate;
+        int BatchID, UpdatedByUserID, IsActive, IsDeleted, ClassID, UpID, LectureDuration, IsLunchBreak, MaxNoLecturesDay, MaxNoLecturesWeek, IsAllowMoreThanOneLectInBatch, MaxNoOfLecureInRow;
+        string BatchName, BatchCode, UpdatedDate, LunchBreakStartTime, LunchBreakEndTime;
         BLBatch obj_Batch = new BLBatch();
         BLAddClass obj_Class = new BLAddClass();
         #endregion
@@ -60,6 +60,7 @@ namespace SchoolManagement.Branch
                 Validate();
                 SetParameters();
                 SaveDetails();
+                BindGridview();
 
             }
             catch (Exception ex)
@@ -80,7 +81,7 @@ namespace SchoolManagement.Branch
         private void SaveDetails()
         {
             string result = obj_Batch.saveBatch(BatchID, ClassID, BatchName, BatchCode, LectureDuration, IsLunchBreak, LunchBreakStartTime, LunchBreakEndTime, MaxNoLecturesDay, MaxNoLecturesWeek, IsAllowMoreThanOneLectInBatch, MaxNoOfLecureInRow,UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
-            if (result == "Save Sucessfully...!!!" && result == "Updated Sucessfully...!!!")
+            if (result == "Save Sucessfully...!!!" || result == "Updated Sucessfully...!!!")
             {
                 MessageBox.Show(result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
                 clearFields();
@@ -116,6 +117,7 @@ namespace SchoolManagement.Branch
         #region-------------------------------------------------SetParameters()-------------------------------------
         private void SetParameters()
         {
+            BatchID = UpID;
             BatchName = txtBatchName.Text.Trim();
             BatchCode = txtBatchCode.Text.Trim();
             ClassID = Convert.ToInt32(cbClassName.SelectedValue);
@@ -128,8 +130,11 @@ namespace SchoolManagement.Branch
             {
                 IsLunchBreak = 0;
             }
-            LunchBreakStartTime = Convert.ToInt32(comboBox1.SelectedValue);
-            LunchBreakEndTime = Convert.ToInt32(comboBox3.SelectedValue);
+            LunchBreakStartTime = comboBox1.SelectedValue.ToString();
+            LunchBreakStartTime += ":" + comboBox2.SelectedValue.ToString();
+
+            LunchBreakEndTime = comboBox3.SelectedValue.ToString();
+            LunchBreakEndTime += ":" + comboBox4.SelectedValue.ToString();           
             MaxNoLecturesDay = Convert.ToInt32(txtMaxnoLecDay.Text.ToString());
             MaxNoLecturesWeek = Convert.ToInt32(txtMaxnoLecWeek.Text.ToString());
             if (chkallow.IsChecked == true)
@@ -143,12 +148,12 @@ namespace SchoolManagement.Branch
             MaxNoOfLecureInRow = Convert.ToInt32(txtMaxLecRow.Text.ToString());
             UpdatedByUserID = 1;
             UpdatedDate = DateTime.Now.ToString();           
-            if (rdoActive.IsChecked == true)
+            if (rdoActive.IsChecked == true && rdoDeActive.IsChecked== false)
             {
                 IsActive = 1;
                 IsDeleted = 0;
             }
-            else
+            else if (rdoActive.IsChecked==false && rdoDeActive.IsChecked==true)
             {
                 IsActive = 0;
                 IsDeleted = 0;
@@ -256,6 +261,11 @@ namespace SchoolManagement.Branch
             txtMaxnoLecDay.Text = "";
             txtMaxnoLecWeek.Text = "";
             txtMaxLecRow.Text = "";
+            chkLunchBreak.IsChecked = false;
+            chkallow.IsChecked = false;
+            rdoActive.IsChecked = false;
+            rdoDeActive.IsChecked = false;
+
            
         }
         #endregion
@@ -338,6 +348,8 @@ namespace SchoolManagement.Branch
                 {
                     SetParameters();
                     DeleteSubject();
+                    dgvBatch.Items.Refresh();
+                    BindGridview();
                 }
             }
             catch (Exception ex)
@@ -380,11 +392,21 @@ namespace SchoolManagement.Branch
             try
             {
                 object item = dgvBatch.SelectedItem;
-                //string Id = (dgvClass.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                string BatchName = (dgvBatch.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
-                string BatchCode = (dgvBatch.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
-                //string ClassID = (dgvBatch.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
-                
+                //string Id = (dgvClass.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;                
+                string ClassName = (dgvBatch.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+                string BatchName = (dgvBatch.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
+                string BatchCode = (dgvBatch.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
+
+                string LectureDuration = (dgvBatch.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
+                string IsLunchBreak = (dgvBatch.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text;
+                string LunchBreakStartTime = (dgvBatch.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text;
+
+                string LunchBreakEndTime = (dgvBatch.SelectedCells[7].Column.GetCellContent(item) as TextBlock).Text;
+                string MaxNoLecturesDay = (dgvBatch.SelectedCells[8].Column.GetCellContent(item) as TextBlock).Text;
+                string MaxNoLecturesWeek = (dgvBatch.SelectedCells[9].Column.GetCellContent(item) as TextBlock).Text;
+
+                //string IsAllowMoreThanOneLectInBatch = (dgvBatch.SelectedCells[10].Column.GetCellContent(item) as TextBlock).Text;
+                string MaxNoOfLecureInRow = (dgvBatch.SelectedCells[10].Column.GetCellContent(item) as TextBlock).Text;
 
                 DataSet ds = obj_Batch.GetBatchDetail(BatchName, BatchCode);
                 if (ds.Tables.Count > 0)
@@ -392,8 +414,26 @@ namespace SchoolManagement.Branch
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         UpID = Convert.ToInt32(ds.Tables[0].Rows[0]["BatchID"]);
+                        cbClassName.Text = ds.Tables[0].Rows[0]["ClassName"].ToString();
                         txtBatchName.Text = ds.Tables[0].Rows[0]["BatchName"].ToString();
                         txtBatchCode.Text = ds.Tables[0].Rows[0]["BatchCode"].ToString();
+
+                        txtlecDuration.Text = ds.Tables[0].Rows[0]["LectureDuration"].ToString();
+                        //int chk = Convert.ToString(ds.Tables[0].Rows[0]["IsLunchBreak"]);
+                        //if(chk == 'true')
+                        //{
+                        //    chkLunchBreak.IsChecked=true;
+                        //}                        
+                        comboBox1.Text = ds.Tables[0].Rows[0]["LunchBreakStartTime"].ToString();
+                        comboBox2.Text = ds.Tables[0].Rows[0]["LunchBreakStartTime"].ToString();
+                        comboBox3.Text = ds.Tables[0].Rows[0]["LunchBreakEndTime"].ToString();
+                        comboBox3.Text = ds.Tables[0].Rows[0]["LunchBreakEndTime"].ToString();
+                        txtMaxnoLecDay.Text = ds.Tables[0].Rows[0]["MaxNoLecturesDay"].ToString();
+                        txtMaxnoLecWeek.Text = ds.Tables[0].Rows[0]["MaxNoLecturesWeek"].ToString();
+
+                        //chkallow.Unchecked = ds.Tables[0].Rows[0]["IsAllowMoreThanOneLectInBatch"].ToString();
+                        txtMaxLecRow.Text = ds.Tables[0].Rows[0]["MaxNoOfLecureInRow"].ToString();
+                       
                         //cbClassName.Text = ds.Tables[0].Rows[0]["ClassID"].ToString();
                         int act = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
                         int del = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDeleted"]);
@@ -459,6 +499,7 @@ namespace SchoolManagement.Branch
             comboBox2_Items();
             comboBox3_Items();
             comboBox4_Items();
+            BindGridview();
 
         }
     }
