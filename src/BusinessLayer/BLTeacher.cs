@@ -15,5 +15,12 @@ namespace BusinessLayer
             string Result = objTeacher.SaveTeacher(TeacherID, TeacherName, TeacherSurname, TeacherShortName,  MaxNoOfMovesInBranch, MaxLecturePerDay, MaxLectPerWeek, IsMoreThanOneLecture, MaxNoOfLectInRow, IsFirstLecture, IsLastLecture, FreeTimeStart, FreeTimeEnd, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
             return Result;
         }
+
+        public DataSet GetTeacher(int TeacherID)
+        {
+            DataSet ds = objTeacher.GetTeacher(TeacherID);
+            return ds;
+        
+        }
     }
 }
