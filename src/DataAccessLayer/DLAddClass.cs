@@ -24,7 +24,7 @@ namespace DataAccessLayer
             cmd.Parameters.AddWithValue("@ClassShortName", ShortName);
             cmd.Parameters.AddWithValue("@Board", Board);
             cmd.Parameters.AddWithValue("@Color", Color);
-            cmd.Parameters.AddWithValue("@BranchID", Color);
+            cmd.Parameters.AddWithValue("@BranchID", BranchID);
             cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
             cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
             cmd.Parameters.AddWithValue("@IsActive", IsActive);
@@ -86,6 +86,36 @@ namespace DataAccessLayer
 
             SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
+        }
+
+        public DataSet SearchClass(string ClassName)
+        {
+            conn = con.getConnection();
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("SearchClass_SP", conn);
+            cmd.Parameters.AddWithValue("@ClassName", ClassName);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
+        }
+
+        public DataSet BindClassName()
+        {
+            conn = con.getConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("BindClassName_SP", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+
             sqlDa.Fill(ds);
             conn.Close();
             return ds;
