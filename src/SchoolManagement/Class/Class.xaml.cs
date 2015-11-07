@@ -33,14 +33,16 @@ namespace SchoolManagement.Branch
         int ClassID, BranchID, UpdatedByUserID, IsActive, IsDeleted, UpID;
         string ClassName, ShortName, UpdatedDate, Color, Board;
         BLAddClass obj_AddClass = new BLAddClass();
+        BLAddBranch obj_Branch = new BLAddBranch();
         #endregion
 
         #region------------------- public Class()------------------------------
         public Class()
         {
             InitializeComponent();
-            clearFields();
-            BindGridview();
+            //clearFields();
+            //BindBranchName();
+            //BindGridview();
         }
 
         #endregion
@@ -341,7 +343,7 @@ namespace SchoolManagement.Branch
             if (ds.Tables[0].Rows.Count > 0)
             {
                 dgvClass.ItemsSource = ds.Tables[0].DefaultView;
-                dgvClass.Columns[0].Visibility = Visibility.Collapsed;
+                //dgvClass.Columns[0].Visibility = Visibility.Collapsed;
             }
         }
         #endregion
@@ -350,37 +352,25 @@ namespace SchoolManagement.Branch
         #region------------------------BindBranchName()---------------------------------------
         private void BindBranchName()
         {
-            SqlConnection con = new SqlConnection();
+            try
             {
-                try
-                {
+                DataSet ds = obj_Branch.BindBranchName();
 
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand("BindBranchName_SP", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    // DataTable dt = new DataTable();
-                    DataSet ds = new DataSet();
-                    da.Fill(ds, "Branch");
 
-                    if (ds.Tables["Branch"].Rows.Count > 0)
-                    {
-                        cbBranchName.DataContext = ds.Tables["Branch"].DefaultView;
-                        cbBranchName.DisplayMemberPath = ds.Tables["Branch"].Columns["BranchName"].ToString();
-                        cbBranchName.SelectedValuePath = ds.Tables["Branch"].Columns["BranchID"].ToString();
-                    }
-                }
-                catch (Exception eo)
+                if (ds.Tables[0].Rows.Count > 0)
                 {
-                    MessageBox.Show(eo.Message.ToString());
+                    cbBranchName.DataContext = ds.Tables[0].DefaultView;
+                    cbBranchName.DisplayMemberPath = ds.Tables[0].Columns["BranchName"].ToString();
+                    cbBranchName.SelectedValuePath = ds.Tables[0].Columns["BranchID"].ToString();
+
                 }
-                finally
-                {
-                    //cmd.Dispose();
-                    con.Close();
-                    con.Dispose();
-                }
+
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+            
         }
         #endregion
 
@@ -390,12 +380,12 @@ namespace SchoolManagement.Branch
             try
             {               
                 object item = dgvClass.SelectedItem;
-                //string Id = (dgvClass.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                string Id = (dgvClass.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                 string ClassName = (dgvClass.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
                 string ShortName = (dgvClass.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
                 string Board =     (dgvClass.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
                 string Color = (dgvClass.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
-                
+                string BranchName = (dgvClass.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text;
                 DataSet ds = obj_AddClass.GetClassDetail(ClassName, ShortName,Board,Color);
                 if (ds.Tables.Count > 0)
                 {
@@ -463,5 +453,12 @@ namespace SchoolManagement.Branch
             }
         }
         #endregion
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            clearFields();
+            BindBranchName();
+            BindGridview();
+        }
     }
 }
