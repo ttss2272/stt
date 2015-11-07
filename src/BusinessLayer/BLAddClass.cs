@@ -18,10 +18,10 @@ namespace BusinessLayer
         }
 
         //To Bind Gridview
-        public DataSet BindClass(int ClassID)
+        public DataSet BindClass(int ClassID,string ClassName)
         {
-            DataSet ds = obj_AddClass.BindClass(ClassID);
-                return ds;
+            DataSet ds = obj_AddClass.BindClass(ClassID,ClassName);
+            return ds;
         }
 
         public string DeleteClass(int ClassID, int UpdatedByUserID, string UpdatedDate)

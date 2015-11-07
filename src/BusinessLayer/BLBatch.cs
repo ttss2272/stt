@@ -18,9 +18,10 @@ namespace BusinessLayer
                return result;
         }
 
-        public DataSet BindBatch(int BatchID)
+        //To Bind Gridview
+        public DataSet BindBatch(int BatchID,string BatchName)
         {
-            DataSet ds = obj_Batch.BindBatch(BatchID);
+            DataSet ds = obj_Batch.BindBatch(BatchID,BatchName);
                 return ds;
         }
 
