@@ -16,9 +16,9 @@ namespace BusinessLayer
             return result;
         }
 
-        public DataSet BindBranch(int BranchID)
+        public DataSet BindBranch(int BranchID,string BranchName,string BranchCode)
         {
-            DataSet getBranch = obj_AddBranch.GetBranchDetail(BranchID);
+            DataSet getBranch = obj_AddBranch.GetBranchDetail(BranchID,BranchName, BranchCode);
             return getBranch;
         }
 
