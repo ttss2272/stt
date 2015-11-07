@@ -22,9 +22,9 @@ namespace BusinessLayer
             string result = obj_Room.UpdateRoom(RoomId, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
             return result;
         }
-        public DataSet BindFullGrid(int RoomId,string RoomName)
+        public DataSet BindFullGrid(int RoomId,string BranchName, string RoomName)
         {
-            DataSet ds = obj_Room.BindFullGrid(RoomId,RoomName);
+            DataSet ds = obj_Room.BindFullGrid(RoomId,BranchName, RoomName);
             return ds;
         }
         public string DeleteRoom(int RoomID, int UpdatedByUserID, string UpdatedDate)
