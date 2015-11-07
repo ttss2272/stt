@@ -88,7 +88,7 @@ namespace SchoolManagement.Room
             cmbCapacity.Text = "";
             txtColor.Text = "";
             cmbCapacity_Items();
-           // BindFullGrid();
+            BindFullGrid();
             BindBranchName();
         }
         #endregion
@@ -165,7 +165,7 @@ namespace SchoolManagement.Room
                     dgRoom.ItemsSource = ds.Tables[0].DefaultView;
 
                 }
-
+                dgRoom.Items.Refresh();
             }
             catch (Exception ex)
             {
