@@ -31,15 +31,17 @@ namespace SchoolManagement.Branch
      * Purpose:- Declare Global Variables
      */
         #region------------------------Declare Variables Globally()--------------------
-        int BatchID, UpdatedByUserID, IsActive, IsDeleted, ClassID, UpID;
+        int BatchID, UpdatedByUserID, IsActive, IsDeleted, ClassID, UpID, LectureDuration, IsLunchBreak, LunchBreakStartTime, LunchBreakEndTime, MaxNoLecturesDay, MaxNoLecturesWeek, IsAllowMoreThanOneLectInBatch, MaxNoOfLecureInRow;
         string BatchName, BatchCode, UpdatedDate;
         BLBatch obj_Batch = new BLBatch();
+        BLAddClass obj_Class = new BLAddClass();
         #endregion
        
         public Batch()
         {
             InitializeComponent();
             clearFields();
+            BindClassName();
             BindGridview();
         }
 
@@ -76,8 +78,8 @@ namespace SchoolManagement.Branch
          */
         #region--------------------------------------SaveDetails()-------------------------------------
         private void SaveDetails()
-        {            
-            string result = obj_Batch.saveBatch(BatchID,ClassID, BatchName, BatchCode,UpdatedByUserID, UpdatedDate, IsActive,IsDeleted);
+        {
+            string result = obj_Batch.saveBatch(BatchID, ClassID, BatchName, BatchCode, LectureDuration, IsLunchBreak, LunchBreakStartTime, LunchBreakEndTime, MaxNoLecturesDay, MaxNoLecturesWeek, IsAllowMoreThanOneLectInBatch, MaxNoOfLecureInRow,UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
             if (result == "Save Sucessfully...!!!" && result == "Updated Sucessfully...!!!")
             {
                 MessageBox.Show(result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -116,7 +118,29 @@ namespace SchoolManagement.Branch
         {
             BatchName = txtBatchName.Text.Trim();
             BatchCode = txtBatchCode.Text.Trim();
-            ClassID = Convert.ToInt32(cbClassName.SelectedValue.ToString());
+            ClassID = Convert.ToInt32(cbClassName.SelectedValue);
+            LectureDuration = Convert.ToInt32(txtlecDuration.SelectedText);
+            if (chkLunchBreak.IsChecked == true)
+            {
+                IsLunchBreak = 1;
+            }
+            else
+            {
+                IsLunchBreak = 0;
+            }
+            LunchBreakStartTime = Convert.ToInt32(comboBox1.SelectedValue);
+            LunchBreakEndTime = Convert.ToInt32(comboBox3.SelectedValue);
+            MaxNoLecturesDay = Convert.ToInt32(txtMaxnoLecDay.SelectedText);
+            MaxNoLecturesWeek = Convert.ToInt32(txtMaxnoLecWeek.SelectedText);
+            if (chkallow.IsChecked == true)
+            {
+                IsAllowMoreThanOneLectInBatch = 1;
+            }
+            else
+            {
+                IsAllowMoreThanOneLectInBatch = 0;
+            }
+            MaxNoOfLecureInRow = Convert.ToInt32(txtMaxLecRow.SelectedText);
             UpdatedByUserID = 1;
             UpdatedDate = DateTime.Now.ToString();           
             if (rdoActive.IsChecked == true)
@@ -224,37 +248,25 @@ namespace SchoolManagement.Branch
         #region------------------------BindClassName()---------------------------------------
         private void BindClassName()
         {
-            SqlConnection con = new SqlConnection();
+            try
             {
-                try
-                {
+                DataSet ds = obj_Class.BindClassName();
 
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand("BindClassName_SP", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    // DataTable dt = new DataTable();
-                    DataSet ds = new DataSet();
-                    da.Fill(ds, "Class");
 
-                    if (ds.Tables["Class"].Rows.Count > 0)
-                    {
-                        cbClassName.DataContext = ds.Tables["Class"].DefaultView;
-                        cbClassName.DisplayMemberPath = ds.Tables["Class"].Columns["ClassName"].ToString();
-                        cbClassName.SelectedValuePath = ds.Tables["Class"].Columns["ClassID"].ToString();
-                    }
-                }
-                catch (Exception eo)
+                if (ds.Tables[0].Rows.Count > 0)
                 {
-                    MessageBox.Show(eo.Message.ToString());
+                    cbClassName.DataContext = ds.Tables[0].DefaultView;
+                    cbClassName.DisplayMemberPath = ds.Tables[0].Columns["ClassName"].ToString();
+                    cbClassName.SelectedValuePath = ds.Tables[0].Columns["ClassID"].ToString();
+
                 }
-                finally
-                {
-                    //cmd.Dispose();
-                    con.Close();
-                    con.Dispose();
-                }
+
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+
         }
         #endregion
 
