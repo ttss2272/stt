@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BusinessLayer;
 using System.Data;
+using System.Text.RegularExpressions;
 
 namespace SchoolManagement.User
 {
@@ -57,16 +58,16 @@ namespace SchoolManagement.User
             }
             else if (txtEmailID.Text != "")
             {
-                //         string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
-                //@"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
-                //   @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
-                //         Regex re = new Regex(strRegex);
-                //         if (re.IsMatch(txtEmailID.Text))
-                //             return (true);
-                //         else
-                //             MessageBox.Show("Please Enter Poper Email ID");
-                //         txtEmailID.Focus();
-                //         return (false);
+                string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
+                @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+                @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+                Regex re = new Regex(strRegex);
+                if (re.IsMatch(txtEmailID.Text))
+                    return (true);
+                else
+                    MessageBox.Show("Please Enter Poper Email ID");
+                txtEmailID.Focus();
+                return (false);
             }
             else if (string.IsNullOrEmpty(txtContactNo.Text))
             {
