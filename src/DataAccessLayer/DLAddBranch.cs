@@ -118,5 +118,21 @@ namespace DataAccessLayer
             con.Close();
             return ds;
         }
+
+        public DataSet GetBranchCount()
+        {
+            con = conn.getConnection();
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("GetBranchCount_SP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+
+            sqlDa.Fill(ds);
+            con.Close();
+            return ds;
+        }
     }
 }
