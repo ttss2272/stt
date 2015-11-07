@@ -364,7 +364,10 @@ namespace SchoolManagement.Room
             }
         }
         #endregion
-
+        /* Created By:- Pranjali
+        * Created Date :- 6 Nov 2015
+        * Purpose:- Update  cell click
+       */
         private void btnUpdate_Click_1(object sender, RoutedEventArgs e)
         {
             try
