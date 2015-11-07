@@ -119,7 +119,7 @@ namespace SchoolManagement.Branch
             BatchName = txtBatchName.Text.Trim();
             BatchCode = txtBatchCode.Text.Trim();
             ClassID = Convert.ToInt32(cbClassName.SelectedValue);
-            LectureDuration = Convert.ToInt32(txtlecDuration.SelectedText);
+            LectureDuration = Convert.ToInt32(txtlecDuration.Text.ToString());
             if (chkLunchBreak.IsChecked == true)
             {
                 IsLunchBreak = 1;
@@ -130,8 +130,8 @@ namespace SchoolManagement.Branch
             }
             LunchBreakStartTime = Convert.ToInt32(comboBox1.SelectedValue);
             LunchBreakEndTime = Convert.ToInt32(comboBox3.SelectedValue);
-            MaxNoLecturesDay = Convert.ToInt32(txtMaxnoLecDay.SelectedText);
-            MaxNoLecturesWeek = Convert.ToInt32(txtMaxnoLecWeek.SelectedText);
+            MaxNoLecturesDay = Convert.ToInt32(txtMaxnoLecDay.Text.ToString());
+            MaxNoLecturesWeek = Convert.ToInt32(txtMaxnoLecWeek.Text.ToString());
             if (chkallow.IsChecked == true)
             {
                 IsAllowMoreThanOneLectInBatch = 1;
@@ -140,7 +140,7 @@ namespace SchoolManagement.Branch
             {
                 IsAllowMoreThanOneLectInBatch = 0;
             }
-            MaxNoOfLecureInRow = Convert.ToInt32(txtMaxLecRow.SelectedText);
+            MaxNoOfLecureInRow = Convert.ToInt32(txtMaxLecRow.Text.ToString());
             UpdatedByUserID = 1;
             UpdatedDate = DateTime.Now.ToString();           
             if (rdoActive.IsChecked == true)
@@ -192,7 +192,61 @@ namespace SchoolManagement.Branch
         }
         #endregion
 
+        #region--------------bind Lunch Break Time------------------------------
+        private void comboBox1_Items()
+        {
+            comboBox1.Items.Add("select");
+            int i;
+            for (i = 1; i <= 12; i++)
+            {
+                comboBox1.Items.Add(i);
+            }
+            comboBox1.SelectedIndex = 0;
+        }
+        #endregion
+
+        #region--------------bind Lunch Break Time------------------------------
+        private void comboBox2_Items()
+        {
+            comboBox2.Items.Add("select");
+            int i;
+            for (i = 1; i <= 60; i++)
+            {
+                comboBox2.Items.Add(i);
+            }
+            comboBox2.SelectedIndex = 0;
+        }
+        #endregion
+
+        #region--------------bind Lunch Break Time------------------------------
+        private void comboBox3_Items()
+        {
+            comboBox3.Items.Add("select");
+            int i;
+            for (i = 1; i <= 12; i++)
+            {
+                comboBox3.Items.Add(i);
+            }
+            comboBox3.SelectedIndex = 0;
+        }
+        #endregion
+
+        #region--------------bind Lunch Break Time------------------------------
+        private void comboBox4_Items()
+        {
+            comboBox4.Items.Add("select");
+            int i;
+            for (i = 1; i <= 60; i++)
+            {
+                comboBox4.Items.Add(i);
+            }
+            comboBox4.SelectedIndex = 0;
+        }
+        #endregion
+
+
         #region-----------------------------clearFields()------------------------------------------
+
         private void clearFields()
         {
             txtBatchName.Text = "";
@@ -398,6 +452,15 @@ namespace SchoolManagement.Branch
         }
                     
         #endregion
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            comboBox1_Items();
+            comboBox2_Items();
+            comboBox3_Items();
+            comboBox4_Items();
+
+        }
     }
 }
 
