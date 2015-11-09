@@ -29,7 +29,7 @@ namespace SchoolManagement.Room
 
         int RoomId,Capacity,BranchID,UpdatedByUserID,IsActive,IsDeleted,UpID;
         int IsAllow,MaxLectDay,MaxLectWeek,MaxLectRow,SHr,SMin,EHr,EMin;
-        string RoomName, ShortName, Color1, UpdatedDate,Sign=":";
+        string RoomName, ShortName, Color1, UpdatedDate,Sign=":",n="0";
         DateTime StartTime, EndTime;
 
 
@@ -68,28 +68,17 @@ namespace SchoolManagement.Room
                 cmbCapacity.Focus();
                 return false;
             }
-            else if (cmbSHr.SelectedIndex == 0)
+            else if (cmbSHr.SelectedIndex == 0 || cmbSMin.SelectedIndex == 0 )
             {
-                MessageBox.Show("Please Select start Hours...");
+                MessageBox.Show("Please Select start Time...");
                 cmbSHr.Focus();
                 return false;
             }
-            else if (cmbSMin.SelectedIndex == 0)
+            
+            else if (cmbEHr.SelectedIndex == 0 || cmbEMin.SelectedIndex == 0 )
             {
-                MessageBox.Show("Please Select Start Minutes...");
-                cmbSMin.Focus();
-                return false;
-            }
-            else if (cmbEHr.SelectedIndex == 0)
-            {
-                MessageBox.Show("Please Select End Hours...");
+                MessageBox.Show("Please Select End Time...");
                 cmbEHr.Focus();
-                return false;
-            }
-            else if (cmbEMin.SelectedIndex == 0)
-            {
-                MessageBox.Show("Please Select End Minutes...");
-                cmbEMin.Focus();
                 return false;
             }
             else if (cmbBranchName.SelectedIndex == -1)
@@ -129,10 +118,6 @@ namespace SchoolManagement.Room
             rdbInactive.IsChecked = false;
             chkAllowLect.IsChecked = false;
             cmbCapacity_Items();
-            cmbSHr_Items();
-            cmbSMin_Items();
-            cmbEHr_Items();
-            cmbEMin_Items();
             BindFullGrid();
             BindBranchName();
         }
@@ -280,11 +265,14 @@ namespace SchoolManagement.Room
         {
             cmbSHr.Items.Add("select");
             int i;
-            for (i = 1; i <= 12; i++)
+            for (i = 1; i <= 9; i++)
             {
-                cmbSHr.Items.Add(i);
+                cmbSHr.Items.Add(n + i.ToString());
 
             }
+            cmbSHr.Items.Add("10");
+            cmbSHr.Items.Add("11");
+            cmbSHr.Items.Add("12");
             cmbSHr.SelectedIndex = 0;
 
         }
@@ -304,11 +292,14 @@ namespace SchoolManagement.Room
         {
             cmbEHr.Items.Add("select");
             int i;
-            for (i = 1; i <= 12; i++)
+            for (i = 1; i <= 9; i++)
             {
-                cmbEHr.Items.Add(i);
+                cmbEHr.Items.Add(n + i.ToString());
 
             }
+            cmbEHr.Items.Add("10");
+            cmbEHr.Items.Add("11");
+            cmbEHr.Items.Add("12");
             cmbEHr.SelectedIndex = 0;
 
         }
@@ -330,6 +321,10 @@ namespace SchoolManagement.Room
         {
             BindFullGrid();
             rdbActive.IsChecked = true;
+            cmbSHr_Items();
+            cmbSMin_Items();
+            cmbEHr_Items();
+            cmbEMin_Items();
         }
 
         /* Created By:- Sameer Shinde
@@ -369,14 +364,18 @@ namespace SchoolManagement.Room
                         cmbSHr.Text = a[0];
                         if (a[1] == "00")
                         { cmbSMin.Text = "0"; }
+                        else if (a[1] == "05")
+                        { cmbSMin.Text = "5"; }
                         else
-                        { cmbSMin.Text = a[1];}
+                        { cmbSMin.Text = a[1]; }
 
                         string ENDtime = ((System.Data.DataRowView)(dgRoom.CurrentItem)).Row.ItemArray[13].ToString();
                         string[] b = ENDtime.Split(':');
                         cmbEHr.Text = b[0];
                         if (b[1] == "00")
                         { cmbEMin.Text = "0"; }
+                        else if (b[1] == "05")
+                        { cmbEMin.Text = "5"; }
                         else
                         { cmbEMin.Text = b[1]; }
 
@@ -500,6 +499,11 @@ namespace SchoolManagement.Room
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void btnclear_Click(object sender, RoutedEventArgs e)
+        {
+            clearFields();
         }
 
     }
