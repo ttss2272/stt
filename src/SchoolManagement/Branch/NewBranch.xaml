@@ -4,7 +4,7 @@
         Title="Institute" Height="641" Width="729" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" xmlns:my="clr-namespace:SchoolManagement">
     <Grid>
         <StackPanel>
-            <my:Menu_UserControl HorizontalAlignment="Left" x:Name="menu_UserControl1" VerticalAlignment="Top" xmlns:my="clr-namespace:SchoolManagement"/>
+            <my:Menu_UserControl HorizontalAlignment="Left" x:Name="menu_UserControl1" VerticalAlignment="Top" />
         </StackPanel>
         <GroupBox Header="Branch Details" Height="271" HorizontalAlignment="Left" Margin="12,42,0,0" Name="groupBox1" VerticalAlignment="Top" Width="683">
             <Grid Height="240">
