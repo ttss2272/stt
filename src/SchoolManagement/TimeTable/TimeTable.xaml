@@ -11,7 +11,7 @@
                     <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="193,25,0,0" Name="cbInstituteName" VerticalAlignment="Top" Width="178" />
                     <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="172,25,0,0" Name="label7" VerticalAlignment="Top" />
                     <Label Content="Branch Name" Height="28" HorizontalAlignment="Left" Margin="73,62,0,0" Name="label1" VerticalAlignment="Top" />
-                    <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="193,65,0,0" Name="cbBranchName" VerticalAlignment="Top" Width="178" />
+                    <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="193,65,0,0" Name="cbBranchName" VerticalAlignment="Top" Width="178" SelectionChanged="cbBranchName_SelectionChanged" />
                     <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="172,65,0,0" Name="label2" VerticalAlignment="Top" />
                     <Label Content="Class Name" Height="28" HorizontalAlignment="Left" Margin="83,101,0,0" Name="label3" VerticalAlignment="Top" />
                     <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="193,104,0,0" Name="cbClassName" VerticalAlignment="Top" Width="178" />

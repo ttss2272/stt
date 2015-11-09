@@ -114,7 +114,7 @@ namespace SchoolManagement.TimeTable
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            BindClassName();
+           
             bindInstituteName();
             BindBranchName();                                
             BindBatchName();
@@ -239,6 +239,11 @@ namespace SchoolManagement.TimeTable
         private void cbSubjectName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BindTeacherName();
+        }
+
+        private void cbBranchName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BindClassName();
         }
     }
 }
