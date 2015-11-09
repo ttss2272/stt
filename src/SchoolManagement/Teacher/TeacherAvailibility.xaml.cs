@@ -24,28 +24,38 @@ namespace SchoolManagement.Teacher
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:- Decalre Variables
          * StartTime:-
          * EndTime:-
          */
         #region---------------------------------Declare variables Globally-------------------------------------
         BLTeacher objTeacher = new BLTeacher();
-        int daycheckcount=0;
-
+        int daycheckcount=0,cnn;
+        string tmpStartTime, tmpEndTime;
+        string [] StartTime;
+        string [] EndTime;
         #endregion
 
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:-main
          * StartTime:-
          * EndTime:-
          */
         #region---------------------------------Main()-------------------------------------
         public TeacherAvailibility()
         {
-            InitializeComponent();
-            ClearFields();
+            try
+            {
+                InitializeComponent();
+                ClearFields();
+            }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
+            }
+            
         }
         #endregion
 
@@ -53,7 +63,7 @@ namespace SchoolManagement.Teacher
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:- Clear All Fiealds
          * StartTime:-
          * EndTime:-
          */
@@ -69,7 +79,7 @@ namespace SchoolManagement.Teacher
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:-Click on Available for Same Time
          * StartTime:-
          * EndTime:-
          */
@@ -96,7 +106,7 @@ namespace SchoolManagement.Teacher
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:- Click On Go Button
          * StartTime:-
          * EndTime:-
          */
@@ -118,7 +128,7 @@ namespace SchoolManagement.Teacher
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:- Click On Save Button
          * StartTime:-
          * EndTime:-
          */
@@ -139,7 +149,7 @@ namespace SchoolManagement.Teacher
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:- Bind  Teacher To Drop Down
          * StartTime:-
          * EndTime:-
          */
@@ -163,7 +173,7 @@ namespace SchoolManagement.Teacher
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:- Bind Timing
          * StartTime:-
          * EndTime:-
          */
@@ -313,7 +323,7 @@ namespace SchoolManagement.Teacher
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:- Check Boxes Checked
          * StartTime:-
          * EndTime:-
          */
@@ -321,7 +331,7 @@ namespace SchoolManagement.Teacher
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:- Click on Available All Days
          * StartTime:-
          * EndTime:-
          */
@@ -351,7 +361,7 @@ namespace SchoolManagement.Teacher
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:-Click on  Available on Monday
          * StartTime:-
          * EndTime:-
          */
@@ -387,7 +397,7 @@ namespace SchoolManagement.Teacher
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:-Click on  Available on Tuesday
          * StartTime:-
          * EndTime:-
          */
@@ -424,7 +434,7 @@ namespace SchoolManagement.Teacher
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:-Click on  Available on Wednsday
          * StartTime:-
          * EndTime:-
          */
@@ -460,7 +470,7 @@ namespace SchoolManagement.Teacher
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:-Click on  Available on Trusday
          * StartTime:-
          * EndTime:-
          */
@@ -496,7 +506,7 @@ namespace SchoolManagement.Teacher
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:-Click on  Available on Friday
          * StartTime:-
          * EndTime:-
          */
@@ -532,7 +542,7 @@ namespace SchoolManagement.Teacher
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:-Click on  Available on Saturday
          * StartTime:-
          * EndTime:-
          */
@@ -568,7 +578,7 @@ namespace SchoolManagement.Teacher
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:- Click on  Available Sunday
          * StartTime:-
          * EndTime:-
          */
@@ -606,7 +616,7 @@ namespace SchoolManagement.Teacher
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:- Enable Drop Down
          * StartTime:-
          * EndTime:-
          */
@@ -654,7 +664,7 @@ namespace SchoolManagement.Teacher
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:-Disable Dropdown
          * StartTime:-
          * EndTime:-
          */
@@ -702,7 +712,7 @@ namespace SchoolManagement.Teacher
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:-Bind data grid
          * StartTime:-
          * EndTime:-
          */
@@ -722,7 +732,7 @@ namespace SchoolManagement.Teacher
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:- Get Teacher Available Details
          * StartTime:-
          * EndTime:-
          */
@@ -746,7 +756,174 @@ namespace SchoolManagement.Teacher
                     }
                     for (int i = 0; i <= cnt; i++)
                     {
-                        //s=ds.Tables[0]
+                        s = ds.Tables[0].Rows[i]["Day"].ToString();
+
+                        if ((ds.Tables[0].Rows[0]["StartTime"].ToString() == ds.Tables[0].Rows[0]["StartTime"]) && (ds.Tables[0].Rows[0]["EndTime"] == ds.Tables[0].Rows[0]["EndTime"]))
+                        {
+                            cnn++;
+
+                        }
+                        switch (s)
+                        {
+                            case ("Mon"):
+                                {
+                                    tmpStartTime =  ds.Tables[0].Rows[i]["StartTime"].ToString();
+                                    string [] StartTime = tmpStartTime.Split(':');
+                                    chkStartHrs1.Text = StartTime[0];
+                                    if (StartTime[1] == "00")
+                                    { chkStartMin1.Text = "0"; }
+                                    else
+                                    { chkStartMin1.Text = StartTime[1]; }
+                                    
+                                    tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
+                                    string[] EndTime = tmpEndTime.Split(':');
+                                    chkEndhrs1.Text = EndTime[0];
+                                    if (EndTime[1] == "00")
+                                    { EndMin1.Text = "0"; }
+                                    else
+                                    {EndMin1.Text=EndTime[1];}
+                                    break;
+                                }
+                            case ("Tue"):
+                                {
+                                    tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
+                                    string[] StartTime = tmpStartTime.Split(':');
+                                    chkStartHrs2.Text = StartTime[0];
+                                    if (StartTime[1] == "00")
+                                    { chkStartMin2.Text = "0"; }
+                                    else
+                                    { chkStartMin2.Text = StartTime[1]; }
+
+                                    tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
+                                    string[] EndTime = tmpEndTime.Split(':');
+                                    chkEndhrs2.Text = EndTime[0];
+                                    if (EndTime[1] == "00")
+                                    { EndMin2.Text = "0"; }
+                                    else
+                                    { EndMin2.Text = EndTime[1]; }
+                                    break;
+                                }
+                            case ("Wed"):
+                                {
+                                    tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
+                                    string[] StartTime = tmpStartTime.Split(':');
+                                    chkStartHrs3.Text = StartTime[0];
+                                    if (StartTime[1] == "00")
+                                    { chkStartMin3.Text = "0"; }
+                                    else
+                                    { chkStartMin3.Text = StartTime[1]; }
+
+                                    tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
+                                    string[] EndTime = tmpEndTime.Split(':');
+                                    chkEndhrs3.Text = EndTime[0];
+                                    if (EndTime[1] == "00")
+                                    { EndMin3.Text = "0"; }
+                                    else
+                                    { EndMin3.Text = EndTime[1]; }
+                                    break;
+                                }
+                            case ("Thru"):
+                                {
+                                    tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
+                                    string[] StartTime = tmpStartTime.Split(':');
+                                    chkStartHrs4.Text = StartTime[0];
+                                    if (StartTime[1] == "00")
+                                    { chkStartMin4.Text = "0"; }
+                                    else
+                                    { chkStartMin4.Text = StartTime[1]; }
+
+                                    tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
+                                    string[] EndTime = tmpEndTime.Split(':');
+                                    chkEndhrs4.Text = EndTime[0];
+                                    if (EndTime[1] == "00")
+                                    { EndMin4.Text = "0"; }
+                                    else
+                                    { EndMin4.Text = EndTime[1]; }
+                                    break;
+                                }
+
+                            case ("Fri"):
+                                {
+                                    tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
+                                    string[] StartTime = tmpStartTime.Split(':');
+                                    chkStartHrs5.Text = StartTime[0];
+                                    if (StartTime[1] == "00")
+                                    { chkStartMin5.Text = "0"; }
+                                    else
+                                    { chkStartMin5.Text = StartTime[1]; }
+
+                                    tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
+                                    string[] EndTime = tmpEndTime.Split(':');
+                                    chkEndhrs5.Text = EndTime[0];
+                                    if (EndTime[1] == "00")
+                                    { EndMin5.Text = "0"; }
+                                    else
+                                    { EndMin5.Text = EndTime[1]; }
+                                    break;
+                                }
+                            case ("Sat"):
+                                {
+                                    tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
+                                    string[] StartTime = tmpStartTime.Split(':');
+                                    chkStartHrs6.Text = StartTime[0];
+                                    if (StartTime[1] == "00")
+                                    { chkStartMin6.Text = "0"; }
+                                    else
+                                    { chkStartMin6.Text = StartTime[1]; }
+
+                                    tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
+                                    string[] EndTime = tmpEndTime.Split(':');
+                                    chkEndhrs6.Text = EndTime[0];
+                                    if (EndTime[1] == "00")
+                                    { EndMin6.Text = "0"; }
+                                    else
+                                    { EndMin6.Text = EndTime[1]; }
+                                    break;
+                                }
+                            case ("Sun"):
+                                {
+                                    tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
+                                    string[] StartTime = tmpStartTime.Split(':');
+                                    chkStartHrs7.Text = StartTime[0];
+                                    if (StartTime[1] == "00")
+                                    { chkStartMin7.Text = "0"; }
+                                    else
+                                    { chkStartMin7.Text = StartTime[1]; }
+
+                                    tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
+                                    string[] EndTime = tmpEndTime.Split(':');
+                                    chkEndhrs7.Text = EndTime[0];
+                                    if (EndTime[1] == "00")
+                                    { EndMin7.Text = "0"; }
+                                    else
+                                    { EndMin7.Text = EndTime[1]; }
+                                    break;
+                                }
+                        }
+
+                        if (cnn == 7)
+                        {
+                            chkAvailSameTime.IsChecked = true;
+
+                            tmpStartTime = ds.Tables[0].Rows[0]["StartTime"].ToString();
+                            string[] StartTime = tmpStartTime.Split(':');
+                            chkStartHrs.Text = StartTime[0];
+                            if (StartTime[1] == "00")
+                            { chkStartMin.Text = "0"; }
+                            else
+                            { chkStartMin7.Text = StartTime[1]; }
+
+                            tmpEndTime = ds.Tables[0].Rows[0]["EndTime"].ToString();
+                            string[] EndTime = tmpEndTime.Split(':');
+                            chkEndhrs.Text = EndTime[0];
+                            if (EndTime[1] == "00")
+                            { EndMin.Text = "0"; }
+                            else
+                            { EndMin.Text = EndTime[1]; }
+                            
+                        }
+
+                        
                     }
 
                 }
@@ -762,7 +939,7 @@ namespace SchoolManagement.Teacher
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:- Chaeck All Days
          * StartTime:-
          * EndTime:-
          */
@@ -784,7 +961,7 @@ namespace SchoolManagement.Teacher
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
-         * Purpose:-
+         * Purpose:- Un Check All Days
          * StartTime:-
          * EndTime:-
          */
