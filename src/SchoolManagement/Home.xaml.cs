@@ -22,6 +22,10 @@ namespace SchoolManagement
         {
             InitializeComponent();
            // stackPanelContainer.Children.Add(new User.User());
+            this.WindowState = WindowState.Maximized;
+            this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
+            this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
+            
         }
     }
 }
