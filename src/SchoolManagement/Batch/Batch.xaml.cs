@@ -15,7 +15,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace SchoolManagement.Branch
+namespace SchoolManagement.Batch
 {
     /// <summary>
     /// Interaction logic for Batch.xaml
