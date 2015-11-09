@@ -1,9 +1,9 @@
 ﻿<Window x:Class="SchoolManagement.Teacher.Teacher1"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Teacher1" Height="732" Width="786">
+        Title="Teacher1" Height="786" Width="800" xmlns:my="clr-namespace:SchoolManagement">
     <Grid>
-        <GroupBox Header="Teacher"  VerticalAlignment="Stretch" Name="grpMain" Margin="0,0,0,10">
+        <GroupBox Header="Teacher" HorizontalAlignment="Center" VerticalAlignment="Top" Name="grpMain" Margin="0,41,0,0">
             <Grid>
                 <GroupBox Header="Personal Information" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="173" Margin="36,-2,22,0">
                     <Grid HorizontalAlignment="Center">
@@ -70,11 +70,9 @@
                     </Grid>
                 </GroupBox>
             </Grid>
-
-            
-                
-          
-
         </GroupBox>
+        <StackPanel>
+            <my:Menu_UserControl HorizontalAlignment="Left" x:Name="menu_UserControl1" VerticalAlignment="Top" />
+        </StackPanel>
     </Grid>
 </Window>
