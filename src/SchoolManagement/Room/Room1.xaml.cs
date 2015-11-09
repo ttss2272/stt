@@ -120,6 +120,7 @@ namespace SchoolManagement.Room
             rdbActive.IsChecked = false;
             rdbInactive.IsChecked = false;
             chkAllowLect.IsChecked = false;
+            btnAdd.Content = "Save";
             cmbCapacity_Items();
             BindFullGrid();
             BindBranchName();
@@ -177,7 +178,7 @@ namespace SchoolManagement.Room
                 {
                     SetParameters();
                     string Result = obj_Room.saveAddRoom(RoomId, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted,MaxLectDay,MaxLectWeek,MaxLectRow,StartTime,EndTime,IsAllow);
-                    if (Result == "Save Sucessfully...!!!")
+                    if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
                     {
                         MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
                         clearFields();
@@ -402,6 +403,7 @@ namespace SchoolManagement.Room
                             chkAllowLect.IsChecked = false; 
                         }
                         btnDelete.IsEnabled = true;
+                        btnAdd.Content = "Update";
                     }
                 }
 

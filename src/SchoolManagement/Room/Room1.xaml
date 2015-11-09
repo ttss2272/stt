@@ -23,15 +23,12 @@
                 <TextBox Height="28" HorizontalAlignment="Left" Margin="198,122,0,0" Name="txtColor" VerticalAlignment="Top" Width="157" TabIndex="4" />
                 <TextBox Height="28" HorizontalAlignment="Left" Margin="198,88,0,0" Name="txtShortName" VerticalAlignment="Top" Width="157" TabIndex="3" />
                 <ComboBox Height="28" HorizontalAlignment="Left" Margin="198,156,0,0" Name="cmbCapacity" VerticalAlignment="Top" Width="157" ItemsSource="{Binding}" TabIndex="5" />
-                <Button Content="Add" Height="31" HorizontalAlignment="Left" Margin="141,250,0,0" Name="btnAdd" VerticalAlignment="Top" Width="75" Click="btnAdd_Click" TabIndex="14" FontWeight="Bold" />
-                <Button Content="Update" Height="31" HorizontalAlignment="Left" Margin="238,250,0,0" Name="btnUpdate" VerticalAlignment="Top" Width="75" Click="btnUpdate_Click_1" TabIndex="15" FontWeight="Bold" />
-               
+                <Button Content="Save" Height="31" HorizontalAlignment="Left" Margin="181,250,0,0" Name="btnAdd" VerticalAlignment="Top" Width="75" Click="btnAdd_Click" TabIndex="14" FontWeight="Bold" />
                 <Label Content="Status" Height="28" HorizontalAlignment="Left" Margin="57,193,0,0" Name="label7" VerticalAlignment="Top" Width="108" FontWeight="Bold" />
                 <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFE83030" Height="28" HorizontalAlignment="Left" Margin="161,198,0,0" Name="label12" VerticalAlignment="Top" Width="31" />
                 <RadioButton Content="Acative" Height="16" HorizontalAlignment="Left" Margin="198,205,0,0" Name="rdbActive" VerticalAlignment="Top" FontWeight="Bold" />
                 <RadioButton Content="InAcative" Height="16" HorizontalAlignment="Left" Margin="309,205,0,0" Name="rdbInactive" VerticalAlignment="Top" FontWeight="Bold" />
-                <Button Content="Delete" Height="31" HorizontalAlignment="Left" Margin="335,250,0,0" Name="btnDelete" VerticalAlignment="Top" Width="75" Click="btnDelete_Click_1" TabIndex="16" FontWeight="Bold" />
-                <Button Content="Cancel" Height="31" HorizontalAlignment="Left" Margin="536,250,0,0" Name="btnCancel" VerticalAlignment="Top" Width="75" Click="btnCancel_Click" TabIndex="17" FontWeight="Bold" />
+                <Button Content="Delete" Height="31" HorizontalAlignment="Left" Margin="303,250,0,0" Name="btnDelete" VerticalAlignment="Top" Width="75" Click="btnDelete_Click_1" TabIndex="16" FontWeight="Bold" />
                 <Label Content="Max No. Of Lect/Day" Height="28" HorizontalAlignment="Left" Margin="389,14,0,0" Name="label13" VerticalAlignment="Top" Width="129" FontWeight="Bold" />
                 <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFF51F1F" Height="28" HorizontalAlignment="Left" Margin="536,14,0,0" Name="label16" VerticalAlignment="Top" Width="31" />
                 <TextBox Height="28" HorizontalAlignment="Left" Margin="573,14,0,0" Name="txtLectDay" VerticalAlignment="Top" Width="157" TabIndex="6" />
