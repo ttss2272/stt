@@ -72,6 +72,25 @@ namespace SchoolManagement
             objUser.Show();
         }
 
+        private void menuSubject_Click(object sender, RoutedEventArgs e)
+        {
+            Subject.NewSubject objSubject = new Subject.NewSubject();
+            Close();
+            objSubject.Show();
+        }
+
+        private void menuTeacherAvailability_Click(object sender, RoutedEventArgs e)
+        {
+            Teacher.TeacherAvailibility objTeacher = new  Teacher.TeacherAvailibility();
+            Close();
+            objTeacher.Show();
+        }
+
+        private void menuExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
         private void Close()
         {
             Window parent = Window.GetWindow(this);

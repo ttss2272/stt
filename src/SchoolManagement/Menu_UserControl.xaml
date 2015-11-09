@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="600" >
     <Grid>
         <Menu Height="30" HorizontalAlignment="Left" FontWeight="Bold" Name="Menu" VerticalAlignment="Top" Width="auto">
             <MenuItem Header="Home" Name="menuHome" Click="menuHome_Click" Width="70" Height="30" />
@@ -14,10 +14,15 @@
                 <MenuItem Header="Teacher" Name="menuTeachers" Click="menuTeachers_Click"/>
                 <MenuItem Header="Room" Name="menuRoom" Click="menuRoom_Click"/>
                 <MenuItem Header="Batch" Name="menuBatch" Click="menuBatch_Click"/>
+                <MenuItem Header="Subject" Name="menuSubject" Click="menuSubject_Click"/>
+            </MenuItem>
+            <MenuItem Header="Transaction" Width="90" Height="30">
+                <MenuItem Header="Teacher Availability" Name="menuTeacherAvailability" Click="menuTeacherAvailability_Click"/>
             </MenuItem>
             <MenuItem Header="Setting" Width="70" Height="30">
                 <MenuItem Header="User" Name="menuUser" Click="menuUser_Click"/>
             </MenuItem>
+            <MenuItem Header="Exit" Width="70" Height="30"  Click="menuExit_Click"/>
         </Menu>
     </Grid>
 </UserControl>
