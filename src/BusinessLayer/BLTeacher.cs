@@ -47,5 +47,11 @@ namespace BusinessLayer
             DataSet ds = objTeacher.GetTeacherAvailableDetail(TeacherID);
             return ds;
         }
+
+        public DataSet BindTeacherName()
+        {
+            DataSet ds = objTeacher.BindTeacherName();
+            return ds;
+        }
     }
 }

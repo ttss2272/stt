@@ -49,5 +49,11 @@ namespace BusinessLayer
             return ds;
         }
 
+
+        public DataSet BindSubjectName()
+        {
+            DataSet ds = objSubject.BindSubjectName();
+            return ds;
+        }
     }
 }

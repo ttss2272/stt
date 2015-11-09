@@ -31,6 +31,12 @@ namespace BusinessLayer
         {
             string Result = obj_Room.DeleteRoom(RoomID, UpdatedByUserID, UpdatedDate);
             return Result;
-        }  
+        }
+
+        public DataSet BindRoomName()
+        {
+            DataSet ds = obj_Room.BindRoomName();
+            return ds;
+        }
     }
 }

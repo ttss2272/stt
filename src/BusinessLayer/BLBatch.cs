@@ -44,5 +44,11 @@ namespace BusinessLayer
             DataSet ds = obj_Batch.SearchBatch(BatchName);
             return ds;
         }
+
+        public DataSet BindBatchName()
+        {
+            DataSet ds = obj_Batch.BindBatchName();
+            return ds;
+        }
     }
 }
