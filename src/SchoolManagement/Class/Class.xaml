@@ -36,7 +36,7 @@
         </GroupBox>
         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Height="162" HorizontalAlignment="Left" Margin="68,424,0,0" Name="dgvClass" VerticalAlignment="Top" Width="503" IsReadOnly="True" CanUserResizeColumns="False" ItemsSource="{Binding}">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding RoomID}" Header="ClassID" Visibility="Hidden"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding ClassID}" Header="ClassID" Visibility="Hidden"></DataGridTextColumn>
                 <DataGridTextColumn  Header="BranchName" Width="100" Binding="{Binding BranchName}"></DataGridTextColumn>
                 <DataGridTextColumn Header="ClassName" Width="100" Binding="{Binding ClassName}"></DataGridTextColumn>
                 <DataGridTextColumn Header="ClassShortName" Width="100" Binding="{Binding ClassShortName}"></DataGridTextColumn>

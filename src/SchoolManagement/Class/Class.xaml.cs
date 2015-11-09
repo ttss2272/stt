@@ -84,8 +84,8 @@ namespace SchoolManagement.Branch
             string Result = obj_AddClass.saveAddClass(ClassID, ClassName, ShortName, Board, Color,BranchID, UpdatedByUserID, UpdatedDate, IsActive,IsDeleted);
             if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
             {
-         MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
-         clearFields();
+                 MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
+                 clearFields();
             }
             else
             {
@@ -169,10 +169,10 @@ namespace SchoolManagement.Branch
         #region-------------------------------------------------SetParameters()-------------------------------------
         private void SetParameters()
         {
-            //BranchID = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
+            ClassID = UpID;
             ClassName = txtClassName.Text.Trim();
             ShortName = txtShortName.Text.Trim();
-            Board = Convert.ToString(cbBoard.SelectedValue);
+            Board = cbBoard.Text.Trim();
             Color = txtcolor.Text.Trim();
             BranchID = Convert.ToInt32(cbBranchName.SelectedValue);
             UpdatedByUserID = 1;
@@ -201,10 +201,13 @@ namespace SchoolManagement.Branch
         #region-----------------------------clearFields()------------------------------------------
         private void clearFields()
         {
+            cbBranchName.Text = "";
             txtClassName.Text = "";
             txtShortName.Text = "";
             cbBoard.Text = "";
-            txtcolor.Text = "";                      
+            txtcolor.Text = "";
+            rdoActive.IsChecked = false;
+            rdoDeActive.IsChecked = false;       
         }
         #endregion                    
 
@@ -221,6 +224,7 @@ namespace SchoolManagement.Branch
                     DeleteSubject();
                     dgvClass.Items.Refresh();
                     BindGridview();
+                    clearFields();
                 }
             }
             catch (Exception ex)
@@ -239,7 +243,7 @@ namespace SchoolManagement.Branch
                 ClassID = UpID;
 
                 string Result = obj_AddClass.DeleteClass(ClassID, UpdatedByUserID, UpdatedDate);
-                if (Result == "Deleted Sucessfully.")
+                if (Result == "Deleted Sucessfully...!!")
 
                 {
                     MessageBox.Show(Result, "Delete Sucessfully", MessageBoxButton.OK, MessageBoxImage.Information);
