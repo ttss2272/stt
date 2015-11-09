@@ -1,4 +1,4 @@
-﻿<Window x:Class="SchoolManagement.Branch.Class"
+﻿<Window x:Class="SchoolManagement.Class.Class"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Class" Height="650" Width="681" Loaded="Window_Loaded">

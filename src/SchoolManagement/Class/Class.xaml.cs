@@ -15,7 +15,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace SchoolManagement.Branch
+namespace SchoolManagement.Class
 {
     /// <summary>
     /// Interaction logic for Class.xaml
