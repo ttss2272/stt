@@ -1,9 +1,12 @@
 ﻿<Window x:Class="SchoolManagement.Branch.NewBranch"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Institute" Height="641" Width="729" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+        Title="Institute" Height="641" Width="729" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" xmlns:my="clr-namespace:SchoolManagement">
     <Grid>
-        <GroupBox Header="Branch Details" Height="271" HorizontalAlignment="Left" Margin="12,0,0,0" Name="groupBox1" VerticalAlignment="Top" Width="683">
+        <StackPanel>
+            <my:Menu_UserControl HorizontalAlignment="Left" x:Name="menu_UserControl1" VerticalAlignment="Top" xmlns:my="clr-namespace:SchoolManagement"/>
+        </StackPanel>
+        <GroupBox Header="Branch Details" Height="271" HorizontalAlignment="Left" Margin="12,42,0,0" Name="groupBox1" VerticalAlignment="Top" Width="683">
             <Grid Height="240">
                 <Label Content="Branch Name" FontSize="13" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="54,90,0,0" Name="lblInstName" VerticalAlignment="Top" />
                 <Label Content="Logo" FontSize="13" FontWeight="Bold" Height="28" Margin="105,163,0,0" Name="lbllogo" VerticalAlignment="Top" HorizontalAlignment="Left" Width="41" />
@@ -32,7 +35,7 @@
                 <ComboBox Height="23" HorizontalAlignment="Left" Margin="375,209,0,0" Name="cmbBindInstitute" VerticalAlignment="Top" Width="187" ItemsSource="{Binding}" />
             </Grid>
         </GroupBox>
-        <GroupBox Header="Branch List" Height="204" HorizontalAlignment="Left" Margin="81,379,0,0" Name="grpList" VerticalAlignment="Top" Width="505" FontWeight="Bold">
+        <GroupBox Header="Branch List" Height="204" HorizontalAlignment="Left" Margin="81,421,0,0" Name="grpList" VerticalAlignment="Top" Width="505" FontWeight="Bold">
             <Grid>
                 <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Height="195" Width="494" HorizontalAlignment="Left" Margin="2,6,0,0" Name="grdvBranch" VerticalAlignment="Top" IsReadOnly="True" CanUserResizeColumns="False"  ItemsSource="{Binding}" TabIndex="13" FontWeight="Bold">
 
@@ -50,15 +53,16 @@
                 </DataGrid>
             </Grid>
         </GroupBox>
-        <GroupBox Header="" Height="72" HorizontalAlignment="Left" Margin="79,274,0,0" Name="groupBox2" VerticalAlignment="Top" Width="522">
+        <GroupBox Header="" Height="72" HorizontalAlignment="Left" Margin="79,316,0,0" Name="groupBox2" VerticalAlignment="Top" Width="522">
             <Grid>
                 <Button Click="btnSave_Click_1" Content="Save" FontWeight="Bold" Height="37" HorizontalAlignment="Left" Margin="75,6,0,0" Name="btnSave" VerticalAlignment="Top" Width="75" TabIndex="8" />
                 <Button Click="btnCancel_Click" Content="Cancel" FontWeight="Bold" Height="37" HorizontalAlignment="Right" Margin="0,6,94,0" Name="btnCancel" VerticalAlignment="Top" Width="75" TabIndex="10" />
                 <Button Content="Delete" FontWeight="Bold" Height="37" HorizontalAlignment="Left" Margin="212,6,0,0" Name="btnDelete" VerticalAlignment="Top" Width="75" Click="btnDelete_Click" TabIndex="9" />
             </Grid>
         </GroupBox>
-        <Label Content="Search Branch" HorizontalAlignment="Left" Margin="155,352,0,0" Name="lblSearch" VerticalAlignment="Top" Width="96" FontWeight="Bold" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="271,354,0,0" Name="txtSearchBranch" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" TabIndex="11" />
-        <Button Content="Search" FontWeight="SemiBold" Height="27" HorizontalAlignment="Left" Margin="433,352,0,0" Name="btnSearch" TabIndex="12" VerticalAlignment="Top" Width="83" Click="btnSearch_Click" />
+        <Label Content="Search Branch" HorizontalAlignment="Left" Margin="155,394,0,0" Name="lblSearch" VerticalAlignment="Top" Width="96" FontWeight="Bold" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="271,396,0,0" Name="txtSearchBranch" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" TabIndex="11" />
+        <Button Content="Search" FontWeight="SemiBold" Height="27" HorizontalAlignment="Left" Margin="433,394,0,0" Name="btnSearch" TabIndex="12" VerticalAlignment="Top" Width="83" Click="btnSearch_Click" />
+        
     </Grid>
 </Window>

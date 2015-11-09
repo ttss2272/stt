@@ -40,6 +40,9 @@ namespace SchoolManagement.Class
         public Class()
         {
             InitializeComponent();
+            this.WindowState = WindowState.Maximized;
+            this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
+            this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
             //clearFields();
             //BindBranchName();
            

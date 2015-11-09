@@ -25,6 +25,9 @@ namespace SchoolManagement.Branch
         public NewBranch()
         {
             InitializeComponent();
+            this.WindowState = WindowState.Maximized;
+            this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
+            this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
         }
         /*
       * Created By:- Sameer Shinde
