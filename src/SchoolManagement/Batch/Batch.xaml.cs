@@ -265,6 +265,10 @@ namespace SchoolManagement.Branch
             chkallow.IsChecked = false;
             rdoActive.IsChecked = false;
             rdoDeActive.IsChecked = false;
+            comboBox1.Text = "";
+            comboBox2.Text = "";
+            comboBox3.Text = "";
+            comboBox4.Text = "";
 
            
         }
@@ -437,6 +441,8 @@ namespace SchoolManagement.Branch
                         //cbClassName.Text = ds.Tables[0].Rows[0]["ClassID"].ToString();
                         int act = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
                         int del = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDeleted"]);
+                        int lunchbreak = Convert.ToInt32(ds.Tables[0].Rows[0]["IsLunchBreak"]);
+                        int Isallow = Convert.ToInt32(ds.Tables[0].Rows[0]["IsAllowMoreThanOneLectInBatch"]);
                         if (act == 1 && del == 0)
                         {
                             rdoActive.IsChecked = true;
@@ -444,6 +450,22 @@ namespace SchoolManagement.Branch
                         else if (act == 0 && del == 0)
                         {
                             rdoDeActive.IsChecked = true;
+                        }
+                        if (lunchbreak == 1)
+                        {
+                            chkLunchBreak.IsChecked = true;
+                        }
+                        else
+                        {
+                            chkLunchBreak.IsChecked = false;
+                        }
+                        if (Isallow == 1)
+                        {
+                            chkallow.IsChecked = true;
+                        }
+                        else
+                        {
+                            chkallow.IsChecked = false;
                         }
                         btnDelete.IsEnabled = true;
                     }
@@ -500,6 +522,7 @@ namespace SchoolManagement.Branch
             comboBox3_Items();
             comboBox4_Items();
             BindGridview();
+            btnDelete.IsEnabled = false;
 
         }
     }
