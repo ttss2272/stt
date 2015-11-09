@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="SchoolManagement.Menu_UserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Menu Height="30" HorizontalAlignment="Left" FontWeight="Bold" Name="Menu" VerticalAlignment="Top" Width="auto">
+            <MenuItem Header="Home" Name="menuHome" Click="menuHome_Click" Width="70" Height="30" />
+            <MenuItem Header="Master" Width="70" Height="30">
+                <MenuItem Header="Institute" Name="menuInstitute" Click="menuInstitute_Click"/>
+                <MenuItem Header="Class" Name="menuClass" Click="menuClass_Click"/>
+                <MenuItem Header="Teacher" Name="menuTeachers" Click="menuTeachers_Click"/>
+                <MenuItem Header="Room" Name="menuRoom" Click="menuRoom_Click"/>
+                <MenuItem Header="Batch" Name="menuBatch" Click="menuBatch_Click"/>
+            </MenuItem>
+            <MenuItem Header="Setting" Width="70" Height="30">
+                <MenuItem Header="User" Name="menuUser" Click="menuUser_Click"/>
+            </MenuItem>
+        </Menu>
+    </Grid>
+</UserControl>
