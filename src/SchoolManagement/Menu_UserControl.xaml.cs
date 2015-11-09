@@ -22,7 +22,10 @@ namespace SchoolManagement
         public Menu_UserControl()
         {
             InitializeComponent();
+            Menu.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
+            
         }
+
         private void menuHome_Click(object sender, RoutedEventArgs e)
         {
             Home objHome = new Home();
