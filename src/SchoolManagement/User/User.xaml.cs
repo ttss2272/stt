@@ -27,11 +27,12 @@ namespace SchoolManagement.User
             this.WindowState = WindowState.Maximized;
             this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
             this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
+            ClearFields();
         }
 
         BLUser obj_User = new BLUser();
 
-        int UserID, IsActive, IsDeleted, UserTypeID = 1, UpID;
+        int UserID, IsActive, IsDeleted, UserTypeID = 0, UpID;
         string UserName, ContactNo, Address, MailId, LoginName, Password, UpdatedDate;
 
         #region---------------------------Validate()-----------------------------------------
@@ -153,7 +154,7 @@ namespace SchoolManagement.User
             MailId = txtEmailID.Text.Trim();
             LoginName = txtLoginID.Text.Trim();
             Password = txtPassword.Text.Trim();
-            UserTypeID = 1;
+            UserTypeID = Convert.ToInt32(cmbUserType.SelectedValue.ToString());
             UpdatedDate = DateTime.Now.ToString();
             if (cmbActive.IsChecked == true)
             {
@@ -164,6 +165,24 @@ namespace SchoolManagement.User
             {
                 IsActive = 0;
                 IsDeleted = 0;
+            }
+        }
+
+        private void BindUserType()
+        {
+            try
+            {
+                DataSet ds = obj_User.GetUserType(UserTypeID);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    cmbUserType.DataContext = ds.Tables[0].DefaultView;
+                    cmbUserType.DisplayMemberPath = ds.Tables[0].Columns["UserTypeName"].ToString();
+                    cmbUserType.SelectedValuePath = ds.Tables[0].Columns["UserTypeID"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
             }
         }
 
@@ -237,6 +256,7 @@ namespace SchoolManagement.User
             btnDelete.IsEnabled = false;
             txtSearchUser.Text = "";
             btnSave.Content = "Save";
+            BindUserType();
         }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
@@ -273,11 +293,12 @@ namespace SchoolManagement.User
                 object item = gvUser.SelectedItem;
                 UpID = Convert.ToInt32(((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[0].ToString());
                 txtFullName.Text = ((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[1].ToString();
-                txtAddress.Text = ((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[2].ToString();
-                txtContactNo.Text = ((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[3].ToString();
+                txtAddress.Text = ((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[3].ToString();
+                txtContactNo.Text = ((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[2].ToString();
                 txtEmailID.Text = ((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[4].ToString();
                 txtLoginID.Text = ((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[5].ToString();
                 txtPassword.Text = ((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[6].ToString();
+                cmbUserType.SelectedValue = ((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[9].ToString();
                 bool act = Convert.ToBoolean(((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[10].ToString());
                 bool del = Convert.ToBoolean(((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[11].ToString());
 
