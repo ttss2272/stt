@@ -26,6 +26,7 @@ namespace SchoolManagement
             this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
             this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
             
+            
         }
     }
 }
