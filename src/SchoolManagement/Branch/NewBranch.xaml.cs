@@ -100,6 +100,8 @@ namespace SchoolManagement.Branch
             cmbBindInstitute.Text = "";
             rbtnInactive.IsEnabled = false;
             rbtnActive.IsEnabled = true;
+            btnSave.Content = "Save";
+            btnDelete.IsEnabled = false;
         }
         #endregion
         /*
@@ -435,6 +437,7 @@ namespace SchoolManagement.Branch
                             rbtnInactive.IsChecked = true;
                         }
                         btnDelete.IsEnabled = true;
+                        btnSave.Content = "Update";
                     }
                 }
             }
