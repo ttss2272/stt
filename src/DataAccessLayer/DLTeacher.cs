@@ -132,5 +132,21 @@ namespace DataAccessLayer
             return ds;
  
         }
+
+        public DataSet BindTeacherName()
+        {
+            conn = con.getConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("BindTeacherName_SP", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
+        }
     }
 }
