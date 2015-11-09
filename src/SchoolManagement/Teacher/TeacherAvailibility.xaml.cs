@@ -34,6 +34,7 @@ namespace SchoolManagement.Teacher
         string tmpStartTime, tmpEndTime;
         string [] StartTime;
         string [] EndTime;
+        string[] s;
         #endregion
 
         /*
@@ -140,13 +141,136 @@ namespace SchoolManagement.Teacher
         {
             try
             {
-
+                SetParameters();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+        /*
+         * CreatedBy:-Sameer Shinde
+         * Created Date:- 09 Nov2015
+         * Purpose:- Set Parameter for Save
+         * StartTime:-
+         * EndTime:-
+         */
+        private void SetParameters()
+        {
+            
+            if (daycheckcount > 0)
+            {
+                int cnt = daycheckcount;
+                string TempDay;
+                if (cnt == 7)
+                    {
+                        CheckAllDays();
+                    }
+                for (int i = 0; i <= cnt; i++)
+                {
+                   if (chkMon.IsChecked == true)
+                   {
+                       s[i] = "Mon";
+                   }
+                   else if (chkTue.IsChecked == true)
+                   {
+                       s[i] = "Tue";
+                   }
+                   else if (chkWed.IsChecked == true)
+                   {
+                       s[i] = "Wed";
+                   }
+                   else if (chkThru.IsChecked == true)
+                   {
+                       s[i] = "Thru";
+                   }
+                   else if (chkFri.IsChecked == true)
+                   {
+                       s[i] = "Fri";
+                   }
+                   else if (chkSat.IsChecked == true)
+                   {
+                       s[i] = "Sat";
+                   }
+                   else if (chkSun.IsChecked == true)
+                   {
+                       s[i] = "Sun";
+                   }
+                   else
+                   {
+                       s[i] = "All Days Available";
+                   }
+                   TempDay = s[i];
+                    //count start time to end time for all days
+                    //if()
+                    //{
+
+                    //}
+                   switch (s[i])
+                   {
+                       case ("Mon"):
+                           {
+                               tmpStartTime = chkStartHrs1.SelectedValue.ToString();
+                               tmpStartTime += ":" + chkStartMin1.SelectedValue.ToString();
+
+                               tmpEndTime = chkEndhrs1.SelectedValue.ToString();
+                               tmpEndTime += ":" + EndMin1.SelectedValue.ToString();
+
+
+                               break;
+                           }
+                   }
+                }
+            }
+
+        }
+        /*
+        * CreatedBy:-Sameer Shinde
+        * Created Date:- 09 Nov2015
+        * Purpose:-Get Day for save
+        * StartTime:-
+        * EndTime:-
+        */
+        #region-----------------------------GetDay()----------------------------
+        //private void GetDay()
+        //{
+   
+        //    if (chkMon.IsChecked == true)
+        //    {
+        //        Day = "Mon";
+        //    }
+        //    else if (chkTue.IsChecked == true)
+        //    {
+        //        Day = "Tue";
+        //    }
+        //    else if (chkWed.IsChecked == true)
+        //    {
+        //        Day = "Wed";
+        //    }
+        //    else if (chkThru.IsChecked == true)
+        //    {
+        //        Day = "Thru";
+        //    }
+        //    else if (chkFri.IsChecked == true)
+        //    {
+        //        Day = "Fri";
+        //    }
+        //    else if (chkSat.IsChecked == true)
+        //    {
+        //        Day = "Sat";
+        //    }
+        //    else if (chkSun.IsChecked == true)
+        //    {
+        //        Day = "Sun";
+        //    }
+        //    else
+        //    {
+        //        Day = "All Days Available";
+        //    }
+           
+        //}
+        #endregion
         #endregion
 
         /*
