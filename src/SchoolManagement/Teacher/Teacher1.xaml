@@ -10,15 +10,19 @@
             <Grid>
                 <GroupBox Header="Personal Information" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="173" Margin="36,-2,22,0">
                     <Grid HorizontalAlignment="Center">
-                        <Label Content="Name" HorizontalAlignment="Left" Margin="6,10,0,0" VerticalAlignment="Top" Width="87" Name="lblName" FontWeight="Bold"/>
-                        <Label Content="Surname" HorizontalAlignment="Left" Margin="0,42,0,0" VerticalAlignment="Top" Name="lblSurname" FontWeight="Bold"/>
+                        <Label Content="Name" HorizontalAlignment="Left" Margin="36,11,0,0" VerticalAlignment="Top" Width="51" Name="lblName" FontWeight="Bold"/>
+                        <Label Content="Surname" HorizontalAlignment="Left" Margin="27,43,0,0" VerticalAlignment="Top" Name="lblSurname" FontWeight="Bold"/>
                         <TextBox HorizontalAlignment="Left" Height="23" Margin="96,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="174" Name="txtName" TabIndex="1" />
                         <TextBox HorizontalAlignment="Left" Height="23" Margin="95,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="174" Name="txtSurname" TabIndex="2" />
-                        <Label Content="Short Name" HorizontalAlignment="Left" Margin="-6,83,0,0" VerticalAlignment="Top" Name="lblShortName" FontWeight="Bold"/>
+                        <Label Content="Short Name" HorizontalAlignment="Left" Margin="11,83,0,0" VerticalAlignment="Top" Name="lblShortName" FontWeight="Bold"/>
                         <TextBox HorizontalAlignment="Left" Height="23" Margin="97,83,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="174" Name="txtShortName" TabIndex="3" />
-                        <Label Content="Status" HorizontalAlignment="Left" Margin="0,115,0,0" VerticalAlignment="Top" Width="87"  FontWeight="Bold"/>
-                        <RadioButton Content="Active" HorizontalAlignment="Left" Margin="91,121,0,0" VerticalAlignment="Top" FontWeight="SemiBold" IsChecked="True" GroupName="TeacherStatus" Name="rdbActive" TabIndex="4" />
-                        <RadioButton Content="InActive" HorizontalAlignment="Left" Margin="168,121,0,0" VerticalAlignment="Top" FontWeight="SemiBold" GroupName="TeacherStatus" Name="rdbInActive" TabIndex="5" />
+                        <Label Content="Status" HorizontalAlignment="Left" Margin="35,116,0,0" VerticalAlignment="Top" Width="49"  FontWeight="Bold"/>
+                        <RadioButton Content="Active" HorizontalAlignment="Left" Margin="97,121,0,0" VerticalAlignment="Top" FontWeight="SemiBold" IsChecked="True" GroupName="TeacherStatus" Name="rdbActive" TabIndex="4" />
+                        <RadioButton Content="InActive" HorizontalAlignment="Left" Margin="174,121,0,0" VerticalAlignment="Top" FontWeight="SemiBold" GroupName="TeacherStatus" Name="rdbInActive" TabIndex="5" />
+                        <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="79,13,0,0" Name="label10" VerticalAlignment="Top" />
+                        <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="80,45,0,0" Name="label2" VerticalAlignment="Top" />
+                        <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="83,87,0,0" Name="label3" VerticalAlignment="Top" />
+                        <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="79,119,0,0" Name="label4" VerticalAlignment="Top" />
                     </Grid>
                 </GroupBox>
                 <GroupBox Header="" HorizontalAlignment="Stretch" Margin="36,170,22,0" Width="694" VerticalAlignment="Top" Height="248">
@@ -43,6 +47,14 @@
                         <ComboBox HorizontalAlignment="Left" Margin="423,197,0,0" VerticalAlignment="Top" Width="57" Name="cmbFreeTimeEndHrs" TabIndex="15" />
                         <ComboBox HorizontalAlignment="Left" Margin="497,197,0,0" VerticalAlignment="Top" Width="57" Name="cmbFreeTimeEndMin" TabIndex="16" />
                         <Label Content="To" Height="28" HorizontalAlignment="Left" Margin="392,195,0,0" Name="label1" VerticalAlignment="Top" />
+                        <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="220,8,0,0" Name="label5" VerticalAlignment="Top" />
+                        <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="220,60,0,0" Name="label6" VerticalAlignment="Top" />
+                        <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="220,106,0,0" Name="label7" VerticalAlignment="Top" />
+                        <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="220,155,0,0" Name="label8" VerticalAlignment="Top" />
+                        <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="532,58,0,0" Name="label9" VerticalAlignment="Top" />
+                        <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="532,106,0,0" Name="label11" VerticalAlignment="Top" />
+                        <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="532,153,0,0" Name="label12" VerticalAlignment="Top" />
+                        <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="220,195,0,0" Name="label13" VerticalAlignment="Top" />
                     </Grid>
                 </GroupBox>
                 <GroupBox Header="" Height="77" HorizontalAlignment="Stretch" Margin="168,416,100,0" Name="groupBox1" VerticalAlignment="Top" Width="484">
