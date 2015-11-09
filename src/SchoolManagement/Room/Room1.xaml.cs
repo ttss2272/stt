@@ -121,7 +121,11 @@ namespace SchoolManagement.Room
             rdbInactive.IsChecked = false;
             chkAllowLect.IsChecked = false;
             btnAdd.Content = "Save";
-            cmbCapacity_Items();
+            cmbSHr.SelectedIndex = 0;
+            cmbSMin.SelectedIndex = 0;
+            cmbEHr.SelectedIndex = 0;
+            cmbEMin.SelectedIndex = 0;
+            cmbCapacity.SelectedIndex = 0;
             BindFullGrid();
             BindBranchName();
         }
@@ -325,6 +329,7 @@ namespace SchoolManagement.Room
         {
             BindFullGrid();
             rdbActive.IsChecked = true;
+            cmbCapacity_Items();
             cmbSHr_Items();
             cmbSMin_Items();
             cmbEHr_Items();
@@ -501,10 +506,7 @@ namespace SchoolManagement.Room
         #endregion
 
 
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
+       
 
         private void btnclear_Click(object sender, RoutedEventArgs e)
         {
