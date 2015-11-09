@@ -92,6 +92,7 @@ namespace SchoolManagement.Teacher
                 {
                     SetParameters();
                     DeleteTeacher();
+                    BindGrid();
                 }
 
             }
@@ -639,7 +640,7 @@ namespace SchoolManagement.Teacher
         private void DeleteTeacher()
         {
             string Result = objTeacher.DeleteTeacher(TeacherID, UpdatedByUserID, UpdatedDate);
-            if (Result == "Deleted Sucessfully.")
+            if (Result == "Deleted Sucessfully...!!")
             {
                 MessageBox.Show(Result, "Delete Sucessfully", MessageBoxButton.OK, MessageBoxImage.Information);
                 ClearFields();
