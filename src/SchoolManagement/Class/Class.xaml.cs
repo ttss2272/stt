@@ -126,19 +126,19 @@ namespace SchoolManagement.Class
         public bool Validate()
         {
 
-            if (txtClassName.Text.Trim() == "")
+            if (txtClassName.Text.Trim() == "" || string.IsNullOrEmpty(txtClassName.Text))
             {
                 MessageBox.Show("Please Enter Class Name.", "Class Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 txtClassName.Focus();
                 return false;
             }
-            else if (txtShortName.Text.Trim() == "")
+            else if (txtShortName.Text.Trim() == "" || string.IsNullOrEmpty(txtShortName.Text))
             {
                 MessageBox.Show("Please Enter Class Short Name.", "Short Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 txtShortName.Focus();
                 return false;
             }
-            else if (txtcolor.Text.Trim() == "")
+            else if (txtcolor.Text.Trim() == "" || string.IsNullOrEmpty(txtcolor.Text))
             {
                 MessageBox.Show("Please Enter Color.", "Color Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 txtcolor.Focus();
@@ -148,6 +148,12 @@ namespace SchoolManagement.Class
             {
                 MessageBox.Show("Please Select Board.", "Board Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 cbBoard.Focus();
+                return false;
+            }
+            else if (cbBranchName.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please Select Branch Name.", "Branch Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cbBranchName.Focus();
                 return false;
             }
 
@@ -221,7 +227,7 @@ namespace SchoolManagement.Class
                 if (Result.Equals(MessageBoxResult.Yes))
                 {
                     SetParameters();
-                    DeleteSubject();
+                    DeleteClass();
                     dgvClass.Items.Refresh();
                     BindGridview();
                     clearFields();
@@ -235,8 +241,8 @@ namespace SchoolManagement.Class
         }
         #endregion
 
-        #region----------------------------DeleteSubject()----------------------------------
-        private void DeleteSubject()
+        #region----------------------------DeleteClass()----------------------------------
+        private void DeleteClass()
         {
             if (UpID != 0)
             {
@@ -474,6 +480,33 @@ namespace SchoolManagement.Class
             BindBranchName();
             BindGridview();
             
+        }
+
+        private void txtcolor_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (txtcolor.Text != "")
+                {
+                    if (txtcolor.Text.Length > 0 && txtcolor.Text.Length == 1)
+                    {
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtcolor.Text, "^[a-zA-Z]"))
+                        {
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please Enter First Characerter Alphabate", "Color", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtcolor.Text = "";
+                            txtcolor.Focus();
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
     }
 }
