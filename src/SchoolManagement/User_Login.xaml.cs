@@ -30,7 +30,7 @@ namespace SchoolManagement
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            HomeMdi objHomeMdi = new HomeMdi();
+            Home objHomeMdi = new Home();
             objHomeMdi.Show();
         }
     }
