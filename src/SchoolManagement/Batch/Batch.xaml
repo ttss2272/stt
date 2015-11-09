@@ -8,7 +8,7 @@
                 <Label Content="Batch Name" Height="28" Margin="534,12,229,0" Name="lblClassName" VerticalAlignment="Top" />
                 <TextBox Height="23" HorizontalAlignment="Right" Margin="0,17,33,0" Name="txtBatchName" VerticalAlignment="Top" Width="178" TextChanged="txtBatchName_TextChanged" />
                 <Label Content="Batch Code" Height="28" HorizontalAlignment="Left" Margin="91,52,0,0" Name="lblshortname" VerticalAlignment="Top" />
-                <TextBox Height="26" HorizontalAlignment="Left" Margin="199,53,0,0" Name="txtBatchCode" VerticalAlignment="Top" Width="178" />
+                <TextBox Height="26" HorizontalAlignment="Left" Margin="199,53,0,0" Name="txtBatchCode" VerticalAlignment="Top" Width="178" TextChanged="txtBatchCode_TextChanged" />
                 <Label Content="*" Height="20" HorizontalAlignment="Left" Margin="621,14,0,0" Name="lblStar" VerticalAlignment="Top" Foreground="Red" FontWeight="Bold" />
                 <Label Content="*" Height="20" HorizontalAlignment="Left" Margin="178,56,0,0" Name="label1" VerticalAlignment="Top" Foreground="Red" FontWeight="Bold" />
                 <Label Content="Class Name" Height="28" HorizontalAlignment="Left" Margin="89,19,0,0" Name="lblBranchName" VerticalAlignment="Top" />
@@ -21,8 +21,7 @@
                 <RadioButton Content="InActive" Height="16" HorizontalAlignment="Left" Margin="291,224,0,0" Name="rdoDeActive" VerticalAlignment="Top" />
                 <Label Content="Status" Height="28" HorizontalAlignment="Left" Margin="113,217,0,0" Name="label4" VerticalAlignment="Top" />
                 <Label Content="*" Height="22" HorizontalAlignment="Left" Margin="178,220,0,0" Name="label5" VerticalAlignment="Top" Foreground="Red" FontWeight="Bold" />
-                <Label Content="*" Height="22" HorizontalAlignment="Left" Margin="178,93,0,0" Name="label6" VerticalAlignment="Top" Foreground="Red" FontWeight="Bold" />
-                <TextBox Height="26" HorizontalAlignment="Left" Margin="642,54,0,0" Name="txtlecDuration" VerticalAlignment="Top" Width="178" />
+                <TextBox Height="26" HorizontalAlignment="Left" Margin="642,54,0,0" Name="txtlecDuration" VerticalAlignment="Top" Width="178" TextChanged="txtlecDuration_TextChanged" />
                 <Label Content="Lunch Break Time " Height="28" HorizontalAlignment="Left" Margin="52,127,0,0" Name="label8" VerticalAlignment="Top" />
                 <ComboBox Height="23" HorizontalAlignment="Left" Margin="194,132,0,0" Name="comboBox1" VerticalAlignment="Top" Width="45" ItemsSource="{Binding}"/>
                 <ComboBox Height="23" HorizontalAlignment="Left" Margin="241,132,0,0" Name="comboBox2" VerticalAlignment="Top" Width="45" ItemsSource="{Binding}"/>
@@ -30,7 +29,7 @@
                 <ComboBox Height="23" HorizontalAlignment="Left" Margin="356,132,0,0" Name="comboBox4" VerticalAlignment="Top" Width="45" ItemsSource="{Binding}"/>
                 <Label Content="To" Height="28" HorizontalAlignment="Left" Margin="286,130,0,0" Name="label9" VerticalAlignment="Top" />
                 <Label Content="Max No of Lecture Day" Height="28" HorizontalAlignment="Left" Margin="469,90,0,0" Name="label10" VerticalAlignment="Top" />
-                <TextBox Height="26" HorizontalAlignment="Left" Margin="642,93,0,0" Name="txtMaxnoLecDay" VerticalAlignment="Top" Width="178" />
+                <TextBox Height="26" HorizontalAlignment="Left" Margin="642,93,0,0" Name="txtMaxnoLecDay" VerticalAlignment="Top" Width="178" TextChanged="txtMaxnoLecDay_TextChanged" />
                 <Label Content="Max No of Lecture Week" Height="28" HorizontalAlignment="Left" Margin="469,132,0,0" Name="label11" VerticalAlignment="Top" />
                 <TextBox Height="26" HorizontalAlignment="Left" Margin="642,135,0,0" Name="txtMaxnoLecWeek" VerticalAlignment="Top" Width="178" />
                 <Label Content="Is Allow More Than " Height="25" HorizontalAlignment="Left" Margin="41,166,0,0" Name="label12" VerticalAlignment="Top" />
@@ -38,6 +37,8 @@
                 <CheckBox Content="Yes/No" Height="16" HorizontalAlignment="Left" Margin="204,180,0,0" Name="chkallow" VerticalAlignment="Top" />
                 <Label Content="Max No Of Lecure In Row" Height="28" HorizontalAlignment="Left" Margin="469,175,0,0" Name="label14" VerticalAlignment="Top" />
                 <TextBox Height="26" HorizontalAlignment="Left" Margin="642,177,0,0" Name="txtMaxLecRow" VerticalAlignment="Top" Width="178" />
+                <Label Content="*" FontWeight="Bold" Foreground="Red" Height="22" HorizontalAlignment="Left" Margin="178,132,0,0" Name="label15" VerticalAlignment="Top" />
+                <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="622,57,0,0" Name="label16" VerticalAlignment="Top" />
             </Grid>
         </GroupBox>
         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Height="172" HorizontalAlignment="Left" Margin="14,426,0,0" Name="dgvBatch" VerticalAlignment="Top" Width="864" IsReadOnly="True" CanUserResizeColumns="False" ItemsSource="{Binding}">

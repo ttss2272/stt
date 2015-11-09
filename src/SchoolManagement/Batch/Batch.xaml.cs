@@ -172,13 +172,13 @@ namespace SchoolManagement.Batch
         public bool Validate()
         {
 
-            if (txtBatchName.Text.Trim() == "")
+            if (txtBatchName.Text.Trim() == "" || string.IsNullOrEmpty(txtBatchName.Text))
             {
                 MessageBox.Show("Please Enter Batch Name.", "Batch Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 txtBatchName.Focus();
                 return false;
             }
-            else if (txtBatchCode.Text.Trim() == "")
+            else if (txtBatchCode.Text.Trim() == "" || string.IsNullOrEmpty(txtBatchCode.Text))
             {
                 MessageBox.Show("Please Enter Batch Code.", "Batch Code Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 txtBatchCode.Focus();
@@ -188,6 +188,12 @@ namespace SchoolManagement.Batch
             {
                 MessageBox.Show("Please Select Class Name.", "Class Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 cbClassName.Focus();
+                return false;
+            }
+            else if (txtlecDuration.Text.Trim() == "" || string.IsNullOrEmpty(txtlecDuration.Text))
+            {
+                MessageBox.Show("Please Enter Lecture Duration Time", "Lecture Duration Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txtlecDuration.Focus();
                 return false;
             }
             else
@@ -312,6 +318,7 @@ namespace SchoolManagement.Batch
                 dgvBatch.ItemsSource = ds.Tables[0].DefaultView;
                 //dgvBatch.Columns[0].Visibility = Visibility.Collapsed;
             }
+            dgvBatch.Items.Refresh();
         }
         #endregion
 
@@ -351,9 +358,10 @@ namespace SchoolManagement.Batch
                 if (Result.Equals(MessageBoxResult.Yes))
                 {
                     SetParameters();
-                    DeleteSubject();
+                    DeleteBatch();
                     dgvBatch.Items.Refresh();
                     BindGridview();
+                    clearFields();
                 }
             }
             catch (Exception ex)
@@ -364,18 +372,20 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
-        #region----------------------------DeleteSubject()----------------------------------
-        private void DeleteSubject()
+        #region----------------------------DeleteBatch()----------------------------------
+        private void DeleteBatch()
         {
             if (UpID != 0)
             {
                 ClassID = UpID;
 
                 string Result = obj_Batch.DeleteBatch(BatchID, UpdatedByUserID, UpdatedDate);
-                if (Result == "Deleted Sucessfully.")
+                if (Result == "Deleted Sucessfully...!!")
                 {
                     MessageBox.Show(Result, "Delete Sucessfully", MessageBoxButton.OK, MessageBoxImage.Information);
+                  
                     clearFields();
+                    BindGridview();
                 }
                 else
                 {
@@ -525,6 +535,92 @@ namespace SchoolManagement.Batch
             btnDelete.IsEnabled = false;
 
         }
+
+        private void txtBatchCode_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (txtBatchCode.Text != "")
+                {
+                    if (txtBatchCode.Text.Length > 0 && txtBatchCode.Text.Length == 1)
+                    {
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtBatchCode.Text, "^[a-zA-Z]"))
+                        {
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please Enter First Characerter Alphabate", "Batch Code", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtBatchCode.Text = "";
+                            txtBatchCode.Focus();
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        #region---------------------------txtlecDuration_TextChanged-----------------------
+        private void txtlecDuration_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (txtBatchCode.Text != "")
+                {
+                    if (txtBatchCode.Text.Length > 0 && txtBatchCode.Text.Length == 1)
+                    {
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtBatchCode.Text, "^[0-9]"))
+                        {
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please Enter Only Numbers", "Batch Code", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtBatchCode.Text = "";
+                            txtBatchCode.Focus();
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        #endregion
+
+        #region-----------------txtMaxnoLecDay_TextChanged-----------------------------------
+        private void txtMaxnoLecDay_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (txtMaxnoLecDay.Text != "")
+                {
+                    if (txtMaxnoLecDay.Text.Length > 0 && txtMaxnoLecDay.Text.Length == 1)
+                    {
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtMaxnoLecDay.Text, "^[0-9]"))
+                        {
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please Enter Only Numbers", "Max no.of lecture Code", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtMaxnoLecDay.Text = "";
+                            txtMaxnoLecDay.Focus();
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        #endregion
+
     }
 }
 
