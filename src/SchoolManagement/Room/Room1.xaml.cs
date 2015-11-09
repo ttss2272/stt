@@ -363,7 +363,21 @@ namespace SchoolManagement.Room
                         txtLectDay.Text=ds.Tables[0].Rows[0]["MaxNoLecturesDay"].ToString();
                         txtLectWeek.Text = ds.Tables[0].Rows[0]["MaxNoLecturesWeek"].ToString();
                         txtLectRow.Text=ds.Tables[0].Rows[0]["MaxNoOfLectureInRow"].ToString();
+                        string time = ((System.Data.DataRowView)(dgRoom.CurrentItem)).Row.ItemArray[12].ToString();
+                        string[] a = time.Split(':');
+                        cmbSHr.Text = a[0];
+                        if (a[1] == "00")
+                        { cmbSMin.Text = "0"; }
+                        else
+                        { cmbSMin.Text = a[1]; }
 
+                        string ENDtime = ((System.Data.DataRowView)(dgRoom.CurrentItem)).Row.ItemArray[13].ToString();
+                        string[] b = ENDtime.Split(':');
+                        cmbEHr.Text = b[0];
+                        if (b[1] == "00")
+                        { cmbEMin.Text = "0"; }
+                        else
+                        { cmbEMin.Text = b[1]; }
 
                         IsActive  = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
                         IsDeleted  = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDeleted"]);

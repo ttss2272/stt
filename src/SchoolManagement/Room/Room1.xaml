@@ -45,7 +45,7 @@
                 <Label Content="Min" Height="28" HorizontalAlignment="Right" Margin="0,127,32,0" Name="label22" VerticalAlignment="Top" />
                 <ComboBox Height="23" HorizontalAlignment="Left" Margin="649,127,0,0" Name="cmbSMin" VerticalAlignment="Top" Width="49" ItemsSource="{Binding}"/>
                 <Label Content="To" Height="28" HorizontalAlignment="Right" Margin="0,148,113,0" Name="label23" VerticalAlignment="Top" />
-                <ComboBox Height="23" HorizontalAlignment="Left" Margin="573,170,0,0" Name="cmbEHr" VerticalAlignment="Top" Width="49" ItemsSource="{Binding}"/>
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="573,0,0,104" Name="cmbEHr" VerticalAlignment="Bottom" Width="49" ItemsSource="{Binding}"/>
                 <Label Content="Hr" Height="28" HorizontalAlignment="Right" Margin="0,170,113,0" Name="label24" VerticalAlignment="Top" />
                 <Label Content="Min" Height="28" HorizontalAlignment="Right" Margin="0,170,32,0" Name="label25" VerticalAlignment="Top" />
                 <ComboBox Height="23" HorizontalAlignment="Left" Margin="649,170,0,0" Name="cmbEMin" VerticalAlignment="Top" Width="49" ItemsSource="{Binding}"/>
@@ -61,6 +61,8 @@
                 <DataGridTextColumn Header="ShortName" Width="100" Binding="{Binding RoomShortName}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Color" Width="100" Binding="{Binding RoomColor}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Capacity" Width="100" Binding="{Binding Capacity}"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding FreeStartTime}" Header="FreeStartTime" Visibility="Hidden"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding FreeEndTime}" Header="FreeEndTime" Visibility="Hidden"></DataGridTextColumn>
             </DataGrid.Columns>
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
