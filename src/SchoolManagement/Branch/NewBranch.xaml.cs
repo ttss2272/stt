@@ -46,10 +46,13 @@ namespace SchoolManagement.Branch
         {
             try
             {
-                Validate();
-                SetParameters();
-                SaveDetails();
-                BindGridview();
+                if (Validate())
+                {
+                    Validate();
+                    SetParameters();
+                    SaveDetails();
+                    BindGridview();
+                }
             }
             catch (Exception ex)
             {
@@ -92,6 +95,8 @@ namespace SchoolManagement.Branch
             txtUploadPath.Text = "";
             image1.Source = null;
             cmbBindInstitute.Text = "";
+            rbtnInactive.IsEnabled = false;
+            rbtnActive.IsEnabled = true;
         }
         #endregion
         /*
@@ -105,14 +110,16 @@ namespace SchoolManagement.Branch
             BranchID = UpID;
             BranchName = txtBranchName.Text.Trim();
             BranchCode = txtBranchCode.Text.Trim();
-            if (cmbSelectType.SelectedValue.ToString() == "System.Windows.Controls.ComboBoxItem: Branch")
-            {
-                InstituteName = cmbBindInstitute.SelectedValue.ToString();
-            }
-            else
-            {
-                InstituteName = txtInstituteName.Text.Trim();
-            }
+           
+                if (cmbSelectType.SelectedValue.ToString() == "System.Windows.Controls.ComboBoxItem: Branch")
+                {
+                    InstituteName = cmbBindInstitute.SelectedValue.ToString();
+                }
+                else
+                {
+                    InstituteName = txtInstituteName.Text.Trim();
+                }
+            
             Logo = txtUploadPath.Text.Trim();
             CreatedByUserID = 1;
             UpdatedByUserID = 1;
@@ -135,6 +142,19 @@ namespace SchoolManagement.Branch
         #region------------------Validate()-----------------
         private bool Validate()
         {
+            if ((txtInstituteName.Text.Trim() == "") && (cmbBindInstitute.Text==""))
+            {
+                MessageBox.Show("Please Enter Institute Name.", "Institute Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                if (txtInstituteName.IsVisible == true)
+                {
+                    txtInstituteName.Focus();
+                }
+                else
+                {
+                    cmbBindInstitute.Focus();
+                }
+                return false;
+            }
             if (txtBranchName.Text.Trim() == "")
             {
                 MessageBox.Show("Please Enter Branch Name.", "Branch Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -147,12 +167,7 @@ namespace SchoolManagement.Branch
                 txtBranchCode.Focus();
                 return false;
             }
-            else if (txtInstituteName.Text.Trim() == "" && cmbBindInstitute.SelectedValue.ToString()=="")
-            {
-                MessageBox.Show("Please Enter Institute Name.", "Institute Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                txtInstituteName.Focus();
-                return false;
-            }
+           
             else if (txtUploadPath.Text.Trim() == "")
             {
                 MessageBox.Show("Please Select Institute logo.", "Institute Logo Error", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -180,6 +195,7 @@ namespace SchoolManagement.Branch
                 {
                     SetParameters();
                     DeleteBranch();
+                    BindGridview();
                 }
             }
             catch (Exception ex)
@@ -396,6 +412,7 @@ namespace SchoolManagement.Branch
                         cmbBindInstitute.Text = ds.Tables[0].Rows[0]["InstituteName"].ToString();
                         cmbSelectType.Text = "Branch";
                         txtUploadPath.Text = ds.Tables[0].Rows[0]["Logo"].ToString();
+
                        
                         int act = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
                         int del = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDeleted"]);
@@ -430,7 +447,7 @@ namespace SchoolManagement.Branch
            cmbBindInstitute.Visibility = Visibility.Hidden;
            CountBranch();
            btnDelete.IsEnabled = false;
-           txtUploadPath.IsReadOnly = false;
+           txtUploadPath.IsReadOnly = true;
         }
 
         private void CountBranch()
