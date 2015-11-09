@@ -329,6 +329,7 @@ namespace SchoolManagement.Room
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             BindFullGrid();
+            rdbActive.IsChecked = true;
         }
 
         /* Created By:- Sameer Shinde
@@ -369,7 +370,7 @@ namespace SchoolManagement.Room
                         if (a[1] == "00")
                         { cmbSMin.Text = "0"; }
                         else
-                        { cmbSMin.Text = a[1]; }
+                        { cmbSMin.Text = a[1];}
 
                         string ENDtime = ((System.Data.DataRowView)(dgRoom.CurrentItem)).Row.ItemArray[13].ToString();
                         string[] b = ENDtime.Split(':');
