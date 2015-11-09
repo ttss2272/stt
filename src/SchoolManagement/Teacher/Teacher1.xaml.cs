@@ -28,7 +28,7 @@ namespace SchoolManagement.Teacher
          */
         #region---------------------------------Declare variables Globally-------------------------------------
         int TeacherID, UPID, MaxNoOfMovesInBranch, MaxLecturePerDay, MaxLectPerWeek, MaxNoOfLectInRow, Active, IsDeleted, IsMoreThanOneLecture, IsFirstLecture, IsLastLecture,UpdatedByUserID;
-        string TeacherName, TeacherSurname, TeacherShortName,StartFreeTimeHrs, StartFreeTimeMin, EndFreeTimeHrs, EndFreeTimeMin,FreeTimeStart,FreeTimeEnd,UpdatedDate;
+        string TeacherName, TeacherSurname, TeacherShortName,StartFreeTimeHrs, StartFreeTimeMin, EndFreeTimeHrs, EndFreeTimeMin,FreeTimeStart,FreeTimeEnd,UpdatedDate,n="0";
         BLTeacher objTeacher = new BLTeacher();
         #endregion
 
@@ -46,7 +46,7 @@ namespace SchoolManagement.Teacher
             this.WindowState = WindowState.Maximized;
             this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
             this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
-            ClearFields();
+           
         }
         #endregion
 
@@ -162,12 +162,18 @@ namespace SchoolManagement.Teacher
             cmbFreeTimeStartHrs.Items.Add("Select");
             cmbFreeTimeEndHrs.Items.Add("Select");
             int i;
-            for (i = 1; i <= 24; i++)
+            for (i = 1; i <= 9; i++)
             {
-                cmbFreeTimeStartHrs.Items.Add(i);
-                cmbFreeTimeEndHrs.Items.Add(i);
-
+                    cmbFreeTimeStartHrs.Items.Add(n +i.ToString());
+                    cmbFreeTimeEndHrs.Items.Add(n + i.ToString());
+                
             }
+            cmbFreeTimeStartHrs.Items.Add("10");
+            cmbFreeTimeStartHrs.Items.Add("11");
+            cmbFreeTimeStartHrs.Items.Add("12");
+            cmbFreeTimeEndHrs.Items.Add("10");
+            cmbFreeTimeEndHrs.Items.Add("11");
+            cmbFreeTimeEndHrs.Items.Add("12");
             cmbFreeTimeStartHrs.SelectedIndex = 0;
             cmbFreeTimeEndHrs.SelectedIndex = 0;
  
@@ -551,32 +557,57 @@ namespace SchoolManagement.Teacher
                 txtName.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[1].ToString();
                 txtSurname.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[2].ToString();
                 txtShortName.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[3].ToString();
-                
-                cmbMaxMoves.Text =  ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[4].ToString();
-                cmbMaxLectPerDay.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[5].ToString();
-                cmbMaxLectPerWeek.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[6].ToString();
-                cmbMaxNoLectInRow.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[7].ToString();
-                cmbFirstLect.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[8].ToString();
-                cmbLastLect.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[9].ToString();
-                cmbAllowMoreLect.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[14].ToString();
+                string time = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[4].ToString();
+                string[] a = time.Split(':');
+                cmbFreeTimeStartHrs.Text = a[0];
+                if (a[1] == "00")
+                { cmbFreeTimeStartMin.Text = "0"; }
+                else
+                { cmbFreeTimeStartMin.Text = a[1]; }
+
+                string ENDtime = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[5].ToString();
+                string[] b = ENDtime.Split(':');
+                cmbFreeTimeEndHrs.Text = b[0];
+                if (b[1] == "00")
+                { cmbFreeTimeEndMin.Text = "0"; }
+                else
+                { cmbFreeTimeEndMin.Text = b[1]; }
+
+                cmbMaxMoves.Text =  ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[6].ToString();
+                cmbMaxLectPerDay.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[7].ToString();
+                cmbMaxLectPerWeek.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[8].ToString();
+                cmbAllowMoreLect.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[9].ToString();
+                if (cmbAllowMoreLect.Text == "True")
+                {
+                    cmbAllowMoreLect.Text = "Yes";
+                }
+                else if (cmbAllowMoreLect.Text == "False")
+                {
+                    cmbAllowMoreLect.Text = "No";
+                }
+                cmbMaxNoLectInRow.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[10].ToString();
+                cmbFirstLect.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[11].ToString();
+                if (cmbFirstLect.Text == "True")
+                {
+                    cmbFirstLect.Text = "Yes";
+                }
+                else if (cmbFirstLect.Text == "False")
+                {
+                    cmbFirstLect.Text = "No";
+                }
+                cmbLastLect.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[12].ToString();
+                if (cmbLastLect.Text == "True")
+                {
+                    cmbLastLect.Text = "Yes";
+                }
+                else if (cmbLastLect.Text == "False")
+                {
+                    cmbLastLect.Text = "No";
+                }
                
                  bool act = Convert.ToBoolean(((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[13].ToString());
                 //bool del = Convert.ToBoolean(((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[11].ToString());
-                 string time = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[10].ToString();
-                 string [] a= time.Split(':');
-                 cmbFreeTimeStartHrs.Text = a[0];
-                 if (a[1] == "00")
-                 { cmbFreeTimeStartMin.Text = "0"; }
-                 else
-                 {cmbFreeTimeStartMin.Text = a[1];}
                  
-                 string ENDtime = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[11].ToString();
-                 string[] b = ENDtime.Split(':');
-                 cmbFreeTimeEndHrs.Text = b[0];
-                if (b[1]=="00")
-                {cmbFreeTimeEndMin.Text="0";}
-                else
-                {cmbFreeTimeEndMin.Text = b[1];}
                  
                 if (act == true )
                 {
@@ -619,6 +650,11 @@ namespace SchoolManagement.Teacher
             }
         }
         #endregion
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ClearFields();
+        }
 
     }
 }
