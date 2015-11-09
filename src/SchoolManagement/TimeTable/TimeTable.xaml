@@ -1,0 +1,11 @@
+﻿<Window x:Class="SchoolManagement.TimeTable.TimeTable"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="TimeTable" Height="300" Width="300" xmlns:my="clr-namespace:SchoolManagement">
+    <Grid>
+        <StackPanel>
+            <my:Menu_UserControl HorizontalAlignment="Left" x:Name="menu_UserControl1" VerticalAlignment="Top" />
+        </StackPanel>
+        
+    </Grid>
+</Window>
