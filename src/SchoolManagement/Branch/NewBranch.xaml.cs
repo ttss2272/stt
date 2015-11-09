@@ -34,7 +34,7 @@ namespace SchoolManagement.Branch
         #region-----------------Declare Variables GlobalVariables()----------------
         BLAddBranch obj_AddBranch = new BLAddBranch();
         int BranchID, CreatedByUserID, UpdatedByUserID, IsActive,IsDelete,UpID;
-        string BranchName, BranchCode, InstituteName, Logo, UpdatedDate, strName, imageName;
+        string BranchName, BranchCode, InstituteName, Logo, UpdatedDate, strName, imageName, targetPath;
         #endregion
         /*
        * Created By:- Sameer Shinde
@@ -274,8 +274,9 @@ namespace SchoolManagement.Branch
                     string fileName = "ImgLogo";
                     
                     string sourcePath = imageName;
-                    string targetPath = @"C:\Users\TTS\Desktop\ImgLogo\";
-
+                    
+                   string targetPath = @"C:\Users\TTS\Desktop\ImgLogo\";
+                   
                     string sourceFile = System.IO.Path.Combine(sourcePath);
                     string destFile = System.IO.Path.Combine(targetPath,fileName);
                     if (!System.IO.Directory.Exists(targetPath))
@@ -412,8 +413,7 @@ namespace SchoolManagement.Branch
                         cmbBindInstitute.Text = ds.Tables[0].Rows[0]["InstituteName"].ToString();
                         cmbSelectType.Text = "Branch";
                         txtUploadPath.Text = ds.Tables[0].Rows[0]["Logo"].ToString();
-
-                       
+                                        
                         int act = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
                         int del = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDeleted"]);
                         if (act == 1 && del == 0)
