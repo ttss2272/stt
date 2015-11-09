@@ -30,7 +30,7 @@ namespace SchoolManagement.Subject
        * EndTime:-3:25PM
        * Purpose:- Declare Global Variables
        */
-        #region-------------------------------------------Declare Variables Globally()---------------------------------------------------
+        #region-------------------------------------------Declare Variables Globally()----------------------------------------
         BLSubject objSubject = new BLSubject();
         int SubjectID, UpdatedByUserID, Active,IsDeleted,UpID;
         string SubjectName, SubjectShortName, UpdatedDate;
