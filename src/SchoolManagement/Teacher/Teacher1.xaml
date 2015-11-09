@@ -21,7 +21,7 @@
                         <RadioButton Content="InActive" HorizontalAlignment="Left" Margin="168,121,0,0" VerticalAlignment="Top" FontWeight="SemiBold" GroupName="TeacherStatus" Name="rdbInActive" TabIndex="5" />
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="GroupBox" HorizontalAlignment="Stretch" Margin="36,170,22,0" Width="694" VerticalAlignment="Top" Height="248">
+                <GroupBox Header="" HorizontalAlignment="Stretch" Margin="36,170,22,0" Width="694" VerticalAlignment="Top" Height="248">
                     <Grid>
                         <Label Content="Max Moves In Branch" HorizontalAlignment="Left" Margin="69,8,0,0" VerticalAlignment="Top" Width="131" />
                         <ComboBox HorizontalAlignment="Left" Margin="241,8,0,0" VerticalAlignment="Top" Width="97" Name="cmbMaxMoves" TabIndex="6" />
@@ -45,14 +45,14 @@
                         <Label Content="To" Height="28" HorizontalAlignment="Left" Margin="392,195,0,0" Name="label1" VerticalAlignment="Top" />
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="groupBox1" Height="77" HorizontalAlignment="Stretch" Margin="168,416,100,0" Name="groupBox1" VerticalAlignment="Top" Width="484">
+                <GroupBox Header="" Height="77" HorizontalAlignment="Stretch" Margin="168,416,100,0" Name="groupBox1" VerticalAlignment="Top" Width="484">
                     <Grid>
                         <Button Content="Save" Height="23" HorizontalAlignment="Left" Margin="59,17,0,0" Name="btnSave" VerticalAlignment="Top" Width="75" FontWeight="SemiBold" Click="btnSave_Click" TabIndex="17" />
                         <Button Content="Delete" Height="23" HorizontalAlignment="Left" Margin="194,17,0,0" Name="btnDelete" VerticalAlignment="Top" Width="75" FontWeight="SemiBold" Click="btnDelete_Click" IsEnabled="False" />
                         <Button Content="Clear" Height="23" HorizontalAlignment="Left" Margin="343,17,0,0" Name="btnClear" VerticalAlignment="Top" Width="75" FontWeight="SemiBold" Click="btnClear_Click" TabIndex="18" />
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="groupBox2" Height="169" HorizontalAlignment="Stretch" Margin="41,489,17,0" Name="groupBox2" VerticalAlignment="Top" Width="694">
+                <GroupBox Header="Teachers Details" Height="169" HorizontalAlignment="Stretch" Margin="41,489,17,0" Name="groupBox2" VerticalAlignment="Top" Width="694">
                     <Grid>
                         <DataGrid AutoGenerateColumns="False" Height="146" HorizontalAlignment="Left" Name="dgvTeacher" VerticalAlignment="Top" Width="682"  CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="False" >
                             <DataGrid.Columns>
