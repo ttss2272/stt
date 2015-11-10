@@ -75,12 +75,13 @@ namespace SchoolManagement.Subject
         private void ClearFields()
         {
             txtSubjectName.Text="";
-            txtSubjectShortName.Text="";
-            bindSubjectGrid();
+            txtSubjectShortName.Text = "";
             cmbActive.IsChecked = true;
             UpID = 0;
             btnDelete.IsEnabled = false;
+            btnSave.Content = "Save";
             txtSearchSubject.Text = "";
+            bindSubjectGrid();
         }
         #endregion
 
@@ -95,12 +96,20 @@ namespace SchoolManagement.Subject
         #region----------------------------------BindSubjectGrid()----------------------------------------------------
         private void bindSubjectGrid()
         {
-             DataSet ds = objSubject.BindSubject(0);
-            if (ds.Tables[0].Rows.Count > 0)
+            try
             {
+              DataSet ds = objSubject.BindSubject(0);
+              if (ds.Tables[0].Rows.Count > 0)
+              {
                 grdvSubject.ItemsSource = ds.Tables[0].DefaultView;
                 //grdvSubject.DataContext = ds.Tables[0].DefaultView;
                 //grdvSubject.Columns[0].Visibility = Visibility.Collapsed;
+              }
+              grdvSubject.Items.Refresh();
+          }
+          catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
             }
         }
         #endregion
@@ -359,6 +368,7 @@ namespace SchoolManagement.Subject
                             cmbDelete.IsChecked = true;
                         }
                         btnDelete.IsEnabled = true;
+                        btnSave.Content = "Update";
                     }
                 }
 
@@ -385,12 +395,15 @@ namespace SchoolManagement.Subject
         {
             try
             {
-                //DialogResult Result = MessageBox.Show("Do You Really Want To Delete?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Information);
-                MessageBoxResult Result = MessageBox.Show("Do You Really Want To Delete?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Information);
-                if (Result.Equals(MessageBoxResult.Yes))
+                if (Validate())
                 {
-                    SetParameters();
-                    DeleteSubject();
+                    //DialogResult Result = MessageBox.Show("Do You Really Want To Delete?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                    MessageBoxResult Result = MessageBox.Show("Do You Really Want To Delete?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                    if (Result.Equals(MessageBoxResult.Yes))
+                    {
+                        SetParameters();
+                        DeleteSubject();
+                    }
                 }
             }
             catch (Exception ex)
@@ -407,7 +420,7 @@ namespace SchoolManagement.Subject
          * EndTime:-7:13PM
          * Purpose:- griddview cell click
          */
-        #region--------------------------------------gridview cell click()-------------------------------------
+        #region--------------------------------------To DeleteSubject()-------------------------------------
         private void DeleteSubject()
         {
             if (UpID != 0)
@@ -415,7 +428,7 @@ namespace SchoolManagement.Subject
                 SubjectID = UpID;
 
                 string Result = objSubject.DeleteSubject(SubjectID, UpdatedByUserID, UpdatedDate);
-                if (Result == "Deleted Sucessfully.")
+                if (Result == "Deleted Sucessfully...!!")
                 {
                     MessageBox.Show(Result,"Delete Sucessfully",MessageBoxButton.OK,MessageBoxImage.Information);
                     ClearFields();
