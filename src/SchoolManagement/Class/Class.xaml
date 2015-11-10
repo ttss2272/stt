@@ -17,8 +17,8 @@
                 <Label Content="Board" Height="28" HorizontalAlignment="Left" Margin="123,142,0,0" Name="iblboard" VerticalAlignment="Top" />
                 <ComboBox Height="23" HorizontalAlignment="Left" Margin="199,145,0,0" Name="cbBoard" VerticalAlignment="Top" Width="178">
                     <ComboBoxItem IsSelected="True" Content="Select"/>
-                    <ComboBoxItem Content="CBSC Board" />
-                    <ComboBoxItem Content="ICFC Board" />
+                    <ComboBoxItem Content="CBSE Board" />
+                    <ComboBoxItem Content="ICSE Board" />
                 </ComboBox>
                 <Button Content="Add" Height="30" HorizontalAlignment="Left" Margin="22,314,0,0" Name="btnAdd" VerticalAlignment="Top" Width="75" />
                 <Button Content="Edit" Height="30" HorizontalAlignment="Left" Margin="135,314,0,0" Name="btnEdit" VerticalAlignment="Top" Width="75" />
