@@ -216,7 +216,8 @@ namespace SchoolManagement.Class
             cbBoard.Text = "";
             txtcolor.Text = "";
             rdoActive.IsChecked = false;
-            rdoDeActive.IsChecked = false;       
+            rdoDeActive.IsChecked = false;
+            btnAdd.Content = "Save";
         }
         #endregion                    
 
@@ -428,6 +429,7 @@ namespace SchoolManagement.Class
                             rdoDeActive.IsChecked = true;
                         }
                         btnDelete.IsEnabled = true;
+                        btnAdd.Content = "Update";
                     }
                 }
 
