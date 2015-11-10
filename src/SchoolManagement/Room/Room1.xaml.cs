@@ -124,7 +124,7 @@ namespace SchoolManagement.Room
             txtLectDay.Text = "";
             txtLectWeek.Text = "";
             txtLectRow.Text = "";
-            rdbActive.IsChecked = false;
+            rdbActive.IsChecked = true;
             rdbInactive.IsChecked = false;
             chkAllowLect.IsChecked = false;
             btnAdd.Content = "Save";
