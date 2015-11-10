@@ -23,13 +23,12 @@
                 <Label Content="Email ID" HorizontalAlignment="Left" Margin="33,63,0,0" Name="label1" VerticalAlignment="Top" Width="87" />
                 <TextBox Height="23" HorizontalAlignment="Left" Margin="173,63,0,0" Name="txtEmailID" TabIndex="3" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" />
                 <Label Content="Contact Number" HorizontalAlignment="Left" Margin="33,90,0,0" Name="label2" VerticalAlignment="Top" Width="124" />
-                <TextBox Height="23" HorizontalAlignment="Left" Margin="173,90,0,0" Name="txtContactNo" TabIndex="4" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" />
+                <TextBox Height="23" HorizontalAlignment="Left" Margin="173,90,0,0" Name="txtContactNo" TabIndex="4" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" MaxLength="10" />
                 <Label Content="*" FontWeight="Bold" Foreground="Red" HorizontalAlignment="Left" Margin="154,63,0,0" ToolTip="Mednatory" VerticalAlignment="Top" />
                 <Label Content="*" FontWeight="Bold" Foreground="Red" HorizontalAlignment="Left" Margin="154,90,0,0" RenderTransformOrigin="0.4,2.077" ToolTip="Mednatory" VerticalAlignment="Top" />
                 <Label Content="Login ID" HorizontalAlignment="Left" Margin="33,118,0,0" Name="label3" VerticalAlignment="Top" Width="87" />
                 <TextBox Height="23" HorizontalAlignment="Left" Margin="173,118,0,0" Name="txtLoginID" TabIndex="5" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" />
                 <Label Content="Password" HorizontalAlignment="Left" Margin="33,147,0,0" Name="label4" VerticalAlignment="Top" Width="124" />
-                <TextBox Height="23" HorizontalAlignment="Left" Margin="173,147,0,0" Name="txtPassword" TabIndex="6" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" />
                 <Label Content="*" FontWeight="Bold" Foreground="Red" HorizontalAlignment="Left" Margin="154,118,0,0" ToolTip="Mednatory" VerticalAlignment="Top" />
                 <Button Content="Delete" HorizontalAlignment="Left" Margin="211,243,0,0" VerticalAlignment="Top" Width="75" Height="30" Name="btnDelete" FontWeight="SemiBold" Click="btnDelete_Click" TabIndex="10" />
                 <Button Content="Clear" HorizontalAlignment="Left" Margin="330,243,0,0" VerticalAlignment="Top" Width="75" Name="btnClear" FontWeight="SemiBold" Height="30" Click="btnClear_Click" TabIndex="11" />
@@ -37,7 +36,7 @@
                 <ComboBox Height="23" HorizontalAlignment="Left" Margin="173,180,0,0" Name="cmbUserType" VerticalAlignment="Top" Width="146" ItemsSource="{Binding}" />
                 <Label Content="User Type" Height="28" HorizontalAlignment="Left" Margin="33,175,0,0" Name="label5" VerticalAlignment="Top" />
                 <Label Content="*" FontWeight="Bold" Foreground="Red" HorizontalAlignment="Left" Margin="154,180,0,0" RenderTransformOrigin="0.4,2.077" ToolTip="Mednatory" VerticalAlignment="Top" />
-                
+                <TextBox Height="23" HorizontalAlignment="Left" Margin="173,150,0,0" Name="txtPassword" VerticalAlignment="Top" Width="200" />
             </Grid>
         </GroupBox>
         <GroupBox Header="User List" HorizontalAlignment="left" Margin="14,436,14,0" VerticalAlignment="Top" Height="211" Width="550">
