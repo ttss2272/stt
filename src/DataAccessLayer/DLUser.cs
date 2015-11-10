@@ -67,5 +67,21 @@ namespace DataAccessLayer
             con.Close();
             return Result;
         }
+
+        public DataSet GetUserType(int UserTypeID)
+        {
+            con = conn.getConnection();
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("GetUserType_SP", con);
+            cmd.Parameters.AddWithValue("@UserTypeID", UserTypeID);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sqlDa.Fill(ds);
+            con.Close();
+            return ds;
+        }
     }
 }
