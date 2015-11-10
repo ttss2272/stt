@@ -293,10 +293,10 @@ namespace SchoolManagement.Teacher
                 cmbTeacher.SelectedValuePath = ds.Tables[0].Columns["TeacherID"].ToString();
                 cmbTeacher.SelectedValue = "0";
 
-                ComboBoxItem item = new ComboBoxItem();
-                item.Content = "Select";
-                item.Value = 0;
-                cmbTeacher.Items.Add(item);
+                //ComboBoxItem item = new ComboBoxItem();
+                //item.N = "Select";
+                //item.v = 0;
+               // cmbTeacher
             }
 
         }
