@@ -28,5 +28,11 @@ namespace BusinessLayer
             string result = obj_User.DeleteUser(UserID, UpdatedDate);
             return result;
         }
+
+        public DataSet GetUserType(int UserTypeID)
+        {
+            DataSet getUserType = obj_User.GetUserType(UserTypeID);
+            return getUserType;
+        }
     }
 }
