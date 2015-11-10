@@ -101,6 +101,7 @@ namespace SchoolManagement.Branch
             rbtnInactive.IsEnabled = false;
             rbtnActive.IsEnabled = true;
             btnSave.Content = "Save";
+            txtSearchBranch.Text = "";
             btnDelete.IsEnabled = false;
         }
         #endregion
@@ -195,14 +196,18 @@ namespace SchoolManagement.Branch
         {
             try
             {
-                MessageBoxResult result = MessageBox.Show("Do You Want to delete?", "Delete", MessageBoxButton.YesNoCancel);
-                if (result.Equals(MessageBoxResult.Yes))
+                if (Validate())
                 {
-                    SetParameters();
-                    DeleteBranch();
-                    BindGridview();
+                    MessageBoxResult result = MessageBox.Show("Do You Want to delete?", "Delete", MessageBoxButton.YesNoCancel);
+                    if (result.Equals(MessageBoxResult.Yes))
+                    {
+                        SetParameters();
+                        DeleteBranch();
+                        BindGridview();
+                    }
                 }
             }
+
             catch (Exception ex)
             {
 
@@ -387,11 +392,12 @@ namespace SchoolManagement.Branch
        * Ctreated Date :- 5 Nov 2015
        * Purpose:- To Exit from current form
        */
-        #region----------------BtnCancelClick()------------------------------------
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        #region----------------BtnClearClick()------------------------------------
+        private void btnClear_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            ClearFields();
         }
+
         #endregion
       
    /* Created By:- Sameer Shinde
@@ -567,5 +573,8 @@ namespace SchoolManagement.Branch
         {
             DisplayInstituteNameField();
         }
+
+        
+        
     }
 }
