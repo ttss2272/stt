@@ -50,7 +50,7 @@
                 <Label Content="Min" Height="28" HorizontalAlignment="Right" Margin="0,170,32,0" Name="label25" VerticalAlignment="Top" FontWeight="Bold" />
                 <ComboBox Height="23" HorizontalAlignment="Left" Margin="649,170,0,0" Name="cmbEMin" VerticalAlignment="Top" Width="49" ItemsSource="{Binding}" TabIndex="12" />
                 <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFF51F1F" Height="28" HorizontalAlignment="Left" Margin="536,198,0,0" Name="label27" VerticalAlignment="Top" Width="31" />
-                <CheckBox Content="More Than 1 Lect. In Batch" Height="21" HorizontalAlignment="Left" Margin="573,205,0,0" Name="chkAllowLect" VerticalAlignment="Top" Width="157" TabIndex="13" FontWeight="Bold" />
+                <CheckBox Content="More Than 1 Lect. In Batch" Height="21" HorizontalAlignment="Left" Margin="573,205,0,0" Name="chkAllowLect" VerticalAlignment="Top" Width="180" TabIndex="13" FontWeight="Bold" />
                 <Button Content="Clear" FontWeight="Bold" Height="31" HorizontalAlignment="Left" Margin="434,250,0,0" Name="btnclear" TabIndex="17" VerticalAlignment="Top" Width="75" Click="btnclear_Click" />
             </Grid>
         </GroupBox>

@@ -14,7 +14,6 @@ using BusinessLayer;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
-//using System.Windows.Forms;
 
 
 namespace SchoolManagement.Room
@@ -42,6 +41,10 @@ namespace SchoolManagement.Room
             clearFields();
 
         }
+
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 4 Nov 2015
+        * Purpose:- Validate All Fields*/
 
         #region---------------------------Validate()-----------------------------------------
         public bool Validate()
@@ -107,6 +110,10 @@ namespace SchoolManagement.Room
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 4 Nov 2015
+        * Purpose:- Clear All Fields */
+
         #region-----------------------Clearfield()------------------------------------
         private void clearFields()
         {
@@ -130,6 +137,10 @@ namespace SchoolManagement.Room
             BindBranchName();
         }
         #endregion
+
+       /* Created By:- Pranjali Vidhate
+        * Created Date :- 4 Nov 2015
+        * Purpose:- Set Parameters*/
 
         #region------------------SetParameters---------------------------------------
 
@@ -172,7 +183,9 @@ namespace SchoolManagement.Room
         }
         #endregion
 
-
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 4 Nov 2015
+        * Purpose:- Save/Update Room coding*/
         #region---------------AddRoom()--------------------------------------
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -201,6 +214,9 @@ namespace SchoolManagement.Room
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 5 Nov 2015
+        * Purpose:- Binding Room capacity*/
 
         #region----------------------------bindgrid()-----------------------
         private void BindFullGrid()
@@ -224,6 +240,9 @@ namespace SchoolManagement.Room
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 5 Nov 2015
+        * Purpose:- Binding branch*/
 
         #region-------------bindbranch()--------------------------------------
 
@@ -253,6 +272,10 @@ namespace SchoolManagement.Room
         #endregion
 
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 5 Nov 2015
+        * Purpose:- Binding Room capacity*/
+
         #region-------------LoadCapacity-------------------------------
         private void cmbCapacity_Items()
         {
@@ -267,6 +290,10 @@ namespace SchoolManagement.Room
 
         }
         #endregion
+
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 7 Nov 2015
+        * Purpose:- Binding StartTime & EndTime*/
 
         #region--------------LoadHrMin()-----------------------------------
         private void cmbSHr_Items()
@@ -337,7 +364,7 @@ namespace SchoolManagement.Room
         }
 
         /* Created By:- Sameer Shinde
-        * Created Date :- 5 Nov 2015
+        * Created Date :- 6 Nov 2015
         * Purpose:- griddview cell click */
        
 
@@ -455,6 +482,10 @@ namespace SchoolManagement.Room
             }
         }
         #endregion
+
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 6 Nov 2015
+        * Purpose:- To Delete Room */
 
 
         #region---------------DeleteRoom()------------------------------
