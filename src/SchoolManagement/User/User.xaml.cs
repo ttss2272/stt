@@ -213,7 +213,7 @@ namespace SchoolManagement.User
                 UserID = UpID;
                 UpdatedDate = DateTime.Now.ToString();
                 string Result = obj_User.DeleteUser(UserID, UpdatedDate);
-                if (Result == "Deleted Sucessfully.")
+                if (Result == "Deleted Sucessfully...!!")
                 {
                     MessageBox.Show(Result, "Delete Sucessfully", MessageBoxButton.OK, MessageBoxImage.Information);
                     ClearFields();
