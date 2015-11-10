@@ -477,11 +477,9 @@ namespace SchoolManagement.Branch
                 {
                     cmbSelectType.Text = "Institute";
                 }
-
             }
             catch (Exception ex)
             {
-                
                  MessageBox.Show(ex.Message.ToString());
             }
         }
@@ -512,16 +510,12 @@ namespace SchoolManagement.Branch
            try
             {
                 DataSet ds = obj_AddBranch.BindInstituteName();
-
-
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     cmbBindInstitute.DataContext = ds.Tables[0].DefaultView;
                     cmbBindInstitute.DisplayMemberPath = ds.Tables[0].Columns["InstituteName"].ToString();
                     cmbBindInstitute.SelectedValuePath = ds.Tables[0].Columns["InstituteName"].ToString();
-
                 }
-
             }
             catch (Exception ex)
             {
