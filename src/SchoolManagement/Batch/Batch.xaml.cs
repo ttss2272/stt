@@ -186,8 +186,8 @@ namespace SchoolManagement.Batch
                 MessageBox.Show("Please Enter Batch Code.", "Batch Code Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 txtBatchCode.Focus();
                 return false;
-            }           
-            else if (cbClassName.SelectedIndex == 0)
+            }
+            else if (cbClassName.SelectedValue.ToString() == "Select")
             {
                 MessageBox.Show("Please Select Class Name.", "Class Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 cbClassName.Focus();
@@ -446,6 +446,9 @@ namespace SchoolManagement.Batch
                         comboBox3.Text = ds.Tables[0].Rows[0]["LunchBreakEndTime"].ToString();
                         comboBox3.Text = ds.Tables[0].Rows[0]["LunchBreakEndTime"].ToString();
                         txtMaxnoLecDay.Text = ds.Tables[0].Rows[0]["MaxNoLecturesDay"].ToString();
+
+                        
+
                         txtMaxnoLecWeek.Text = ds.Tables[0].Rows[0]["MaxNoLecturesWeek"].ToString();
 
                         //chkallow.Unchecked = ds.Tables[0].Rows[0]["IsAllowMoreThanOneLectInBatch"].ToString();
