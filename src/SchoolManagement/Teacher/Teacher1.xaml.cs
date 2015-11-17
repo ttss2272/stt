@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data;
 using BusinessLayer;
+using System.Globalization;
+
 namespace SchoolManagement.Teacher
 {
     /// <summary>
@@ -160,21 +162,27 @@ namespace SchoolManagement.Teacher
         #region-------------------------------------------BindTimingHrs---------------------------------
         private void TimingHrs()
         {
+            cmbFreeTimeStartHrs.Items.Clear();
+            cmbFreeTimeEndHrs.Items.Clear();
+
             cmbFreeTimeStartHrs.Items.Add("Select");
             cmbFreeTimeEndHrs.Items.Add("Select");
             int i;
-            for (i = 1; i <= 9; i++)
+            for (i = 1; i <= 24; i++)
             {
-                    cmbFreeTimeStartHrs.Items.Add(n +i.ToString());
+                if (i < 10)
+                {
+                    cmbFreeTimeStartHrs.Items.Add(n + i.ToString());
                     cmbFreeTimeEndHrs.Items.Add(n + i.ToString());
+                }
+                else
+                {
+                    cmbFreeTimeStartHrs.Items.Add(i.ToString());
+                    cmbFreeTimeEndHrs.Items.Add(i.ToString());
+                }
                 
             }
-            cmbFreeTimeStartHrs.Items.Add("10");
-            cmbFreeTimeStartHrs.Items.Add("11");
-            cmbFreeTimeStartHrs.Items.Add("12");
-            cmbFreeTimeEndHrs.Items.Add("10");
-            cmbFreeTimeEndHrs.Items.Add("11");
-            cmbFreeTimeEndHrs.Items.Add("12");
+            
             cmbFreeTimeStartHrs.SelectedIndex = 0;
             cmbFreeTimeEndHrs.SelectedIndex = 0;
  
@@ -217,6 +225,7 @@ namespace SchoolManagement.Teacher
         #region-------------------------------------------MaxNoOfMovesInBranch---------------------------------
         private void MaxNoOfMovesInBranches()
         {
+            cmbMaxMoves.Items.Clear();
             cmbMaxMoves.Items.Add("Select");
             int i;
             for (i = 0; i <= 4; i++)
@@ -237,6 +246,7 @@ namespace SchoolManagement.Teacher
         #region-------------------------------------------MaxLectPerDay---------------------------------
         private void MaxLectPerDay()
         {
+            cmbMaxLectPerDay.Items.Clear();
             cmbMaxLectPerDay.Items.Add("Select");
             int i;
             for (i = 1; i <= 6; i++)
@@ -257,6 +267,7 @@ namespace SchoolManagement.Teacher
         #region-------------------------------------------MaxLectInRow---------------------------------
         private void MaxLectInRow()
         {
+            cmbMaxNoLectInRow.Items.Clear();
             cmbMaxNoLectInRow.Items.Add("Select");
             int i;
             for (i = 1; i <= 6; i++)
@@ -277,6 +288,7 @@ namespace SchoolManagement.Teacher
         #region-------------------------------------------MaxLectPerWeek---------------------------------
         private void MaxLectPerWeek1()
         {
+            cmbMaxLectPerWeek.Items.Clear();
             cmbMaxLectPerWeek.Items.Add("Select");
             int i;
             for (i = 1; i <= 30; i++)
@@ -298,16 +310,19 @@ namespace SchoolManagement.Teacher
         #region-------------------------------------------BindYesNo---------------------------------
         private void BindYesNo()
         {
+            cmbAllowMoreLect.Items.Clear();
             cmbAllowMoreLect.Items.Add("Select");
             cmbAllowMoreLect.Items.Add("Yes");
             cmbAllowMoreLect.Items.Add("No");
             cmbAllowMoreLect.SelectedIndex=0;
 
+            cmbFirstLect.Items.Clear();
             cmbFirstLect.Items.Add("Select");
             cmbFirstLect.Items.Add("Yes");
             cmbFirstLect.Items.Add("No");
             cmbFirstLect.SelectedIndex = 0;
 
+            cmbLastLect.Items.Clear();
             cmbLastLect.Items.Add("Select");
             cmbLastLect.Items.Add("Yes");
             cmbLastLect.Items.Add("No");
@@ -487,7 +502,10 @@ namespace SchoolManagement.Teacher
             FreeTimeEnd = cmbFreeTimeEndHrs.SelectedValue.ToString();
             FreeTimeEnd += ":" + cmbFreeTimeEndMin.SelectedValue.ToString();
             UpdatedByUserID = 1;
-            UpdatedDate = DateTime.Now.ToString();
+            UpdatedDate = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt");
+
+            //DateTime dt = DateTime.ParseExact(DateTime.Now.ToString(), "MM/dd/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture);
+            //DateTime ti = DateTime.ParseExact(DateTime.Now.ToString,"yyyy/dd/MM hh:mm:ss tt")
             
         }
         #endregion
@@ -651,6 +669,7 @@ namespace SchoolManagement.Teacher
             }
         }
         #endregion
+
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

@@ -6,6 +6,7 @@
         <StackPanel>
             <my:Menu_UserControl HorizontalAlignment="Left" x:Name="menu_UserControl1" VerticalAlignment="Top" />
         </StackPanel>
+        <Grid HorizontalAlignment="Center">
         <GroupBox Header="Teacher" HorizontalAlignment="Left" VerticalAlignment="Top" Name="grpMain" Margin="0,41,0,0">
             <Grid>
                 <GroupBox Header="Personal Information" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="173" Margin="36,-2,22,0">
@@ -87,6 +88,7 @@
                 </GroupBox>
             </Grid>
         </GroupBox>
+        </Grid>
         <!--<StackPanel>
             <my:Menu_UserControl HorizontalAlignment="Left" x:Name="menu_UserControl1" VerticalAlignment="Top" />
         </StackPanel>-->
