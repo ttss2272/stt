@@ -20,7 +20,8 @@ GO
 -- =============================================
 CREATE PROCEDURE SaveTeacherAvailable_SP 
 	(
-	@TeacherAvailableID int,
+	
+	@Day nvarchar(50),
 	@TeacherID NVARCHAR(50),
 	@StartTime NVARCHAR(50),
 	@EndTime NVARCHAR(50),
@@ -33,10 +34,10 @@ AS
 DECLARE @msg NVARCHAR(50)
 DECLARE @MaxID int
 BEGIN
-	IF(@TeacherAvailableID=0)
+	IF NOT Exists(SELECT TeacherAvalilableID FROM TeacherAvailable WHERE TeacherID=@TeacherID)
 		BEGIN
-			INSERT INTO TeacherAvailable(TeacherID,StartTime,EndTime,UpdatedByUserID,UpdatedDate,IsActive,IsDeleted)
-			VALUES (@TeacherID,@StartTime,@EndTime,@UpdatedByUserID,@UpdatedDate,@IsActive,@IsDeleted)
+			INSERT INTO TeacherAvailable(TeacherID,Day,StartTime,EndTime,UpdatedByUserID,UpdatedDate,IsActive,IsDeleted)
+			VALUES (@TeacherID,@Day,@StartTime,@EndTime,@UpdatedByUserID,@UpdatedDate,@IsActive,@IsDeleted)
 			IF(@@ROWCOUNT=1)
 				BEGIN
 					SELECT @MaxID=(SELECT MAX(TeacherAvailableID) FROM TeacherAvailable)
@@ -53,8 +54,8 @@ BEGIN
 		END
 	ELSE
 		BEGIN
-			UPDATE TeacherAvailable SET StartTime=@StartTime,EndTime=@EndTime,UpdatedByUserID=@UpdatedByUserID,UpdatedDate=@UpdatedDate,IsActive=@IsActive,IsDeleted=@IsDeleted
-			WHERE TeacherAvailableID=@TeacherAvailableID AND TeacherID=@TeacherID
+			UPDATE TeacherAvailable SET StartTime=@StartTime,Day=@Day,EndTime=@EndTime,UpdatedByUserID=@UpdatedByUserID,UpdatedDate=@UpdatedDate,IsActive=@IsActive,IsDeleted=@IsDeleted
+			WHERE  TeacherID=@TeacherID
 			IF(@@ROWCOUNT=1)
 				BEGIN
 					SELECT @MaxID=@TeacherAvailableID
