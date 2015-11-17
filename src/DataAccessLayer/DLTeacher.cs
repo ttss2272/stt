@@ -45,6 +45,29 @@ namespace DataAccessLayer
             return Result;
         }
 
+        public string SaveTeacherAvailibility(int TeacherID,string Day,string StartTime,string EndTime,int UpdatedByUserID,string UpdatedDate,int IsActive,int IsDeleted)
+        {
+            string Result = null;
+            conn = con.getConnection();
+            SqlCommand cmd = new SqlCommand("SaveTeacherAvailable_SP", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@TeacherID", TeacherID);
+            cmd.Parameters.AddWithValue("@Day", Day);
+            cmd.Parameters.AddWithValue("@StartTime", StartTime);
+            cmd.Parameters.AddWithValue("@EndTime", EndTime);
+            cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
+            cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
+            cmd.Parameters.AddWithValue("@IsActive", IsActive);
+            cmd.Parameters.AddWithValue("@IsDeleted", IsDeleted);
+
+            conn.Open();
+            Result = cmd.ExecuteScalar().ToString();
+            conn.Close();
+            return Result;
+ 
+        }
+
         public DataSet GetTeacher(int TeacherID)
         {
             conn = con.getConnection();
