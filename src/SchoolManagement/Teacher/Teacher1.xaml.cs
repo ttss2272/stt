@@ -502,7 +502,7 @@ namespace SchoolManagement.Teacher
             FreeTimeEnd = cmbFreeTimeEndHrs.SelectedValue.ToString();
             FreeTimeEnd += ":" + cmbFreeTimeEndMin.SelectedValue.ToString();
             UpdatedByUserID = 1;
-            UpdatedDate = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt");
+            UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
 
             //DateTime dt = DateTime.ParseExact(DateTime.Now.ToString(), "MM/dd/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture);
             //DateTime ti = DateTime.ParseExact(DateTime.Now.ToString,"yyyy/dd/MM hh:mm:ss tt")
