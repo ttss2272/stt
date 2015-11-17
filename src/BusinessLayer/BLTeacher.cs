@@ -16,6 +16,12 @@ namespace BusinessLayer
             return Result;
         }
 
+        public string SaveTeacherAvailibility(int TeacherID,string Day,string StartTime,string EndTime,int UpdatedByUserID,string UpdatedDate,int IsActive,int IsDeleted)
+        {
+            string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, StartTime, EndTime, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
+            return Result;
+        }
+
         public DataSet GetTeacher(int TeacherID)
         {
             DataSet ds = objTeacher.GetTeacher(TeacherID);
