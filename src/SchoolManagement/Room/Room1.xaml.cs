@@ -216,7 +216,7 @@ namespace SchoolManagement.Room
 
         /* Created By:- Pranjali Vidhate
         * Created Date :- 5 Nov 2015
-        * Purpose:- Binding Room capacity*/
+        * Purpose:- Binding Full Grid */
 
         #region----------------------------bindgrid()-----------------------
         private void BindFullGrid()
@@ -455,7 +455,7 @@ namespace SchoolManagement.Room
         * Purpose:- Update  cell click*/
        
 
-        #region-----------------UpdateRoom()--------------------------------
+  /*      #region-----------------UpdateRoom()--------------------------------
         private void btnUpdate_Click_1(object sender, RoutedEventArgs e)
         {
             try
@@ -481,7 +481,7 @@ namespace SchoolManagement.Room
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-        #endregion
+        #endregion */
 
         /* Created By:- Pranjali Vidhate
         * Created Date :- 6 Nov 2015
@@ -529,7 +529,7 @@ namespace SchoolManagement.Room
             }
             else
             {
-                MessageBox.Show("Please Select Subject From Subject", "Delete Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Please Select Room", "Delete Error", MessageBoxButton.OK, MessageBoxImage.Warning);
 
             }
         }
