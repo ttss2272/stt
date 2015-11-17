@@ -17,11 +17,6 @@ namespace BusinessLayer
             string result = obj_Room.saveAddRoom(RoomId, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted,MaxLectday,MaxLectWeek,MaxLectRow,STime,ETime,IsAllow);
             return result;
         }
-        public string UpdateRoom(int RoomId, string RoomName, string ShortName, string Color1, int Capacity, int BranchID, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted, int MaxLectday, int MaxLectWeek, int MaxLectRow, DateTime STime, DateTime ETime, int IsAllow)
-        {
-            string result = obj_Room.saveAddRoom(RoomId, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted, MaxLectday, MaxLectWeek, MaxLectRow, STime, ETime, IsAllow);
-            return result;
-        }
         public DataSet BindFullGrid(int RoomId,string BranchName, string RoomName)
         {
             DataSet ds = obj_Room.BindFullGrid(RoomId,BranchName, RoomName);
