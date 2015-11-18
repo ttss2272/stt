@@ -171,5 +171,22 @@ namespace DataAccessLayer
             conn.Close();
             return ds;
         }
+        public DataSet BindTeacherDropDown(int TeacherID)
+        {
+            conn = con.getConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("BindTeacherName_SP", conn);
+
+
+            cmd.Parameters.AddWithValue("@TeacherID", TeacherID);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
+        }
     }
 }
