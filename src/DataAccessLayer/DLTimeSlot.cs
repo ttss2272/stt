@@ -55,5 +55,24 @@ namespace DataAccessLayer
             conn.Close();
             return ds;
         }
+
+        //To Delete TimeSlot
+        public string DeleteTimeSlot(int BranchLectureDetailID, int UpdatedByUserID, string UpdatedDate)
+        {
+            string Result = null;
+            conn = con.getConnection();
+            SqlCommand cmd = new SqlCommand("DeleteTimeSlot_SP", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@BranchLectureDetailID", BranchLectureDetailID);
+            cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
+            cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
+
+            conn.Open();
+            Result = cmd.ExecuteScalar().ToString();
+            conn.Close();
+            return Result;
+
+        }
     }
 }
