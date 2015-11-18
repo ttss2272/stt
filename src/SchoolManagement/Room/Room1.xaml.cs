@@ -98,11 +98,6 @@ namespace SchoolManagement.Room
                 MessageBox.Show("Please Select Status...");
                 return false;
             }
-            else if (chkAllowLect.IsChecked == false )
-            {
-                MessageBox.Show("Please Select Allow Lectures...");
-                return false;
-            }
             else
             {
                 return true;
