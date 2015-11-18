@@ -203,10 +203,18 @@ namespace SchoolManagement.Teacher
             cmbFreeTimeStartMin.Items.Add("Select");
             cmbFreeTimeEndMin.Items.Add("Select");
             int i;
-            for (i = 0; i <= 59; i++)
+            for (i = 0; i <= 59; i=i+5)
             {
-                cmbFreeTimeStartMin.Items.Add(i);
-                cmbFreeTimeEndMin.Items.Add(i);
+                if (i < 10)
+                {
+                    cmbFreeTimeStartMin.Items.Add(n+i.ToString());
+                    cmbFreeTimeEndMin.Items.Add(n+i.ToString());
+                }
+                else
+                {
+                    cmbFreeTimeStartMin.Items.Add(i);
+                    cmbFreeTimeEndMin.Items.Add(i);
+                }
 
             }
             cmbFreeTimeStartMin.SelectedIndex = 0;
@@ -426,7 +434,18 @@ namespace SchoolManagement.Teacher
                 cmbFreeTimeEndMin.Focus();
                 return false;
             }
-
+            else if (Convert.ToInt32( cmbFreeTimeStartHrs.SelectedValue)>Convert.ToInt32(cmbFreeTimeEndHrs.SelectedValue))
+            {
+                MessageBox.Show("Free Time Start Hour is less or equals to End hours", "Free Time", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cmbFreeTimeStartHrs.Focus();
+                return false;
+            }
+            else if ((Convert.ToInt32(cmbFreeTimeStartHrs.SelectedValue)==Convert.ToInt32(cmbFreeTimeEndHrs.SelectedValue))&& (Convert.ToInt32(cmbFreeTimeStartMin.SelectedValue) >=Convert.ToInt32(cmbFreeTimeEndMin.SelectedValue))
+            {
+                MessageBox.Show("Free Time End Minutes must be greater than Start time","Free Time", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cmbFreeTimeEndMin.Focus();
+                return false;
+            }
             else
             {
                 return true;

@@ -10,13 +10,18 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding TeacherID}" Header="Teacher ID" Visibility="Hidden"></DataGridTextColumn>
                             <DataGridTextColumn Binding="{Binding TeacherName}" Header="Name" Width="250"></DataGridTextColumn>
-                            <DataGridTextColumn Binding="{Binding NoOfDaysAvailaible}" Header="No of Available Days" Width="200"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding NoOfDaysAvailaible}" Header="No of Available Days" Width="160"></DataGridTextColumn>
                             
-
                         </DataGrid.Columns>
+                        <DataGrid.ItemContainerStyle>
+                            <Style TargetType="DataGridRow">
+                                <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick" />
+                            </Style>
+                        </DataGrid.ItemContainerStyle>
+
                     </DataGrid>
                 </GroupBox>
-                <Button Content="Copy" Height="50" VerticalAlignment="Center" Width="59" HorizontalAlignment="Center" />
+                <Button Content="Copy" Height="50" VerticalAlignment="Center" Width="59" HorizontalAlignment="Center" Visibility="Hidden" />
                 <GroupBox Header="Teacher Avalaible Days" Height="357" VerticalAlignment="Top" Width="733" Margin="0,3,0,0">
                     <Grid Margin="0,6,0,-5">
                         <CheckBox Content="Available All Days" HorizontalAlignment="Left" Margin="24,50,0,0" VerticalAlignment="Top" Width="125" Name="chkAvailAllDay" Click="chkAvailAllDay_Click"/>
