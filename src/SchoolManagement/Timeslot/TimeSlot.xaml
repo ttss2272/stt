@@ -1,8 +1,9 @@
 ﻿<Window x:Class="SchoolManagement.Timeslot.TmeSlot"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="TimeSlot" Height="494" Width="715" Loaded="Window_Loaded">
-    <Grid>
+        Title="TimeSlot" Height="540" Width="715" Loaded="Window_Loaded" xmlns:my="clr-namespace:SchoolManagement">
+    <Grid Height="462">
+        <StackPanel ></StackPanel>    
         <GroupBox Header="TimeSlot" Height="273" HorizontalAlignment="Left" Margin="69,12,0,0" Name="groupBox1" VerticalAlignment="Top" Width="550">
             <Grid Height="261" Width="537">
                 <Label Content="Branch Name" Height="28" HorizontalAlignment="Left" Margin="37,22,0,0" Name="label1" VerticalAlignment="Top" Width="121" FontWeight="Bold" />
@@ -38,11 +39,11 @@
                 <RadioButton Content="Acative" FontWeight="Bold" Height="16" HorizontalAlignment="Left" Margin="199,170,0,0" Name="rdbActive" VerticalAlignment="Top" />
                 <RadioButton Content="InAcative" FontWeight="Bold" Height="16" HorizontalAlignment="Left" Margin="272,170,0,0" Name="rdbInactive" VerticalAlignment="Top" />
                 <Button Content="Save" FontWeight="Bold" Height="31" HorizontalAlignment="Left" Margin="107,204,0,0" Name="btnAdd" TabIndex="14" VerticalAlignment="Top" Width="75" Click="btnAdd_Click" />
-                <Button Content="Delete" FontWeight="Bold" Height="31" HorizontalAlignment="Left" Margin="229,204,0,0" Name="btnDelete" TabIndex="16" VerticalAlignment="Top" Width="75" />
-                <Button Content="Clear" FontWeight="Bold" Height="31" HorizontalAlignment="Left" Margin="360,204,0,0" Name="btnclear" TabIndex="17" VerticalAlignment="Top" Width="75" />
+                <Button Content="Delete" FontWeight="Bold" Height="31" HorizontalAlignment="Left" Margin="229,204,0,0" Name="btnDelete" TabIndex="16" VerticalAlignment="Top" Width="75" Click="btnDelete_Click" />
+                <Button Content="Clear" FontWeight="Bold" Height="31" HorizontalAlignment="Left" Margin="360,204,0,0" Name="btnclear" TabIndex="17" VerticalAlignment="Top" Width="75" Click="btnclear_Click" />
             </Grid>
         </GroupBox>
-        <DataGrid AutoGenerateColumns="False" Height="147" HorizontalAlignment="Left" Margin="61,296,0,0" Name="dgTimeSlot" VerticalAlignment="Top" Width="572" >
+        <DataGrid AutoGenerateColumns="False" Height="147" HorizontalAlignment="Left" Margin="61,303,0,0" Name="dgTimeSlot" VerticalAlignment="Top" Width="572" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="true" >
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding BranchLectureDetailID}" Header="" Visibility="Hidden"></DataGridTextColumn>
                 <DataGridTextColumn  Header="BranchName" Width="145" Binding="{Binding BranchName}"></DataGridTextColumn>
@@ -52,7 +53,12 @@
                 <DataGridTextColumn Binding="{Binding StartTime}" Header="StartTime" Visibility="Hidden"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding EndTime}" Header="EndTime" Visibility="Hidden"></DataGridTextColumn>
             </DataGrid.Columns>
-            
-        </DataGrid>     
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick" HandledEventsToo="True" />
+                </Style>
+            </DataGrid.ItemContainerStyle>
+        </DataGrid>
+        <my:Menu_UserControl HorizontalAlignment="Left" x:Name="menu_UserControl1" VerticalAlignment="Top" Margin="0,-24,0,0" />
     </Grid>
 </Window>

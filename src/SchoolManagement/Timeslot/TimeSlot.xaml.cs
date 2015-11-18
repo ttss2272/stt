@@ -28,12 +28,15 @@ namespace SchoolManagement.Timeslot
 
         int BranchLectureDetailID, BranchID, UpdatedByUserID, IsActive, IsDeleted, UpID;
         int SHr, SMin, EHr, EMin, SSHr, SSMin, SEHr,SEMin;
-        string DayName,UpdatedDate, Sign = ":", n = "0";
+        string DayName,UpdatedDate, Sign = ":", n = "0",m="1";
         DateTime StartTime, EndTime, SlotStartTime, SlotEndTime;
 
         public TmeSlot()
         {
             InitializeComponent();
+            this.WindowState = WindowState.Maximized;
+            this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
+            this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
             clearFields();
            
         }
@@ -103,6 +106,7 @@ namespace SchoolManagement.Timeslot
         #region-----------------------Clearfield()------------------------------------
         private void clearFields()
         {
+            UpID = 0;
             cmbBranchName.Text = "";
             cmbDayName.Text = "";
             rdbActive.IsChecked = true;
@@ -139,14 +143,14 @@ namespace SchoolManagement.Timeslot
             SMin = Convert.ToInt32(cmbSMin.SelectedValue.ToString());
             EHr = Convert.ToInt32(cmbEHr.SelectedValue.ToString());
             EMin = Convert.ToInt32(cmbEMin.SelectedValue.ToString());
-            SSHr = Convert.ToInt32(cmbSHr.SelectedValue.ToString());
-            SSMin = Convert.ToInt32(cmbSMin.SelectedValue.ToString());
-            SEHr = Convert.ToInt32(cmbEHr.SelectedValue.ToString());
-            SEMin = Convert.ToInt32(cmbEMin.SelectedValue.ToString());
+            SSHr = Convert.ToInt32(cmbSSHr.SelectedValue.ToString());
+            SSMin = Convert.ToInt32(cmbSSMin.SelectedValue.ToString());
+            SEHr = Convert.ToInt32(cmbSEHr.SelectedValue.ToString());
+            SEMin = Convert.ToInt32(cmbSEMin.SelectedValue.ToString());
             StartTime =Convert.ToDateTime( SHr + Sign + SMin);
             EndTime = Convert.ToDateTime(EHr + Sign + EMin);
-            SlotStartTime = Convert.ToDateTime(SHr + Sign + SMin);
-            SlotEndTime = Convert.ToDateTime(EHr + Sign + EMin);
+            SlotStartTime = Convert.ToDateTime(SSHr + Sign + SSMin);
+            SlotEndTime = Convert.ToDateTime(SEHr + Sign + SEMin);
 
 
             if (rdbActive.IsChecked == true)
@@ -226,7 +230,7 @@ namespace SchoolManagement.Timeslot
         {
             try
             {
-                DataSet ds = obj_TSlot.BindFullGrid(0, cmbBranchName.Text, cmbDayName.Text);
+                DataSet ds = obj_TSlot.BindFullGrid(0, cmbBranchName.Text, "");
 
                 // ds = obj_Room.BindFullGrid(0);
                 if (ds.Tables[0].Rows.Count > 0)
@@ -291,8 +295,16 @@ namespace SchoolManagement.Timeslot
 
             }
             cmbSHr.Items.Add("10");
-            cmbSHr.Items.Add("11");
-            cmbSHr.Items.Add("12");
+            for (i = 1; i <= 9; i++)
+            {
+                cmbSHr.Items.Add(m + i.ToString());
+
+            }
+            cmbSHr.Items.Add("20");
+            cmbSHr.Items.Add("21");
+            cmbSHr.Items.Add("22");
+            cmbSHr.Items.Add("23");
+            cmbSHr.Items.Add("24");
             cmbSHr.SelectedIndex = 0;
 
         }
@@ -300,7 +312,9 @@ namespace SchoolManagement.Timeslot
         {
             cmbSMin.Items.Add("select");
             int i;
-            for (i = 0; i <= 60; i += 5)
+            cmbSMin.Items.Add("00");
+            cmbSMin.Items.Add("05");
+            for (i = 10; i <= 60; i += 5)
             {
                 cmbSMin.Items.Add(i);
 
@@ -318,8 +332,16 @@ namespace SchoolManagement.Timeslot
 
             }
             cmbEHr.Items.Add("10");
-            cmbEHr.Items.Add("11");
-            cmbEHr.Items.Add("12");
+            for (i = 1; i <= 9; i++)
+            {
+                cmbEHr.Items.Add(m + i.ToString());
+
+            }
+            cmbEHr.Items.Add("20");
+            cmbEHr.Items.Add("21");
+            cmbEHr.Items.Add("22");
+            cmbEHr.Items.Add("23");
+            cmbEHr.Items.Add("24");
             cmbEHr.SelectedIndex = 0;
 
         }
@@ -327,7 +349,9 @@ namespace SchoolManagement.Timeslot
         {
             cmbEMin.Items.Add("select");
             int i;
-            for (i = 0; i <= 60; i += 5)
+            cmbEMin.Items.Add("00");
+            cmbEMin.Items.Add("05");
+            for (i = 10; i <= 60; i += 5)
             {
                 cmbEMin.Items.Add(i);
 
@@ -336,12 +360,12 @@ namespace SchoolManagement.Timeslot
 
         }
         #endregion
-
+      
         /* Created By:- Pranjali Vidhate
-        * Created Date :- 7 Nov 2015
+        * Created Date :- 17 Nov 2015
         * Purpose:- Binding Slot StartTime & EndTime*/
 
-        #region--------------LoadslotHrMin()-----------------------------------
+        #region--------------LoadSlotHrMin()-----------------------------------
         private void cmbSSHr_Items()
         {
             cmbSSHr.Items.Add("select");
@@ -352,8 +376,16 @@ namespace SchoolManagement.Timeslot
 
             }
             cmbSSHr.Items.Add("10");
-            cmbSSHr.Items.Add("11");
-            cmbSSHr.Items.Add("12");
+            for (i = 1; i <= 9; i++)
+            {
+                cmbSSHr.Items.Add(m + i.ToString());
+
+            }
+            cmbSSHr.Items.Add("20");
+            cmbSSHr.Items.Add("21");
+            cmbSSHr.Items.Add("22");
+            cmbSSHr.Items.Add("23");
+            cmbSSHr.Items.Add("24");
             cmbSSHr.SelectedIndex = 0;
 
         }
@@ -361,7 +393,9 @@ namespace SchoolManagement.Timeslot
         {
             cmbSSMin.Items.Add("select");
             int i;
-            for (i = 0; i <= 60; i += 5)
+            cmbSSMin.Items.Add("00");
+            cmbSSMin.Items.Add("05");
+            for (i = 10; i <= 60; i += 5)
             {
                 cmbSSMin.Items.Add(i);
 
@@ -379,8 +413,16 @@ namespace SchoolManagement.Timeslot
 
             }
             cmbSEHr.Items.Add("10");
-            cmbSEHr.Items.Add("11");
-            cmbSEHr.Items.Add("12");
+            for (i = 1; i <= 9; i++)
+            {
+                cmbSEHr.Items.Add(m + i.ToString());
+
+            }
+            cmbSEHr.Items.Add("20");
+            cmbSEHr.Items.Add("21");
+            cmbSEHr.Items.Add("22");
+            cmbSEHr.Items.Add("23");
+            cmbSEHr.Items.Add("24");
             cmbSEHr.SelectedIndex = 0;
 
         }
@@ -388,7 +430,9 @@ namespace SchoolManagement.Timeslot
         {
             cmbSEMin.Items.Add("select");
             int i;
-            for (i = 0; i <= 60; i += 5)
+            cmbSEMin.Items.Add("00");
+            cmbSEMin.Items.Add("05");
+            for (i = 10; i <= 60; i += 5)
             {
                 cmbSEMin.Items.Add(i);
 
@@ -397,6 +441,7 @@ namespace SchoolManagement.Timeslot
 
         }
         #endregion
+
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -414,8 +459,132 @@ namespace SchoolManagement.Timeslot
             cmbSEMin_Items();
         }
 
-        
+        /* Created By:- pranjali vidhate
+       * Created Date :- 18 Nov 2015
+       * Purpose:- griddview cell click */
 
+
+        #region----------------------gridview cell click()-------------------------
+        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+
+                object item = dgTimeSlot.SelectedItem;
+                string BranchName = (dgTimeSlot.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+                string DayName = (dgTimeSlot.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
+
+                DataSet ds = obj_TSlot.BindFullGrid(0, BranchName, DayName);
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        UpID = Convert.ToInt32(ds.Tables[0].Rows[0]["BranchLectureDetailID"]);
+                        cmbDayName.Text = ds.Tables[0].Rows[0]["DayName"].ToString();
+                        cmbBranchName.Text = ds.Tables[0].Rows[0]["BranchName"].ToString();
+                        string StartTime = ((System.Data.DataRowView)(dgTimeSlot.CurrentItem)).Row.ItemArray[4].ToString();
+                        string[] a = StartTime.Split(':');
+                        cmbSHr.Text = a[0];
+                        cmbSMin.Text = a[1];
+
+                        string EndTime = ((System.Data.DataRowView)(dgTimeSlot.CurrentItem)).Row.ItemArray[5].ToString();
+                        string[] b = EndTime.Split(':');
+                        cmbEHr.Text = b[0];
+                        cmbEMin.Text = b[1];
+
+                        string SlotStartTime = ((System.Data.DataRowView)(dgTimeSlot.CurrentItem)).Row.ItemArray[8].ToString();
+                        string[] c = SlotStartTime.Split(':');
+                        cmbSSHr.Text = c[0];
+                        cmbSSMin.Text = c[1];
+
+                        string SlotEndTime = ((System.Data.DataRowView)(dgTimeSlot.CurrentItem)).Row.ItemArray[9].ToString();
+                        string[] d = SlotEndTime.Split(':');
+                        cmbSEHr.Text = d[0];
+                        cmbSEMin.Text = d[1];
+
+                        IsActive = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
+                        IsDeleted = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDelete"]);
+                        if (IsActive == 1 && IsDeleted == 0)
+                        {
+                            rdbActive.IsChecked = true;
+                        }
+                        else if (IsActive == 0 && IsDeleted == 0)
+                        {
+                            rdbInactive.IsChecked = true;
+                        }
+                       
+                        btnDelete.IsEnabled = true;
+                        btnAdd.Content = "Update";
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        #endregion
+
+        private void btnclear_Click(object sender, RoutedEventArgs e)
+        {
+            clearFields();
+        }
+
+        /* Created By:- pranjali vidhate
+       * Created Date :- 18 Nov 2015
+       * Purpose:- griddview cell click */
+
+        #region-----------------------DeleteTimeSlot-------------------------------
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (Validate())
+                {
+                    MessageBoxResult Result = MessageBox.Show("Do You Really Want To Delete?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                    if (Result.Equals(MessageBoxResult.Yes))
+                    {
+                        SetParameters();
+                        DeleteTimeSlot();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message.ToString());
+            }
+
+        }
+
+        private void DeleteTimeSlot()
+        {
+            if (UpID != 0)
+            {
+                BranchLectureDetailID = UpID;
+
+                string Result = obj_TSlot.DeleteTimeSlot(BranchLectureDetailID, UpdatedByUserID, UpdatedDate);
+                if (Result == "Deleted Sucessfully...!!")
+                {
+                    MessageBox.Show(Result, "Delete Sucessfully", MessageBoxButton.OK, MessageBoxImage.Information);
+                    clearFields();
+                }
+                else
+                {
+                    MessageBox.Show(Result, "Error To Delete", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please Select Time Slot", "Delete Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            }
+        }
+
+
+        #endregion
 
     }
 }
