@@ -215,7 +215,7 @@ namespace SchoolManagement.Subject
             SubjectName = txtSubjectName.Text.Trim();
             SubjectShortName = txtSubjectShortName.Text.Trim();
             UpdatedByUserID = 1;
-            UpdatedDate = DateTime.Now.ToString();
+            UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:MM:ss tt");
             if (cmbActive.IsChecked == true)
             {
                 Active = 1;
