@@ -24,6 +24,12 @@ namespace BusinessLayer
             return ds;
         }
 
+        public string DeleteTimeSlot(int BranchLectureDetailID, int UpdatedByUserID, string UpdatedDate)
+        {
+            string Result = obj_TSlot.DeleteTimeSlot(BranchLectureDetailID, UpdatedByUserID, UpdatedDate);
+            return Result;
+        }
+
 
     }
 }
