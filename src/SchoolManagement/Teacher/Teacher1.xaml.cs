@@ -440,7 +440,7 @@ namespace SchoolManagement.Teacher
                 cmbFreeTimeStartHrs.Focus();
                 return false;
             }
-            else if ((Convert.ToInt32(cmbFreeTimeStartHrs.SelectedValue)==Convert.ToInt32(cmbFreeTimeEndHrs.SelectedValue))&& (Convert.ToInt32(cmbFreeTimeStartMin.SelectedValue) >=Convert.ToInt32(cmbFreeTimeEndMin.SelectedValue))
+            else if ((Convert.ToInt32(cmbFreeTimeStartHrs.SelectedValue)==Convert.ToInt32(cmbFreeTimeEndHrs.SelectedValue))&& (Convert.ToInt32(cmbFreeTimeStartMin.SelectedValue) >=Convert.ToInt32(cmbFreeTimeEndMin.SelectedValue)))
             {
                 MessageBox.Show("Free Time End Minutes must be greater than Start time","Free Time", MessageBoxButton.OK, MessageBoxImage.Warning);
                 cmbFreeTimeEndMin.Focus();
@@ -598,17 +598,17 @@ namespace SchoolManagement.Teacher
                 string time = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[4].ToString();
                 string[] a = time.Split(':');
                 cmbFreeTimeStartHrs.Text = a[0];
-                if (a[1] == "00")
-                { cmbFreeTimeStartMin.Text = "0"; }
-                else
+                //if (a[1] == "00")
+                //{ cmbFreeTimeStartMin.Text = "0"; }
+                //else
                 { cmbFreeTimeStartMin.Text = a[1]; }
 
                 string ENDtime = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[5].ToString();
                 string[] b = ENDtime.Split(':');
                 cmbFreeTimeEndHrs.Text = b[0];
-                if (b[1] == "00")
-                { cmbFreeTimeEndMin.Text = "0"; }
-                else
+                //if (b[1] == "00")
+                //{ cmbFreeTimeEndMin.Text = "0"; }
+                //else
                 { cmbFreeTimeEndMin.Text = b[1]; }
 
                 cmbMaxMoves.Text =  ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[6].ToString();

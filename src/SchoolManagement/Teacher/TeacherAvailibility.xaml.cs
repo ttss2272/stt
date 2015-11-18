@@ -47,7 +47,7 @@ namespace SchoolManagement.Teacher
          * StartTime:-
          * EndTime:-
          */
-        #region---------------------------------Main()-------------------------------------
+        #region-----------------------------------------Main()-------------------------------------------------------------------------
         public TeacherAvailibility()
         {
             try
@@ -75,9 +75,10 @@ namespace SchoolManagement.Teacher
          * StartTime:-
          * EndTime:-
          */
-        #region---------------------------------ClearFields()-------------------------------------
+        #region-----------------------------------------------ClearFields()-----------------------------------------------------------
         private void ClearFields()
         {
+            cmbTeacher.IsEnabled = true;
             BindTeacher();
             BindHours();
             BindMinutes();
@@ -94,7 +95,7 @@ namespace SchoolManagement.Teacher
          * StartTime:-
          * EndTime:-
          */
-        #region--------------------------------------------------------Clears()------------------------------------
+        #region---------------------------------------------------------Clears()-------------------------------------------------------
         private void Clears()
         {
             
@@ -116,7 +117,7 @@ namespace SchoolManagement.Teacher
          * StartTime:-
          * EndTime:-
          */
-        #region---------------------------------chkAvailableSameTime()-------------------------------------
+        #region-------------------------------------------chkAvailableSameTime()---------------------------------------------------------
         private void chkAvailSameTime_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -144,13 +145,21 @@ namespace SchoolManagement.Teacher
          * StartTime:-
          * EndTime:-
          */
-        #region---------------------------------Button Go click()-------------------------------------
+        #region----------------------------------------------Button Go click()----------------------------------------------------------
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                Clears();
-                GetTeacherAvailableDetails(Convert.ToInt32( cmbTeacher.SelectedValue));
+                if (cmbTeacher.SelectedValue.ToString() == "0")
+                {
+                    MessageBox.Show("Please Select Teacher.");
+                }
+                else
+                {
+                    cmbTeacher.IsEnabled = false;
+                    Clears();
+                    GetTeacherAvailableDetails(Convert.ToInt32(cmbTeacher.SelectedValue));
+                }
 
             }
             catch (Exception ex)
@@ -167,7 +176,7 @@ namespace SchoolManagement.Teacher
          * StartTime:-
          * EndTime:-
          */
-        #region---------------------------------Button Save click()-------------------------------------
+        #region---------------------------------------Button Save click()----------------------------------------------------------------
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -188,11 +197,11 @@ namespace SchoolManagement.Teacher
         /*
         * CreatedBy:-PriTesh D. Sortee
         * Created Date:- 17 Nov 2015
-        * Purpose:- Set Parameters and save details
+        * Purpose:- Set Parameters and Save details
         * StartTime:-
         * EndTime:-
         */
-        #region--------------------------------------------------Setparameters---------------------------------------------------
+        #region-------------------------------------------------------Setparameters()-------------------------------------------------------
         private void SetParameters()
         {
             int ResultCount=0;
@@ -516,17 +525,20 @@ namespace SchoolManagement.Teacher
          * StartTime:-
          * EndTime:-
          */
-        #region---------------------------------BindTeacher()-------------------------------------
+        #region---------------------------------------------------BindTeacher()-------------------------------------------------------------
         private void BindTeacher()
         {
-            DataSet ds = objTeacher.BindTeacher(0);
+            DataSet ds = objTeacher.BindTeacherDropDown(0);
 
             if (ds.Tables[0].Rows.Count > 0)
             {
                 cmbTeacher.DataContext = null;
+                
                 cmbTeacher.DataContext = ds.Tables[0].DefaultView;
                 cmbTeacher.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
                 cmbTeacher.SelectedValuePath = ds.Tables[0].Columns["TeacherID"].ToString();
+                
+
                 cmbTeacher.SelectedValue = "0";
             }
         }
@@ -539,7 +551,7 @@ namespace SchoolManagement.Teacher
          * StartTime:-
          * EndTime:-
          */
-        #region-----------------------------------------------------BindTiming---------------------------------------------------------------------
+        #region---------------------------------------------------BindTiming------------------------------------------------------------------
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
@@ -774,7 +786,7 @@ namespace SchoolManagement.Teacher
          * StartTime:-
          * EndTime:-
          */
-        #region----------------------------------------------------------------CheckBoxes--------------------------------------------
+        #region----------------------------------------------------------------CheckBoxes()---------------------------------------------------
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
@@ -1067,7 +1079,7 @@ namespace SchoolManagement.Teacher
          * StartTime:-
          * EndTime:-
          */
-        #region----------------------------------------------------------------EnableDropdown--------------------------------------------
+        #region----------------------------------------------------------------EnableDropdown()------------------------------------------------
         private void EnableDropdown()
         {
             gbSameTime.Visibility = Visibility.Hidden;
@@ -1115,7 +1127,7 @@ namespace SchoolManagement.Teacher
          * StartTime:-
          * EndTime:-
          */
-        #region----------------------------------------------------------------DisebleDropdown--------------------------------------------
+        #region----------------------------------------------------------------DisebleDropdown()-----------------------------------------------
         private void DisableDropdown()
         {
             gbSameTime.Visibility = Visibility.Visible;
@@ -1163,7 +1175,7 @@ namespace SchoolManagement.Teacher
          * StartTime:-
          * EndTime:-
          */
-        #region-------------------------------------------------------------------BindGrid()----------------------------------------
+        #region---------------------------------------------------------------BindGrid()-------------------------------------------------------
         private void BindGrid()
         {
             DataSet ds = objTeacher.BindTeacherAvail();
@@ -1184,7 +1196,7 @@ namespace SchoolManagement.Teacher
          * StartTime:-
          * EndTime:-
          */
-        #region---------------------------------------------------------GetTeacherAvailableDetails()--------------------------------
+        #region---------------------------------------------------------GetTeacherAvailableDetails()-------------------------------------------
         private void GetTeacherAvailableDetails(int numId)
         {
             cnn = 0;
@@ -1448,7 +1460,7 @@ namespace SchoolManagement.Teacher
          * EndTime:-
          */
 
-        #region---------------------------------------------------chkStartHrs_SelectionChanged--------------------------------------------------
+        #region---------------------------------------------------chkStartHrs_SelectionChanged()--------------------------------------------------
         private void chkStartHrs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -1482,7 +1494,7 @@ namespace SchoolManagement.Teacher
          * StartTime:-
          * EndTime:-
          */
-        #region-----------------------------------------------chkStartMin_SelectionChanged------------------------------------------
+        #region-----------------------------------------------chkStartMin_SelectionChanged()------------------------------------------------------
         private void chkStartMin_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
