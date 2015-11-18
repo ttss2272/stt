@@ -30,11 +30,14 @@ namespace SchoolManagement.Teacher
          */
         #region---------------------------------Declare variables Globally-------------------------------------
         BLTeacher objTeacher = new BLTeacher();
-        int daycheckcount=0,cnn;
+        int daycheckcount=0,cnn,n=0;
         string tmpStartTime, tmpEndTime;
         string [] StartTime;
         string [] EndTime;
         string[] s;
+
+        int TeacherID, UpdatedByUserID, Active, IsDeleted;
+        string Day, FinalStartTime, FinalEndTime, UpdatedDate;
         #endregion
 
         /*
@@ -54,6 +57,7 @@ namespace SchoolManagement.Teacher
                 this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
                 this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
                 ClearFields();
+                
             }
             catch (Exception ex)
             {
@@ -78,8 +82,33 @@ namespace SchoolManagement.Teacher
             BindHours();
             BindMinutes();
             BindGrid();
+            UncheckAllCheckBoxes();
+            EnableDropdown();
         }
         #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 07Nov2015
+         * Purpose:-Clear Fields
+         * StartTime:-
+         * EndTime:-
+         */
+        #region--------------------------------------------------------Clears()------------------------------------
+        private void Clears()
+        {
+            
+            BindHours();
+            BindMinutes();
+            BindGrid();
+            UncheckAllCheckBoxes();
+            gbSameTime.Visibility = Visibility.Hidden;
+            EnableDropdown();
+        
+        }
+        #endregion
+
+
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
@@ -94,7 +123,7 @@ namespace SchoolManagement.Teacher
             {
                 if (chkAvailSameTime.IsChecked == true)
                 {
-                    DisableCheckBox();
+                    DisableDropdown();
                 }
                 else 
                 {
@@ -107,6 +136,7 @@ namespace SchoolManagement.Teacher
             }
         }
         #endregion
+        
         /*
          * CreatedBy:-PriTesh D. Sortee
          * Created Date:- 07Nov2015
@@ -119,6 +149,7 @@ namespace SchoolManagement.Teacher
         {
             try
             {
+                Clears();
                 GetTeacherAvailableDetails();
 
             }
@@ -142,89 +173,122 @@ namespace SchoolManagement.Teacher
             try
             {
                 SetParameters();
+                BindGrid();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+        #endregion
 
         /*
-         * CreatedBy:-Sameer Shinde
-         * Created Date:- 09 Nov2015
-         * Purpose:- Set Parameter for Save
-         * StartTime:-
-         * EndTime:-
-         */
+        * CreatedBy:-PriTesh D. Sortee
+        * Created Date:- 17 Nov 2015
+        * Purpose:- Set Parameters
+        * StartTime:-
+        * EndTime:-
+        */
+        #region--------------------------------------------------Setparameters---------------------------------------------------
         private void SetParameters()
         {
-            
-            if (daycheckcount > 0)
+            if (chkMon.IsChecked == true)
             {
-                int cnt = daycheckcount;
-                string TempDay;
-                if (cnt == 7)
-                    {
-                        CheckAllDays();
-                    }
-                for (int i = 0; i <= cnt; i++)
-                {
-                   if (chkMon.IsChecked == true)
-                   {
-                       s[i] = "Mon";
-                   }
-                   else if (chkTue.IsChecked == true)
-                   {
-                       s[i] = "Tue";
-                   }
-                   else if (chkWed.IsChecked == true)
-                   {
-                       s[i] = "Wed";
-                   }
-                   else if (chkThru.IsChecked == true)
-                   {
-                       s[i] = "Thru";
-                   }
-                   else if (chkFri.IsChecked == true)
-                   {
-                       s[i] = "Fri";
-                   }
-                   else if (chkSat.IsChecked == true)
-                   {
-                       s[i] = "Sat";
-                   }
-                   else if (chkSun.IsChecked == true)
-                   {
-                       s[i] = "Sun";
-                   }
-                   else
-                   {
-                       s[i] = "All Days Available";
-                   }
-                   TempDay = s[i];
-                    //count start time to end time for all days
-                    //if()
-                    //{
+                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                Day = chkMon.Content.ToString();
+                FinalStartTime = chkStartHrs1.Text+":";
+                FinalStartTime += chkStartMin1.Text;
+                FinalEndTime = chkEndhrs1.Text + ":";
+                FinalEndTime += EndMin1.Text;
+                Active = 1;
+                    IsDeleted=0;
+                    UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
 
-                    //}
-                   switch (s[i])
-                   {
-                       case ("Mon"):
-                           {
-                               tmpStartTime = chkStartHrs1.SelectedValue.ToString();
-                               tmpStartTime += ":" + chkStartMin1.SelectedValue.ToString();
-
-                               tmpEndTime = chkEndhrs1.SelectedValue.ToString();
-                               tmpEndTime += ":" + EndMin1.SelectedValue.ToString();
-
-
-                               break;
-                           }
-                   }
-                }
             }
-
+            if (chkTue.IsChecked == true)
+            {
+                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                Day = chkTue.Content.ToString();
+                FinalStartTime = chkStartHrs2.Text + ":";
+                FinalStartTime += chkStartMin2.Text;
+                FinalEndTime = chkEndhrs2.Text + ":";
+                FinalEndTime += EndMin2.Text;
+                Active = 1;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+            }
+            if (chkWed.IsChecked == true)
+            {
+                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                Day = chkWed.Content.ToString();
+                FinalStartTime = chkStartHrs3.Text + ":";
+                FinalStartTime += chkStartMin3.Text;
+                FinalEndTime = chkEndhrs3.Text + ":";
+                FinalEndTime += EndMin3.Text;
+                Active = 1;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+            }
+            if (chkThru.IsChecked == true)
+            {
+                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                Day = chkThru.Content.ToString();
+                FinalStartTime = chkStartHrs4.Text + ":";
+                FinalStartTime += chkStartMin4.Text;
+                FinalEndTime = chkEndhrs4.Text + ":";
+                FinalEndTime += EndMin4.Text;
+                Active = 1;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+            }
+            if (chkFri.IsChecked == true)
+            {
+                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                Day = chkFri.Content.ToString();
+                FinalStartTime = chkStartHrs5.Text + ":";
+                FinalStartTime += chkStartMin5.Text;
+                FinalEndTime = chkEndhrs5.Text + ":";
+                FinalEndTime += EndMin5.Text;
+                Active = 1;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+            }
+            if (chkSat.IsChecked == true)
+            {
+                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                Day = chkSat.Content.ToString();
+                FinalStartTime = chkStartHrs6.Text + ":";
+                FinalStartTime += chkStartMin6.Text;
+                FinalEndTime = chkEndhrs6.Text + ":";
+                FinalEndTime += EndMin6.Text;
+                Active = 1;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+            }
+            if (chkSun.IsChecked == true)
+            {
+                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                Day = chkSun.Content.ToString();
+                FinalStartTime = chkStartHrs7.Text + ":";
+                FinalStartTime += chkStartMin7.Text;
+                FinalEndTime = chkEndhrs7.Text + ":";
+                FinalEndTime += EndMin7.Text;
+                Active = 1;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+            }
         }
+        #endregion
+
+
+
         /*
         * CreatedBy:-Sameer Shinde
         * Created Date:- 09 Nov2015
@@ -271,7 +335,7 @@ namespace SchoolManagement.Teacher
            
         //}
         #endregion
-        #endregion
+        
 
         /*
          * CreatedBy:-PriTesh D. Sortee
@@ -314,6 +378,24 @@ namespace SchoolManagement.Teacher
         #region---------------------------------------------------BindHours------------------------------------------------
         private void BindHours()
         {
+            chkStartHrs.Items.Clear();
+            chkStartHrs1.Items.Clear();
+            chkStartHrs2.Items.Clear();
+            chkStartHrs3.Items.Clear();
+            chkStartHrs4.Items.Clear();
+            chkStartHrs5.Items.Clear();
+            chkStartHrs6.Items.Clear();
+            chkStartHrs7.Items.Clear();
+			
+			chkEndhrs.Items.Clear();
+            chkEndhrs1.Items.Clear();
+            chkEndhrs2.Items.Clear();
+            chkEndhrs3.Items.Clear();
+            chkEndhrs4.Items.Clear();
+            chkEndhrs5.Items.Clear();
+            chkEndhrs6.Items.Clear();
+            chkEndhrs7.Items.Clear();
+
             chkStartHrs.Items.Add("HRS");
             chkStartHrs1.Items.Add("HRS");
             chkStartHrs2.Items.Add("HRS");
@@ -323,6 +405,7 @@ namespace SchoolManagement.Teacher
             chkStartHrs6.Items.Add("HRS");
             chkStartHrs7.Items.Add("HRS");
 
+            
             chkEndhrs.Items.Add("HRS");
             chkEndhrs1.Items.Add("HRS");
             chkEndhrs2.Items.Add("HRS");
@@ -334,23 +417,46 @@ namespace SchoolManagement.Teacher
             int i;
             for (i = 1; i <= 24; i++)
             {
-                chkStartHrs.Items.Add(i);
-                chkStartHrs1.Items.Add(i);
-                chkStartHrs2.Items.Add(i);
-                chkStartHrs3.Items.Add(i);
-                chkStartHrs4.Items.Add(i);
-                chkStartHrs5.Items.Add(i);
-                chkStartHrs6.Items.Add(i);
-                chkStartHrs7.Items.Add(i);
+                if (i < 10)
+                {
+                    chkStartHrs.Items.Add(n + i.ToString());
+                    chkStartHrs1.Items.Add(n + i.ToString());
+                    chkStartHrs2.Items.Add(n + i.ToString());
+                    chkStartHrs3.Items.Add(n + i.ToString());
+                    chkStartHrs4.Items.Add(n + i.ToString());
+                    chkStartHrs5.Items.Add(n + i.ToString());
+                    chkStartHrs6.Items.Add(n + i.ToString());
+                    chkStartHrs7.Items.Add(n + i.ToString());
 
-                chkEndhrs.Items.Add(i);
-                chkEndhrs1.Items.Add(i);
-                chkEndhrs2.Items.Add(i);
-                chkEndhrs3.Items.Add(i);
-                chkEndhrs4.Items.Add(i);
-                chkEndhrs5.Items.Add(i);
-                chkEndhrs6.Items.Add(i);
-                chkEndhrs7.Items.Add(i);
+                    chkEndhrs.Items.Add(n + i.ToString());
+                    chkEndhrs1.Items.Add(n + i.ToString());
+                    chkEndhrs2.Items.Add(n + i.ToString());
+                    chkEndhrs3.Items.Add(n + i.ToString());
+                    chkEndhrs4.Items.Add(n + i.ToString());
+                    chkEndhrs5.Items.Add(n + i.ToString());
+                    chkEndhrs6.Items.Add(n + i.ToString());
+                    chkEndhrs7.Items.Add(n + i.ToString());
+                }
+                else
+                {
+                    chkStartHrs.Items.Add(i);
+                    chkStartHrs1.Items.Add(i);
+                    chkStartHrs2.Items.Add(i);
+                    chkStartHrs3.Items.Add(i);
+                    chkStartHrs4.Items.Add(i);
+                    chkStartHrs5.Items.Add(i);
+                    chkStartHrs6.Items.Add(i);
+                    chkStartHrs7.Items.Add(i);
+
+                    chkEndhrs.Items.Add(i);
+                    chkEndhrs1.Items.Add(i);
+                    chkEndhrs2.Items.Add(i);
+                    chkEndhrs3.Items.Add(i);
+                    chkEndhrs4.Items.Add(i);
+                    chkEndhrs5.Items.Add(i);
+                    chkEndhrs6.Items.Add(i);
+                    chkEndhrs7.Items.Add(i);
+                }
             }
             chkStartHrs.SelectedIndex = 0;
             chkStartHrs1.SelectedIndex = 0;
@@ -383,6 +489,25 @@ namespace SchoolManagement.Teacher
         #region---------------------------------------------------BindMinutes------------------------------------------------
         private void BindMinutes()
         {
+
+            chkStartMin.Items.Clear();
+            chkStartMin1.Items.Clear();
+            chkStartMin2.Items.Clear();
+            chkStartMin3.Items.Clear();
+            chkStartMin4.Items.Clear();
+            chkStartMin5.Items.Clear();
+            chkStartMin6.Items.Clear();
+            chkStartMin7.Items.Clear();
+			
+			EndMin.Items.Clear();
+            EndMin1.Items.Clear();
+            EndMin2.Items.Clear();
+            EndMin3.Items.Clear();
+            EndMin4.Items.Clear();
+            EndMin5.Items.Clear();
+            EndMin6.Items.Clear();
+            EndMin7.Items.Clear();
+
             chkStartMin.Items.Add("Min");
             chkStartMin1.Items.Add("Min");
             chkStartMin2.Items.Add("Min");
@@ -404,23 +529,46 @@ namespace SchoolManagement.Teacher
                         int i;
                         for (i = 0; i <= 59; i++)
                         {
-                            chkStartMin.Items.Add(i);
-                            chkStartMin1.Items.Add(i);
-                            chkStartMin2.Items.Add(i);
-                            chkStartMin3.Items.Add(i);
-                            chkStartMin4.Items.Add(i);
-                            chkStartMin5.Items.Add(i);
-                            chkStartMin6.Items.Add(i);
-                            chkStartMin7.Items.Add(i);
+                            if (i < 10)
+                            {
+                                chkStartMin.Items.Add(n + i.ToString());
+                                chkStartMin1.Items.Add(n + i.ToString());
+                                chkStartMin2.Items.Add(n + i.ToString());
+                                chkStartMin3.Items.Add(n + i.ToString());
+                                chkStartMin4.Items.Add(n + i.ToString());
+                                chkStartMin5.Items.Add(n + i.ToString());
+                                chkStartMin6.Items.Add(n + i.ToString());
+                                chkStartMin7.Items.Add(n + i.ToString());
 
-                            EndMin.Items.Add(i);
-                            EndMin1.Items.Add(i);
-                            EndMin2.Items.Add(i);
-                            EndMin3.Items.Add(i);
-                            EndMin4.Items.Add(i);
-                            EndMin5.Items.Add(i);
-                            EndMin6.Items.Add(i);
-                            EndMin7.Items.Add(i);
+                                EndMin.Items.Add(n + i.ToString());
+                                EndMin1.Items.Add(n + i.ToString());
+                                EndMin2.Items.Add(n + i.ToString());
+                                EndMin3.Items.Add(n + i.ToString());
+                                EndMin4.Items.Add(n + i.ToString());
+                                EndMin5.Items.Add(n + i.ToString());
+                                EndMin6.Items.Add(n + i.ToString());
+                                EndMin7.Items.Add(n + i.ToString());   
+                            }
+                            else
+                            {
+                                chkStartMin.Items.Add(i);
+                                chkStartMin1.Items.Add(i);
+                                chkStartMin2.Items.Add(i);
+                                chkStartMin3.Items.Add(i);
+                                chkStartMin4.Items.Add(i);
+                                chkStartMin5.Items.Add(i);
+                                chkStartMin6.Items.Add(i);
+                                chkStartMin7.Items.Add(i);
+
+                                EndMin.Items.Add(i);
+                                EndMin1.Items.Add(i);
+                                EndMin2.Items.Add(i);
+                                EndMin3.Items.Add(i);
+                                EndMin4.Items.Add(i);
+                                EndMin5.Items.Add(i);
+                                EndMin6.Items.Add(i);
+                                EndMin7.Items.Add(i);
+                            }
                         }
 
                         chkStartMin.SelectedIndex = 0;
@@ -795,7 +943,7 @@ namespace SchoolManagement.Teacher
          * EndTime:-
          */
         #region----------------------------------------------------------------DisebleDropdown--------------------------------------------
-        private void DisableCheckBox()
+        private void DisableDropdown()
         {
             gbSameTime.Visibility = Visibility.Visible;
             chkStartHrs1.IsEnabled = false;
@@ -850,8 +998,9 @@ namespace SchoolManagement.Teacher
             if (ds.Tables[0].Rows.Count > 0)
             {
                 dgTeacherAvail.DataContext = null;
-                dgTeacherAvail.DataContext = ds;
+                dgTeacherAvail.DataContext = ds.Tables[0].DefaultView; 
             }
+            
         }
         #endregion
 
@@ -865,6 +1014,7 @@ namespace SchoolManagement.Teacher
         #region---------------------------------------------------------GetTeacherAvailableDetails()--------------------------------
         private void GetTeacherAvailableDetails()
         {
+            cnn = 0;
             if (cmbTeacher.SelectedValue.ToString() == "0")
             {
                 MessageBox.Show("Please Select Teacher.");
@@ -878,13 +1028,15 @@ namespace SchoolManagement.Teacher
                     string s;
                     if (cnt == 7)
                     {
+                        chkAvailAllDay.IsChecked = true;
                         CheckAllDays();
+                        gbSameTime.Visibility = Visibility.Visible;
                     }
-                    for (int i = 0; i <= cnt; i++)
+                    for (int i = 0; i < cnt; i++)
                     {
                         s = ds.Tables[0].Rows[i]["Day"].ToString();
 
-                        if ((ds.Tables[0].Rows[0]["StartTime"].ToString() == ds.Tables[0].Rows[0]["StartTime"]) && (ds.Tables[0].Rows[0]["EndTime"] == ds.Tables[0].Rows[0]["EndTime"]))
+                        if ((ds.Tables[0].Rows[0]["StartTime"].ToString() == ds.Tables[0].Rows[i]["StartTime"].ToString()) && (ds.Tables[0].Rows[0]["EndTime"].ToString() == ds.Tables[0].Rows[i]["EndTime"].ToString()))
                         {
                             cnn++;
 
@@ -896,18 +1048,19 @@ namespace SchoolManagement.Teacher
                                     tmpStartTime =  ds.Tables[0].Rows[i]["StartTime"].ToString();
                                     string [] StartTime = tmpStartTime.Split(':');
                                     chkStartHrs1.Text = StartTime[0];
-                                    if (StartTime[1] == "00")
-                                    { chkStartMin1.Text = "0"; }
-                                    else
+                                    //if (StartTime[1] == "00")
+                                    //{ chkStartMin1.Text = "0"; }
+                                    //else
                                     { chkStartMin1.Text = StartTime[1]; }
                                     
                                     tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
                                     string[] EndTime = tmpEndTime.Split(':');
                                     chkEndhrs1.Text = EndTime[0];
-                                    if (EndTime[1] == "00")
-                                    { EndMin1.Text = "0"; }
-                                    else
+                                    //if (EndTime[1] == "00")
+                                    //{ EndMin1.Text = "0"; }
+                                    //else
                                     {EndMin1.Text=EndTime[1];}
+                                    chkMon.IsChecked = true;
                                     break;
                                 }
                             case ("Tue"):
@@ -915,18 +1068,19 @@ namespace SchoolManagement.Teacher
                                     tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
                                     string[] StartTime = tmpStartTime.Split(':');
                                     chkStartHrs2.Text = StartTime[0];
-                                    if (StartTime[1] == "00")
-                                    { chkStartMin2.Text = "0"; }
-                                    else
+                                    //if (StartTime[1] == "00")
+                                    //{ chkStartMin2.Text = "0"; }
+                                    //else
                                     { chkStartMin2.Text = StartTime[1]; }
 
                                     tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
                                     string[] EndTime = tmpEndTime.Split(':');
                                     chkEndhrs2.Text = EndTime[0];
-                                    if (EndTime[1] == "00")
-                                    { EndMin2.Text = "0"; }
-                                    else
+                                    //if (EndTime[1] == "00")
+                                    //{ EndMin2.Text = "0"; }
+                                    //else
                                     { EndMin2.Text = EndTime[1]; }
+                                    chkTue.IsChecked = true;
                                     break;
                                 }
                             case ("Wed"):
@@ -934,18 +1088,19 @@ namespace SchoolManagement.Teacher
                                     tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
                                     string[] StartTime = tmpStartTime.Split(':');
                                     chkStartHrs3.Text = StartTime[0];
-                                    if (StartTime[1] == "00")
-                                    { chkStartMin3.Text = "0"; }
-                                    else
+                                    //if (StartTime[1] == "00")
+                                    //{ chkStartMin3.Text = "0"; }
+                                    //else
                                     { chkStartMin3.Text = StartTime[1]; }
 
                                     tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
                                     string[] EndTime = tmpEndTime.Split(':');
                                     chkEndhrs3.Text = EndTime[0];
-                                    if (EndTime[1] == "00")
-                                    { EndMin3.Text = "0"; }
-                                    else
+                                    //if (EndTime[1] == "00")
+                                    //{ EndMin3.Text = "0"; }
+                                    //else
                                     { EndMin3.Text = EndTime[1]; }
+                                    chkWed.IsChecked = true;
                                     break;
                                 }
                             case ("Thru"):
@@ -953,18 +1108,19 @@ namespace SchoolManagement.Teacher
                                     tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
                                     string[] StartTime = tmpStartTime.Split(':');
                                     chkStartHrs4.Text = StartTime[0];
-                                    if (StartTime[1] == "00")
-                                    { chkStartMin4.Text = "0"; }
-                                    else
+                                    //if (StartTime[1] == "00")
+                                    //{ chkStartMin4.Text = "0"; }
+                                    //else
                                     { chkStartMin4.Text = StartTime[1]; }
 
                                     tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
                                     string[] EndTime = tmpEndTime.Split(':');
                                     chkEndhrs4.Text = EndTime[0];
-                                    if (EndTime[1] == "00")
-                                    { EndMin4.Text = "0"; }
-                                    else
+                                    //if (EndTime[1] == "00")
+                                    //{ EndMin4.Text = "0"; }
+                                    //else
                                     { EndMin4.Text = EndTime[1]; }
+                                    chkThru.IsChecked = true;
                                     break;
                                 }
 
@@ -973,18 +1129,19 @@ namespace SchoolManagement.Teacher
                                     tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
                                     string[] StartTime = tmpStartTime.Split(':');
                                     chkStartHrs5.Text = StartTime[0];
-                                    if (StartTime[1] == "00")
-                                    { chkStartMin5.Text = "0"; }
-                                    else
+                                    //if (StartTime[1] == "00")
+                                    //{ chkStartMin5.Text = "0"; }
+                                    //else
                                     { chkStartMin5.Text = StartTime[1]; }
 
                                     tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
                                     string[] EndTime = tmpEndTime.Split(':');
                                     chkEndhrs5.Text = EndTime[0];
-                                    if (EndTime[1] == "00")
-                                    { EndMin5.Text = "0"; }
-                                    else
+                                    //if (EndTime[1] == "00")
+                                    //{ EndMin5.Text = "0"; }
+                                    //else
                                     { EndMin5.Text = EndTime[1]; }
+                                    chkFri.IsChecked = true;
                                     break;
                                 }
                             case ("Sat"):
@@ -992,18 +1149,19 @@ namespace SchoolManagement.Teacher
                                     tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
                                     string[] StartTime = tmpStartTime.Split(':');
                                     chkStartHrs6.Text = StartTime[0];
-                                    if (StartTime[1] == "00")
-                                    { chkStartMin6.Text = "0"; }
-                                    else
+                                    //if (StartTime[1] == "00")
+                                    //{ chkStartMin6.Text = "0"; }
+                                    //else
                                     { chkStartMin6.Text = StartTime[1]; }
 
                                     tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
                                     string[] EndTime = tmpEndTime.Split(':');
                                     chkEndhrs6.Text = EndTime[0];
-                                    if (EndTime[1] == "00")
-                                    { EndMin6.Text = "0"; }
-                                    else
+                                    //if (EndTime[1] == "00")
+                                    //{ EndMin6.Text = "0"; }
+                                    //else
                                     { EndMin6.Text = EndTime[1]; }
+                                    chkSat.IsChecked = true;
                                     break;
                                 }
                             case ("Sun"):
@@ -1011,18 +1169,19 @@ namespace SchoolManagement.Teacher
                                     tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
                                     string[] StartTime = tmpStartTime.Split(':');
                                     chkStartHrs7.Text = StartTime[0];
-                                    if (StartTime[1] == "00")
-                                    { chkStartMin7.Text = "0"; }
-                                    else
+                                    //if (StartTime[1] == "00")
+                                    //{ chkStartMin7.Text = "0"; }
+                                    //else
                                     { chkStartMin7.Text = StartTime[1]; }
 
                                     tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
                                     string[] EndTime = tmpEndTime.Split(':');
                                     chkEndhrs7.Text = EndTime[0];
-                                    if (EndTime[1] == "00")
-                                    { EndMin7.Text = "0"; }
-                                    else
+                                    //if (EndTime[1] == "00")
+                                    //{ EndMin7.Text = "0"; }
+                                    //else
                                     { EndMin7.Text = EndTime[1]; }
+                                    chkSun.IsChecked = true;
                                     break;
                                 }
                         }
@@ -1033,19 +1192,21 @@ namespace SchoolManagement.Teacher
 
                             tmpStartTime = ds.Tables[0].Rows[0]["StartTime"].ToString();
                             string[] StartTime = tmpStartTime.Split(':');
-                            chkStartHrs.Text = StartTime[0];
-                            if (StartTime[1] == "00")
-                            { chkStartMin.Text = "0"; }
-                            else
-                            { chkStartMin7.Text = StartTime[1]; }
+                            chkStartHrs.Text = StartTime[0].ToString();
+                            //if (StartTime[1] == "00")
+                            //{ chkStartMin.Text = "0"; }
+                            //else
+                            { chkStartMin.Text = StartTime[1]; }
 
                             tmpEndTime = ds.Tables[0].Rows[0]["EndTime"].ToString();
                             string[] EndTime = tmpEndTime.Split(':');
                             chkEndhrs.Text = EndTime[0];
-                            if (EndTime[1] == "00")
-                            { EndMin.Text = "0"; }
-                            else
+                            //if (EndTime[1] == "00")
+                            //{ EndMin.Text = "0"; }
+                            //else
                             { EndMin.Text = EndTime[1]; }
+
+                            DisableDropdown();
                             
                         }
 
@@ -1106,5 +1267,239 @@ namespace SchoolManagement.Teacher
         }
         #endregion
 
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 17Nov2015
+         * Purpose:- Same Start hours
+         * StartTime:-
+         * EndTime:-
+         */
+
+        #region---------------------------------------------------chkStartHrs_SelectionChanged--------------------------------------------------
+        private void chkStartHrs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+
+            
+            if (chkAvailSameTime.IsChecked == true && chkStartHrs.SelectedItem != null)
+            {
+                chkStartHrs1.Text = chkStartHrs.SelectedItem.ToString();
+                chkStartHrs2.Text = chkStartHrs.SelectedItem.ToString();
+                chkStartHrs3.Text = chkStartHrs.SelectedItem.ToString();
+                chkStartHrs4.Text = chkStartHrs.SelectedItem.ToString();
+                chkStartHrs5.Text = chkStartHrs.SelectedItem.ToString();
+                chkStartHrs6.Text = chkStartHrs.SelectedItem.ToString();
+                chkStartHrs7.Text = chkStartHrs.SelectedItem.ToString();
+ 
+            }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+
+            }
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 17Nov2015
+         * Purpose:- Same Start Min
+         * StartTime:-
+         * EndTime:-
+         */
+        #region-----------------------------------------------chkStartMin_SelectionChanged------------------------------------------
+        private void chkStartMin_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            try
+            {
+                if (chkAvailSameTime.IsChecked == true && chkStartMin.SelectedItem!=null)
+                {
+                    chkStartMin1.Text = chkStartMin.SelectedItem.ToString();
+                    chkStartMin2.Text = chkStartMin.SelectedItem.ToString();
+                    chkStartMin3.Text = chkStartMin.SelectedItem.ToString();
+                    chkStartMin4.Text = chkStartMin.SelectedItem.ToString();
+                    chkStartMin5.Text = chkStartMin.SelectedItem.ToString();
+                    chkStartMin6.Text = chkStartMin.SelectedItem.ToString();
+                    chkStartMin7.Text = chkStartMin.SelectedItem.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message.ToString());
+
+            }
+        }
+        #endregion
+
+
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 17Nov2015
+         * Purpose:- Same End Hrs
+         * StartTime:-
+         * EndTime:-
+         */
+        #region-------------------------------------------------------------chkEndhrs_SelectionChanged-----------------------------------
+        private void chkEndhrs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (chkAvailSameTime.IsChecked == true &&  chkEndhrs.SelectedItem !=null)
+                {
+                    chkEndhrs1.Text = chkEndhrs.SelectedItem.ToString();
+                    chkEndhrs2.Text = chkEndhrs.SelectedItem.ToString();
+                    chkEndhrs3.Text = chkEndhrs.SelectedItem.ToString();
+                    chkEndhrs4.Text = chkEndhrs.SelectedItem.ToString();
+                    chkEndhrs5.Text = chkEndhrs.SelectedItem.ToString();
+                    chkEndhrs6.Text = chkEndhrs.SelectedItem.ToString();
+                    chkEndhrs7.Text = chkEndhrs.SelectedItem.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 17Nov2015
+         * Purpose:- Same End Min
+         * StartTime:-
+         * EndTime:-
+         */
+        #region---------------------------------------------------------EndMin_SelectionChanged-------------------------------------------
+        private void EndMin_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (chkAvailSameTime.IsChecked == true && EndMin.SelectedItem !=null)
+                {
+                    EndMin1.Text = EndMin.SelectedItem.ToString();
+                    EndMin2.Text = EndMin.SelectedItem.ToString();
+                    EndMin3.Text = EndMin.SelectedItem.ToString();
+                    EndMin4.Text = EndMin.SelectedItem.ToString();
+                    EndMin5.Text = EndMin.SelectedItem.ToString();
+                    EndMin6.Text = EndMin.SelectedItem.ToString();
+                    EndMin7.Text = EndMin.SelectedItem.ToString();
+
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+
+            }
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 17Nov2015
+         * Purpose:- Clear Button
+         * StartTime:-
+         * EndTime:-
+         */
+        #region-----------------------------------clear button click-------------------------------------------------------------
+        private void btnSave_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ClearFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 17Nov2015
+         * Purpose:- Uncheck all check Boxes
+         * StartTime:-
+         * EndTime:-
+         */
+        #region--------------------------------unchekcall ChekcBoxes-----------------------------------
+        private void UncheckAllCheckBoxes()
+        {
+            chkAvailAllDay.IsChecked = false;
+            chkAvailSameTime.IsChecked = false;
+
+            chkMon.IsChecked = false;
+            chkTue.IsChecked = false;
+            chkWed.IsChecked = false;
+            chkThru.IsChecked = false;
+            chkFri.IsChecked = false;
+            chkSat.IsChecked = false;
+            chkSun.IsChecked = false;
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 17Nov2015
+         * Purpose:- Validate
+         * StartTime:-
+         * EndTime:-
+         */
+
+        #region-----------------------------------------validate()-------------------------------------------
+        //private bool validate()
+        //{
+        //    if (chkMon.IsChecked == true)
+        //    {
+        //        if (chkStartHrs1.SelectedItem.ToString() == "HRS")
+        //        {
+        //            MessageBox.Show("Please Select Start Hours From Monday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //            chkStartHrs1.Focus();
+        //            return false;
+        //        }
+        //        else if(chkStartMin1.SelectedItem.ToString()=="Min")
+        //        {
+        //            MessageBox.Show("Please Select Minutes From Monday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //            chkStartMin1.Focus();
+        //            return false;
+
+        //        }
+        //        else if (chkEndhrs1.SelectedItem.ToString() == "HRS")
+        //        {
+        //            MessageBox.Show("Please Select End Hours From Monday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //            chkEndhrs1.Focus();
+        //            return false;
+        //        }
+        //        else if (EndMin1.SelectedItem.ToString() == "Min")
+        //        {
+        //            MessageBox.Show("Please Select End Minutes From Monday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //            EndMin1.Focus();
+        //            return false;
+        //        }
+        //        else if (Convert.ToInt32(chkStartHrs1.SelectedItem.ToString()) > Convert.ToInt32(chkEndhrs1.SelectedItem.ToString()))
+        //        {
+        //            MessageBox.Show("End Hour Time Is Must Be Greater Than End Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //            chkStartHrs1.Focus();
+        //            return false;                    
+        //        }
+        //        else if ((Convert.ToInt32(chkStartHrs1.SelectedItem.ToString()) == Convert.ToInt32(chkEndhrs1.SelectedItem.ToString())) && Convert.ToInt32(chkStartMin1.SelectedItem.ToString()) < Convert.ToInt32(EndMin1.SelectedItem.ToString()))
+        //        {
+        //            MessageBox.Show("End Minute Time Is Must Be Greater Than End Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //            chkStartHrs1.Focus();
+        //            return false;                    
+ 
+        //        }
+        //    }
+        //    else
+        //    { return true; }
+
+        //}
+        #endregion
     }
 }
