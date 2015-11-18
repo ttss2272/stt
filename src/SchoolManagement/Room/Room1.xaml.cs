@@ -28,7 +28,7 @@ namespace SchoolManagement.Room
 
         int RoomId,Capacity,BranchID,UpdatedByUserID,IsActive,IsDeleted,UpID;
         int IsAllow,MaxLectDay,MaxLectWeek,MaxLectRow,SHr,SMin,EHr,EMin;
-        string RoomName, ShortName, Color1, UpdatedDate,Sign=":",n="0";
+        string RoomName, ShortName, Color1, UpdatedDate,Sign=":",n="0",m="1";
         DateTime StartTime, EndTime;
 
 
@@ -117,6 +117,7 @@ namespace SchoolManagement.Room
         #region-----------------------Clearfield()------------------------------------
         private void clearFields()
         {
+            UpID = 0;
             cmbBranchName.Text = "";
             txtRoomName.Text = "";
             txtShortName.Text = "";
@@ -306,8 +307,16 @@ namespace SchoolManagement.Room
 
             }
             cmbSHr.Items.Add("10");
-            cmbSHr.Items.Add("11");
-            cmbSHr.Items.Add("12");
+            for (i = 1; i <= 9; i++)
+            {
+                cmbSHr.Items.Add(m + i.ToString());
+
+            }
+            cmbSHr.Items.Add("20");
+            cmbSHr.Items.Add("21");
+            cmbSHr.Items.Add("22");
+            cmbSHr.Items.Add("23"); 
+            cmbSHr.Items.Add("24");
             cmbSHr.SelectedIndex = 0;
 
         }
@@ -315,7 +324,9 @@ namespace SchoolManagement.Room
         {
             cmbSMin.Items.Add("select");
             int i;
-            for (i = 0; i <= 60; i+=5)
+            cmbSMin.Items.Add("00");
+            cmbSMin.Items.Add("05");
+            for (i = 10; i <= 60; i+=5)
             {
                 cmbSMin.Items.Add(i);
 
@@ -333,8 +344,16 @@ namespace SchoolManagement.Room
 
             }
             cmbEHr.Items.Add("10");
-            cmbEHr.Items.Add("11");
-            cmbEHr.Items.Add("12");
+            for (i = 1; i <= 9; i++)
+            {
+                cmbEHr.Items.Add(m + i.ToString());
+
+            }
+            cmbEHr.Items.Add("20");
+            cmbEHr.Items.Add("21");
+            cmbEHr.Items.Add("22");
+            cmbEHr.Items.Add("23");
+            cmbEHr.Items.Add("24");
             cmbEHr.SelectedIndex = 0;
 
         }
@@ -342,7 +361,9 @@ namespace SchoolManagement.Room
         {
             cmbEMin.Items.Add("select");
             int i;
-            for (i = 0; i <= 60; i+=5)
+            cmbEMin.Items.Add("00");
+            cmbEMin.Items.Add("05");
+            for (i = 10; i <= 60; i+=5)
             {
                 cmbEMin.Items.Add(i);
 
@@ -398,22 +419,12 @@ namespace SchoolManagement.Room
                         string time = ((System.Data.DataRowView)(dgRoom.CurrentItem)).Row.ItemArray[12].ToString();
                         string[] a = time.Split(':');
                         cmbSHr.Text = a[0];
-                        if (a[1] == "00")
-                        { cmbSMin.Text = "0"; }
-                        else if (a[1] == "05")
-                        { cmbSMin.Text = "5"; }
-                        else
-                        { cmbSMin.Text = a[1]; }
+                        cmbSMin.Text = a[1]; 
 
                         string ENDtime = ((System.Data.DataRowView)(dgRoom.CurrentItem)).Row.ItemArray[13].ToString();
                         string[] b = ENDtime.Split(':');
                         cmbEHr.Text = b[0];
-                        if (b[1] == "00")
-                        { cmbEMin.Text = "0"; }
-                        else if (b[1] == "05")
-                        { cmbEMin.Text = "5"; }
-                        else
-                        { cmbEMin.Text = b[1]; }
+                        cmbEMin.Text = b[1]; 
 
                         IsActive  = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
                         IsDeleted  = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDeleted"]);
