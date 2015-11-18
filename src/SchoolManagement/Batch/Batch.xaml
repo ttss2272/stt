@@ -46,7 +46,7 @@
         </GroupBox>
         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Height="172" HorizontalAlignment="Left" Margin="14,464,0,0" Name="dgvBatch" VerticalAlignment="Top" Width="864" IsReadOnly="True" CanUserResizeColumns="False" ItemsSource="{Binding}">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding RoomID}" Header="BatchID" Visibility="Hidden"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding BatchID}" Header="BatchID" Visibility="Hidden"></DataGridTextColumn>
                 <DataGridTextColumn  Header="ClassName" Width="100" Binding="{Binding ClassName}"></DataGridTextColumn>
                 <DataGridTextColumn Header="BatchName" Width="100" Binding="{Binding BatchName}"></DataGridTextColumn>
                 <DataGridTextColumn Header="BatchCode" Width="100" Binding="{Binding BatchCode}"></DataGridTextColumn>

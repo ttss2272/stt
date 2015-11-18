@@ -32,9 +32,11 @@ namespace SchoolManagement.Batch
      */
         #region------------------------Declare Variables Globally()--------------------
         int BatchID, UpdatedByUserID, IsActive, IsDeleted, ClassID, UpID, LectureDuration, IsLunchBreak, MaxNoLecturesDay, MaxNoLecturesWeek, IsAllowMoreThanOneLectInBatch, MaxNoOfLecureInRow;
-        string BatchName, BatchCode, UpdatedDate, LunchBreakStartTime, LunchBreakEndTime;
+        string BatchName, BatchCode, UpdatedDate, LunchBreakStartTime, LunchBreakEndTime ,n="0",m="1";
+
         BLBatch obj_Batch = new BLBatch();
         BLAddClass obj_Class = new BLAddClass();
+
         #endregion
        
         public Batch()
@@ -211,10 +213,20 @@ namespace SchoolManagement.Batch
         {
             comboBox1.Items.Add("select");
             int i;
-            for (i = 1; i <= 12; i++)
+            for (i = 1; i <= 9; i++)
             {
-                comboBox1.Items.Add(i);
+                comboBox1.Items.Add(n + i.ToString ());
             }
+            comboBox1.Items.Add("10");
+            for (i = 1; i <= 9; i++)
+            {
+                comboBox1.Items.Add(m + i.ToString());
+            }
+            comboBox1.Items.Add("20");
+            comboBox1.Items.Add("21");
+            comboBox1.Items.Add("22");
+            comboBox1.Items.Add("23");
+            comboBox1.Items.Add("24");
             comboBox1.SelectedIndex = 0;
         }
         #endregion
@@ -222,9 +234,11 @@ namespace SchoolManagement.Batch
         #region--------------bind Lunch Break Time------------------------------
         private void comboBox2_Items()
         {
-            comboBox2.Items.Add("select");
+            comboBox2.Items.Add("select"); ;
             int i;
-            for (i = 1; i <= 60; i++)
+            comboBox2.Items.Add("00");
+            comboBox2.Items.Add("05");
+            for (i = 10; i <= 60; i+=5)
             {
                 comboBox2.Items.Add(i);
             }
@@ -237,10 +251,20 @@ namespace SchoolManagement.Batch
         {
             comboBox3.Items.Add("select");
             int i;
-            for (i = 1; i <= 12; i++)
+            for (i = 1; i <= 9; i++)
             {
-                comboBox3.Items.Add(i);
+                comboBox3.Items.Add(n + i.ToString());
             }
+            comboBox3.Items.Add("10");
+            for (i = 1; i <= 9; i++)
+            {
+                comboBox3.Items.Add(m + i.ToString());
+            }
+            comboBox3.Items.Add("20");
+            comboBox3.Items.Add("21");
+            comboBox3.Items.Add("22");
+            comboBox3.Items.Add("23");
+            comboBox3.Items.Add("24");
             comboBox3.SelectedIndex = 0;
         }
         #endregion
@@ -248,9 +272,11 @@ namespace SchoolManagement.Batch
         #region--------------bind Lunch Break Time------------------------------
         private void comboBox4_Items()
         {
-            comboBox4.Items.Add("select");
+            comboBox4.Items.Add("select"); ;
             int i;
-            for (i = 1; i <= 60; i++)
+            comboBox4.Items.Add("00");
+            comboBox4.Items.Add("05");
+            for (i = 10; i <= 60; i += 5)
             {
                 comboBox4.Items.Add(i);
             }
@@ -272,12 +298,12 @@ namespace SchoolManagement.Batch
             txtMaxLecRow.Text = "";
             chkLunchBreak.IsChecked = false;
             chkallow.IsChecked = false;
-            rdoActive.IsChecked = false;
+            rdoActive.IsChecked = true ;
             rdoDeActive.IsChecked = false;
-            comboBox1.Text = "";
-            comboBox2.Text = "";
-            comboBox3.Text = "";
-            comboBox4.Text = "";
+            comboBox1.SelectedIndex = 0;
+            comboBox2.SelectedIndex = 0;
+            comboBox3.SelectedIndex = 0;
+            comboBox4.SelectedIndex = 0;
 
            
         }
@@ -414,16 +440,16 @@ namespace SchoolManagement.Batch
                 string BatchName = (dgvBatch.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
                 string BatchCode = (dgvBatch.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
 
-                string LectureDuration = (dgvBatch.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
-                string IsLunchBreak = (dgvBatch.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text;
-                string LunchBreakStartTime = (dgvBatch.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text;
+                //string LectureDuration = (dgvBatch.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
+                //string IsLunchBreak = (dgvBatch.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text;
+                //string LunchBreakStartTime = (dgvBatch.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text;
 
-                string LunchBreakEndTime = (dgvBatch.SelectedCells[7].Column.GetCellContent(item) as TextBlock).Text;
-                string MaxNoLecturesDay = (dgvBatch.SelectedCells[8].Column.GetCellContent(item) as TextBlock).Text;
-                string MaxNoLecturesWeek = (dgvBatch.SelectedCells[9].Column.GetCellContent(item) as TextBlock).Text;
+                //string LunchBreakEndTime = (dgvBatch.SelectedCells[7].Column.GetCellContent(item) as TextBlock).Text;
+                //string MaxNoLecturesDay = (dgvBatch.SelectedCells[8].Column.GetCellContent(item) as TextBlock).Text;
+                //string MaxNoLecturesWeek = (dgvBatch.SelectedCells[9].Column.GetCellContent(item) as TextBlock).Text;
 
-                //string IsAllowMoreThanOneLectInBatch = (dgvBatch.SelectedCells[10].Column.GetCellContent(item) as TextBlock).Text;
-                string MaxNoOfLecureInRow = (dgvBatch.SelectedCells[10].Column.GetCellContent(item) as TextBlock).Text;
+                ////string IsAllowMoreThanOneLectInBatch = (dgvBatch.SelectedCells[10].Column.GetCellContent(item) as TextBlock).Text;
+                //string MaxNoOfLecureInRow = (dgvBatch.SelectedCells[10].Column.GetCellContent(item) as TextBlock).Text;
 
                 DataSet ds = obj_Batch.GetBatchDetail(BatchName, BatchCode);
                 if (ds.Tables.Count > 0)
@@ -440,11 +466,17 @@ namespace SchoolManagement.Batch
                         //if(chk == 'true')
                         //{
                         //    chkLunchBreak.IsChecked=true;
-                        //}                        
-                        comboBox1.Text = ds.Tables[0].Rows[0]["LunchBreakStartTime"].ToString();
-                        comboBox2.Text = ds.Tables[0].Rows[0]["LunchBreakStartTime"].ToString();
-                        comboBox3.Text = ds.Tables[0].Rows[0]["LunchBreakEndTime"].ToString();
-                        comboBox3.Text = ds.Tables[0].Rows[0]["LunchBreakEndTime"].ToString();
+                        //}  
+                        string StartTime = ((System.Data.DataRowView)(dgvBatch.CurrentItem)).Row.ItemArray[6].ToString();
+                        string[] a = StartTime.Split(':');
+                        comboBox1.Text = a[0];
+                        comboBox2.Text = a[1];
+
+                        string EndTime = ((System.Data.DataRowView)(dgvBatch.CurrentItem)).Row.ItemArray[7].ToString();
+                        string[] b = EndTime.Split(':');
+                        comboBox3.Text = b[0];
+                        comboBox4.Text = b[1];
+                        
                         txtMaxnoLecDay.Text = ds.Tables[0].Rows[0]["MaxNoLecturesDay"].ToString();
 
                         
@@ -484,6 +516,7 @@ namespace SchoolManagement.Batch
                             chkallow.IsChecked = false;
                         }
                         btnDelete.IsEnabled = true;
+                        btnadd.Content = "Update"; 
                     }
                 }
             }
