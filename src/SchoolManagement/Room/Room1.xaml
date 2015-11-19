@@ -52,6 +52,7 @@
                 <Button Content="Clear" FontWeight="Bold" Height="31" HorizontalAlignment="Left" Margin="434,250,0,0" Name="btnclear" TabIndex="17" VerticalAlignment="Top" Width="75" Click="btnclear_Click" />
                 <Label Content="More Than 1 Lect In Batch" Height="28" HorizontalAlignment="Left" Margin="386,195,0,0" Name="label26" VerticalAlignment="Top" FontWeight="Bold" />
                 <ComboBox Height="23" HorizontalAlignment="Left" Margin="573,204,0,0" Name="cmbAllowLect" VerticalAlignment="Top" Width="49">
+                    <ComboBoxItem Content="select" />
                     <ComboBoxItem Content="Yes" />
                     <ComboBoxItem Content="No" />
                 </ComboBox>

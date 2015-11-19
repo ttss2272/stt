@@ -49,10 +49,6 @@ namespace SchoolManagement.Room
         #region---------------------------Validate()-----------------------------------------
         public bool Validate()
         {
-            int day = Convert.ToInt32(txtLectDay.Text);
-            int week = Convert.ToInt32(txtLectWeek.Text);
-            int sHr = Convert.ToInt32(cmbSHr.Text);
-            int eHr = Convert.ToInt32(cmbEHr.Text);
 
             if (cmbBranchName.SelectedIndex == -1)
             {
@@ -92,16 +88,16 @@ namespace SchoolManagement.Room
             else if (string.IsNullOrEmpty(txtLectDay.Text))
             {
                 MessageBox.Show("Please Enter No. Of Lect/Day..");
-                txtColor.Focus();
+                txtLectDay.Focus();
                 return false;
             }
             else if (string.IsNullOrEmpty(txtLectWeek.Text))
             {
                 MessageBox.Show("Please Enter No. Of Lect/Week..");
-                txtColor.Focus();
+                txtLectWeek.Focus();
                 return false;
             }
-            else if (day > week)
+            else if (Convert.ToInt32(txtLectDay.Text) > Convert.ToInt32(txtLectWeek.Text))
             {
                 MessageBox.Show("Please Enter Lect/Week Greater than Lect/Day");
                 txtLectWeek.Text = "";
@@ -112,7 +108,7 @@ namespace SchoolManagement.Room
             else if (string.IsNullOrEmpty(txtLectRow.Text))
             {
                 MessageBox.Show("Please Enter No. Of Lect In Row..");
-                txtColor.Focus();
+                txtLectRow.Focus();
                 return false;
             }
             else if (cmbSHr.SelectedIndex == 0 || cmbSMin.SelectedIndex == 0 )
@@ -128,9 +124,16 @@ namespace SchoolManagement.Room
                 cmbEHr.Focus();
                 return false;
             }
-            else if (sHr >= eHr)
+            else if ((Convert.ToInt32(cmbSHr.Text) == Convert.ToInt32(cmbEHr.Text))&&(Convert.ToInt32(cmbSMin.Text) >= Convert.ToInt32(cmbEMin.Text)))
             {
-                MessageBox.Show("Please Enter Start Hours Less Than End Hours  ...");
+                    MessageBox.Show("Please Enter Proper Time  ...");
+                    cmbSHr.Focus();
+                    return false;
+                
+            }
+            else if (cmbAllowLect.SelectedIndex== 0)
+            {
+                MessageBox.Show("Please Select Allow Lecture  ...");
                 cmbSHr.Focus();
                 return false;
             }
@@ -166,6 +169,8 @@ namespace SchoolManagement.Room
             cmbEHr.SelectedIndex = 0;
             cmbEMin.SelectedIndex = 0;
             cmbCapacity.SelectedIndex = 0;
+            cmbAllowLect.SelectedIndex = 0;
+            btnDelete.IsEnabled = false;
             BindFullGrid();
             BindBranchName();
         }
@@ -413,6 +418,8 @@ namespace SchoolManagement.Room
             cmbSMin_Items();
             cmbEHr_Items();
             cmbEMin_Items();
+            cmbAllowLect.SelectedIndex = 0;
+            btnDelete.IsEnabled = false;
         }
 
         /* Created By:- Sameer Shinde
@@ -489,39 +496,7 @@ namespace SchoolManagement.Room
         }
         #endregion
        
-        /* Created By:- Pranjali Vidhate
-        * Created Date :- 6 Nov 2015
-        * Purpose:- Update  cell click*/
-       
-
-  /*      #region-----------------UpdateRoom()--------------------------------
-        private void btnUpdate_Click_1(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (Validate())
-                {
-                    SetParameters();
-                    string Result = obj_Room.UpdateRoom(RoomId, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted, MaxLectDay, MaxLectWeek, MaxLectRow, StartTime, EndTime, IsAllow);
-                    if (Result == "Updated Sucessfully...!!!")
-                    {
-                        MessageBox.Show(Result, "Updated SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
-                        clearFields();
-                    }
-                    else
-                    {
-                        MessageBox.Show(Result, "Error To Update", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                }
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
-        }
-        #endregion */
-
+  
         /* Created By:- Pranjali Vidhate
         * Created Date :- 6 Nov 2015
         * Purpose:- To Delete Room */
@@ -670,7 +645,7 @@ namespace SchoolManagement.Room
                 {
                     if (txtLectDay.Text.Length > 0)
                     {
-                        if (System.Text.RegularExpressions.Regex.IsMatch(txtLectDay.Text, "^[0-9]"))
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtLectDay.Text, "^[0-9]+$"))
                         {
                         }
                         else
@@ -697,7 +672,7 @@ namespace SchoolManagement.Room
                 {
                     if (txtLectWeek.Text.Length > 0)
                     {
-                            if (System.Text.RegularExpressions.Regex.IsMatch(txtLectWeek.Text, "^[0-9]"))
+                            if (System.Text.RegularExpressions.Regex.IsMatch(txtLectWeek.Text, "^[0-9]+$"))
                             {
                             }
                             else
@@ -725,7 +700,7 @@ namespace SchoolManagement.Room
                 {
                     if (txtLectRow.Text.Length > 0)
                     {
-                        if (System.Text.RegularExpressions.Regex.IsMatch(txtLectRow.Text, "^[0-9]"))
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtLectRow.Text, "^[0-9]+$"))
                         {
                         }
                         else
