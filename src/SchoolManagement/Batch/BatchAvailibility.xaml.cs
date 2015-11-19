@@ -74,6 +74,218 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        #region---------------------------------------------------BindHours------------------------------------------------
+        private void BindHours()
+        {
+            chkStartHrs.Items.Clear();
+            chkStartHrs1.Items.Clear();
+            chkStartHrs2.Items.Clear();
+            chkStartHrs3.Items.Clear();
+            chkStartHrs4.Items.Clear();
+            chkStartHrs5.Items.Clear();
+            chkStartHrs6.Items.Clear();
+            chkStartHrs7.Items.Clear();
+
+            chkEndhrs.Items.Clear();
+            chkEndhrs1.Items.Clear();
+            chkEndhrs2.Items.Clear();
+            chkEndhrs3.Items.Clear();
+            chkEndhrs4.Items.Clear();
+            chkEndhrs5.Items.Clear();
+            chkEndhrs6.Items.Clear();
+            chkEndhrs7.Items.Clear();
+
+            chkStartHrs.Items.Add("HRS");
+            chkStartHrs1.Items.Add("HRS");
+            chkStartHrs2.Items.Add("HRS");
+            chkStartHrs3.Items.Add("HRS");
+            chkStartHrs4.Items.Add("HRS");
+            chkStartHrs5.Items.Add("HRS");
+            chkStartHrs6.Items.Add("HRS");
+            chkStartHrs7.Items.Add("HRS");
+
+
+            chkEndhrs.Items.Add("HRS");
+            chkEndhrs1.Items.Add("HRS");
+            chkEndhrs2.Items.Add("HRS");
+            chkEndhrs3.Items.Add("HRS");
+            chkEndhrs4.Items.Add("HRS");
+            chkEndhrs5.Items.Add("HRS");
+            chkEndhrs6.Items.Add("HRS");
+            chkEndhrs7.Items.Add("HRS");
+            int i;
+            for (i = 1; i <= 24; i++)
+            {
+                if (i < 10)
+                {
+                    chkStartHrs.Items.Add(n + i.ToString());
+                    chkStartHrs1.Items.Add(n + i.ToString());
+                    chkStartHrs2.Items.Add(n + i.ToString());
+                    chkStartHrs3.Items.Add(n + i.ToString());
+                    chkStartHrs4.Items.Add(n + i.ToString());
+                    chkStartHrs5.Items.Add(n + i.ToString());
+                    chkStartHrs6.Items.Add(n + i.ToString());
+                    chkStartHrs7.Items.Add(n + i.ToString());
+
+                    chkEndhrs.Items.Add(n + i.ToString());
+                    chkEndhrs1.Items.Add(n + i.ToString());
+                    chkEndhrs2.Items.Add(n + i.ToString());
+                    chkEndhrs3.Items.Add(n + i.ToString());
+                    chkEndhrs4.Items.Add(n + i.ToString());
+                    chkEndhrs5.Items.Add(n + i.ToString());
+                    chkEndhrs6.Items.Add(n + i.ToString());
+                    chkEndhrs7.Items.Add(n + i.ToString());
+                }
+                else
+                {
+                    chkStartHrs.Items.Add(i);
+                    chkStartHrs1.Items.Add(i);
+                    chkStartHrs2.Items.Add(i);
+                    chkStartHrs3.Items.Add(i);
+                    chkStartHrs4.Items.Add(i);
+                    chkStartHrs5.Items.Add(i);
+                    chkStartHrs6.Items.Add(i);
+                    chkStartHrs7.Items.Add(i);
+
+                    chkEndhrs.Items.Add(i);
+                    chkEndhrs1.Items.Add(i);
+                    chkEndhrs2.Items.Add(i);
+                    chkEndhrs3.Items.Add(i);
+                    chkEndhrs4.Items.Add(i);
+                    chkEndhrs5.Items.Add(i);
+                    chkEndhrs6.Items.Add(i);
+                    chkEndhrs7.Items.Add(i);
+                }
+            }
+            chkStartHrs.SelectedIndex = 0;
+            chkStartHrs1.SelectedIndex = 0;
+            chkStartHrs2.SelectedIndex = 0;
+            chkStartHrs3.SelectedIndex = 0;
+            chkStartHrs4.SelectedIndex = 0;
+            chkStartHrs5.SelectedIndex = 0;
+            chkStartHrs6.SelectedIndex = 0;
+            chkStartHrs7.SelectedIndex = 0;
+
+            chkEndhrs.SelectedIndex = 0;
+            chkEndhrs1.SelectedIndex = 0;
+            chkEndhrs2.SelectedIndex = 0;
+            chkEndhrs3.SelectedIndex = 0;
+            chkEndhrs4.SelectedIndex = 0;
+            chkEndhrs5.SelectedIndex = 0;
+            chkEndhrs6.SelectedIndex = 0;
+            chkEndhrs7.SelectedIndex = 0;
+
+        }
+        #endregion
+
+        #region---------------------------------------------------BindMinutes------------------------------------------------
+        private void BindMinutes()
+        {
+
+            chkStartMin.Items.Clear();
+            chkStartMin1.Items.Clear();
+            chkStartMin2.Items.Clear();
+            chkStartMin3.Items.Clear();
+            chkStartMin4.Items.Clear();
+            chkStartMin5.Items.Clear();
+            chkStartMin6.Items.Clear();
+            chkStartMin7.Items.Clear();
+
+            EndMin.Items.Clear();
+            EndMin1.Items.Clear();
+            EndMin2.Items.Clear();
+            EndMin3.Items.Clear();
+            EndMin4.Items.Clear();
+            EndMin5.Items.Clear();
+            EndMin6.Items.Clear();
+            EndMin7.Items.Clear();
+
+            chkStartMin.Items.Add("Min");
+            chkStartMin1.Items.Add("Min");
+            chkStartMin2.Items.Add("Min");
+            chkStartMin3.Items.Add("Min");
+            chkStartMin4.Items.Add("Min");
+            chkStartMin5.Items.Add("Min");
+            chkStartMin6.Items.Add("Min");
+            chkStartMin7.Items.Add("Min");
+
+            EndMin.Items.Add("Min");
+            EndMin1.Items.Add("Min");
+            EndMin2.Items.Add("Min");
+            EndMin3.Items.Add("Min");
+            EndMin4.Items.Add("Min");
+            EndMin5.Items.Add("Min");
+            EndMin6.Items.Add("Min");
+            EndMin7.Items.Add("Min");
+
+            int i;
+            for (i = 0; i <= 59; i = i + 5)
+            {
+                if (i < 10)
+                {
+                    chkStartMin.Items.Add(n + i.ToString());
+                    chkStartMin1.Items.Add(n + i.ToString());
+                    chkStartMin2.Items.Add(n + i.ToString());
+                    chkStartMin3.Items.Add(n + i.ToString());
+                    chkStartMin4.Items.Add(n + i.ToString());
+                    chkStartMin5.Items.Add(n + i.ToString());
+                    chkStartMin6.Items.Add(n + i.ToString());
+                    chkStartMin7.Items.Add(n + i.ToString());
+
+                    EndMin.Items.Add(n + i.ToString());
+                    EndMin1.Items.Add(n + i.ToString());
+                    EndMin2.Items.Add(n + i.ToString());
+                    EndMin3.Items.Add(n + i.ToString());
+                    EndMin4.Items.Add(n + i.ToString());
+                    EndMin5.Items.Add(n + i.ToString());
+                    EndMin6.Items.Add(n + i.ToString());
+                    EndMin7.Items.Add(n + i.ToString());
+                }
+                else
+                {
+                    chkStartMin.Items.Add(i);
+                    chkStartMin1.Items.Add(i);
+                    chkStartMin2.Items.Add(i);
+                    chkStartMin3.Items.Add(i);
+                    chkStartMin4.Items.Add(i);
+                    chkStartMin5.Items.Add(i);
+                    chkStartMin6.Items.Add(i);
+                    chkStartMin7.Items.Add(i);
+
+                    EndMin.Items.Add(i);
+                    EndMin1.Items.Add(i);
+                    EndMin2.Items.Add(i);
+                    EndMin3.Items.Add(i);
+                    EndMin4.Items.Add(i);
+                    EndMin5.Items.Add(i);
+                    EndMin6.Items.Add(i);
+                    EndMin7.Items.Add(i);
+                }
+            }
+
+            chkStartMin.SelectedIndex = 0;
+            chkStartMin1.SelectedIndex = 0;
+            chkStartMin2.SelectedIndex = 0;
+            chkStartMin3.SelectedIndex = 0;
+            chkStartMin4.SelectedIndex = 0;
+            chkStartMin5.SelectedIndex = 0;
+            chkStartMin6.SelectedIndex = 0;
+            chkStartMin7.SelectedIndex = 0;
+
+            EndMin.SelectedIndex = 0;
+            EndMin1.SelectedIndex = 0;
+            EndMin2.SelectedIndex = 0;
+            EndMin3.SelectedIndex = 0;
+            EndMin4.SelectedIndex = 0;
+            EndMin5.SelectedIndex = 0;
+            EndMin6.SelectedIndex = 0;
+            EndMin7.SelectedIndex = 0;
+
+
+        }
+
+        #endregion
+
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
 
@@ -83,11 +295,57 @@ namespace SchoolManagement.Batch
         {
 
         }
-
+        #region----------------------
         private void chkAvailAllDay_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (chkAvailAllDay.IsChecked == true)
+                {
+                    CheckAllDays();
+                }
+                else
+                {
+                    UnchekAllDays();
 
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
+        #endregion
+
+        #region---------------------------------------------------------CheckAllDays()-----------------------------------------------------------
+        private void CheckAllDays()
+        {
+            chkMon.IsChecked = true;
+            chkTue.IsChecked = true;
+            chkWed.IsChecked = true;
+            chkThru.IsChecked = true;
+            chkFri.IsChecked = true;
+            chkSat.IsChecked = true;
+            chkSun.IsChecked = true;
+            daycheckcount = 7;
+        }
+        #endregion
+
+        #region-------------------------------------------------------UncheckAllDays()------------------------------------------------------------
+        private void UnchekAllDays()
+        {
+            chkMon.IsChecked = false;
+            chkTue.IsChecked = false;
+            chkWed.IsChecked = false;
+            chkThru.IsChecked = false;
+            chkFri.IsChecked = false;
+            chkSat.IsChecked = false;
+            chkSun.IsChecked = false;
+            daycheckcount = 0;
+        }
+        #endregion
+
         #region-------------------------------------------chkAvailableSameTime()---------------------------------------------------------
         private void chkAvailSameTime_Click(object sender, RoutedEventArgs e)
         {
@@ -109,20 +367,95 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        #region--------------------------chkMon_Click------------------------------------------------
         private void chkMon_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (chkMon.IsChecked == true)
+                {
+                    ++daycheckcount;
+                }
+                else if (chkMon.IsChecked == false)
+                {
+                    --daycheckcount;
+                }
+                if (daycheckcount == 7)
+                {
+                    chkAvailAllDay.IsChecked = true;
+                }
+                else
+                {
+                    chkAvailAllDay.IsChecked = false;
+                }
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
+        #endregion
 
+        #region---------------------chkTue_Click-----------------------------
         private void chkTue_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (chkTue.IsChecked == true)
+                {
+                    ++daycheckcount;
+                }
+                else if (chkTue.IsChecked == false)
+                {
+                    --daycheckcount;
+                }
+                if (daycheckcount == 7)
+                {
+                    chkAvailAllDay.IsChecked = true;
+                }
+                else
+                {
+                    chkAvailAllDay.IsChecked = false;
+                }
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
+        #endregion
 
+        #region---------------------chkWed_Click------------------
         private void chkWed_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (chkWed.IsChecked == true)
+                {
+                    ++daycheckcount;
+                }
+                else if (chkWed.IsChecked == false)
+                {
+                    --daycheckcount;
+                }
+                if (daycheckcount == 7)
+                {
+                    chkAvailAllDay.IsChecked = true;
+                }
+                else
+                {
+                    chkAvailAllDay.IsChecked = false;
+                }
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
+        #endregion
 
         private void chkThru_Click(object sender, RoutedEventArgs e)
         {
