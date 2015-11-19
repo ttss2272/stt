@@ -1686,8 +1686,18 @@ namespace SchoolManagement.Teacher
                             {
                                 if (SaturdayValidate())
                                 {
-                                    if(SundayValidate())
-                                    { return true; }
+                                    if (SundayValidate())
+                                    {
+                                        if (daycheckcount > 0)
+                                        {return true;}
+                                        else
+                                        {
+                                            MessageBox.Show("Select At Least One Day.");
+                                            
+                                            return false;
+                                        }
+                                    }
+
                                     else
                                     { return false; }
                                 }

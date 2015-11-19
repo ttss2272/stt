@@ -26,7 +26,7 @@
                     <Grid Margin="0,6,0,-5">
                         <CheckBox Content="Available All Days" HorizontalAlignment="Left" Margin="24,50,0,0" VerticalAlignment="Top" Width="125" Name="chkAvailAllDay" Click="chkAvailAllDay_Click"/>
                         <CheckBox Content="Same Time" HorizontalAlignment="Left" Margin="167,52,0,0" VerticalAlignment="Top" Name="chkAvailSameTime" Width="96" Click="chkAvailSameTime_Click"/>
-                        <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="272,34,0,0" VerticalAlignment="Top" Width="441" Height="55" Name="gbSameTime" Visibility="Hidden">
+                        <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="272,34,0,0" VerticalAlignment="Top" Width="441" Height="55" Name="gbSameTime" Visibility="Visible">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
