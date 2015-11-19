@@ -62,10 +62,12 @@ namespace SchoolManagement.Class
         {
             try
             {
-                Validate();
-                SetParameters();
-                SaveDetails();
-                BindGridview();
+                if (Validate())
+                {
+                    SetParameters();
+                    SaveDetails();
+                    BindGridview();
+                }
             }
             catch (Exception ex)
             {
@@ -147,13 +149,13 @@ namespace SchoolManagement.Class
                 txtcolor.Focus();
                 return false;
             }
-            else if (cbBoard.SelectedIndex == 0)
+            else if (cbBoard.SelectedValue.ToString() == "Select")
             {
                 MessageBox.Show("Please Select Board.", "Board Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 cbBoard.Focus();
                 return false;
             }
-            else if (cbBranchName.SelectedIndex == 0)
+            else if (cbBranchName.SelectedValue.ToString()=="Select")
             {
                 MessageBox.Show("Please Select Branch Name.", "Branch Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 cbBranchName.Focus();
@@ -185,13 +187,13 @@ namespace SchoolManagement.Class
             Color = txtcolor.Text.Trim();
             BranchID = Convert.ToInt32(cbBranchName.SelectedValue);
             UpdatedByUserID = 1;
-            UpdatedDate = DateTime.Now.ToString();           
-            if (rdoActive.IsChecked==true)
+            UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+            if (rdoActive.IsChecked == true && rdoDeActive.IsChecked == false)
             {
                 IsActive = 1;
                 IsDeleted = 0;
             }
-            else
+            else if (rdoActive.IsChecked == false && rdoDeActive.IsChecked == true)
             {
                 IsActive = 0;
                 IsDeleted = 0;
@@ -212,12 +214,13 @@ namespace SchoolManagement.Class
         {
             cbBranchName.Text = "";
             txtClassName.Text = "";
-            txtShortName.Text = "";
-            cbBoard.Text = "";
+            txtShortName.Text = "";            
             txtcolor.Text = "";
-            rdoActive.IsChecked = false;
+            rdoActive.IsChecked = true;
             rdoDeActive.IsChecked = false;
+            btnDelete.IsEnabled = false;
             btnAdd.Content = "Save";
+            cbBoard.SelectedIndex = 0;
         }
         #endregion                    
 
@@ -225,8 +228,7 @@ namespace SchoolManagement.Class
         private void btndelete_Click(object sender, RoutedEventArgs e)
         {
             try
-            {
-               
+            {               
                 MessageBoxResult Result = MessageBox.Show("Do You Really Want To Delete?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Information);
                 if (Result.Equals(MessageBoxResult.Yes))
                 {
@@ -254,7 +256,6 @@ namespace SchoolManagement.Class
 
                 string Result = obj_AddClass.DeleteClass(ClassID, UpdatedByUserID, UpdatedDate);
                 if (Result == "Deleted Sucessfully...!!")
-
                 {
                     MessageBox.Show(Result, "Delete Sucessfully", MessageBoxButton.OK, MessageBoxImage.Information);
                     clearFields();
@@ -363,6 +364,11 @@ namespace SchoolManagement.Class
                 dgvClass.ItemsSource = ds.Tables[0].DefaultView;
                 //dgvClass.Columns[0].Visibility = Visibility.Collapsed;
             }
+            else
+            {
+                dgvClass.ItemsSource = null;
+                MessageBox.Show("Data Not Found", "Message");
+            }
             dgvClass.Items.Refresh();
         }
         #endregion
@@ -432,14 +438,11 @@ namespace SchoolManagement.Class
                         btnAdd.Content = "Update";
                     }
                 }
-
-
-
             }
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(),"Exception Error");
             }
         }
         #endregion
