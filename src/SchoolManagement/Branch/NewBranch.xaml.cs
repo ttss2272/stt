@@ -98,8 +98,8 @@ namespace SchoolManagement.Branch
             txtUploadPath.Text = "";
             image1.Source = null;
             cmbBindInstitute.Text = "";
-            rbtnInactive.IsEnabled = false;
-            rbtnActive.IsEnabled = true;
+            rbtnInactive.IsChecked= false;
+            rbtnActive.IsChecked = true;
             btnSave.Content = "Save";
             txtSearchBranch.Text = "";
             btnDelete.IsEnabled = false;
@@ -148,6 +148,8 @@ namespace SchoolManagement.Branch
         #region------------------Validate()-----------------
         private bool Validate()
         {
+            
+            
             if ((txtInstituteName.Text.Trim() == "") && (cmbBindInstitute.Text==""))
             {
                 MessageBox.Show("Please Enter Institute Name.", "Institute Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -173,6 +175,13 @@ namespace SchoolManagement.Branch
                 txtBranchCode.Focus();
                 return false;
             }
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(txtBranchCode.Text, "^[a-zA-Z0-9_@(+).,-]+$"))
+            {
+                MessageBox.Show("Please Enter Branch Code in Alphabate and Number", "Branch Code", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txtBranchCode.Focus();
+                return false;
+            }
+           
            
             else if (txtUploadPath.Text.Trim() == "")
             {
@@ -180,6 +189,7 @@ namespace SchoolManagement.Branch
                 btnBrowse.Focus();
                 return false;
             }
+
             else
             {
                 return true;
@@ -442,6 +452,7 @@ namespace SchoolManagement.Branch
                         {
                             rbtnInactive.IsChecked = true;
                         }
+                     
                         btnDelete.IsEnabled = true;
                         btnSave.Content = "Update";
                     }
@@ -572,6 +583,27 @@ namespace SchoolManagement.Branch
         private void cmbSelectType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DisplayInstituteNameField();
+        }
+
+        private void txtBranchCode_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtBranchCode.Text != "")
+            {
+                if (txtBranchCode.Text.Length > 0 && txtBranchCode.Text.Length == 1)
+                {
+                    if (System.Text.RegularExpressions.Regex.IsMatch(txtBranchCode.Text, "^[a-zA-Z]"))
+                    {
+                       // MessageBox.Show("Please Enter Branch Code in Alphabate and Number", "Branch Code", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please Enter First Characerter Alphabate", "Branch Code", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        txtBranchCode.Text = "";
+                        txtBranchCode.Focus();
+                    }
+
+                }
+            }
         }
 
         
