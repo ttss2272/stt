@@ -470,8 +470,14 @@ namespace SchoolManagement.Branch
                             
             
                         //edit image
-                        //var uri = new Uri(@"C:\Users\TTS\Desktop\" + fileName);
-                        //image1.Source = new BitmapImage(uri);
+                        string name = System.IO.Path.GetFileName(filepath);
+                        string destinationPath = GetDestinationPath(name, "Logo");
+                        System.Windows.Media.Imaging.BitmapImage logo = new System.Windows.Media.Imaging.BitmapImage();
+                        logo.BeginInit();
+                        BitmapImage btm = new BitmapImage(new Uri(destinationPath + txtUploadPath.Text, UriKind.Relative));
+                        logo.UriSource = new Uri(destinationPath + txtUploadPath.Text);
+                        logo.EndInit();
+                        this.image1.Source = logo;
                         int act = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
                         int del = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDeleted"]);
                         if (act == 1 && del == 0)

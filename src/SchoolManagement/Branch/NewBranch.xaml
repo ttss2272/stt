@@ -18,7 +18,7 @@
                 <Label Content="Branch Code" FontSize="13" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="59,125,0,0" Name="label3" VerticalAlignment="Top" />
                 <TextBox Height="23" HorizontalAlignment="Right" Margin="0,128,311,0" Name="txtBranchCode" VerticalAlignment="Top" Width="187" TabIndex="3" TextChanged="txtBranchCode_TextChanged" />
                 <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="152,126,0,0" Name="label4" VerticalAlignment="Top" />
-                <Image Height="131" HorizontalAlignment="Left" Margin="443,24,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="187" Source="%7bBinding%7d" />
+                <Image Height="131" HorizontalAlignment="Left" Margin="443,24,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="187" Source="{Binding}" />
                 <Label Content="Institute Name" FontSize="13" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="45,47,0,0" Name="label5" VerticalAlignment="Top" />
                 <TextBox Height="23" HorizontalAlignment="Right" Margin="0,50,311,0" Name="txtInstituteName" VerticalAlignment="Top" Width="187" TextChanged="txtInstituteName_TextChanged_1" TabIndex="1" />
                 <Label Content="*" Foreground="#FFFA0200" Height="28" HorizontalAlignment="Left" Margin="152,50,0,0" Name="label6" VerticalAlignment="Top" />
