@@ -70,13 +70,14 @@
                         <DataGrid AutoGenerateColumns="False" Height="146" HorizontalAlignment="Left" Name="dgvTeacher" VerticalAlignment="Top" Width="682"  CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="False" >
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding TeacherID}" Header="Teacher ID" Visibility="Hidden"></DataGridTextColumn>
-                                <DataGridTextColumn Binding="{Binding TeacherName}" Header="Name" Width="150"></DataGridTextColumn>
-                                <DataGridTextColumn Binding="{Binding TeacherSurname}" Header="Surname" Width="150"></DataGridTextColumn>
-                                <DataGridTextColumn Binding="{Binding TeacherShortName}" Header="Short Name" Width="150"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding TeacherName}" Header="Name" Width="100"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding TeacherSurname}" Header="Surname" Width="100"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding TeacherShortName}" Header="Short Name" Width="100"></DataGridTextColumn>
                                 <DataGridTextColumn Binding="{Binding FreeTimeStart}" Header="Free Time Start" Width="*"></DataGridTextColumn>
                                 <DataGridTextColumn Binding="{Binding FreeTimeEnd}" Header="Free Time End" Width="*"></DataGridTextColumn>
+                                    <!--<DataGridTextColumn Binding="{Binding IsActive}" Header="Status" Width="*"></DataGridTextColumn>-->
 
-                            </DataGrid.Columns>
+                                </DataGrid.Columns>
                             <DataGrid.ItemContainerStyle>
                                 <Style TargetType="DataGridRow">
                                     <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick" />
