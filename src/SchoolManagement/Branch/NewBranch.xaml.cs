@@ -523,6 +523,8 @@ namespace SchoolManagement.Branch
            CountBranch();
            btnDelete.IsEnabled = false;
            txtUploadPath.IsReadOnly = true;
+           cmbBindInstitute.SelectedIndex = 0;
+
         }
 
         private void CountBranch()
@@ -534,6 +536,7 @@ namespace SchoolManagement.Branch
                 {
                     cmbSelectType.Text = "Branch";
                     cmbSelectType.IsEnabled = false;
+                    cmbBindInstitute.SelectedValue = "0";
                 }
                 else
                 {
