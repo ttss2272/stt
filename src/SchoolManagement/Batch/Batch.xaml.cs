@@ -198,11 +198,11 @@ namespace SchoolManagement.Batch
             {
                 IsAllowMoreThanOneLectInBatch = 0;
             }           
-            LunchBreakStartTime = comboBox1.SelectedValue.ToString();
-            LunchBreakStartTime += ":" + comboBox2.SelectedValue.ToString();
+            LunchBreakStartTime = cmbTimeStartHrs.SelectedValue.ToString();
+            LunchBreakStartTime += ":" + cmbTimeStartMin.SelectedValue.ToString();
 
-            LunchBreakEndTime = comboBox3.SelectedValue.ToString();
-            LunchBreakEndTime += ":" + comboBox4.SelectedValue.ToString();    
+            LunchBreakEndTime = cmbTimeEndHrs.SelectedValue.ToString();
+            LunchBreakEndTime += ":" + cmbTimeEndMin.SelectedValue.ToString();    
             MaxNoOfLecureInRow = Convert.ToInt32(cbmaxlectperrow.SelectedValue);
             UpdatedByUserID = 1;
             UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");           
@@ -229,8 +229,13 @@ namespace SchoolManagement.Batch
         #region---------------------------Validate()-----------------------------------------
         public bool Validate()
         {
-
-            if (txtBatchName.Text.Trim() == "" || string.IsNullOrEmpty(txtBatchName.Text))
+              if (cbClassName.Text == "Select")
+            {
+                MessageBox.Show("Please Select Class Name.", "Class Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cbClassName.Focus();
+                return false;
+            }
+            else if (txtBatchName.Text.Trim() == "" || string.IsNullOrEmpty(txtBatchName.Text))
             {
                 MessageBox.Show("Please Enter Batch Name.", "Batch Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 txtBatchName.Focus();
@@ -242,52 +247,47 @@ namespace SchoolManagement.Batch
                 txtBatchCode.Focus();
                 return false;
             }
-            else if (cbClassName.SelectedValue.ToString() == "Select")
-            {
-                MessageBox.Show("Please Select Class Name.", "Class Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                cbClassName.Focus();
-                return false;
-            }
+           
             else if (txtlecDuration.Text.Trim() == "" || string.IsNullOrEmpty(txtlecDuration.Text))
             {
                 MessageBox.Show("Please Enter Lecture Duration Time", "Lecture Duration Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 txtlecDuration.Focus();
                 return false;
             }
-            else if (comboBox1.SelectedValue.ToString() == "Select")
+            else if (cmbTimeStartHrs.Text== "Hours")
             {
                 MessageBox.Show("Please Select Lunch Start Time Hours", "Lunch Time Starts Hours", MessageBoxButton.OK, MessageBoxImage.Warning);
-                comboBox1.Focus();
+                cmbTimeStartHrs.Focus();
                 return false;
             }
-            else if (comboBox2.SelectedValue.ToString() == "Select")
+            else if (cmbTimeStartMin.Text == "Min")
             {
                 MessageBox.Show("Please Select Lunch Start Time Minutes", "Lunch Time Starts Minutes", MessageBoxButton.OK, MessageBoxImage.Warning);
-                comboBox2.Focus();
+                cmbTimeStartMin.Focus();
                 return false;
             }
-            else if (comboBox3.SelectedValue.ToString() == "Select")
+            else if (cmbTimeEndHrs.Text =="Hours")
             {
                 MessageBox.Show("Please Select Lunch End Time Hours", "Lunch Time End Hours", MessageBoxButton.OK, MessageBoxImage.Warning);
-                comboBox3.Focus();
+                cmbTimeEndHrs.Focus();
                 return false;
             }
-            else if (comboBox4.SelectedValue.ToString() == "Select")
+            else if (cmbTimeEndMin.Text == "Min")
             {
                 MessageBox.Show("Please Select Lunch End Time Minutes", "Lunch Time End Minutes", MessageBoxButton.OK, MessageBoxImage.Warning);
-                comboBox4.Focus();
+                cmbTimeEndMin.Focus();
                 return false;
             }
-            else if (Convert.ToInt32(comboBox1.SelectedValue) > Convert.ToInt32(comboBox2.SelectedValue))
+            else if (Convert.ToInt32(cmbTimeStartHrs.SelectedValue) > Convert.ToInt32(cmbTimeStartMin.SelectedValue))
             {
                 MessageBox.Show("Free Time Start Hour is less or equals to End hours", "Free Time", MessageBoxButton.OK, MessageBoxImage.Warning);
-                comboBox1.Focus();
+                cmbTimeStartHrs.Focus();
                 return false;
             }
-            else if ((Convert.ToInt32(comboBox1.SelectedValue) == Convert.ToInt32(comboBox3.SelectedValue)) && (Convert.ToInt32(comboBox2.SelectedValue) >= Convert.ToInt32(comboBox4.SelectedValue)))
+              else if ((Convert.ToInt32(cmbTimeStartHrs.SelectedValue) == Convert.ToInt32(cmbTimeEndHrs.SelectedValue)) && (Convert.ToInt32(cmbTimeStartMin.SelectedValue) >= Convert.ToInt32(cmbTimeEndMin.SelectedValue)))
             {
                 MessageBox.Show("Free Time End Minutes must be greater than Start time", "Free Time", MessageBoxButton.OK, MessageBoxImage.Warning);
-                comboBox4.Focus();
+                cmbTimeEndMin.Focus();
                 return false;
             }
             else if (cbmaxlecperday.SelectedValue.ToString() == "Select")
@@ -319,29 +319,29 @@ namespace SchoolManagement.Batch
         #region-------------------------------------------BindTimingHrs---------------------------------
         private void TimingHrs()
         {
-            comboBox1.Items.Clear();
-            comboBox2.Items.Clear();
+            cmbTimeStartHrs.Items.Clear();
+            cmbTimeEndHrs.Items.Clear();
 
-            comboBox1.Items.Add("Hours");
-            comboBox2.Items.Add("Min");
+            cmbTimeStartHrs.Items.Add("Hours");
+            cmbTimeEndHrs.Items.Add("Hours");
             int i;
             for (i = 1; i <= 24; i++)
             {
                 if (i < 10)
                 {
-                    comboBox1.Items.Add(n + i.ToString());
-                    comboBox2.Items.Add(n + i.ToString());
+                    cmbTimeStartHrs.Items.Add(n + i.ToString());
+                    cmbTimeEndHrs.Items.Add(n + i.ToString());
                 }
                 else
                 {
-                    comboBox1.Items.Add(i.ToString());
-                    comboBox2.Items.Add(i.ToString());
+                    cmbTimeStartHrs.Items.Add(i.ToString());
+                    cmbTimeEndHrs.Items.Add(i.ToString());
                 }
 
             }
 
-            comboBox1.SelectedIndex = 0;
-            comboBox2.SelectedIndex = 0;
+            cmbTimeStartHrs.SelectedIndex = 0;
+            cmbTimeEndHrs.SelectedIndex = 0;
 
         }
         #endregion
@@ -349,25 +349,25 @@ namespace SchoolManagement.Batch
         #region-------------------------------------------BindTimingMins---------------------------------
         private void TimingMin()
         {
-            comboBox3.Items.Add("Hours");
-            comboBox4.Items.Add("Min");
+            cmbTimeStartMin.Items.Add("Min");
+            cmbTimeEndMin.Items.Add("Min");
             int i;
             for (i = 0; i <= 59; i = i + 5)
             {
                 if (i < 10)
                 {
-                    comboBox3.Items.Add(n + i.ToString());
-                    comboBox4.Items.Add(n + i.ToString());
+                    cmbTimeStartMin.Items.Add(n + i.ToString());
+                    cmbTimeEndMin.Items.Add(n + i.ToString());
                 }
                 else
                 {
-                    comboBox3.Items.Add(i);
-                    comboBox4.Items.Add(i);
+                    cmbTimeStartMin.Items.Add(i);
+                    cmbTimeEndMin.Items.Add(i);
                 }
 
             }
-            comboBox3.SelectedIndex = 0;
-            comboBox4.SelectedIndex = 0;
+            cmbTimeStartMin.SelectedIndex = 0;
+            cmbTimeEndMin.SelectedIndex = 0;
 
         }
         #endregion
@@ -375,10 +375,10 @@ namespace SchoolManagement.Batch
         #region--------------------select()-------------------
         private void select()
         {
-            comboBox1.SelectedIndex = 0;
-            comboBox2.SelectedIndex = 0;
-            comboBox3.SelectedIndex = 0;
-            comboBox4.SelectedIndex = 0;
+            cmbTimeStartHrs.SelectedIndex = 0;
+            cmbTimeStartMin.SelectedIndex = 0;
+            cmbTimeEndHrs.SelectedIndex = 0;
+            cmbTimeEndMin.SelectedIndex = 0;
             cbmaxlecperday.SelectedIndex = 0;
             cbmaxlecperweek.SelectedIndex = 0;
             cbmaxlectperrow.SelectedIndex = 0;
@@ -390,6 +390,7 @@ namespace SchoolManagement.Batch
 
         private void clearFields()
         {
+            cbClassName.SelectedIndex = 0;
             txtBatchName.Text = "";
             txtBatchCode.Text = "";           
             txtlecDuration.Text = "";
@@ -565,13 +566,13 @@ namespace SchoolManagement.Batch
                         txtlecDuration.Text = ds.Tables[0].Rows[0]["LectureDuration"].ToString();                      
                         string StartTime = ((System.Data.DataRowView)(dgvBatch.CurrentItem)).Row.ItemArray[6].ToString();
                         string[] a = StartTime.Split(':');
-                        comboBox1.Text = a[0];
-                        comboBox2.Text = a[1];
+                        cmbTimeStartHrs.Text = a[0];
+                        cmbTimeStartMin.Text = a[1];
 
                         string EndTime = ((System.Data.DataRowView)(dgvBatch.CurrentItem)).Row.ItemArray[7].ToString();
                         string[] b = EndTime.Split(':');
-                        comboBox3.Text = b[0];
-                        comboBox4.Text = b[1];
+                        cmbTimeEndHrs.Text = b[0];
+                        cmbTimeEndMin.Text = b[1];
                         
                         cbmaxlecperday.Text = ds.Tables[0].Rows[0]["MaxNoLecturesDay"].ToString();
                         cbLunchBreak.Text = ds.Tables[0].Rows[0]["IsLunchBreak"].ToString();
@@ -741,7 +742,24 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
-      
+        private void cbLunchBreak_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if ((cbLunchBreak.Text == "No") || (cbLunchBreak.SelectedIndex == 0))
+            {
+                cmbTimeStartHrs.IsEnabled = true;
+                cmbTimeStartMin.IsEnabled = true;
+                cmbTimeEndHrs.IsEnabled = true;
+                cmbTimeEndMin.IsEnabled = true;
+            }
+            else if (cbLunchBreak.Text == "Yes") 
+            {
+                cmbTimeStartHrs.IsEnabled = false;
+                cmbTimeStartMin.IsEnabled = false;
+                cmbTimeEndHrs.IsEnabled = false;
+                cmbTimeEndMin.IsEnabled = false;
+            }
+           
+        }      
 
     }
 }
