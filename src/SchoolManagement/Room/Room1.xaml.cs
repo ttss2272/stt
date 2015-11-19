@@ -296,7 +296,7 @@ namespace SchoolManagement.Room
                     cmbBranchName.DataContext = ds.Tables[0].DefaultView;
                     cmbBranchName.DisplayMemberPath = ds.Tables[0].Columns["BranchName"].ToString();
                     cmbBranchName.SelectedValuePath = ds.Tables[0].Columns["BranchID"].ToString();
-
+                    cmbBranchName.SelectedValue = "0";
                 }
 
             }
