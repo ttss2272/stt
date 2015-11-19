@@ -130,8 +130,14 @@ namespace SchoolManagement.Class
         #region---------------------------Validate()-----------------------------------------
         public bool Validate()
         {
+              if (cbBranchName.Text=="Select")
+            {
+                MessageBox.Show("Please Select Branch Name.", "Branch Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cbBranchName.Focus();
+                return false;
+            }
 
-            if (txtClassName.Text.Trim() == "" || string.IsNullOrEmpty(txtClassName.Text))
+            else if (txtClassName.Text.Trim() == "" || string.IsNullOrEmpty(txtClassName.Text))
             {
                 MessageBox.Show("Please Enter Class Name.", "Class Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 txtClassName.Focus();
@@ -143,29 +149,22 @@ namespace SchoolManagement.Class
                 txtShortName.Focus();
                 return false;
             }
+            else if (cbBoard.Text == "Select")
+            {
+                MessageBox.Show("Please Select Board.", "Board Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cbBoard.Focus();
+                return false;
+            }
             else if (txtcolor.Text.Trim() == "" || string.IsNullOrEmpty(txtcolor.Text))
             {
                 MessageBox.Show("Please Enter Color.", "Color Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 txtcolor.Focus();
                 return false;
             }
-            else if (cbBoard.SelectedValue.ToString() == "Select")
-            {
-                MessageBox.Show("Please Select Board.", "Board Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                cbBoard.Focus();
-                return false;
-            }
-            else if (cbBranchName.SelectedValue.ToString()=="Select")
-            {
-                MessageBox.Show("Please Select Branch Name.", "Branch Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                cbBranchName.Focus();
-                return false;
-            }
-
+                      
             else
             {
                 return true;
-
             }
         }
         #endregion
@@ -212,6 +211,7 @@ namespace SchoolManagement.Class
         #region-----------------------------clearFields()------------------------------------------
         private void clearFields()
         {
+            cbBranchName.SelectedIndex = 0;
             cbBranchName.Text = "";
             txtClassName.Text = "";
             txtShortName.Text = "";            
@@ -435,7 +435,7 @@ namespace SchoolManagement.Class
                             rdoDeActive.IsChecked = true;
                         }
                         btnDelete.IsEnabled = true;
-                        btnAdd.Content = "Update";
+                        btnadd.Content = "Update";
                     }
                 }
             }
