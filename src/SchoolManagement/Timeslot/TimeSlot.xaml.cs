@@ -151,7 +151,7 @@ namespace SchoolManagement.Timeslot
             DayName = cmbDayName.Text;
             BranchID = Convert.ToInt32(cmbBranchName.SelectedValue.ToString());
             UpdatedByUserID = 1;
-            UpdatedDate = DateTime.Now.ToString();
+            UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
             SHr = Convert.ToInt32(cmbSHr.SelectedValue.ToString());
             SMin = Convert.ToInt32(cmbSMin.SelectedValue.ToString());
             EHr = Convert.ToInt32(cmbEHr.SelectedValue.ToString());
