@@ -19,25 +19,25 @@
                 <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFE81B1B" Height="28" HorizontalAlignment="Left" Margin="161,88,0,0" Name="label10" VerticalAlignment="Top" Width="31" />
                 <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFE83030" Height="28" HorizontalAlignment="Left" Margin="161,156,0,0" Name="label11" VerticalAlignment="Top" Width="31" />
                 <ComboBox Height="28" HorizontalAlignment="Left" Margin="198,12,0,0" Name="cmbBranchName" VerticalAlignment="Top" Width="157" ItemsSource="{Binding }" TabIndex="1" />
-                <TextBox Height="28" HorizontalAlignment="Left" Margin="198,52,0,0" Name="txtRoomName" VerticalAlignment="Top" Width="157" TabIndex="2" />
-                <TextBox Height="28" HorizontalAlignment="Left" Margin="198,122,0,0" Name="txtColor" VerticalAlignment="Top" Width="157" TabIndex="4" />
-                <TextBox Height="28" HorizontalAlignment="Left" Margin="198,88,0,0" Name="txtShortName" VerticalAlignment="Top" Width="157" TabIndex="3" />
+                <TextBox Height="28" HorizontalAlignment="Left" Margin="198,52,0,0" Name="txtRoomName" VerticalAlignment="Top" Width="157" TextChanged="txtRoomName_TextChanged" TabIndex="2" />
+                <TextBox Height="28" HorizontalAlignment="Left" Margin="198,122,0,0" Name="txtColor" VerticalAlignment="Top" Width="157" TextChanged="txtColor_TextChanged"  TabIndex="4" />
+                <TextBox Height="28" HorizontalAlignment="Left" Margin="198,88,0,0" Name="txtShortName" VerticalAlignment="Top" Width="157" TextChanged="txtShortName_TextChanged" TabIndex="3" />
                 <ComboBox Height="28" HorizontalAlignment="Left" Margin="198,156,0,0" Name="cmbCapacity" VerticalAlignment="Top" Width="157" ItemsSource="{Binding}" TabIndex="5" />
                 <Button Content="Save" Height="31" HorizontalAlignment="Left" Margin="181,250,0,0" Name="btnAdd" VerticalAlignment="Top" Width="75" Click="btnAdd_Click" TabIndex="14" FontWeight="Bold" />
                 <Label Content="Status" Height="28" HorizontalAlignment="Left" Margin="57,193,0,0" Name="label7" VerticalAlignment="Top" Width="108" FontWeight="Bold" />
                 <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFE83030" Height="28" HorizontalAlignment="Left" Margin="161,198,0,0" Name="label12" VerticalAlignment="Top" Width="31" />
                 <RadioButton Content="Acative" Height="16" HorizontalAlignment="Left" Margin="198,205,0,0" Name="rdbActive" VerticalAlignment="Top" FontWeight="Bold" />
-                <RadioButton Content="InAcative" Height="16" HorizontalAlignment="Left" Margin="309,205,0,0" Name="rdbInactive" VerticalAlignment="Top" FontWeight="Bold" />
+                <RadioButton Content="InAcative" Height="16" HorizontalAlignment="Left" Margin="283,204,0,0" Name="rdbInactive" VerticalAlignment="Top" FontWeight="Bold" />
                 <Button Content="Delete" Height="31" HorizontalAlignment="Left" Margin="303,250,0,0" Name="btnDelete" VerticalAlignment="Top" Width="75" Click="btnDelete_Click_1" TabIndex="16" FontWeight="Bold" />
                 <Label Content="Max No. Of Lect/Day" Height="28" HorizontalAlignment="Left" Margin="389,14,0,0" Name="label13" VerticalAlignment="Top" Width="129" FontWeight="Bold" />
                 <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFF51F1F" Height="28" HorizontalAlignment="Left" Margin="536,14,0,0" Name="label16" VerticalAlignment="Top" Width="31" />
-                <TextBox Height="28" HorizontalAlignment="Left" Margin="573,14,0,0" Name="txtLectDay" VerticalAlignment="Top" Width="157" TabIndex="6" />
+                <TextBox Height="28" HorizontalAlignment="Left" Margin="573,14,0,0" Name="txtLectDay" VerticalAlignment="Top" Width="157" TextChanged="txtLectDay_TextChanged" TabIndex="6" />
                 <Label Content="Max No. Of Lect/Week" Height="28" HorizontalAlignment="Left" Margin="387,50,0,0" Name="label14" VerticalAlignment="Top" Width="143" FontWeight="Bold" />
                 <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFF51F1F" Height="28" HorizontalAlignment="Left" Margin="536,52,0,0" Name="label15" VerticalAlignment="Top" Width="31" />
-                <TextBox Height="28" HorizontalAlignment="Right" Margin="0,52,29,0" Name="txtLectWeek" VerticalAlignment="Top" Width="157" TabIndex="7" />
+                <TextBox Height="28" HorizontalAlignment="Right" Margin="0,52,29,0" Name="txtLectWeek" VerticalAlignment="Top" Width="157" TextChanged="txtLectWeek_TextChanged" TabIndex="7" />
                 <Label Content="Max No. Of Lect/Row" Height="28" HorizontalAlignment="Left" Margin="387,88,0,0" Name="label17" VerticalAlignment="Top" Width="131" FontWeight="Bold" />
                 <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFF51F1F" Height="28" HorizontalAlignment="Left" Margin="536,88,0,0" Name="label18" VerticalAlignment="Top" Width="31" />
-                <TextBox Height="28" HorizontalAlignment="Right" Margin="0,92,29,0" Name="txtLectRow" VerticalAlignment="Top" Width="157" TabIndex="8" />
+                <TextBox Height="28" HorizontalAlignment="Right" Margin="0,92,29,0" Name="txtLectRow" VerticalAlignment="Top" Width="157" TextChanged="txtLectRow_TextChanged" TabIndex="8" />
                 <Label Content="Break Time" Height="28" HorizontalAlignment="Left" Margin="389,122,0,0" Name="label19" VerticalAlignment="Top" Width="90" FontWeight="Bold" />
                 <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFF51F1F" Height="28" HorizontalAlignment="Left" Margin="536,127,0,0" Name="label20" VerticalAlignment="Top" Width="31" />
                 <ComboBox Height="23" HorizontalAlignment="Left" Margin="573,127,0,0" Name="cmbSHr" VerticalAlignment="Top" Width="49" ItemsSource="{Binding}" TabIndex="9" />
@@ -49,8 +49,12 @@
                 <Label Content="Hr" Height="28" HorizontalAlignment="Right" Margin="0,170,113,0" Name="label24" VerticalAlignment="Top" FontWeight="Bold" />
                 <Label Content="Min" Height="28" HorizontalAlignment="Right" Margin="0,170,32,0" Name="label25" VerticalAlignment="Top" FontWeight="Bold" />
                 <ComboBox Height="23" HorizontalAlignment="Left" Margin="649,170,0,0" Name="cmbEMin" VerticalAlignment="Top" Width="49" ItemsSource="{Binding}" TabIndex="12" />
-                <CheckBox Content="More Than 1 Lect. In Batch" Height="21" HorizontalAlignment="Left" Margin="573,205,0,0" Name="chkAllowLect" VerticalAlignment="Top" Width="180" TabIndex="13" FontWeight="Bold" />
                 <Button Content="Clear" FontWeight="Bold" Height="31" HorizontalAlignment="Left" Margin="434,250,0,0" Name="btnclear" TabIndex="17" VerticalAlignment="Top" Width="75" Click="btnclear_Click" />
+                <Label Content="More Than 1 Lect In Batch" Height="28" HorizontalAlignment="Left" Margin="386,195,0,0" Name="label26" VerticalAlignment="Top" FontWeight="Bold" />
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="573,204,0,0" Name="cmbAllowLect" VerticalAlignment="Top" Width="49">
+                    <ComboBoxItem Content="Yes" />
+                    <ComboBoxItem Content="No" />
+                </ComboBox>
             </Grid>
         </GroupBox>
         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Height="162" HorizontalAlignment="Left" Margin="37,356,0,0" Name="dgRoom" VerticalAlignment="Top" Width="759" IsReadOnly="True" CanUserResizeColumns="False" ItemsSource="{Binding}" FontWeight="Bold">

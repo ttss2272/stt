@@ -49,8 +49,18 @@ namespace SchoolManagement.Room
         #region---------------------------Validate()-----------------------------------------
         public bool Validate()
         {
+            int day = Convert.ToInt32(txtLectDay.Text);
+            int week = Convert.ToInt32(txtLectWeek.Text);
+            int sHr = Convert.ToInt32(cmbSHr.Text);
+            int eHr = Convert.ToInt32(cmbEHr.Text);
 
-            if (string.IsNullOrEmpty(txtRoomName.Text))
+            if (cmbBranchName.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please Select Branch Name...");
+                cmbBranchName.Focus();
+                return false;
+            }
+            else if (string.IsNullOrEmpty(txtRoomName.Text))
             {
                 MessageBox.Show("Please Enter Room Name..");
                 txtRoomName.Focus();
@@ -74,6 +84,37 @@ namespace SchoolManagement.Room
                 cmbCapacity.Focus();
                 return false;
             }
+            else if (rdbActive.IsChecked == false && rdbInactive.IsChecked == false)
+            {
+                MessageBox.Show("Please Select Status...");
+                return false;
+            }
+            else if (string.IsNullOrEmpty(txtLectDay.Text))
+            {
+                MessageBox.Show("Please Enter No. Of Lect/Day..");
+                txtColor.Focus();
+                return false;
+            }
+            else if (string.IsNullOrEmpty(txtLectWeek.Text))
+            {
+                MessageBox.Show("Please Enter No. Of Lect/Week..");
+                txtColor.Focus();
+                return false;
+            }
+            else if (day > week)
+            {
+                MessageBox.Show("Please Enter Lect/Week Greater than Lect/Day");
+                txtLectWeek.Text = "";
+                txtLectWeek.Focus();
+                return false;
+
+            }
+            else if (string.IsNullOrEmpty(txtLectRow.Text))
+            {
+                MessageBox.Show("Please Enter No. Of Lect In Row..");
+                txtColor.Focus();
+                return false;
+            }
             else if (cmbSHr.SelectedIndex == 0 || cmbSMin.SelectedIndex == 0 )
             {
                 MessageBox.Show("Please Select start Time...");
@@ -87,17 +128,13 @@ namespace SchoolManagement.Room
                 cmbEHr.Focus();
                 return false;
             }
-            else if (cmbBranchName.SelectedIndex == -1)
+            else if (sHr >= eHr)
             {
-                MessageBox.Show("Please Select Branch Name...");
-                cmbBranchName.Focus();
+                MessageBox.Show("Please Enter Start Hours Less Than End Hours  ...");
+                cmbSHr.Focus();
                 return false;
             }
-            else if (rdbActive.IsChecked == false && rdbInactive.IsChecked == false)
-            {
-                MessageBox.Show("Please Select Status...");
-                return false;
-            }
+            
             else
             {
                 return true;
@@ -122,7 +159,7 @@ namespace SchoolManagement.Room
             txtLectRow.Text = "";
             rdbActive.IsChecked = true;
             rdbInactive.IsChecked = false;
-            chkAllowLect.IsChecked = false;
+            cmbAllowLect.Text = "";
             btnAdd.Content = "Save";
             cmbSHr.SelectedIndex = 0;
             cmbSMin.SelectedIndex = 0;
@@ -172,7 +209,7 @@ namespace SchoolManagement.Room
                 IsDeleted = 0;
 
             }
-            if (chkAllowLect.IsChecked == true)
+            if (cmbAllowLect.Text  == "Yes")
                 IsAllow = 1;
             else
                 IsAllow = 0;
@@ -244,7 +281,6 @@ namespace SchoolManagement.Room
 
         private void BindBranchName()
         {
-
             try
             {
                 DataSet ds = obj_Branch.BindBranchName();
@@ -434,19 +470,16 @@ namespace SchoolManagement.Room
                         }
                         if (IsAllow == 1)
                         {
-                            chkAllowLect.IsChecked = true;
+                            cmbAllowLect.Text= "Yes";
                         }
                         else 
                         { 
-                            chkAllowLect.IsChecked = false; 
+                            cmbAllowLect.Text  = "No"; 
                         }
                         btnDelete.IsEnabled = true;
                         btnAdd.Content = "Update";
                     }
                 }
-
-
-
             }
             catch (Exception ex)
             {
@@ -542,8 +575,175 @@ namespace SchoolManagement.Room
 
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 20 Nov 2015
+        * Purpose:- Vaidation for text check */
 
-       
+
+        #region-----------------Validation for text------------------------------
+        private void txtRoomName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (txtRoomName.Text != "")
+                {
+                    if (txtRoomName.Text.Length > 0 && txtRoomName.Text.Length == 1)
+                    {
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtRoomName.Text, "^[a-zA-Z]"))
+                        {
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please Enter First Characerter Alphabate", "Room Name", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtRoomName.Text = "";
+                            txtRoomName.Focus();
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void txtShortName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (txtShortName.Text != "")
+                {
+                    if (txtShortName.Text.Length > 0 && txtShortName.Text.Length == 1)
+                    {
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtShortName.Text, "^[a-zA-Z]"))
+                        {
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please Enter First Characerter Alphabate", "Room Short Name", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtShortName.Text = "";
+                            txtShortName.Focus();
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void txtColor_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (txtColor.Text != "")
+                {
+                    if (txtColor.Text.Length > 0)
+                    {
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtColor.Text, "^[a-zA-Z]+$"))
+                        {
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please Enter Only Alphabets", "Color Name", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtColor.Text = "";
+                            txtColor.Focus();
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void txtLectDay_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (txtLectDay.Text != "")
+                {
+                    if (txtLectDay.Text.Length > 0)
+                    {
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtLectDay.Text, "^[0-9]"))
+                        {
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please Enter Only Numbers", "Max no.of lecture per day", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtLectDay.Text = "";
+                            txtLectDay.Focus();
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void txtLectWeek_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (txtLectWeek.Text != "")
+                {
+                    if (txtLectWeek.Text.Length > 0)
+                    {
+                            if (System.Text.RegularExpressions.Regex.IsMatch(txtLectWeek.Text, "^[0-9]"))
+                            {
+                            }
+                            else
+                            {
+                                MessageBox.Show("Please Enter Only Numbers", "Max no.of lecture per week", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                txtLectWeek.Text = "";
+                                txtLectWeek.Focus();
+                            }
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+
+        private void txtLectRow_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (txtLectRow.Text != "")
+                {
+                    if (txtLectRow.Text.Length > 0)
+                    {
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtLectRow.Text, "^[0-9]"))
+                        {
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please Enter Only Numbers", "Max no.of lecture in row", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtLectRow.Text = "";
+                            txtLectRow.Focus();
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        #endregion
 
         private void btnclear_Click(object sender, RoutedEventArgs e)
         {
