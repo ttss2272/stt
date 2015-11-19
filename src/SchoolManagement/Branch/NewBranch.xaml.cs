@@ -336,10 +336,13 @@ namespace SchoolManagement.Branch
                     filepath = open.FileName; // Stores Original Path in Textbox D:\SVN_SchoolTimeTable\src\SchoolManagement\Logo\   
                     ImageSource imgsource = new BitmapImage(new Uri(filepath)); // Just show The File In Image when we browse It
                     image1.Source = imgsource;
+                    
                 }
+                
                 string name = System.IO.Path.GetFileName(filepath);
+                txtUploadPath.Text = name;
                 string destinationPath = GetDestinationPath(name, "Logo");
-
+                
                 File.Copy(filepath, destinationPath, true);
                
             }
@@ -474,7 +477,7 @@ namespace SchoolManagement.Branch
                         string destinationPath = GetDestinationPath(name, "Logo");
                         System.Windows.Media.Imaging.BitmapImage logo = new System.Windows.Media.Imaging.BitmapImage();
                         logo.BeginInit();
-                        BitmapImage btm = new BitmapImage(new Uri(destinationPath + txtUploadPath.Text, UriKind.Relative));
+                        BitmapImage btm = new BitmapImage(new Uri(destinationPath, UriKind.Relative));
                         logo.UriSource = new Uri(destinationPath + txtUploadPath.Text);
                         logo.EndInit();
                         this.image1.Source = logo;
