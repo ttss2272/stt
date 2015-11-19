@@ -48,8 +48,13 @@ namespace SchoolManagement.Timeslot
         #region---------------------------Validate()-----------------------------------------
         public bool Validate()
         {
-
-             if (cmbDayName.SelectedIndex == 0)
+            if (cmbBranchName.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please Select Branch Name...");
+                cmbBranchName.Focus();
+                return false;
+            }
+             else if (cmbDayName.SelectedIndex == 0)
             {
                 MessageBox.Show("Please Select Day Name...");
                 cmbDayName.Focus();
@@ -68,6 +73,13 @@ namespace SchoolManagement.Timeslot
                 cmbEHr.Focus();
                 return false;
             }
+            else if ((Convert.ToInt32(cmbSHr.Text) == Convert.ToInt32(cmbEHr.Text)) && (Convert.ToInt32(cmbSMin.Text) >= Convert.ToInt32(cmbEMin.Text)))
+            {
+                MessageBox.Show("Please Enter Proper Time  ...");
+                cmbSHr.Focus();
+                return false;
+
+            }
              else if (cmbSSHr.SelectedIndex == 0 || cmbSSMin.SelectedIndex == 0)
              {
                  MessageBox.Show("Please Select Slot start Time...");
@@ -81,12 +93,13 @@ namespace SchoolManagement.Timeslot
                  cmbEHr.Focus();
                  return false;
              }
-            else if (cmbBranchName.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please Select Branch Name...");
-                cmbBranchName.Focus();
-                return false;
-            }
+             else if ((Convert.ToInt32(cmbSSHr.Text) == Convert.ToInt32(cmbSEHr.Text)) && (Convert.ToInt32(cmbSSMin.Text) >= Convert.ToInt32(cmbSEMin.Text)))
+             {
+                 MessageBox.Show("Please Enter Proper Slot Time  ...");
+                 cmbSSHr.Focus();
+                 return false;
+
+             }
             else if (rdbActive.IsChecked == false && rdbInactive.IsChecked == false)
             {
                 MessageBox.Show("Please Select Status...");
