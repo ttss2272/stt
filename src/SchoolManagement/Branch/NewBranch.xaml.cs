@@ -473,7 +473,8 @@ namespace SchoolManagement.Branch
                             
             
                         //edit image
-                        string name = System.IO.Path.GetFileName(filepath);
+                        string name = null;
+                         //name = System.IO.Path.GetFileName(filepath);
                         string destinationPath = GetDestinationPath(name, "Logo");
                         System.Windows.Media.Imaging.BitmapImage logo = new System.Windows.Media.Imaging.BitmapImage();
                         logo.BeginInit();
