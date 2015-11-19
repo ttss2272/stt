@@ -76,6 +76,11 @@ namespace SchoolManagement.Branch
             string Result = obj_AddBranch.SaveBranch(BranchID, BranchName, BranchCode, InstituteName, Logo, CreatedByUserID, UpdatedByUserID, UpdatedDate, IsActive,IsDelete);
             if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
             {
+                string name = System.IO.Path.GetFileName(filepath);
+                //txtUploadPath.Text = name;
+                string destinationPath = GetDestinationPath(name, "Logo");
+
+                File.Copy(filepath, destinationPath, true);
                 MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
                 ClearFields();
             }
@@ -338,12 +343,12 @@ namespace SchoolManagement.Branch
                     image1.Source = imgsource;
                     
                 }
-                
+
                 string name = System.IO.Path.GetFileName(filepath);
                 txtUploadPath.Text = name;
-                string destinationPath = GetDestinationPath(name, "Logo");
+                //string destinationPath = GetDestinationPath(name, "Logo");
                 
-                File.Copy(filepath, destinationPath, true);
+                //File.Copy(filepath, destinationPath, true);
                
             }
 
