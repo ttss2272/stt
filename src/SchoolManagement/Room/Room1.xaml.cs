@@ -191,7 +191,7 @@ namespace SchoolManagement.Room
             Color1 = txtColor.Text;
             BranchID = Convert.ToInt32(cmbBranchName.SelectedValue.ToString());
             UpdatedByUserID = 1;
-            UpdatedDate = DateTime.Now.ToString();
+            UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
             MaxLectDay = Convert.ToInt32(txtLectDay.Text.ToString());
             MaxLectWeek = Convert.ToInt32(txtLectWeek.Text.ToString());
             MaxLectRow = Convert.ToInt32(txtLectRow.Text.ToString());
