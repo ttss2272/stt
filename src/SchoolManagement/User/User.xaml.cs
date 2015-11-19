@@ -38,27 +38,28 @@ namespace SchoolManagement.User
         #region---------------------------Validate()-----------------------------------------
         public bool Validate()
         {
-
-            if (string.IsNullOrEmpty(txtFullName.Text))
+            
+            if (string.IsNullOrEmpty(txtFullName.Text) || string.IsNullOrWhiteSpace(txtFullName.Text))
             {
                 MessageBox.Show("Please Enter Full Name..");
                 txtFullName.Focus();
                 return false;
             }
-            else if (string.IsNullOrEmpty(txtAddress.Text))
+            else if (string.IsNullOrEmpty(txtAddress.Text) || string.IsNullOrWhiteSpace(txtAddress.Text))
             {
                 MessageBox.Show("Please Enter Address..");
                 txtAddress.Focus();
                 return false;
             }
-            else if (string.IsNullOrEmpty(txtEmailID.Text))
+            else if (string.IsNullOrEmpty(txtEmailID.Text)|| string.IsNullOrWhiteSpace(txtEmailID.Text))
             {
                 MessageBox.Show("Please Enter EmailID..");
                 txtEmailID.Focus();
                 return false;
             }
             
-            else if (string.IsNullOrEmpty(txtContactNo.Text))
+            
+            else if (string.IsNullOrEmpty(txtContactNo.Text) || string.IsNullOrWhiteSpace(txtContactNo.Text))
             {
                 MessageBox.Show("Please Enter contact Number..");
                 txtContactNo.Focus();
@@ -70,22 +71,34 @@ namespace SchoolManagement.User
                 txtLoginID.Focus();
                 return false;
             }
+            else if (System.Text.RegularExpressions.Regex.IsMatch(txtContactNo.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Please Enter Only Number in Contact No.");
+                txtContactNo.Focus();
+                return false;
+            }
             else if (txtContactNo.Text.Length > 10)
             {
                 MessageBox.Show("Contact Number Must be 10 Digits..");
                 txtLoginID.Focus();
                 return false;
             }
-            else if (string.IsNullOrEmpty(txtLoginID.Text))
+            else if (string.IsNullOrEmpty(txtLoginID.Text) || string.IsNullOrWhiteSpace(txtLoginID.Text))
             {
                 MessageBox.Show("Please Enter LoginID..");
                 txtLoginID.Focus();
                 return false;
             }
-            else if (string.IsNullOrEmpty(txtPassword.Text))
+            else if (string.IsNullOrEmpty(txtPassword.Password)|| string.IsNullOrWhiteSpace(txtLoginID.Text))
             {
                 MessageBox.Show("Please Enter Password..");
                 txtPassword.Focus();
+                return false;
+            }
+            
+            else if (cmbUserType.SelectedValue.ToString()=="0"|| cmbUserType.SelectedItem.ToString()==""|| cmbUserType.SelectedItem.ToString()=="Select")
+            {
+                MessageBox.Show("Please Select User Type", "User Type", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
             else if (txtEmailID.Text != "")
@@ -103,7 +116,6 @@ namespace SchoolManagement.User
                     return (false);
                 }
             }
-
             else
             {
                 return true;
@@ -153,9 +165,9 @@ namespace SchoolManagement.User
             Address = txtAddress.Text.Trim();
             MailId = txtEmailID.Text.Trim();
             LoginName = txtLoginID.Text.Trim();
-            Password = txtPassword.Text.Trim();
+            Password = txtPassword.Password.Trim();
             UserTypeID = Convert.ToInt32(cmbUserType.SelectedValue.ToString());
-            UpdatedDate = DateTime.Now.ToString();
+            UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
             if (cmbActive.IsChecked == true)
             {
                 IsActive = 1;
@@ -172,12 +184,13 @@ namespace SchoolManagement.User
         {
             try
             {
-                DataSet ds = obj_User.GetUserType(UserTypeID);
+                DataSet ds = obj_User.GetUserType(0);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     cmbUserType.DataContext = ds.Tables[0].DefaultView;
                     cmbUserType.DisplayMemberPath = ds.Tables[0].Columns["UserTypeName"].ToString();
                     cmbUserType.SelectedValuePath = ds.Tables[0].Columns["UserTypeID"].ToString();
+                    cmbUserType.SelectedValue = "0";
                 }
             }
             catch (Exception ex)
@@ -211,7 +224,7 @@ namespace SchoolManagement.User
             if (UpID != 0)
             {
                 UserID = UpID;
-                UpdatedDate = DateTime.Now.ToString();
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 string Result = obj_User.DeleteUser(UserID, UpdatedDate);
                 if (Result == "Deleted Sucessfully...!!")
                 {
@@ -249,7 +262,7 @@ namespace SchoolManagement.User
             txtContactNo.Text = "";
             txtEmailID.Text = "";
             txtLoginID.Text = "";
-            txtPassword.Text = "";
+            txtPassword.Password = "";
             cmbActive.IsChecked = true;
             bindUserGrid();
             UpID = 0;
@@ -297,7 +310,7 @@ namespace SchoolManagement.User
                 txtContactNo.Text = ((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[2].ToString();
                 txtEmailID.Text = ((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[4].ToString();
                 txtLoginID.Text = ((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[5].ToString();
-                txtPassword.Text = ((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[6].ToString();
+                txtPassword.Password = ((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[6].ToString();
                 cmbUserType.SelectedValue = ((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[9].ToString();
                 bool act = Convert.ToBoolean(((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[10].ToString());
                 bool del = Convert.ToBoolean(((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[11].ToString());
