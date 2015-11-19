@@ -64,7 +64,7 @@ namespace SchoolManagement.Batch
                 {
                     SetParameters();
                     SaveDetails();
-                    BindGridview();
+                   
                 }
             }
             catch (Exception ex)
@@ -179,29 +179,30 @@ namespace SchoolManagement.Batch
             BatchCode = txtBatchCode.Text.Trim();
             ClassID = Convert.ToInt32(cbClassName.SelectedValue);
             LectureDuration = Convert.ToInt32(txtlecDuration.Text.ToString());
-            if (chkLunchBreak.IsChecked == true)
+            if (cbLunchBreak.SelectedValue.ToString() == "Yes")
             {
                 IsLunchBreak = 1;
             }
-            else
+            else if (cbLunchBreak.SelectedValue.ToString() == "No")
             {
                 IsLunchBreak = 0;
             }
+                
+            MaxNoLecturesDay = Convert.ToInt32(cbmaxlecperday.SelectedValue);
+            MaxNoLecturesWeek = Convert.ToInt32(cbmaxlecperweek.SelectedValue);
+            if (cballowlect.SelectedValue.ToString() == "Yes")
+            {
+                IsAllowMoreThanOneLectInBatch = 1;
+            }
+            else if (cballowlect.SelectedValue.ToString() == "No")
+            {
+                IsAllowMoreThanOneLectInBatch = 0;
+            }           
             LunchBreakStartTime = comboBox1.SelectedValue.ToString();
             LunchBreakStartTime += ":" + comboBox2.SelectedValue.ToString();
 
             LunchBreakEndTime = comboBox3.SelectedValue.ToString();
-            LunchBreakEndTime += ":" + comboBox4.SelectedValue.ToString();           
-            MaxNoLecturesDay = Convert.ToInt32(cbmaxlecperday.SelectedValue);
-            MaxNoLecturesWeek = Convert.ToInt32(cbmaxlecperweek.SelectedValue);
-            if (chkallow.IsChecked == true)
-            {
-                IsAllowMoreThanOneLectInBatch = 1;
-            }
-            else
-            {
-                IsAllowMoreThanOneLectInBatch = 0;
-            }
+            LunchBreakEndTime += ":" + comboBox4.SelectedValue.ToString();    
             MaxNoOfLecureInRow = Convert.ToInt32(cbmaxlectperrow.SelectedValue);
             UpdatedByUserID = 1;
             UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");           
@@ -277,6 +278,18 @@ namespace SchoolManagement.Batch
                 comboBox4.Focus();
                 return false;
             }
+            else if (Convert.ToInt32(comboBox1.SelectedValue) > Convert.ToInt32(comboBox2.SelectedValue))
+            {
+                MessageBox.Show("Free Time Start Hour is less or equals to End hours", "Free Time", MessageBoxButton.OK, MessageBoxImage.Warning);
+                comboBox1.Focus();
+                return false;
+            }
+            else if ((Convert.ToInt32(comboBox1.SelectedValue) == Convert.ToInt32(comboBox3.SelectedValue)) && (Convert.ToInt32(comboBox2.SelectedValue) >= Convert.ToInt32(comboBox4.SelectedValue)))
+            {
+                MessageBox.Show("Free Time End Minutes must be greater than Start time", "Free Time", MessageBoxButton.OK, MessageBoxImage.Warning);
+                comboBox4.Focus();
+                return false;
+            }
             else if (cbmaxlecperday.SelectedValue.ToString() == "Select")
             {
                 MessageBox.Show("Please Select Max Lecture in Day", "Max Lecuture in a Day", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -295,6 +308,7 @@ namespace SchoolManagement.Batch
                 cbmaxlectperrow.Focus();
                 return false;
             }
+
             else
             {
                 return true;
@@ -302,79 +316,59 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
-        #region--------------bind Lunch Break Time------------------------------
-        private void comboBox1_Items()
+        #region-------------------------------------------BindTimingHrs---------------------------------
+        private void TimingHrs()
         {
-            comboBox1.Items.Add("select");
+            comboBox1.Items.Clear();
+            comboBox2.Items.Clear();
+
+            comboBox1.Items.Add("Hours");
+            comboBox2.Items.Add("Min");
             int i;
-            for (i = 1; i <= 9; i++)
+            for (i = 1; i <= 24; i++)
             {
-                comboBox1.Items.Add(n + i.ToString ());
+                if (i < 10)
+                {
+                    comboBox1.Items.Add(n + i.ToString());
+                    comboBox2.Items.Add(n + i.ToString());
+                }
+                else
+                {
+                    comboBox1.Items.Add(i.ToString());
+                    comboBox2.Items.Add(i.ToString());
+                }
+
             }
-            comboBox1.Items.Add("10");
-            for (i = 1; i <= 9; i++)
-            {
-                comboBox1.Items.Add(m + i.ToString());
-            }
-            comboBox1.Items.Add("20");
-            comboBox1.Items.Add("21");
-            comboBox1.Items.Add("22");
-            comboBox1.Items.Add("23");
-            comboBox1.Items.Add("24");
+
             comboBox1.SelectedIndex = 0;
-        }
-        #endregion
-
-        #region--------------bind Lunch Break Time------------------------------
-        private void comboBox2_Items()
-        {
-            comboBox2.Items.Add("select"); ;
-            int i;
-            comboBox2.Items.Add("00");
-            comboBox2.Items.Add("05");
-            for (i = 10; i <= 60; i+=5)
-            {
-                comboBox2.Items.Add(i);
-            }
             comboBox2.SelectedIndex = 0;
+
         }
         #endregion
 
-        #region--------------bind Lunch Break Time------------------------------
-        private void comboBox3_Items()
+        #region-------------------------------------------BindTimingMins---------------------------------
+        private void TimingMin()
         {
-            comboBox3.Items.Add("select");
+            comboBox3.Items.Add("Hours");
+            comboBox4.Items.Add("Min");
             int i;
-            for (i = 1; i <= 9; i++)
+            for (i = 0; i <= 59; i = i + 5)
             {
-                comboBox3.Items.Add(n + i.ToString());
+                if (i < 10)
+                {
+                    comboBox3.Items.Add(n + i.ToString());
+                    comboBox4.Items.Add(n + i.ToString());
+                }
+                else
+                {
+                    comboBox3.Items.Add(i);
+                    comboBox4.Items.Add(i);
+                }
+
             }
-            comboBox3.Items.Add("10");
-            for (i = 1; i <= 9; i++)
-            {
-                comboBox3.Items.Add(m + i.ToString());
-            }
-            comboBox3.Items.Add("20");
-            comboBox3.Items.Add("21");
-            comboBox3.Items.Add("22");
-            comboBox3.Items.Add("23");
-            comboBox3.Items.Add("24");
             comboBox3.SelectedIndex = 0;
-        }
-        #endregion
-
-        #region--------------bind Lunch Break Time------------------------------
-        private void comboBox4_Items()
-        {
-            comboBox4.Items.Add("select"); ;
-            int i;
-            comboBox4.Items.Add("00");
-            comboBox4.Items.Add("05");
-            for (i = 10; i <= 60; i += 5)
-            {
-                comboBox4.Items.Add(i);
-            }
             comboBox4.SelectedIndex = 0;
+
         }
         #endregion
 
@@ -398,14 +392,19 @@ namespace SchoolManagement.Batch
         {
             txtBatchName.Text = "";
             txtBatchCode.Text = "";           
-            txtlecDuration.Text = "";           
-            chkLunchBreak.IsChecked = false;
-            chkallow.IsChecked = false;
+            txtlecDuration.Text = "";
+            TimingHrs();
+            TimingMin();
+            MaxLectPerDay();
+            MaxLectInRow();
+            MaxLectPerWeek1();
+            BindYesNo();
+            UpID = 0;
+            BindGridview();
             rdoActive.IsChecked = true ;
             rdoDeActive.IsChecked = false;
             btnDelete.IsEnabled = false;
-            btnadd.Content = "Save";
-            BindGridview();
+            btnadd.Content = "Save";           
             select();
           
 
@@ -450,7 +449,11 @@ namespace SchoolManagement.Batch
             if (ds.Tables[0].Rows.Count > 0)
             {
                 dgvBatch.ItemsSource = ds.Tables[0].DefaultView;
-                //dgvBatch.Columns[0].Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                dgvBatch.ItemsSource = null;
+                MessageBox.Show("Data Not Found", "Message");
             }
             dgvBatch.Items.Refresh();
         }
@@ -496,9 +499,9 @@ namespace SchoolManagement.Batch
                 {
                     SetParameters();
                     DeleteBatch();
-                    dgvBatch.Items.Refresh();
+                
                     BindGridview();
-                    clearFields();
+                  
                 }
             }
             catch (Exception ex)
@@ -543,21 +546,11 @@ namespace SchoolManagement.Batch
             try
             {
                 object item = dgvBatch.SelectedItem;
-                //string Id = (dgvClass.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;                
+               // UpID = Convert.ToInt32(((System.Data.DataRowView)(dgvBatch.CurrentItem)).Row.ItemArray[0].ToString());                  
                 string ClassName = (dgvBatch.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
                 string BatchName = (dgvBatch.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
                 string BatchCode = (dgvBatch.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
-
-                //string LectureDuration = (dgvBatch.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
-                //string IsLunchBreak = (dgvBatch.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text;
-                //string LunchBreakStartTime = (dgvBatch.SelectedCells[6].Column.GetCellContent(item) as TextBlock).Text;
-
-                //string LunchBreakEndTime = (dgvBatch.SelectedCells[7].Column.GetCellContent(item) as TextBlock).Text;
-                //string MaxNoLecturesDay = (dgvBatch.SelectedCells[8].Column.GetCellContent(item) as TextBlock).Text;
-                //string MaxNoLecturesWeek = (dgvBatch.SelectedCells[9].Column.GetCellContent(item) as TextBlock).Text;
-
-                ////string IsAllowMoreThanOneLectInBatch = (dgvBatch.SelectedCells[10].Column.GetCellContent(item) as TextBlock).Text;
-                //string MaxNoOfLecureInRow = (dgvBatch.SelectedCells[10].Column.GetCellContent(item) as TextBlock).Text;
+              
 
                 DataSet ds = obj_Batch.GetBatchDetail(BatchName, BatchCode);
                 if (ds.Tables.Count > 0)
@@ -569,12 +562,7 @@ namespace SchoolManagement.Batch
                         txtBatchName.Text = ds.Tables[0].Rows[0]["BatchName"].ToString();
                         txtBatchCode.Text = ds.Tables[0].Rows[0]["BatchCode"].ToString();
 
-                        txtlecDuration.Text = ds.Tables[0].Rows[0]["LectureDuration"].ToString();
-                        //int chk = Convert.ToString(ds.Tables[0].Rows[0]["IsLunchBreak"]);
-                        //if(chk == 'true')
-                        //{
-                        //    chkLunchBreak.IsChecked=true;
-                        //}  
+                        txtlecDuration.Text = ds.Tables[0].Rows[0]["LectureDuration"].ToString();                      
                         string StartTime = ((System.Data.DataRowView)(dgvBatch.CurrentItem)).Row.ItemArray[6].ToString();
                         string[] a = StartTime.Split(':');
                         comboBox1.Text = a[0];
@@ -586,13 +574,28 @@ namespace SchoolManagement.Batch
                         comboBox4.Text = b[1];
                         
                         cbmaxlecperday.Text = ds.Tables[0].Rows[0]["MaxNoLecturesDay"].ToString();
-
-                        
-
+                        cbLunchBreak.Text = ds.Tables[0].Rows[0]["IsLunchBreak"].ToString();
+                        if (cbLunchBreak.Text == "True")
+                        {
+                            cbLunchBreak.Text = "Yes";
+                        }
+                        else if (cbLunchBreak.Text == "False")
+                        {
+                            cbLunchBreak.Text = "No";
+                        }                        
                         cbmaxlecperweek.Text = ds.Tables[0].Rows[0]["MaxNoLecturesWeek"].ToString();
 
                         //chkallow.Unchecked = ds.Tables[0].Rows[0]["IsAllowMoreThanOneLectInBatch"].ToString();
                         cbmaxlectperrow.Text = ds.Tables[0].Rows[0]["MaxNoOfLecureInRow"].ToString();
+                        cballowlect.Text = ds.Tables[0].Rows[0]["IsAllowMoreThanOneLectInBatch"].ToString();
+                        if (cballowlect.Text == "True")
+                        {
+                            cballowlect.Text = "Yes";
+                        }
+                        else if (cballowlect.Text == "False")
+                        {
+                            cballowlect.Text = "No";
+                        }                     
                        
                         //cbClassName.Text = ds.Tables[0].Rows[0]["ClassID"].ToString();
                         int act = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
@@ -607,22 +610,7 @@ namespace SchoolManagement.Batch
                         {
                             rdoDeActive.IsChecked = true;
                         }
-                        if (lunchbreak == 1)
-                        {
-                            chkLunchBreak.IsChecked = true;
-                        }
-                        else
-                        {
-                            chkLunchBreak.IsChecked = false;
-                        }
-                        if (Isallow == 1)
-                        {
-                            chkallow.IsChecked = true;
-                        }
-                        else
-                        {
-                            chkallow.IsChecked = false;
-                        }
+                        
                         btnDelete.IsEnabled = true;
                         btnadd.Content = "Update"; 
                     }
@@ -675,19 +663,27 @@ namespace SchoolManagement.Batch
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             clearFields();
-            BindClassName();
-            BindGridview();
-            comboBox1_Items();
-            comboBox2_Items();
-            comboBox3_Items();
-            comboBox4_Items();
-            BindGridview();
-            MaxLectInRow();
-            MaxLectPerDay();
-            MaxLectPerWeek1();
+            BindClassName();                                              
             btnDelete.IsEnabled = false;
 
         }
+
+        #region-------------------------------------------BindYesNo---------------------------------
+        private void BindYesNo()
+        {           
+            cbLunchBreak.Items.Clear();
+            cbLunchBreak.Items.Add("Select");
+            cbLunchBreak.Items.Add("Yes");
+            cbLunchBreak.Items.Add("No");
+            cbLunchBreak.SelectedIndex = 0;
+
+            cballowlect.Items.Clear();
+            cballowlect.Items.Add("Select");
+            cballowlect.Items.Add("Yes");
+            cballowlect.Items.Add("No");
+            cballowlect.SelectedIndex = 0;
+        }
+        #endregion
 
         private void txtBatchCode_TextChanged(object sender, TextChangedEventArgs e)
         {
