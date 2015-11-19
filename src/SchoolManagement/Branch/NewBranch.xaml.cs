@@ -14,6 +14,7 @@ using BusinessLayer;
 using System.Data;
 using System.IO;
 using Microsoft.Win32;
+using System.Diagnostics;
 
 namespace SchoolManagement.Branch
 {
@@ -37,7 +38,8 @@ namespace SchoolManagement.Branch
         #region-----------------Declare Variables GlobalVariables()----------------
         BLAddBranch obj_AddBranch = new BLAddBranch();
         int BranchID, CreatedByUserID, UpdatedByUserID, IsActive,IsDelete,UpID;
-        string BranchName, BranchCode, InstituteName, Logo, UpdatedDate, strName, imageName, targetPath;
+        string BranchName, BranchCode, InstituteName, Logo, UpdatedDate, strName, imageName, targetPath,fileName;
+        string filepath;
         #endregion
         /*
        * Created By:- Sameer Shinde
@@ -280,49 +282,65 @@ namespace SchoolManagement.Branch
         {
             try
             {
-                FileDialog fldlg = new OpenFileDialog();
-                fldlg.InitialDirectory = Environment.SpecialFolder.MyPictures.ToString();
-                fldlg.Filter = "Image File (*.jpg;*.bmp;*.gif)|*.jpg;*.bmp;*.gif";
-                fldlg.ShowDialog();
-                if (fldlg.FileName!="")
-                {
-                    {
-                        strName = fldlg.SafeFileName;
-                        imageName = fldlg.FileName;
-                        ImageSourceConverter isc = new ImageSourceConverter();
-                        image1.SetValue(Image.SourceProperty, isc.ConvertFromString(imageName));
-                        txtUploadPath.Text = strName;
+                //FileDialog fldlg = new OpenFileDialog();
+                //fldlg.InitialDirectory = Environment.SpecialFolder.MyPictures.ToString();
+                //fldlg.Filter = "Image File (*.jpg;*.bmp;*.gif)|*.jpg;*.bmp;*.gif";
+                //fldlg.ShowDialog();
+                //if (fldlg.FileName!="")
+                //{
+                //    {
+                //        strName = fldlg.SafeFileName;
+                //        imageName = fldlg.FileName;
+                //        ImageSourceConverter isc = new ImageSourceConverter();
+                //        image1.SetValue(Image.SourceProperty, isc.ConvertFromString(imageName));
+                //        txtUploadPath.Text = strName;
 
-                        string fileName = "ImgLogo";
+                //         fileName = "ImgLogo";
 
-                        string sourcePath = imageName;
+                //        string sourcePath = imageName;
 
-                        string targetPath = @"C:\Users\TTS\Desktop\ImgLogo\";
+                //        string targetPath = @"C:\Users\TTS\Desktop\ImgLogo\";
 
-                        string sourceFile = System.IO.Path.Combine(sourcePath);
-                        string destFile = System.IO.Path.Combine(targetPath, fileName);
-                        if (!System.IO.Directory.Exists(targetPath))
-                        {
-                            System.IO.Directory.CreateDirectory(targetPath);
-                        }
-                        System.IO.File.Copy(sourceFile, destFile, true);
-                        if (System.IO.Directory.Exists(sourcePath))
-                        {
-                            string[] files = System.IO.Directory.GetFiles(sourcePath);
+                //        string sourceFile = System.IO.Path.Combine(sourcePath);
+                //        string destFile = System.IO.Path.Combine(targetPath, fileName);
+                //        if (!System.IO.Directory.Exists(targetPath))
+                //        {
+                //            System.IO.Directory.CreateDirectory(targetPath);
+                //        }
+                //        System.IO.File.Copy(sourceFile, destFile, true);
+                //        if (System.IO.Directory.Exists(sourcePath))
+                //        {
+                //            string[] files = System.IO.Directory.GetFiles(sourcePath);
 
-                            // Copy the files and overwrite destination files if they already exist.
-                            foreach (string s in files)
-                            {
-                                // Use static Path methods to extract only the file name from the path.
-                                fileName = System.IO.Path.GetFileName(s);
-                                destFile = System.IO.Path.Combine(targetPath, fileName);
-                                System.IO.File.Copy(s, destFile, true);
-                            }
-                        }
-                    }
-                    fldlg = null;
+                //            // Copy the files and overwrite destination files if they already exist.
+                //            foreach (string s in files)
+                //            {
+                //                // Use static Path methods to extract only the file name from the path.
+                //                fileName = System.IO.Path.GetFileName(s);
+                //                destFile = System.IO.Path.Combine(targetPath, fileName);
+                //                System.IO.File.Copy(s, destFile, true);
+                //            }
+                //        }
+                //    }
+                //    fldlg = null;
                    
+                //}
+               
+                OpenFileDialog open = new OpenFileDialog();
+                open.Multiselect = false;
+                open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+                bool? result = open.ShowDialog();
+
+                if (result == true)
+                {
+                    filepath = open.FileName; // Stores Original Path in Textbox D:\SVN_SchoolTimeTable\src\SchoolManagement\Logo\   
+                    ImageSource imgsource = new BitmapImage(new Uri(filepath)); // Just show The File In Image when we browse It
+                    image1.Source = imgsource;
                 }
+                string name = System.IO.Path.GetFileName(filepath);
+                string destinationPath = GetDestinationPath(name, "Logo");
+
+                File.Copy(filepath, destinationPath, true);
                
             }
 
@@ -331,6 +349,14 @@ namespace SchoolManagement.Branch
                 MessageBox.Show(ex.Message.ToString());
             }
            // MessageBox.Show("You have not selected any Logo!!!", "Logo Not Selected", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+        }
+
+        private static String GetDestinationPath(string filename, string foldername)
+        {
+            String appStartPath = System.IO.Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
+
+            appStartPath = String.Format(appStartPath + "\\{0}\\" + filename, foldername);
+            return appStartPath;
         }
         #endregion
         /*
@@ -441,7 +467,11 @@ namespace SchoolManagement.Branch
                         cmbBindInstitute.Text = ds.Tables[0].Rows[0]["InstituteName"].ToString();
                         cmbSelectType.Text = "Branch";
                         txtUploadPath.Text = ds.Tables[0].Rows[0]["Logo"].ToString();
-                                        
+                            
+            
+                        //edit image
+                        //var uri = new Uri(@"C:\Users\TTS\Desktop\" + fileName);
+                        //image1.Source = new BitmapImage(uri);
                         int act = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
                         int del = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDeleted"]);
                         if (act == 1 && del == 0)
