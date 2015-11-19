@@ -45,9 +45,7 @@ namespace SchoolManagement.Batch
             this.WindowState = WindowState.Maximized;
             this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
             this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
-            clearFields();
-            BindClassName();
-            BindGridview();
+
         }
 
         /*
@@ -62,11 +60,12 @@ namespace SchoolManagement.Batch
         {
             try
             {
-                Validate();
-                SetParameters();
-                SaveDetails();
-                BindGridview();
-
+                if (Validate())
+                {
+                    SetParameters();
+                    SaveDetails();
+                    BindGridview();
+                }
             }
             catch (Exception ex)
             {
@@ -119,6 +118,59 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        #region-------------------------------------------MaxLectPerDay---------------------------------
+        private void MaxLectPerDay()
+        {
+            cbmaxlecperday.Items.Add("Select");
+            int i;
+            for (i = 1; i <= 6; i++)
+            {
+                cbmaxlecperday.Items.Add(i);
+            }
+            cbmaxlecperday.SelectedIndex = 0;
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-Pravin
+         * Created Date:- 07Nov2015
+         * Purpose:-
+         * StartTime:-
+         * EndTime:-
+         */
+        #region-------------------------------------------MaxLectInRow---------------------------------
+        private void MaxLectInRow()
+        {
+            cbmaxlectperrow.Items.Add("Select");
+            int i;
+            for (i = 1; i <= 6; i++)
+            {
+                cbmaxlectperrow.Items.Add(i);
+            }
+            cbmaxlectperrow.SelectedIndex = 0;
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-Pravin
+         * Created Date:- 07Nov2015
+         * Purpose:-
+         * StartTime:-
+         * EndTime:-
+         */
+        #region-------------------------------------------MaxLectPerWeek---------------------------------
+        private void MaxLectPerWeek1()
+        {
+            cbmaxlecperweek.Items.Add("Select");
+            int i;
+            for (i = 1; i <= 30; i++)
+            {
+                cbmaxlecperweek.Items.Add(i);
+            }
+            cbmaxlecperweek.SelectedIndex = 0;
+        }
+        #endregion
+
         #region-------------------------------------------------SetParameters()-------------------------------------
         private void SetParameters()
         {
@@ -140,8 +192,8 @@ namespace SchoolManagement.Batch
 
             LunchBreakEndTime = comboBox3.SelectedValue.ToString();
             LunchBreakEndTime += ":" + comboBox4.SelectedValue.ToString();           
-            MaxNoLecturesDay = Convert.ToInt32(txtMaxnoLecDay.Text.ToString());
-            MaxNoLecturesWeek = Convert.ToInt32(txtMaxnoLecWeek.Text.ToString());
+            MaxNoLecturesDay = Convert.ToInt32(cbmaxlecperday.SelectedValue);
+            MaxNoLecturesWeek = Convert.ToInt32(cbmaxlecperweek.SelectedValue);
             if (chkallow.IsChecked == true)
             {
                 IsAllowMoreThanOneLectInBatch = 1;
@@ -150,9 +202,9 @@ namespace SchoolManagement.Batch
             {
                 IsAllowMoreThanOneLectInBatch = 0;
             }
-            MaxNoOfLecureInRow = Convert.ToInt32(txtMaxLecRow.Text.ToString());
+            MaxNoOfLecureInRow = Convert.ToInt32(cbmaxlectperrow.SelectedValue);
             UpdatedByUserID = 1;
-            UpdatedDate = DateTime.Now.ToString();           
+            UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");           
             if (rdoActive.IsChecked == true && rdoDeActive.IsChecked== false)
             {
                 IsActive = 1;
@@ -199,6 +251,48 @@ namespace SchoolManagement.Batch
             {
                 MessageBox.Show("Please Enter Lecture Duration Time", "Lecture Duration Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 txtlecDuration.Focus();
+                return false;
+            }
+            else if (comboBox1.SelectedValue.ToString() == "Select")
+            {
+                MessageBox.Show("Please Select Lunch Start Time Hours", "Lunch Time Starts Hours", MessageBoxButton.OK, MessageBoxImage.Warning);
+                comboBox1.Focus();
+                return false;
+            }
+            else if (comboBox2.SelectedValue.ToString() == "Select")
+            {
+                MessageBox.Show("Please Select Lunch Start Time Minutes", "Lunch Time Starts Minutes", MessageBoxButton.OK, MessageBoxImage.Warning);
+                comboBox2.Focus();
+                return false;
+            }
+            else if (comboBox3.SelectedValue.ToString() == "Select")
+            {
+                MessageBox.Show("Please Select Lunch End Time Hours", "Lunch Time End Hours", MessageBoxButton.OK, MessageBoxImage.Warning);
+                comboBox3.Focus();
+                return false;
+            }
+            else if (comboBox4.SelectedValue.ToString() == "Select")
+            {
+                MessageBox.Show("Please Select Lunch End Time Minutes", "Lunch Time End Minutes", MessageBoxButton.OK, MessageBoxImage.Warning);
+                comboBox4.Focus();
+                return false;
+            }
+            else if (cbmaxlecperday.SelectedValue.ToString() == "Select")
+            {
+                MessageBox.Show("Please Select Max Lecture in Day", "Max Lecuture in a Day", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cbmaxlecperday.Focus();
+                return false;
+            }
+            else if (cbmaxlecperweek.SelectedValue.ToString() == "Select")
+            {
+                MessageBox.Show("Please Select Max Lecture in Week", "Max Lecuture in a Week", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cbmaxlecperweek.Focus();
+                return false;
+            }
+            else if (cbmaxlectperrow.SelectedValue.ToString() == "Select")
+            {
+                MessageBox.Show("Please Select Max Lecture in Row", "Max Lecuture in a Row", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cbmaxlectperrow.Focus();
                 return false;
             }
             else
@@ -284,26 +378,37 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        #region--------------------select()-------------------
+        private void select()
+        {
+            comboBox1.SelectedIndex = 0;
+            comboBox2.SelectedIndex = 0;
+            comboBox3.SelectedIndex = 0;
+            comboBox4.SelectedIndex = 0;
+            cbmaxlecperday.SelectedIndex = 0;
+            cbmaxlecperweek.SelectedIndex = 0;
+            cbmaxlectperrow.SelectedIndex = 0;
+            cbClassName.SelectedIndex = 0;
+        }
+        #endregion
 
         #region-----------------------------clearFields()------------------------------------------
 
         private void clearFields()
         {
             txtBatchName.Text = "";
-            txtBatchCode.Text = "";
-            cbClassName.Text = "";
-            txtlecDuration.Text = "";
-            txtMaxnoLecDay.Text = "";
-            txtMaxnoLecWeek.Text = "";
-            txtMaxLecRow.Text = "";
+            txtBatchCode.Text = "";           
+            txtlecDuration.Text = "";           
             chkLunchBreak.IsChecked = false;
             chkallow.IsChecked = false;
             rdoActive.IsChecked = true ;
             rdoDeActive.IsChecked = false;
-            comboBox1.SelectedIndex = 0;
-            comboBox2.SelectedIndex = 0;
-            comboBox3.SelectedIndex = 0;
-            comboBox4.SelectedIndex = 0;
+            btnDelete.IsEnabled = false;
+            btnadd.Content = "Save";
+            BindGridview();
+            select();
+          
+
 
            
         }
@@ -356,6 +461,8 @@ namespace SchoolManagement.Batch
         #region------------------------BindClassName()---------------------------------------
         private void BindClassName()
         {
+            
+            
             try
             {
                 DataSet ds = obj_Class.BindClassName();
@@ -368,6 +475,7 @@ namespace SchoolManagement.Batch
                     cbClassName.SelectedValuePath = ds.Tables[0].Columns["ClassID"].ToString();
 
                 }
+                    
 
             }
             catch (Exception ex)
@@ -477,14 +585,14 @@ namespace SchoolManagement.Batch
                         comboBox3.Text = b[0];
                         comboBox4.Text = b[1];
                         
-                        txtMaxnoLecDay.Text = ds.Tables[0].Rows[0]["MaxNoLecturesDay"].ToString();
+                        cbmaxlecperday.Text = ds.Tables[0].Rows[0]["MaxNoLecturesDay"].ToString();
 
                         
 
-                        txtMaxnoLecWeek.Text = ds.Tables[0].Rows[0]["MaxNoLecturesWeek"].ToString();
+                        cbmaxlecperweek.Text = ds.Tables[0].Rows[0]["MaxNoLecturesWeek"].ToString();
 
                         //chkallow.Unchecked = ds.Tables[0].Rows[0]["IsAllowMoreThanOneLectInBatch"].ToString();
-                        txtMaxLecRow.Text = ds.Tables[0].Rows[0]["MaxNoOfLecureInRow"].ToString();
+                        cbmaxlectperrow.Text = ds.Tables[0].Rows[0]["MaxNoOfLecureInRow"].ToString();
                        
                         //cbClassName.Text = ds.Tables[0].Rows[0]["ClassID"].ToString();
                         int act = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
@@ -566,11 +674,17 @@ namespace SchoolManagement.Batch
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            clearFields();
+            BindClassName();
+            BindGridview();
             comboBox1_Items();
             comboBox2_Items();
             comboBox3_Items();
             comboBox4_Items();
             BindGridview();
+            MaxLectInRow();
+            MaxLectPerDay();
+            MaxLectPerWeek1();
             btnDelete.IsEnabled = false;
 
         }
@@ -631,34 +745,7 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
-        #region-----------------txtMaxnoLecDay_TextChanged-----------------------------------
-        private void txtMaxnoLecDay_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                if (txtMaxnoLecDay.Text != "")
-                {
-                    if (txtMaxnoLecDay.Text.Length > 0 && txtMaxnoLecDay.Text.Length == 1)
-                    {
-                        if (System.Text.RegularExpressions.Regex.IsMatch(txtMaxnoLecDay.Text, "^[0-9]"))
-                        {
-                        }
-                        else
-                        {
-                            MessageBox.Show("Please Enter Only Numbers", "Max no.of lecture Code", MessageBoxButton.OK, MessageBoxImage.Warning);
-                            txtMaxnoLecDay.Text = "";
-                            txtMaxnoLecDay.Focus();
-                        }
-
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
-        }
-        #endregion
+      
 
     }
 }
