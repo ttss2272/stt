@@ -136,7 +136,7 @@ namespace SchoolManagement.Branch
             Logo = txtUploadPath.Text.Trim();
             CreatedByUserID = 1;
             UpdatedByUserID = 1;
-            UpdatedDate = DateTime.Now.ToString();
+            UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:MM:ss tt");
             if (rbtnActive.IsChecked == true)
             {
                 IsActive = 1;
