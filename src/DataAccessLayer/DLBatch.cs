@@ -42,6 +42,30 @@ namespace DataAccessLayer
             return result;
         }
 
+        public string SaveBatchSubject (int SubjectID,int BatchID,int NoLectPerDay,int NoLectPerWeek,int UpdatedByUserID,int UpdatedDate,int Active,int IsDeleted)
+        {
+            string Result = null;
+
+            conn = con.getConnection();
+            SqlCommand cmd = new SqlCommand("SaveBatchSubject_SP", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@SubjectID", SubjectID);
+            cmd.Parameters.AddWithValue("@BatchID", BatchID);
+            cmd.Parameters.AddWithValue("@NoLectPerDay", NoLectPerDay);
+            cmd.Parameters.AddWithValue("@NoLectPerWeek", NoLectPerWeek);
+            cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
+            cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
+            cmd.Parameters.AddWithValue("@IsActive", Active);
+            cmd.Parameters.AddWithValue("@IsDeleted", IsDeleted);
+
+            conn.Open();
+            Result = cmd.ExecuteScalar().ToString();
+            conn.Close();
+            return Result;
+
+        }
+
         //To Bind Gridview
         public DataSet BindBatch(int BatchID, string BatchName)
         {
