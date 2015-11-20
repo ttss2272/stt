@@ -613,14 +613,14 @@ namespace SchoolManagement.Batch
                         {
                             rdoDeActive.IsChecked = true;
                         }
-                        if ((cbLunchBreak.Text == "No") || (cbLunchBreak.SelectedIndex == 0))
+                        if (cbLunchBreak.Text == "Yes")
                         {
                             cmbTimeStartHrs.IsEnabled = true;
                             cmbTimeStartMin.IsEnabled = true;
                             cmbTimeEndHrs.IsEnabled = true;
                             cmbTimeEndMin.IsEnabled = true;
                         }
-                        else if (cbLunchBreak.Text == "Yes")
+                        else if (cbLunchBreak.Text == "No")
                         {
                             cmbTimeStartHrs.IsEnabled = false;
                             cmbTimeStartMin.IsEnabled = false;
@@ -681,6 +681,13 @@ namespace SchoolManagement.Batch
             clearFields();
             BindClassName();                                              
             btnDelete.IsEnabled = false;
+             if (cbLunchBreak.Text == "Select") 
+            {
+                cmbTimeStartHrs.IsEnabled = false;
+                cmbTimeStartMin.IsEnabled = false;
+                cmbTimeEndHrs.IsEnabled = false;
+                cmbTimeEndMin.IsEnabled = false;
+            }
 
         }
 
@@ -733,18 +740,18 @@ namespace SchoolManagement.Batch
         {
             try
             {
-                if (txtBatchCode.Text != "")
+                if (txtlecDuration.Text != "")
                 {
-                    if (txtBatchCode.Text.Length > 0 && txtBatchCode.Text.Length == 1)
+                    if (txtlecDuration.Text.Length > 0 && txtlecDuration.Text.Length == 1)
                     {
-                        if (System.Text.RegularExpressions.Regex.IsMatch(txtBatchCode.Text, "^[0-9]"))
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtlecDuration.Text, "^[0-9]"))
                         {
                         }
                         else
                         {
-                            MessageBox.Show("Please Enter Only Numbers", "Batch Code", MessageBoxButton.OK, MessageBoxImage.Warning);
-                            txtBatchCode.Text = "";
-                            txtBatchCode.Focus();
+                            MessageBox.Show("Please Enter Only Numbers", "Lecture Duration", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtlecDuration.Text = "";
+                            txtlecDuration.Focus();
                         }
 
                     }
@@ -759,28 +766,28 @@ namespace SchoolManagement.Batch
 
         private void cbLunchBreak_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-            if (cbLunchBreak.Text == "No") 
+             if (cbLunchBreak.Text == "Yes" ) 
+            {
+                cmbTimeStartHrs.IsEnabled = false;
+                cmbTimeStartMin.IsEnabled = false;
+                cmbTimeEndHrs.IsEnabled = false;
+                cmbTimeEndMin.IsEnabled = false;
+            }
+            else if (cbLunchBreak.Text == "No") 
             {
                 cmbTimeStartHrs.IsEnabled = true;
                 cmbTimeStartMin.IsEnabled = true;
                 cmbTimeEndHrs.IsEnabled = true;
                 cmbTimeEndMin.IsEnabled = true;
             }
-            else if (cbLunchBreak.Text == "Yes" ) 
-            {
-                cmbTimeStartHrs.IsEnabled = false;
-                cmbTimeStartMin.IsEnabled = false;
-                cmbTimeEndHrs.IsEnabled = false;
-                cmbTimeEndMin.IsEnabled = false;
-            }
-            else if ((cbLunchBreak.Text == "") && (cbLunchBreak.Text == "Select"))
-            {
-                cmbTimeStartHrs.IsEnabled = false;
-                cmbTimeStartMin.IsEnabled = false;
-                cmbTimeEndHrs.IsEnabled = false;
-                cmbTimeEndMin.IsEnabled = false;
-            }
+
+             else if ((cbLunchBreak.Text == "") && (cbLunchBreak.Text == "Select"))
+             {
+                 cmbTimeStartHrs.IsEnabled = false;
+                 cmbTimeStartMin.IsEnabled = false;
+                 cmbTimeEndHrs.IsEnabled = false;
+                 cmbTimeEndMin.IsEnabled = false;
+             }
            
         }      
 
