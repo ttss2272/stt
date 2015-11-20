@@ -46,7 +46,7 @@ namespace SchoolManagement.Batch
         string[] EndTime;
         string[] s;
 
-        int BatchID, UpdatedByUserID, Active, IsDeleted;
+        int BatchID,BranchID, UpdatedByUserID, Active, IsDeleted;
         string Day, FinalStartTime, FinalEndTime, UpdatedDate;
         #endregion
 
@@ -521,13 +521,52 @@ namespace SchoolManagement.Batch
         private void ClearFields()
         {
             //cmbTeacher.IsEnabled = true;
-            //BindTeacher();
+            BindBatchName();
+            //BindBatch();
             //BindHours();
             //BindMinutes();
             //BindGrid();
             //UncheckAllCheckBoxes();
             //EnableDropdown();
         }
+        #region-----------bindBatch()-----------------
+        private void BindBatch()
+        {
+            BranchID =Convert.ToInt32(cmbBranch.SelectedValue.ToString());
+            DataSet ds = objTeacher.BindBranchBatch(BranchID);
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                cmbBatch.DataContext = null;
+
+                cmbBatch.DataContext = ds.Tables[0].DefaultView;
+                cmbBatch.DisplayMemberPath = ds.Tables[0].Columns["BatchName"].ToString();
+                cmbBatch.SelectedValuePath = ds.Tables[0].Columns["BatchID"].ToString();
+
+
+                cmbBatch.SelectedValue = "0";
+            }
+        }
+        #region
+        #region------------------BindBatchName()----------------------------
+        private void BindBatchName()
+        {
+            DataSet ds = objTeacher.BindBatchDropDown();
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                cmbBranch.DataContext = null;
+
+                cmbBranch.DataContext = ds.Tables[0].DefaultView;
+                cmbBranch.DisplayMemberPath = ds.Tables[0].Columns["BatchName"].ToString();
+                cmbBranch.SelectedValuePath = ds.Tables[0].Columns["BatchID"].ToString();
+
+
+                cmbBranch.SelectedValue = "0";
+            }
+        }
+        #endregion
+        #endregion
         #endregion
 
         #region----------------------------------------------------------------DisebleDropdown()-----------------------------------------------
@@ -611,5 +650,11 @@ namespace SchoolManagement.Batch
             EndMin7.IsEnabled = true;
         }
         #endregion
+
+        private void cmbBranch_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BindBatch();
+        }
     }
 }
+        #endregion

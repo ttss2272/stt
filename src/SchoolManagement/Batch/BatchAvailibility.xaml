@@ -222,7 +222,7 @@
                     </ComboBox>
                     <Button Content="Go" HorizontalAlignment="Left" Margin="743,18,0,0" VerticalAlignment="Top" Width="75" Name="btnSearch" FontWeight="Bold" Click="btnSearch_Click"/>
                     <Label Content="Branch Name" HorizontalAlignment="Left" Margin="34,16,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                    <ComboBox HorizontalAlignment="Left" Margin="171,14,0,0" VerticalAlignment="Top" Width="141" Height="28" Name="cmbBranch"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="171,14,0,0" VerticalAlignment="Top" Width="141" Height="28" Name="cmbBranch"  ItemsSource="{Binding}" SelectionChanged="cmbBranch_SelectionChanged" />
                 </Grid>
             </GroupBox>
             <GroupBox Header="" HorizontalAlignment="Left" Margin="403,520,0,0" BorderBrush="White"  VerticalAlignment="Top" Width="240" Height="50">
