@@ -71,6 +71,29 @@ namespace SchoolManagement.Batch
             BindSubject();
             BindFreqPerDay();
             BindFreqPerWeek();
+            EnableUpperPart();
+            
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 20 Nov 2015
+         * Purpose:-  Clear Data
+         * StartTime:-
+         * EndTime:-
+         */
+
+        #region-----------------------------------------------------ClearData()---------------------------------------------------------------
+        private void ClearData()
+        {
+            cmbSubject.SelectedValue = "0";
+            cmbFreqPerDay.SelectedIndex = 0;
+            cmbFreqPerWeek.SelectedIndex =0;
+            GetBatchSubject();
+            btnSave.Content = "Save";
+            rdbActive.IsChecked = true;
+            btnDelete.IsEnabled = false;
             
         }
         #endregion
@@ -181,9 +204,21 @@ namespace SchoolManagement.Batch
         {
             try
             {
-                if (cmbBatch.SelectedValue.ToString() != "0")
+                if (cmbBatch.SelectedValue.ToString() != "0"&& cmbBatch.SelectedItem.ToString()!="Select")
                 {
-                    GetBatchSubject();
+                    if (btnGo.Content.ToString() == "Go")
+                    {
+                        GetBatchSubject();
+                        DisableUpperPart();
+                        
+                    }
+                    else if(btnGo.Content.ToString()=="Change")
+                    {
+                        EnableUpperPart();
+                        ClearData();
+                        
+                        
+                    }
                 }
                 else
                 {
@@ -207,7 +242,7 @@ namespace SchoolManagement.Batch
         #region------------------------------------------------------GetBatchSubject()------------------------------------------------------
         private void GetBatchSubject()
         {
-            DataSet ds = objBatch.GetBatchSubject(Convert.ToInt32(cmbBatch.SelectedValue));
+            DataSet ds = objBatch.GetBatchSubject(Convert.ToInt32(cmbBatch.SelectedValue),0);
 
             if (ds.Tables[0].Rows.Count > 0)
             {
@@ -300,6 +335,12 @@ namespace SchoolManagement.Batch
         {
             try
             {
+                if(Validate())
+                {
+                    SetParameters();
+                    SaveDetails();
+
+                }
 
             }
             catch (Exception ex)
@@ -321,6 +362,24 @@ namespace SchoolManagement.Batch
         {
             try
             {
+                if (cmbSubject.SelectedValue.ToString()=="0")
+                {
+                    MessageBox.Show("Please Select Subject.");
+                    cmbSubject.Focus();
+                }
+                else
+                {
+                    MessageBoxResult Result = MessageBox.Show("Do You Really Want To Delete?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                    if (Result.Equals(MessageBoxResult.Yes))
+                    {
+                        DeleteDetails();
+                    }
+                    else
+                    {
+
+                    }
+                }
+
 
             }
             catch (Exception ex)
@@ -342,7 +401,7 @@ namespace SchoolManagement.Batch
         {
             try
             {
-
+                ClearData();
             }
             catch (Exception ex)
             {
@@ -401,13 +460,13 @@ namespace SchoolManagement.Batch
                 cmbSubject.Focus();
                 return false;
             }
-            else if (cmbFreqPerDay.SelectedValue.ToString()=="0")
+            else if (cmbFreqPerDay.SelectedValue.ToString()=="0"|| cmbFreqPerDay.SelectedItem.ToString()=="Select")
             {
                 MessageBox.Show("Please Select Frequecy Of Lecture Per Day.", "Lecture Per Day", MessageBoxButton.OK, MessageBoxImage.Warning);
                 cmbFreqPerDay.Focus();
                 return false;
             }
-            else if (cmbFreqPerWeek.SelectedValue.ToString() == "0")
+            else if (cmbFreqPerWeek.SelectedValue.ToString() == "0" || cmbFreqPerWeek.SelectedItem.ToString() == "Select")
             {
                 MessageBox.Show("Please Select Frequecy Of Lecture Per Week.", "Lecture Per Week", MessageBoxButton.OK, MessageBoxImage.Warning);
                 cmbFreqPerWeek.Focus();
@@ -424,5 +483,167 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 20 Nov 2015
+         * Purpose:- SaveDeails
+         * StartTime:-
+         * EndTime:-
+         */
+        #region----------------------------------------------------SaveDetails()--------------------------------------------------
+        private void SaveDetails()
+        {
+            string Result = objBatch.SaveBatchSubject(SubjectID, BatchID, NoLectPerDay, NoLectPerWeek, UpdatedByUserID,UpdatedDate, Active, IsDeleted);
+            if (Result=="Save Sucessfully...!!!"||Result=="Updated Sucessfully...!!!")
+            {
+                MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
+                ClearData();
+            }
+            else
+            {
+                MessageBox.Show(Result, "Error To Save", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 20 Nov 2015
+         * Purpose:- EnableUpper Part
+         * StartTime:-
+         * EndTime:-
+         */
+        #region--------------------------------------------------EnableUpperPart()---------------------------------------------------
+        private void EnableUpperPart()
+        {
+            
+            cmbBranch.IsEnabled = true;
+            cmbBatch.IsEnabled = true;
+
+            cmbSubject.IsEnabled = false;
+            cmbFreqPerDay.IsEnabled = false;
+            cmbFreqPerWeek.IsEnabled = false;
+
+            btnSave.IsEnabled = false;
+            btnClear.IsEnabled = false;
+
+            
+            btnGo.Content = "Go";
+            
+           
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 20 Nov 2015
+         * Purpose:- Disable Upper Part
+         * StartTime:-
+         * EndTime:-
+         */
+        #region--------------------------------------------------DisableUpperPart()--------------------------------------------------
+        private void DisableUpperPart()
+        {
+            cmbBranch.IsEnabled = false;
+            cmbBatch.IsEnabled = false;
+
+            cmbSubject.IsEnabled = true;
+            cmbFreqPerDay.IsEnabled = true;
+            cmbFreqPerWeek.IsEnabled = true;
+
+            btnSave.IsEnabled = true;
+            btnClear.IsEnabled = true;
+            btnGo.Content = "Change";
+        }
+        #endregion
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 20 Nov 2015
+         * Purpose:- cmbSubject_SelectionChanged
+         * StartTime:-
+         * EndTime:-
+         */
+        #region--------------------------------------------------cmbSubject_SelectionChanged()--------------------------------------------------
+        private void cmbSubject_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+
+                if(cmbSubject.SelectedValue.ToString()!="0")
+                {
+                    GetSubjectDetail();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
+        
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 20 Nov 2015
+         * Purpose:- Get SubjectDetail
+         * StartTime:-
+         * EndTime:-
+         */
+        #region--------------------------------------------------GetSubjectDetails()--------------------------------------------------
+        private void GetSubjectDetail()
+        {
+            DataSet ds = objBatch.GetBatchSubject(Convert.ToInt32(cmbBatch.SelectedValue), Convert.ToInt32( cmbSubject.SelectedValue));
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                cmbFreqPerDay.Text = ds.Tables[0].Rows[0]["FrequencyPerDay"].ToString();
+                cmbFreqPerWeek.Text = ds.Tables[0].Rows[0]["FrequencyPerWeek"].ToString();
+                string act = ds.Tables[0].Rows[0]["IsActive"].ToString();
+                if (act == "True")
+                {
+                    rdbActive.IsChecked = true;
+                }
+                else if (act == "False")
+                {
+                    rdbInActive.IsChecked = true;
+                }
+                btnSave.Content = "Update";
+                btnDelete.IsEnabled = true;
+            }
+            else 
+            {
+                btnSave.Content = "Save";
+                cmbFreqPerDay.SelectedIndex = 0;
+                cmbFreqPerWeek.SelectedIndex = 0;
+                rdbActive.IsChecked = true;
+                btnDelete.IsEnabled = false;
+            }
+            
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 20 Nov 2015
+         * Purpose:- Delete Details
+         * StartTime:-
+         * EndTime:-
+         */
+        #region----------------------------------------------------Deletedetail()------------------------------------------------------
+        private void DeleteDetails()
+        {
+            SetParameters();
+            string Result = objBatch.DeleteBatchSubject(BatchID, SubjectID, UpdatedByUserID, UpdatedDate);
+            if (Result == "Deleted Sucessfully...!!")
+            {
+                MessageBox.Show(Result);
+                ClearData();
+            }
+            else
+            {
+                MessageBox.Show(Result, "Error To Delete");
+            }
+
+        }
+        #endregion
     }
 }
