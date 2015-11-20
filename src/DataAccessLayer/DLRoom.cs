@@ -158,7 +158,7 @@ namespace DataAccessLayer
             return ds;
         }
 
-        public DataSet BindRoomDropDown(int RoomID)
+        public DataSet BindRoomDropDown(int BranchID) 
         {
             conn = con.getConnection();
             conn.Open();
@@ -166,7 +166,8 @@ namespace DataAccessLayer
             SqlCommand cmd = new SqlCommand("BindRoomName_SP", conn);
 
 
-            cmd.Parameters.AddWithValue("@RoomID", RoomID);
+            cmd.Parameters.AddWithValue("@BranchID", BranchID);
+            
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
