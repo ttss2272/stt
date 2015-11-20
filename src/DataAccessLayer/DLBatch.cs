@@ -42,7 +42,7 @@ namespace DataAccessLayer
             return result;
         }
 
-        public string SaveBatchSubject (int SubjectID,int BatchID,int NoLectPerDay,int NoLectPerWeek,int UpdatedByUserID,string UpdatedDate,int Active,int IsDeleted)
+        public string SaveBatchSubject (int SubjectID,int BatchID,int NoLectPerDay,int NoLectPerWeek,int UpdatedByUserID,int UpdatedDate,int Active,int IsDeleted)
         {
             string Result = null;
 
@@ -168,14 +168,13 @@ namespace DataAccessLayer
             return ds;
         }
 
-        public DataSet GetBatchSubject(int BatchID,int SubjectID)
+        public DataSet GetBatchSubject(int BatchID)
         {
             conn = con.getConnection();
             conn.Open();
             SqlCommand cmd = new SqlCommand("GetBatchSubject_SP", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@BatchID", BatchID);
-            cmd.Parameters.AddWithValue("@SubjectID", SubjectID);
             SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
 
@@ -184,22 +183,22 @@ namespace DataAccessLayer
             return ds;
         }
 
-        public string DeleteBatchSubject(int BatchID,int SubjectID,int UpdatedByUserID,string UpdatedDate)
+        public DataSet BindBatchDropDown()
         {
-            string Result = null;
             conn = con.getConnection();
-            SqlCommand cmd = new SqlCommand("DeleteBatchSubject_SP", conn);
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("BindBatchName_SP", conn);
+
+
+           
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@BatchID", BatchID);
-            cmd.Parameters.AddWithValue("@SubjectID", SubjectID);
-            cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
-            cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
-
-            conn.Open();
-            Result = cmd.ExecuteScalar().ToString();
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sqlDa.Fill(ds);
             conn.Close();
-            return Result;
+            return ds;
         }
     }
 }
