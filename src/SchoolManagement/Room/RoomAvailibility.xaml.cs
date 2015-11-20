@@ -23,14 +23,15 @@ namespace SchoolManagement.Room
         #region---------------------------------Declare variables Globally-------------------------------------
 
          BLRoom objRoom = new BLRoom();
+         BLAddBranch obj_Branch = new BLAddBranch();
 
         int daycheckcount = 0, cnn, n = 0;
-        string tmpStartTime, tmpEndTime;
+        string tmpStartTime, tmpEndTime, Result;
         string[] StartTime;
         string[] EndTime;
         string[] s;
 
-        int RoomID, UpdatedByUserID, Active, IsDeleted;
+        int RoomID,BranchID, UpdatedByUserID, Active, IsDeleted;
         string Day, FinalStartTime, FinalEndTime, UpdatedDate;
 
         #endregion
@@ -56,12 +57,15 @@ namespace SchoolManagement.Room
         private void ClearFields()
         {
             cmbRoom.IsEnabled = true;
+            BindBranchName();
             BindRoom();
             BindHours();
             BindMinutes();
             BindGrid();
             UncheckAllCheckBoxes();
             EnableDropdown();
+            btnSave.Content = "Save";
+            gbrmavaday.IsEnabled = false;
         }
         #endregion
 
@@ -89,15 +93,20 @@ namespace SchoolManagement.Room
         {
             try
             {
-                if (cmbRoom.SelectedValue.ToString() == "0")
+                if (cmbBranch.SelectedValue.ToString() == "0")
                 {
-                    MessageBox.Show("Please Select Teacher.");
+                    MessageBox.Show("Please Select Branch First.");
+                }
+                else if (cmbRoom.SelectedValue.ToString() == "0")
+                {
+                    MessageBox.Show("Please Select Room.");
                 }
                 else
                 {
+                    gbrmavaday.IsEnabled = true;
                     cmbRoom.IsEnabled = false;
                     Clears();
-                    GetTeacherAvailableDetails(Convert.ToInt32(cmbRoom.SelectedValue));
+                    GetRoomAvailableDetails(Convert.ToInt32(cmbRoom.SelectedValue));
                 }
 
             }
@@ -136,6 +145,7 @@ namespace SchoolManagement.Room
 
             if (chkMon.IsChecked == true)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 RoomID = Convert.ToInt32(cmbRoom.SelectedValue);
                 Day = chkMon.Content.ToString();
                 FinalStartTime = chkStartHrs1.Text + ":";
@@ -146,7 +156,7 @@ namespace SchoolManagement.Room
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
                     ResultCount++;
@@ -154,6 +164,7 @@ namespace SchoolManagement.Room
             }
             else if (chkMon.IsChecked == false)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 RoomID = Convert.ToInt32(cmbRoom.SelectedValue);
                 Day = chkMon.Content.ToString();
                 FinalStartTime = "00:00:00";
@@ -162,7 +173,7 @@ namespace SchoolManagement.Room
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
                     ResultCount++;
@@ -171,6 +182,7 @@ namespace SchoolManagement.Room
             }
             if (chkTue.IsChecked == true)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 RoomID = Convert.ToInt32(cmbRoom.SelectedValue);
                 Day = chkTue.Content.ToString();
                 FinalStartTime = chkStartHrs2.Text + ":";
@@ -181,7 +193,7 @@ namespace SchoolManagement.Room
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
                     ResultCount++;
@@ -189,6 +201,7 @@ namespace SchoolManagement.Room
             }
             else if (chkTue.IsChecked == false)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 RoomID = Convert.ToInt32(cmbRoom.SelectedValue);
                 Day = chkTue.Content.ToString();
                 FinalStartTime = "00:00:00";
@@ -197,7 +210,7 @@ namespace SchoolManagement.Room
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
                     ResultCount++;
@@ -206,6 +219,7 @@ namespace SchoolManagement.Room
             }
             if (chkWed.IsChecked == true)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 RoomID = Convert.ToInt32(cmbRoom.SelectedValue);
                 Day = chkWed.Content.ToString();
                 FinalStartTime = chkStartHrs3.Text + ":";
@@ -216,7 +230,7 @@ namespace SchoolManagement.Room
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
 
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
@@ -225,6 +239,7 @@ namespace SchoolManagement.Room
             }
             else if (chkWed.IsChecked == false)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 RoomID = Convert.ToInt32(cmbRoom.SelectedValue);
                 Day = chkWed.Content.ToString();
                 FinalStartTime = "00:00:00";
@@ -233,7 +248,7 @@ namespace SchoolManagement.Room
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
 
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
@@ -243,6 +258,7 @@ namespace SchoolManagement.Room
             }
             if (chkThru.IsChecked == true)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 RoomID = Convert.ToInt32(cmbRoom.SelectedValue);
                 Day = chkThru.Content.ToString();
                 FinalStartTime = chkStartHrs4.Text + ":";
@@ -253,7 +269,7 @@ namespace SchoolManagement.Room
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
 
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
@@ -262,6 +278,7 @@ namespace SchoolManagement.Room
             }
             else if (chkThru.IsChecked == false)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 RoomID = Convert.ToInt32(cmbRoom.SelectedValue);
                 Day = chkThru.Content.ToString();
                 FinalStartTime = "00:00:00";
@@ -270,7 +287,7 @@ namespace SchoolManagement.Room
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
 
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
@@ -280,6 +297,7 @@ namespace SchoolManagement.Room
             }
             if (chkFri.IsChecked == true)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 RoomID = Convert.ToInt32(cmbRoom.SelectedValue);
                 Day = chkFri.Content.ToString();
                 FinalStartTime = chkStartHrs5.Text + ":";
@@ -290,7 +308,7 @@ namespace SchoolManagement.Room
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
 
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
@@ -299,6 +317,7 @@ namespace SchoolManagement.Room
             }
             else if (chkFri.IsChecked == false)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 RoomID = Convert.ToInt32(cmbRoom.SelectedValue);
                 Day = chkFri.Content.ToString();
                 FinalStartTime = "00:00:00";
@@ -307,7 +326,7 @@ namespace SchoolManagement.Room
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
 
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
@@ -317,6 +336,7 @@ namespace SchoolManagement.Room
             }
             if (chkSat.IsChecked == true)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 RoomID = Convert.ToInt32(cmbRoom.SelectedValue);
                 Day = chkSat.Content.ToString();
                 FinalStartTime = chkStartHrs6.Text + ":";
@@ -327,7 +347,7 @@ namespace SchoolManagement.Room
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
 
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
@@ -336,6 +356,7 @@ namespace SchoolManagement.Room
             }
             else if (chkSat.IsChecked == false)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 RoomID = Convert.ToInt32(cmbRoom.SelectedValue);
                 Day = chkSat.Content.ToString();
                 FinalStartTime = "00:00:00";
@@ -344,7 +365,7 @@ namespace SchoolManagement.Room
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
 
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
@@ -354,6 +375,7 @@ namespace SchoolManagement.Room
             }
             if (chkSun.IsChecked == true)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 RoomID = Convert.ToInt32(cmbRoom.SelectedValue);
                 Day = chkSun.Content.ToString();
                 FinalStartTime = chkStartHrs7.Text + ":";
@@ -364,7 +386,7 @@ namespace SchoolManagement.Room
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
 
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
@@ -373,6 +395,7 @@ namespace SchoolManagement.Room
             }
             else if (chkSun.IsChecked == false)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 RoomID = Convert.ToInt32(cmbRoom.SelectedValue);
                 Day = chkSun.Content.ToString();
                 FinalStartTime = "00:00:00";
@@ -381,7 +404,7 @@ namespace SchoolManagement.Room
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                Result = objRoom.SaveRoomAvailibility(RoomID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
                     ResultCount++;
@@ -389,8 +412,16 @@ namespace SchoolManagement.Room
             }
             if (ResultCount == 7)
             {
-                MessageBox.Show("Teacher Details Save Sucessfully", "Save Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
-                ClearFields();
+                if (btnSave.Content.ToString()=="Save")
+                {
+                    MessageBox.Show("Room Details Save Sucessfully", "Save Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ClearFields();
+                }
+                else if (btnSave.Content.ToString()=="Update")
+                {
+                    MessageBox.Show("Room Details Update Sucessfully", "Update Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ClearFields();
+                }
             }
 
         }
@@ -401,7 +432,8 @@ namespace SchoolManagement.Room
         #region---------------------------------------------------BindRoom()-------------------------------------------------------------
         private void BindRoom()
         {
-            DataSet ds = objRoom.BindRoomDropDown(0);
+            BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
+            DataSet ds = objRoom.BindRoomDropDown(BranchID);
 
             if (ds.Tables[0].Rows.Count > 0)
             {
@@ -415,6 +447,37 @@ namespace SchoolManagement.Room
                 cmbRoom.SelectedValue = "0";
             }
         }
+        #endregion
+
+
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 20 Nov 2015
+        * Purpose:- Binding branch*/
+
+        #region-------------bindbranch()--------------------------------------
+
+        private void BindBranchName()
+        {
+            try
+            {
+                DataSet ds = obj_Branch.BindBranchName();
+
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    cmbBranch.DataContext = ds.Tables[0].DefaultView;
+                    cmbBranch.DisplayMemberPath = ds.Tables[0].Columns["BranchName"].ToString();
+                    cmbBranch.SelectedValuePath = ds.Tables[0].Columns["BranchID"].ToString();
+                    cmbBranch.SelectedValue = "0";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
         #endregion
 
 
@@ -723,6 +786,10 @@ namespace SchoolManagement.Room
                 else if (chkMon.IsChecked == false)
                 {
                     --daycheckcount;
+                    chkStartHrs1.SelectedIndex = 0;
+                    chkStartMin1.SelectedIndex = 0;
+                    chkEndhrs1.SelectedIndex = 0;
+                    EndMin1.SelectedIndex = 0;
                 }
                 if (daycheckcount == 7)
                 {
@@ -753,6 +820,10 @@ namespace SchoolManagement.Room
                 else if (chkTue.IsChecked == false)
                 {
                     --daycheckcount;
+                    chkStartHrs2.SelectedIndex = 0;
+                    chkStartMin2.SelectedIndex = 0;
+                    chkEndhrs2.SelectedIndex = 0;
+                    EndMin2.SelectedIndex = 0;
                 }
                 if (daycheckcount == 7)
                 {
@@ -783,6 +854,10 @@ namespace SchoolManagement.Room
                 else if (chkThru.IsChecked == false)
                 {
                     --daycheckcount;
+                    chkStartHrs4.SelectedIndex = 0;
+                    chkStartMin4.SelectedIndex = 0;
+                    chkEndhrs4.SelectedIndex = 0;
+                    EndMin4.SelectedIndex = 0;
                 }
                 if (daycheckcount == 7)
                 {
@@ -813,6 +888,10 @@ namespace SchoolManagement.Room
                 else if (chkWed.IsChecked == false)
                 {
                     --daycheckcount;
+                    chkStartHrs3.SelectedIndex = 0;
+                    chkStartMin3.SelectedIndex = 0;
+                    chkEndhrs3.SelectedIndex = 0;
+                    EndMin3.SelectedIndex = 0;
                 }
                 if (daycheckcount == 7)
                 {
@@ -843,6 +922,10 @@ namespace SchoolManagement.Room
                 else if (chkFri.IsChecked == false)
                 {
                     --daycheckcount;
+                    chkStartHrs5.SelectedIndex = 0;
+                    chkStartMin5.SelectedIndex = 0;
+                    chkEndhrs5.SelectedIndex = 0;
+                    EndMin5.SelectedIndex = 0;
                 }
                 if (daycheckcount == 7)
                 {
@@ -873,6 +956,10 @@ namespace SchoolManagement.Room
                 else if (chkSat.IsChecked == false)
                 {
                     --daycheckcount;
+                    chkStartHrs6.SelectedIndex = 0;
+                    chkStartMin6.SelectedIndex = 0;
+                    chkEndhrs6.SelectedIndex = 0;
+                    EndMin6.SelectedIndex = 0;
                 }
                 if (daycheckcount == 7)
                 {
@@ -903,6 +990,10 @@ namespace SchoolManagement.Room
                 else if (chkSun.IsChecked == false)
                 {
                     --daycheckcount;
+                    chkStartHrs7.SelectedIndex = 0;
+                    chkStartMin7.SelectedIndex = 0;
+                    chkEndhrs7.SelectedIndex = 0;
+                    EndMin7.SelectedIndex = 0;
                 }
                 if (daycheckcount == 7)
                 {
@@ -1024,13 +1115,13 @@ namespace SchoolManagement.Room
 
 
 
-        #region---------------------------------------------------------GetTeacherAvailableDetails()-------------------------------------------
-        private void GetTeacherAvailableDetails(int numId)
+        #region---------------------------------------------------------GetRoomAvailableDetails()-------------------------------------------
+        private void GetRoomAvailableDetails(int numId)
         {
             cnn = 0;
             if (cmbRoom.SelectedValue.ToString() == "0")
             {
-                MessageBox.Show("Please Select Teacher.");
+                MessageBox.Show("Please Select Room.");
             }
             else
             {
@@ -1225,7 +1316,7 @@ namespace SchoolManagement.Room
 
 
                     }
-
+                    btnSave.Content = "Update";
                 }
                 else
                 {
@@ -1396,7 +1487,7 @@ namespace SchoolManagement.Room
                 object item = dgRoomAvail.SelectedItem;
                 int UpID = Convert.ToInt32(((System.Data.DataRowView)(dgRoomAvail.CurrentItem)).Row.ItemArray[0].ToString());
                 Clears();
-                GetTeacherAvailableDetails(UpID);
+                GetRoomAvailableDetails(UpID);
             }
             catch (Exception ex)
             {
@@ -1418,7 +1509,24 @@ namespace SchoolManagement.Room
         #region--------------------------------------------------------validate()---------------------------------------------------------------
         private bool validate()
         {
-
+            if (cmbBranch.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please Select Branch Name First...");
+                cmbBranch.Focus();
+                return false;
+            }
+            else if (cmbRoom.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please Select Room Name ...");
+                cmbRoom.Focus();
+                return false;
+            }
+            else if (gbrmavaday.IsEnabled==false)
+            {
+                MessageBox.Show("Please Click on Go ...");
+                btnSearch.Focus();
+                return false;
+            }
             if (MondayValidate())
             {
                 if (TuesdayValidate())
@@ -1433,6 +1541,10 @@ namespace SchoolManagement.Room
                                 {
                                     if (SundayValidate())
                                     {
+                                        if (daycheckcount < 0)
+                                        {
+                                            return true;
+                                        }
                                         if (daycheckcount > 0)
                                         { return true; }
                                         else
@@ -1524,11 +1636,9 @@ namespace SchoolManagement.Room
                 else
                 { return true; }
 
-
-
             }
-            else
-            { return true; }
+            
+            else { return true; }
         }
         #endregion
 
@@ -1585,11 +1695,8 @@ namespace SchoolManagement.Room
                 else
                 { return true; }
             }
-
-
-            else
-            { return true; }
-
+            
+            else { return true; }
         }
         #endregion
 
@@ -1646,10 +1753,8 @@ namespace SchoolManagement.Room
                 else
                 { return true; }
             }
-
-
-            else
-            { return true; }
+            
+            else { return true; }
 
         }
         #endregion
@@ -1708,10 +1813,8 @@ namespace SchoolManagement.Room
                 { return true; }
             }
 
-
-            else
-            { return true; }
-
+            
+            else { return true; }
         }
         #endregion
 
@@ -1768,11 +1871,8 @@ namespace SchoolManagement.Room
                 else
                 { return true; }
             }
-
-
-            else
-            { return true; }
-
+            
+            else { return true; }
         }
         #endregion
 
@@ -1830,10 +1930,7 @@ namespace SchoolManagement.Room
                 { return true; }
             }
 
-
-            else
-            { return true; }
-
+            else { return true; }
         }
         #endregion
 
@@ -1891,16 +1988,19 @@ namespace SchoolManagement.Room
                 { return true; }
             }
 
-
-            else
-            { return true; }
-
+            
+            else { return true; }
         }
         #endregion
+
         #endregion
 
 
-        
+
+        private void cmbBranch_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BindRoom();
+        }   
 
     }
 }

@@ -9,21 +9,21 @@
                     <GroupBox Header="Room Availaible Details " Height="357" VerticalAlignment="Top"  DockPanel.Dock="left" Width="430" Margin="0,4,0,0">
                         <DataGrid HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="0,0,0,2" Name="dgRoomAvail" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" >
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding TeacherID}" Header="Teacher ID" Visibility="Hidden"></DataGridTextColumn>
-                                <DataGridTextColumn Binding="{Binding TeacherName}" Header="Name" Width="250"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding RoomID}" Header="Teacher ID" Visibility="Hidden"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding RoomName}" Header="Name" Width="250"></DataGridTextColumn>
                                 <DataGridTextColumn Binding="{Binding NoOfDaysAvailaible}" Header="No of Available Days" Width="160"></DataGridTextColumn>
 
                             </DataGrid.Columns>
-                            <!--<DataGrid.ItemContainerStyle>
+                            <DataGrid.ItemContainerStyle>
                                 <Style TargetType="DataGridRow">
                                     <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick" />
                                 </Style>
-                            </DataGrid.ItemContainerStyle>-->
+                            </DataGrid.ItemContainerStyle>
 
                         </DataGrid>
                     </GroupBox>
                     <Button Content="Copy" Height="50" VerticalAlignment="Center" Width="59" HorizontalAlignment="Center" Visibility="Hidden" />
-                    <GroupBox Header="Room Avalaible Days" Height="357" VerticalAlignment="Top" Width="733" Margin="0,3,0,0">
+                    <GroupBox Header="Room Avalaible Days" Height="357" VerticalAlignment="Top" Width="733" Margin="0,3,0,0" Name="gbrmavaday">
                         <Grid Margin="0,6,0,-5">
                             <CheckBox Content="Available All Days" HorizontalAlignment="Left" Margin="24,50,0,0" VerticalAlignment="Top" Width="125" Name="chkAvailAllDay" Click="chkAvailAllDay_Click"/>
                             <CheckBox Content="Same Time" HorizontalAlignment="Left" Margin="167,52,0,0" VerticalAlignment="Top" Name="chkAvailSameTime" Width="96" Click="chkAvailSameTime_Click" />
@@ -33,26 +33,26 @@
                                         <ColumnDefinition/>
                                         <ColumnDefinition Width="0*"/>
                                     </Grid.ColumnDefinitions>
-                                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="58,4,0,0" VerticalAlignment="Top" Width="69" Name="chkStartHrs" SelectionChanged="chkStartHrs_SelectionChanged"/>
-                                    <ComboBox HorizontalAlignment="Left" Margin="143,3,0,0" VerticalAlignment="Top" Width="69" Height="22" Name="chkStartMin" SelectionChanged="chkStartMin_SelectionChanged"/>
+                                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="58,4,0,0" VerticalAlignment="Top" Width="69" Name="chkStartHrs" SelectionChanged="chkStartHrs_SelectionChanged" ItemsSource="{Binding}"/>
+                                    <ComboBox HorizontalAlignment="Left" Margin="143,3,0,0" VerticalAlignment="Top" Width="69" Height="22" Name="chkStartMin" SelectionChanged="chkStartMin_SelectionChanged" ItemsSource="{Binding}"/>
                                     <Label Content="To" HorizontalAlignment="Left" Margin="229,1,0,0" VerticalAlignment="Top" Height="26" Width="23"/>
-                                    <ComboBox HorizontalAlignment="Left" Margin="261,5,0,0" VerticalAlignment="Top" Width="69" Height="22" Name="chkEndhrs" SelectionChanged="chkEndhrs_SelectionChanged" >
+                                    <ComboBox HorizontalAlignment="Left" Margin="261,5,0,0" VerticalAlignment="Top" Width="69" Height="22" Name="chkEndhrs" SelectionChanged="chkEndhrs_SelectionChanged" ItemsSource="{Binding}" >
                                     </ComboBox>
-                                    <ComboBox HorizontalAlignment="Left" Margin="349,4,0,0" VerticalAlignment="Top" Width="69" Height="22" Name="EndMin" SelectionChanged="EndMin_SelectionChanged" />
+                                    <ComboBox HorizontalAlignment="Left" Margin="349,4,0,0" VerticalAlignment="Top" Width="69" Height="22" Name="EndMin" SelectionChanged="EndMin_SelectionChanged" ItemsSource="{Binding}" />
                                     <Label Content="From" HorizontalAlignment="Left" Margin="6,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="-8.739,0.577" Height="26" Width="37"/>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="54,90,0,0" VerticalAlignment="Top" Width="299" Height="55">
+                            <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="54,90,0,0" VerticalAlignment="Top" Width="299" Height="55" Name="gbMon">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
                                         <ColumnDefinition Width="0*"/>
                                     </Grid.ColumnDefinitions>
-                                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="45,4,0,0" VerticalAlignment="Top" Width="52" x:Name="chkStartHrs1"/>
-                                    <ComboBox HorizontalAlignment="Left" Margin="105,5,0,0" VerticalAlignment="Top" Width="52" Height="22" x:Name="chkStartMin1"/>
+                                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="45,4,0,0" VerticalAlignment="Top" Width="52" x:Name="chkStartHrs1" ItemsSource="{Binding}"/>
+                                    <ComboBox HorizontalAlignment="Left" Margin="105,5,0,0" VerticalAlignment="Top" Width="52" Height="22" x:Name="chkStartMin1" ItemsSource="{Binding}"/>
                                     <Label Content="To" HorizontalAlignment="Left" Margin="155,3,0,0" VerticalAlignment="Top" Height="26" Width="23"/>
-                                    <ComboBox HorizontalAlignment="Left" Margin="178,5,0,0" VerticalAlignment="Top" Width="52" Height="22" x:Name="chkEndhrs1"/>
-                                    <ComboBox HorizontalAlignment="Left" Margin="236,5,0,0" VerticalAlignment="Top" Width="51" Height="22" x:Name="EndMin1" RenderTransformOrigin="0.5,0.5">
+                                    <ComboBox HorizontalAlignment="Left" Margin="178,5,0,0" VerticalAlignment="Top" Width="52" Height="22" x:Name="chkEndhrs1" ItemsSource="{Binding}"/>
+                                    <ComboBox HorizontalAlignment="Left" Margin="236,5,0,0" VerticalAlignment="Top" Width="51" Height="22" x:Name="EndMin1" ItemsSource="{Binding}" RenderTransformOrigin="0.5,0.5" >
                                         <ComboBox.RenderTransform>
                                             <TransformGroup>
                                                 <ScaleTransform/>
@@ -65,17 +65,17 @@
                                     <Label Content="From" HorizontalAlignment="Left" Margin="2,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="-8.739,0.577" Height="26" Width="37"/>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="409,89,0,0" VerticalAlignment="Top" Width="304" Height="55">
+                            <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="409,89,0,0" VerticalAlignment="Top" Width="304" Height="55" Name="gbTue">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
                                         <ColumnDefinition Width="0*"/>
                                     </Grid.ColumnDefinitions>
-                                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="42,4,0,0" VerticalAlignment="Top" Width="52" x:Name="chkStartHrs2"/>
-                                    <ComboBox HorizontalAlignment="Left" Margin="102,5,0,0" VerticalAlignment="Top" Width="52" Height="22" x:Name="chkStartMin2"/>
+                                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="42,4,0,0" VerticalAlignment="Top" Width="52" x:Name="chkStartHrs2" ItemsSource="{Binding}"/>
+                                    <ComboBox HorizontalAlignment="Left" Margin="102,5,0,0" VerticalAlignment="Top" Width="52" Height="22" x:Name="chkStartMin2" ItemsSource="{Binding}"/>
                                     <Label Content="To" HorizontalAlignment="Left" Margin="152,3,0,0" VerticalAlignment="Top" Height="26" Width="23"/>
-                                    <ComboBox HorizontalAlignment="Left" Margin="175,5,0,0" VerticalAlignment="Top" Width="52" Height="22" x:Name="chkEndhrs2"/>
-                                    <ComboBox HorizontalAlignment="Left" Margin="233,5,0,0" VerticalAlignment="Top" Width="51" Height="22" x:Name="EndMin2" RenderTransformOrigin="0.5,0.5">
+                                    <ComboBox HorizontalAlignment="Left" Margin="175,5,0,0" VerticalAlignment="Top" Width="52" Height="22" x:Name="chkEndhrs2" ItemsSource="{Binding}"/>
+                                    <ComboBox HorizontalAlignment="Left" Margin="233,5,0,0" VerticalAlignment="Top" Width="51" Height="22" x:Name="EndMin2" ItemsSource="{Binding}" RenderTransformOrigin="0.5,0.5">
                                         <ComboBox.RenderTransform>
                                             <TransformGroup>
                                                 <ScaleTransform/>
@@ -88,17 +88,17 @@
                                     <Label Content="From" HorizontalAlignment="Left" Margin="-1,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="-8.739,0.577" Height="26" Width="37"/>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="51,146,0,0" VerticalAlignment="Top" Width="299" Height="55">
+                            <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="51,146,0,0" VerticalAlignment="Top" Width="299" Height="55" Name="gbWed">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
                                         <ColumnDefinition Width="0*"/>
                                     </Grid.ColumnDefinitions>
-                                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="43,4,0,0" VerticalAlignment="Top" Width="52" x:Name="chkStartHrs3"/>
-                                    <ComboBox HorizontalAlignment="Left" Margin="105,5,0,0" VerticalAlignment="Top" Width="52" Height="22" x:Name="chkStartMin3"/>
+                                    <ComboBox HorizontalAlignment="Left" Height="23" Margin="43,4,0,0" VerticalAlignment="Top" Width="52" x:Name="chkStartHrs3" ItemsSource="{Binding}"/>
+                                    <ComboBox HorizontalAlignment="Left" Margin="105,5,0,0" VerticalAlignment="Top" Width="52" Height="22" x:Name="chkStartMin3" ItemsSource="{Binding}"/>
                                     <Label Content="To" HorizontalAlignment="Left" Margin="154,3,0,0" VerticalAlignment="Top" Height="26" Width="23"/>
-                                    <ComboBox HorizontalAlignment="Left" Margin="175,5,0,0" VerticalAlignment="Top" Width="52" Height="22" x:Name="chkEndhrs3"/>
-                                    <ComboBox HorizontalAlignment="Left" Margin="235,5,0,0" VerticalAlignment="Top" Width="51" Height="22" x:Name="EndMin3" RenderTransformOrigin="0.5,0.5">
+                                    <ComboBox HorizontalAlignment="Left" Margin="175,5,0,0" VerticalAlignment="Top" Width="52" Height="22" x:Name="chkEndhrs3" ItemsSource="{Binding}"/>
+                                    <ComboBox HorizontalAlignment="Left" Margin="235,5,0,0" VerticalAlignment="Top" Width="51" Height="22" x:Name="EndMin3" ItemsSource="{Binding}" RenderTransformOrigin="0.5,0.5">
                                         <ComboBox.RenderTransform>
                                             <TransformGroup>
                                                 <ScaleTransform/>
@@ -111,7 +111,7 @@
                                     <Label Content="From" HorizontalAlignment="Left" Margin="1,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="-8.739,0.577" Height="26" Width="37"/>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="409,145,0,0" VerticalAlignment="Top" Width="304" Height="55">
+                            <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="409,145,0,0" VerticalAlignment="Top" Width="304" Height="55" Name="gbThru">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
@@ -134,7 +134,7 @@
                                     <Label Content="From" HorizontalAlignment="Left" Margin="-1,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="-8.739,0.577" Height="26" Width="37"/>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="54,202,0,0" VerticalAlignment="Top" Width="299" Height="55">
+                            <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="54,202,0,0" VerticalAlignment="Top" Width="299" Height="55" Name="gbFri">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
@@ -157,7 +157,7 @@
                                     <Label Content="From" HorizontalAlignment="Left" Margin="0,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="-8.739,0.577" Height="26" Width="37"/>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="409,202,0,0" VerticalAlignment="Top" Width="304" Height="55">
+                            <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="409,202,0,0" VerticalAlignment="Top" Width="304" Height="55" Name="gbSat">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
@@ -180,7 +180,7 @@
                                     <Label Content="From" HorizontalAlignment="Left" Margin="0,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="-8.739,0.577" Height="26" Width="37"/>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="54,262,0,0" VerticalAlignment="Top" Width="299" Height="55">
+                            <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="54,262,0,0" VerticalAlignment="Top" Width="299" Height="55" Name="gbSun">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
@@ -222,7 +222,7 @@
                     </ComboBox>
                     <Button Content="Go" HorizontalAlignment="Left" Margin="743,18,0,0" VerticalAlignment="Top" Width="75" Name="btnSearch" FontWeight="Bold" Click="btnSearch_Click" />
                     <Label Content="Branch Name" HorizontalAlignment="Left" Margin="34,16,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                    <ComboBox HorizontalAlignment="Left" Margin="171,14,0,0" VerticalAlignment="Top" Width="141" Height="28" Name="cmbBranch"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="171,14,0,0" VerticalAlignment="Top" Width="141" Height="28" Name="cmbBranch" ItemsSource="{Binding}" SelectionChanged="cmbBranch_SelectionChanged" />
                 </Grid>
             </GroupBox>
             <GroupBox Header="" HorizontalAlignment="Left" Margin="403,520,0,0" BorderBrush="White"  VerticalAlignment="Top" Width="240" Height="50">

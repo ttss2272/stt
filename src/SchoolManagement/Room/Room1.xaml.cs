@@ -124,17 +124,23 @@ namespace SchoolManagement.Room
                 cmbEHr.Focus();
                 return false;
             }
+            else if (Convert.ToInt32(cmbSHr.SelectedItem.ToString()) > Convert.ToInt32(cmbEHr.SelectedItem.ToString()))
+            {
+                MessageBox.Show("End Hour Time Is Must Be Greater Than End Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cmbEHr.Focus();
+                return false;
+            }
             else if ((Convert.ToInt32(cmbSHr.Text) == Convert.ToInt32(cmbEHr.Text))&&(Convert.ToInt32(cmbSMin.Text) >= Convert.ToInt32(cmbEMin.Text)))
             {
-                    MessageBox.Show("Please Enter Proper Time  ...");
-                    cmbSHr.Focus();
-                    return false;
+                MessageBox.Show("End Minute Time Is Must Be Greater Than End Time...");
+                cmbEMin.Focus();
+                return false;
                 
             }
             else if (cmbAllowLect.SelectedIndex== 0)
             {
                 MessageBox.Show("Please Select Allow Lecture  ...");
-                cmbSHr.Focus();
+                cmbAllowLect.Focus();
                 return false;
             }
             
