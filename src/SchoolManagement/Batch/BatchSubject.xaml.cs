@@ -34,6 +34,10 @@ namespace SchoolManagement.Batch
         BLAddBranch objBranch = new BLAddBranch();
         BLAddClass objClass = new BLAddClass();
         BLBatch objBatch = new BLBatch();
+        BLSubject objSubject = new BLSubject();
+
+        int UPID, BranchID, BatchID, BatchSubjectID, SubjectID, NoLectPerDay, NoLectPerWeek, Active, IsDeleted,UpdatedByUserID;
+        string UpdatedDate;
         #endregion
 
         /*
@@ -64,6 +68,9 @@ namespace SchoolManagement.Batch
         private void ClearFields()
         {
             BindBranch();
+            BindSubject();
+            BindFreqPerDay();
+            BindFreqPerWeek();
             
         }
         #endregion
@@ -174,7 +181,7 @@ namespace SchoolManagement.Batch
         {
             try
             {
-                if (cmbBatch.SelectedValue != "0")
+                if (cmbBatch.SelectedValue.ToString() != "0")
                 {
                     GetBatchSubject();
                 }
@@ -205,7 +212,7 @@ namespace SchoolManagement.Batch
             if (ds.Tables[0].Rows.Count > 0)
             {
                 gdvSubject.DataContext = null;
-                gdvSubject.DataContext = ds;
+                gdvSubject.DataContext = ds.Tables[0].DefaultView;
 
             }
             else
@@ -213,6 +220,207 @@ namespace SchoolManagement.Batch
                 MessageBox.Show("There is No Subject Added Please Add Subject");
             }
  
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 20 Nov 2015
+         * Purpose:- Bind Subject
+         * StartTime:-
+         * EndTime:-
+         */
+        #region-------------------------------------------------------BindSubject()----------------------------------------------------
+        private void BindSubject()
+        {
+            DataSet ds = objSubject.BindSubjectName();
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                cmbSubject.DataContext = null;
+                cmbSubject.DisplayMemberPath = ds.Tables[0].Columns["SubjectName"].ToString();
+                cmbSubject.SelectedValuePath = ds.Tables[0].Columns["SubjectId"].ToString();
+                cmbSubject.DataContext = ds.Tables[0].DefaultView;
+                cmbSubject.SelectedValue = "0";
+            }
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 20 Nov 2015
+         * Purpose:- Bind Frequency Per Day
+         * StartTime:-
+         * EndTime:-
+         */
+
+        #region-------------------------------------------BindFreqPerDay---------------------------------
+        private void BindFreqPerDay()
+        {
+            cmbFreqPerDay.Items.Clear();
+            cmbFreqPerDay.Items.Add("Select");
+            int i;
+            for (i = 1; i <= 6; i++)
+            {
+                cmbFreqPerDay.Items.Add(i);
+            }
+            cmbFreqPerDay.SelectedIndex = 0;
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 20 Nov 2015
+         * Purpose:- Bind Frequency Per Week
+         * StartTime:-
+         * EndTime:-
+         */
+        #region-------------------------------------------BindFreqPerWeek---------------------------------
+        private void BindFreqPerWeek()
+        {
+            cmbFreqPerWeek.Items.Clear();
+            cmbFreqPerWeek.Items.Add("Select");
+            int i;
+            for (i = 1; i <= 30; i++)
+            {
+                cmbFreqPerWeek.Items.Add(i);
+            }
+            cmbFreqPerWeek.SelectedIndex = 0;
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 20 Nov 2015
+         * Purpose:- Button Save Click
+         * StartTime:-
+         * EndTime:-
+         */
+        #region-----------------------------------------------------btnSave_Click-------------------------------------------
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 20 Nov 2015
+         * Purpose:- Button Delete Click
+         * StartTime:-
+         * EndTime:-
+         */
+        #region-------------------------------------------------------btnDelete_Click----------------------------------------
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 20 Nov 2015
+         * Purpose:- Button Clear Click
+         * StartTime:-
+         * EndTime:-
+         */
+        #region----------------------------------------------------btnClear_Click--------------------------------------------------
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 20 Nov 2015
+         * Purpose:- SetParameters
+         * StartTime:-
+         * EndTime:-
+         */
+        #region----------------------------------------------------SetParameters()--------------------------------------------------
+        private void SetParameters()
+        {
+            SubjectID = Convert.ToInt32(cmbSubject.SelectedValue);
+            BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
+            NoLectPerDay = Convert.ToInt32(cmbFreqPerDay.SelectedValue);
+            NoLectPerWeek = Convert.ToInt32(cmbFreqPerWeek.SelectedValue);
+            UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+            UpdatedByUserID = 1;
+            if (rdbActive.IsChecked==true && rdbInActive.IsChecked==false)
+            {
+                Active = 1;
+            }
+            else if(rdbInActive.IsChecked==true && rdbActive.IsChecked==false)
+            {
+                Active = 0;
+            }
+            IsDeleted = 0;
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 20 Nov 2015
+         * Purpose:- SetParameters
+         * StartTime:-
+         * EndTime:-
+         */
+        #region----------------------------------------------------Validate()--------------------------------------------------
+        private bool Validate()
+        {
+            if (cmbBatch.SelectedValue.ToString() == "0")
+            {
+                MessageBox.Show("Please Select Batch.", "Select Batch", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cmbBatch.Focus();
+                return false;
+            }
+            else if (cmbSubject.SelectedValue.ToString()=="0")
+            {
+                MessageBox.Show("Please Select Subject", "Select Subject", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cmbSubject.Focus();
+                return false;
+            }
+            else if (cmbFreqPerDay.SelectedValue.ToString()=="0")
+            {
+                MessageBox.Show("Please Select Frequecy Of Lecture Per Day.", "Lecture Per Day", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cmbFreqPerDay.Focus();
+                return false;
+            }
+            else if (cmbFreqPerWeek.SelectedValue.ToString() == "0")
+            {
+                MessageBox.Show("Please Select Frequecy Of Lecture Per Week.", "Lecture Per Week", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cmbFreqPerWeek.Focus();
+                return false;
+            }
+            else if (Convert .ToInt32(cmbFreqPerDay.SelectedItem.ToString())>Convert.ToInt32(cmbFreqPerWeek.SelectedItem.ToString()))
+            {
+                MessageBox.Show("Frequency Of Lecture Per Week Must Be Greater Or Equal to Frequency of Lecture PerDay ", "Lecture", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cmbFreqPerWeek.Focus();
+                return false;
+            }
+            else
+            {return true;}
         }
         #endregion
 
