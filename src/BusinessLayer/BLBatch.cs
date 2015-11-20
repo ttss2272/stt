@@ -18,7 +18,7 @@ namespace BusinessLayer
                return result;
         }
 
-        public string SaveBatchSubject(int SubjectID, int BatchID, int NoLectPerDay, int NoLectPerWeek, int UpdatedByUserID, int UpdatedDate, int Active, int IsDeleted)
+        public string SaveBatchSubject(int SubjectID, int BatchID, int NoLectPerDay, int NoLectPerWeek, int UpdatedByUserID, string UpdatedDate, int Active, int IsDeleted)
         {
             string Result = obj_Batch.SaveBatchSubject(SubjectID, BatchID, NoLectPerDay, NoLectPerWeek, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
             return Result;
@@ -63,10 +63,16 @@ namespace BusinessLayer
             return ds;
         }
 
-        public DataSet GetBatchSubject(int BatchID)
+        public DataSet GetBatchSubject(int BatchID,int SubjectID)
         {
-            DataSet ds = obj_Batch.GetBatchSubject(BatchID);
+            DataSet ds = obj_Batch.GetBatchSubject(BatchID,SubjectID);
             return ds;
+        }
+
+        public string DeleteBatchSubject(int BatchID, int SubjectID, int UpdatedByUserID, string UpdatedDate)
+        {
+            string Result = obj_Batch.DeleteBatchSubject(BatchID, SubjectID, UpdatedByUserID, UpdatedDate);
+            return Result;
         }
     }
 }
