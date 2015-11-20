@@ -18,6 +18,12 @@ namespace BusinessLayer
                return result;
         }
 
+        public string SaveBatchSubject(int SubjectID, int BatchID, int NoLectPerDay, int NoLectPerWeek, int UpdatedByUserID, int UpdatedDate, int Active, int IsDeleted)
+        {
+            string Result = obj_Batch.SaveBatchSubject(SubjectID, BatchID, NoLectPerDay, NoLectPerWeek, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+            return Result;
+        }
+
         //To Bind Gridview
         public DataSet BindBatch(int BatchID,string BatchName)
         {
