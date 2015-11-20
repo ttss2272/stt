@@ -75,9 +75,9 @@ namespace BusinessLayer
             return Result;
         }
 
-        public DataSet BindBatchAvail()
+        public DataSet GetBatchSubjectCount()
         {
-            DataSet ds = obj_Batch.BindBatchAvail();
+            DataSet ds = obj_Batch.GetBatchSubjectCount();
             return ds;
         }
     }
