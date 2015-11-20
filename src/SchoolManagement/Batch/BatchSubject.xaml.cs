@@ -72,6 +72,7 @@ namespace SchoolManagement.Batch
             BindFreqPerDay();
             BindFreqPerWeek();
             EnableUpperPart();
+            //GetBatchSubjectCount();
             
         }
         #endregion
@@ -91,9 +92,11 @@ namespace SchoolManagement.Batch
             cmbFreqPerDay.SelectedIndex = 0;
             cmbFreqPerWeek.SelectedIndex =0;
             GetBatchSubject();
+            GetBatchSubjectCount();
             btnSave.Content = "Save";
             rdbActive.IsChecked = true;
             btnDelete.IsEnabled = false;
+            
             
         }
         #endregion
@@ -210,13 +213,16 @@ namespace SchoolManagement.Batch
                     {
                         GetBatchSubject();
                         DisableUpperPart();
+                        GetBatchSubjectCount();
                         
                     }
                     else if(btnGo.Content.ToString()=="Change")
                     {
                         EnableUpperPart();
                         ClearData();
-                        
+                        grvBatchSubjectcountDetail.DataContext = null;
+                        gdvBatchSubjectcount.DataContext = null;
+                        gdvSubject.DataContext = null;
                         
                     }
                 }
@@ -241,6 +247,7 @@ namespace SchoolManagement.Batch
          */
         #region------------------------------------------------------GetBatchSubject()------------------------------------------------------
         private void GetBatchSubject()
+
         {
             DataSet ds = objBatch.GetBatchSubject(Convert.ToInt32(cmbBatch.SelectedValue),0);
 
@@ -643,6 +650,243 @@ namespace SchoolManagement.Batch
                 MessageBox.Show(Result, "Error To Delete");
             }
 
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 20 Nov 2015
+         * Purpose:- Get SubjectCount
+         * StartTime:-
+         * EndTime:-
+         */
+        #region-------------------------------------------------------getSubjectCount------------------------------------------------
+        private void GetBatchSubjectCount()
+        {
+            DataSet ds = objBatch.GetBatchSubjectCount();
+            if (ds.Tables[0].Rows.Count>0)
+            {
+                gdvBatchSubjectcount.DataContext = null;
+                gdvBatchSubjectcount.DataContext = ds.Tables[0].DefaultView;
+            }
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 20 Nov 2015
+         * Purpose:- SubjectCountRow Click()
+         * StartTime:-
+         * EndTime:-
+         */
+        #region-------------------------------------------SubjectCountRow Click()--------------------------------------------------------
+        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                object item = gdvBatchSubjectcount.SelectedItem;
+                int TempID = Convert.ToInt32(((System.Data.DataRowView)(gdvBatchSubjectcount.CurrentItem)).Row.ItemArray[2].ToString());
+                GetBatchSubject(TempID);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 20 Nov 2015
+         * Purpose:- Get Batch Subject List on Double Row Click
+         * StartTime:-
+         * EndTime:-
+         */
+        #region------------------------------------------------------GetBatchSubject()------------------------------------------------------
+        private void GetBatchSubject(int BTID)
+        {
+            DataSet ds = objBatch.GetBatchSubject(BTID, 0);
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                grvBatchSubjectcountDetail.DataContext = null;
+                grvBatchSubjectcountDetail.DataContext = ds.Tables[0].DefaultView;
+
+            }
+            else
+            {
+                MessageBox.Show("There is No Subject Added Please Add Subject");
+            }
+
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 20 Nov 2015
+         * Purpose:- Copy Subject Details
+         * StartTime:-
+         * EndTime:-
+         */
+        #region----------------------------------------------Copy Subject To Batch()-----------------------------------------------------
+        private void CopySubject()
+        { 
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 20 Nov 2015
+         * Purpose:- Click Button Copy All Subject
+         * StartTime:-
+         * EndTime:-
+         */
+        #region----------------------------------------------Click Button Subject To Batch()-----------------------------------------------------
+        private void btnAddAll_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int tmp = 0, cnt = 0;
+                int count =Convert.ToInt32(grvBatchSubjectcountDetail.Items.Count);
+                if (cmbBatch.SelectedValue.ToString() != "0" && cmbBatch.SelectedItem.ToString() != "Select")
+                {
+                    if (grvBatchSubjectcountDetail.Items.Count > 0)
+                    {
+                        for (int i = 0; i < grvBatchSubjectcountDetail.Items.Count; i++)
+                        {
+                            cnt++;
+                            System.Data.DataRowView selectedFile = (System.Data.DataRowView)grvBatchSubjectcountDetail.Items[i];
+                            SubjectID = Convert.ToInt32(selectedFile.Row.ItemArray[1]);
+                            BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
+                            NoLectPerDay = Convert.ToInt32(selectedFile.Row.ItemArray[3]);
+                            NoLectPerWeek = Convert.ToInt32(selectedFile.Row.ItemArray[4]);
+                            UpdatedByUserID = 1;
+                            UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                            string act = Convert.ToString(selectedFile.Row.ItemArray[6]);
+                            if (act == "True")
+                            {
+                                Active = 1;
+
+                            }
+                            else if (act == "False")
+                            {
+                                Active = 0;
+                            }
+                            IsDeleted = 0;
+                            string Result = objBatch.SaveBatchSubject(SubjectID, BatchID, NoLectPerDay, NoLectPerWeek, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                            if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
+                            {
+
+                                tmp++;
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        if (tmp == cnt)
+                        {
+                            MessageBox.Show("Details Copy Sucessfully.", "Copy Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
+                            ClearData();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Some Details Are Not Copied", "Error To Copy", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please Select At Least One Subject", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please Select Batch First", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception");
+            }
+
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:- 20 Nov 2015
+         * Purpose:- Click Button Copy One Subject
+         * StartTime:-
+         * EndTime:-
+         */
+        #region----------------------------------------------Click Button Copy One Subject To Batch()-----------------------------------------------------
+        private void btnAddSingle_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int tmp = 0,cnt=0;
+                if (cmbBatch.SelectedValue.ToString()!= "0" && cmbBatch.SelectedItem.ToString()!="Select")
+                {
+                    if (grvBatchSubjectcountDetail.SelectedItems.Count > 0)
+                    {
+                        for (int i = 0; i < grvBatchSubjectcountDetail.SelectedItems.Count; i++)
+                        {
+                            cnt++;
+                            System.Data.DataRowView selectedFile = (System.Data.DataRowView)grvBatchSubjectcountDetail.SelectedItems[i];
+                            SubjectID = Convert.ToInt32(selectedFile.Row.ItemArray[1]);
+                            BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
+                            NoLectPerDay = Convert.ToInt32(selectedFile.Row.ItemArray[3]);
+                            NoLectPerWeek = Convert.ToInt32(selectedFile.Row.ItemArray[4]);
+                            UpdatedByUserID = 1;
+                            UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                            string act = Convert.ToString(selectedFile.Row.ItemArray[6]);
+                            if (act == "True")
+                            {
+                                Active = 1;
+
+                            }
+                            else if (act == "False")
+                            {
+                                Active = 0;
+                            }
+                            IsDeleted = 0;
+                            string Result = objBatch.SaveBatchSubject(SubjectID, BatchID, NoLectPerDay, NoLectPerWeek, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                            if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
+                            {
+
+                                tmp++;
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        if (tmp == cnt)
+                        {
+                            MessageBox.Show("Details Copy Sucessfully.", "Copy Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
+                            ClearData();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Some Details Are Not Copied", "Error To Copy", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please Select At Least One Subject", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please Select Batch First","Info",MessageBoxButton.OK,MessageBoxImage.Warning);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception");
+            }
         }
         #endregion
     }
