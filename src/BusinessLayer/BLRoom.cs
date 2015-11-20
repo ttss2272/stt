@@ -54,9 +54,9 @@ namespace BusinessLayer
             return ds;
         }
 
-        public DataSet BindRoomDropDown(int RoomID)
+        public DataSet BindRoomDropDown(int BranchID )
         {
-            DataSet ds = obj_Room.BindRoomDropDown(RoomID);
+            DataSet ds = obj_Room.BindRoomDropDown(BranchID);
             return ds;
         }
     }
