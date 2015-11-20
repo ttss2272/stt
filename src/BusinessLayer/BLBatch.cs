@@ -74,5 +74,11 @@ namespace BusinessLayer
             string Result = obj_Batch.DeleteBatchSubject(BatchID, SubjectID, UpdatedByUserID, UpdatedDate);
             return Result;
         }
+
+        public DataSet BindBatchAvail()
+        {
+            DataSet ds = obj_Batch.BindBatchAvail();
+            return ds;
+        }
     }
 }
