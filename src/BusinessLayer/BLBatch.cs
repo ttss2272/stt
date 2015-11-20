@@ -50,5 +50,17 @@ namespace BusinessLayer
             DataSet ds = obj_Batch.BindBatchName();
             return ds;
         }
+
+        public DataSet BindBranchBatch(int BranchID)
+        {
+            DataSet ds = obj_Batch.BindBranchBatch(BranchID);
+            return ds;
+        }
+
+        public DataSet GetBatchSubject(int BatchID)
+        {
+            DataSet ds = obj_Batch.GetBatchSubject(BatchID);
+            return ds;
+        }
     }
 }

@@ -47,5 +47,11 @@ namespace BusinessLayer
             DataSet getClassName = obj_AddClass.BindClassName();
             return getClassName;
         }
+
+        public DataSet BindBranchClass(int BranchID)
+        {
+            DataSet ds = obj_AddClass.BindBranchClass(BranchID);
+            return ds;
+        }
     }
 }
