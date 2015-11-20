@@ -127,5 +127,36 @@ namespace DataAccessLayer
             conn.Close();
             return ds;
         }
+
+        public DataSet BindBranchBatch(int BranchID)
+        {
+            conn = con.getConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("BindBranchBatch_SP", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@BranchID", BranchID);
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
+        }
+
+        public DataSet GetBatchSubject(int BatchID)
+        {
+            conn = con.getConnection();
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("GetBatchSubject_SP", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@BatchID", BatchID);
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
+        }
     }
 }

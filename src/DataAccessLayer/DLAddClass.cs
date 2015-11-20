@@ -121,5 +121,21 @@ namespace DataAccessLayer
             conn.Close();
             return ds;
         }
+
+        public DataSet BindBranchClass(int BranchID)
+        {
+            conn = con.getConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("BindBranchClass_SP", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@BranchId", BranchID);
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
+        }
     }
 }
