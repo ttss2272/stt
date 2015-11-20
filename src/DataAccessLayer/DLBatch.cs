@@ -42,7 +42,7 @@ namespace DataAccessLayer
             return result;
         }
 
-        public string SaveBatchSubject (int SubjectID,int BatchID,int NoLectPerDay,int NoLectPerWeek,int UpdatedByUserID,int UpdatedDate,int Active,int IsDeleted)
+        public string SaveBatchSubject(int SubjectID, int BatchID, int NoLectPerDay, int NoLectPerWeek, int UpdatedByUserID, string UpdatedDate, int Active, int IsDeleted)
         {
             string Result = null;
 
@@ -168,7 +168,7 @@ namespace DataAccessLayer
             return ds;
         }
 
-        public DataSet GetBatchSubject(int BatchID)
+        public DataSet GetBatchSubject(int BatchID, int SubjectID)
         {
             conn = con.getConnection();
             conn.Open();
@@ -199,6 +199,11 @@ namespace DataAccessLayer
             sqlDa.Fill(ds);
             conn.Close();
             return ds;
+        }
+
+        public string DeleteBatchSubject(int BatchID, int SubjectID, int UpdatedByUserID, string UpdatedDate)
+        {
+            throw new NotImplementedException();
         }
     }
 }
