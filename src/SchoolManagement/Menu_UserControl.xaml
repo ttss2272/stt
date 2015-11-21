@@ -21,6 +21,7 @@
                 <MenuItem Header="Teacher Availability" Name="menuTeacherAvailability" Click="menuTeacherAvailability_Click"/>
                 <MenuItem Header="Room Availability" Name="menuRoomAvailability" Click="menuRoomAvailability_Click" />
                 <MenuItem Header="Batch Availability" Name="menuBatchAvailability" Click="menuBatchAvailability_Click" />
+                <MenuItem Header="Batch Subject" Name="menuBatchSubject" Click="menuBatchSubject_Click" />
             </MenuItem>
             <MenuItem Header="Setting" Width="70" Height="30">
                 <MenuItem Header="User" Name="menuUser" Click="menuUser_Click"/>
