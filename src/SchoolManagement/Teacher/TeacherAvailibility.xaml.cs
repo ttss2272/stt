@@ -1703,9 +1703,12 @@ namespace SchoolManagement.Teacher
                                             { return true; }
                                             else
                                             {
+                                                if(btnSave.Content.ToString() == "Save")
+                                                {
                                                 MessageBox.Show("Select At Least One Day.","Info",MessageBoxButton.OK,MessageBoxImage.Warning);
-
                                                 return false;
+                                                }
+                                                else { return true;}
                                             }
                                         }
 
