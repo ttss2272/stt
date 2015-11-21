@@ -429,12 +429,12 @@ namespace SchoolManagement.Room
             }
             if (ResultCount == 7)
             {
-                if (btnSave.Content.ToString()=="Save")
+                if (btnSave.Content.ToString() == "Save")
                 {
                     MessageBox.Show("Room Details Save Sucessfully", "Save Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
                     ClearFields();
                 }
-                else if (btnSave.Content.ToString()=="Update")
+                else if (btnSave.Content.ToString() == "Update")
                 {
                     MessageBox.Show("Room Details Update Sucessfully", "Update Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
                     ClearFields();
