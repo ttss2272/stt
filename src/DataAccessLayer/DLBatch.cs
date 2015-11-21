@@ -13,6 +13,7 @@ namespace DataAccessLayer
     {
         SqlConnection conn = new SqlConnection();
         DBConnection con = new DBConnection();
+
         public string saveBatch(int BatchID, int ClassID, string BatchName, string BatchCode, int LectureDuration, int IsLunchBreak, string LunchBreakStartTime, string LunchBreakEndTime, int MaxNoLecturesDay, int MaxNoLecturesWeek, int IsAllowMoreThanOneLectInBatch, int MaxNoOfLecureInRow, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
         {
             string result = null;
@@ -184,19 +185,16 @@ namespace DataAccessLayer
             return ds;
         }
 
-        public DataSet BindBatchDropDown()
+        public DataSet GetBatchSubjectCount()
         {
             conn = con.getConnection();
             conn.Open();
-
-            SqlCommand cmd = new SqlCommand("BindBatchName_SP", conn);
-
-
-           
+            SqlCommand cmd = new SqlCommand("GetBatchSubjectCount_SP", conn);
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
+
             sqlDa.Fill(ds);
             conn.Close();
             return ds;
@@ -245,6 +243,44 @@ namespace DataAccessLayer
             conn.Close();
             return Result;
  
+        }
+
+        public DataSet GetBatchAvailableDetail(int BatchID)
+        {
+            conn = con.getConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("GetBatchAvailableDetail_SP", conn);
+
+
+            cmd.Parameters.AddWithValue("@BatchID", BatchID);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
+
+        }
+
+        public DataSet BindBatchDropDown(int BranchID)
+        {
+            conn = con.getConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("BindBatchName_SP", conn);
+
+
+            cmd.Parameters.AddWithValue("@BranchID", BranchID);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
         }
     }
 }
