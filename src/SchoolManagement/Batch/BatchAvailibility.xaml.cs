@@ -288,13 +288,725 @@ namespace SchoolManagement.Batch
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                if (validate())
+                {
+                    SetParameters();
+                    BindGrid();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void btnSave_Copy_Click(object sender, RoutedEventArgs e)
         {
 
         }
+
+        #region-------------------------------------------------------Setparameters()-------------------------------------------------------
+        private void SetParameters()
+        {
+            int ResultCount = 0;
+
+            if (chkMon.IsChecked == true)
+            {
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
+                Day = chkMon.Content.ToString();
+                FinalStartTime = chkStartHrs1.Text + ":";
+                FinalStartTime += chkStartMin1.Text;
+                FinalEndTime = chkEndhrs1.Text + ":";
+                FinalEndTime += EndMin1.Text;
+                Active = 1;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                string Result = objBatch.SaveTeacherAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+            }
+            else if (chkMon.IsChecked == false)
+            {
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
+                Day = chkMon.Content.ToString();
+                FinalStartTime = "00:00:00";
+                FinalEndTime = "00:00:00";
+                Active = 0;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                string Result = objBatch.SaveTeacherAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+
+            }
+            if (chkTue.IsChecked == true)
+            {
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
+                Day = chkTue.Content.ToString();
+                FinalStartTime = chkStartHrs2.Text + ":";
+                FinalStartTime += chkStartMin2.Text;
+                FinalEndTime = chkEndhrs2.Text + ":";
+                FinalEndTime += EndMin2.Text;
+                Active = 1;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                string Result = objBatch.SaveTeacherAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+            }
+            else if (chkTue.IsChecked == false)
+            {
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
+                Day = chkTue.Content.ToString();
+                FinalStartTime = "00:00:00";
+                FinalEndTime = "00:00:00";
+                Active = 0;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                string Result = objBatch.SaveTeacherAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+
+            }
+            if (chkWed.IsChecked == true)
+            {
+                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                Day = chkWed.Content.ToString();
+                FinalStartTime = chkStartHrs3.Text + ":";
+                FinalStartTime += chkStartMin3.Text;
+                FinalEndTime = chkEndhrs3.Text + ":";
+                FinalEndTime += EndMin3.Text;
+                Active = 1;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+            }
+            else if (chkWed.IsChecked == false)
+            {
+                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                Day = chkWed.Content.ToString();
+                FinalStartTime = "00:00:00";
+                FinalEndTime = "00:00:00";
+                Active = 0;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+
+            }
+            if (chkThru.IsChecked == true)
+            {
+                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                Day = chkThru.Content.ToString();
+                FinalStartTime = chkStartHrs4.Text + ":";
+                FinalStartTime += chkStartMin4.Text;
+                FinalEndTime = chkEndhrs4.Text + ":";
+                FinalEndTime += EndMin4.Text;
+                Active = 1;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+            }
+            else if (chkThru.IsChecked == false)
+            {
+                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                Day = chkThru.Content.ToString();
+                FinalStartTime = "00:00:00";
+                FinalEndTime = "00:00:00";
+                Active = 0;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+
+            }
+            if (chkFri.IsChecked == true)
+            {
+                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                Day = chkFri.Content.ToString();
+                FinalStartTime = chkStartHrs5.Text + ":";
+                FinalStartTime += chkStartMin5.Text;
+                FinalEndTime = chkEndhrs5.Text + ":";
+                FinalEndTime += EndMin5.Text;
+                Active = 1;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+            }
+            else if (chkFri.IsChecked == false)
+            {
+                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                Day = chkFri.Content.ToString();
+                FinalStartTime = "00:00:00";
+                FinalEndTime = "00:00:00";
+                Active = 0;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+
+            }
+            if (chkSat.IsChecked == true)
+            {
+                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                Day = chkSat.Content.ToString();
+                FinalStartTime = chkStartHrs6.Text + ":";
+                FinalStartTime += chkStartMin6.Text;
+                FinalEndTime = chkEndhrs6.Text + ":";
+                FinalEndTime += EndMin6.Text;
+                Active = 1;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+            }
+            else if (chkSat.IsChecked == false)
+            {
+                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                Day = chkSat.Content.ToString();
+                FinalStartTime = "00:00:00";
+                FinalEndTime = "00:00:00";
+                Active = 0;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+
+            }
+            if (chkSun.IsChecked == true)
+            {
+                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                Day = chkSun.Content.ToString();
+                FinalStartTime = chkStartHrs7.Text + ":";
+                FinalStartTime += chkStartMin7.Text;
+                FinalEndTime = chkEndhrs7.Text + ":";
+                FinalEndTime += EndMin7.Text;
+                Active = 1;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+            }
+            else if (chkSun.IsChecked == false)
+            {
+                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                Day = chkSun.Content.ToString();
+                FinalStartTime = "00:00:00";
+                FinalEndTime = "00:00:00";
+                Active = 0;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+            }
+            if (ResultCount == 7)
+            {
+                MessageBox.Show("Teacher Details Save Sucessfully", "Save Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
+                ClearFields();
+            }
+
+        }
+        #endregion
+
+        #region--------------------------------------------------------validate()---------------------------------------------------------------
+        private bool validate()
+        {
+
+            if (MondayValidate())
+            {
+                if (TuesdayValidate())
+                {
+                    if (WednesdayValidate())
+                    {
+                        if (ThrusdayValidate())
+                        {
+                            if (FridayValidate())
+                            {
+                                if (SaturdayValidate())
+                                {
+                                    if (SundayValidate())
+                                    {
+                                        if (daycheckcount > 0)
+                                        { return true; }
+                                        else
+                                        {
+                                            MessageBox.Show("Select At Least One Day.");
+
+                                            return false;
+                                        }
+                                    }
+
+                                    else
+                                    { return false; }
+                                }
+                                else
+                                { return false; }
+                            }
+                            else
+                            { return false; }
+                        }
+                        else
+                        { return false; }
+                    }
+                    else
+                    { return false; }
+                }
+                else
+                { return false; }
+            }
+            else
+            {
+                return false;
+
+            }
+
+        }
+        #endregion
+
+        #region-------------------------------------------------------Monday Validate()---------------------------------------------------------
+        private bool MondayValidate()
+        {
+            if (chkMon.IsChecked == true)
+            {
+                if (chkStartHrs1.SelectedItem.ToString() == "HRS")
+                {
+                    MessageBox.Show("Please Select Start Hours From Monday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartHrs1.Focus();
+                    return false;
+                }
+                else if (chkStartMin1.SelectedItem.ToString() == "Min")
+                {
+                    MessageBox.Show("Please Select Minutes From Monday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartMin1.Focus();
+                    return false;
+
+                }
+                else if (chkEndhrs1.SelectedItem.ToString() == "HRS")
+                {
+                    MessageBox.Show("Please Select End Hours From Monday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkEndhrs1.Focus();
+                    return false;
+                }
+                else if (EndMin1.SelectedItem.ToString() == "Min")
+                {
+                    MessageBox.Show("Please Select End Minutes From Monday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    EndMin1.Focus();
+                    return false;
+                }
+                else if (Convert.ToInt32(chkStartHrs1.SelectedItem.ToString()) > Convert.ToInt32(chkEndhrs1.SelectedItem.ToString()))
+                {
+                    MessageBox.Show("End Hour Time Is Must Be Greater Than End Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkEndhrs1.Focus();
+                    return false;
+                }
+                else if ((Convert.ToInt32(chkStartHrs1.SelectedItem.ToString()) == Convert.ToInt32(chkEndhrs1.SelectedItem.ToString())) && (Convert.ToInt32(chkStartMin1.SelectedItem.ToString()) >= Convert.ToInt32(EndMin1.SelectedItem.ToString())))
+                {
+                    MessageBox.Show("End Minute Time Is Must Be Greater Than End Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartHrs1.Focus();
+                    return false;
+
+                }
+                else
+                { return true; }
+
+
+
+            }
+            else
+            { return true; }
+        }
+        #endregion
+
+        #region------------------------------------------------------Tuesday Validate()---------------------------------------------------------
+        private bool TuesdayValidate()
+        {
+            if (chkTue.IsChecked == true)
+            {
+                if (chkStartHrs2.SelectedItem.ToString() == "HRS")
+                {
+                    MessageBox.Show("Please Select Start Hours From Tuesday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartHrs2.Focus();
+                    return false;
+                }
+                else if (chkStartMin2.SelectedItem.ToString() == "Min")
+                {
+                    MessageBox.Show("Please Select Minutes From Tuesday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartMin2.Focus();
+                    return false;
+
+                }
+                else if (chkEndhrs2.SelectedItem.ToString() == "HRS")
+                {
+                    MessageBox.Show("Please Select End Hours From Tuesday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkEndhrs2.Focus();
+                    return false;
+                }
+                else if (EndMin2.SelectedItem.ToString() == "Min")
+                {
+                    MessageBox.Show("Please Select End Minutes From Tuesday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    EndMin2.Focus();
+                    return false;
+                }
+                else if (Convert.ToInt32(chkStartHrs2.SelectedItem.ToString()) > Convert.ToInt32(chkEndhrs2.SelectedItem.ToString()))
+                {
+                    MessageBox.Show("End Hour Time Is Must Be Greater Than End Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartHrs2.Focus();
+                    return false;
+                }
+                else if ((Convert.ToInt32(chkStartHrs2.SelectedItem.ToString()) == Convert.ToInt32(chkEndhrs2.SelectedItem.ToString())) && (Convert.ToInt32(chkStartMin2.SelectedItem.ToString()) >= Convert.ToInt32(EndMin2.SelectedItem.ToString())))
+                {
+                    MessageBox.Show("End Minute Time Is Must Be Greater Than End Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    EndMin2.Focus();
+                    return false;
+
+                }
+                else
+                { return true; }
+            }
+
+
+            else
+            { return true; }
+
+        }
+        #endregion
+
+        #region------------------------------------------------------Wednsday Validate()--------------------------------------------------------
+        private bool WednesdayValidate()
+        {
+            if (chkWed.IsChecked == true)
+            {
+                if (chkStartHrs3.SelectedItem.ToString() == "HRS")
+                {
+                    MessageBox.Show("Please Select Start Hours From Wednesday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartHrs3.Focus();
+                    return false;
+                }
+                else if (chkStartMin3.SelectedItem.ToString() == "Min")
+                {
+                    MessageBox.Show("Please Select Minutes From Wednesday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartMin3.Focus();
+                    return false;
+
+                }
+                else if (chkEndhrs3.SelectedItem.ToString() == "HRS")
+                {
+                    MessageBox.Show("Please Select End Hours From Wednesday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkEndhrs3.Focus();
+                    return false;
+                }
+                else if (EndMin3.SelectedItem.ToString() == "Min")
+                {
+                    MessageBox.Show("Please Select End Minutes From Wednesday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    EndMin3.Focus();
+                    return false;
+                }
+                else if (Convert.ToInt32(chkStartHrs3.SelectedItem.ToString()) > Convert.ToInt32(chkEndhrs3.SelectedItem.ToString()))
+                {
+                    MessageBox.Show("End Hour Time Is Must Be Greater Than End Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartHrs3.Focus();
+                    return false;
+                }
+                else if ((Convert.ToInt32(chkStartHrs3.SelectedItem.ToString()) == Convert.ToInt32(chkEndhrs3.SelectedItem.ToString())) && (Convert.ToInt32(chkStartMin3.SelectedItem.ToString()) >= Convert.ToInt32(EndMin3.SelectedItem.ToString())))
+                {
+                    MessageBox.Show("End Minute Time Is Must Be Greater Than End Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    EndMin3.Focus();
+                    return false;
+
+                }
+                else
+                { return true; }
+            }
+
+
+            else
+            { return true; }
+
+        }
+        #endregion
+
+        #region------------------------------------------------------Thrusday Validate()--------------------------------------------------------
+        private bool ThrusdayValidate()
+        {
+            if (chkThru.IsChecked == true)
+            {
+                if (chkStartHrs4.SelectedItem.ToString() == "HRS")
+                {
+                    MessageBox.Show("Please Select Start Hours From Thrusday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartHrs4.Focus();
+                    return false;
+                }
+                else if (chkStartMin4.SelectedItem.ToString() == "Min")
+                {
+                    MessageBox.Show("Please Select Minutes From Thrusday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartMin4.Focus();
+                    return false;
+
+                }
+                else if (chkEndhrs4.SelectedItem.ToString() == "HRS")
+                {
+                    MessageBox.Show("Please Select End Hours From Thrusday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkEndhrs4.Focus();
+                    return false;
+                }
+                else if (EndMin4.SelectedItem.ToString() == "Min")
+                {
+                    MessageBox.Show("Please Select End Minutes From Thrusday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    EndMin4.Focus();
+                    return false;
+                }
+                else if (Convert.ToInt32(chkStartHrs4.SelectedItem.ToString()) > Convert.ToInt32(chkEndhrs4.SelectedItem.ToString()))
+                {
+                    MessageBox.Show("End Hour Time Is Must Be Greater Than End Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkEndhrs4.Focus();
+                    return false;
+                }
+                else if ((Convert.ToInt32(chkStartHrs4.SelectedItem.ToString()) == Convert.ToInt32(chkEndhrs4.SelectedItem.ToString())) && (Convert.ToInt32(chkStartMin4.SelectedItem.ToString()) >= Convert.ToInt32(EndMin4.SelectedItem.ToString())))
+                {
+                    MessageBox.Show("End Minute Time Is Must Be Greater Than End Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    EndMin4.Focus();
+                    return false;
+
+                }
+                else
+                { return true; }
+            }
+
+
+            else
+            { return true; }
+
+        }
+        #endregion
+
+        #region-------------------------------------------------------Friday Validate()---------------------------------------------------------
+        private bool FridayValidate()
+        {
+            if (chkFri.IsChecked == true)
+            {
+                if (chkStartHrs5.SelectedItem.ToString() == "HRS")
+                {
+                    MessageBox.Show("Please Select Start Hours From Friday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartHrs5.Focus();
+                    return false;
+                }
+                else if (chkStartMin5.SelectedItem.ToString() == "Min")
+                {
+                    MessageBox.Show("Please Select Minutes From Friday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartMin5.Focus();
+                    return false;
+
+                }
+                else if (chkEndhrs5.SelectedItem.ToString() == "HRS")
+                {
+                    MessageBox.Show("Please Select End Hours From Friday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkEndhrs5.Focus();
+                    return false;
+                }
+                else if (EndMin5.SelectedItem.ToString() == "Min")
+                {
+                    MessageBox.Show("Please Select End Minutes From Friday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    EndMin5.Focus();
+                    return false;
+                }
+                else if (Convert.ToInt32(chkStartHrs5.SelectedItem.ToString()) > Convert.ToInt32(chkEndhrs5.SelectedItem.ToString()))
+                {
+                    MessageBox.Show("End Hour Time Is Must Be Greater Than End Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkEndhrs5.Focus();
+                    return false;
+                }
+                else if ((Convert.ToInt32(chkStartHrs5.SelectedItem.ToString()) == Convert.ToInt32(chkEndhrs5.SelectedItem.ToString())) && (Convert.ToInt32(chkStartMin5.SelectedItem.ToString()) >= Convert.ToInt32(EndMin5.SelectedItem.ToString())))
+                {
+                    MessageBox.Show("End Minute Time Is Must Be Greater Than End Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    EndMin5.Focus();
+                    return false;
+
+                }
+                else
+                { return true; }
+            }
+
+
+            else
+            { return true; }
+
+        }
+        #endregion
+
+        #region------------------------------------------------------Saturday Validate()--------------------------------------------------------
+        private bool SaturdayValidate()
+        {
+            if (chkSat.IsChecked == true)
+            {
+                if (chkStartHrs6.SelectedItem.ToString() == "HRS")
+                {
+                    MessageBox.Show("Please Select Start Hours From Friday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartHrs6.Focus();
+                    return false;
+                }
+                else if (chkStartMin6.SelectedItem.ToString() == "Min")
+                {
+                    MessageBox.Show("Please Select Minutes From Friday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartMin6.Focus();
+                    return false;
+
+                }
+                else if (chkEndhrs6.SelectedItem.ToString() == "HRS")
+                {
+                    MessageBox.Show("Please Select End Hours From Friday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkEndhrs6.Focus();
+                    return false;
+                }
+                else if (EndMin6.SelectedItem.ToString() == "Min")
+                {
+                    MessageBox.Show("Please Select End Minutes From Friday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    EndMin6.Focus();
+                    return false;
+                }
+                else if (Convert.ToInt32(chkStartHrs6.SelectedItem.ToString()) > Convert.ToInt32(chkEndhrs6.SelectedItem.ToString()))
+                {
+                    MessageBox.Show("End Hour Time Is Must Be Greater Than End Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkEndhrs6.Focus();
+                    return false;
+                }
+                else if ((Convert.ToInt32(chkStartHrs6.SelectedItem.ToString()) == Convert.ToInt32(chkEndhrs6.SelectedItem.ToString())) && (Convert.ToInt32(chkStartMin6.SelectedItem.ToString()) >= Convert.ToInt32(EndMin6.SelectedItem.ToString())))
+                {
+                    MessageBox.Show("End Minute Time Is Must Be Greater Than End Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    EndMin6.Focus();
+                    return false;
+
+                }
+                else
+                { return true; }
+            }
+
+
+            else
+            { return true; }
+
+        }
+        #endregion
+
+        #region-------------------------------------------------------Sunday Validate()---------------------------------------------------------
+        private bool SundayValidate()
+        {
+            if (chkSun.IsChecked == true)
+            {
+                if (chkStartHrs7.SelectedItem.ToString() == "HRS")
+                {
+                    MessageBox.Show("Please Select Start Hours From Sunday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartHrs7.Focus();
+                    return false;
+                }
+                else if (chkStartMin7.SelectedItem.ToString() == "Min")
+                {
+                    MessageBox.Show("Please Select Minutes From Sunday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartMin7.Focus();
+                    return false;
+
+                }
+                else if (chkEndhrs7.SelectedItem.ToString() == "HRS")
+                {
+                    MessageBox.Show("Please Select End Hours From Sunday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkEndhrs7.Focus();
+                    return false;
+                }
+                else if (EndMin7.SelectedItem.ToString() == "Min")
+                {
+                    MessageBox.Show("Please Select End Minutes From Sunday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    EndMin7.Focus();
+                    return false;
+                }
+                else if (Convert.ToInt32(chkStartHrs7.SelectedItem.ToString()) > Convert.ToInt32(chkEndhrs7.SelectedItem.ToString()))
+                {
+                    MessageBox.Show("End Hour Time Is Must Be Greater Than End Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkEndhrs7.Focus();
+                    return false;
+                }
+                else if ((Convert.ToInt32(chkStartHrs7.SelectedItem.ToString()) == Convert.ToInt32(chkEndhrs7.SelectedItem.ToString())) && (Convert.ToInt32(chkStartMin7.SelectedItem.ToString()) >= Convert.ToInt32(EndMin7.SelectedItem.ToString())))
+                {
+                    MessageBox.Show("End Minute Time Is Must Be Greater Than End Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    EndMin7.Focus();
+                    return false;
+
+                }
+                else
+                { return true; }
+            }
+
+
+            else
+            { return true; }
+
+        }
+        #endregion
+
         #region----------------------chkAvailAllDay_Click------------------
         private void chkAvailAllDay_Click(object sender, RoutedEventArgs e)
         {
