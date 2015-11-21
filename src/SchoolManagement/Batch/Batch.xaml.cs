@@ -407,6 +407,13 @@ namespace SchoolManagement.Batch
             btnDelete.IsEnabled = false;
             btnadd.Content = "Save";           
             select();
+            if (cbLunchBreak.Text == "Select")
+            {
+                cmbTimeStartHrs.IsEnabled = false;
+                cmbTimeStartMin.IsEnabled = false;
+                cmbTimeEndHrs.IsEnabled = false;
+                cmbTimeEndMin.IsEnabled = false;
+            }
           
 
 
@@ -564,13 +571,13 @@ namespace SchoolManagement.Batch
                         txtBatchCode.Text = ds.Tables[0].Rows[0]["BatchCode"].ToString();
 
                         txtlecDuration.Text = ds.Tables[0].Rows[0]["LectureDuration"].ToString();
-                        string StartTime = ((System.Data.DataRowView)(dgvBatch.CurrentItem)).Row.ItemArray[6].ToString();
+                        string StartTime = ds.Tables[0].Rows[0]["LunchBreakStartTime"].ToString();
                         string[] a = StartTime.Split(':');
                         cmbTimeStartHrs.Text = a[0];
                         {
                             cmbTimeStartMin.Text = a[1];
                         }
-                        string EndTime = ((System.Data.DataRowView)(dgvBatch.CurrentItem)).Row.ItemArray[7].ToString();
+                        string EndTime = ds.Tables[0].Rows[0]["LunchBreakEndTime"].ToString();
                         string[] b = EndTime.Split(':');
                         cmbTimeEndHrs.Text = b[0];
                         {
@@ -681,6 +688,7 @@ namespace SchoolManagement.Batch
             clearFields();
             BindClassName();                                              
             btnDelete.IsEnabled = false;
+            
              if (cbLunchBreak.Text == "Select") 
             {
                 cmbTimeStartHrs.IsEnabled = false;
@@ -688,6 +696,7 @@ namespace SchoolManagement.Batch
                 cmbTimeEndHrs.IsEnabled = false;
                 cmbTimeEndMin.IsEnabled = false;
             }
+
 
         }
 
@@ -744,7 +753,7 @@ namespace SchoolManagement.Batch
                 {
                     if (txtlecDuration.Text.Length > 0 && txtlecDuration.Text.Length == 1)
                     {
-                        if (System.Text.RegularExpressions.Regex.IsMatch(txtlecDuration.Text, "^[0-9]"))
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtlecDuration.Text, "^[0-9]") && (System.Text.RegularExpressions.Regex.IsMatch(txtlecDuration.Text, "^[0-9a-zA-Z]")))
                         {
                         }
                         else
@@ -773,7 +782,7 @@ namespace SchoolManagement.Batch
                 cmbTimeEndHrs.IsEnabled = false;
                 cmbTimeEndMin.IsEnabled = false;
             }
-            else if (cbLunchBreak.Text == "No") 
+             else if ((cbLunchBreak.Text == "No") || (cbLunchBreak.Text == "Select")) 
             {
                 cmbTimeStartHrs.IsEnabled = true;
                 cmbTimeStartMin.IsEnabled = true;
