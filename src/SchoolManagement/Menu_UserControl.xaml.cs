@@ -101,6 +101,12 @@ namespace SchoolManagement
             Close();
             ObjRoom.Show();
         }
+        private void menuBatchAvailability_Click(object sender, RoutedEventArgs e)
+        {
+            Batch.BatchAvailibility ObjBatch = new Batch.BatchAvailibility();
+            Close();
+            ObjBatch.Show();
+        }
 
         private void menuExit_Click(object sender, RoutedEventArgs e)
         {
@@ -112,6 +118,8 @@ namespace SchoolManagement
             Window parent = Window.GetWindow(this);
             parent.Close();
         }
+
+        
 
         
     }
