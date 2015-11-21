@@ -7,7 +7,7 @@
             <my:Menu_UserControl HorizontalAlignment="Left" x:Name="menu_UserControl1" VerticalAlignment="Top" />
         </StackPanel>
         <StackPanel HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="10,31,10,10">
-            <GroupBox Header="GroupBox" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,0,0,10" Height="545" >
+            <GroupBox Header="Batch Subject" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,0,0,10" Height="545" >
                 <Grid HorizontalAlignment="Center">
                     <GroupBox HorizontalAlignment="Stretch" Margin="-422,0,-461,11">
                         <Grid>
