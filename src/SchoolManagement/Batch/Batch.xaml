@@ -23,7 +23,7 @@
                 <RadioButton Content="InActive" Height="16" HorizontalAlignment="Left" Margin="291,233,0,0" Name="rdoDeActive" VerticalAlignment="Top" />
                 <Label Content="Status" Height="28" HorizontalAlignment="Left" Margin="113,226,0,0" Name="label4" VerticalAlignment="Top" />
                 <Label Content="*" Height="22" HorizontalAlignment="Left" Margin="178,229,0,0" Name="label5" VerticalAlignment="Top" Foreground="Red" FontWeight="Bold" />
-                <TextBox Height="26" HorizontalAlignment="Left" Margin="642,54,0,0" Name="txtlecDuration" VerticalAlignment="Top" Width="178" TextChanged="txtlecDuration_TextChanged" KeyDown="txtlecDuration_KeyDown" />
+                <TextBox Height="26" HorizontalAlignment="Left" Margin="642,54,0,0" Name="txtlecDuration" VerticalAlignment="Top" Width="178" TextChanged="txtlecDuration_TextChanged" KeyDown="txtlecDuration_KeyDown" MaxLength="0" />
                 <Label Content="Lunch Break Time " Height="28" HorizontalAlignment="Left" Margin="52,127,0,0" Name="label8" VerticalAlignment="Top" />
                 <ComboBox Height="23" HorizontalAlignment="Left" Margin="200,118,0,0" Name="cmbTimeStartHrs" VerticalAlignment="Top" Width="70" ItemsSource="{Binding}"/>
                 <ComboBox Height="23" HorizontalAlignment="Left" Margin="283,118,0,0" Name="cmbTimeStartMin" VerticalAlignment="Top" Width="70" ItemsSource="{Binding}"/>
@@ -47,6 +47,7 @@
                 <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="178,91,0,0" Name="label20" VerticalAlignment="Top" />
                 <ComboBox HorizontalAlignment="Left" Margin="200,90,0,0" Name="cbLunchBreak" TabIndex="9" VerticalAlignment="Top" Width="97" SelectionChanged="cbLunchBreak_SelectionChanged" />
                 <ComboBox HorizontalAlignment="Left" Margin="201,186,0,0" Name="cballowlect" TabIndex="9" VerticalAlignment="Top" Width="97" />
+                <Label Content="Min" Height="28" HorizontalAlignment="Left" Margin="819,54,0,0" Name="label21" VerticalAlignment="Top" />
             </Grid>
         </GroupBox>
         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Height="172" HorizontalAlignment="Left" Margin="14,464,0,0" Name="dgvBatch" VerticalAlignment="Top" Width="864" IsReadOnly="True" CanUserResizeColumns="False" ItemsSource="{Binding}">
