@@ -454,7 +454,7 @@ namespace SchoolManagement.Room
         * Created Date :- 20 Nov 2015
         * Purpose:- Binding branch*/
 
-        #region-------------bindbranch()--------------------------------------
+        #region-------------bindbranch()---------------------------------------------------------------------------------
 
         private void BindBranchName()
         {
@@ -1549,9 +1549,12 @@ namespace SchoolManagement.Room
                                         { return true; }
                                         else
                                         {
-                                            MessageBox.Show("Select At Least One Day.");
-
-                                            return false;
+                                            if (btnSave.Content == "Save")
+                                            {
+                                                MessageBox.Show("Select At Least One Day.");
+                                                return false;
+                                            }
+                                            else { return true; }
                                         }
                                     }
 
