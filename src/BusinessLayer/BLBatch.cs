@@ -80,5 +80,11 @@ namespace BusinessLayer
             DataSet ds = obj_Batch.GetBatchSubjectCount();
             return ds;
         }
+
+        public string SaveBatchAvailibility(int BatchID, string Day, string FinalStartTime, string FinalEndTime, int UpdatedByUserID, string UpdatedDate, int Active, int IsDeleted)
+        {
+            string Result = obj_Batch.SaveTeacherAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+            return Result;
+        }
     }
 }
