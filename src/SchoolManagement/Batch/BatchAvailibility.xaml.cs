@@ -95,6 +95,7 @@ namespace SchoolManagement.Batch
                 }
                 else
                 {
+                    gbbtavaday.IsEnabled = true;
                     cmbBatch.IsEnabled = false;
                     Clears();
                     GetBatchAvailableDetails(Convert.ToInt32(cmbBatch.SelectedValue));
@@ -147,6 +148,7 @@ namespace SchoolManagement.Batch
 
             if (chkMon.IsChecked == true)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkMon.Content.ToString();
                 FinalStartTime = chkStartHrs1.Text + ":";
@@ -165,6 +167,7 @@ namespace SchoolManagement.Batch
             }
             else if (chkMon.IsChecked == false)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkMon.Content.ToString();
                 FinalStartTime = "00:00:00";
@@ -182,6 +185,7 @@ namespace SchoolManagement.Batch
             }
             if (chkTue.IsChecked == true)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkTue.Content.ToString();
                 FinalStartTime = chkStartHrs2.Text + ":";
@@ -200,6 +204,7 @@ namespace SchoolManagement.Batch
             }
             else if (chkTue.IsChecked == false)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkTue.Content.ToString();
                 FinalStartTime = "00:00:00";
@@ -217,6 +222,7 @@ namespace SchoolManagement.Batch
             }
             if (chkWed.IsChecked == true)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkWed.Content.ToString();
                 FinalStartTime = chkStartHrs3.Text + ":";
@@ -236,6 +242,7 @@ namespace SchoolManagement.Batch
             }
             else if (chkWed.IsChecked == false)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkWed.Content.ToString();
                 FinalStartTime = "00:00:00";
@@ -254,6 +261,7 @@ namespace SchoolManagement.Batch
             }
             if (chkThru.IsChecked == true)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkThru.Content.ToString();
                 FinalStartTime = chkStartHrs4.Text + ":";
@@ -273,6 +281,7 @@ namespace SchoolManagement.Batch
             }
             else if (chkThru.IsChecked == false)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkThru.Content.ToString();
                 FinalStartTime = "00:00:00";
@@ -291,6 +300,7 @@ namespace SchoolManagement.Batch
             }
             if (chkFri.IsChecked == true)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkFri.Content.ToString();
                 FinalStartTime = chkStartHrs5.Text + ":";
@@ -310,6 +320,7 @@ namespace SchoolManagement.Batch
             }
             else if (chkFri.IsChecked == false)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkFri.Content.ToString();
                 FinalStartTime = "00:00:00";
@@ -328,6 +339,7 @@ namespace SchoolManagement.Batch
             }
             if (chkSat.IsChecked == true)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkSat.Content.ToString();
                 FinalStartTime = chkStartHrs6.Text + ":";
@@ -347,6 +359,7 @@ namespace SchoolManagement.Batch
             }
             else if (chkSat.IsChecked == false)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkSat.Content.ToString();
                 FinalStartTime = "00:00:00";
@@ -365,6 +378,7 @@ namespace SchoolManagement.Batch
             }
             if (chkSun.IsChecked == true)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkSun.Content.ToString();
                 FinalStartTime = chkStartHrs7.Text + ":";
@@ -384,6 +398,7 @@ namespace SchoolManagement.Batch
             }
             else if (chkSun.IsChecked == false)
             {
+                BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
                 BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkSun.Content.ToString();
                 FinalStartTime = "00:00:00";
@@ -419,17 +434,17 @@ namespace SchoolManagement.Batch
         #region---------------------------------bindBatch()------------------------------------
         private void BindBatch()
         {
-            BranchID = Convert.ToInt32(cmbBranch.SelectedValue.ToString());
+            BranchID = Convert.ToInt32(cmbBranch.SelectedValue);
             DataSet ds = objBatch.BindBranchBatch(BranchID);
 
             if (ds.Tables[0].Rows.Count > 0)
             {
                 cmbBatch.DataContext = null;
 
-                cmbBatch.DataContext = ds.Tables[0].DefaultView;
+                
                 cmbBatch.DisplayMemberPath = ds.Tables[0].Columns["BatchName"].ToString();
                 cmbBatch.SelectedValuePath = ds.Tables[0].Columns["BatchID"].ToString();
-
+                cmbBatch.DataContext = ds.Tables[0].DefaultView;
 
                 cmbBatch.SelectedValue = "0";
             }
@@ -447,9 +462,10 @@ namespace SchoolManagement.Batch
 
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    cmbBranch.DataContext = ds.Tables[0].DefaultView;
+                    
                     cmbBranch.DisplayMemberPath = ds.Tables[0].Columns["BranchName"].ToString();
                     cmbBranch.SelectedValuePath = ds.Tables[0].Columns["BranchID"].ToString();
+                    cmbBranch.DataContext = ds.Tables[0].DefaultView;
                     cmbBranch.SelectedValue = "0";
                 }
 
@@ -1386,7 +1402,7 @@ namespace SchoolManagement.Batch
                                         { return true; }
                                         else
                                         {
-                                            if (btnSave.Content == "Save")
+                                            if (btnSave.Content.ToString() == "Save")
                                             {
                                                 MessageBox.Show("Select At Least One Day.");
                                                 return false;
@@ -1962,9 +1978,5 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
-        private void cmbBatch_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }

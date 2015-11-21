@@ -9,21 +9,21 @@
                     <GroupBox Header="Room Availaible Details " Height="357" VerticalAlignment="Top"  DockPanel.Dock="left" Width="430" Margin="0,4,0,0">
                         <DataGrid HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="0,0,0,2" Name="dgBatchAvail" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" >
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding TeacherID}" Header="Teacher ID" Visibility="Hidden"></DataGridTextColumn>
-                                <DataGridTextColumn Binding="{Binding TeacherName}" Header="Name" Width="250"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding BatchID}" Header="Batch ID" Visibility="Hidden"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding BatchName}" Header="Name" Width="250"></DataGridTextColumn>
                                 <DataGridTextColumn Binding="{Binding NoOfDaysAvailaible}" Header="No of Available Days" Width="160"></DataGridTextColumn>
 
                             </DataGrid.Columns>
-                            <!--<DataGrid.ItemContainerStyle>
+                            <DataGrid.ItemContainerStyle>
                                 <Style TargetType="DataGridRow">
                                     <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick" />
                                 </Style>
-                            </DataGrid.ItemContainerStyle>-->
+                            </DataGrid.ItemContainerStyle>
 
                         </DataGrid>
                     </GroupBox>
                     <Button Content="Copy" Height="50" VerticalAlignment="Center" Width="59" HorizontalAlignment="Center" Visibility="Hidden" />
-                    <GroupBox Header="Room Avalaible Days" Height="357" VerticalAlignment="Top" Width="733" Margin="0,3,0,0" Name="gbbtavaday">
+                    <GroupBox Header="Room Avalaible Days" Height="357" VerticalAlignment="Top" Width="733" Margin="0,3,0,0" Name="gbbtavaday" IsEnabled="True">
                         <Grid Margin="0,6,0,-5">
                             <CheckBox Content="Available All Days" HorizontalAlignment="Left" Margin="24,50,0,0" VerticalAlignment="Top" Width="125" Name="chkAvailAllDay" Click="chkAvailAllDay_Click" />
                             <CheckBox Content="Same Time" HorizontalAlignment="Left" Margin="167,52,0,0" VerticalAlignment="Top" Name="chkAvailSameTime" Width="96" Click="chkAvailSameTime_Click"  />
@@ -218,7 +218,7 @@
                 <Grid>
 
                     <Label Content="Batch" HorizontalAlignment="Left" Margin="388,14,0,0" VerticalAlignment="Top" Width="74" FontWeight="Bold"/>
-                    <ComboBox HorizontalAlignment="Left" Margin="488,14,0,0" VerticalAlignment="Top" Width="175" Height="28"  Name="cmbBatch" ItemsSource="{Binding}" SelectionChanged="cmbBatch_SelectionChanged">
+                    <ComboBox HorizontalAlignment="Left" Margin="488,14,0,0" VerticalAlignment="Top" Width="175" Height="28"  Name="cmbBatch" ItemsSource="{Binding}" >
                     </ComboBox>
                     <Button Content="Go" HorizontalAlignment="Left" Margin="743,18,0,0" VerticalAlignment="Top" Width="75" Name="btnSearch" FontWeight="Bold" Click="btnSearch_Click"/>
                     <Label Content="Branch Name" HorizontalAlignment="Left" Margin="34,16,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
