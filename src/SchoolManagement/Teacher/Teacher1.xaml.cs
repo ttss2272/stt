@@ -73,7 +73,7 @@ namespace SchoolManagement.Teacher
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(),"Exception",MessageBoxButton.OK,MessageBoxImage.Warning);
             }
         }
         #endregion
