@@ -73,13 +73,6 @@ namespace SchoolManagement.Timeslot
                 cmbEHr.Focus();
                 return false;
             }
-            else if ((Convert.ToInt32(cmbSHr.Text) == Convert.ToInt32(cmbEHr.Text)) && (Convert.ToInt32(cmbSMin.Text) >= Convert.ToInt32(cmbEMin.Text)))
-            {
-                MessageBox.Show("Please Enter Proper Time  ...");
-                cmbSHr.Focus();
-                return false;
-
-            }
              else if (cmbSSHr.SelectedIndex == 0 || cmbSSMin.SelectedIndex == 0)
              {
                  MessageBox.Show("Please Select Slot start Time...");
@@ -93,13 +86,44 @@ namespace SchoolManagement.Timeslot
                  cmbEHr.Focus();
                  return false;
              }
+            else if (Convert.ToInt32(cmbSHr.SelectedItem.ToString()) > Convert.ToInt32(cmbEHr.SelectedItem.ToString()))
+            {
+                MessageBox.Show("End Hour Time of Open Time Is Must Be Greater Than End Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cmbEHr.Focus();
+                return false;
+            }
+            else if ((Convert.ToInt32(cmbSHr.Text) == Convert.ToInt32(cmbEHr.Text)) && (Convert.ToInt32(cmbSMin.Text) >= Convert.ToInt32(cmbEMin.Text)))
+            {
+                MessageBox.Show("End Minute Time of Open Time Is Must Be Greater Than End Time...");
+                cmbEMin.Focus();
+                return false;
+
+            }
+            else if (Convert.ToInt32(cmbSSHr.SelectedItem.ToString()) > Convert.ToInt32(cmbSEHr.SelectedItem.ToString()))
+            {
+                MessageBox.Show("End Hour Time of Slot Time Is Must Be Greater Than End Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cmbEHr.Focus();
+                return false;
+            }
              else if ((Convert.ToInt32(cmbSSHr.Text) == Convert.ToInt32(cmbSEHr.Text)) && (Convert.ToInt32(cmbSSMin.Text) >= Convert.ToInt32(cmbSEMin.Text)))
              {
-                 MessageBox.Show("Please Enter Proper Slot Time  ...");
+                 MessageBox.Show("End Minute Time of Slot Time Is Must Be Greater Than End Time...");
                  cmbSSHr.Focus();
                  return false;
-
              }
+            else if (Convert.ToInt32(cmbSHr.SelectedItem.ToString()) > Convert.ToInt32(cmbSSHr.SelectedItem.ToString())) 
+            {
+                MessageBox.Show("Please Enter Slot Start Time With in Open Time...");
+                cmbSSHr.Focus();
+                return false;
+            }
+            else if (Convert.ToInt32(cmbEHr.SelectedItem.ToString()) < Convert.ToInt32(cmbSEHr.SelectedItem.ToString()))
+            {
+                MessageBox.Show("Please Enter Slot End Time With in Open Time...");
+                cmbSEHr.Focus();
+                return false;
+
+            }
             else if (rdbActive.IsChecked == false && rdbInactive.IsChecked == false)
             {
                 MessageBox.Show("Please Select Status...");
