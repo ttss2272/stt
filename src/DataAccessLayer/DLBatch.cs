@@ -223,19 +223,27 @@ namespace DataAccessLayer
             return ds;
         }
 
-        public DataSet GetBatchSubjectCount ()
+        public string SaveBatchAvailibility(int BatchID, string Day, string FinalStartTime, string FinalEndTime, int UpdatedByUserID, string UpdatedDate, int Active, int IsDeleted)
         {
+            string Result = null;
             conn = con.getConnection();
-            conn.Open();
-            SqlCommand cmd = new SqlCommand("GetBatchSubjectCount_SP", conn);
+            SqlCommand cmd = new SqlCommand("SaveBatchAvailable_SP", conn);
             cmd.CommandType = CommandType.StoredProcedure;
-            
-            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
 
-            sqlDa.Fill(ds);
+            cmd.Parameters.AddWithValue("@BatchID", BatchID);
+            cmd.Parameters.AddWithValue("@Day", Day);
+            cmd.Parameters.AddWithValue("@StartTime", FinalStartTime);
+            cmd.Parameters.AddWithValue("@EndTime", FinalEndTime);
+            cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
+            cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
+            cmd.Parameters.AddWithValue("@IsActive", Active);
+            cmd.Parameters.AddWithValue("@IsDeleted", IsDeleted);
+
+            conn.Open();
+            Result = cmd.ExecuteScalar().ToString();
             conn.Close();
-            return ds;
+            return Result;
+ 
         }
     }
 }
