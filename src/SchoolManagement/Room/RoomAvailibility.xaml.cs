@@ -20,6 +20,11 @@ namespace SchoolManagement.Room
     /// </summary>
     public partial class RoomAvailibility : Window
     {
+
+        /* Created By:- Pranjali Vidhate
+       * Created Date :- 19 Nov 2015
+       * Purpose:- Global Declaration*/
+
         #region---------------------------------Declare variables Globally-------------------------------------
 
          BLRoom objRoom = new BLRoom();
@@ -52,6 +57,10 @@ namespace SchoolManagement.Room
                 ex.Message.ToString();
             } 
         }
+
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- To Clear Fields*/
 
         #region-----------------------------------------------ClearFields()-----------------------------------------------------------
         private void ClearFields()
@@ -86,7 +95,9 @@ namespace SchoolManagement.Room
         #endregion
 
 
-
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- To Search Room*/
 
         #region-------------- Go Coding------------------------------------------------------------------------------------
         private void btnSearch_Click(object sender, RoutedEventArgs e)
@@ -118,6 +129,10 @@ namespace SchoolManagement.Room
         #endregion
 
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- To Save Room*/
+
         #region-------------------------------Save Details----------------------------------------
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
@@ -136,7 +151,9 @@ namespace SchoolManagement.Room
         }
         #endregion
 
-
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- To Set All Parameters Room*/
 
         #region-------------------------------------------------------Setparameters()-------------------------------------------------------
         private void SetParameters()
@@ -427,7 +444,9 @@ namespace SchoolManagement.Room
         }
         #endregion
 
-
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- To Bind Room*/
 
         #region---------------------------------------------------BindRoom()-------------------------------------------------------------
         private void BindRoom()
@@ -439,10 +458,10 @@ namespace SchoolManagement.Room
             {
                 cmbRoom.DataContext = null;
 
-                cmbRoom.DataContext = ds.Tables[0].DefaultView;
+                
                 cmbRoom.DisplayMemberPath = ds.Tables[0].Columns["RoomName"].ToString();
                 cmbRoom.SelectedValuePath = ds.Tables[0].Columns["RoomID"].ToString();
-
+                cmbRoom.DataContext = ds.Tables[0].DefaultView;
 
                 cmbRoom.SelectedValue = "0";
             }
@@ -451,7 +470,7 @@ namespace SchoolManagement.Room
 
 
         /* Created By:- Pranjali Vidhate
-        * Created Date :- 20 Nov 2015
+        * Created Date :- 19 Nov 2015
         * Purpose:- Binding branch*/
 
         #region-------------bindbranch()---------------------------------------------------------------------------------
@@ -480,6 +499,9 @@ namespace SchoolManagement.Room
 
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- To Bind Timing*/
 
         #region---------------------------------------------------BindTiming------------------------------------------------------------------
         /*
@@ -710,7 +732,9 @@ namespace SchoolManagement.Room
         #endregion
 
 
-
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- To Clear_btn Coding*/
 
         #region-------------------------------------Clear_Button-----------------------------------------
         private void btnSave_Copy_Click(object sender, RoutedEventArgs e)
@@ -726,6 +750,9 @@ namespace SchoolManagement.Room
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- To Check Same Time Button Coding*/
 
         #region-----------------------CheckSameTime--------------------------------------------------------------
         private void chkAvailSameTime_Click(object sender, RoutedEventArgs e)
@@ -748,6 +775,9 @@ namespace SchoolManagement.Room
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- To  Check Day CheckBox Coding*/
 
         #region----------------------------------------------------------------CheckBoxes()---------------------------------------------------
 
@@ -1014,6 +1044,9 @@ namespace SchoolManagement.Room
 
       #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- To Enable All DropDown*/
 
         #region----------------------------------------------------------------EnableDropdown()------------------------------------------------
         private void EnableDropdown()
@@ -1056,6 +1089,9 @@ namespace SchoolManagement.Room
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- To Diseble All DropDown*/
 
         #region----------------------------------------------------------------DisebleDropdown()-----------------------------------------------
         private void DisableDropdown()
@@ -1098,6 +1134,9 @@ namespace SchoolManagement.Room
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- To Bind Result Data in Grid*/
 
         #region---------------------------------------------------------------BindGrid()-------------------------------------------------------
         private void BindGrid()
@@ -1113,7 +1152,9 @@ namespace SchoolManagement.Room
         }
         #endregion
 
-
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- To Get Room Avaailibility*/
 
         #region---------------------------------------------------------GetRoomAvailableDetails()-------------------------------------------
         private void GetRoomAvailableDetails(int numId)
@@ -1314,7 +1355,6 @@ namespace SchoolManagement.Room
 
                         }
 
-
                     }
                     btnSave.Content = "Update";
                 }
@@ -1327,6 +1367,9 @@ namespace SchoolManagement.Room
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- To Check All Days*/
 
         #region---------------------------------------------------------CheckAllDays()-----------------------------------------------------------
         private void CheckAllDays()
@@ -1342,7 +1385,9 @@ namespace SchoolManagement.Room
         }
         #endregion
 
-
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- To Uncheck All Days*/
 
         #region-------------------------------------------------------UncheckAllDays()------------------------------------------------------------
         private void UnchekAllDays()
@@ -1358,6 +1403,9 @@ namespace SchoolManagement.Room
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- Coding For StartHr_Selectionchange*/
 
         #region-------------------------------------------------ChkStartHrs_SelectionChanged()-----------------------------------------------
         private void chkStartHrs_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1385,6 +1433,9 @@ namespace SchoolManagement.Room
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- Coding For StartMin_Selectionchange*/
 
         #region-------------------------------------------------ChkStartMin_SelectionChanged()-----------------------------------------------
         private void chkStartMin_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1411,6 +1462,9 @@ namespace SchoolManagement.Room
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- Coding For EndHr_Selectionchange*/
 
         #region-------------------------------------------------ChkEndHrs_SelectionChanged()-----------------------------------------------
         private void chkEndhrs_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1435,6 +1489,9 @@ namespace SchoolManagement.Room
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- Coding For EndMin_Selectionchange*/
 
         #region-------------------------------------------------ChkEndMin_SelectionChanged()-----------------------------------------------
         private void EndMin_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1461,6 +1518,9 @@ namespace SchoolManagement.Room
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- To Uncheck All CheckBoxes*/
 
         #region--------------------------------unchekcall ChekcBoxes-----------------------------------
         private void UncheckAllCheckBoxes()
@@ -1478,6 +1538,9 @@ namespace SchoolManagement.Room
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- Coding For Row Double_Click*/
 
         #region----------------------------------------Row Double Click()-------------------------------------------------------------------
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
@@ -1549,7 +1612,7 @@ namespace SchoolManagement.Room
                                         { return true; }
                                         else
                                         {
-                                            if (btnSave.Content == "Save")
+                                            if (btnSave.Content.ToString() == "Save")
                                             {
                                                 MessageBox.Show("Select At Least One Day.");
                                                 return false;
@@ -1587,7 +1650,7 @@ namespace SchoolManagement.Room
 
 
         /*
-         * CreatedBy:-Prnjali vidhate
+         * CreatedBy:-Pranjali vidhate
          * Created Date:- 20 Nov2015
          * Purpose:- Monday Validate
          * StartTime:-
