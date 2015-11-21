@@ -223,6 +223,7 @@ namespace SchoolManagement.Class
             cbBoard.SelectedIndex = 0;
             cbBranchName.SelectedIndex = 0;
             UpID = 0;
+            btndelete.IsEnabled = false;
         }
         #endregion                    
 
@@ -405,7 +406,8 @@ namespace SchoolManagement.Class
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             try
-            {               
+            {
+                btndelete.IsEnabled = true;
                 object item = dgvClass.SelectedItem;
                // string Id = (dgvClass.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                 string BranchName = (dgvClass.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
@@ -489,6 +491,7 @@ namespace SchoolManagement.Class
             clearFields();
             BindBranchName();
             BindGridview();
+            btndelete.IsEnabled = false;
             
         }
 
