@@ -176,6 +176,7 @@ namespace DataAccessLayer
             SqlCommand cmd = new SqlCommand("GetBatchSubject_SP", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@BatchID", BatchID);
+            cmd.Parameters.AddWithValue("@SubjectID", SubjectID);
             SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
 
