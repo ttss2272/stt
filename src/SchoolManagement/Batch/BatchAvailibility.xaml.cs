@@ -39,9 +39,11 @@ namespace SchoolManagement.Batch
         #endregion
 
         #region---------------------------------Declare variables Globally-------------------------------------
-        BLBatch objBatch = new BLBatch();        
+        BLBatch objBatch = new BLBatch();
+        BLAddBranch obj_Branch = new BLAddBranch();
+
         int daycheckcount = 0, cnn, n = 0;
-        string tmpStartTime, tmpEndTime;
+        string tmpStartTime, tmpEndTime, Result;
         string[] StartTime;
         string[] EndTime;
         string[] s;
@@ -49,6 +51,38 @@ namespace SchoolManagement.Batch
         int BatchID,BranchID, UpdatedByUserID, Active, IsDeleted;
         string Day, FinalStartTime, FinalEndTime, UpdatedDate;
         #endregion
+
+        #region-----------------------------------------------ClearFields()-----------------------------------------------------------
+        private void ClearFields()
+        {
+            cmbBatch.IsEnabled = true;
+            BindBranchName();
+            BindBatch();
+            BindHours();
+            BindMinutes();
+            BindGrid();
+            UncheckAllCheckBoxes();
+            EnableDropdown();
+            btnSave.Content = "Save";
+            gbbtavaday.IsEnabled = false;
+        }
+        #endregion
+
+
+        #region---------------------------------------------------------Clears()-------------------------------------------------------
+        private void Clears()
+        {
+
+            BindHours();
+            BindMinutes();
+            BindGrid();
+            UncheckAllCheckBoxes();
+            gbSameTime.Visibility = Visibility.Hidden;
+            EnableDropdown();
+
+        }
+        #endregion
+
 
         #region-----------btnGo-------------------------------
         private void btnSearch_Click(object sender, RoutedEventArgs e)
@@ -74,6 +108,369 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        #region--------------------------btnSave_Click---------------------------
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (validate())
+                {
+                    SetParameters();
+                    BindGrid();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
+
+        #region---------------------------clearButton----------------------------
+        private void btnSave_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ClearFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        #endregion
+
+        #region-------------------------------------------------------Setparameters()-------------------------------------------------------
+        private void SetParameters()
+        {
+            int ResultCount = 0;
+
+            if (chkMon.IsChecked == true)
+            {
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
+                Day = chkMon.Content.ToString();
+                FinalStartTime = chkStartHrs1.Text + ":";
+                FinalStartTime += chkStartMin1.Text;
+                FinalEndTime = chkEndhrs1.Text + ":";
+                FinalEndTime += EndMin1.Text;
+                Active = 1;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+            }
+            else if (chkMon.IsChecked == false)
+            {
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
+                Day = chkMon.Content.ToString();
+                FinalStartTime = "00:00:00";
+                FinalEndTime = "00:00:00";
+                Active = 0;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+
+            }
+            if (chkTue.IsChecked == true)
+            {
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
+                Day = chkTue.Content.ToString();
+                FinalStartTime = chkStartHrs2.Text + ":";
+                FinalStartTime += chkStartMin2.Text;
+                FinalEndTime = chkEndhrs2.Text + ":";
+                FinalEndTime += EndMin2.Text;
+                Active = 1;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+            }
+            else if (chkTue.IsChecked == false)
+            {
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
+                Day = chkTue.Content.ToString();
+                FinalStartTime = "00:00:00";
+                FinalEndTime = "00:00:00";
+                Active = 0;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+
+            }
+            if (chkWed.IsChecked == true)
+            {
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
+                Day = chkWed.Content.ToString();
+                FinalStartTime = chkStartHrs3.Text + ":";
+                FinalStartTime += chkStartMin3.Text;
+                FinalEndTime = chkEndhrs3.Text + ":";
+                FinalEndTime += EndMin3.Text;
+                Active = 1;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+            }
+            else if (chkWed.IsChecked == false)
+            {
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
+                Day = chkWed.Content.ToString();
+                FinalStartTime = "00:00:00";
+                FinalEndTime = "00:00:00";
+                Active = 0;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+
+            }
+            if (chkThru.IsChecked == true)
+            {
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
+                Day = chkThru.Content.ToString();
+                FinalStartTime = chkStartHrs4.Text + ":";
+                FinalStartTime += chkStartMin4.Text;
+                FinalEndTime = chkEndhrs4.Text + ":";
+                FinalEndTime += EndMin4.Text;
+                Active = 1;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+            }
+            else if (chkThru.IsChecked == false)
+            {
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
+                Day = chkThru.Content.ToString();
+                FinalStartTime = "00:00:00";
+                FinalEndTime = "00:00:00";
+                Active = 0;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+
+            }
+            if (chkFri.IsChecked == true)
+            {
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
+                Day = chkFri.Content.ToString();
+                FinalStartTime = chkStartHrs5.Text + ":";
+                FinalStartTime += chkStartMin5.Text;
+                FinalEndTime = chkEndhrs5.Text + ":";
+                FinalEndTime += EndMin5.Text;
+                Active = 1;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+            }
+            else if (chkFri.IsChecked == false)
+            {
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
+                Day = chkFri.Content.ToString();
+                FinalStartTime = "00:00:00";
+                FinalEndTime = "00:00:00";
+                Active = 0;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+
+            }
+            if (chkSat.IsChecked == true)
+            {
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
+                Day = chkSat.Content.ToString();
+                FinalStartTime = chkStartHrs6.Text + ":";
+                FinalStartTime += chkStartMin6.Text;
+                FinalEndTime = chkEndhrs6.Text + ":";
+                FinalEndTime += EndMin6.Text;
+                Active = 1;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+            }
+            else if (chkSat.IsChecked == false)
+            {
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
+                Day = chkSat.Content.ToString();
+                FinalStartTime = "00:00:00";
+                FinalEndTime = "00:00:00";
+                Active = 0;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+
+            }
+            if (chkSun.IsChecked == true)
+            {
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
+                Day = chkSun.Content.ToString();
+                FinalStartTime = chkStartHrs7.Text + ":";
+                FinalStartTime += chkStartMin7.Text;
+                FinalEndTime = chkEndhrs7.Text + ":";
+                FinalEndTime += EndMin7.Text;
+                Active = 1;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+            }
+            else if (chkSun.IsChecked == false)
+            {
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
+                Day = chkSun.Content.ToString();
+                FinalStartTime = "00:00:00";
+                FinalEndTime = "00:00:00";
+                Active = 0;
+                IsDeleted = 0;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                UpdatedByUserID = 1;
+                Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                {
+                    ResultCount++;
+                }
+            }
+            if (ResultCount == 7)
+            {
+                if (btnSave.Content.ToString() == "Save")
+                {
+                    MessageBox.Show("Batch Details Save Sucessfully", "Save Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ClearFields();
+                }
+                else if (btnSave.Content.ToString() == "Update")
+                {
+                    MessageBox.Show("Batch Details Update Sucessfully", "Update Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ClearFields();
+                }
+            }
+
+        }
+        #endregion
+
+
+        #region---------------------------------bindBatch()------------------------------------
+        private void BindBatch()
+        {
+            BranchID = Convert.ToInt32(cmbBranch.SelectedValue.ToString());
+            DataSet ds = objBatch.BindBranchBatch(BranchID);
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                cmbBatch.DataContext = null;
+
+                cmbBatch.DataContext = ds.Tables[0].DefaultView;
+                cmbBatch.DisplayMemberPath = ds.Tables[0].Columns["BatchName"].ToString();
+                cmbBatch.SelectedValuePath = ds.Tables[0].Columns["BatchID"].ToString();
+
+
+                cmbBatch.SelectedValue = "0";
+            }
+        }
+        #endregion
+
+        #region-------------bindbranch()---------------------------------------------------------------------------------
+
+        private void BindBranchName()
+        {
+            try
+            {
+                DataSet ds = obj_Branch.BindBranchName();
+
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    cmbBranch.DataContext = ds.Tables[0].DefaultView;
+                    cmbBranch.DisplayMemberPath = ds.Tables[0].Columns["BranchName"].ToString();
+                    cmbBranch.SelectedValuePath = ds.Tables[0].Columns["BranchID"].ToString();
+                    cmbBranch.SelectedValue = "0";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        #endregion
+
+
+        #region---------------------------------------------------BindTiming------------------------------------------------------------------
+        /*
+         * CreatedBy:-Pranjali Vidhate
+         * Created Date:- 21 Nov2015
+         * Purpose:-
+         * StartTime:-
+         * EndTime:-
+         */
         #region---------------------------------------------------BindHours------------------------------------------------
         private void BindHours()
         {
@@ -178,6 +575,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+         * CreatedBy:-Pranjali vidhate
+         * Created Date:- 21 Nov2015
+         * Purpose:-
+         * StartTime:-
+         * EndTime:-
+         */
         #region---------------------------------------------------BindMinutes------------------------------------------------
         private void BindMinutes()
         {
@@ -285,16 +689,20 @@ namespace SchoolManagement.Batch
         }
 
         #endregion
+        #endregion
 
-        #region--------------------------btnSave_Click---------------------------
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        #region-----------------------CheckSameTime--------------------------------------------------------------
+        private void chkAvailSameTime_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (validate())
+                if (chkAvailSameTime.IsChecked == true)
                 {
-                    SetParameters();
-                    BindGrid();
+                    DisableDropdown();
+                }
+                else
+                {
+                    EnableDropdown();
                 }
             }
             catch (Exception ex)
@@ -304,291 +712,658 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
-        #region---------------------------btnSave_Copy_Click----------------------------
-        private void btnSave_Copy_Click(object sender, RoutedEventArgs e)
+        #region----------------------------------------------------------------CheckBoxes()---------------------------------------------------
+
+        #region---------------------------------------------------Chkallday------------------------------------------------
+        private void chkAvailAllDay_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                ClearFields();
+                if (chkAvailAllDay.IsChecked == true)
+                {
+                    CheckAllDays();
+                }
+                else
+                {
+                    UnchekAllDays();
+
+
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion
 
-        #region-------------------------------------------------------Setparameters()-------------------------------------------------------
-        private void SetParameters()
+        #region---------------------------------------------------ChkMon------------------------------------------------
+        private void chkMon_Click(object sender, RoutedEventArgs e)
         {
-            int ResultCount = 0;
-
-            if (chkMon.IsChecked == true)
+            try
             {
-                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
-                Day = chkMon.Content.ToString();
-                FinalStartTime = chkStartHrs1.Text + ":";
-                FinalStartTime += chkStartMin1.Text;
-                FinalEndTime = chkEndhrs1.Text + ":";
-                FinalEndTime += EndMin1.Text;
-                Active = 1;
-                IsDeleted = 0;
-                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-                UpdatedByUserID = 1;
-                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
-                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                if (chkMon.IsChecked == true)
                 {
-                    ResultCount++;
+                    ++daycheckcount;
                 }
-            }
-            else if (chkMon.IsChecked == false)
-            {
-                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
-                Day = chkMon.Content.ToString();
-                FinalStartTime = "00:00:00";
-                FinalEndTime = "00:00:00";
-                Active = 0;
-                IsDeleted = 0;
-                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-                UpdatedByUserID = 1;
-                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
-                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                else if (chkMon.IsChecked == false)
                 {
-                    ResultCount++;
+                    --daycheckcount;
+                    chkStartHrs1.SelectedIndex = 0;
+                    chkStartMin1.SelectedIndex = 0;
+                    chkEndhrs1.SelectedIndex = 0;
+                    EndMin1.SelectedIndex = 0;
+                }
+                if (daycheckcount == 7)
+                {
+                    chkAvailAllDay.IsChecked = true;
+                }
+                else
+                {
+                    chkAvailAllDay.IsChecked = false;
                 }
 
             }
-            if (chkTue.IsChecked == true)
+            catch (Exception ex)
             {
-                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
-                Day = chkTue.Content.ToString();
-                FinalStartTime = chkStartHrs2.Text + ":";
-                FinalStartTime += chkStartMin2.Text;
-                FinalEndTime = chkEndhrs2.Text + ":";
-                FinalEndTime += EndMin2.Text;
-                Active = 1;
-                IsDeleted = 0;
-                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-                UpdatedByUserID = 1;
-                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
-                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
-                {
-                    ResultCount++;
-                }
+                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            else if (chkTue.IsChecked == false)
+        }
+        #endregion
+
+        #region---------------------------------------------------ChkTue------------------------------------------------
+        private void chkTue_Click(object sender, RoutedEventArgs e)
+        {
+            try
             {
-                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
-                Day = chkTue.Content.ToString();
-                FinalStartTime = "00:00:00";
-                FinalEndTime = "00:00:00";
-                Active = 0;
-                IsDeleted = 0;
-                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-                UpdatedByUserID = 1;
-                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
-                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                if (chkTue.IsChecked == true)
                 {
-                    ResultCount++;
+                    ++daycheckcount;
                 }
-
-            }
-            if (chkWed.IsChecked == true)
-            {
-                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
-                Day = chkWed.Content.ToString();
-                FinalStartTime = chkStartHrs3.Text + ":";
-                FinalStartTime += chkStartMin3.Text;
-                FinalEndTime = chkEndhrs3.Text + ":";
-                FinalEndTime += EndMin3.Text;
-                Active = 1;
-                IsDeleted = 0;
-                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-                UpdatedByUserID = 1;
-                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
-
-                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                else if (chkTue.IsChecked == false)
                 {
-                    ResultCount++;
+                    --daycheckcount;
+                    chkStartHrs2.SelectedIndex = 0;
+                    chkStartMin2.SelectedIndex = 0;
+                    chkEndhrs2.SelectedIndex = 0;
+                    EndMin2.SelectedIndex = 0;
                 }
-            }
-            else if (chkWed.IsChecked == false)
-            {
-                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
-                Day = chkWed.Content.ToString();
-                FinalStartTime = "00:00:00";
-                FinalEndTime = "00:00:00";
-                Active = 0;
-                IsDeleted = 0;
-                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-                UpdatedByUserID = 1;
-                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
-
-                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                if (daycheckcount == 7)
                 {
-                    ResultCount++;
+                    chkAvailAllDay.IsChecked = true;
+                }
+                else
+                {
+                    chkAvailAllDay.IsChecked = false;
                 }
 
             }
-            if (chkThru.IsChecked == true)
+            catch (Exception ex)
             {
-                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
-                Day = chkThru.Content.ToString();
-                FinalStartTime = chkStartHrs4.Text + ":";
-                FinalStartTime += chkStartMin4.Text;
-                FinalEndTime = chkEndhrs4.Text + ":";
-                FinalEndTime += EndMin4.Text;
-                Active = 1;
-                IsDeleted = 0;
-                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-                UpdatedByUserID = 1;
-                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
-
-                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
-                {
-                    ResultCount++;
-                }
+                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            else if (chkThru.IsChecked == false)
-            {
-                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
-                Day = chkThru.Content.ToString();
-                FinalStartTime = "00:00:00";
-                FinalEndTime = "00:00:00";
-                Active = 0;
-                IsDeleted = 0;
-                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-                UpdatedByUserID = 1;
-                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+        }
+        #endregion
 
-                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+        #region---------------------------------------------------ChkThru------------------------------------------------
+        private void chkThru_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (chkThru.IsChecked == true)
                 {
-                    ResultCount++;
+                    ++daycheckcount;
+                }
+                else if (chkThru.IsChecked == false)
+                {
+                    --daycheckcount;
+                    chkStartHrs4.SelectedIndex = 0;
+                    chkStartMin4.SelectedIndex = 0;
+                    chkEndhrs4.SelectedIndex = 0;
+                    EndMin4.SelectedIndex = 0;
+                }
+                if (daycheckcount == 7)
+                {
+                    chkAvailAllDay.IsChecked = true;
+                }
+                else
+                {
+                    chkAvailAllDay.IsChecked = false;
                 }
 
             }
-            if (chkFri.IsChecked == true)
+            catch (Exception ex)
             {
-                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
-                Day = chkFri.Content.ToString();
-                FinalStartTime = chkStartHrs5.Text + ":";
-                FinalStartTime += chkStartMin5.Text;
-                FinalEndTime = chkEndhrs5.Text + ":";
-                FinalEndTime += EndMin5.Text;
-                Active = 1;
-                IsDeleted = 0;
-                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-                UpdatedByUserID = 1;
-                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
-
-                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
-                {
-                    ResultCount++;
-                }
+                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            else if (chkFri.IsChecked == false)
-            {
-                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
-                Day = chkFri.Content.ToString();
-                FinalStartTime = "00:00:00";
-                FinalEndTime = "00:00:00";
-                Active = 0;
-                IsDeleted = 0;
-                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-                UpdatedByUserID = 1;
-                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+        }
+        #endregion
 
-                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+        #region---------------------------------------------------Chkwed------------------------------------------------
+        private void chkWed_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (chkWed.IsChecked == true)
                 {
-                    ResultCount++;
+                    ++daycheckcount;
+                }
+                else if (chkWed.IsChecked == false)
+                {
+                    --daycheckcount;
+                    chkStartHrs3.SelectedIndex = 0;
+                    chkStartMin3.SelectedIndex = 0;
+                    chkEndhrs3.SelectedIndex = 0;
+                    EndMin3.SelectedIndex = 0;
+                }
+                if (daycheckcount == 7)
+                {
+                    chkAvailAllDay.IsChecked = true;
+                }
+                else
+                {
+                    chkAvailAllDay.IsChecked = false;
                 }
 
             }
-            if (chkSat.IsChecked == true)
+            catch (Exception ex)
             {
-                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
-                Day = chkSat.Content.ToString();
-                FinalStartTime = chkStartHrs6.Text + ":";
-                FinalStartTime += chkStartMin6.Text;
-                FinalEndTime = chkEndhrs6.Text + ":";
-                FinalEndTime += EndMin6.Text;
-                Active = 1;
-                IsDeleted = 0;
-                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-                UpdatedByUserID = 1;
-                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
-
-                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
-                {
-                    ResultCount++;
-                }
+                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            else if (chkSat.IsChecked == false)
-            {
-                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
-                Day = chkSat.Content.ToString();
-                FinalStartTime = "00:00:00";
-                FinalEndTime = "00:00:00";
-                Active = 0;
-                IsDeleted = 0;
-                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-                UpdatedByUserID = 1;
-                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+        }
+        #endregion
 
-                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+        #region---------------------------------------------------ChkFri------------------------------------------------
+        private void chkFri_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (chkFri.IsChecked == true)
                 {
-                    ResultCount++;
+                    ++daycheckcount;
+                }
+                else if (chkFri.IsChecked == false)
+                {
+                    --daycheckcount;
+                    chkStartHrs5.SelectedIndex = 0;
+                    chkStartMin5.SelectedIndex = 0;
+                    chkEndhrs5.SelectedIndex = 0;
+                    EndMin5.SelectedIndex = 0;
+                }
+                if (daycheckcount == 7)
+                {
+                    chkAvailAllDay.IsChecked = true;
+                }
+                else
+                {
+                    chkAvailAllDay.IsChecked = false;
                 }
 
             }
-            if (chkSun.IsChecked == true)
+            catch (Exception ex)
             {
-                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
-                Day = chkSun.Content.ToString();
-                FinalStartTime = chkStartHrs7.Text + ":";
-                FinalStartTime += chkStartMin7.Text;
-                FinalEndTime = chkEndhrs7.Text + ":";
-                FinalEndTime += EndMin7.Text;
-                Active = 1;
-                IsDeleted = 0;
-                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-                UpdatedByUserID = 1;
-                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
 
-                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
-                {
-                    ResultCount++;
-                }
-            }
-            else if (chkSun.IsChecked == false)
+        #region---------------------------------------------------ChkSat------------------------------------------------
+        private void chkSat_Click(object sender, RoutedEventArgs e)
+        {
+            try
             {
-                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
-                Day = chkSun.Content.ToString();
-                FinalStartTime = "00:00:00";
-                FinalEndTime = "00:00:00";
-                Active = 0;
-                IsDeleted = 0;
-                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-                UpdatedByUserID = 1;
-                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
-                if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
+                if (chkSat.IsChecked == true)
                 {
-                    ResultCount++;
+                    ++daycheckcount;
                 }
+                else if (chkSat.IsChecked == false)
+                {
+                    --daycheckcount;
+                    chkStartHrs6.SelectedIndex = 0;
+                    chkStartMin6.SelectedIndex = 0;
+                    chkEndhrs6.SelectedIndex = 0;
+                    EndMin6.SelectedIndex = 0;
+                }
+                if (daycheckcount == 7)
+                {
+                    chkAvailAllDay.IsChecked = true;
+                }
+                else
+                {
+                    chkAvailAllDay.IsChecked = false;
+                }
+
             }
-            if (ResultCount == 7)
+            catch (Exception ex)
             {
-                MessageBox.Show("Teacher Details Save Sucessfully", "Save Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
-                ClearFields();
+                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
+
+        #region---------------------------------------------------ChkSun------------------------------------------------
+        private void chkSun_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (chkSun.IsChecked == true)
+                {
+                    ++daycheckcount;
+                }
+                else if (chkSun.IsChecked == false)
+                {
+                    --daycheckcount;
+                    chkStartHrs7.SelectedIndex = 0;
+                    chkStartMin7.SelectedIndex = 0;
+                    chkEndhrs7.SelectedIndex = 0;
+                    EndMin7.SelectedIndex = 0;
+                }
+                if (daycheckcount == 7)
+                {
+                    chkAvailAllDay.IsChecked = true;
+                }
+                else
+                {
+                    chkAvailAllDay.IsChecked = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
+
+        #endregion
+
+        #region----------------------------------------------------------------DisebleDropdown()-----------------------------------------------
+        private void DisableDropdown()
+        {
+            gbSameTime.Visibility = Visibility.Visible;
+            chkStartHrs1.IsEnabled = false;
+            chkStartHrs2.IsEnabled = false;
+            chkStartHrs3.IsEnabled = false;
+            chkStartHrs4.IsEnabled = false;
+            chkStartHrs5.IsEnabled = false;
+            chkStartHrs6.IsEnabled = false;
+            chkStartHrs7.IsEnabled = false;
+
+            chkEndhrs1.IsEnabled = false;
+            chkEndhrs2.IsEnabled = false;
+            chkEndhrs3.IsEnabled = false;
+            chkEndhrs4.IsEnabled = false;
+            chkEndhrs5.IsEnabled = false;
+            chkEndhrs6.IsEnabled = false;
+            chkEndhrs7.IsEnabled = false;
+            chkEndhrs1.IsEnabled = false;
+            chkEndhrs1.IsEnabled = false;
+
+            chkStartMin1.IsEnabled = false;
+            chkStartMin2.IsEnabled = false;
+            chkStartMin3.IsEnabled = false;
+            chkStartMin4.IsEnabled = false;
+            chkStartMin5.IsEnabled = false;
+            chkStartMin6.IsEnabled = false;
+            chkStartMin7.IsEnabled = false;
+
+            EndMin1.IsEnabled = false;
+            EndMin2.IsEnabled = false;
+            EndMin3.IsEnabled = false;
+            EndMin4.IsEnabled = false;
+            EndMin5.IsEnabled = false;
+            EndMin6.IsEnabled = false;
+            EndMin7.IsEnabled = false;
+
+        }
+        #endregion
+
+
+        #region----------------------------------------------------------------EnableDropdown()------------------------------------------------
+        private void EnableDropdown()
+        {
+            gbSameTime.Visibility = Visibility.Hidden;
+
+            chkStartHrs1.IsEnabled = true;
+            chkStartHrs2.IsEnabled = true;
+            chkStartHrs3.IsEnabled = true;
+            chkStartHrs4.IsEnabled = true;
+            chkStartHrs5.IsEnabled = true;
+            chkStartHrs6.IsEnabled = true;
+            chkStartHrs7.IsEnabled = true;
+
+            chkEndhrs1.IsEnabled = true;
+            chkEndhrs2.IsEnabled = true;
+            chkEndhrs3.IsEnabled = true;
+            chkEndhrs4.IsEnabled = true;
+            chkEndhrs5.IsEnabled = true;
+            chkEndhrs6.IsEnabled = true;
+            chkEndhrs7.IsEnabled = true;
+            chkEndhrs1.IsEnabled = true;
+            chkEndhrs1.IsEnabled = true;
+
+            chkStartMin1.IsEnabled = true;
+            chkStartMin2.IsEnabled = true;
+            chkStartMin3.IsEnabled = true;
+            chkStartMin4.IsEnabled = true;
+            chkStartMin5.IsEnabled = true;
+            chkStartMin6.IsEnabled = true;
+            chkStartMin7.IsEnabled = true;
+
+            EndMin1.IsEnabled = true;
+            EndMin2.IsEnabled = true;
+            EndMin3.IsEnabled = true;
+            EndMin4.IsEnabled = true;
+            EndMin5.IsEnabled = true;
+            EndMin6.IsEnabled = true;
+            EndMin7.IsEnabled = true;
+        }
+        #endregion
+
+
+        #region---------------------------------------------------------------BindGrid()-------------------------------------------------------
+        private void BindGrid()
+        {
+            DataSet ds = objBatch.BindBatchAvail();
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                dgBatchAvail.DataContext = null;
+                dgBatchAvail.DataContext = ds.Tables[0].DefaultView;
             }
 
         }
         #endregion
+
+        #region---------------------------------------------------------GetBatchAvailableDetails()-------------------------------------------
+        private void GetBatchAvailableDetails(int numId)
+        {
+            cnn = 0;
+            if (cmbBatch.SelectedValue.ToString() == "0")
+            {
+                MessageBox.Show("Please Select Batch.");
+            }
+            else
+            {
+                DataSet ds = objBatch.GetBatchAvailableDetail(numId);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    int cnt = ds.Tables[0].Rows.Count;
+                    string s;
+                    if (cnt == 7)
+                    {
+                        chkAvailAllDay.IsChecked = true;
+                        CheckAllDays();
+                        gbSameTime.Visibility = Visibility.Visible;
+                    }
+                    for (int i = 0; i < cnt; i++)
+                    {
+                        s = ds.Tables[0].Rows[i]["Day"].ToString();
+
+                        if ((ds.Tables[0].Rows[0]["StartTime"].ToString() == ds.Tables[0].Rows[i]["StartTime"].ToString()) && (ds.Tables[0].Rows[0]["EndTime"].ToString() == ds.Tables[0].Rows[i]["EndTime"].ToString()))
+                        {
+                            cnn++;
+
+                        }
+                        switch (s)
+                        {
+                            case ("Mon"):
+                                {
+                                    tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
+                                    string[] StartTime = tmpStartTime.Split(':');
+                                    chkStartHrs1.Text = StartTime[0];
+                                    //if (StartTime[1] == "00")
+                                    //{ chkStartMin1.Text = "0"; }
+                                    //else
+                                    { chkStartMin1.Text = StartTime[1]; }
+
+                                    tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
+                                    string[] EndTime = tmpEndTime.Split(':');
+                                    chkEndhrs1.Text = EndTime[0];
+                                    //if (EndTime[1] == "00")
+                                    //{ EndMin1.Text = "0"; }
+                                    //else
+                                    { EndMin1.Text = EndTime[1]; }
+                                    chkMon.IsChecked = true;
+                                    break;
+                                }
+                            case ("Tue"):
+                                {
+                                    tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
+                                    string[] StartTime = tmpStartTime.Split(':');
+                                    chkStartHrs2.Text = StartTime[0];
+                                    //if (StartTime[1] == "00")
+                                    //{ chkStartMin2.Text = "0"; }
+                                    //else
+                                    { chkStartMin2.Text = StartTime[1]; }
+
+                                    tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
+                                    string[] EndTime = tmpEndTime.Split(':');
+                                    chkEndhrs2.Text = EndTime[0];
+                                    //if (EndTime[1] == "00")
+                                    //{ EndMin2.Text = "0"; }
+                                    //else
+                                    { EndMin2.Text = EndTime[1]; }
+                                    chkTue.IsChecked = true;
+                                    break;
+                                }
+                            case ("Wed"):
+                                {
+                                    tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
+                                    string[] StartTime = tmpStartTime.Split(':');
+                                    chkStartHrs3.Text = StartTime[0];
+                                    //if (StartTime[1] == "00")
+                                    //{ chkStartMin3.Text = "0"; }
+                                    //else
+                                    { chkStartMin3.Text = StartTime[1]; }
+
+                                    tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
+                                    string[] EndTime = tmpEndTime.Split(':');
+                                    chkEndhrs3.Text = EndTime[0];
+                                    //if (EndTime[1] == "00")
+                                    //{ EndMin3.Text = "0"; }
+                                    //else
+                                    { EndMin3.Text = EndTime[1]; }
+                                    chkWed.IsChecked = true;
+                                    break;
+                                }
+                            case ("Thru"):
+                                {
+                                    tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
+                                    string[] StartTime = tmpStartTime.Split(':');
+                                    chkStartHrs4.Text = StartTime[0];
+                                    //if (StartTime[1] == "00")
+                                    //{ chkStartMin4.Text = "0"; }
+                                    //else
+                                    { chkStartMin4.Text = StartTime[1]; }
+
+                                    tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
+                                    string[] EndTime = tmpEndTime.Split(':');
+                                    chkEndhrs4.Text = EndTime[0];
+                                    //if (EndTime[1] == "00")
+                                    //{ EndMin4.Text = "0"; }
+                                    //else
+                                    { EndMin4.Text = EndTime[1]; }
+                                    chkThru.IsChecked = true;
+                                    break;
+                                }
+
+                            case ("Fri"):
+                                {
+                                    tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
+                                    string[] StartTime = tmpStartTime.Split(':');
+                                    chkStartHrs5.Text = StartTime[0];
+                                    //if (StartTime[1] == "00")
+                                    //{ chkStartMin5.Text = "0"; }
+                                    //else
+                                    { chkStartMin5.Text = StartTime[1]; }
+
+                                    tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
+                                    string[] EndTime = tmpEndTime.Split(':');
+                                    chkEndhrs5.Text = EndTime[0];
+                                    //if (EndTime[1] == "00")
+                                    //{ EndMin5.Text = "0"; }
+                                    //else
+                                    { EndMin5.Text = EndTime[1]; }
+                                    chkFri.IsChecked = true;
+                                    break;
+                                }
+                            case ("Sat"):
+                                {
+                                    tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
+                                    string[] StartTime = tmpStartTime.Split(':');
+                                    chkStartHrs6.Text = StartTime[0];
+                                    //if (StartTime[1] == "00")
+                                    //{ chkStartMin6.Text = "0"; }
+                                    //else
+                                    { chkStartMin6.Text = StartTime[1]; }
+
+                                    tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
+                                    string[] EndTime = tmpEndTime.Split(':');
+                                    chkEndhrs6.Text = EndTime[0];
+                                    //if (EndTime[1] == "00")
+                                    //{ EndMin6.Text = "0"; }
+                                    //else
+                                    { EndMin6.Text = EndTime[1]; }
+                                    chkSat.IsChecked = true;
+                                    break;
+                                }
+                            case ("Sun"):
+                                {
+                                    tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
+                                    string[] StartTime = tmpStartTime.Split(':');
+                                    chkStartHrs7.Text = StartTime[0];
+                                    //if (StartTime[1] == "00")
+                                    //{ chkStartMin7.Text = "0"; }
+                                    //else
+                                    { chkStartMin7.Text = StartTime[1]; }
+
+                                    tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
+                                    string[] EndTime = tmpEndTime.Split(':');
+                                    chkEndhrs7.Text = EndTime[0];
+                                    //if (EndTime[1] == "00")
+                                    //{ EndMin7.Text = "0"; }
+                                    //else
+                                    { EndMin7.Text = EndTime[1]; }
+                                    chkSun.IsChecked = true;
+                                    break;
+                                }
+                        }
+
+                        if (cnn == 7)
+                        {
+                            chkAvailSameTime.IsChecked = true;
+
+                            tmpStartTime = ds.Tables[0].Rows[0]["StartTime"].ToString();
+                            string[] StartTime = tmpStartTime.Split(':');
+                            chkStartHrs.Text = StartTime[0].ToString();
+                            //if (StartTime[1] == "00")
+                            //{ chkStartMin.Text = "0"; }
+                            //else
+                            { chkStartMin.Text = StartTime[1]; }
+
+                            tmpEndTime = ds.Tables[0].Rows[0]["EndTime"].ToString();
+                            string[] EndTime = tmpEndTime.Split(':');
+                            chkEndhrs.Text = EndTime[0];
+                            //if (EndTime[1] == "00")
+                            //{ EndMin.Text = "0"; }
+                            //else
+                            { EndMin.Text = EndTime[1]; }
+
+                            DisableDropdown();
+
+                        }
+
+
+                    }
+                    btnSave.Content = "Update";
+                }
+                else
+                {
+                    MessageBox.Show("Details Are Not Availble This is First Entry For This Batch", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+
+        }
+        #endregion
+
+        #region---------------------------------------------------------CheckAllDays()-----------------------------------------------------------
+        private void CheckAllDays()
+        {
+            chkMon.IsChecked = true;
+            chkTue.IsChecked = true;
+            chkWed.IsChecked = true;
+            chkThru.IsChecked = true;
+            chkFri.IsChecked = true;
+            chkSat.IsChecked = true;
+            chkSun.IsChecked = true;
+            daycheckcount = 7;
+        }
+        #endregion
+
+        #region-------------------------------------------------------UncheckAllDays()------------------------------------------------------------
+        private void UnchekAllDays()
+        {
+            chkMon.IsChecked = false;
+            chkTue.IsChecked = false;
+            chkWed.IsChecked = false;
+            chkThru.IsChecked = false;
+            chkFri.IsChecked = false;
+            chkSat.IsChecked = false;
+            chkSun.IsChecked = false;
+            daycheckcount = 0;
+        }
+        #endregion
+
+
+        #region----------------------------------------Row Double Click()-------------------------------------------------------------------
+        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                object item = dgBatchAvail.SelectedItem;
+                int UpID = Convert.ToInt32(((System.Data.DataRowView)(dgBatchAvail.CurrentItem)).Row.ItemArray[0].ToString());
+                Clears();
+                GetBatchAvailableDetails(UpID);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception Error");
+            }
+        }
+        #endregion
+
+
+        #region-------------------------------------------------------Validation()----------------------------------------------------------
+        /*
+         * CreatedBy:-Pranjali vidhate
+         * Created Date:- 20 Nov2015
+         * Purpose:- Validate
+         * StartTime:-
+         * EndTime:-
+         */
 
         #region--------------------------------------------------------validate()---------------------------------------------------------------
         private bool validate()
         {
-
+            if (cmbBranch.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please Select Branch Name First...");
+                cmbBranch.Focus();
+                return false;
+            }
+            else if (cmbBatch.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please Select Batch Name ...");
+                cmbBatch.Focus();
+                return false;
+            }
+            else if (gbbtavaday.IsEnabled == false)
+            {
+                MessageBox.Show("Please Click on Go ...");
+                btnSearch.Focus();
+                return false;
+            }
             if (MondayValidate())
             {
                 if (TuesdayValidate())
@@ -603,13 +1378,20 @@ namespace SchoolManagement.Batch
                                 {
                                     if (SundayValidate())
                                     {
+                                        if (daycheckcount < 0)
+                                        {
+                                            return true;
+                                        }
                                         if (daycheckcount > 0)
                                         { return true; }
                                         else
                                         {
-                                            MessageBox.Show("Select At Least One Day.");
-
-                                            return false;
+                                            if (btnSave.Content == "Save")
+                                            {
+                                                MessageBox.Show("Select At Least One Day.");
+                                                return false;
+                                            }
+                                            else { return true; }
                                         }
                                     }
 
@@ -640,6 +1422,14 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+
+        /*
+         * CreatedBy:-Pranjali vidhate
+         * Created Date:- 21 Nov2015
+         * Purpose:- Monday Validate
+         * StartTime:-
+         * EndTime:-
+         */
         #region-------------------------------------------------------Monday Validate()---------------------------------------------------------
         private bool MondayValidate()
         {
@@ -686,14 +1476,19 @@ namespace SchoolManagement.Batch
                 else
                 { return true; }
 
-
-
             }
-            else
-            { return true; }
+
+            else { return true; }
         }
         #endregion
 
+        /*
+         * CreatedBy:-Pranjali vidhate
+         * Created Date:- 21 Nov2015
+         * Purpose:- Tuesday Validate
+         * StartTime:-
+         * EndTime:-
+         */
         #region------------------------------------------------------Tuesday Validate()---------------------------------------------------------
         private bool TuesdayValidate()
         {
@@ -741,13 +1536,17 @@ namespace SchoolManagement.Batch
                 { return true; }
             }
 
-
-            else
-            { return true; }
-
+            else { return true; }
         }
         #endregion
 
+        /*
+         * CreatedBy:-Pranjali vidhate
+         * Created Date:- 20 Nov2015
+         * Purpose:- Wednesday Validate
+         * StartTime:-
+         * EndTime:-
+         */
         #region------------------------------------------------------Wednsday Validate()--------------------------------------------------------
         private bool WednesdayValidate()
         {
@@ -795,13 +1594,18 @@ namespace SchoolManagement.Batch
                 { return true; }
             }
 
-
-            else
-            { return true; }
+            else { return true; }
 
         }
         #endregion
 
+        /*
+         * CreatedBy:-Pranjali vidhate
+         * Created Date:- 21 Nov2015
+         * Purpose:- Thrusday Validate
+         * StartTime:-
+         * EndTime:-
+         */
         #region------------------------------------------------------Thrusday Validate()--------------------------------------------------------
         private bool ThrusdayValidate()
         {
@@ -850,12 +1654,17 @@ namespace SchoolManagement.Batch
             }
 
 
-            else
-            { return true; }
-
+            else { return true; }
         }
         #endregion
 
+        /*
+         * CreatedBy:-Pranjali vidhate
+         * Created Date:- 21 Nov2015
+         * Purpose:- Friday Validate
+         * StartTime:-
+         * EndTime:-
+         */
         #region-------------------------------------------------------Friday Validate()---------------------------------------------------------
         private bool FridayValidate()
         {
@@ -903,13 +1712,17 @@ namespace SchoolManagement.Batch
                 { return true; }
             }
 
-
-            else
-            { return true; }
-
+            else { return true; }
         }
         #endregion
 
+        /*
+         * CreatedBy:-Pranjali vidhate
+         * Created Date:- 21 Nov2015
+         * Purpose:- Saturday Validate
+         * StartTime:-
+         * EndTime:-
+         */
         #region------------------------------------------------------Saturday Validate()--------------------------------------------------------
         private bool SaturdayValidate()
         {
@@ -957,13 +1770,17 @@ namespace SchoolManagement.Batch
                 { return true; }
             }
 
-
-            else
-            { return true; }
-
+            else { return true; }
         }
         #endregion
 
+        /*
+         * CreatedBy:-Pranjali Vidhate
+         * Created Date:- 21 Nov2015
+         * Purpose:- Sunday Validate
+         * StartTime:-
+         * EndTime:-
+         */
         #region-------------------------------------------------------Sunday Validate()---------------------------------------------------------
         private bool SundayValidate()
         {
@@ -1012,294 +1829,13 @@ namespace SchoolManagement.Batch
             }
 
 
-            else
-            { return true; }
-
+            else { return true; }
         }
         #endregion
 
-        #region----------------------chkAvailAllDay_Click------------------
-        private void chkAvailAllDay_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (chkAvailAllDay.IsChecked == true)
-                {
-                    CheckAllDays();
-                }
-                else
-                {
-                    UnchekAllDays();
-
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
         #endregion
 
-        #region---------------------------------------------------------CheckAllDays()-----------------------------------------------------------
-        private void CheckAllDays()
-        {
-            chkMon.IsChecked = true;
-            chkTue.IsChecked = true;
-            chkWed.IsChecked = true;
-            chkThru.IsChecked = true;
-            chkFri.IsChecked = true;
-            chkSat.IsChecked = true;
-            chkSun.IsChecked = true;
-            daycheckcount = 7;
-        }
-        #endregion
-
-        #region-------------------------------------------------------UncheckAllDays()------------------------------------------------------------
-        private void UnchekAllDays()
-        {
-            chkMon.IsChecked = false;
-            chkTue.IsChecked = false;
-            chkWed.IsChecked = false;
-            chkThru.IsChecked = false;
-            chkFri.IsChecked = false;
-            chkSat.IsChecked = false;
-            chkSun.IsChecked = false;
-            daycheckcount = 0;
-        }
-        #endregion
-
-        #region-------------------------------------------chkAvailableSameTime()---------------------------------------------------------
-        private void chkAvailSameTime_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (chkAvailSameTime.IsChecked == true)
-                {
-                    DisableDropdown();
-                }
-                else
-                {
-                    EnableDropdown();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-        #endregion
-
-        #region--------------------------chkMon_Click------------------------------------------------
-        private void chkMon_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (chkMon.IsChecked == true)
-                {
-                    ++daycheckcount;
-                }
-                else if (chkMon.IsChecked == false)
-                {
-                    --daycheckcount;
-                }
-                if (daycheckcount == 7)
-                {
-                    chkAvailAllDay.IsChecked = true;
-                }
-                else
-                {
-                    chkAvailAllDay.IsChecked = false;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-        #endregion
-
-        #region---------------------chkTue_Click-----------------------------
-        private void chkTue_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (chkTue.IsChecked == true)
-                {
-                    ++daycheckcount;
-                }
-                else if (chkTue.IsChecked == false)
-                {
-                    --daycheckcount;
-                }
-                if (daycheckcount == 7)
-                {
-                    chkAvailAllDay.IsChecked = true;
-                }
-                else
-                {
-                    chkAvailAllDay.IsChecked = false;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-        #endregion
-
-        #region---------------------chkWed_Click------------------
-        private void chkWed_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (chkWed.IsChecked == true)
-                {
-                    ++daycheckcount;
-                }
-                else if (chkWed.IsChecked == false)
-                {
-                    --daycheckcount;
-                }
-                if (daycheckcount == 7)
-                {
-                    chkAvailAllDay.IsChecked = true;
-                }
-                else
-                {
-                    chkAvailAllDay.IsChecked = false;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-        #endregion
-
-        #region-----------------chkThru_Click--------------------
-        private void chkThru_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (chkThru.IsChecked == true)
-                {
-                    ++daycheckcount;
-                }
-                else if (chkThru.IsChecked == false)
-                {
-                    --daycheckcount;
-                }
-                if (daycheckcount == 7)
-                {
-                    chkAvailAllDay.IsChecked = true;
-                }
-                else
-                {
-                    chkAvailAllDay.IsChecked = false;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-        #endregion
-
-        #region------------------chkFri_Click----------------------------
-        private void chkFri_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (chkFri.IsChecked == true)
-                {
-                    ++daycheckcount;
-                }
-                else if (chkFri.IsChecked == false)
-                {
-                    --daycheckcount;
-                }
-                if (daycheckcount == 7)
-                {
-                    chkAvailAllDay.IsChecked = true;
-                }
-                else
-                {
-                    chkAvailAllDay.IsChecked = false;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-        #endregion
-
-        #region---------------chkSat_Click-----------------------
-        private void chkSat_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (chkSat.IsChecked == true)
-                {
-                    ++daycheckcount;
-                }
-                else if (chkSat.IsChecked == false)
-                {
-                    --daycheckcount;
-                }
-                if (daycheckcount == 7)
-                {
-                    chkAvailAllDay.IsChecked = true;
-                }
-                else
-                {
-                    chkAvailAllDay.IsChecked = false;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-        #endregion
-
-        #region------------chkSun_Click----------------------
-        private void chkSun_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (chkSun.IsChecked == true)
-                {
-                    ++daycheckcount;
-                }
-                else if (chkSun.IsChecked == false)
-                {
-                    --daycheckcount;
-                }
-                if (daycheckcount == 7)
-                {
-                    chkAvailAllDay.IsChecked = true;
-                }
-                else
-                {
-                    chkAvailAllDay.IsChecked = false;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-        #endregion
-
+        
         #region-----------------chkStartHrs_SelectionChanged-------------------------
         private void chkStartHrs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -1400,34 +1936,7 @@ namespace SchoolManagement.Batch
             }
         }
         #endregion
-
-        #region---------------------------------------------------------Clears()-------------------------------------------------------
-        private void Clears()
-        {
-
-            BindHours();
-            BindMinutes();
-            BindGrid();
-            UncheckAllCheckBoxes();
-            gbSameTime.Visibility = Visibility.Hidden;
-            EnableDropdown();
-
-        }
-        #endregion
-
-        #region---------------------------------------------------------------BindGrid()-------------------------------------------------------
-        //private void BindGrid()
-        //{
-        //    DataSet ds = objBatch.BindBatchAvail();
-
-        //    if (ds.Tables[0].Rows.Count > 0)
-        //    {
-        //        dgBatchAvail.DataContext = null;
-        //        dgBatchAvail.DataContext = ds.Tables[0].DefaultView;
-        //    }
-
-        //}
-        #endregion
+        
 
         #region--------------------------------unchekcall ChekcBoxes-----------------------------------
         private void UncheckAllCheckBoxes()
@@ -1445,147 +1954,6 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
-          #region---------------------------------------------------------GetTeacherAvailableDetails()-------------------------------------------
-        private void GetBatchAvailableDetails(int numId)
-        {
-        }
-          #endregion
-
-        #region-----------------------------------------------ClearFields()-----------------------------------------------------------
-        private void ClearFields()
-        {
-            //cmbTeacher.IsEnabled = true;
-            //BindBatchName();
-            //BindBatch();
-            //BindHours();
-            //BindMinutes();
-            //BindGrid();
-            //UncheckAllCheckBoxes();
-            //EnableDropdown();
-        }
-        #endregion
-
-        #region---------------------------------bindBatch()------------------------------------
-        private void BindBatch()
-        {
-            BranchID =Convert.ToInt32(cmbBranch.SelectedValue.ToString());
-            DataSet ds = objBatch.BindBranchBatch(BranchID);
-
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                cmbBatch.DataContext = null;
-
-                cmbBatch.DataContext = ds.Tables[0].DefaultView;
-                cmbBatch.DisplayMemberPath = ds.Tables[0].Columns["BatchName"].ToString();
-                cmbBatch.SelectedValuePath = ds.Tables[0].Columns["BatchID"].ToString();
-
-
-                cmbBatch.SelectedValue = "0";
-            }
-        }
-        #endregion
-
-        #region-----------------------------BindBatchName()------------------------------------
-        //#region------------------BindBatchName()----------------------------
-        //private void BindBatchName()
-        //{
-        //    DataSet ds = objClass.BindBatchDropDown();
-
-        //    if (ds.Tables[0].Rows.Count > 0)
-        //    {
-        //        cmbBranch.DataContext = null;
-
-        //        cmbBranch.DataContext = ds.Tables[0].DefaultView;
-        //        cmbBranch.DisplayMemberPath = ds.Tables[0].Columns["BatchName"].ToString();
-        //        cmbBranch.SelectedValuePath = ds.Tables[0].Columns["BatchID"].ToString();
-
-
-        //        cmbBranch.SelectedValue = "0";
-        //    }
-        //}
-        #endregion
-
-        #region----------------------------------------------------------------DisebleDropdown()-----------------------------------------------
-        private void DisableDropdown()
-        {
-            gbSameTime.Visibility = Visibility.Visible;
-            chkStartHrs1.IsEnabled = false;
-            chkStartHrs2.IsEnabled = false;
-            chkStartHrs3.IsEnabled = false;
-            chkStartHrs4.IsEnabled = false;
-            chkStartHrs5.IsEnabled = false;
-            chkStartHrs6.IsEnabled = false;
-            chkStartHrs7.IsEnabled = false;
-
-            chkEndhrs1.IsEnabled = false;
-            chkEndhrs2.IsEnabled = false;
-            chkEndhrs3.IsEnabled = false;
-            chkEndhrs4.IsEnabled = false;
-            chkEndhrs5.IsEnabled = false;
-            chkEndhrs6.IsEnabled = false;
-            chkEndhrs7.IsEnabled = false;
-            chkEndhrs1.IsEnabled = false;
-            chkEndhrs1.IsEnabled = false;
-
-            chkStartMin1.IsEnabled = false;
-            chkStartMin2.IsEnabled = false;
-            chkStartMin3.IsEnabled = false;
-            chkStartMin4.IsEnabled = false;
-            chkStartMin5.IsEnabled = false;
-            chkStartMin6.IsEnabled = false;
-            chkStartMin7.IsEnabled = false;
-
-            EndMin1.IsEnabled = false;
-            EndMin2.IsEnabled = false;
-            EndMin3.IsEnabled = false;
-            EndMin4.IsEnabled = false;
-            EndMin5.IsEnabled = false;
-            EndMin6.IsEnabled = false;
-            EndMin7.IsEnabled = false;
-
-        }
-        #endregion
-
-        #region----------------------------------------------------------------EnableDropdown()------------------------------------------------
-        private void EnableDropdown()
-        {
-            gbSameTime.Visibility = Visibility.Hidden;
-
-            chkStartHrs1.IsEnabled = true;
-            chkStartHrs2.IsEnabled = true;
-            chkStartHrs3.IsEnabled = true;
-            chkStartHrs4.IsEnabled = true;
-            chkStartHrs5.IsEnabled = true;
-            chkStartHrs6.IsEnabled = true;
-            chkStartHrs7.IsEnabled = true;
-
-            chkEndhrs1.IsEnabled = true;
-            chkEndhrs2.IsEnabled = true;
-            chkEndhrs3.IsEnabled = true;
-            chkEndhrs4.IsEnabled = true;
-            chkEndhrs5.IsEnabled = true;
-            chkEndhrs6.IsEnabled = true;
-            chkEndhrs7.IsEnabled = true;
-            chkEndhrs1.IsEnabled = true;
-            chkEndhrs1.IsEnabled = true;
-
-            chkStartMin1.IsEnabled = true;
-            chkStartMin2.IsEnabled = true;
-            chkStartMin3.IsEnabled = true;
-            chkStartMin4.IsEnabled = true;
-            chkStartMin5.IsEnabled = true;
-            chkStartMin6.IsEnabled = true;
-            chkStartMin7.IsEnabled = true;
-
-            EndMin1.IsEnabled = true;
-            EndMin2.IsEnabled = true;
-            EndMin3.IsEnabled = true;
-            EndMin4.IsEnabled = true;
-            EndMin5.IsEnabled = true;
-            EndMin6.IsEnabled = true;
-            EndMin7.IsEnabled = true;
-        }
-        #endregion
 
         #region-----------------------------cmbBranch_SelectionChanged------------------------
         private void cmbBranch_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1593,5 +1961,10 @@ namespace SchoolManagement.Batch
             BindBatch();
         }
         #endregion
+
+        private void cmbBatch_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

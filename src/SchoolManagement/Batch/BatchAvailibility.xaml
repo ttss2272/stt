@@ -23,7 +23,7 @@
                         </DataGrid>
                     </GroupBox>
                     <Button Content="Copy" Height="50" VerticalAlignment="Center" Width="59" HorizontalAlignment="Center" Visibility="Hidden" />
-                    <GroupBox Header="Room Avalaible Days" Height="357" VerticalAlignment="Top" Width="733" Margin="0,3,0,0">
+                    <GroupBox Header="Room Avalaible Days" Height="357" VerticalAlignment="Top" Width="733" Margin="0,3,0,0" Name="gbbtavaday">
                         <Grid Margin="0,6,0,-5">
                             <CheckBox Content="Available All Days" HorizontalAlignment="Left" Margin="24,50,0,0" VerticalAlignment="Top" Width="125" Name="chkAvailAllDay" Click="chkAvailAllDay_Click" />
                             <CheckBox Content="Same Time" HorizontalAlignment="Left" Margin="167,52,0,0" VerticalAlignment="Top" Name="chkAvailSameTime" Width="96" Click="chkAvailSameTime_Click"  />
@@ -218,7 +218,7 @@
                 <Grid>
 
                     <Label Content="Batch" HorizontalAlignment="Left" Margin="388,14,0,0" VerticalAlignment="Top" Width="74" FontWeight="Bold"/>
-                    <ComboBox HorizontalAlignment="Left" Margin="488,14,0,0" VerticalAlignment="Top" Width="175" Height="28"  Name="cmbBatch" ItemsSource="{Binding}">
+                    <ComboBox HorizontalAlignment="Left" Margin="488,14,0,0" VerticalAlignment="Top" Width="175" Height="28"  Name="cmbBatch" ItemsSource="{Binding}" SelectionChanged="cmbBatch_SelectionChanged">
                     </ComboBox>
                     <Button Content="Go" HorizontalAlignment="Left" Margin="743,18,0,0" VerticalAlignment="Top" Width="75" Name="btnSearch" FontWeight="Bold" Click="btnSearch_Click"/>
                     <Label Content="Branch Name" HorizontalAlignment="Left" Margin="34,16,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
