@@ -12,6 +12,7 @@ namespace BusinessLayer
     public class BLBatch
     {
         DLBatch obj_Batch = new DLBatch();
+
         public string saveBatch(int BatchID, int ClassID, string BatchName, string BatchCode, int LectureDuration, int IsLunchBreak, string LunchBreakStartTime, string LunchBreakEndTime, int MaxNoLecturesDay, int MaxNoLecturesWeek, int IsAllowMoreThanOneLectInBatch, int MaxNoOfLecureInRow, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
         {
             string result = obj_Batch.saveBatch(BatchID, ClassID, BatchName, BatchCode, LectureDuration, IsLunchBreak, LunchBreakStartTime, LunchBreakEndTime, MaxNoLecturesDay, MaxNoLecturesWeek, IsAllowMoreThanOneLectInBatch, MaxNoOfLecureInRow, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
@@ -24,11 +25,29 @@ namespace BusinessLayer
             return Result;
         }
 
+        public string SaveBatchAvailibility(int BatchID, string Day, string StartTime, string EndTime, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
+        {
+            string Result = obj_Batch.SaveBatchAvailibility(BatchID, Day, StartTime, EndTime, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
+            return Result;
+        }
+
         //To Bind Gridview
         public DataSet BindBatch(int BatchID,string BatchName)
         {
             DataSet ds = obj_Batch.BindBatch(BatchID,BatchName);
                 return ds;
+        }
+
+        public DataSet BindBatchAvail()
+        {
+            DataSet ds = obj_Batch.BindBatchAvail();
+            return ds;
+        }
+
+        public DataSet GetBatchAvailableDetail(int BatchID)
+        {
+            DataSet ds = obj_Batch.GetBatchAvailableDetail(BatchID);
+            return ds;
         }
 
         public string DeleteBatch(int BatchID, int UpdatedByUserID, string UpdatedDate)
@@ -43,6 +62,11 @@ namespace BusinessLayer
             DataSet ds = obj_Batch.GetBatchDetail(BatchName, BatchCode);
             return ds;
 
+        }
+        public DataSet BindBatchDropDown(int BranchID)
+        {
+            DataSet ds = obj_Batch.BindBatchDropDown(BranchID);
+            return ds;
         }
 
         public DataSet SearchBatch(string BatchName)
@@ -81,10 +105,5 @@ namespace BusinessLayer
             return ds;
         }
 
-        public string SaveBatchAvailibility(int BatchID, string Day, string FinalStartTime, string FinalEndTime, int UpdatedByUserID, string UpdatedDate, int Active, int IsDeleted)
-        {
-            string Result = obj_Batch.SaveTeacherAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
-            return Result;
-        }
     }
 }
