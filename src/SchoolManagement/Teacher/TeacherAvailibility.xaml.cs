@@ -845,6 +845,10 @@ namespace SchoolManagement.Teacher
                 else if(chkMon.IsChecked==false)
                 {
                     --daycheckcount;
+                    chkStartHrs1.SelectedIndex = 0;
+                    chkStartMin1.SelectedIndex = 0;
+                    chkEndhrs1.SelectedIndex = 0;
+                    EndMin1.SelectedIndex = 0;
                 }
                 if (daycheckcount == 7)
                 {
@@ -881,6 +885,10 @@ namespace SchoolManagement.Teacher
                 else if (chkTue.IsChecked == false)
                 {
                     --daycheckcount;
+                    chkStartHrs2.SelectedIndex = 0;
+                    chkStartMin2.SelectedIndex = 0;
+                    chkEndhrs2.SelectedIndex = 0;
+                    EndMin2.SelectedIndex = 0;
                 }
                 if (daycheckcount == 7)
                 {
@@ -918,6 +926,10 @@ namespace SchoolManagement.Teacher
                 else if (chkWed.IsChecked == false)
                 {
                     --daycheckcount;
+                    chkStartHrs3.SelectedIndex = 0;
+                    chkStartMin3.SelectedIndex = 0;
+                    chkEndhrs3.SelectedIndex = 0;
+                    EndMin3.SelectedIndex = 0;
                 }
                 if (daycheckcount == 7)
                 {
@@ -954,6 +966,10 @@ namespace SchoolManagement.Teacher
                 else if (chkThru.IsChecked == false)
                 {
                     --daycheckcount;
+                    chkStartHrs4.SelectedIndex = 0;
+                    chkStartMin4.SelectedIndex = 0;
+                    chkEndhrs4.SelectedIndex = 0;
+                    EndMin4.SelectedIndex = 0;
                 }
                 if (daycheckcount == 7)
                 {
@@ -990,6 +1006,10 @@ namespace SchoolManagement.Teacher
                 else if (chkFri.IsChecked == false)
                 {
                     --daycheckcount;
+                    chkStartHrs5.SelectedIndex = 0;
+                    chkStartMin5.SelectedIndex = 0;
+                    chkEndhrs5.SelectedIndex = 0;
+                    EndMin5.SelectedIndex = 0;
                 }
                 if (daycheckcount == 7)
                 {
@@ -1026,6 +1046,10 @@ namespace SchoolManagement.Teacher
                 else if (chkSat.IsChecked == false)
                 {
                     --daycheckcount;
+                    chkStartHrs6.SelectedIndex = 0;
+                    chkStartMin6.SelectedIndex = 0;
+                    chkEndhrs6.SelectedIndex = 0;
+                    EndMin6.SelectedIndex = 0;
                 }
                 if (daycheckcount == 7)
                 {
@@ -1062,6 +1086,10 @@ namespace SchoolManagement.Teacher
                 else if (chkSun.IsChecked == false)
                 {
                     --daycheckcount;
+                    chkStartHrs7.SelectedIndex = 0;
+                    chkStartMin7.SelectedIndex = 0;
+                    chkEndhrs7.SelectedIndex = 0;
+                    EndMin7.SelectedIndex = 0;
                 }
                 if (daycheckcount == 7)
                 {
