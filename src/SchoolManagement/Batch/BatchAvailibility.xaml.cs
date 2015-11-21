@@ -286,6 +286,7 @@ namespace SchoolManagement.Batch
 
         #endregion
 
+        #region--------------------------btnSave_Click---------------------------
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -301,11 +302,21 @@ namespace SchoolManagement.Batch
                 MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+        #endregion
 
+        #region---------------------------btnSave_Copy_Click----------------------------
         private void btnSave_Copy_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                ClearFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
+        #endregion
 
         #region-------------------------------------------------------Setparameters()-------------------------------------------------------
         private void SetParameters()
@@ -324,7 +335,7 @@ namespace SchoolManagement.Batch
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objBatch.SaveTeacherAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
                     ResultCount++;
@@ -340,7 +351,7 @@ namespace SchoolManagement.Batch
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objBatch.SaveTeacherAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
                     ResultCount++;
@@ -359,7 +370,7 @@ namespace SchoolManagement.Batch
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objBatch.SaveTeacherAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
                     ResultCount++;
@@ -375,7 +386,7 @@ namespace SchoolManagement.Batch
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objBatch.SaveTeacherAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
                     ResultCount++;
@@ -384,7 +395,7 @@ namespace SchoolManagement.Batch
             }
             if (chkWed.IsChecked == true)
             {
-                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkWed.Content.ToString();
                 FinalStartTime = chkStartHrs3.Text + ":";
                 FinalStartTime += chkStartMin3.Text;
@@ -394,7 +405,7 @@ namespace SchoolManagement.Batch
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
 
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
@@ -403,7 +414,7 @@ namespace SchoolManagement.Batch
             }
             else if (chkWed.IsChecked == false)
             {
-                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkWed.Content.ToString();
                 FinalStartTime = "00:00:00";
                 FinalEndTime = "00:00:00";
@@ -411,7 +422,7 @@ namespace SchoolManagement.Batch
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
 
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
@@ -421,7 +432,7 @@ namespace SchoolManagement.Batch
             }
             if (chkThru.IsChecked == true)
             {
-                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkThru.Content.ToString();
                 FinalStartTime = chkStartHrs4.Text + ":";
                 FinalStartTime += chkStartMin4.Text;
@@ -431,7 +442,7 @@ namespace SchoolManagement.Batch
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
 
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
@@ -440,7 +451,7 @@ namespace SchoolManagement.Batch
             }
             else if (chkThru.IsChecked == false)
             {
-                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkThru.Content.ToString();
                 FinalStartTime = "00:00:00";
                 FinalEndTime = "00:00:00";
@@ -448,7 +459,7 @@ namespace SchoolManagement.Batch
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
 
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
@@ -458,7 +469,7 @@ namespace SchoolManagement.Batch
             }
             if (chkFri.IsChecked == true)
             {
-                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkFri.Content.ToString();
                 FinalStartTime = chkStartHrs5.Text + ":";
                 FinalStartTime += chkStartMin5.Text;
@@ -468,7 +479,7 @@ namespace SchoolManagement.Batch
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
 
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
@@ -477,7 +488,7 @@ namespace SchoolManagement.Batch
             }
             else if (chkFri.IsChecked == false)
             {
-                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkFri.Content.ToString();
                 FinalStartTime = "00:00:00";
                 FinalEndTime = "00:00:00";
@@ -485,7 +496,7 @@ namespace SchoolManagement.Batch
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
 
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
@@ -495,7 +506,7 @@ namespace SchoolManagement.Batch
             }
             if (chkSat.IsChecked == true)
             {
-                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkSat.Content.ToString();
                 FinalStartTime = chkStartHrs6.Text + ":";
                 FinalStartTime += chkStartMin6.Text;
@@ -505,7 +516,7 @@ namespace SchoolManagement.Batch
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
 
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
@@ -514,7 +525,7 @@ namespace SchoolManagement.Batch
             }
             else if (chkSat.IsChecked == false)
             {
-                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkSat.Content.ToString();
                 FinalStartTime = "00:00:00";
                 FinalEndTime = "00:00:00";
@@ -522,7 +533,7 @@ namespace SchoolManagement.Batch
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
 
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
@@ -532,7 +543,7 @@ namespace SchoolManagement.Batch
             }
             if (chkSun.IsChecked == true)
             {
-                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkSun.Content.ToString();
                 FinalStartTime = chkStartHrs7.Text + ":";
                 FinalStartTime += chkStartMin7.Text;
@@ -542,7 +553,7 @@ namespace SchoolManagement.Batch
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
 
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
@@ -551,7 +562,7 @@ namespace SchoolManagement.Batch
             }
             else if (chkSun.IsChecked == false)
             {
-                TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+                BatchID = Convert.ToInt32(cmbBatch.SelectedValue);
                 Day = chkSun.Content.ToString();
                 FinalStartTime = "00:00:00";
                 FinalEndTime = "00:00:00";
@@ -559,7 +570,7 @@ namespace SchoolManagement.Batch
                 IsDeleted = 0;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
                 UpdatedByUserID = 1;
-                string Result = objTeacher.SaveTeacherAvailibility(TeacherID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                string Result = objBatch.SaveBatchAvailibility(BatchID, Day, FinalStartTime, FinalEndTime, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
                 if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                 {
                     ResultCount++;
@@ -1452,7 +1463,9 @@ namespace SchoolManagement.Batch
             //UncheckAllCheckBoxes();
             //EnableDropdown();
         }
-        #region-----------bindBatch()-----------------
+        #endregion
+
+        #region---------------------------------bindBatch()------------------------------------
         private void BindBatch()
         {
             BranchID =Convert.ToInt32(cmbBranch.SelectedValue.ToString());
@@ -1470,7 +1483,9 @@ namespace SchoolManagement.Batch
                 cmbBatch.SelectedValue = "0";
             }
         }
-        #region
+        #endregion
+
+        #region-----------------------------BindBatchName()------------------------------------
         //#region------------------BindBatchName()----------------------------
         //private void BindBatchName()
         //{
@@ -1488,8 +1503,6 @@ namespace SchoolManagement.Batch
         //        cmbBranch.SelectedValue = "0";
         //    }
         //}
-        //#endregion
-        #endregion
         #endregion
 
         #region----------------------------------------------------------------DisebleDropdown()-----------------------------------------------
@@ -1574,10 +1587,11 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        #region-----------------------------cmbBranch_SelectionChanged------------------------
         private void cmbBranch_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BindBatch();
         }
+        #endregion
     }
 }
-        #endregion
