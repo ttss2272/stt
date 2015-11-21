@@ -219,8 +219,10 @@ namespace SchoolManagement.Class
             rdoActive.IsChecked = true;
             rdoDeActive.IsChecked = false;
             btnDelete.IsEnabled = false;
-            btnAdd.Content = "Save";
+            btnadd.Content = "Save";
             cbBoard.SelectedIndex = 0;
+            cbBranchName.SelectedIndex = 0;
+            UpID = 0;
         }
         #endregion                    
 
