@@ -755,29 +755,29 @@ namespace SchoolManagement.Batch
         #region---------------------------txtlecDuration_TextChanged-----------------------
         private void txtlecDuration_TextChanged(object sender, TextChangedEventArgs e)
         {
-            try
-            {
-                if (txtlecDuration.Text != "")
-                {
-                    if (txtlecDuration.Text.Length > 0 && txtlecDuration.Text.Length == 1)
-                    {
-                        if (System.Text.RegularExpressions.Regex.IsMatch(txtlecDuration.Text, "^[0-9]") && (System.Text.RegularExpressions.Regex.IsMatch(txtlecDuration.Text, "^[0-9a-zA-Z]")))
-                        {
-                        }
-                        else
-                        {
-                            MessageBox.Show("Please Enter Only Numbers", "Lecture Duration", MessageBoxButton.OK, MessageBoxImage.Warning);
-                            txtlecDuration.Text = "";
-                            txtlecDuration.Focus();
-                        }
+            //try
+            //{
+            //    if (txtlecDuration.Text != "")
+            //    {
+            //        if (txtlecDuration.Text.Length > 0 && txtlecDuration.Text.Length == 1)
+            //        {
+            //            if (System.Text.RegularExpressions.Regex.IsMatch(txtlecDuration.Text, "^[0-9]") && (System.Text.RegularExpressions.Regex.IsMatch(txtlecDuration.Text, "^[0-9a-zA-Z]")))
+            //            {
+            //            }
+            //            else
+            //            {
+            //                MessageBox.Show("Please Enter Only Numbers", "Lecture Duration", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //                txtlecDuration.Text = "";
+            //                txtlecDuration.Focus();
+            //            }
 
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message.ToString());
+            //}
         }
         #endregion
 
@@ -806,7 +806,17 @@ namespace SchoolManagement.Batch
                  cmbTimeEndMin.IsEnabled = false;
              }
            
-        }      
+        }
+        #region-------------------------txtlecDuration_KeyDown---------------------------------------------------------
+        private void txtlecDuration_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!Char.IsDigit((char)KeyInterop.VirtualKeyFromKey(e.Key)) & e.Key != Key.Back | e.Key == Key.Space)
+            {
+                e.Handled = true;
+                MessageBox.Show("Please Enter Only Numbers", "Lecture Duration", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
 
     }
 }
