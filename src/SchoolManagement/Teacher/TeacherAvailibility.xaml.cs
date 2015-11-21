@@ -85,6 +85,7 @@ namespace SchoolManagement.Teacher
             BindGrid();
             UncheckAllCheckBoxes();
             EnableDropdown();
+            btnSave.Content = "Save";
         }
         #endregion
 
@@ -461,8 +462,16 @@ namespace SchoolManagement.Teacher
                 }
                 if (ResultCount == 7)
                 {
-                    MessageBox.Show("Teacher Details Save Sucessfully","Save Sucessfull",MessageBoxButton.OK,MessageBoxImage.Information);
-                    ClearFields();
+                    if (btnSave.Content.ToString() == "Save")
+                    {
+                        MessageBox.Show("Teacher Details Save Sucessfully", "Save Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
+                        ClearFields();
+                    }
+                    else if (btnSave.Content.ToString()=="Update")
+                    {
+                        MessageBox.Show("Teacher Details Updated Sucessfully", "Save Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
+                        ClearFields();
+                    }
                 }
             
         }
@@ -1370,7 +1379,8 @@ namespace SchoolManagement.Teacher
                                     break;
                                 }
                         }
-
+                        btnSave.Content = "Update";
+                        daycheckcount = cnt;
                         if (cnn == 7)
                         {
                             chkAvailSameTime.IsChecked = true;
@@ -1673,36 +1683,40 @@ namespace SchoolManagement.Teacher
         #region--------------------------------------------------------validate()---------------------------------------------------------------
         private bool validate()
         {
-
-            if (MondayValidate())
+            if (cmbTeacher.SelectedValue.ToString() != "0")
             {
-                if (TuesdayValidate())
+                if (MondayValidate())
                 {
-                    if (WednesdayValidate())
+                    if (TuesdayValidate())
                     {
-                        if (ThrusdayValidate())
+                        if (WednesdayValidate())
                         {
-                            if(FridayValidate())
+                            if (ThrusdayValidate())
                             {
-                                if (SaturdayValidate())
+                                if (FridayValidate())
                                 {
-                                    if (SundayValidate())
+                                    if (SaturdayValidate())
                                     {
-                                        if (daycheckcount > 0)
-                                        {return true;}
-                                        else
+                                        if (SundayValidate())
                                         {
-                                            MessageBox.Show("Select At Least One Day.");
-                                            
-                                            return false;
-                                        }
-                                    }
+                                            if (daycheckcount > 0)
+                                            { return true; }
+                                            else
+                                            {
+                                                MessageBox.Show("Select At Least One Day.","Info",MessageBoxButton.OK,MessageBoxImage.Warning);
 
+                                                return false;
+                                            }
+                                        }
+
+                                        else
+                                        { return false; }
+                                    }
                                     else
                                     { return false; }
                                 }
                                 else
-                                {return false;}
+                                { return false; }
                             }
                             else
                             { return false; }
@@ -1714,14 +1728,17 @@ namespace SchoolManagement.Teacher
                     { return false; }
                 }
                 else
-                { return false;}
+                {
+                    return false;
+
+                }
             }
             else
-            {
+            { 
+                MessageBox.Show("Please Select Teacher First.", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cmbTeacher.Focus();
                 return false;
-
             }
-
         }
         #endregion
 
