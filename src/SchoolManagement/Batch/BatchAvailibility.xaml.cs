@@ -1405,17 +1405,17 @@ namespace SchoolManagement.Batch
         #endregion
 
         #region---------------------------------------------------------------BindGrid()-------------------------------------------------------
-        private void BindGrid()
-        {
-            DataSet ds = objBatch.BindBatchAvail();
+        //private void BindGrid()
+        //{
+        //    DataSet ds = objBatch.BindBatchAvail();
 
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                dgBatchAvail.DataContext = null;
-                dgBatchAvail.DataContext = ds.Tables[0].DefaultView;
-            }
+        //    if (ds.Tables[0].Rows.Count > 0)
+        //    {
+        //        dgBatchAvail.DataContext = null;
+        //        dgBatchAvail.DataContext = ds.Tables[0].DefaultView;
+        //    }
 
-        }
+        //}
         #endregion
 
         #region--------------------------------unchekcall ChekcBoxes-----------------------------------
