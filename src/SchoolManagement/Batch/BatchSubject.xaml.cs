@@ -126,13 +126,13 @@ namespace SchoolManagement.Batch
             }
             else
             {
-                cmbBranch.Items.Add("Select");
-                cmbBranch.SelectedValue = "Select"; 
+                //cmbBranch.Items.Add("Select");
+                //cmbBranch.SelectedValue = "Select"; 
             }
             
             
-            cmbBatch.Items.Add("Select");
-            cmbBatch.SelectedValue = "Select";
+            //cmbBatch.Items.Add("Select");
+            //cmbBatch.SelectedValue = "Select";
         }
         #endregion
 
@@ -153,7 +153,8 @@ namespace SchoolManagement.Batch
 
             if(ds.Tables[0].Rows.Count > 0)
             {
-                cmbBatch.Items.Clear();
+                int cnt = cmbBatch.Items.Count;
+                //cmbBatch.Items.Clear();
                 cmbBatch.DataContext = null;
                 
                 cmbBatch.DisplayMemberPath = ds.Tables[0].Columns["BatchName"].ToString();
@@ -163,8 +164,8 @@ namespace SchoolManagement.Batch
             }
             else
             {
-                cmbBatch.Items.Add("Select");
-                cmbBatch.SelectedValue = "Select";
+                //cmbBatch.Items.Add("Select");
+                //cmbBatch.SelectedValue = "Select";
             }
         }
         #endregion
