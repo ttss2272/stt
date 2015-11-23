@@ -23,22 +23,12 @@
                 <TextBox Height="28" HorizontalAlignment="Left" Margin="198,122,0,0" Name="txtColor" VerticalAlignment="Top" Width="157" TextChanged="txtColor_TextChanged"  TabIndex="4" />
                 <TextBox Height="28" HorizontalAlignment="Left" Margin="198,88,0,0" Name="txtShortName" VerticalAlignment="Top" Width="157" TextChanged="txtShortName_TextChanged" TabIndex="3" />
                 <ComboBox Height="28" HorizontalAlignment="Left" Margin="198,156,0,0" Name="cmbCapacity" VerticalAlignment="Top" Width="157" ItemsSource="{Binding}" TabIndex="5" />
-                <Button Content="Save" Height="31" HorizontalAlignment="Left" Margin="181,250,0,0" Name="btnAdd" VerticalAlignment="Top" Width="80" Click="btnAdd_Click" TabIndex="14" FontWeight="Bold" Background="#FFDDDDDD">
-                   <!-- <StackPanel Name="Stack1" Orientation="Horizontal">
-                        <Image Source="E:\NewS\SVN_School1\src\SchoolManagement\img\Save.jpg" Stretch="Uniform" Height="25" Width="20" HorizontalAlignment="Left"/>
-                        <TextBlock Name="Txtblk1" Width="40"> Save </TextBlock>
-                    </StackPanel>-->
-                </Button>
+                <Button Content="Save" Height="31" HorizontalAlignment="Left" Margin="181,250,0,0" Name="btnAdd" VerticalAlignment="Top" Width="80" Click="btnAdd_Click" TabIndex="14" FontWeight="Bold" Background="#FFDDDDDD" Foreground="Black"/>
                 <Label Content="Status" Height="28" HorizontalAlignment="Left" Margin="57,193,0,0" Name="label7" VerticalAlignment="Top" Width="108" FontWeight="Bold" />
                 <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFE83030" Height="28" HorizontalAlignment="Left" Margin="161,198,0,0" Name="label12" VerticalAlignment="Top" Width="31" />
                 <RadioButton Content="Acative" Height="16" HorizontalAlignment="Left" Margin="198,205,0,0" Name="rdbActive" VerticalAlignment="Top" FontWeight="Bold" />
                 <RadioButton Content="InAcative" Height="16" HorizontalAlignment="Left" Margin="283,204,0,0" Name="rdbInactive" VerticalAlignment="Top" FontWeight="Bold" />
-                <Button Content="Delete" Height="31" HorizontalAlignment="Left" Margin="303,250,0,0" Name="btnDelete" VerticalAlignment="Top" Width="75" Click="btnDelete_Click_1" TabIndex="16" FontWeight="Bold" >
-                  <!--  <StackPanel Name="Stack2" Orientation="Horizontal">
-                        <Image Source="E:\NewS\SVN_School1\src\SchoolManagement\img\Delete1.jpg" Stretch="Uniform" Height="25" Width="30" HorizontalAlignment="Left"/>
-                        <TextBlock Name="Txtblk2" Width="40" Text="Delete"/>
-                    </StackPanel> -->
-                </Button>
+                <Button Content="Delete" Height="31" HorizontalAlignment="Left" Margin="303,250,0,0" Name="btnDelete" VerticalAlignment="Top" Width="75" Click="btnDelete_Click_1" TabIndex="16" FontWeight="Bold" Background="#FFDDDDDD" Foreground="Black"/>
                 <Label Content="Max No. Of Lect/Day" Height="28" HorizontalAlignment="Left" Margin="389,14,0,0" Name="label13" VerticalAlignment="Top" Width="129" FontWeight="Bold" />
                 <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFF51F1F" Height="28" HorizontalAlignment="Left" Margin="536,14,0,0" Name="label16" VerticalAlignment="Top" Width="31" />
                 <TextBox Height="28" HorizontalAlignment="Left" Margin="573,14,0,0" Name="txtLectDay" VerticalAlignment="Top" Width="157" TextChanged="txtLectDay_TextChanged" TabIndex="6" />
@@ -59,7 +49,7 @@
                 <Label Content="Hr" Height="28" HorizontalAlignment="Right" Margin="0,170,113,0" Name="label24" VerticalAlignment="Top" FontWeight="Bold" />
                 <Label Content="Min" Height="28" HorizontalAlignment="Right" Margin="0,170,32,0" Name="label25" VerticalAlignment="Top" FontWeight="Bold" />
                 <ComboBox Height="23" HorizontalAlignment="Left" Margin="649,170,0,0" Name="cmbEMin" VerticalAlignment="Top" Width="49" ItemsSource="{Binding}" TabIndex="12" />
-                <Button Content="Clear" FontWeight="Bold" Height="31" HorizontalAlignment="Left" Margin="434,250,0,0" Name="btnclear" TabIndex="17" VerticalAlignment="Top" Width="75" Click="btnclear_Click" Background="#FFCC66CC" Foreground="#FFFFFFCC" />
+                <Button Content="Clear" FontWeight="Bold" Height="31" HorizontalAlignment="Left" Margin="434,250,0,0" Name="btnclear" TabIndex="17" VerticalAlignment="Top" Width="75" Click="btnclear_Click" Background="#FFDDDDDD" Foreground="Black" />
                 <Label Content="More Than 1 Lect In Batch" Height="28" HorizontalAlignment="Left" Margin="386,195,0,0" Name="label26" VerticalAlignment="Top" FontWeight="Bold" />
                 <ComboBox Height="23" HorizontalAlignment="Left" Margin="573,204,0,0" Name="cmbAllowLect" VerticalAlignment="Top" Width="49">
                     <ComboBoxItem Content="select" />

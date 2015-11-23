@@ -227,8 +227,8 @@
             </GroupBox>
             <GroupBox Header="" HorizontalAlignment="Left" Margin="403,520,0,0" BorderBrush="White"  VerticalAlignment="Top" Width="240" Height="50">
                 <Grid>
-                    <Button Content="Save" HorizontalAlignment="Left" Margin="20,0,0,1" Width="86" Name="btnSave" FontWeight="Bold" Click="btnSave_Click" />
-                    <Button Content="Clear" HorizontalAlignment="Left" Height="27" Margin="120,0,0,0" VerticalAlignment="Top" Width="86" x:Name="btnSave_Copy" FontWeight="Bold" Click="btnSave_Copy_Click" />
+                    <Button Content="Save" HorizontalAlignment="Left" Margin="20,0,0,1" Width="86" Name="btnSave" FontWeight="Bold" Click="btnSave_Click" Foreground="Black" Background="#FFDDDDDD" />
+                    <Button Content="Clear" HorizontalAlignment="Left" Height="27" Margin="120,0,0,0" VerticalAlignment="Top" Width="86" x:Name="btnSave_Copy" FontWeight="Bold" Click="btnSave_Copy_Click" Foreground="Black" Background="#FFDDDDDD" />
                 </Grid>
             </GroupBox>
             <StackPanel Height="30" HorizontalAlignment="Left" Name="stackPanelMenu" VerticalAlignment="Top" Width="auto">
