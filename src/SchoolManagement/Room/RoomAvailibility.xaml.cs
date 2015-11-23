@@ -36,7 +36,7 @@ namespace SchoolManagement.Room
         string[] EndTime;
         string[] s;
 
-        int RoomID,BranchID, UpdatedByUserID, Active, IsDeleted;
+        int RoomID,BranchID, UpdatedByUserID, Active, IsDeleted, UpID;
         string Day, FinalStartTime, FinalEndTime, UpdatedDate;
 
         #endregion
@@ -436,7 +436,7 @@ namespace SchoolManagement.Room
                 }
                 else if (btnSave.Content.ToString() == "Update")
                 {
-                    MessageBox.Show("Room Details Update Sucessfully", "Update Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Room Details Updated Sucessfully", "Update Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
                     ClearFields();
                 }
             }
@@ -1356,7 +1356,14 @@ namespace SchoolManagement.Room
                         }
 
                     }
+                    if(numId == Convert.ToInt32(cmbRoom.SelectedValue))
+                    {
                     btnSave.Content = "Update";
+                    }
+                    else
+                    {
+                      btnSave.Content ="Save";
+                    }
                 }
                 else
                 {
