@@ -52,6 +52,9 @@ namespace SchoolManagement.Batch
         public BatchSubject()
         {
             InitializeComponent();
+            this.WindowState = WindowState.Maximized;
+            this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
+            this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
             ClearFields();
         }
         #endregion
@@ -96,7 +99,6 @@ namespace SchoolManagement.Batch
             btnSave.Content = "Save";
             rdbActive.IsChecked = true;
             btnDelete.IsEnabled = false;
-            
             
         }
         #endregion
@@ -410,6 +412,7 @@ namespace SchoolManagement.Batch
             try
             {
                 ClearData();
+                gdvSubject.DataContext = null;
             }
             catch (Exception ex)
             {
