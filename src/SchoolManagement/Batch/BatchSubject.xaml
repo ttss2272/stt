@@ -65,11 +65,11 @@
                                     <DataGridTextColumn Binding="{Binding FrequencyPerWeek}" Header="Lect/Week"></DataGridTextColumn>
 
                                 </DataGrid.Columns>
-                                <DataGrid.ItemContainerStyle>
+                               <!-- <DataGrid.ItemContainerStyle>
                                     <Style TargetType="DataGridRow">
                                         <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick" />
                                     </Style>
-                                </DataGrid.ItemContainerStyle>
+                                </DataGrid.ItemContainerStyle> -->
                             </DataGrid>
                             <Button Content=">>" HorizontalAlignment="Left" Margin="518,333,0,0" VerticalAlignment="Top" Width="61" Height="38" Name="btnAddAll" Click="btnAddAll_Click"/>
                             <Button Content=">" HorizontalAlignment="Left" Margin="518,392,0,0" VerticalAlignment="Top" Width="61" Height="32" Name="btnAddSingle" Click="btnAddSingle_Click"/>
