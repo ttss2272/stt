@@ -1289,10 +1289,15 @@ namespace SchoolManagement.Batch
                             DisableDropdown();
 
                         }
-
-
                     }
-                    btnSave.Content = "Update";
+                    if (numId == Convert.ToInt32(cmbBatch.SelectedValue))
+                    {
+                        btnSave.Content = "Update";
+                    }
+                    else
+                    {
+                        btnSave.Content = "Save";
+                    }
                 }
                 else
                 {

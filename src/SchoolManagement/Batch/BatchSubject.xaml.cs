@@ -507,8 +507,16 @@ namespace SchoolManagement.Batch
             string Result = objBatch.SaveBatchSubject(SubjectID, BatchID, NoLectPerDay, NoLectPerWeek, UpdatedByUserID,UpdatedDate, Active, IsDeleted);
             if (Result=="Save Sucessfully...!!!"||Result=="Updated Sucessfully...!!!")
             {
-                MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
-                ClearData();
+                if (btnSave.Content.ToString() == "Save")
+                {
+                    MessageBox.Show("This Subject Details Are Save Sucessfully", "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ClearData();
+                }
+                else
+                {
+                    MessageBox.Show("This Subject Details Are Updated Sucessfully", "Update SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ClearData();
+                }
             }
             else
             {
