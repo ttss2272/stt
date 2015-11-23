@@ -195,7 +195,7 @@ namespace SchoolManagement.Class
             else if (rdoActive.IsChecked == false && rdoDeActive.IsChecked == true)
             {
                 IsActive = 0;
-                IsDeleted = 0;
+                IsDeleted = 1;
             }
 
         }
@@ -224,6 +224,7 @@ namespace SchoolManagement.Class
             cbBranchName.SelectedIndex = 0;
             UpID = 0;
             btndelete.IsEnabled = false;
+            BindGridview();
         }
         #endregion                    
 
