@@ -1407,7 +1407,14 @@ namespace SchoolManagement.Teacher
                                     break;
                                 }
                         }
-                        btnSave.Content = "Update";
+                        if (numId == Convert.ToInt32(cmbTeacher.SelectedValue))
+                        {
+                            btnSave.Content = "Update";
+                        }
+                        else
+                        {
+                            btnSave.Content = "Save";
+                        }
                         daycheckcount = cnt;
                         if (cnn == 7)
                         {
