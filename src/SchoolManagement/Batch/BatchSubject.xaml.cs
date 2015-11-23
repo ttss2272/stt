@@ -412,7 +412,6 @@ namespace SchoolManagement.Batch
             try
             {
                 ClearData();
-                gdvSubject.DataContext = null;
             }
             catch (Exception ex)
             {
