@@ -262,7 +262,8 @@ namespace SchoolManagement.Batch
             }
             else
             {
-                MessageBox.Show("There is No Subject Added Please Add Subject");
+               // MessageBox.Show("There is No Subject Added Please Add Subject");
+                gdvSubject.DataContext = null;
             }
  
         }
