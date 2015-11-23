@@ -56,6 +56,7 @@
                     <ComboBoxItem Content="Yes" />
                     <ComboBoxItem Content="No" />
                 </ComboBox>
+                <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFF51F1F" Height="28" HorizontalAlignment="Left" Margin="536,199,0,0" Name="label27" VerticalAlignment="Top" Width="31" />
             </Grid>
         </GroupBox>
         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Height="162" HorizontalAlignment="Left" Margin="37,356,0,0" Name="dgRoom" VerticalAlignment="Top" Width="759" IsReadOnly="True" CanUserResizeColumns="False" ItemsSource="{Binding}" FontWeight="Bold">

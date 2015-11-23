@@ -368,7 +368,7 @@ namespace SchoolManagement.Room
             int i;
             cmbSMin.Items.Add("00");
             cmbSMin.Items.Add("05");
-            for (i = 10; i <= 60; i+=5)
+            for (i = 10; i <= 59; i+=5)
             {
                 cmbSMin.Items.Add(i);
 
@@ -405,7 +405,7 @@ namespace SchoolManagement.Room
             int i;
             cmbEMin.Items.Add("00");
             cmbEMin.Items.Add("05");
-            for (i = 10; i <= 60; i+=5)
+            for (i = 10; i <= 59; i+=5)
             {
                 cmbEMin.Items.Add(i);
 

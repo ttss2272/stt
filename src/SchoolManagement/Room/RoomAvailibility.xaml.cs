@@ -36,7 +36,7 @@ namespace SchoolManagement.Room
         string[] EndTime;
         string[] s;
 
-        int RoomID,BranchID, UpdatedByUserID, Active, IsDeleted, UpID;
+        int RoomID,BranchID, UpdatedByUserID, Active, IsDeleted;
         string Day, FinalStartTime, FinalEndTime, UpdatedDate;
 
         #endregion
