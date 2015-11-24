@@ -45,6 +45,7 @@ namespace SchoolManagement.Batch
             this.WindowState = WindowState.Maximized;
             this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
             this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
+            clearFields();
 
         }
 
@@ -438,7 +439,7 @@ namespace SchoolManagement.Batch
                 {
                     if (txtBatchName.Text.Length > 0 && txtBatchName.Text.Length == 1)
                     {
-                        if (System.Text.RegularExpressions.Regex.IsMatch(txtBatchName.Text, "^[a-zA-Z]"))
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtBatchName.Text, "^[a-zA-Z0-9]+$"))
                         {
                         }
                         else
@@ -764,22 +765,7 @@ namespace SchoolManagement.Batch
                     txtlecDuration.Text = "";
                     txtlecDuration.Focus();
                 }
-                //if (txtlecDuration.Text != "")
-                //{
-                //    if (txtlecDuration.Text.Length > 0 && txtlecDuration.Text.Length == 2)
-                //    {
-                //        if (!System.Text.RegularExpressions.Regex.IsMatch(txtlecDuration.Text, "[^0-9]"))
-                //        {
-                //        }
-                //        else
-                //        {
-                //            MessageBox.Show("Please Enter Only Numbers", "Lecture Duration", MessageBoxButton.OK, MessageBoxImage.Warning);
-                //            txtlecDuration.Text = "";
-                //            txtlecDuration.Focus();
-                //        }
-
-                //    }
-                //}
+                
             }
             catch (Exception ex)
             {
