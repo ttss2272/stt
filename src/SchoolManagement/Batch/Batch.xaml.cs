@@ -255,66 +255,83 @@ namespace SchoolManagement.Batch
                 txtlecDuration.Focus();
                 return false;
             }
-                  
-            else if ((cmbTimeStartHrs.Text== "Hours")&&(cbLunchBreak.SelectedValue!="No"))
-            {
-                MessageBox.Show("Please Select Lunch Start Time Hours", "Lunch Time Starts Hours", MessageBoxButton.OK, MessageBoxImage.Warning);
-                cmbTimeStartHrs.Focus();
-                return false;
-            }
-              else if ((cmbTimeStartMin.Text == "Min") && (cbLunchBreak.SelectedValue != "No"))
-            {
-                MessageBox.Show("Please Select Lunch Start Time Minutes", "Lunch Time Starts Minutes", MessageBoxButton.OK, MessageBoxImage.Warning);
-                cmbTimeStartMin.Focus();
-                return false;
-            }
-              else if ((cmbTimeEndHrs.Text == "Hours") && (cbLunchBreak.SelectedValue != "No"))
-            {
-                MessageBox.Show("Please Select Lunch End Time Hours", "Lunch Time End Hours", MessageBoxButton.OK, MessageBoxImage.Warning);
-                cmbTimeEndHrs.Focus();
-                return false;
-            }
-              else if ((cmbTimeEndMin.Text == "Min") && (cbLunchBreak.SelectedValue != "No"))
-            {
-                MessageBox.Show("Please Select Lunch End Time Minutes", "Lunch Time End Minutes", MessageBoxButton.OK, MessageBoxImage.Warning);
-                cmbTimeEndMin.Focus();
-                return false;
-            }
-              else if ((cbLunchBreak.Text != "No") && (Convert.ToInt32(cmbTimeStartHrs.SelectedValue) > Convert.ToInt32(cmbTimeEndHrs.SelectedValue)))
-            {
-                MessageBox.Show("Free Time Start Hour is less or equals to End hours", "Free Time", MessageBoxButton.OK, MessageBoxImage.Warning);
-                cmbTimeStartHrs.Focus();
-                return false;
-            }
-              else if ((cbLunchBreak.Text!="No")&&(Convert.ToInt32(cmbTimeStartHrs.SelectedValue) == Convert.ToInt32(cmbTimeEndHrs.SelectedValue)) && (Convert.ToInt32(cmbTimeStartMin.SelectedValue) >= Convert.ToInt32(cmbTimeEndMin.SelectedValue)))
-            {
-                MessageBox.Show("Free Time End Minutes must be greater than Start time", "Free Time", MessageBoxButton.OK, MessageBoxImage.Warning);
-                cmbTimeEndMin.Focus();
-                return false;
-            }
-            else if (cbmaxlecperday.SelectedValue.ToString() == "Select")
-            {
-                MessageBox.Show("Please Select Max Lecture in Day", "Max Lecuture in a Day", MessageBoxButton.OK, MessageBoxImage.Warning);
-                cbmaxlecperday.Focus();
-                return false;
-            }
-            else if (cbmaxlecperweek.SelectedValue.ToString() == "Select")
-            {
-                MessageBox.Show("Please Select Max Lecture in Week", "Max Lecuture in a Week", MessageBoxButton.OK, MessageBoxImage.Warning);
-                cbmaxlecperweek.Focus();
-                return false;
-            }
-            else if (cbmaxlectperrow.SelectedValue.ToString() == "Select")
-            {
-                MessageBox.Show("Please Select Max Lecture in Row", "Max Lecuture in a Row", MessageBoxButton.OK, MessageBoxImage.Warning);
-                cbmaxlectperrow.Focus();
-                return false;
-            }
-
-            else
-            {
-                return true;
-            }
+              else if (cbLunchBreak.Text == "Select")
+              {
+                  MessageBox.Show("Please Select Is There Lunch Break", "Lunch Break", MessageBoxButton.OK, MessageBoxImage.Warning);
+                  cbLunchBreak.Focus();
+                  return false;
+              }
+              else if ((cbLunchBreak.Text == "Yes") && cmbTimeStartHrs.SelectedIndex == 0)
+              {
+                  MessageBox.Show("Please Select Lunch Start Time Hours", "Lunch Time Starts Hours", MessageBoxButton.OK, MessageBoxImage.Warning);
+                  cmbTimeStartHrs.Focus();
+                  return false;
+              }
+              else if ((cbLunchBreak.Text == "Yes") && cmbTimeStartMin.Text == "Min")
+              {
+                  MessageBox.Show("Please Select Lunch Start Time Minutes", "Lunch Time Starts Minutes", MessageBoxButton.OK, MessageBoxImage.Warning);
+                  cmbTimeStartMin.Focus();
+                  return false;
+              }
+              else if ((cbLunchBreak.Text == "Yes") && cmbTimeEndHrs.Text == "Hours")
+              {
+                  MessageBox.Show("Please Select Lunch End Time Hours", "Lunch Time End Hours", MessageBoxButton.OK, MessageBoxImage.Warning);
+                  cmbTimeEndHrs.Focus();
+                  return false;
+              }
+              else if ((cbLunchBreak.Text == "Yes") && cmbTimeEndMin.Text == "Min")
+              {
+                  MessageBox.Show("Please Select Lunch End Time Minutes", "Lunch Time End Minutes", MessageBoxButton.OK, MessageBoxImage.Warning);
+                  cmbTimeEndMin.Focus();
+                  return false;
+              }
+              else if ((cbLunchBreak.Text == "Yes") && (Convert.ToInt32(cmbTimeStartHrs.SelectedValue) > Convert.ToInt32(cmbTimeEndHrs.SelectedValue)))
+              {
+                  MessageBox.Show("Free Time Start Hour is less or equals to End hours", "Free Time", MessageBoxButton.OK, MessageBoxImage.Warning);
+                  cmbTimeStartHrs.Focus();
+                  return false;
+              }
+              else if ((cbLunchBreak.Text == "Yes") && (Convert.ToInt32(cmbTimeStartHrs.SelectedValue) == Convert.ToInt32(cmbTimeEndHrs.SelectedValue)) && (Convert.ToInt32(cmbTimeStartMin.SelectedValue) >= Convert.ToInt32(cmbTimeEndMin.SelectedValue)))
+              {
+                  MessageBox.Show("Free Time End Minutes must be greater than Start time", "Free Time", MessageBoxButton.OK, MessageBoxImage.Warning);
+                  cmbTimeEndMin.Focus();
+                  return false;
+              }     
+              
+              else if (cbmaxlecperday.SelectedValue.ToString() == "Select")
+              {
+                  MessageBox.Show("Please Select Max Lecture in Day", "Max Lecuture in a Day", MessageBoxButton.OK, MessageBoxImage.Warning);
+                  cbmaxlecperday.Focus();
+                  return false;
+              }
+              else if (cbmaxlecperweek.SelectedValue.ToString() == "Select")
+              {
+                  MessageBox.Show("Please Select Max Lecture in Week", "Max Lecuture in a Week", MessageBoxButton.OK, MessageBoxImage.Warning);
+                  cbmaxlecperweek.Focus();
+                  return false;
+              }
+              else if (Convert.ToInt32(cbmaxlecperweek.SelectedValue) < Convert.ToInt32(cbmaxlecperday.SelectedValue))
+              {
+                  MessageBox.Show("Please Enter Max Lect/Week Greater than Lect/Day", "Max Lecuture in a Week", MessageBoxButton.OK, MessageBoxImage.Warning);
+                  cbmaxlecperweek.Focus();
+                  return false;
+              }
+              else if (cbmaxlectperrow.SelectedValue.ToString() == "Select")
+              {
+                  MessageBox.Show("Please Select Max Lecture in Row", "Max Lecuture in a Row", MessageBoxButton.OK, MessageBoxImage.Warning);
+                  cbmaxlectperrow.Focus();
+                  return false;
+              }
+              else if (cballowlect.SelectedValue.ToString() == "Select")
+              {
+                  MessageBox.Show("Please Select Is allow more than 1 Lect", "Is Allow Lect", MessageBoxButton.OK, MessageBoxImage.Warning);
+                  cballowlect.Focus();
+                  return false;
+              }
+              else
+              {
+                  return true;
+              }
         }
         #endregion
 
@@ -396,6 +413,7 @@ namespace SchoolManagement.Batch
             txtBatchName.Text = "";
             txtBatchCode.Text = "";           
             txtlecDuration.Text = "";
+            txtSearchBatch.Text = "";
             cmbTimeStartMin.Items.Clear();
             cmbTimeEndMin.Items.Clear();
             TimingHrs();
@@ -439,7 +457,7 @@ namespace SchoolManagement.Batch
                 {
                     if (txtBatchName.Text.Length > 0 && txtBatchName.Text.Length == 1)
                     {
-                        if (System.Text.RegularExpressions.Regex.IsMatch(txtBatchName.Text, "^[a-zA-Z0-9]+$"))
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtBatchName.Text, "^[a-zA-Z]+$"))
                         {
                         }
                         else
@@ -667,19 +685,18 @@ namespace SchoolManagement.Batch
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                        dgvBatch.ItemsSource = ds.Tables[0].DefaultView;
-                        //dgvClass.DataContext = ds.Tables[0].DefaultView;
-                        //dgvClass.Columns[0].Visibility = Visibility.Collapsed;
                     }
                     else
                     {
                         dgvBatch.ItemsSource = null;
                         MessageBox.Show("No Data Available");
+                        clearFields();
                     }
 
                 }
                 else
                 {
-                    MessageBox.Show("Please Enter Class Name", "Message", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Please Enter Batch Name", "Message", MessageBoxButton.OK, MessageBoxImage.Warning);
                     txtSearchBatch.Focus();
 
                 }
@@ -698,7 +715,7 @@ namespace SchoolManagement.Batch
             BindClassName();                                              
             btnDelete.IsEnabled = false;
             BindYesNo();
-            if (cmbTimeStartHrs.SelectedValue == "Select") 
+            if (cmbTimeStartHrs.SelectedValue.ToString() == "Select") 
             {
                 cmbTimeStartHrs.IsEnabled = false;
                 cmbTimeStartMin.IsEnabled = false;
@@ -758,15 +775,23 @@ namespace SchoolManagement.Batch
         {
             try
             {
-                if (System.Text.RegularExpressions.Regex.IsMatch(txtlecDuration.Text, "[^0-9-.]"))
+                if (txtlecDuration.Text != "")
                 {
-                    MessageBox.Show("Please Enter Only Numbers", "Lecture Duration", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    txtlecDuration.Text.Remove(txtlecDuration.Text.Length - 1);
-                    txtlecDuration.Text = "";
-                    txtlecDuration.Focus();
+                    if (txtlecDuration.Text.Length > 0)
+                    {
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtlecDuration.Text, "^[0-9]+$"))
+                        {
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please Enter Only Numbers", "Lect. Duration", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtlecDuration.Text = "";
+                            txtlecDuration.Focus();
+                        }
+
+                    }
                 }
-                
-            }
+                }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
@@ -776,14 +801,18 @@ namespace SchoolManagement.Batch
 
         private void cbLunchBreak_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-             if (cbLunchBreak.SelectedValue == "No" ) 
+             if (cbLunchBreak.SelectedIndex == 2 ) 
             {
                 cmbTimeStartHrs.IsEnabled = false;
                 cmbTimeStartMin.IsEnabled = false;
                 cmbTimeEndHrs.IsEnabled = false;
                 cmbTimeEndMin.IsEnabled = false;
+                cmbTimeStartHrs.SelectedIndex = 0;
+                cmbTimeStartMin.SelectedIndex = 0;
+                cmbTimeEndHrs.SelectedIndex = 0;
+                cmbTimeEndMin.SelectedIndex = 0;
             }
-             else if (cbLunchBreak.SelectedValue == "Yes") 
+             else if (cbLunchBreak.SelectedIndex == 1) 
             {
                 cmbTimeStartHrs.IsEnabled = true;
                 cmbTimeStartMin.IsEnabled = true;
@@ -791,12 +820,16 @@ namespace SchoolManagement.Batch
                 cmbTimeEndMin.IsEnabled = true;
             }
 
-             else if (cbLunchBreak.SelectedValue == "Select")
+             else if (cbLunchBreak.SelectedIndex == 0)
              {
                  cmbTimeStartHrs.IsEnabled = false;
                  cmbTimeStartMin.IsEnabled = false;
                  cmbTimeEndHrs.IsEnabled = false;
                  cmbTimeEndMin.IsEnabled = false;
+                 cmbTimeStartHrs.SelectedIndex = 0;
+                 cmbTimeStartMin.SelectedIndex = 0;
+                 cmbTimeEndHrs.SelectedIndex = 0;
+                 cmbTimeEndMin.SelectedIndex = 0;
              }
            
         }
