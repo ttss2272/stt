@@ -104,8 +104,8 @@ namespace SchoolManagement.Class
          * EndTime:-PM
          * Purpose:- Close button code
          */
-        #region--------------------------btncancel_Click-----------------------------
-        private void btncancel_Click(object sender, RoutedEventArgs e)
+        #region--------------------------btnclose_Click-----------------------------
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -116,6 +116,7 @@ namespace SchoolManagement.Class
                 MessageBox.Show(ex.Message.ToString());
             }
         }
+        
         #endregion
 
         /*
@@ -209,19 +210,17 @@ namespace SchoolManagement.Class
         #region-----------------------------clearFields()------------------------------------------
         private void clearFields()
         {
+            UpID = 0;
             cbBranchName.SelectedIndex = 0;
-            cbBranchName.Text = "";
             txtClassName.Text = "";
             txtShortName.Text = "";            
             txtcolor.Text = "";
+            txtSearchClass.Text = "";
             rdoActive.IsChecked = true;
             rdoDeActive.IsChecked = false;
-            btnDelete.IsEnabled = false;
+            btndelete.IsEnabled = false;
             btnadd.Content = "Save";
             cbBoard.SelectedIndex = 0;
-            UpID = 0;
-            btndelete.IsEnabled = false;
-            txtSearchClass.Text = "";
             BindGridview();
         }
         #endregion                    
@@ -237,7 +236,7 @@ namespace SchoolManagement.Class
                     SetParameters();
                     DeleteClass();
                     dgvClass.Items.Refresh();
-                    BindGridview();
+                   // BindGridview();
                     clearFields();
                 }
             }
@@ -365,11 +364,6 @@ namespace SchoolManagement.Class
             {
                 dgvClass.ItemsSource = ds.Tables[0].DefaultView;
             }
-            //else
-            //{
-            //    dgvClass.ItemsSource = null;
-            //    MessageBox.Show("Data Not Found", "Message");
-            //}
             dgvClass.Items.Refresh();
         }
         #endregion
@@ -460,13 +454,12 @@ namespace SchoolManagement.Class
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         dgvClass.ItemsSource = ds.Tables[0].DefaultView;
-                        //dgvClass.DataContext = ds.Tables[0].DefaultView;
-                        //dgvClass.Columns[0].Visibility = Visibility.Collapsed;
                     }
                     else
                     {
                         dgvClass.ItemsSource = null;
                         MessageBox.Show("No Data Available");
+                        clearFields();
                     }
 
                 }
@@ -499,7 +492,7 @@ namespace SchoolManagement.Class
             {
                 if (txtcolor.Text != "")
                 {
-                    if (txtcolor.Text.Length > 0 && txtcolor.Text.Length == 1)
+                    if (txtcolor.Text.Length > 0)
                     {
                         if (System.Text.RegularExpressions.Regex.IsMatch(txtcolor.Text, "^[a-zA-Z]+$"))
                         {
@@ -519,5 +512,6 @@ namespace SchoolManagement.Class
                 MessageBox.Show(ex.Message.ToString());
             }
         }
+
     }
 }
