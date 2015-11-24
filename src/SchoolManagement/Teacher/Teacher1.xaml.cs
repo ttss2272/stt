@@ -392,6 +392,24 @@ namespace SchoolManagement.Teacher
                 cmbMaxLectPerWeek.Focus();
                 return false;
             }
+            else if (Convert.ToInt32(cmbMaxLectPerWeek.SelectedValue) < Convert.ToInt32(cmbMaxLectPerDay.SelectedValue))
+            {
+                MessageBox.Show("Please Enter No of Lect/week Greater than Lect/Day", "Max No Of Lectures Per Week", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cmbMaxLectPerWeek.Focus();
+                return false;
+            }
+            //else if (cmbMaxNoLectInRow.SelectedValue.ToString() == "Select")
+            //{
+            //    MessageBox.Show("Please Select Max No Of Lectutures In Row.", "Max No Of Lectures In Row", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //    cmbMaxNoLectInRow.Focus();
+            //    return false;
+            //}
+            else if (cmbAllowMoreLect.SelectedValue.ToString() == "Select")
+            {
+                MessageBox.Show("Please Select Is Allow More lecture.", "More Lecture", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cmbAllowMoreLect.Focus();
+                return false;
+            }
             else if (cmbMaxNoLectInRow.SelectedValue.ToString() == "Select")
             {
                 MessageBox.Show("Please Select Max No Of Lectutures In Row.", "Max No Of Lectures In Row", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -400,7 +418,7 @@ namespace SchoolManagement.Teacher
             }
             else if (cmbFirstLect.SelectedValue.ToString() == "Select")
             {
-                MessageBox.Show("Please Select First lecture.", "First Lecture", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Please Select First Lecture.", "First Lecture", MessageBoxButton.OK, MessageBoxImage.Warning);
                 cmbFirstLect.Focus();
                 return false;
             }
@@ -464,7 +482,6 @@ namespace SchoolManagement.Teacher
 
         #region----------------------------SetParameters()--------------------------------------------
         private void SetParameters()
-        
         {
             TeacherID = UPID;
             TeacherName = txtName.Text.Trim();
@@ -653,7 +670,7 @@ namespace SchoolManagement.Teacher
                 }
                 else if (act == false)
                 {
-                    rdbInActive.IsChecked = false;
+                    rdbInActive.IsChecked = true;
                 }
                 btnDelete.IsEnabled = true;
                 btnSave.Content = "Update";
@@ -694,6 +711,96 @@ namespace SchoolManagement.Teacher
         {
             ClearFields();
         }
+
+        /*
+        * CreatedBy:-Pranjali Vidhate
+        * Created Date:- 24 Nov 2015
+        * Purpose:- validation of Name Text Change  */
+
+        #region----------------------ValidationOfName_Teacher---------------------------------------
+        private void txtName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (txtName.Text != "")
+                {
+                    if (txtName.Text.Length > 0)
+                    {
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtName.Text, "^[a-zA-Z]+$"))
+                        {
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please Enter Only Alphabate", "Teacher Name", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtName.Text = "";
+                            txtName.Focus();
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void txtSurname_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (txtSurname.Text != "")
+                {
+                    if (txtSurname.Text.Length > 0 )
+                    {
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtSurname.Text, "^[a-zA-Z]+$"))
+                        {
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please Enter Only Alphabate", "Surname", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtSurname.Text = "";
+                            txtSurname.Focus();
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void txtShortName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (txtShortName.Text != "")
+                {
+                    if (txtShortName.Text.Length > 0 && txtShortName.Text.Length == 1)
+                    {
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtShortName.Text, "^[a-zA-Z]"))
+                        {
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please Enter First Characerter Alphabate", "Teacger Short Name", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtShortName.Text = "";
+                            txtShortName.Focus();
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        #endregion
+
+
 
     }
 }

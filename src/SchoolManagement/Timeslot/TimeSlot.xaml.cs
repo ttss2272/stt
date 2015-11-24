@@ -278,8 +278,6 @@ namespace SchoolManagement.Timeslot
                 {
                     ds = obj_TSlot.BindFullGrid(0, cmbBranchName.Text, "");
                 }
-
-                // ds = obj_Room.BindFullGrid(0);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     dgTimeSlot.ItemsSource = ds.Tables[0].DefaultView;
