@@ -43,9 +43,7 @@ namespace SchoolManagement.Class
             this.WindowState = WindowState.Maximized;
             this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
             this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
-            //clearFields();
-            //BindBranchName();
-           
+            clearFields();   
         }
 
         #endregion
@@ -66,7 +64,7 @@ namespace SchoolManagement.Class
                 {
                     SetParameters();
                     SaveDetails();
-                    BindGridview();
+                   // BindGridview();
                 }
             }
             catch (Exception ex)
@@ -195,7 +193,7 @@ namespace SchoolManagement.Class
             else if (rdoActive.IsChecked == false && rdoDeActive.IsChecked == true)
             {
                 IsActive = 0;
-                IsDeleted = 1;
+                IsDeleted = 0;
             }
 
         }
@@ -221,9 +219,9 @@ namespace SchoolManagement.Class
             btnDelete.IsEnabled = false;
             btnadd.Content = "Save";
             cbBoard.SelectedIndex = 0;
-            cbBranchName.SelectedIndex = 0;
             UpID = 0;
             btndelete.IsEnabled = false;
+            txtSearchClass.Text = "";
             BindGridview();
         }
         #endregion                    
@@ -366,13 +364,12 @@ namespace SchoolManagement.Class
             if (ds.Tables[0].Rows.Count > 0)
             {
                 dgvClass.ItemsSource = ds.Tables[0].DefaultView;
-                //dgvClass.Columns[0].Visibility = Visibility.Collapsed;
             }
-            else
-            {
-                dgvClass.ItemsSource = null;
-                MessageBox.Show("Data Not Found", "Message");
-            }
+            //else
+            //{
+            //    dgvClass.ItemsSource = null;
+            //    MessageBox.Show("Data Not Found", "Message");
+            //}
             dgvClass.Items.Refresh();
         }
         #endregion
@@ -504,12 +501,12 @@ namespace SchoolManagement.Class
                 {
                     if (txtcolor.Text.Length > 0 && txtcolor.Text.Length == 1)
                     {
-                        if (System.Text.RegularExpressions.Regex.IsMatch(txtcolor.Text, "^[a-zA-Z]"))
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtcolor.Text, "^[a-zA-Z]+$"))
                         {
                         }
                         else
                         {
-                            MessageBox.Show("Please Enter First Characerter Alphabate", "Color", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("Please Enter Only Alphabate", "Color", MessageBoxButton.OK, MessageBoxImage.Warning);
                             txtcolor.Text = "";
                             txtcolor.Focus();
                         }

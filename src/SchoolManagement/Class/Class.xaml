@@ -17,8 +17,8 @@
                 <Label Content="Board" Height="28" HorizontalAlignment="Left" Margin="123,142,0,0" Name="iblboard" VerticalAlignment="Top" />
                 <ComboBox Height="23" HorizontalAlignment="Left" Margin="199,145,0,0" Name="cbBoard" VerticalAlignment="Top" Width="178">
                     <ComboBoxItem IsSelected="True" Content="Select"/>
-                    <ComboBoxItem Content="CBSE Board" />
-                    <ComboBoxItem Content="ICSE Board" />
+                    <ComboBoxItem Content="CBSC Board" />
+                    <ComboBoxItem Content="ICSC Board" />
                 </ComboBox>
                 <Button Content="Add" Height="30" HorizontalAlignment="Left" Margin="22,314,0,0" Name="btnAdd" VerticalAlignment="Top" Width="75" />
                 <Button Content="Edit" Height="30" HorizontalAlignment="Left" Margin="135,314,0,0" Name="btnEdit" VerticalAlignment="Top" Width="75" />
@@ -55,9 +55,9 @@
         </DataGrid >
         <GroupBox Header="" Height="71" HorizontalAlignment="Left" Margin="14,334,0,0" Name="groupBox1" VerticalAlignment="Top" Width="586">
             <Grid>
-                <Button Content="Save" Height="30" HorizontalAlignment="Left" Margin="96,10,0,0" Name="btnadd" VerticalAlignment="Top" Width="75" Click="btnadd_Click" />
-                <Button Content="Delete" Height="30" HorizontalAlignment="Left" Margin="322,10,0,0" Name="btndelete" VerticalAlignment="Top" Width="75" Click="btndelete_Click" />
-                <Button Content="Clear" Height="30" HorizontalAlignment="Left" Margin="214,10,0,0" Name="btnClose" VerticalAlignment="Top" Width="75" Click="btncancel_Click" />
+                <Button Content="Save" Height="30" HorizontalAlignment="Left" Margin="104,10,0,0" Name="btnadd" VerticalAlignment="Top" Width="75" Click="btnadd_Click" />
+                <Button Content="Delete" Height="30" HorizontalAlignment="Left" Margin="226,12,0,0" Name="btndelete" VerticalAlignment="Top" Width="75" Click="btndelete_Click" />
+                <Button Content="Clear" Height="30" HorizontalAlignment="Left" Margin="351,12,0,0" Name="btnClose" VerticalAlignment="Top" Width="75" Click="btncancel_Click" />
             </Grid>
         </GroupBox>
         <Label Content="Search Class" HorizontalAlignment="Left" Margin="142,422,0,0" Name="lblSearch" VerticalAlignment="Top" Width="93" FontWeight="Bold" />
