@@ -14,7 +14,7 @@
                     <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFEB3030" Height="28" HorizontalAlignment="Left" Margin="162,22,0,0" Name="label6" VerticalAlignment="Top" Width="31" />
                     <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFEB3030" Height="28" HorizontalAlignment="Left" Margin="162,90,0,0" Name="label4" VerticalAlignment="Top" Width="31" />
                     <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFEB3030" Height="28" HorizontalAlignment="Left" Margin="162,56,0,0" Name="label5" VerticalAlignment="Top" Width="31" />
-                    <ComboBox Height="28" HorizontalAlignment="Left" Margin="199,61,0,0" Name="cmbDayName" VerticalAlignment="Top" Width="145" ItemsSource="{Binding }" />
+                    <ComboBox Height="28" HorizontalAlignment="Left" Margin="199,61,0,0" Name="cmbDayName" VerticalAlignment="Top" Width="145" ItemsSource="{Binding }" SelectionChanged="cmbDayName_SelectionChanged" />
                     <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="199,95,0,0" Name="cmbSHr" TabIndex="9" VerticalAlignment="Top" Width="49" />
                     <Label Content="Hr" FontWeight="Bold" Height="28" HorizontalAlignment="Right" Margin="0,94,269,0" Name="label21" VerticalAlignment="Top" />
                     <Label Content="Min" FontWeight="Bold" Height="28" HorizontalAlignment="Right" Margin="0,94,193,0" Name="label22" VerticalAlignment="Top" />

@@ -144,10 +144,9 @@ namespace SchoolManagement.Timeslot
         private void clearFields()
         {
             UpID = 0;
-            cmbBranchName.Text = "";
-            cmbDayName.Text = "";
             rdbActive.IsChecked = true;
             rdbInactive.IsChecked = false;
+            btnDelete.IsEnabled = false;
             btnAdd.Content = "Save";
             cmbSHr.SelectedIndex = 0;
             cmbSMin.SelectedIndex = 0;
@@ -157,6 +156,7 @@ namespace SchoolManagement.Timeslot
             cmbSSMin.SelectedIndex = 0;
             cmbSEHr.SelectedIndex = 0;
             cmbSEMin.SelectedIndex = 0;
+            cmbBranchName.SelectedIndex = 0;
             cmbDayName.SelectedIndex = 0;
             BindFullGrid();
             BindBranchName();
@@ -222,10 +222,11 @@ namespace SchoolManagement.Timeslot
 
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    cmbBranchName.DataContext = ds.Tables[0].DefaultView;
+                    
                     cmbBranchName.DisplayMemberPath = ds.Tables[0].Columns["BranchName"].ToString();
                     cmbBranchName.SelectedValuePath = ds.Tables[0].Columns["BranchID"].ToString();
-
+                    cmbBranchName.DataContext = ds.Tables[0].DefaultView;
+                    cmbBranchName.SelectedValue = "0";
                 }
 
             }
@@ -267,7 +268,16 @@ namespace SchoolManagement.Timeslot
         {
             try
             {
-                DataSet ds = obj_TSlot.BindFullGrid(0, cmbBranchName.Text, "");
+                DataSet ds;
+                if (cmbBranchName.Text == "Select")
+                {
+                    ds = obj_TSlot.BindFullGrid(0, "", "");
+
+                }
+                else
+                {
+                    ds = obj_TSlot.BindFullGrid(0, cmbBranchName.Text, "");
+                }
 
                 // ds = obj_Room.BindFullGrid(0);
                 if (ds.Tables[0].Rows.Count > 0)
@@ -485,6 +495,7 @@ namespace SchoolManagement.Timeslot
 
             BindFullGrid();
             rdbActive.IsChecked = true;
+            btnDelete.IsEnabled = false;
             cmbDayName_Items();
             cmbSHr_Items();
             cmbSMin_Items();
@@ -623,5 +634,64 @@ namespace SchoolManagement.Timeslot
 
         #endregion
 
+
+        #region------------------------------DaySelectionChanged----------------------------
+        private void cmbDayName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (cmbBranchName.SelectedValue != "0")
+                {
+
+                    if (cmbDayName.SelectedItem.ToString() != "select")
+                    {
+                        DataSet ds = obj_TSlot.BindFullGrid(0, cmbBranchName.Text, cmbDayName.SelectedItem.ToString());
+                        if (ds.Tables[0].Rows.Count > 0)
+                        {
+                            string StartTime = ds.Tables[0].Rows[0]["StartTime"].ToString();
+                            string[] a = StartTime.Split(':');
+                            cmbSHr.Text = a[0];
+                            cmbSMin.Text = a[1];
+
+                            string EndTime = ds.Tables[0].Rows[0]["EndTime"].ToString();
+                            string[] b = EndTime.Split(':');
+                            cmbEHr.Text = b[0];
+                            cmbEMin.Text = b[1];
+
+                            string SlotStartTime = ds.Tables[0].Rows[0]["LectureStartTime"].ToString();
+                            string[] c = SlotStartTime.Split(':');
+                            cmbSSHr.Text = c[0];
+                            cmbSSMin.Text = c[1];
+
+
+                            string SlotEndTime = ds.Tables[0].Rows[0]["LectureEndTime"].ToString();
+                            string[] d = SlotEndTime.Split(':');
+                            cmbSEHr.Text = d[0];
+                            cmbSEMin.Text = d[1];
+
+                            IsActive = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
+                            IsDeleted = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDelete"]);
+                            if (IsActive == 1 && IsDeleted == 0)
+                            {
+                                rdbActive.IsChecked = true;
+                            }
+                            else if (IsActive == 0 && IsDeleted == 0)
+                            {
+                                rdbInactive.IsChecked = true;
+                            }
+                            btnDelete.IsEnabled = true;
+                            // btnAdd.Content = "Update";
+                            BindFullGrid();
+                        }
+                    }
+                   // else { BindFullGrid(); }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
     }
 }
