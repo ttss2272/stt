@@ -11,6 +11,7 @@ namespace DataAccessLayer
     {
       SqlConnection con = new SqlConnection();
       DBConnection conn = new DBConnection();
+
         public string SaveBranch(int BranchID, string BranchName, string BranchCode, string InstituteName, string Logo, int CreatedByUserID, int UpdatedByUserID, string UpdatedDate,int IsActive,int IsDelete)
         {
             string Result = null;
@@ -126,6 +127,66 @@ namespace DataAccessLayer
 
             SqlCommand cmd = new SqlCommand("GetBranchCount_SP", con);
             cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+
+            sqlDa.Fill(ds);
+            con.Close();
+            return ds;
+        }
+
+        public string SaveDistance(int BranchDistanceID, int ToBranchID, int FromBranchID, int DistanceTime, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
+        {
+            string Result = null;
+            con = conn.getConnection();
+
+            SqlCommand cmd = new SqlCommand("SaveDistance", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@BranchDistanceID", BranchDistanceID);
+            cmd.Parameters.AddWithValue("@ToBranchID",ToBranchID);
+            cmd.Parameters.AddWithValue("@FromBranchID", FromBranchID);
+            cmd.Parameters.AddWithValue("@DistanceTime",DistanceTime);
+            cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
+            cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
+            cmd.Parameters.AddWithValue("@IsActive", IsActive);
+            cmd.Parameters.AddWithValue("@IsDeleted", IsDeleted);
+
+            con.Open();
+            Result = cmd.ExecuteScalar().ToString();
+            con.Close();
+            return Result;
+        }
+
+        public DataSet BindDistance(int BranchDistanceID, int ToBranchID, int FromBranchID)
+        {
+            con = conn.getConnection();
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("BindDistance_SP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@BranchDistanceID", BranchDistanceID);
+            cmd.Parameters.AddWithValue("@ToBranchID", ToBranchID);
+            cmd.Parameters.AddWithValue("@FromBranchID", FromBranchID);
+
+            SqlDataAdapter sqlda = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sqlda.Fill(ds);
+            con.Close();
+            return ds;
+        }
+
+        public DataSet BindToBranchName(int FromBranchID)
+        {
+            con = conn.getConnection();
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("BindTOBranchName_SP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@FromBranchID", FromBranchID);
 
             SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
