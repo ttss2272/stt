@@ -112,8 +112,15 @@ namespace SchoolManagement
             Batch.BatchSubject ObjBatch_Sub = new Batch.BatchSubject();
             Close();
             ObjBatch_Sub.Show();
+            
         }
 
+        private void menuBranchDistance_Click_1(object sender, RoutedEventArgs e)
+        {
+            Branch.BranchDistance1 objBranch_Dist = new Branch.BranchDistance1();
+            Close();
+            objBranch_Dist.Show();
+        }
         private void menuExit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
@@ -124,6 +131,7 @@ namespace SchoolManagement
             Window parent = Window.GetWindow(this);
             parent.Close();
         }
+
 
         
     }
