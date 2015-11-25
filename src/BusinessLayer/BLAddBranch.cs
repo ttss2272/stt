@@ -51,5 +51,23 @@ namespace BusinessLayer
             DataSet ds = obj_AddBranch.GetBranchCount();
             return ds;
         }
+
+        public string SaveDisatnce(int BranchDistanceID, int ToBranchID, int FromBranchID, int DistanceTime, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
+        {
+            string Result = obj_AddBranch.SaveDistance(BranchDistanceID,ToBranchID,FromBranchID,DistanceTime,UpdatedByUserID,UpdatedDate,IsActive,IsDeleted);
+            return Result;
+        }
+
+        public DataSet BindDistance(int BranchDistanceID, int ToBranchID, int FromBranchID)
+        {
+            DataSet ds = obj_AddBranch.BindDistance(BranchDistanceID, ToBranchID, FromBranchID);
+            return ds;
+        }
+
+        public DataSet BindToBranchName(int FromBranchID)
+        {
+            DataSet ds = obj_AddBranch.BindToBranchName(FromBranchID);
+            return ds;
+        }
     }
 }
