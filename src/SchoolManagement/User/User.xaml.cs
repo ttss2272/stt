@@ -57,8 +57,21 @@ namespace SchoolManagement.User
                 txtEmailID.Focus();
                 return false;
             }
-            
-            
+            else if (txtEmailID.Text != "")
+            {
+                string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
+                @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+                @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+                Regex re = new Regex(strRegex);
+                if (re.IsMatch(txtEmailID.Text))
+                    return (true);
+                else
+                {
+                    MessageBox.Show("Please Enter Poper Email ID");
+                    txtEmailID.Focus();
+                    return (false);
+                }
+            }
             else if (string.IsNullOrEmpty(txtContactNo.Text) || string.IsNullOrWhiteSpace(txtContactNo.Text))
             {
                 MessageBox.Show("Please Enter contact Number..");
@@ -67,7 +80,7 @@ namespace SchoolManagement.User
             }
             else if (txtContactNo.Text.Length != 0 && txtContactNo.Text.Length < 10)
             {
-                MessageBox.Show("Invalid Contact Number..");
+                MessageBox.Show("Contact Number Must Be 10 Digits..");
                 txtLoginID.Focus();
                 return false;
             }
@@ -75,12 +88,6 @@ namespace SchoolManagement.User
             {
                 MessageBox.Show("Please Enter Only Number in Contact No.");
                 txtContactNo.Focus();
-                return false;
-            }
-            else if (txtContactNo.Text.Length > 10)
-            {
-                MessageBox.Show("Contact Number Must be 10 Digits..");
-                txtLoginID.Focus();
                 return false;
             }
             else if (string.IsNullOrEmpty(txtLoginID.Text) || string.IsNullOrWhiteSpace(txtLoginID.Text))
@@ -100,21 +107,6 @@ namespace SchoolManagement.User
             {
                 MessageBox.Show("Please Select User Type", "User Type", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
-            }
-            else if (txtEmailID.Text != "")
-            {
-                string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
-                @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
-                @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
-                Regex re = new Regex(strRegex);
-                if (re.IsMatch(txtEmailID.Text))
-                    return (true);
-                else
-                {
-                    MessageBox.Show("Please Enter Poper Email ID");
-                    txtEmailID.Focus();
-                    return (false);
-                }
             }
             else
             {
@@ -173,7 +165,7 @@ namespace SchoolManagement.User
                 IsActive = 1;
                 IsDeleted = 0;
             }
-            else
+            else if(cmbDelete.IsChecked == true)
             {
                 IsActive = 0;
                 IsDeleted = 0;
@@ -257,17 +249,17 @@ namespace SchoolManagement.User
 
         private void ClearFields()
         {
+            UpID = 0;
             txtFullName.Text = "";
             txtAddress.Text = "";
             txtContactNo.Text = "";
             txtEmailID.Text = "";
             txtLoginID.Text = "";
             txtPassword.Password = "";
+            txtSearchUser.Text = "";
             cmbActive.IsChecked = true;
             bindUserGrid();
-            UpID = 0;
             btnDelete.IsEnabled = false;
-            txtSearchUser.Text = "";
             btnSave.Content = "Save";
             BindUserType();
         }
@@ -295,7 +287,7 @@ namespace SchoolManagement.User
             {
                 gvUser.ItemsSource = null;
                 MessageBox.Show("Data Not Found", "Message");
-                txtSearchUser.Text = "";
+                ClearFields();
             }
         }
 
@@ -319,9 +311,9 @@ namespace SchoolManagement.User
                 {
                     cmbActive.IsChecked = true;
                 }
-                else if (act == false && del == true)
+                else if (act == false && del == false)
                 {
-                    cmbActive.IsChecked = false;
+                    cmbDelete.IsChecked = true; 
                 }
                 btnDelete.IsEnabled = true;
                 btnSave.Content = "Update";
@@ -331,5 +323,68 @@ namespace SchoolManagement.User
                 MessageBox.Show(ex.Message.ToString(), "Exception Error");
             }
         }
+
+        /* Created By:- Pranjali Vidhate
+    * Created Date :- 20 Nov 2015
+    * Purpose:- Vaidation for text check */
+
+        #region---------------------------ValidationforName-----------------------------------------
+        private void txtFullName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (txtFullName.Text != "")
+                {
+                    if (txtFullName.Text.Length > 0)
+                    {
+                        if(System.Text.RegularExpressions.Regex.IsMatch(txtFullName.Text,"^[a-zA-Z ]+$"))
+                        {
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please Enter Only Alphabets", "Full Name", MessageBoxButton.OK, MessageBoxImage.Information);
+                            txtFullName.Text="";
+                            txtFullName.Focus();
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void txtContactNo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (txtContactNo.Text != "")
+                {
+                    if (txtContactNo.Text.Length > 0)
+                    {
+                        if(System.Text.RegularExpressions.Regex.IsMatch(txtContactNo.Text,"[0-9]+$"))
+                        {
+                        
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please Enter Only Numbers","Contact Number",MessageBoxButton.OK,MessageBoxImage.Information);
+                            txtContactNo.Text="";
+                            txtContactNo.Focus();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        #endregion
+
+       
     }
 }
