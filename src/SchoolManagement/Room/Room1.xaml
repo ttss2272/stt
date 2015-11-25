@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Room1" Height="557" Width="859" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" xmlns:my="clr-namespace:SchoolManagement">
     <Grid>
-        <StackPanel>
+       <StackPanel>
             <my:Menu_UserControl HorizontalAlignment="Left" x:Name="menu_UserControl1" VerticalAlignment="Top" />
         </StackPanel>
         <GroupBox Header="Room" Height="320" HorizontalAlignment="Left" Margin="31,30,0,0" Name="groupBox1" VerticalAlignment="Top" Width="771">
