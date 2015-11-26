@@ -3,42 +3,49 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="BranchDistance1" Height="425" Width="676" xmlns:my="clr-namespace:SchoolManagement">
     <Grid>
-        <StackPanel>
+       <StackPanel>
                 <my:Menu_UserControl HorizontalAlignment="Left" x:Name="menu_UserControl1" VerticalAlignment="Top" />
             </StackPanel>
             <GroupBox Header="BranchDistance" Height="230" HorizontalAlignment="Left" Margin="32,30,0,0" Name="groupBox1" VerticalAlignment="Top" Width="611">
                 <Grid>
-                    <ComboBox Height="28" HorizontalAlignment="Left" Margin="162,20,0,0" Name="cmbFromBranch" VerticalAlignment="Top" Width="92" ItemsSource="{Binding}" />
+                    <ComboBox Height="28" HorizontalAlignment="Left" Margin="162,20,0,0" Name="cmbFromBranch" VerticalAlignment="Top" Width="92" ItemsSource="{Binding}" SelectionChanged="cmbFromBranch_SelectionChanged" />
                     <Label Content="From Branch" Height="28" HorizontalAlignment="Left" Margin="41,21,0,0" Name="label1" VerticalAlignment="Top" Width="91" FontWeight="Bold" />
                     <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFEB3030" Height="28" HorizontalAlignment="Left" Margin="125,21,0,0" Name="label6" VerticalAlignment="Top" Width="31" />
                     <ComboBox Height="28" HorizontalAlignment="Left" Margin="396,20,0,0" Name="cmbToBranch" VerticalAlignment="Top" Width="92" ItemsSource="{Binding}" />
                     <Label Content="To Branch" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="272,20,0,0" Name="label2" VerticalAlignment="Top" Width="91" />
                     <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFEB3030" Height="28" HorizontalAlignment="Left" Margin="359,21,0,0" Name="label3" VerticalAlignment="Top" Width="31" />
-                    <Label Content="Distance In Min." FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="148,71,0,0" Name="label4" VerticalAlignment="Top" Width="106" />
-                    <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFEB3030" Height="28" HorizontalAlignment="Left" Margin="249,73,0,0" Name="label5" VerticalAlignment="Top" Width="31" />
-                    <Button Content="Go" Height="28" HorizontalAlignment="Left" Margin="511,20,0,0" Name="btnGo" VerticalAlignment="Top" Width="47" FontWeight="Bold" />
-                    <Button Content="Save" FontWeight="Bold" Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="148,161,0,0" Name="btnAdd" TabIndex="14" VerticalAlignment="Top" Width="80" Click="btnAdd_Click" />
-                    <Button Content="Delete" FontWeight="Bold" Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="270,161,0,0" Name="btnDelete" TabIndex="16" VerticalAlignment="Top" Width="75" />
-                    <Button Content="Clear" FontWeight="Bold" Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="399,161,0,0" Name="btnclear" TabIndex="17" VerticalAlignment="Top" Width="75" Click="btnclear_Click" />
-                    <Label Content="Status" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="148,115,0,0" Name="label7" VerticalAlignment="Top" Width="108" />
-                    <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFE83030" Height="28" HorizontalAlignment="Left" Margin="249,114,0,0" Name="label12" VerticalAlignment="Top" Width="31" />
-                    <RadioButton Content="Acative" FontWeight="Bold" Height="16" HorizontalAlignment="Left" Margin="287,121,0,0" Name="rdbActive" VerticalAlignment="Top" />
-                    <RadioButton Content="InAcative" FontWeight="Bold" Height="16" HorizontalAlignment="Left" Margin="372,120,0,0" Name="rdbInactive" VerticalAlignment="Top" />
-                <TextBox Height="30" HorizontalAlignment="Right" Margin="0,71,192,0" Name="txtDistTime" VerticalAlignment="Top" Width="120" />
+                <Button Content="Go" Height="28" HorizontalAlignment="Left" Margin="511,20,0,0" Name="btnGo" VerticalAlignment="Top" Width="47" FontWeight="Bold" Click="btnGo_Click" />
+                    <Button Content="Save" FontWeight="Bold" Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="129,159,0,0" Name="btnAdd" TabIndex="14" VerticalAlignment="Top" Width="80" Click="btnAdd_Click" />
+                    <Button Content="Delete" FontWeight="Bold" Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="251,159,0,0" Name="btnDelete" TabIndex="16" VerticalAlignment="Top" Width="75" Click="btnDelete_Click" />
+                    <Button Content="Clear" FontWeight="Bold" Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="380,159,0,0" Name="btnclear" TabIndex="17" VerticalAlignment="Top" Width="75" Click="btnclear_Click" />
+                    <Label Content="Status" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="146,121,0,0" Name="label7" VerticalAlignment="Top" Width="108" />
+                    <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFE83030" Height="28" HorizontalAlignment="Left" Margin="235,121,0,0" Name="label12" VerticalAlignment="Top" Width="31" />
+                    <RadioButton Content="Acative" FontWeight="Bold" Height="16" HorizontalAlignment="Left" Margin="270,127,0,0" Name="rdbActive" VerticalAlignment="Top" />
+                    <RadioButton Content="InAcative" FontWeight="Bold" Height="16" HorizontalAlignment="Left" Margin="359,127,0,0" Name="rdbInactive" VerticalAlignment="Top" />
+                <GroupBox Header="" Height="65" HorizontalAlignment="Left" Margin="129,54,0,0" Name="gbDist" VerticalAlignment="Top" Width="280">
+                    <Grid>
+                        <Label Content="Distance In Min." FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="6,8,0,0" Name="label4" VerticalAlignment="Top" Width="106" />
+                        <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFEB3030" Height="28" HorizontalAlignment="Left" Margin="100,8,0,0" Name="label5" VerticalAlignment="Top" Width="31" />
+                        <TextBox Height="30" HorizontalAlignment="Right" Margin="0,8,16,0" Name="txtDistTime" VerticalAlignment="Top" Width="120" />
+                    </Grid>
+                </GroupBox>
             </Grid>
             </GroupBox>
-            <DataGrid AutoGenerateColumns="False" Height="137" HorizontalAlignment="Left" Margin="141,265,0,0" Name="dgDistanceTime" VerticalAlignment="Top" Width="363" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" IsReadOnly="True" ItemsSource="{Binding}" FontWeight="Bold">
-                <!-- <DataGrid.Columns>
-                <DataGridTextColumn Binding="{BranchDistanceID}" Header="BranchDistance" Visibility="Hidden"/>
-                <DataGridTextColumn Binding="{To_BranchID}" Header="To Branch" Width="100"/>
-                <DataGridTextColumn Binding="{From_BranchID}" Header="From Branch" Width="100"/>
-                <DataGridTextColumn Binding="{DistanceTime}" Header="DistanceInTime" Width="100"/>
-            </DataGrid.Columns>-->
-                <!--  <DataGrid.ItemContainerStyle>
+            <DataGrid AutoGenerateColumns="False" Height="137" HorizontalAlignment="Left" Margin="141,272,0,0" Name="dgDistanceTime" VerticalAlignment="Top" Width="363" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" IsReadOnly="True" ItemsSource="{Binding}" FontWeight="Bold">
+                <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding BranchDistanceID}" Header="BranchDistance" Visibility="Hidden"/>
+                <DataGridTextColumn Binding="{Binding FromBranch}" Header="From Branch" Width="110"/>
+                <DataGridTextColumn Binding="{Binding ToBranch}" Header="To Branch" Width="110"/>
+                <DataGridTextColumn Binding="{Binding DistanceTime}" Header="Distance In Time(Min)" Width="140"/>
+                <DataGridTextColumn Binding="{Binding Status}" Header="Status" Width="140"/>
+                <DataGridTextColumn Binding="{Binding IsActive}" Header="IsActive" Visibility="Hidden"/>
+                <DataGridTextColumn Binding="{Binding IsDeleted}" Header="isDeleted" Visibility="Hidden"/>
+            </DataGrid.Columns>
+                <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
-                    <EventSetter Event="" Handler="RowDouble_click" HandledEventsToo="True"/>
+                    <EventSetter Event="MouseDoubleClick" Handler="RowDouble_click" HandledEventsToo="True"/>
                 </Style>
-            </DataGrid.ItemContainerStyle> -->
+            </DataGrid.ItemContainerStyle> 
             </DataGrid>
     </Grid>
 </Window>
