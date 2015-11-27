@@ -58,9 +58,9 @@ namespace BusinessLayer
             return Result;
         }
 
-        public DataSet BindDistance(int BranchDistanceID, int ToBranchID, int FromBranchID)
+        public DataSet BindDistance(int BranchDistanceID, int FromBranchID, int ToBranchID)
         {
-            DataSet ds = obj_AddBranch.BindDistance(BranchDistanceID, ToBranchID, FromBranchID);
+            DataSet ds = obj_AddBranch.BindDistance(BranchDistanceID,FromBranchID,ToBranchID);
             return ds;
         }
 
@@ -68,6 +68,12 @@ namespace BusinessLayer
         {
             DataSet ds = obj_AddBranch.BindToBranchName(FromBranchID);
             return ds;
+        }
+
+        public string DeleteDistance(int BranchDistanceID, int UpdatedByUserID, string UpdatedDate)
+        {
+            string Result = obj_AddBranch.DeleteDistance(BranchDistanceID, UpdatedByUserID, UpdatedDate);
+            return Result;
         }
     }
 }
