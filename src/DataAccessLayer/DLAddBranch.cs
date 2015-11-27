@@ -141,12 +141,12 @@ namespace DataAccessLayer
             string Result = null;
             con = conn.getConnection();
 
-            SqlCommand cmd = new SqlCommand("SaveDistance", con);
+            SqlCommand cmd = new SqlCommand("SaveBranchDistance_SP", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@BranchDistanceID", BranchDistanceID);
-            cmd.Parameters.AddWithValue("@ToBranchID",ToBranchID);
-            cmd.Parameters.AddWithValue("@FromBranchID", FromBranchID);
+            cmd.Parameters.AddWithValue("@From_BranchID", FromBranchID);
+            cmd.Parameters.AddWithValue("@To_BranchID",ToBranchID);
             cmd.Parameters.AddWithValue("@DistanceTime",DistanceTime);
             cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
             cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
@@ -159,7 +159,7 @@ namespace DataAccessLayer
             return Result;
         }
 
-        public DataSet BindDistance(int BranchDistanceID, int ToBranchID, int FromBranchID)
+        public DataSet BindDistance(int BranchDistanceID,int FromBranchID,int ToBranchID)
         {
             con = conn.getConnection();
             con.Open();
@@ -168,8 +168,8 @@ namespace DataAccessLayer
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@BranchDistanceID", BranchDistanceID);
-            cmd.Parameters.AddWithValue("@ToBranchID", ToBranchID);
             cmd.Parameters.AddWithValue("@FromBranchID", FromBranchID);
+            cmd.Parameters.AddWithValue("@ToBranchID", ToBranchID);
 
             SqlDataAdapter sqlda = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
@@ -194,6 +194,23 @@ namespace DataAccessLayer
             sqlDa.Fill(ds);
             con.Close();
             return ds;
+        }
+
+        public string DeleteDistance(int BranchDistanceID, int UpdatedByUserID, string UpdatedDate)
+        {
+            string Result = null;
+            con = conn.getConnection();
+
+            SqlCommand cmd = new SqlCommand("DeleteDistance_SP", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@BranchDistanceID", BranchDistanceID);
+            cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
+            cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
+            con.Open();
+            Result = cmd.ExecuteScalar().ToString();
+            con.Close();
+            return Result;
         }
     }
 }
