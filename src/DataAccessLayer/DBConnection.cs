@@ -14,7 +14,7 @@ namespace DataAccessLayer
         {
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["conn"].ToString());
             return conn;
-        }   
+        }
 
     }
 }

@@ -77,7 +77,7 @@ namespace DataAccessLayer
             con = conn.getConnection();
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("BindBranchName_SP", con);
+            SqlCommand cmd = new SqlCommand("BindBranchName_SP", con);            
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
