@@ -91,7 +91,7 @@ namespace SchoolManagement
 
         private void menuTeacherAvailability_Click(object sender, RoutedEventArgs e)
         {
-            Teacher.TeacherAvailibility objTeacher = new  Teacher.TeacherAvailibility();
+            Teacher.TeacherAvailibility objTeacher = new Teacher.TeacherAvailibility();
             Close();
             objTeacher.Show();
         }
@@ -130,6 +130,13 @@ namespace SchoolManagement
         {
             Window parent = Window.GetWindow(this);
             parent.Close();
+        }      
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            TimeTable.Time_Table ObjTimeTable = new TimeTable.Time_Table();
+            Close();
+            ObjTimeTable.Show();
         }
 
 
