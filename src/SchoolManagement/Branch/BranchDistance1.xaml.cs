@@ -90,11 +90,11 @@ namespace SchoolManagement.Branch
         public void Setparameter()
         {
             UpID = 0;
-            if (btnAdd.Content == "Save")
+            if (btnAdd.Content.ToString() == "Save")
             {
                 BranchDistanceID = UpID;
             }
-            else if (btnAdd.Content == "Update")
+            else if (btnAdd.Content.ToString() == "Update")
             {
                 BranchDistanceID = BranchDistID;
             }
@@ -268,8 +268,6 @@ namespace SchoolManagement.Branch
             cmbToBranch.IsEnabled = true;
             BindToBranchName();
         }
-
-      
 
         #endregion
 
