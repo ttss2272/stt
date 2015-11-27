@@ -52,13 +52,7 @@ namespace BusinessLayer
         {
             DataSet ds = objTeacher.GetTeacherAvailableDetail(TeacherID);
             return ds;
-        }
-
-        public DataSet BindTeacherName()
-        {
-            DataSet ds = objTeacher.BindTeacherName();
-            return ds;
-        }
+        }       
 
         public DataSet BindTeacherDropDown(int TeacherID)
         {

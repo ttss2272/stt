@@ -11,11 +11,13 @@ namespace BusinessLayer
     public class BLAddClass
     {
         DLAddClass obj_AddClass = new DLAddClass();
-        public string saveAddClass(int id, string ClassName, string ShortName, string Board, string Color,int BranchID, int UpdatedByUserID, string UpdatedDate, int IsActive,int IsDeleted)
-        {
-            string result = obj_AddClass.saveAddClass(id, ClassName, ShortName, Board, Color,BranchID, UpdatedByUserID, UpdatedDate, IsActive,IsDeleted);
-            return result;
-        }
+        public string saveAddClass(int id, string ClassName, string ShortName, string Board, string Color,int BranchID, int UpdatedByUserID, string UpdatedDate, int IsActive,int IsDeleted)        
+           
+            {
+                string result = obj_AddClass.saveAddClass(id, ClassName, ShortName, Board, Color, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
+                return result;
+            }
+        
 
         //To Bind Gridview
         public DataSet BindClass(int ClassID,string ClassName)
