@@ -90,7 +90,14 @@ namespace SchoolManagement.Branch
         public void Setparameter()
         {
             UpID = 0;
-            BranchDistanceID = UpID;
+            if (btnAdd.Content == "Save")
+            {
+                BranchDistanceID = UpID;
+            }
+            else if (btnAdd.Content == "Update")
+            {
+                BranchDistanceID = BranchDistID;
+            }
             ToBranchID = Convert.ToInt32(cmbToBranch.SelectedValue.ToString());
             FromBranchID = Convert.ToInt32(cmbFromBranch.SelectedValue.ToString());
             DistanceTime = Convert.ToInt32(txtDistTime.Text.ToString());
@@ -149,6 +156,7 @@ namespace SchoolManagement.Branch
 
                     if (ds.Tables[0].Rows.Count > 0)
                     {
+                        BranchDistID = Convert.ToInt32(ds.Tables[0].Rows[0]["BranchDistanceID"]);
                         txtDistTime.Text = ds.Tables[0].Rows[0]["DistanceTime"].ToString();
                         IsActive = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
                         IsDeleted = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDeleted"]);
@@ -350,7 +358,7 @@ namespace SchoolManagement.Branch
         {
             if (BranchDistID != 0)
             {
-                BranchDistanceID = BranchDistID;
+                //BranchDistanceID = BranchDistID;
 
                 string Result = objBranch.DeleteDistance(BranchDistanceID, UpdatedByUserID, UpdatedDate);
                 if (Result == "Deleted Sucessfully...!!")

@@ -1,7 +1,7 @@
 ﻿<Window x:Class="SchoolManagement.Branch.BranchDistance1"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="BranchDistance1" Height="425" Width="676" xmlns:my="clr-namespace:SchoolManagement">
+        Title="BranchDistance1" Height="500" Width="676" xmlns:my="clr-namespace:SchoolManagement">
     <Grid>
        <StackPanel>
                 <my:Menu_UserControl HorizontalAlignment="Left" x:Name="menu_UserControl1" VerticalAlignment="Top" />
@@ -31,13 +31,13 @@
                 </GroupBox>
             </Grid>
             </GroupBox>
-            <DataGrid AutoGenerateColumns="False" Height="137" HorizontalAlignment="Left" Margin="141,272,0,0" Name="dgDistanceTime" VerticalAlignment="Top" Width="363" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" IsReadOnly="True" ItemsSource="{Binding}" FontWeight="Bold">
+            <DataGrid AutoGenerateColumns="False" Height="180" HorizontalAlignment="Left" Margin="75,267,0,0" Name="dgDistanceTime" VerticalAlignment="Top" Width="500" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" IsReadOnly="True" ItemsSource="{Binding}" FontWeight="Bold">
                 <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding BranchDistanceID}" Header="BranchDistance" Visibility="Hidden"/>
-                <DataGridTextColumn Binding="{Binding FromBranch}" Header="From Branch" Width="110"/>
-                <DataGridTextColumn Binding="{Binding ToBranch}" Header="To Branch" Width="110"/>
-                <DataGridTextColumn Binding="{Binding DistanceTime}" Header="Distance In Time(Min)" Width="140"/>
-                <DataGridTextColumn Binding="{Binding Status}" Header="Status" Width="140"/>
+                <DataGridTextColumn Binding="{Binding FromBranch}" Header="From Branch" Width="120"/>
+                <DataGridTextColumn Binding="{Binding ToBranch}" Header="To Branch" Width="120"/>
+                <DataGridTextColumn Binding="{Binding DistanceTime}" Header="Distance In Time(Min)" Width="135"/>
+                <DataGridTextColumn Binding="{Binding Status}" Header="Status" Width="121"/>
                 <DataGridTextColumn Binding="{Binding IsActive}" Header="IsActive" Visibility="Hidden"/>
                 <DataGridTextColumn Binding="{Binding IsDeleted}" Header="isDeleted" Visibility="Hidden"/>
             </DataGrid.Columns>
