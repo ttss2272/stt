@@ -202,7 +202,20 @@ namespace DataAccessLayer
 
         public string DeleteBatchSubject(int BatchID, int SubjectID, int UpdatedByUserID, string UpdatedDate)
         {
-            throw new NotImplementedException();
+            string Result = null;
+            conn = con.getConnection();
+            SqlCommand cmd = new SqlCommand("DeleteBatchSubject_SP", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@BatchID", BatchID);
+            cmd.Parameters.AddWithValue("@SubjectID", SubjectID);
+            cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
+            cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
+
+            conn.Open();
+            Result = cmd.ExecuteScalar().ToString();
+            conn.Close();
+            return Result;
         }
 
         public DataSet BindBatchAvail()
