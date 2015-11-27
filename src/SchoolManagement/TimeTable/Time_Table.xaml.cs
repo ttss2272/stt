@@ -20,15 +20,21 @@ namespace SchoolManagement.TimeTable
     /// <summary>
     /// Interaction logic for Time_Table.xaml
     /// </summary>
+    #region-------------------Time_Table--------------
     public partial class Time_Table : Window
     {
+        BLTimeTable objTimeTable = new BLTimeTable();
         BLAddBranch obj_Branch = new BLAddBranch();
         BLAddClass obj_Class = new BLAddClass();
         BLSubject obj_Subject = new BLSubject();
         BLBatch obj_Batch = new BLBatch();
         BLTeacher obj_Teacher = new BLTeacher();
         BLRoom objRoom = new BLRoom();
-        int TeacherId;
+        int TimeTableID,TeacherId,BranchId,UpID, UpdatedByUserID, IsActive, IsDeleted;
+        String UpdatedDate;
+    #endregion
+
+        #region--------------Time_Table------------------
         public Time_Table()
         {
             InitializeComponent();
@@ -36,16 +42,90 @@ namespace SchoolManagement.TimeTable
             this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
             this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
         }
+        #endregion
 
         #region-----------------btnSave_Click------------
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (Validate())
+                {
+                    Setparameter();
+                    string Result = objTimeTable.SaveTimeTable( UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
+                    if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
+                    {
+                        MessageBox.Show(Result, "Save Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
+                        ClearFields();
+                    }
+                    else
+                    {
+                        MessageBox.Show(Result, "Error To Save", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        #endregion
+
+           #region---------------------------------Setparamerter()-------------------------------------------
+        public void Setparameter()
+        {
+            UpID = 0;
+            if (btnSave.Content.ToString() == "Save")
+            {
+                TimeTableID = UpID;
+            }
+            else if (btnSave.Content.ToString() == "Update")
+            {
+                TimeTableID = TimeTableID;
+            }
+            BranchId = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
+        }
+           #endregion
+
+        #region-------------LoadDayNames-------------------------------
+        private void cmbDayName_Items()
+        {
+            cmbDayName.Items.Add("Select");
+            cmbDayName.Items.Add("Monday");
+            cmbDayName.Items.Add("Tuesday");
+            cmbDayName.Items.Add("Wednesday");
+            cmbDayName.Items.Add("Thursday");
+            cmbDayName.Items.Add("Friday");
+            cmbDayName.Items.Add("Saturday");
+            cmbDayName.SelectedIndex = 0;
 
         }
         #endregion
 
-        #region-------------bindbranch()-----------
+        #region-------------------------------ClearFields()----------------------------------------
+        public void ClearFields()
+        {
+            cbBranchName.IsEnabled = true;
+            EnableDropdown();
+            //cbBranchName.SelectedIndex = 0;                  
+            btnSave.Content = "Save";
+            btnDelete.IsEnabled = false;            
+        }
+        #endregion
 
+         #region----------------------------------------------------------------EnableDropdown()------------------------------------------------
+        private void EnableDropdown()
+        {
+            gbSame.Visibility = Visibility.Hidden;
+            cbClassName.IsEnabled = true;
+            cbSubjectName.IsEnabled = true;
+            cbBatchName.IsEnabled = true;
+            cbTeacherName.IsEnabled = true;
+            cbRoomName.IsEnabled = true;
+        }
+        #endregion
+
+        #region-------------bindbranch()-----------
         private void BindBranchName()
         {
             try
@@ -194,6 +274,95 @@ namespace SchoolManagement.TimeTable
             BindBatchName();
             BindTeacher();
             BindRoom();
+            cmbDayName_Items();
+        }
+        #endregion
+
+        #region-----------------------------------Validation------------------------------------------
+        public bool Validate()
+        {
+            if (cbBranchName.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please Select Branch Name");
+                cbBranchName.Focus();
+                return false;
+            }
+            else if (cbClassName.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please Select Class Name");
+                cbClassName.Focus();
+                return false;
+            }
+            else if (cbSubjectName.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please Select Subject Name");
+                cbSubjectName.Focus();
+                return false;
+            }
+            else if (cbBatchName.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please Select Batch Name");
+                cbBatchName.Focus();
+                return false;
+            }
+            else if (cbTeacherName.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please Select Teacher Name");
+                cbTeacherName.Focus();
+                return false;
+            }
+            else if (cbRoomName.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please Select Room Name");
+                cbRoomName.Focus();
+                return false;
+            }           
+            else
+            {
+                return true;
+            }
+        }
+        #endregion             
+       
+          #region-------------------------------Go()--------------------------------------------------
+        private void btnGo_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (cbBranchName.SelectedValue.ToString() == "0")
+                {
+                    MessageBox.Show("Please Select Branch.");
+                }
+                else
+                {
+                    cbBranchName.IsEnabled = false;
+                    Clears();
+                    //GetTimeTableDetails(Convert.ToInt32(cbBranchName.SelectedValue));
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+          #endregion
+
+        #region---------------------------------------------------------Clears()-------------------------------------------------------
+        private void Clears()
+        {
+
+            BindClassName();
+            BindSubjectName();
+            BindBatchName();
+            BindTeacher();
+            BindRoom();
+            cmbDayName_Items();
+            //BindGrid();
+            //UncheckAllCheckBoxes();
+            gbSame.Visibility = Visibility.Hidden;
+            //EnableDropdown();
+
         }
         #endregion
     }
