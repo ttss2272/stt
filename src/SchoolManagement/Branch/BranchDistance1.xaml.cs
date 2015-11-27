@@ -40,8 +40,9 @@ namespace SchoolManagement.Branch
         #region-------------------------------ClearFields()----------------------------------------
         public void ClearFields()
         {
-            cmbToBranch.SelectedIndex = 0;
+            UpID = 0;
             cmbFromBranch.SelectedIndex = 0;
+            cmbToBranch.SelectedIndex = 0;
             txtDistTime.Text = "";
             btnAdd.Content = "Save";
             btnDelete.IsEnabled = false;
@@ -89,15 +90,7 @@ namespace SchoolManagement.Branch
         #region---------------------------------Setparamerter()-------------------------------------------
         public void Setparameter()
         {
-            UpID = 0;
-            if (btnAdd.Content.ToString() == "Save")
-            {
-                BranchDistanceID = UpID;
-            }
-            else if (btnAdd.Content.ToString() == "Update")
-            {
-                BranchDistanceID = BranchDistID;
-            }
+            BranchDistanceID = UpID;
             ToBranchID = Convert.ToInt32(cmbToBranch.SelectedValue.ToString());
             FromBranchID = Convert.ToInt32(cmbFromBranch.SelectedValue.ToString());
             DistanceTime = Convert.ToInt32(txtDistTime.Text.ToString());
@@ -156,7 +149,7 @@ namespace SchoolManagement.Branch
 
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        BranchDistID = Convert.ToInt32(ds.Tables[0].Rows[0]["BranchDistanceID"]);
+                        UpID = Convert.ToInt32(ds.Tables[0].Rows[0]["BranchDistanceID"]);
                         txtDistTime.Text = ds.Tables[0].Rows[0]["DistanceTime"].ToString();
                         IsActive = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
                         IsDeleted = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDeleted"]);
@@ -267,6 +260,22 @@ namespace SchoolManagement.Branch
         {
             cmbToBranch.IsEnabled = true;
             BindToBranchName();
+            //if (btnAdd.Content.ToString() == "Update")
+            //{
+            //    if (cmbToBranch.SelectedValue.ToString() == "0")
+            //    {
+            //        cmbToBranch.IsEnabled = false;
+            //    }
+            //    else { cmbToBranch.IsEnabled = true; }
+            //}
+            //else if (btnAdd.Content.ToString() == "Save")
+            //{
+            //    if (cmbFromBranch.SelectedValue.ToString() == "0")
+            //    {
+            //        cmbToBranch.IsEnabled = false;
+            //    }
+            //    else { cmbToBranch.IsEnabled = true; }
+            //}
         }
 
         #endregion
@@ -298,7 +307,8 @@ namespace SchoolManagement.Branch
                 btnDelete.IsEnabled = true;
                 btnAdd.Content = "Update";
                 gbDist.IsEnabled = true;
-                BranchDistID = BranchDistanceID;
+                UpID = BranchDistanceID;
+                cmbToBranch.IsEnabled = true;
               
                 //DataSet ds = objBranch.BindDistance(0, Convert.ToInt32(cmbFromBranch.SelectedValue), Convert.ToInt32(cmbToBranch.SelectedValue));
 
@@ -354,10 +364,8 @@ namespace SchoolManagement.Branch
 
         private void DeleteDistance()
         {
-            if (BranchDistID != 0)
+            if (UpID != 0)
             {
-                //BranchDistanceID = BranchDistID;
-
                 string Result = objBranch.DeleteDistance(BranchDistanceID, UpdatedByUserID, UpdatedDate);
                 if (Result == "Deleted Sucessfully...!!")
                 {
