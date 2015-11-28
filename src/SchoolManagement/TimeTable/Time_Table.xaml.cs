@@ -20,7 +20,7 @@ namespace SchoolManagement.TimeTable
     /// <summary>
     /// Interaction logic for Time_Table.xaml
     /// </summary>
-    #region-------------------Time_Table--------------
+    #region-------------------Varible Declartion--------------
     public partial class Time_Table : Window
     {
         BLTimeTable objTimeTable = new BLTimeTable();
@@ -30,8 +30,10 @@ namespace SchoolManagement.TimeTable
         BLBatch obj_Batch = new BLBatch();
         BLTeacher obj_Teacher = new BLTeacher();
         BLRoom objRoom = new BLRoom();
+
         int TimeTableID,TeacherId,BranchId,UpID, UpdatedByUserID, IsActive, IsDeleted;
         String UpdatedDate;
+
     #endregion
 
         #region--------------Time_Table------------------
@@ -41,6 +43,7 @@ namespace SchoolManagement.TimeTable
             this.WindowState = WindowState.Maximized;
             this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
             this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
+            ClearFields();
         }
         #endregion
 
@@ -116,12 +119,13 @@ namespace SchoolManagement.TimeTable
          #region----------------------------------------------------------------EnableDropdown()------------------------------------------------
         private void EnableDropdown()
         {
-            gbSame.Visibility = Visibility.Hidden;
+            //gbSame.Visibility = Visibility.Hidden;
             cbClassName.IsEnabled = true;
             cbSubjectName.IsEnabled = true;
             cbBatchName.IsEnabled = true;
             cbTeacherName.IsEnabled = true;
             cbRoomName.IsEnabled = true;
+            
         }
         #endregion
 
@@ -248,17 +252,16 @@ namespace SchoolManagement.TimeTable
 
         #region----------------BindRoom()----------------------------
         private void BindRoom()
-        {            
-            DataSet ds = objRoom.BindRoomDropDown(0);
+        {
+            BranchId = Convert.ToInt32(cbBranchName.SelectedValue);
+            DataSet ds = objRoom.BindRoomDropDown(BranchId);
 
             if (ds.Tables[0].Rows.Count > 0)
             {
                 cbRoomName.DataContext = null;
-
-                cbRoomName.DataContext = ds.Tables[0].DefaultView;
                 cbRoomName.DisplayMemberPath = ds.Tables[0].Columns["RoomName"].ToString();
                 cbRoomName.SelectedValuePath = ds.Tables[0].Columns["RoomID"].ToString();
-              
+                cbRoomName.DataContext = ds.Tables[0].DefaultView;
 
                 cbRoomName.SelectedValue = "0";
             }
@@ -335,7 +338,7 @@ namespace SchoolManagement.TimeTable
                 }
                 else
                 {
-                    cbBranchName.IsEnabled = false;
+                    gbTTDetails.IsEnabled = false;
                     Clears();
                     //GetTimeTableDetails(Convert.ToInt32(cbBranchName.SelectedValue));
                 }
@@ -360,7 +363,7 @@ namespace SchoolManagement.TimeTable
             cmbDayName_Items();
             //BindGrid();
             //UncheckAllCheckBoxes();
-            gbSame.Visibility = Visibility.Hidden;
+           // gbSame.Visibility = Visibility.Hidden;
             //EnableDropdown();
 
         }

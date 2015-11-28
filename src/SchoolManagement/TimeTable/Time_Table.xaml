@@ -6,7 +6,7 @@
         <StackPanel>
             <my:Menu_UserControl HorizontalAlignment="Left" x:Name="menu_UserControl1" VerticalAlignment="Top" />
         </StackPanel>
-        <GroupBox Header="Time Table Details" Height="100" HorizontalAlignment="Left" Margin="229,38,0,0" Name="groupBox1" VerticalAlignment="Top" Width="600">
+        <GroupBox Header="Time Table Details" Height="100" HorizontalAlignment="Left" Margin="229,38,0,0" Name="gbTTDetails" VerticalAlignment="Top" Width="600">
             <Grid>
                 <ComboBox Height="23" ItemsSource="{Binding}" Margin="170,13,240,41" Name="cbBranchName" Width="178" />
                 <Label Content="Branch Name" Height="28" HorizontalAlignment="Left" Margin="77,10,0,0" Name="label1" VerticalAlignment="Top" />
@@ -34,7 +34,7 @@
                 <ComboBox HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="106,106,0,8" Name="cbTeacherName" Width="160" />
                 <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="89,108,0,0" Name="label13" VerticalAlignment="Top" />
                 <Label Content="TimeSlot" Height="28" HorizontalAlignment="Left" Margin="16,38,0,0" Name="label2" VerticalAlignment="Top" />
-                <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="105,41,0,0" Name="comboBox1" VerticalAlignment="Top" Width="160" />
+                <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="105,41,0,0" Name="cbTimeSlot" VerticalAlignment="Top" Width="160" />
                 <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="86,41,0,0" Name="label7" VerticalAlignment="Top" />
                 <Label Content="Day" Height="28" HorizontalAlignment="Left" Margin="32,74,0,0" Name="label14" VerticalAlignment="Top" />
                 <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="106,76,0,0" Name="cmbDayName" VerticalAlignment="Top" Width="160" />
