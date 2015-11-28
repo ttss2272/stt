@@ -20,9 +20,9 @@ namespace BusinessLayer
         
 
         //To Bind Gridview
-        public DataSet BindClass(int ClassID,string ClassName)
+        public DataSet BindClass(int BranchId)
         {
-            DataSet ds = obj_AddClass.BindClass(ClassID,ClassName);
+            DataSet ds = obj_AddClass.BindClass(BranchId);
             return ds;
         }
 
@@ -44,9 +44,9 @@ namespace BusinessLayer
             return ds;
         }
 
-        public DataSet BindClassName(int BranchID)
+        public DataSet BindClassName()
         {
-            DataSet getClassName = obj_AddClass.BindClassName(BranchID);
+            DataSet getClassName = obj_AddClass.BindClassName();
             return getClassName;
         }
 
@@ -56,9 +56,9 @@ namespace BusinessLayer
             return ds;
         }
 
-        public DataSet loadClassName()
+        public DataSet GetBranchClassCount()
         {
-            DataSet ds = obj_AddClass.loadClassName();
+            DataSet ds = obj_AddClass.GetBranchClassCount();
             return ds;
         }
     }
