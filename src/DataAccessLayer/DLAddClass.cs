@@ -36,14 +36,14 @@ namespace DataAccessLayer
         }
 
         //To Bind Gridview
-        public DataSet BindClass(int ClassID,string ClassName)
+        public DataSet BindClass(int BranchId)
         {
             conn = con.getConnection();
             conn.Open();
 
             SqlCommand cmd = new SqlCommand("BindClass_SP", conn);
-            cmd.Parameters.AddWithValue("@ClassID", ClassID);
-            cmd.Parameters.AddWithValue("@ClassName", ClassName);
+            cmd.Parameters.AddWithValue("@BranchID", BranchId);
+         //   cmd.Parameters.AddWithValue("@ClassName", ClassName);
 
             cmd.CommandType = CommandType.StoredProcedure;
 
@@ -136,6 +136,23 @@ namespace DataAccessLayer
             conn.Close();
             return ds;
         }
+<<<<<<< .mine
+
+        public DataSet GetBranchClassCount()
+        {
+            conn = con.getConnection();
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("GetBranchClassCount_SP", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+
+            da.Fill(ds);
+            conn.Close();
+            return ds;
+        }
+=======
 
         public DataSet loadClassName()
         {
@@ -150,5 +167,6 @@ namespace DataAccessLayer
             conn.Close();
             return ds;
         }
+>>>>>>> .r394
     }
 }
