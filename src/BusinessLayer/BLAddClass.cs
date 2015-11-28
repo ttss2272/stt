@@ -44,15 +44,21 @@ namespace BusinessLayer
             return ds;
         }
 
-        public DataSet BindClassName()
+        public DataSet BindClassName(int BranchID)
         {
-            DataSet getClassName = obj_AddClass.BindClassName();
+            DataSet getClassName = obj_AddClass.BindClassName(BranchID);
             return getClassName;
         }
 
         public DataSet BindBranchClass(int BranchID)
         {
             DataSet ds = obj_AddClass.BindBranchClass(BranchID);
+            return ds;
+        }
+
+        public DataSet loadClassName()
+        {
+            DataSet ds = obj_AddClass.loadClassName();
             return ds;
         }
     }

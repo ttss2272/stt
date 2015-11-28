@@ -105,5 +105,11 @@ namespace BusinessLayer
             return ds;
         }
 
+
+        public DataSet loadBatchName(int ClassID)
+        {
+            DataSet ds = obj_Batch.loadBatchName(ClassID);
+            return ds;
+        }
     }
 }

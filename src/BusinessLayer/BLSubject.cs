@@ -55,5 +55,11 @@ namespace BusinessLayer
             DataSet ds = objSubject.BindSubjectName();
             return ds;
         }
+
+        public DataSet loadSubjectName(int BatchID)
+        {
+            DataSet ds = objSubject.loadSubjectName(BatchID);
+            return ds;
+        }
     }
 }
