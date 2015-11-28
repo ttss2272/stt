@@ -45,9 +45,9 @@
             <Grid>
                 <Button Content="Save" FontWeight="Bold" Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="130,10,0,0" Name="btnSave" TabIndex="14" VerticalAlignment="Top" Width="80" Click="btnSave_Click" />
                 <Button Content="Delete" FontWeight="Bold" Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="261,10,0,0" Name="btnDelete" TabIndex="16" VerticalAlignment="Top" Width="75" />
-                <Button Content="Clear" FontWeight="Bold" Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="381,10,0,0" Name="btnclear" TabIndex="17" VerticalAlignment="Top" Width="75" />
+                <Button Content="Clear" FontWeight="Bold" Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="388,10,0,0" Name="btnClear" TabIndex="16" VerticalAlignment="Top" Width="75" />
             </Grid>
         </GroupBox>
-        <DataGrid AutoGenerateColumns="False" Height="155" HorizontalAlignment="Left" Margin="235,390,0,0" Name="dataGrid1" VerticalAlignment="Top" Width="600" />
+        <DataGrid AutoGenerateColumns="False" Height="155" HorizontalAlignment="Left" Margin="235,390,0,0" Name="dgTimeTable" VerticalAlignment="Top" Width="600" />
     </Grid>
 </Window>

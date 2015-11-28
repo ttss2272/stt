@@ -28,11 +28,11 @@ namespace SchoolManagement.TimeTable
         BLAddClass obj_Class = new BLAddClass();
         BLSubject obj_Subject = new BLSubject();
         BLBatch obj_Batch = new BLBatch();
-        BLTeacher obj_Teacher = new BLTeacher();
+        BLTeacher objTeacher = new BLTeacher();
         BLRoom objRoom = new BLRoom();
 
-        int TimeTableID,TeacherId,BranchId,UpID, UpdatedByUserID, IsActive, IsDeleted;
-        String UpdatedDate;
+        int TimeTableID, BatchID, RoomID, TeacherSubjectID, BranchId, UpID, UpdatedByUserID, IsActive, IsDeleted;
+        String UpdatedDate, Day, LectStartTime, LectEndTime;
 
     #endregion
 
@@ -55,7 +55,7 @@ namespace SchoolManagement.TimeTable
                 if (Validate())
                 {
                     Setparameter();
-                    string Result = objTimeTable.SaveTimeTable( UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
+                    string Result = objTimeTable.SaveTimeTable(TimeTableID, BatchID, RoomID, TeacherSubjectID, Day, LectStartTime, LectEndTime, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
                     if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
                     {
                         MessageBox.Show(Result, "Save Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -158,6 +158,8 @@ namespace SchoolManagement.TimeTable
         #region------------------------BindClassName()---------------------------------------
         private void BindClassName()
         {
+
+
             try
             {
                 DataSet ds = obj_Class.BindClassName();
@@ -165,11 +167,13 @@ namespace SchoolManagement.TimeTable
 
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    cbClassName.DataContext = ds.Tables[0].DefaultView;
+                    
                     cbClassName.DisplayMemberPath = ds.Tables[0].Columns["ClassName"].ToString();
                     cbClassName.SelectedValuePath = ds.Tables[0].Columns["ClassID"].ToString();
-
+                    cbClassName.DataContext = ds.Tables[0].DefaultView;
+                    cbClassName.SelectedValue = "0";
                 }
+
 
             }
             catch (Exception ex)
@@ -190,10 +194,11 @@ namespace SchoolManagement.TimeTable
 
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    cbSubjectName.DataContext = ds.Tables[0].DefaultView;
+                    
                     cbSubjectName.DisplayMemberPath = ds.Tables[0].Columns["SubjectName"].ToString();
                     cbSubjectName.SelectedValuePath = ds.Tables[0].Columns["SubjectID"].ToString();
-
+                    cbSubjectName.DataContext = ds.Tables[0].DefaultView;
+                    cbSubjectName.SelectedValue = "0";
                 }
 
             }
@@ -207,34 +212,33 @@ namespace SchoolManagement.TimeTable
 
         #region------------------------BindBatchName()---------------------------------
         private void BindBatchName()
-        {
-
-            try
+        {           
+             try
             {
                 DataSet ds = obj_Batch.BindBatchName();
-
-
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    cbBatchName.DataContext = ds.Tables[0].DefaultView;
+                    
+                    
                     cbBatchName.DisplayMemberPath = ds.Tables[0].Columns["BatchName"].ToString();
                     cbBatchName.SelectedValuePath = ds.Tables[0].Columns["BatchID"].ToString();
-
+                    cbBatchName.DataContext = ds.Tables[0].DefaultView;
+                    cbBatchName.SelectedValue = "0";
                 }
 
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
+             catch (Exception ex)
+             {
+                 MessageBox.Show(ex.Message.ToString());
+             }
 
         }
         #endregion
 
-        #region--------------------BindTeacher()-----------------------------
+        #region-----------------BindTeacher()----------------------------------
         private void BindTeacher()
         {
-            DataSet ds = obj_Teacher.BindTeacherDropDown(0);
+            DataSet ds = objTeacher.BindTeacherDropDown(0);
 
             if (ds.Tables[0].Rows.Count > 0)
             {
