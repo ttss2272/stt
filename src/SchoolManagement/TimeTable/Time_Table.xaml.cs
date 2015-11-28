@@ -31,7 +31,7 @@ namespace SchoolManagement.TimeTable
         BLTeacher objTeacher = new BLTeacher();
         BLRoom objRoom = new BLRoom();
 
-        int TimeTableID, BatchID, RoomID, TeacherSubjectID, BranchId, UpID, UpdatedByUserID, IsActive, IsDeleted;
+        int TimeTableID, BatchID, RoomID,ClassID, TeacherSubjectID, BranchID, UpID, UpdatedByUserID, IsActive, IsDeleted;
         String UpdatedDate, Day, LectStartTime, LectEndTime;
 
     #endregion
@@ -86,7 +86,7 @@ namespace SchoolManagement.TimeTable
             {
                 TimeTableID = TimeTableID;
             }
-            BranchId = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
+            BranchID = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
         }
            #endregion
 
@@ -109,22 +109,35 @@ namespace SchoolManagement.TimeTable
         public void ClearFields()
         {
             cbBranchName.IsEnabled = true;
-            EnableDropdown();
-            //cbBranchName.SelectedIndex = 0;                  
+            EnableUpperPart();
+            cbBranchName.SelectedIndex = 0;
+            cbClassName.SelectedIndex = 0;
+            cbBatchName.SelectedIndex = 0;
+            cbTimeSlot.SelectedIndex = 0;
+            cbRoomName.SelectedIndex = 0;
+            cmbDayName.SelectedIndex = 0;
+            cbSubjectName.SelectedIndex = 0;
+            cbTeacherName.SelectedIndex = 0;
             btnSave.Content = "Save";
             btnDelete.IsEnabled = false;            
         }
         #endregion
 
          #region----------------------------------------------------------------EnableDropdown()------------------------------------------------
-        private void EnableDropdown()
+        private void EnableUpperPart()
         {
+            cbBranchName.IsEnabled = true;
             //gbSame.Visibility = Visibility.Hidden;
-            cbClassName.IsEnabled = true;
-            cbSubjectName.IsEnabled = true;
-            cbBatchName.IsEnabled = true;
-            cbTeacherName.IsEnabled = true;
-            cbRoomName.IsEnabled = true;
+            cbClassName.IsEnabled = false;
+            cbSubjectName.IsEnabled = false;
+            cbBatchName.IsEnabled = false;
+            cbTeacherName.IsEnabled = false;
+            cbRoomName.IsEnabled = false;
+            cmbDayName.IsEnabled = false;
+            cbTimeSlot.IsEnabled = false;
+            btnSave.IsEnabled = false;
+            btnClear.IsEnabled = false;
+            btnGo.Content = "Go";
             
         }
         #endregion
@@ -158,29 +171,23 @@ namespace SchoolManagement.TimeTable
         #region------------------------BindClassName()---------------------------------------
         private void BindClassName()
         {
-
-
             try
             {
-                DataSet ds = obj_Class.BindClassName();
-
-
+                BranchID = Convert.ToInt32(cbBranchName.SelectedValue);
+                DataSet ds = obj_Class.BindClassName(BranchID);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    
+                    cbClassName.DataContext = null;
                     cbClassName.DisplayMemberPath = ds.Tables[0].Columns["ClassName"].ToString();
                     cbClassName.SelectedValuePath = ds.Tables[0].Columns["ClassID"].ToString();
                     cbClassName.DataContext = ds.Tables[0].DefaultView;
                     cbClassName.SelectedValue = "0";
                 }
-
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
             }
-
         }
         #endregion
 
@@ -189,12 +196,13 @@ namespace SchoolManagement.TimeTable
         {
             try
             {
-                DataSet ds = obj_Subject.BindSubjectName();
+                BatchID = Convert.ToInt32(cbClassName.SelectedValue);
+                DataSet ds = obj_Subject.loadSubjectName(BatchID);
 
 
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    
+                    cbSubjectName.DataContext = null;
                     cbSubjectName.DisplayMemberPath = ds.Tables[0].Columns["SubjectName"].ToString();
                     cbSubjectName.SelectedValuePath = ds.Tables[0].Columns["SubjectID"].ToString();
                     cbSubjectName.DataContext = ds.Tables[0].DefaultView;
@@ -215,11 +223,12 @@ namespace SchoolManagement.TimeTable
         {           
              try
             {
-                DataSet ds = obj_Batch.BindBatchName();
+                ClassID = Convert.ToInt32(cbClassName.SelectedValue);
+                DataSet ds = obj_Batch.loadBatchName(ClassID);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    
-                    
+
+                    cbBatchName.DataContext = null;
                     cbBatchName.DisplayMemberPath = ds.Tables[0].Columns["BatchName"].ToString();
                     cbBatchName.SelectedValuePath = ds.Tables[0].Columns["BatchID"].ToString();
                     cbBatchName.DataContext = ds.Tables[0].DefaultView;
@@ -257,17 +266,24 @@ namespace SchoolManagement.TimeTable
         #region----------------BindRoom()----------------------------
         private void BindRoom()
         {
-            BranchId = Convert.ToInt32(cbBranchName.SelectedValue);
-            DataSet ds = objRoom.BindRoomDropDown(BranchId);
-
-            if (ds.Tables[0].Rows.Count > 0)
+            try
             {
-                cbRoomName.DataContext = null;
-                cbRoomName.DisplayMemberPath = ds.Tables[0].Columns["RoomName"].ToString();
-                cbRoomName.SelectedValuePath = ds.Tables[0].Columns["RoomID"].ToString();
-                cbRoomName.DataContext = ds.Tables[0].DefaultView;
+                BranchID = Convert.ToInt32(cbBranchName.SelectedValue);
+                DataSet ds = objRoom.BindRoomDropDown(BranchID);
 
-                cbRoomName.SelectedValue = "0";
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    cbRoomName.DataContext = null;
+                    cbRoomName.DisplayMemberPath = ds.Tables[0].Columns["RoomName"].ToString();
+                    cbRoomName.SelectedValuePath = ds.Tables[0].Columns["RoomID"].ToString();
+                    cbRoomName.DataContext = ds.Tables[0].DefaultView;
+
+                    cbRoomName.SelectedValue = "0";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
             }
         }
         #endregion
@@ -276,7 +292,7 @@ namespace SchoolManagement.TimeTable
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             BindBranchName();
-            BindClassName();
+           
             BindSubjectName();
             BindBatchName();
             BindTeacher();
@@ -336,41 +352,99 @@ namespace SchoolManagement.TimeTable
         {
             try
             {
-                if (cbBranchName.SelectedValue.ToString() == "0")
+                if (cbBranchName.SelectedValue.ToString() != "0" && cbBranchName.SelectedItem.ToString() != "Select")
                 {
-                    MessageBox.Show("Please Select Branch.");
+                    if (btnGo.Content.ToString() == "Go")
+                    {
+                        DisableUpperPart();
+                    }
+                    else if (btnGo.Content.ToString() == "Change")
+                    {
+                        EnableUpperPart();
+                        ClearData();
+                    }
                 }
                 else
                 {
-                    gbTTDetails.IsEnabled = false;
-                    Clears();
-                    //GetTimeTableDetails(Convert.ToInt32(cbBranchName.SelectedValue));
+                    MessageBox.Show("Please Select Branch Name");
                 }
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-        }
+        }        
           #endregion
 
-        #region---------------------------------------------------------Clears()-------------------------------------------------------
-        private void Clears()
-        {
+            #region--------------------------------------------------DisableUpperPart()--------------------------------------------------
+            private void DisableUpperPart()
+            {                
+                cbBranchName.IsEnabled = false;
 
-            BindClassName();
-            BindSubjectName();
-            BindBatchName();
-            BindTeacher();
-            BindRoom();
+                cbClassName.IsEnabled = true;
+                cbBatchName.IsEnabled = true;
+                cbSubjectName.IsEnabled = true;
+                cbRoomName.IsEnabled = true;
+                cmbDayName.IsEnabled = true;
+                cbTeacherName.IsEnabled = true;
+                cbTimeSlot.IsEnabled = true;
+                btnSave.IsEnabled = true;
+                btnClear.IsEnabled = true;
+                btnGo.Content = "Change";
+            }
+            #endregion
+
+        #region---------------------------------------------------------Clears()-------------------------------------------------------
+        private void ClearData()
+        {
+            cbClassName.SelectedValue = "0";
+            cbBatchName.SelectedValue = "0";
+            cbSubjectName.SelectedValue = "0";
+            cbRoomName.SelectedValue = "0";
+            cmbDayName.SelectedValue = "0";
+            cbTeacherName.SelectedValue = "0";
+            cbTimeSlot.SelectedValue = "0";
+            btnSave.Content = "Save";
+            rdoActive.IsChecked = true;
+            btnDelete.IsEnabled = false;
+            BindTeacher();            
             cmbDayName_Items();
             //BindGrid();
             //UncheckAllCheckBoxes();
            // gbSame.Visibility = Visibility.Hidden;
             //EnableDropdown();
-
         }
         #endregion
+
+        #region-------------------btnClear_Click-----------------
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ClearFields();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        #endregion
+
+        private void cbBranchName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BindClassName();
+            BindRoom();
+        }
+
+        private void cbClassName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BindBatchName();
+        }
+
+        private void cbBatchName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BindSubjectName();
+        }
+       
     }
 }
