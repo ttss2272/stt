@@ -88,6 +88,7 @@ namespace SchoolManagement.Class
             if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
             {
                  MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
+                 BindGridview(BranchID);
                  clearFields();
             }
             else
@@ -216,12 +217,14 @@ namespace SchoolManagement.Class
             txtShortName.Text = "";            
             txtcolor.Text = "";
             txtSearchClass.Text = "";
+            cbBoard.SelectedIndex = 0;
             rdoActive.IsChecked = true;
             rdoDeActive.IsChecked = false;
             btndelete.IsEnabled = false;
+            gbInfo.IsEnabled = false;
             btnadd.Content = "Save";
-            cbBoard.SelectedIndex = 0;
-            BindGridview();
+           // BindGridview();
+            GetBranchClassCount();
         }
         #endregion                    
 
@@ -254,12 +257,14 @@ namespace SchoolManagement.Class
             if (UpID != 0)
             {
                 ClassID = UpID;
+                BranchID = Convert.ToInt32(cbBranchName.SelectedValue);
 
                 string Result = obj_AddClass.DeleteClass(ClassID, UpdatedByUserID, UpdatedDate);
                 if (Result == "Deleted Sucessfully...!!")
                 {
                     MessageBox.Show(Result, "Delete Sucessfully", MessageBoxButton.OK, MessageBoxImage.Information);
-                    clearFields();
+                    BindGridview(BranchID);
+                    ClearData();
                 }
                 else
                 {
@@ -357,9 +362,9 @@ namespace SchoolManagement.Class
          * Purpose:- Bind Grid
          */
         #region----------------------------------grvClassBind----------------------------------------------------
-        private void BindGridview()
+        private void BindGridview(int BranchId)
         {
-            DataSet ds = obj_AddClass.BindClass(0,txtClassName.Text);
+            DataSet ds = obj_AddClass.BindClass(BranchId);
             if (ds.Tables[0].Rows.Count > 0)
             {
                 dgvClass.ItemsSource = ds.Tables[0].DefaultView;
@@ -402,11 +407,12 @@ namespace SchoolManagement.Class
                 btndelete.IsEnabled = true;
                 object item = dgvClass.SelectedItem;
                // string Id = (dgvClass.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                string BranchName = (dgvClass.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
-                string ClassName = (dgvClass.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
-                string ShortName = (dgvClass.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
-                string Board =     (dgvClass.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
-                string Color = (dgvClass.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text;
+                 string BranchName = Convert.ToString(((System.Data.DataRowView)(dgvClass.CurrentItem)).Row.ItemArray[0].ToString());
+                //string BranchName = (dgvClass.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+                 string ClassName = Convert.ToString(((System.Data.DataRowView)(dgvClass.CurrentItem)).Row.ItemArray[1].ToString());
+                 string ShortName = Convert.ToString(((System.Data.DataRowView)(dgvClass.CurrentItem)).Row.ItemArray[2].ToString());
+                 string Board = Convert.ToString(((System.Data.DataRowView)(dgvClass.CurrentItem)).Row.ItemArray[3].ToString());
+                 string Color = Convert.ToString(((System.Data.DataRowView)(dgvClass.CurrentItem)).Row.ItemArray[4].ToString());
 
                 DataSet ds = obj_AddClass.GetClassDetail(ClassName, ShortName,Board,Color);
                 if (ds.Tables.Count > 0)
@@ -481,11 +487,12 @@ namespace SchoolManagement.Class
         {
             clearFields();
             BindBranchName();
-            BindGridview();
+           // BindGridview();
             btndelete.IsEnabled = false;
             
         }
 
+        #region-----------------------------------TextValidation()--------------------------------------------------
         private void txtcolor_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
@@ -512,6 +519,157 @@ namespace SchoolManagement.Class
                 MessageBox.Show(ex.Message.ToString());
             }
         }
+        #endregion
 
+        #region-----------------------------------------Go()--------------------------------------------------------------------
+        private void btnGo_Click(object sender, RoutedEventArgs e)
+        {
+         try
+            {
+                if (cbBranchName.SelectedValue.ToString() != "0" && cbBranchName.SelectedValue.ToString() != "Select")
+                {
+                    if (btnGo.Content.ToString() == "Go")
+                    {
+                        GetBranchClassCount();
+                        MessageBoxResult Result = MessageBox.Show("Do You Want To Copy", "Copy", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                        if (Result.Equals(MessageBoxResult.Yes))
+                        {
+                            MessageBox.Show("Please Select Branch whoes Features You Want To Copy From Grid");
+                            gbInfo.IsEnabled = false;
+                            dgBranchCls.Focus();
+                        }
+                        else if (Result.Equals(MessageBoxResult.No))
+                        {
+                            MessageBox.Show("Please Fill All Details");
+                            gbInfo.IsEnabled = true;
+                            txtClassName.Focus();
+                        }
+                    }
+                    else if (btnGo.Content.ToString() == "Change")
+                    {
+                        cbBranchName.IsEnabled = true;
+                        clearFields();
+                        dgBranchCls.DataContext = null;
+                        dgvClass.DataContext = null;
+                        dgCopy.DataContext = null;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please Select Branch");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        #endregion
+
+
+        #region---------------------------------------GetBranchClassCount()-----------------------------------------------
+        public void GetBranchClassCount()
+        {
+            DataSet ds = obj_AddClass.GetBranchClassCount();
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                dgBranchCls.DataContext = null;
+                dgBranchCls.DataContext = ds.Tables[0].DefaultView;
+            }
+          
+        }
+        #endregion
+
+
+        #region----------------------------------------ClickofBranchGrid()---------------------------------------------
+        private void Row_DoubleClick1(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                object item = dgBranchCls.SelectedItem;
+                int TempID = Convert.ToInt32(((System.Data.DataRowView)(dgBranchCls.CurrentItem)).Row.ItemArray[2].ToString());
+                BindGridview(TempID);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
+
+
+        #region---------------------------------Copy()--------------------------------------------------------------
+        private void btnCopy_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int temp = 0, cnt = 0;
+                int count = Convert.ToInt32(dgvClass.Items.Count);
+                if (cbBranchName.SelectedValue.ToString() != "0" && cbBranchName.SelectedValue.ToString() != "Select")
+                {
+                    if (dgvClass.Items.Count > 0)
+                    {
+                        for (int i = 0; i < dgvClass.Items.Count; i++)
+                        {
+                            cnt++;
+                            System.Data.DataRowView SelectedFile = (System.Data.DataRowView)dgvClass.Items[i];
+                            ClassID = 0;
+                            ClassName = Convert.ToString(SelectedFile.Row.ItemArray[1]);
+                            ShortName = Convert.ToString(SelectedFile.Row.ItemArray[2]);
+                            Board = Convert.ToString(SelectedFile.Row.ItemArray[3]);
+                            Color = Convert.ToString(SelectedFile.Row.ItemArray[4]);
+                            UpdatedByUserID = 1;
+                            UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                            BranchID = Convert.ToInt32(cbBranchName.SelectedValue);
+                            IsActive = Convert.ToInt32(SelectedFile.Row.ItemArray[6]);
+                            IsDeleted = 0;
+                            string Result = obj_AddClass.saveAddClass(ClassID,ClassName, ShortName, Board, Color, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
+                            if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
+                            {
+                                temp++;
+                            }
+                            else 
+                            {  
+                           
+                            }
+                        }
+                        if (temp == cnt)
+                        {
+                            MessageBox.Show("Details Copy Sucessfully.", "Copy Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
+                            ClearData();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Some Details Are Not Copied", "Error To Copy", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No Data To Copy", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please Select Branch First", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+        #endregion
+
+        #region-----------------------------------------------------ClearData()---------------------------------------------------------------
+        private void ClearData()
+        {
+            GetBranchClassCount();
+            
+            btnAdd.Content = "Save";
+            rdoActive.IsChecked = true;
+            btnDelete.IsEnabled = false;
+        }
+        #endregion
     }
 }
