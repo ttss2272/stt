@@ -210,7 +210,7 @@ namespace SchoolManagement.Batch
         {
             try
             {
-                if (cmbBatch.SelectedValue.ToString() != "0"&& cmbBatch.SelectedItem.ToString()!="Select")
+                if (cmbBatch.SelectedValue.ToString() !="0"&& cmbBatch.SelectedItem.ToString()!="Select")
                 {
                     if (btnGo.Content.ToString() == "Go")
                     {

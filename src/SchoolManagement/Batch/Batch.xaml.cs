@@ -503,7 +503,7 @@ namespace SchoolManagement.Batch
             
             try
             {
-                DataSet ds = obj_Class.BindClassName();
+                DataSet ds = obj_Class.loadClassName();
 
 
                 if (ds.Tables[0].Rows.Count > 0)
