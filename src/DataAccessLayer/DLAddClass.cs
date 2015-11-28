@@ -13,13 +13,13 @@ namespace DataAccessLayer
     {
         SqlConnection conn = new SqlConnection();
         DBConnection con = new DBConnection();
-        public string saveAddClass(int ClassID, string ClassName, string ShortName, string Board, string Color,int BranchID, int UpdatedByUserID, string UpdatedDate, int IsActive,int IsDeleted)
+        public string saveAddClass(int id, string ClassName, string ShortName, string Board, string Color,int BranchID, int UpdatedByUserID, string UpdatedDate, int IsActive,int IsDeleted)
         {
             string result = null;
             conn = con.getConnection();
             SqlCommand cmd = new SqlCommand("SaveClass_SP", conn);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@ClassID", ClassID);
+            cmd.Parameters.AddWithValue("@ClassID", id);
             cmd.Parameters.AddWithValue("@ClassName", ClassName);
             cmd.Parameters.AddWithValue("@ClassShortName", ShortName);
             cmd.Parameters.AddWithValue("@Board", Board);
@@ -111,7 +111,7 @@ namespace DataAccessLayer
             conn = con.getConnection();
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand("BindClassName_SP", conn);
+            SqlCommand cmd = new SqlCommand("LoadClassName_SP", conn);
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
