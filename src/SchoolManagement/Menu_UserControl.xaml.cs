@@ -106,14 +106,7 @@ namespace SchoolManagement
             Batch.BatchAvailibility ObjBatch = new Batch.BatchAvailibility();
             Close();
             ObjBatch.Show();
-        }
-        private void menuBatchSubject_Click(object sender, RoutedEventArgs e)
-        {
-            Batch.BatchSubject ObjBatch_Sub = new Batch.BatchSubject();
-            Close();
-            ObjBatch_Sub.Show();
-            
-        }
+        }       
 
         private void menuBranchDistance_Click_1(object sender, RoutedEventArgs e)
         {
@@ -137,6 +130,13 @@ namespace SchoolManagement
             TimeTable.Time_Table ObjTimeTable = new TimeTable.Time_Table();
             Close();
             ObjTimeTable.Show();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Batch.BatchSubject ObjBatchSubject_Sub = new Batch.BatchSubject();
+            Close();
+            ObjBatchSubject_Sub.Show();
         }
 
 
