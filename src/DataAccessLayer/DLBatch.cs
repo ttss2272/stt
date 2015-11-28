@@ -296,5 +296,20 @@ namespace DataAccessLayer
             conn.Close();
             return ds;
         }
+
+        public DataSet loadBatchName(int ClassID)
+        {
+            conn = con.getConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("loadBatchName_SP", conn);
+            cmd.Parameters.AddWithValue("@ClassID", ClassID);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
+        }
     }
 }

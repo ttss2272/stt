@@ -106,17 +106,16 @@ namespace DataAccessLayer
             return ds;
         }
 
-        public DataSet BindClassName()
+        public DataSet BindClassName(int BranchID)
         {
             conn = con.getConnection();
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand("LoadClassName_SP", conn);
+            SqlCommand cmd = new SqlCommand("BindClassName_SP", conn);
+            cmd.Parameters.AddWithValue("@BranchID", BranchID);
             cmd.CommandType = CommandType.StoredProcedure;
-
             SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
-
             sqlDa.Fill(ds);
             conn.Close();
             return ds;
@@ -133,6 +132,20 @@ namespace DataAccessLayer
             SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
 
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
+        }
+
+        public DataSet loadClassName()
+        {
+            conn = con.getConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("LoadClassName_SP", conn);            
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
             sqlDa.Fill(ds);
             conn.Close();
             return ds;

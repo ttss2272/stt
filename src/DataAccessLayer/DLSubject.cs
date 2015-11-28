@@ -128,7 +128,24 @@ namespace DataAccessLayer
             con = conn.getConnection();
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("BindSubjectName_SP", con);
+            SqlCommand cmd = new SqlCommand("BindSubjectName_SP", con);          
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+
+            sqlDa.Fill(ds);
+            con.Close();
+            return ds;
+        }
+
+        public DataSet loadSubjectName(int BatchID)
+        {
+            con = conn.getConnection();
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("loadSubjectName_SP", con);
+            cmd.Parameters.AddWithValue("@BatchID", BatchID);
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
