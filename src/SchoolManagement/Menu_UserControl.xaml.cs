@@ -134,7 +134,7 @@ namespace SchoolManagement
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            Batch.BatchSubject ObjBatchSubject_Sub = new Batch.BatchSubject();
+            Batch.BatchAvailibility ObjBatchSubject_Sub = new Batch.BatchAvailibility();
             Close();
             ObjBatchSubject_Sub.Show();
         }
