@@ -10,6 +10,7 @@ namespace BusinessLayer
     public class BLTimeTable
     {
         DLTimeTable objTimeTable = new DLTimeTable();
+
         public string SaveTimeTable(int TimeTableID, int BatchID, int RoomID, int TeacherSubjectID, string Day, string LectStartTime, string LectEndTime,int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
         {
             throw new NotImplementedException();
