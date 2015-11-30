@@ -32,9 +32,9 @@ namespace BusinessLayer
             return result;
         }
 
-        public DataSet GetClassDetail(string ClassName, string ShortName, string Board, string Color)
+        public DataSet GetClassDetail(string ClassName, string ShortName, string Board, string Color,int BranchID)
         {
-            DataSet ds = obj_AddClass.GetClassDetail(ClassName, ShortName, Board, Color);
+            DataSet ds = obj_AddClass.GetClassDetail(ClassName, ShortName, Board, Color,BranchID);
             return ds;
         }
 
