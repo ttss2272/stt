@@ -130,17 +130,19 @@ namespace SchoolManagement.Class
         #region---------------------------Validate()-----------------------------------------
         public bool Validate()
         {
-            if(gbInfo.IsEnabled == false)
-            {
-                MessageBox.Show("You Are Coping The features Of Other Branch");
-                return false;
-            }
-            else  if (cbBranchName.Text=="Select")
+            if (cbBranchName.Text=="Select")
             {
                 MessageBox.Show("Please Select Branch Name.", "Branch Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 cbBranchName.Focus();
                 return false;
             }
+
+            else if (gbInfo.IsEnabled == false)
+            {
+                MessageBox.Show("First Click on Go");
+               // MessageBox.Show("You Are Coping The features Of Other Branch");
+                return false;
+            } 
 
             else if (txtClassName.Text.Trim() == "" || string.IsNullOrEmpty(txtClassName.Text))
             {
@@ -228,7 +230,9 @@ namespace SchoolManagement.Class
             btndelete.IsEnabled = false;
             gbInfo.IsEnabled = false;
             btnGo.IsEnabled = true;
+            cbBranchName.IsEnabled = true;
             btnadd.Content = "Save";
+            btnGo.Content = "Go";
             GetBranchClassCount();
             dgCopy.DataContext = null;
             dgvClass.DataContext = null;
@@ -549,6 +553,7 @@ namespace SchoolManagement.Class
                             txtClassName.Focus();
                         }
                         btnGo.Content = "Change";
+                        cbBranchName.IsEnabled = false;
                     }
                     else if (btnGo.Content.ToString() == "Change")
                     {
@@ -605,6 +610,7 @@ namespace SchoolManagement.Class
                 if (btnGo.Content.ToString() == "Go")
                 {
                     btnGo.IsEnabled = false;
+                    cbBranchName.IsEnabled = false;
                 }
                 if(TempID == Convert.ToInt32(cbBranchName.SelectedValue))
                 {
