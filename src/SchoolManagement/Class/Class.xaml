@@ -83,8 +83,8 @@
                     <Button Content="Copy" Height="23" HorizontalAlignment="Left" Margin="461,108,0,0" Name="btnCopy" VerticalAlignment="Top" Width="49" FontWeight="Bold" Click="btnCopy_Click" />
                     <DataGrid AutoGenerateColumns="False" Height="200" HorizontalAlignment="Left" Margin="517,16,0,0" Name="dgCopy" VerticalAlignment="Top" Width="258" CanUserAddRows="False" IsReadOnly="True" ItemsSource="{Binding}">
                         <DataGrid.Columns>
-                          <!--  <DataGridTextColumn Binding="{Binding ClassID}" Header="ClassID" Visibility="Hidden"></DataGridTextColumn>-->
-                            <!-- <DataGridTextColumn Header="BranchName" Width="80" Binding="{Binding BranchName}"></DataGridTextColumn>-->
+                           <DataGridTextColumn Binding="{Binding ClassID}" Header="ClassID" Visibility="Hidden"></DataGridTextColumn>
+                             <DataGridTextColumn Header="BranchName" Width="80" Binding="{Binding BranchName}" Visibility="Hidden"></DataGridTextColumn>
                             <DataGridTextColumn Header="ClassName" Width="70" Binding="{Binding ClassName}"></DataGridTextColumn>
                             <DataGridTextColumn Header="ShortName" Width="70" Binding="{Binding ClassShortName}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Board" Width="60" Binding="{Binding Board}"></DataGridTextColumn>
