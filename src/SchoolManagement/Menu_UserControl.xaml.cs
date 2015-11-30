@@ -132,9 +132,9 @@ namespace SchoolManagement
             ObjTimeTable.Show();
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void menuBatchSubject_Click(object sender, RoutedEventArgs e)
         {
-            Batch.BatchAvailibility ObjBatchSubject_Sub = new Batch.BatchAvailibility();
+            Batch.BatchSubject ObjBatchSubject_Sub = new Batch.BatchSubject();
             Close();
             ObjBatchSubject_Sub.Show();
         }

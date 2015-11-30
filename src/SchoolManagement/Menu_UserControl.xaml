@@ -17,11 +17,11 @@
                 <MenuItem Header="Subject" Name="menuSubject" Click="menuSubject_Click"/>
                 <MenuItem Header="TimeSlot" Name="menuTimeSlot" Click="menuTimeSlot_Click"/>
             </MenuItem>
-            <MenuItem Header="Transaction" Width="90" Height="30" Click="MenuItem_Click">
+            <MenuItem Header="Transaction" Width="90" Height="30">
                 <MenuItem Header="Teacher Availability" Name="menuTeacherAvailability" Click="menuTeacherAvailability_Click"/>
                 <MenuItem Header="Room Availability" Name="menuRoomAvailability" Click="menuRoomAvailability_Click" />
                 <MenuItem Header="Batch Availability" Name="menuBatchAvailability" Click="menuBatchAvailability_Click" />
-                <MenuItem Header="Batch Subject" Name="menuBatchSubject" />
+                <MenuItem Header="Batch Subject" Name="menuBatchSubject" Click="menuBatchSubject_Click" />
                 <MenuItem Header="Branch Distance" Name="menuBranchDistance" Click="menuBranchDistance_Click_1" />
             </MenuItem>
             <MenuItem Header="Time_Table" Width="90" Height="30" Click="MenuItem_Click_1">
