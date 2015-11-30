@@ -21,9 +21,15 @@ namespace BusinessLayer
             return ds;
         }
 
-        public DataSet BindDay(int BatchID,int RoomID,int TeacherID)
+        public DataSet BindDay(int BatchID)
         {
-            DataSet ds = objTimeTable.BindDay(BatchID, RoomID, TeacherID);
+            DataSet ds = objTimeTable.BindDay(BatchID);
+                return ds;
+        }
+
+        public DataSet BindTimeSlot(int BatchAvailableID)
+        {
+            DataSet ds = objTimeTable.BindTimeSlot(BatchAvailableID);
                 return ds;
         }
     }
