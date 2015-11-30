@@ -12,7 +12,7 @@
                     <Button Content="Delete" Height="30" HorizontalAlignment="Left" Margin="248,314,0,0" Name="btnDelete" VerticalAlignment="Top" Width="75" />
                     <Button Content="Cancel" Height="30" HorizontalAlignment="Left" Margin="361,314,0,0" Name="btnCancel" VerticalAlignment="Top" Width="75" />
                     <Label Content="Branch Name" Height="28" HorizontalAlignment="Left" Margin="83,6,0,0" Name="lblBranchName" VerticalAlignment="Top" />
-                    <ComboBox Height="23" HorizontalAlignment="Left" Margin="199,9,0,0" Name="cbBranchName" VerticalAlignment="Top" Width="178" ItemsSource="{Binding }" />
+                    <ComboBox Height="23" HorizontalAlignment="Left" Margin="199,9,0,0" Name="cbBranchName" VerticalAlignment="Top" Width="178" ItemsSource="{Binding }" SelectionChanged="cbBranchName_SelectionChanged" />
                     <Label Content="*" Height="20" HorizontalAlignment="Left" Margin="178,9,0,0" Name="label7" VerticalAlignment="Top" Foreground="Red" FontWeight="Bold" />
                     <Button Content="Save" Height="30" HorizontalAlignment="Left" Margin="116,214,0,0" Name="btnadd" VerticalAlignment="Top" Width="75" Click="btnadd_Click" />
                     <Button Content="Delete" Height="30" HorizontalAlignment="Left" Margin="238,216,0,0" Name="btndelete" VerticalAlignment="Top" Width="75" Click="btndelete_Click" />
@@ -63,11 +63,6 @@
                             <DataGridTextColumn Header="Color" Width="60" Binding="{Binding Color}"></DataGridTextColumn>
                             <DataGridTextColumn Header="BranchID" Width="80" Binding="{Binding BranchID}" Visibility="Hidden"></DataGridTextColumn>
                         </DataGrid.Columns>
-                        <DataGrid.ItemContainerStyle>
-                            <Style TargetType="DataGridRow">
-                                <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick" HandledEventsToo="True" />
-                            </Style>
-                        </DataGrid.ItemContainerStyle>
                     </DataGrid >
                     <DataGrid AutoGenerateColumns="False" Height="200" HorizontalAlignment="Left" Margin="22,16,0,0" Name="dgBranchCls" VerticalAlignment="Top" Width="163" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" ItemsSource="{Binding}">
                         <DataGrid.Columns>
@@ -82,7 +77,7 @@
                         </DataGrid.ItemContainerStyle> 
                     </DataGrid>
                     <Button Content="Copy" Height="23" HorizontalAlignment="Left" Margin="461,108,0,0" Name="btnCopy" VerticalAlignment="Top" Width="49" FontWeight="Bold" Click="btnCopy_Click" />
-                    <DataGrid AutoGenerateColumns="False" Height="200" HorizontalAlignment="Left" Margin="517,16,0,0" Name="dgCopy" VerticalAlignment="Top" Width="258" CanUserAddRows="False" IsReadOnly="True" ItemsSource="{Binding}">
+                    <DataGrid AutoGenerateColumns="False" Height="200" HorizontalAlignment="Left" Margin="517,16,0,0" Name="dgCopy" VerticalAlignment="Top" Width="258" CanUserAddRows="False" IsReadOnly="True" ItemsSource="{Binding}" CanUserDeleteRows="False" CanUserResizeColumns="False">
                         <DataGrid.Columns>
                            <DataGridTextColumn Binding="{Binding ClassID}" Header="ClassID" Visibility="Hidden"></DataGridTextColumn>
                              <DataGridTextColumn Header="BranchName" Width="80" Binding="{Binding BranchName}" Visibility="Hidden"></DataGridTextColumn>
@@ -92,6 +87,11 @@
                             <DataGridTextColumn Header="Color" Width="60" Binding="{Binding Color}"></DataGridTextColumn>
                             <DataGridTextColumn Header="BranchID" Width="80" Binding="{Binding BranchID}" Visibility="Hidden"></DataGridTextColumn>
                         </DataGrid.Columns>
+                        <DataGrid.ItemContainerStyle>
+                            <Style TargetType="DataGridRow">
+                                <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick" HandledEventsToo="True" />
+                            </Style>
+                        </DataGrid.ItemContainerStyle>
                     </DataGrid>
                 </Grid>
             </GroupBox>

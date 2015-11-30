@@ -411,12 +411,12 @@ namespace SchoolManagement.Class
         {
             try
             {
-                 object item = dgvClass.SelectedItem;
-                 string ClassName = Convert.ToString(((System.Data.DataRowView)(dgvClass.CurrentItem)).Row.ItemArray[1].ToString());
-                 string ShortName = Convert.ToString(((System.Data.DataRowView)(dgvClass.CurrentItem)).Row.ItemArray[2].ToString());
-                 string Board = Convert.ToString(((System.Data.DataRowView)(dgvClass.CurrentItem)).Row.ItemArray[3].ToString());
-                 string Color = Convert.ToString(((System.Data.DataRowView)(dgvClass.CurrentItem)).Row.ItemArray[4].ToString());
-                 int BranchID = Convert.ToInt32(((System.Data.DataRowView)(dgvClass.CurrentItem)).Row.ItemArray[5].ToString());
+                 object item =  dgCopy.SelectedItem;
+                 string ClassName = Convert.ToString(((System.Data.DataRowView)(dgCopy.CurrentItem)).Row.ItemArray[1].ToString());
+                 string ShortName = Convert.ToString(((System.Data.DataRowView)(dgCopy.CurrentItem)).Row.ItemArray[2].ToString());
+                 string Board = Convert.ToString(((System.Data.DataRowView)(dgCopy.CurrentItem)).Row.ItemArray[3].ToString());
+                 string Color = Convert.ToString(((System.Data.DataRowView)(dgCopy.CurrentItem)).Row.ItemArray[4].ToString());
+                 int BranchID = Convert.ToInt32(((System.Data.DataRowView)(dgCopy.CurrentItem)).Row.ItemArray[5].ToString());
 
                 DataSet ds = obj_AddClass.GetClassDetail(ClassName, ShortName,Board,Color,BranchID);
                 if (ds.Tables.Count > 0)
@@ -713,6 +713,11 @@ namespace SchoolManagement.Class
             dgCopy.Items.Refresh();
         }
         #endregion
+
+        private void cbBranchName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GetCopyClass();
+        }
 
 
     }
