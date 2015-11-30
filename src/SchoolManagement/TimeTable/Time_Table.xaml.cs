@@ -311,9 +311,11 @@ namespace SchoolManagement.TimeTable
         {
             try
             {
-            BatchAvailableID = Convert.ToInt32(cmbDayName.SelectedValue);
+              BatchAvailableID = Convert.ToInt32(cmbDayName.SelectedValue);
+              BatchID = Convert.ToInt32(cbBatchName.SelectedValue.ToString());
+              string Day = Convert.ToString(cmbDayName.SelectedValue.ToString());
 
-            DataSet ds = objTimeTable.BindTimeSlot(BatchAvailableID);
+            DataSet ds = objTimeTable.BindTimeSlot(BatchAvailableID,BatchID,Day);
             if (ds.Tables[0].Rows.Count > 0)
             {
                 cbTimeSlot.DataContext = null;
@@ -364,8 +366,8 @@ namespace SchoolManagement.TimeTable
             BindBatchName();
             BindTeacher();
             BindRoom();
-            BindTimeSlot();
             BindDay();
+            BindTimeSlot();
         }
         #endregion
 
