@@ -26,5 +26,22 @@ namespace DataAccessLayer
             conn.Close();
             return ds;
         }
+
+        public DataSet BindDay(int BatchID, int RoomID, int TeacherID)
+        {
+            conn = con.getConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("BindDay_SP", conn);
+            cmd.Parameters.AddWithValue("@BatchID", BatchID);
+            cmd.Parameters.AddWithValue("@RoomID", RoomID);
+            cmd.Parameters.AddWithValue("@TeacherID", TeacherID);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
+        }
     }
 }
