@@ -61,6 +61,7 @@
                             <DataGridTextColumn Header="ShortName" Width="70" Binding="{Binding ClassShortName}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Board" Width="60" Binding="{Binding Board}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Color" Width="60" Binding="{Binding Color}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="BranchID" Width="80" Binding="{Binding BranchID}" Visibility="Hidden"></DataGridTextColumn>
                         </DataGrid.Columns>
                         <DataGrid.ItemContainerStyle>
                             <Style TargetType="DataGridRow">
@@ -89,6 +90,7 @@
                             <DataGridTextColumn Header="ShortName" Width="70" Binding="{Binding ClassShortName}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Board" Width="60" Binding="{Binding Board}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Color" Width="60" Binding="{Binding Color}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="BranchID" Width="80" Binding="{Binding BranchID}" Visibility="Hidden"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

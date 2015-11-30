@@ -30,7 +30,7 @@ namespace SchoolManagement.Class
           * Purpose:- Declare Global Variables
           */
         #region------------------------Declare Variables Globally()--------------------
-        int ClassID, BranchID, UpdatedByUserID, IsActive, IsDeleted, UpID;
+        int ClassID, BranchID, UpdatedByUserID, IsActive, IsDeleted, UpID,TempID;
         string ClassName, ShortName, UpdatedDate, Color, Board;
         BLAddClass obj_AddClass = new BLAddClass();
         BLAddBranch obj_Branch = new BLAddBranch();
@@ -130,7 +130,12 @@ namespace SchoolManagement.Class
         #region---------------------------Validate()-----------------------------------------
         public bool Validate()
         {
-              if (cbBranchName.Text=="Select")
+            if(gbInfo.IsEnabled == false)
+            {
+                MessageBox.Show("You Are Coping The features Of Other Branch");
+                return false;
+            }
+            else  if (cbBranchName.Text=="Select")
             {
                 MessageBox.Show("Please Select Branch Name.", "Branch Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 cbBranchName.Focus();
@@ -222,9 +227,11 @@ namespace SchoolManagement.Class
             rdoDeActive.IsChecked = false;
             btndelete.IsEnabled = false;
             gbInfo.IsEnabled = false;
+            btnGo.IsEnabled = true;
             btnadd.Content = "Save";
-           // BindGridview();
             GetBranchClassCount();
+            dgCopy.DataContext = null;
+            dgvClass.DataContext = null;
         }
         #endregion                    
 
@@ -238,9 +245,6 @@ namespace SchoolManagement.Class
                 {
                     SetParameters();
                     DeleteClass();
-                    dgvClass.Items.Refresh();
-                   // BindGridview();
-                    clearFields();
                 }
             }
             catch (Exception ex)
@@ -263,8 +267,7 @@ namespace SchoolManagement.Class
                 if (Result == "Deleted Sucessfully...!!")
                 {
                     MessageBox.Show(Result, "Delete Sucessfully", MessageBoxButton.OK, MessageBoxImage.Information);
-                    BindGridview(BranchID);
-                    ClearData();
+                    clearFields();
                 }
                 else
                 {
@@ -404,17 +407,14 @@ namespace SchoolManagement.Class
         {
             try
             {
-                btndelete.IsEnabled = true;
-                object item = dgvClass.SelectedItem;
-               // string Id = (dgvClass.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                 string BranchName = Convert.ToString(((System.Data.DataRowView)(dgvClass.CurrentItem)).Row.ItemArray[0].ToString());
-                //string BranchName = (dgvClass.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+                 object item = dgvClass.SelectedItem;
                  string ClassName = Convert.ToString(((System.Data.DataRowView)(dgvClass.CurrentItem)).Row.ItemArray[1].ToString());
                  string ShortName = Convert.ToString(((System.Data.DataRowView)(dgvClass.CurrentItem)).Row.ItemArray[2].ToString());
                  string Board = Convert.ToString(((System.Data.DataRowView)(dgvClass.CurrentItem)).Row.ItemArray[3].ToString());
                  string Color = Convert.ToString(((System.Data.DataRowView)(dgvClass.CurrentItem)).Row.ItemArray[4].ToString());
+                 int BranchID = Convert.ToInt32(((System.Data.DataRowView)(dgvClass.CurrentItem)).Row.ItemArray[5].ToString());
 
-                DataSet ds = obj_AddClass.GetClassDetail(ClassName, ShortName,Board,Color);
+                DataSet ds = obj_AddClass.GetClassDetail(ClassName, ShortName,Board,Color,BranchID);
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
@@ -436,8 +436,9 @@ namespace SchoolManagement.Class
                         {
                             rdoDeActive.IsChecked = true;
                         }
-                        btnDelete.IsEnabled = true;
+                        btndelete.IsEnabled = true;
                         btnadd.Content = "Update";
+                        gbInfo.IsEnabled = true;
                     }
                 }
             }
@@ -485,7 +486,7 @@ namespace SchoolManagement.Class
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            clearFields();
+           // clearFields();
             BindBranchName();
            // BindGridview();
             btndelete.IsEnabled = false;
@@ -521,6 +522,10 @@ namespace SchoolManagement.Class
         }
         #endregion
 
+        /* Created By:- pranjali Vidhate
+        * Created Date :- 28 Nov 2015
+        * Purpose:- Go Button Coding */
+
         #region-----------------------------------------Go()--------------------------------------------------------------------
         private void btnGo_Click(object sender, RoutedEventArgs e)
         {
@@ -536,7 +541,6 @@ namespace SchoolManagement.Class
                         {
                             MessageBox.Show("Please Select Branch whoes Features You Want To Copy From Grid");
                             gbInfo.IsEnabled = false;
-                            dgBranchCls.Focus();
                         }
                         else if (Result.Equals(MessageBoxResult.No))
                         {
@@ -544,6 +548,7 @@ namespace SchoolManagement.Class
                             gbInfo.IsEnabled = true;
                             txtClassName.Focus();
                         }
+                        btnGo.Content = "Change";
                     }
                     else if (btnGo.Content.ToString() == "Change")
                     {
@@ -551,7 +556,7 @@ namespace SchoolManagement.Class
                         clearFields();
                         dgBranchCls.DataContext = null;
                         dgvClass.DataContext = null;
-                        dgCopy.DataContext = null;
+                       // dgCopy.DataContext = null;
                     }
                 }
                 else
@@ -567,6 +572,10 @@ namespace SchoolManagement.Class
         #endregion
 
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 28 Nov 2015
+        * Purpose:- GetBranchClass Count*/
+
         #region---------------------------------------GetBranchClassCount()-----------------------------------------------
         public void GetBranchClassCount()
         {
@@ -577,10 +586,14 @@ namespace SchoolManagement.Class
                 dgBranchCls.DataContext = null;
                 dgBranchCls.DataContext = ds.Tables[0].DefaultView;
             }
+            dgBranchCls.Items.Refresh();
           
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 28 Nov 2015
+        * Purpose:- griddview cell click of BranchClass */
 
         #region----------------------------------------ClickofBranchGrid()---------------------------------------------
         private void Row_DoubleClick1(object sender, MouseButtonEventArgs e)
@@ -588,8 +601,20 @@ namespace SchoolManagement.Class
             try
             {
                 object item = dgBranchCls.SelectedItem;
-                int TempID = Convert.ToInt32(((System.Data.DataRowView)(dgBranchCls.CurrentItem)).Row.ItemArray[2].ToString());
-                BindGridview(TempID);
+                TempID = Convert.ToInt32(((System.Data.DataRowView)(dgBranchCls.CurrentItem)).Row.ItemArray[2].ToString());
+                if (btnGo.Content.ToString() == "Go")
+                {
+                    btnGo.IsEnabled = false;
+                }
+                if(TempID == Convert.ToInt32(cbBranchName.SelectedValue))
+                {
+                    MessageBox.Show("This Branch & Select Branch is Same, Please Select Another", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    dgBranchCls.Focus();
+                }
+                else
+                {
+                    BindGridview(TempID);
+                }
             }
             catch (Exception ex)
             {
@@ -598,6 +623,10 @@ namespace SchoolManagement.Class
         }
         #endregion
 
+
+        /* Created By:- pranjali Vidhate
+        * Created Date :- 28 Nov 2015
+        * Purpose:- Copy Button Coding */
 
         #region---------------------------------Copy()--------------------------------------------------------------
         private void btnCopy_Click(object sender, RoutedEventArgs e)
@@ -637,7 +666,8 @@ namespace SchoolManagement.Class
                         if (temp == cnt)
                         {
                             MessageBox.Show("Details Copy Sucessfully.", "Copy Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
-                            ClearData();
+                            clearFields();
+                            GetCopyClass();
                         }
                         else
                         {
@@ -661,15 +691,23 @@ namespace SchoolManagement.Class
         }
         #endregion
 
-        #region-----------------------------------------------------ClearData()---------------------------------------------------------------
-        private void ClearData()
+
+        /* Created By:- pranjali Vidhate
+        * Created Date :- 28 Nov 2015
+        * Purpose:- Display content in CopyGrid when Click on Copy*/
+
+        #region----------------------------------dgCopy()----------------------------------------------------
+        private void GetCopyClass()
         {
-            GetBranchClassCount();
-            
-            btnAdd.Content = "Save";
-            rdoActive.IsChecked = true;
-            btnDelete.IsEnabled = false;
+            DataSet ds = obj_AddClass.BindClass(Convert.ToInt32(cbBranchName.SelectedValue));
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                dgCopy.ItemsSource = ds.Tables[0].DefaultView;
+            }
+            dgCopy.Items.Refresh();
         }
         #endregion
+
+
     }
 }
