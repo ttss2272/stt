@@ -72,7 +72,7 @@ namespace DataAccessLayer
         }
 
         //For Edit Details
-        public DataSet GetClassDetail(string ClassName, string ShortName, string Board, string Color)
+        public DataSet GetClassDetail(string ClassName, string ShortName, string Board, string Color, int BranchID)
         {
             conn = con.getConnection();
             conn.Open();
@@ -82,6 +82,7 @@ namespace DataAccessLayer
             cmd.Parameters.AddWithValue("@ShortName", ShortName);
             cmd.Parameters.AddWithValue("@Board", Board);
             cmd.Parameters.AddWithValue("@Color", Color);
+            cmd.Parameters.AddWithValue("@BranchID", BranchID);
 
             cmd.CommandType = CommandType.StoredProcedure;
 
