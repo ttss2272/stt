@@ -117,9 +117,10 @@ namespace SchoolManagement.TimeTable
             cbRoomName.SelectedIndex = 0;
             cmbDayName.SelectedIndex = 0;
             cbSubjectName.SelectedIndex = 0;
-            cbTeacherName.SelectedIndex = 0;
+            cbTeacherName.SelectedIndex = 0;           
             btnSave.Content = "Save";
             btnDelete.IsEnabled = false;
+            rdoActive.IsChecked = true;
         }
         #endregion
 
@@ -196,7 +197,7 @@ namespace SchoolManagement.TimeTable
         {
             try
             {
-                BatchID = Convert.ToInt32(cbClassName.SelectedValue);
+                BatchID = Convert.ToInt32(cbBatchName.SelectedValue);
                 DataSet ds = obj_Subject.loadSubjectName(BatchID);
 
 
@@ -315,10 +316,10 @@ namespace SchoolManagement.TimeTable
         {
             try
             {
-                BatchID = Convert.ToInt32(cbBranchName.SelectedValue);
-                RoomID = Convert.ToInt32(cbRoomName.SelectedValue);
-                TeacherID = Convert.ToInt32(cbTeacherName.SelectedValue);
-                DataSet ds = objTimeTable.BindDay(BatchID,RoomID,TeacherID);                
+                BatchID = Convert.ToInt32(cbBatchName.SelectedValue);
+                //RoomID = Convert.ToInt32(cbRoomName.SelectedValue);
+                //TeacherID = Convert.ToInt32(cbTeacherName.SelectedValue);
+                DataSet ds = objTimeTable.BindDay(BatchID);                
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     cmbDayName.DataContext = null;
@@ -504,15 +505,9 @@ namespace SchoolManagement.TimeTable
 
         #region--------------cbBatchName_SelectionChanged
         private void cbBatchName_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (rdoClassWise.IsChecked == true)
-            {
-                //BindDay();
-            }
-            else
-            {
-                BindSubjectName();
-            }
+        {                       
+            BindSubjectName();
+            BindDay();
         }
 
         #endregion

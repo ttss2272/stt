@@ -52,6 +52,6 @@
                 <Button Content="Clear" FontWeight="Bold" Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="388,10,0,0" Name="btnClear" TabIndex="16" VerticalAlignment="Top" Width="75" Click="btnClear_Click" />
             </Grid>
         </GroupBox>
-        <DataGrid AutoGenerateColumns="False" Height="155" HorizontalAlignment="Left" Margin="235,390,0,0" Name="dgTimeTable" VerticalAlignment="Top" Width="600" />
+        <DataGrid AutoGenerateColumns="False" Height="155" HorizontalAlignment="Left" Margin="228,390,0,0" Name="dgTimeTable" VerticalAlignment="Top" Width="600" />
     </Grid>
 </Window>
