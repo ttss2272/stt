@@ -32,8 +32,8 @@ namespace SchoolManagement.TimeTable
         BLRoom objRoom = new BLRoom();
 
 
-        int TimeTableID, BatchID, RoomID, ClassID, TeacherID, TeacherSubjectID, BranchID, BatchAvailableID, UpID, UpdatedByUserID, IsActive, IsDeleted;
-        String UpdatedDate, Day, LectStartTime, LectEndTime, CRM;
+        int TimeTableID, BatchID, RoomID, ClassID, TeacherID, TeacherSubjectID,SubjectID, BranchID, BatchAvailableID, UpID, UpdatedByUserID, IsActive, IsDeleted;
+        String UpdatedDate, Day, LectStartTime, LectEndTime, SlotTime;
 
     #endregion
 
@@ -78,20 +78,35 @@ namespace SchoolManagement.TimeTable
         #region---------------------------------Setparamerter()-------------------------------------------
         public void Setparameter()
         {
-            UpID = 0;
-            if (btnSave.Content.ToString() == "Save")
-            {
-                TimeTableID = UpID;
-            }
-            else if (btnSave.Content.ToString() == "Update")
-            {
-                TimeTableID = TimeTableID;
-            }
+            TimeTableID =UpID;
             BranchID = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
+            ClassID = Convert.ToInt32(cbClassName.SelectedValue.ToString());
+            BatchID = Convert.ToInt32(cbBatchName.SelectedValue.ToString());
+            TeacherSubjectID = Convert.ToInt32(cbSubjectName.SelectedValue.ToString());
+            RoomID = Convert.ToInt32(cbRoomName.SelectedValue.ToString());
+            TeacherID = Convert.ToInt32(cbTeacherName.SelectedValue.ToString());
+            Day = cmbDayName.SelectedValue.ToString();
+            SlotTime = cbTimeSlot.SelectedValue.ToString();
+            string[] a = SlotTime.Split('-');
+            LectStartTime = a[0];
+            LectEndTime = a[1];
+            UpdatedByUserID = 1;
+            UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+            if (rdoActive.IsChecked == true)
+            {
+                IsActive = 1;
+                IsDeleted = 0;
+            }
+            else if (rdoInActive.IsChecked == true)
+            {
+                IsActive = 0;
+                IsDeleted = 0;
+            }
+            
         }
         #endregion
 
-        #region-------------cmbDayName_Items-------------------------------
+   /*     #region-------------cmbDayName_Items-------------------------------
         private void cmbDayName_Items()
         {
             cmbDayName.Items.Add("Select");
@@ -104,11 +119,12 @@ namespace SchoolManagement.TimeTable
             cmbDayName.SelectedIndex = 0;
 
         }
-        #endregion
+        #endregion */
 
         #region-------------------------------ClearFields()----------------------------------------
         public void ClearFields()
         {
+            UpID = 0;
             cbBranchName.IsEnabled = true;
             EnableUpperPart();
             cbBranchName.SelectedIndex = 0;
@@ -296,12 +312,13 @@ namespace SchoolManagement.TimeTable
             try
             {
             BatchAvailableID = Convert.ToInt32(cmbDayName.SelectedValue);
+
             DataSet ds = objTimeTable.BindTimeSlot(BatchAvailableID);
             if (ds.Tables[0].Rows.Count > 0)
             {
                 cbTimeSlot.DataContext = null;
                 cbTimeSlot.DisplayMemberPath = ds.Tables[0].Columns["TimeSlot"].ToString();
-                cbRoomName.SelectedValuePath = ds.Tables[0].Columns["BatchAvailableID"].ToString();
+                cbTimeSlot.SelectedValuePath = ds.Tables[0].Columns["BatchAvailableID"].ToString();
                 cbTimeSlot.DataContext = ds.Tables[0].DefaultView;
                 cbTimeSlot.SelectedValue = "0";
                 }
@@ -326,6 +343,7 @@ namespace SchoolManagement.TimeTable
                 {
                     cmbDayName.DataContext = null;
                     cmbDayName.DisplayMemberPath = ds.Tables[0].Columns["Day"].ToString();
+                    cmbDayName.SelectedValuePath = ds.Tables[0].Columns["BatchAvailableID"].ToString();
                     cmbDayName.DataContext = ds.Tables[0].DefaultView;
                     cmbDayName.SelectedValue = "0";
                 }               
@@ -341,12 +359,13 @@ namespace SchoolManagement.TimeTable
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             BindBranchName();
-            //cmbDayName_Items();
+            //cmbDayName.SelectedIndex = 0;
             BindSubjectName();
             BindBatchName();
             BindTeacher();
             BindRoom();
             BindTimeSlot();
+            BindDay();
         }
         #endregion
 
@@ -469,7 +488,7 @@ namespace SchoolManagement.TimeTable
             rdoActive.IsChecked = true;
             btnDelete.IsEnabled = false;
             BindTeacher();
-            cmbDayName_Items();
+           // cmbDayName_Items();
             //BindGrid();
             //UncheckAllCheckBoxes();
             // gbSame.Visibility = Visibility.Hidden;
@@ -515,17 +534,17 @@ namespace SchoolManagement.TimeTable
 
         #endregion
 
-        private void cbRoomName_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (rdoRoomWise.IsChecked == true)
-            {
-                //BindDay();
-            }
-            else
-            {
+        //private void cbRoomName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    if (rdoRoomWise .IsChecked == true)
+        //    {
+        //        //BindDay();
+        //    }
+        //    else
+        //    {
 
-            }
-        }
+        //    }
+       // }
     }
 }
     
