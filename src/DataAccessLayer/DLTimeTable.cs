@@ -44,13 +44,15 @@ namespace DataAccessLayer
             return ds;
         }
 
-        public DataSet BindTimeSlot(int BatchAvailableID)
+        public DataSet BindTimeSlot(int BatchAvailableID,int BatchID, string Day)
         {
             conn = con.getConnection();
             conn.Open();
 
             SqlCommand cmd = new SqlCommand("BindTimeSlotDropDown_SP", conn);
-            cmd.Parameters.AddWithValue("@BatchAvailableID", BatchAvailableID);            
+            cmd.Parameters.AddWithValue("@BatchAvailableID", BatchAvailableID);
+            cmd.Parameters.AddWithValue("@BatchID", BatchID);
+            cmd.Parameters.AddWithValue("@Day", Day); 
             cmd.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
