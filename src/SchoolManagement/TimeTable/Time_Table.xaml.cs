@@ -31,7 +31,8 @@ namespace SchoolManagement.TimeTable
         BLTeacher objTeacher = new BLTeacher();
         BLRoom objRoom = new BLRoom();
 
-        int TimeTableID, BatchID, RoomID, ClassID, TeacherID, TeacherSubjectID, BranchID, UpID, UpdatedByUserID, IsActive, IsDeleted;
+
+        int TimeTableID, BatchID, RoomID, ClassID, TeacherID, TeacherSubjectID, BranchID, BatchAvailableID, UpID, UpdatedByUserID, IsActive, IsDeleted;
         String UpdatedDate, Day, LectStartTime, LectEndTime, CRM;
 
     #endregion
@@ -294,15 +295,16 @@ namespace SchoolManagement.TimeTable
         {
             try
             {
-                //Day = Convert.ToString(cmbDayName.SelectedValue);
-                //DataSet ds = objTimeSlot.BindTimeSlot(Day);
-                //if (ds.Tables[0].Rows.Count > 0)
-                //{
-                //    cbTimeSlot.DataContext = null;
-                //    cbTimeSlot.DisplayMemberPath = ds.Tables[0].Columns["Day"].ToString();
-                //    cbTimeSlot.DataContext = ds.Tables[0].DefaultView;
-                //    cbTimeSlot.SelectedValue = "0";
-                //}
+            BatchAvailableID = Convert.ToInt32(cmbDayName.SelectedValue);
+            DataSet ds = objTimeTable.BindTimeSlot(BatchAvailableID);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                cbTimeSlot.DataContext = null;
+                cbTimeSlot.DisplayMemberPath = ds.Tables[0].Columns["TimeSlot"].ToString();
+                cbRoomName.SelectedValuePath = ds.Tables[0].Columns["BatchAvailableID"].ToString();
+                cbTimeSlot.DataContext = ds.Tables[0].DefaultView;
+                cbTimeSlot.SelectedValue = "0";
+                }
             }
             catch (Exception ex)
             {
@@ -344,6 +346,7 @@ namespace SchoolManagement.TimeTable
             BindBatchName();
             BindTeacher();
             BindRoom();
+            BindTimeSlot();
         }
         #endregion
 
