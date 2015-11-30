@@ -136,7 +136,7 @@ namespace DataAccessLayer
             conn.Close();
             return ds;
         }
-<<<<<<< .mine
+
 
         public DataSet GetBranchClassCount()
         {
@@ -152,7 +152,7 @@ namespace DataAccessLayer
             conn.Close();
             return ds;
         }
-=======
+
 
         public DataSet loadClassName()
         {
