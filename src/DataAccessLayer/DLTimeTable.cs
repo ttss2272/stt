@@ -61,9 +61,26 @@ namespace DataAccessLayer
             return ds;
         }
 
-        public string SaveTimeTable(int TimeTableID, int BatchID, int RoomID, int TeacherSubjectID, string Day, string LectStartTime, string LectEndTime, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
+        public string SaveTimeTable(int TimeTableID, DateTime TTStartTime, int BatchID, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
         {
-            throw new NotImplementedException();
+            string Result = null;
+
+            conn = con.getConnection();
+            SqlCommand cmd = new SqlCommand("SaveTimeTable_SP", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@TimeTableID",TimeTableID);
+            cmd.Parameters.AddWithValue("@TimeTableStartDate", TTStartTime);
+            cmd.Parameters.AddWithValue("@BatchID",BatchID);
+            cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
+            cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
+            cmd.Parameters.AddWithValue("@IsActive",IsActive);
+            cmd.Parameters.AddWithValue("@IsDeleted", IsDeleted);
+
+            conn.Open();
+            Result = cmd.ExecuteScalar().ToString();
+            conn.Close();
+            return Result;
         }
     }
 }
