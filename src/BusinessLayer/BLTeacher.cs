@@ -59,5 +59,14 @@ namespace BusinessLayer
             DataSet ds = objTeacher.BindTeacherDropDown(TeacherID);
             return ds;
         }
+
+        public DataSet BindTeacherOnTimeTable(int TeacherSubjectID)
+        {
+            {
+                DataSet ds = objTeacher.BindTeacherOnTimeTable(TeacherSubjectID);
+                return ds;
+            }
+
+        }
     }
 }
