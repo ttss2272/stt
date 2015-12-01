@@ -18,7 +18,7 @@
                     <Button Content="Delete" Height="30" HorizontalAlignment="Left" Margin="238,216,0,0" Name="btndelete" VerticalAlignment="Top" Width="75" Click="btndelete_Click" />
                     <Button Content="Clear" Height="30" HorizontalAlignment="Left" Margin="363,216,0,0" Name="btnClose" VerticalAlignment="Top" Width="75" Click="btnClose_Click" />
                     <Button Content="Go" Height="23" HorizontalAlignment="Left" Margin="404,9,0,0" Name="btnGo" VerticalAlignment="Top" Width="75" Click="btnGo_Click" />
-                    <GroupBox Name="gbInfo" Margin="81,40,96,55">
+                    <GroupBox Name="gbInfo" Margin="83,40,94,55">
                         <Grid Height="167">
                             <Label Content="Class Name" Height="28" Margin="8,6,291,0" Name="lblClassName" VerticalAlignment="Top" />
                             <TextBox Height="23" HorizontalAlignment="Right" Margin="0,7,83,0" Name="txtClassName" VerticalAlignment="Top" Width="178" TextChanged="txtClassName_TextChanged" />

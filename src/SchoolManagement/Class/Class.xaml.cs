@@ -88,7 +88,7 @@ namespace SchoolManagement.Class
             if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
             {
                  MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
-                 BindGridview(BranchID);
+                 GetCopyClass(BranchID);
                  clearFields();
             }
             else
@@ -219,7 +219,7 @@ namespace SchoolManagement.Class
         private void clearFields()
         {
             UpID = 0;
-            cbBranchName.SelectedIndex = 0;
+           // cbBranchName.SelectedIndex = 0;
             txtClassName.Text = "";
             txtShortName.Text = "";            
             txtcolor.Text = "";
@@ -234,7 +234,7 @@ namespace SchoolManagement.Class
             btnadd.Content = "Save";
             btnGo.Content = "Go";
             GetBranchClassCount();
-            dgCopy.DataContext = null;
+           // dgCopy.DataContext = null;
             dgvClass.DataContext = null;
         }
         #endregion                    
@@ -272,6 +272,7 @@ namespace SchoolManagement.Class
                 {
                     MessageBox.Show(Result, "Delete Sucessfully", MessageBoxButton.OK, MessageBoxImage.Information);
                     clearFields();
+                    ClearData();
                 }
                 else
                 {
@@ -673,7 +674,7 @@ namespace SchoolManagement.Class
                         {
                             MessageBox.Show("Details Copy Sucessfully.", "Copy Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
                             clearFields();
-                            GetCopyClass();
+                            GetCopyClass(BranchID);
                         }
                         else
                         {
@@ -703,7 +704,7 @@ namespace SchoolManagement.Class
         * Purpose:- Display content in CopyGrid when Click on Copy*/
 
         #region----------------------------------dgCopy()----------------------------------------------------
-        private void GetCopyClass()
+        private void GetCopyClass(int BranchID)
         {
             DataSet ds = obj_AddClass.BindClass(Convert.ToInt32(cbBranchName.SelectedValue));
             if (ds.Tables[0].Rows.Count > 0)
@@ -716,9 +717,14 @@ namespace SchoolManagement.Class
 
         private void cbBranchName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            GetCopyClass();
+           // GetBranchClassCount();
+            GetCopyClass(Convert.ToInt32(cbBranchName.SelectedValue));
         }
 
-
+        public void ClearData()
+        {
+            GetBranchClassCount();
+            GetCopyClass(Convert.ToInt32(cbBranchName.SelectedValue));
+        }
     }
 }
