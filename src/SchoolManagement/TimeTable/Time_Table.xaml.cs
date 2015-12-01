@@ -366,7 +366,7 @@ namespace SchoolManagement.TimeTable
             //cmbDayName.SelectedIndex = 0;
             BindSubjectName();
             BindBatchName();
-            BindTeacher();
+            //BindTeacher();
             BindRoom();
             BindDay();
             BindTimeSlot();
