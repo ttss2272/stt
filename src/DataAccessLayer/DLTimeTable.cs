@@ -44,7 +44,7 @@ namespace DataAccessLayer
             return ds;
         }
 
-        public DataSet BindTimeSlot(int BatchAvailableID,int BatchID, string Day)
+        public DataSet BindTimeSlot(int BatchAvailableID,int BatchID, int Day)
         {
             conn = con.getConnection();
             conn.Open();
