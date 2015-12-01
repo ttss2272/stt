@@ -13,49 +13,49 @@
                 <ComboBox Canvas.Left="112" Canvas.Top="46" Height="23" ItemsSource="{Binding}" Name="cbBatchName1" Width="160" />
                 <Label Canvas.Left="94" Canvas.Top="46" Content="*" FontWeight="Bold" Foreground="Red" Height="20" Name="label23" />
                 <Label Canvas.Left="5" Canvas.Top="76" Content="Teacher Name" Height="28" Name="label26" />
-                <ComboBox Canvas.Left="112" Canvas.Top="79" ItemsSource="{Binding}" Name="cbTe" Width="160" />
+                <ComboBox Canvas.Left="112" Canvas.Top="79" ItemsSource="{Binding}" Name="cbTeacherName1" Width="160" />
                 <Label Canvas.Left="94" Canvas.Top="79" Content="*" FontWeight="Bold" Foreground="Red" Height="20" Name="label27" />
                 <Label Canvas.Left="94" Canvas.Top="110" Content="*" FontWeight="Bold" Foreground="Red" Height="20" Name="label32" />
                 <Label Canvas.Left="27" Canvas.Top="107" Content="TimeSlot" Height="28" Name="label33" />
-                <ComboBox Canvas.Left="112" Canvas.Top="109" Height="23" ItemsSource="{Binding}" Name="comboBox7" Width="160" />
+                <ComboBox Canvas.Left="112" Canvas.Top="109" Height="23" ItemsSource="{Binding}" Name="cbTimeSlot1" Width="160" />
                 <Label Canvas.Left="309" Canvas.Top="10" Content="Class Name" Height="28" Name="label20" />
-                <ComboBox Canvas.Left="416" Canvas.Top="10" Height="23" ItemsSource="{Binding}" Name="comboBox2" Width="160" />
+                <ComboBox Canvas.Left="416" Canvas.Top="10" Height="23" ItemsSource="{Binding}" Name="cbClassName1" Width="160" />
                 <Label Canvas.Left="389" Canvas.Top="12" Content="*" FontWeight="Bold" Foreground="Red" Height="20" Name="label21" />
                 <Label Canvas.Left="298" Canvas.Top="45" Content="Subject Name" Height="28" Name="label24" />
-                <ComboBox Canvas.Left="415" Canvas.Top="47" Height="23" ItemsSource="{Binding}" Name="comboBox4" Width="160" />
+                <ComboBox Canvas.Left="415" Canvas.Top="47" Height="23" ItemsSource="{Binding}" Name="cbSubjectName1" Width="160" />
                 <Label Canvas.Left="391" Canvas.Top="46" Content="*" FontWeight="Bold" Foreground="Red" Height="20" Name="label25" />
                 <Label Canvas.Left="391" Canvas.Top="85" Content="*" FontWeight="Bold" Foreground="Red" Height="20" Name="label28" />
                 <Label Canvas.Left="342" Canvas.Top="83" Content="Day" Height="28" Name="label29" />
-                <ComboBox Canvas.Left="415" Canvas.Top="84" Height="23" ItemsSource="{Binding}" Name="comboBox6" Width="160" />
-                <RadioButton Canvas.Left="418" Canvas.Top="116" Content="Active" Height="16" Name="radioButton1" />
-                <RadioButton Canvas.Left="492" Canvas.Top="117" Content="InActive" Height="20" Name="radioButton2" />
+                <ComboBox Canvas.Left="415" Canvas.Top="84" Height="23" ItemsSource="{Binding}" Name="cbDay" Width="160" />
+                <RadioButton Canvas.Left="418" Canvas.Top="116" Content="Active" Height="16" Name="rdoActive1" />
+                <RadioButton Canvas.Left="492" Canvas.Top="117" Content="InActive" Height="20" Name="rdoInActive1" />
                 <Label Canvas.Left="338" Canvas.Top="111" Content="Status" Height="28" Name="label30" />
                 <Label Canvas.Left="393" Canvas.Top="113" Content="*" FontWeight="Bold" Foreground="Red" Height="20" Name="label31" />
             </Canvas>
             <Canvas Height="140" Name="canvasTeacherWise" HorizontalAlignment="Left" Margin="30,10,0,0" Width="600">
                 <Label Canvas.Left="312" Canvas.Top="45" Content="Room Name" Height="28" Name="label34" />
-                <ComboBox Canvas.Left="413" Canvas.Top="48" Height="23" ItemsSource="{Binding}" Name="comboBox8" Width="160" />
+                <ComboBox Canvas.Left="413" Canvas.Top="48" Height="23" ItemsSource="{Binding}" Name="cbRoomName2" Width="160" />
                 <Label Canvas.Left="94" Canvas.Top="78" Content="*" FontWeight="Bold" Foreground="Red" Height="20" Name="label35" />
                 <Label Canvas.Left="13" Canvas.Top="43" Content="Batch Name" Height="28" Name="label36" />
-                <ComboBox Canvas.Left="112" Canvas.Top="46" Height="23" ItemsSource="{Binding}" Name="comboBox9" Width="160" />
+                <ComboBox Canvas.Left="112" Canvas.Top="46" Height="23" ItemsSource="{Binding}" Name="cbBatchName2" Width="160" />
                 <Label Canvas.Left="94" Canvas.Top="46" Content="*" FontWeight="Bold" Foreground="Red" Height="20" Name="label37" />
                 <Label Canvas.Left="5" Canvas.Top="9" Content="Teacher Name" Height="28" Name="label38" />
-                <ComboBox Canvas.Left="112" Canvas.Top="12" ItemsSource="{Binding}" Name="comboBox10" Width="160" />
+                <ComboBox Canvas.Left="112" Canvas.Top="12" ItemsSource="{Binding}" Name="cbTeacherName2" Width="160" />
                 <Label Canvas.Left="94" Canvas.Top="12" Content="*" FontWeight="Bold" Foreground="Red" Height="20" Name="label39" />
                 <Label Canvas.Left="94" Canvas.Top="110" Content="*" FontWeight="Bold" Foreground="Red" Height="20" Name="label40" />
                 <Label Canvas.Left="27" Canvas.Top="107" Content="TimeSlot" Height="28" Name="label41" />
-                <ComboBox Canvas.Left="112" Canvas.Top="109" Height="23" ItemsSource="{Binding}" Name="comboBox11" Width="160" />
+                <ComboBox Canvas.Left="112" Canvas.Top="109" Height="23" ItemsSource="{Binding}" Name="cbTimeSlot2" Width="160" />
                 <Label Canvas.Left="309" Canvas.Top="10" Content="Class Name" Height="28" Name="label42" />
-                <ComboBox Canvas.Left="416" Canvas.Top="10" Height="23" ItemsSource="{Binding}" Name="comboBox12" Width="160" />
+                <ComboBox Canvas.Left="416" Canvas.Top="10" Height="23" ItemsSource="{Binding}" Name="cbClassName2" Width="160" />
                 <Label Canvas.Left="389" Canvas.Top="12" Content="*" FontWeight="Bold" Foreground="Red" Height="20" Name="label43" />
                 <Label Canvas.Left="8" Canvas.Top="78" Content="Subject Name" Height="28" Name="label44" />
-                <ComboBox Canvas.Left="112" Canvas.Top="77" Height="23" ItemsSource="{Binding}" Name="comboBox13" Width="160" />
+                <ComboBox Canvas.Left="112" Canvas.Top="77" Height="23" ItemsSource="{Binding}" Name="cbSubjectName2" Width="160" />
                 <Label Canvas.Left="391" Canvas.Top="46" Content="*" FontWeight="Bold" Foreground="Red" Height="20" Name="label45" />
                 <Label Canvas.Left="391" Canvas.Top="85" Content="*" FontWeight="Bold" Foreground="Red" Height="20" Name="label46" />
                 <Label Canvas.Left="342" Canvas.Top="83" Content="Day" Height="28" Name="label47" />
-                <ComboBox Canvas.Left="415" Canvas.Top="84" Height="23" ItemsSource="{Binding}" Name="comboBox14" Width="160" />
-                <RadioButton Canvas.Left="418" Canvas.Top="116" Content="Active" Height="16" Name="radioButton3" />
-                <RadioButton Canvas.Left="492" Canvas.Top="117" Content="InActive" Height="20" Name="radioButton4" />
+                <ComboBox Canvas.Left="415" Canvas.Top="84" Height="23" ItemsSource="{Binding}" Name="cbDay2" Width="160" />
+                <RadioButton Canvas.Left="418" Canvas.Top="116" Content="Active" Height="16" Name="rdoActive2" />
+                <RadioButton Canvas.Left="492" Canvas.Top="117" Content="InActive" Height="20" Name="rdoInActive2" />
                 <Label Canvas.Left="338" Canvas.Top="111" Content="Status" Height="28" Name="label48" />
                 <Label Canvas.Left="393" Canvas.Top="113" Content="*" FontWeight="Bold" Foreground="Red" Height="20" Name="label49" />
             </Canvas>
