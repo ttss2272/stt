@@ -88,8 +88,11 @@ namespace SchoolManagement.Class
             if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
             {
                  MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
-                 GetCopyClass(BranchID);
                  clearFields();
+                 ClearData();
+                 BindBranchName();
+                 cbBranchName.IsEnabled = true;
+                 btnGo.Content = "Go";
             }
             else
             {
@@ -228,14 +231,14 @@ namespace SchoolManagement.Class
             rdoActive.IsChecked = true;
             rdoDeActive.IsChecked = false;
             btndelete.IsEnabled = false;
-            gbInfo.IsEnabled = false;
+           // gbInfo.IsEnabled = false;
             btnGo.IsEnabled = true;
-            cbBranchName.IsEnabled = true;
+          //  cbBranchName.IsEnabled = true;
             btnadd.Content = "Save";
-            btnGo.Content = "Go";
-            GetBranchClassCount();
+           // btnGo.Content = "Go";
+           // GetBranchClassCount();
            // dgCopy.DataContext = null;
-            dgvClass.DataContext = null;
+            dgvClass.ItemsSource = null;
         }
         #endregion                    
 
@@ -249,6 +252,9 @@ namespace SchoolManagement.Class
                 {
                     SetParameters();
                     DeleteClass();
+                    BindBranchName();
+                    cbBranchName.IsEnabled = true;
+                    btnGo.Content = "Go";
                 }
             }
             catch (Exception ex)
@@ -395,7 +401,7 @@ namespace SchoolManagement.Class
                     cbBranchName.DataContext = ds.Tables[0].DefaultView;
                     cbBranchName.DisplayMemberPath = ds.Tables[0].Columns["BranchName"].ToString();
                     cbBranchName.SelectedValuePath = ds.Tables[0].Columns["BranchID"].ToString();
-
+                    cbBranchName.SelectedValue = "0";
                 }
 
             }
@@ -465,11 +471,11 @@ namespace SchoolManagement.Class
                     DataSet ds = obj_AddClass.SearchClass(txtSearchClass.Text);
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        dgvClass.ItemsSource = ds.Tables[0].DefaultView;
+                        dgCopy.ItemsSource = ds.Tables[0].DefaultView;
                     }
                     else
                     {
-                        dgvClass.ItemsSource = null;
+                        dgCopy.ItemsSource = null;
                         MessageBox.Show("No Data Available");
                         clearFields();
                     }
@@ -493,6 +499,7 @@ namespace SchoolManagement.Class
         {
            // clearFields();
             BindBranchName();
+            cbBranchName.SelectedIndex = 0;
            // BindGridview();
             btndelete.IsEnabled = false;
             
@@ -541,18 +548,19 @@ namespace SchoolManagement.Class
                     if (btnGo.Content.ToString() == "Go")
                     {
                         GetBranchClassCount();
-                        MessageBoxResult Result = MessageBox.Show("Do You Want To Copy", "Copy", MessageBoxButton.YesNo, MessageBoxImage.Information);
-                        if (Result.Equals(MessageBoxResult.Yes))
-                        {
-                            MessageBox.Show("Please Select Branch whoes Features You Want To Copy From Grid");
-                            gbInfo.IsEnabled = false;
-                        }
-                        else if (Result.Equals(MessageBoxResult.No))
-                        {
-                            MessageBox.Show("Please Fill All Details");
-                            gbInfo.IsEnabled = true;
-                            txtClassName.Focus();
-                        }
+                        GetCopyClass(Convert.ToInt32(cbBranchName.SelectedValue));
+                        //MessageBoxResult Result = MessageBox.Show("Do You Want To Copy", "Copy", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                        //if (Result.Equals(MessageBoxResult.Yes))
+                        //{
+                        //    MessageBox.Show("Please Select Branch whoes Features You Want To Copy From Grid");
+                        //    gbInfo.IsEnabled = false;
+                        //}
+                        //else if (Result.Equals(MessageBoxResult.No))
+                        //{
+                        //    MessageBox.Show("Please Fill All Details");
+                        //    gbInfo.IsEnabled = true;
+                        //    txtClassName.Focus();
+                        //}
                         btnGo.Content = "Change";
                         cbBranchName.IsEnabled = false;
                     }
@@ -560,9 +568,11 @@ namespace SchoolManagement.Class
                     {
                         cbBranchName.IsEnabled = true;
                         clearFields();
+                        BindBranchName();
+                        btnGo.Content = "Go";
                         dgBranchCls.DataContext = null;
-                        dgvClass.DataContext = null;
-                       // dgCopy.DataContext = null;
+                       // dgvClass.DataContext = null;
+                        dgCopy.DataContext = null;
                     }
                 }
                 else
@@ -674,11 +684,14 @@ namespace SchoolManagement.Class
                         {
                             MessageBox.Show("Details Copy Sucessfully.", "Copy Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
                             clearFields();
-                            GetCopyClass(BranchID);
+                            ClearData();
+                          //  GetCopyClass(BranchID);
                         }
                         else
                         {
                             MessageBox.Show("Some Details Are Not Copied", "Error To Copy", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            clearFields();
+                            ClearData();
                         }
                     }
                     else
@@ -709,17 +722,16 @@ namespace SchoolManagement.Class
             DataSet ds = obj_AddClass.BindClass(Convert.ToInt32(cbBranchName.SelectedValue));
             if (ds.Tables[0].Rows.Count > 0)
             {
+                dgCopy.DataContext = null;
                 dgCopy.ItemsSource = ds.Tables[0].DefaultView;
             }
-            dgCopy.Items.Refresh();
+            else
+            {
+                dgCopy.DataContext = null;
+            }
+            //dgCopy.Items.Refresh();
         }
         #endregion
-
-        private void cbBranchName_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-           // GetBranchClassCount();
-            GetCopyClass(Convert.ToInt32(cbBranchName.SelectedValue));
-        }
 
         public void ClearData()
         {
