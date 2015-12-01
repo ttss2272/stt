@@ -174,6 +174,22 @@ namespace DataAccessLayer
             return ds;
         }
 
-       
+        public DataSet BindTeacherOnTimeTable(int TeacherSubjectID)
+        {
+            conn = con.getConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("BindTeacherDropDown_SP", conn);
+
+
+            cmd.Parameters.AddWithValue("@TeacherSubjectID", TeacherSubjectID);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
+        }
     }
 }
