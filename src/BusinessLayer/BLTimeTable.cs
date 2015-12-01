@@ -13,7 +13,8 @@ namespace BusinessLayer
 
         public string SaveTimeTable(int TimeTableID, int BatchID, int RoomID, int TeacherSubjectID, string Day, string LectStartTime, string LectEndTime,int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
         {
-            throw new NotImplementedException();
+            string result = objTimeTable.SaveTimeTable(TimeTableID,BatchID,RoomID,TeacherSubjectID,Day,LectStartTime,LectEndTime,UpdatedByUserID,UpdatedDate,IsActive,IsDeleted);
+            return result;
         }
 
         public DataSet BindTimeTable()
