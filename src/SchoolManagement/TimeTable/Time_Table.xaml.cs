@@ -138,6 +138,7 @@ namespace SchoolManagement.TimeTable
             btnSave.Content = "Save";
             btnDelete.IsEnabled = false;
             rdoActive.IsChecked = true;
+            rdoClassWise.IsChecked = true;
         }
         #endregion
 
@@ -313,7 +314,7 @@ namespace SchoolManagement.TimeTable
             try
             {
               BatchAvailableID = Convert.ToInt32(cmbDayName.SelectedValue);
-              BatchID = Convert.ToInt32(cbBatchName.SelectedValue.ToString());
+              BatchID = Convert.ToInt32(cbBatchName.SelectedValue);
               string Day = Convert.ToString(cmbDayName.SelectedValue.ToString());
 
             DataSet ds = objTimeTable.BindTimeSlot(BatchAvailableID,BatchID,Day);
@@ -362,11 +363,13 @@ namespace SchoolManagement.TimeTable
         #region-----------------Window_Loaded----------------------
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            canvasTeacherWise.Visibility = Visibility.Hidden;
+            canvasRoomWise.Visibility = Visibility.Hidden;
             BindBranchName();
             //cmbDayName.SelectedIndex = 0;
             BindSubjectName();
             BindBatchName();
-            //BindTeacher();
+            BindTeacher();
             BindRoom();
             BindDay();
             BindTimeSlot();
@@ -553,6 +556,35 @@ namespace SchoolManagement.TimeTable
         private void cbSubjectName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BindTeacher();
+        }
+
+        private void cmbDayName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BindTimeSlot();
+        }       
+
+        private void rdoClassWise_Checked(object sender, RoutedEventArgs e)
+        {
+            canvasTeacherWise.Visibility = Visibility.Hidden;
+            canvasRoomWise.Visibility = Visibility.Hidden;
+            gbSame.Visibility = Visibility.Visible;
+          
+        }
+
+        private void rdoRoomWise_Checked_1(object sender, RoutedEventArgs e)
+        {
+            canvasTeacherWise.Visibility = Visibility.Hidden;
+            gbSame.Visibility = Visibility.Hidden;
+            canvasRoomWise.Visibility = Visibility.Visible;
+            canvasRoomWise.Margin = new Thickness(235, 125, 0, 0);
+        }
+
+        private void rdoTeacherWise_Checked(object sender, RoutedEventArgs e)
+        {
+            canvasRoomWise.Visibility = Visibility.Hidden;
+            gbSame.Visibility = Visibility.Hidden;
+            canvasTeacherWise.Visibility = Visibility.Visible;
+            canvasTeacherWise.Margin = new Thickness(235, -140, 0, 0);
         }
     }
 }
