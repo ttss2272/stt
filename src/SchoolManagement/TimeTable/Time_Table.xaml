@@ -68,7 +68,7 @@
                 <RadioButton Content="Class Wise" Height="16" HorizontalAlignment="Left" Margin="104,51,0,0" Name="rdoClassWise" VerticalAlignment="Top" Checked="rdoClassWise_Checked" />
                 <RadioButton Content="Room Wise" Height="20" HorizontalAlignment="Right" Margin="0,51,272,0" Name="rdoRoomWise" VerticalAlignment="Top" Checked="rdoRoomWise_Checked_1" />
                 <RadioButton Content="Teacher Wise" Height="16" HorizontalAlignment="Left" Margin="380,52,0,0" Name="rdoTeacherWise" VerticalAlignment="Top" Checked="rdoTeacherWise_Checked" />
-                <DatePicker Height="25" HorizontalAlignment="Left" Margin="453,10,0,0" Name="datePicker1" VerticalAlignment="Top" Width="115" />
+                <DatePicker Height="25" HorizontalAlignment="Left" Margin="453,10,0,0" Name="dpTTStartDate" VerticalAlignment="Top" Width="115" />
                 <Label Content="W.E.F" Height="28" HorizontalAlignment="Left" Margin="403,9,0,0" Name="label50" VerticalAlignment="Top" />
             </Grid>
         </GroupBox>

@@ -34,6 +34,7 @@ namespace SchoolManagement.TimeTable
 
         int TimeTableID, BatchID, RoomID, ClassID, TeacherID, TeacherSubjectID,SubjectID, BranchID, BatchAvailableID, UpID, UpdatedByUserID, IsActive, IsDeleted;
         String UpdatedDate, Day, LectStartTime, LectEndTime, SlotTime;
+        DateTime TTStartDate;
 
     #endregion
 
@@ -56,7 +57,7 @@ namespace SchoolManagement.TimeTable
                 if (Validate())
                 {
                     Setparameter();
-                    string Result = objTimeTable.SaveTimeTable(TimeTableID, BatchID, RoomID, TeacherSubjectID, Day, LectStartTime, LectEndTime, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
+                    string Result = objTimeTable.SaveTimeTable(TimeTableID,TTStartDate, BatchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
                     if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
                     {
                         MessageBox.Show(Result, "Save Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -82,6 +83,7 @@ namespace SchoolManagement.TimeTable
             BranchID = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
             ClassID = Convert.ToInt32(cbClassName.SelectedValue.ToString());
             BatchID = Convert.ToInt32(cbBatchName.SelectedValue.ToString());
+            TTStartDate = Convert.ToDateTime(dpTTStartDate.SelectedDate.Value.Date.ToString());
             TeacherSubjectID = Convert.ToInt32(cbSubjectName.SelectedValue.ToString());
             RoomID = Convert.ToInt32(cbRoomName.SelectedValue.ToString());
             TeacherID = Convert.ToInt32(cbTeacherName.SelectedValue.ToString());
