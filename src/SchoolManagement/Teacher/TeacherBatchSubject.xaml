@@ -25,14 +25,14 @@
                                     <ComboBox HorizontalAlignment="Left" Margin="243,14,0,0" VerticalAlignment="Top" Width="102" Name="cmbSubject" ItemsSource="{Binding}" SelectionChanged="cmbSubject_SelectionChanged"/>
                                     <DataGrid HorizontalAlignment="Left" Margin="73,45,0,0" VerticalAlignment="Top" Height="138" Width="224" Name="dgBatch" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False"  ItemsSource="{Binding}">
                                         <DataGrid.Columns>
-                                            <DataGridCheckBoxColumn Header="Select"> </DataGridCheckBoxColumn>
+                                            
                                             <DataGridTemplateColumn Width="50">
                                                 <DataGridTemplateColumn.Header>
                                                     <Label Content="Select"></Label>
                                                 </DataGridTemplateColumn.Header>                   
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <CheckBox Name="chkDiscontinue"  IsChecked="{Binding Mybool}" Click="Chk_Click" CommandParameter="{Binding BatchSubjectID}"/>
+                                                        <CheckBox Name="chkDiscontinue"  IsChecked="{Binding Mybool}" Checked="chkDiscontinue_Checked" Unchecked="chkDiscontinue_Unchecked" Click="chkDiscontinue_Click" CommandParameter="{Binding BatchSubjectID}"/>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>

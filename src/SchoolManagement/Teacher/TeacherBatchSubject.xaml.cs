@@ -33,9 +33,10 @@ namespace SchoolManagement.Teacher
         BLAddBranch objBranch=new BLAddBranch();
         BLTeacherSubject objTeacherSubject = new BLTeacherSubject();
 
+        static int k = 0;
         int TeacherID, BatchsubjectID, UpdatedByUserID, Active, IsDeleted;
         string UpdatedDate;
-
+        int [] ID=new int[100];
         #endregion
         /*
          * CreatedBy:-PriTesh D. Sortee
@@ -309,10 +310,17 @@ namespace SchoolManagement.Teacher
                      if(cmbSubject.SelectedValue.ToString()!="0")
                      {
                          BindBatch();
+                         CheckCheckBoxes();
+                     }
+                     else
+                     {
+                         dgBatch.DataContext=null;
                      }
                  }
+                 
                  else
                  {
+                     dgBatch.DataContext = null;
                      MessageBox.Show("Please Select Branch First", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
                  }
 
@@ -334,7 +342,7 @@ namespace SchoolManagement.Teacher
         #region------------------------------------------------------BindBatch()-----------------------------------------------------------
          private void BindBatch()
          {
-             DataSet ds = objTeacherSubject.GetBatchBySubject(Convert.ToInt32(cmbBranch.SelectedValue), Convert.ToInt32(cmbSubject.SelectedValue));
+             DataSet ds = objTeacherSubject.GetBatchBySubject(Convert.ToInt32(cmbBranch.SelectedValue), Convert.ToInt32(cmbSubject.SelectedValue),Convert.ToInt32(cmbTeacher.SelectedValue));
              if (ds.Tables[0].Rows.Count > 0)
              {
                  dgBatch.DataContext = null;
@@ -342,6 +350,7 @@ namespace SchoolManagement.Teacher
              }
              else
              {
+                 dgBatch.DataContext = null;
                  MessageBox.Show("","Info",MessageBoxButton.OK,MessageBoxImage.Warning);
              }
          }
@@ -388,30 +397,152 @@ namespace SchoolManagement.Teacher
         #region---------------------------------------------------SetParameters()---------------------------------------------------------------
         private void SetParameters()
         {
+            int cnt=0;
             TeacherID = Convert.ToInt32(cmbTeacher.SelectedValue);
+            
             UpdatedByUserID = 1;
             UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
-            int cnt = dgBatch.Items.Count;
-            for(int i=0 ;i<dgBatch.Items.Count;i++)
+            Active = 1;
+            IsDeleted = 0;
+            for (int j=0;j<k;j++)
             {
-                object item = dgBatch.Items[i];
-                
-               var ss = (dgBatch.SelectedCells[1].Column.GetCellContent(item) as CheckBox);
-               
-                //if (Convert.ToBoolean(dgBatch.Rows[i].Cells["chk"].Value) == true)
-                //{
-                    
-                //    dgBatch.Add(i);
-                //    cnt++;
-                //} 
+                if (ID[j]!=0)
+                {
+                    BatchsubjectID=ID[j];
+                    string Result = objTeacherSubject.SaveTeacherSubject(TeacherID, BatchsubjectID, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+                    if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
+                    {
+                        cnt++;
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+                    cnt++;
+                }
+            }
+            if (cnt == k)
+            {
+                MessageBox.Show("Save Sucessfully...!!!", "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            }
+            else
+            {
+                MessageBox.Show("Error To Save Some Information", "Error To Save", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion
 
-        private void Chk_Click(object sender, MouseButtonEventArgs e)
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:-23 Nov 2015
+         * Purpose:- Check Box Cheked
+         * StartTime:-
+         * EndTime:-
+         */
+
+        #region---------------------------------------------------chkDiscountinue_Checked--------------------------------------------------------
+        private void chkDiscontinue_Checked(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+            
+            object item = dgBatch.SelectedItem;
+
+            int i= Convert.ToInt32(((System.Data.DataRowView)(dgBatch.CurrentItem)).Row.ItemArray[0].ToString());
+            {
+                ID[k]=i;
+               k++;
+                
+            }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:-23 Nov 2015
+         * Purpose:- Check Box Clicked
+         * StartTime:-
+         * EndTime:-
+         */
+        #region----------------------------------------------------chkDiscountinue_Click----------------------------------------------------------
+        private void chkDiscontinue_Click(object sender, RoutedEventArgs e)
         {
             
+
         }
+        #endregion
+
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:-23 Nov 2015
+         * Purpose:- Check Box UnCheked
+         * StartTime:-
+         * EndTime:-
+         */
+        #region---------------------------------------------------chkDiscountinue_Checked--------------------------------------------------------
+        private void chkDiscontinue_Unchecked(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                object item = dgBatch.SelectedItem;
+
+                int i = Convert.ToInt32(((System.Data.DataRowView)(dgBatch.CurrentItem)).Row.ItemArray[0].ToString());
+                
+                    for (int j = 0; j <= k; j++)
+                    {
+                        if (ID[j] == i)
+                        {
+                            ID[j] = 0;
+                        }
+
+                    }
+
+
+                
+
+            }
+            catch (Exception ex)
+            {
+                 MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
+
+        }
+        #endregion
+
+        
+
+       private void CheckCheckBoxes()
+        {
+
+           
+
+           if (dgBatch.Items.Count > 0)
+           {
+               for (int i = 0; i <= dgBatch.Items.Count; i++)
+               {
+                   object item = dgBatch.Items[i];
+                   //int up = Convert.ToInt32(((System.Data.DataRowView)(dgBatch.CurrentItem)).Row.ItemArray[0]);
+                   var abc = dgBatch.Columns[1].GetCellContent(item) as CheckBox;
+                   abc.IsChecked = true;
+                   
+               }
+
+           }
+        }
+
+       
     }
 }
 
