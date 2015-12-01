@@ -576,7 +576,7 @@ namespace SchoolManagement.TimeTable
             canvasTeacherWise.Visibility = Visibility.Hidden;
             gbSame.Visibility = Visibility.Hidden;
             canvasRoomWise.Visibility = Visibility.Visible;
-            canvasRoomWise.Margin = new Thickness(235, 125, 0, 0);
+            canvasRoomWise.Margin = new Thickness(235, 160, 0, 0);
         }
 
         private void rdoTeacherWise_Checked(object sender, RoutedEventArgs e)
