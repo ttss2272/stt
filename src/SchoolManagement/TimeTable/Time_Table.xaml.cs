@@ -265,7 +265,8 @@ namespace SchoolManagement.TimeTable
         #region-----------------BindTeacher()----------------------------------
         private void BindTeacher()
         {
-            DataSet ds = objTeacher.BindTeacherDropDown(0);
+            TeacherSubjectID = Convert.ToInt32(cbTeacherName.SelectedValue);
+            DataSet ds = objTeacher.BindTeacherOnTimeTable(TeacherSubjectID);
 
             if (ds.Tables[0].Rows.Count > 0)
             {
@@ -273,7 +274,7 @@ namespace SchoolManagement.TimeTable
 
                 cbTeacherName.DataContext = ds.Tables[0].DefaultView;
                 cbTeacherName.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
-                cbTeacherName.SelectedValuePath = ds.Tables[0].Columns["TeacherID"].ToString();
+                cbTeacherName.SelectedValuePath = ds.Tables[0].Columns["TeacherSubjectID"].ToString();
 
 
                 cbTeacherName.SelectedValue = "0";
@@ -331,6 +332,7 @@ namespace SchoolManagement.TimeTable
             }
         }
         #endregion
+        
 
         #region------------BindDay----------------------
         private void BindDay()
@@ -547,6 +549,11 @@ namespace SchoolManagement.TimeTable
 
         //    }
        // }
+
+        private void cbSubjectName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BindTeacher();
+        }
     }
 }
     
