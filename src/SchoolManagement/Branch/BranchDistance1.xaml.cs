@@ -304,6 +304,10 @@ namespace SchoolManagement.Branch
                 {
                     rdbInactive.IsChecked = true;
                 }
+                else if (Act == "False" && Del == "True")
+                {
+                    rdbInactive.IsChecked = true;
+                }
                 btnDelete.IsEnabled = true;
                 btnAdd.Content = "Update";
                 gbDist.IsEnabled = true;
