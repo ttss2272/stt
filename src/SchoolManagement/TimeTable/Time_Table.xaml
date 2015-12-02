@@ -13,16 +13,16 @@
                 <ComboBox Canvas.Left="112" Canvas.Top="46" Height="23" ItemsSource="{Binding}" Name="cbBatchName1" Width="160" />
                 <Label Canvas.Left="94" Canvas.Top="46" Content="*" FontWeight="Bold" Foreground="Red" Height="20" Name="label23" />
                 <Label Canvas.Left="5" Canvas.Top="76" Content="Teacher Name" Height="28" Name="label26" />
-                <ComboBox Canvas.Left="112" Canvas.Top="79" ItemsSource="{Binding}" Name="cbTeacherName1" Width="160" />
+                <ComboBox Canvas.Left="112" Canvas.Top="79" ItemsSource="{Binding}" Name="cbTeacherName1" Width="160" SelectionChanged="cbTeacherName1_SelectionChanged" />
                 <Label Canvas.Left="94" Canvas.Top="79" Content="*" FontWeight="Bold" Foreground="Red" Height="20" Name="label27" />
                 <Label Canvas.Left="94" Canvas.Top="110" Content="*" FontWeight="Bold" Foreground="Red" Height="20" Name="label32" />
                 <Label Canvas.Left="27" Canvas.Top="107" Content="TimeSlot" Height="28" Name="label33" />
                 <ComboBox Canvas.Left="112" Canvas.Top="109" Height="23" ItemsSource="{Binding}" Name="cbTimeSlot1" Width="160" />
                 <Label Canvas.Left="309" Canvas.Top="10" Content="Class Name" Height="28" Name="label20" />
-                <ComboBox Canvas.Left="416" Canvas.Top="10" Height="23" ItemsSource="{Binding}" Name="cbClassName1" Width="160" />
+                <ComboBox Canvas.Left="416" Canvas.Top="10" Height="23" ItemsSource="{Binding}" Name="cbClassName1" Width="160" SelectionChanged="cbClassName1_SelectionChanged" />
                 <Label Canvas.Left="389" Canvas.Top="12" Content="*" FontWeight="Bold" Foreground="Red" Height="20" Name="label21" />
                 <Label Canvas.Left="298" Canvas.Top="45" Content="Subject Name" Height="28" Name="label24" />
-                <ComboBox Canvas.Left="415" Canvas.Top="47" Height="23" ItemsSource="{Binding}" Name="cbSubjectName1" Width="160" />
+                <ComboBox Canvas.Left="415" Canvas.Top="47" Height="23" ItemsSource="{Binding}" Name="cbSubjectName1" Width="160" SelectionChanged="cbSubjectName1_SelectionChanged" />
                 <Label Canvas.Left="391" Canvas.Top="46" Content="*" FontWeight="Bold" Foreground="Red" Height="20" Name="label25" />
                 <Label Canvas.Left="391" Canvas.Top="85" Content="*" FontWeight="Bold" Foreground="Red" Height="20" Name="label28" />
                 <Label Canvas.Left="342" Canvas.Top="83" Content="Day" Height="28" Name="label29" />
@@ -104,7 +104,6 @@
         <GroupBox Header="" Height="80" HorizontalAlignment="Left" Margin="229,330,0,0" Name="groupBox3" VerticalAlignment="Top" Width="600">
             <Grid>
                 <Button Content="Save" FontWeight="Bold" Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="130,10,0,0" Name="btnSave" TabIndex="14" VerticalAlignment="Top" Width="80" Click="btnSave_Click" />
-                <Button Content="Delete" FontWeight="Bold" Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="261,10,0,0" Name="btnDelete" TabIndex="16" VerticalAlignment="Top" Width="75" />
                 <Button Content="Clear" FontWeight="Bold" Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="388,10,0,0" Name="btnClear" TabIndex="16" VerticalAlignment="Top" Width="75" Click="btnClear_Click" />
             </Grid>
         </GroupBox>
