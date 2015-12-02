@@ -20,7 +20,7 @@
                             <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="-8,72,-3,0" VerticalAlignment="Top" Width="388" Height="266">
                                 <Grid>
                                     <Label Content="Branch" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" Name="lblBranch"/>
-                                    <ComboBox HorizontalAlignment="Left" Margin="73,14,0,0" VerticalAlignment="Top" Width="102" Name="cmbBranch" ItemsSource="{Binding}"/>
+                                    <ComboBox HorizontalAlignment="Left" Margin="73,14,0,0" VerticalAlignment="Top" Width="102" Name="cmbBranch" ItemsSource="{Binding}" SelectionChanged="cmbBranch_SelectionChanged"/>
                                     <Label Content="Subject" HorizontalAlignment="Left" Margin="188,14,0,0" VerticalAlignment="Top" Name="lblSubject"/>
                                     <ComboBox HorizontalAlignment="Left" Margin="243,14,0,0" VerticalAlignment="Top" Width="102" Name="cmbSubject" ItemsSource="{Binding}" SelectionChanged="cmbSubject_SelectionChanged"/>
                                     <DataGrid HorizontalAlignment="Left" Margin="73,45,0,0" VerticalAlignment="Top" Height="138" Width="224" Name="dgBatch" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False"  ItemsSource="{Binding}">
@@ -38,7 +38,8 @@
                                             </DataGridTemplateColumn>
                                            
                                             <DataGridTextColumn Header="BatchSubjectID" Visibility="Hidden" Binding="{Binding BatchSubjectID}"></DataGridTextColumn>
-                                            <DataGridTextColumn Header="Batch" Binding="{Binding BatchName}"></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Batch" Binding="{Binding BatchName}" Width="75" ></DataGridTextColumn>
+                                            <DataGridTextColumn Header="Class" Binding="{Binding ClassName}" Width="*"></DataGridTextColumn>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                     <Button Content="Save" HorizontalAlignment="Left" Margin="74,215,0,0" VerticalAlignment="Top" Width="75" Name="btnSave" FontWeight="Bold" Click="btnSave_Click"/>

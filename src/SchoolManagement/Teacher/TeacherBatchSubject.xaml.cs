@@ -35,8 +35,8 @@ namespace SchoolManagement.Teacher
         BLTeacherSubject objTeacherSubject = new BLTeacherSubject();
 
         static int k = 0;
-        int TeacherID, BatchsubjectID, UpdatedByUserID, Active, IsDeleted;
-        string UpdatedDate;
+        int TeacherID, BatchsubjectID, UpdatedByUserID,  IsDeleted;
+        string UpdatedDate,Active;
         int [] ID=new int[100];
         #endregion
         /*
@@ -131,7 +131,7 @@ namespace SchoolManagement.Teacher
         {
             try
             {
-
+                ClearLowerPart();
             }
             catch (Exception ex)
             {
@@ -154,9 +154,10 @@ namespace SchoolManagement.Teacher
             try
             {
                 DisableLowerPart();
-                BindBranch();
                 BindTeacher();
-                BindSubject();
+                BindBranch();
+                
+                
             }
             catch (Exception ex)
             {
@@ -223,9 +224,10 @@ namespace SchoolManagement.Teacher
 
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    cmbBranch.DataContext = ds.Tables[0].DefaultView;
+                    cmbBranch.DataContext = null;
                     cmbBranch.DisplayMemberPath = ds.Tables[0].Columns["BranchName"].ToString();
                     cmbBranch.SelectedValuePath = ds.Tables[0].Columns["BranchID"].ToString();
+                    cmbBranch.DataContext = ds.Tables[0].DefaultView;
                     cmbBranch.SelectedValue = "0";
                 }
 
@@ -243,12 +245,12 @@ namespace SchoolManagement.Teacher
         #region-------------------------------------------------BindSubject()---------------------------------------------------------------------
          private void BindSubject()
          {
-            DataSet ds = objSubject.BindSubjectName();
+             DataSet ds = objTeacherSubject.GetBranchSubject(Convert.ToInt32(cmbBranch.SelectedValue));
             if (ds.Tables[0].Rows.Count > 0)
             {
                 cmbSubject.DataContext = null;
                 cmbSubject.DisplayMemberPath = ds.Tables[0].Columns["SubjectName"].ToString();
-                cmbSubject.SelectedValuePath = ds.Tables[0].Columns["SubjectId"].ToString();
+                cmbSubject.SelectedValuePath = ds.Tables[0].Columns["SubjectID"].ToString();
                 cmbSubject.DataContext = ds.Tables[0].DefaultView;
                 cmbSubject.SelectedValue = "0";
             }
@@ -308,7 +310,7 @@ namespace SchoolManagement.Teacher
              {
                  if (cmbBranch.SelectedValue.ToString() != "0")
                  { 
-                     if(cmbSubject.SelectedValue.ToString()!="0")
+                     if(cmbSubject.SelectedValue!="0" && cmbSubject.SelectedValue!=null)
                      {
                          BindBatch();
                          
@@ -322,7 +324,7 @@ namespace SchoolManagement.Teacher
                  else
                  {
                      dgBatch.DataContext = null;
-                     MessageBox.Show("Please Select Branch First", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                     //MessageBox.Show("Please Select Branch First", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
                  }
 
              }
@@ -366,7 +368,7 @@ namespace SchoolManagement.Teacher
              else
              {
                  dgBatch.DataContext = null;
-                 MessageBox.Show("","Info",MessageBoxButton.OK,MessageBoxImage.Warning);
+                 MessageBox.Show("There Is No Batch For This Subject ","Info",MessageBoxButton.OK,MessageBoxImage.Warning);
              }
          }
         #endregion
@@ -417,14 +419,17 @@ namespace SchoolManagement.Teacher
             
             UpdatedByUserID = 1;
             UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
-            Active = 1;
+            //Active = 1;
             IsDeleted = 0;
             
-            for (int j=0;j<k;j++)
+            for (int j=0;j<dgBatch.Items.Count;j++)
             {
-                if (ID[j]!=0)
-                {
-                    BatchsubjectID=ID[j];
+                dgBatch.CurrentItem = dgBatch.Items[j];
+                Active = Convert.ToString(((System.Data.DataRowView)(dgBatch.CurrentItem)).Row.ItemArray[3].ToString());
+                //int s= Convert.ToInt32(((System.Data.DataRowView)(dgBatch.CurrentItem)).Row.ItemArray[2].ToString());
+               // if (ID[j]!=0)
+               // {
+                BatchsubjectID = Convert.ToInt32(((System.Data.DataRowView)(dgBatch.CurrentItem)).Row.ItemArray[0].ToString());
                     string Result = objTeacherSubject.SaveTeacherSubject(TeacherID, BatchsubjectID, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
                     if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
                     {
@@ -434,17 +439,16 @@ namespace SchoolManagement.Teacher
                     {
 
                     }
-                }
-                else
-                {
-                    cnt++;
-                }
+                //}
+                //else
+                //{
+                //    cnt++;
+                //}
             }
-            if (cnt == k)
+            if (cnt == dgBatch.Items.Count)
             {
                 MessageBox.Show("Save Sucessfully...!!!", "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
-                cmbBranch.SelectedValue = "0";
-                cmbSubject.SelectedValue = "0";
+                ClearLowerPart();
             }
             else
             {
@@ -466,15 +470,18 @@ namespace SchoolManagement.Teacher
         {
             try
             {
-                CheckedDetails();
-                object item = dgBatch.SelectedItem;
+                //CheckedDetails();
+                    
+                //object item = dgBatch.SelectedItem;
+                //if (item!=null)
+                //{ 
+                //    int i = Convert.ToInt32(((System.Data.DataRowView)(dgBatch.CurrentItem)).Row.ItemArray[0].ToString());
+                //    {
+                //        ID[k] = i;
+                //        k++;
 
-                int i = Convert.ToInt32(((System.Data.DataRowView)(dgBatch.CurrentItem)).Row.ItemArray[0].ToString());
-                {
-                    ID[k] = i;
-                    k++;
-
-                }
+                //    }
+                //}
             
             }
             catch (Exception ex)
@@ -512,18 +519,18 @@ namespace SchoolManagement.Teacher
         {
             try
             {
-                object item = dgBatch.SelectedItem;
+                //object item = dgBatch.SelectedItem;
 
-                int i = Convert.ToInt32(((System.Data.DataRowView)(dgBatch.CurrentItem)).Row.ItemArray[0].ToString());
+                //int i = Convert.ToInt32(((System.Data.DataRowView)(dgBatch.CurrentItem)).Row.ItemArray[0].ToString());
                 
-                    for (int j = 0; j <= k; j++)
-                    {
-                        if (ID[j] == i)
-                        {
-                            ID[j] = 0;
-                        }
+                //    for (int j = 0; j <= k; j++)
+                //    {
+                //        if (ID[j] == i)
+                //        {
+                //            ID[j] = 0;
+                //        }
 
-                    }
+                //    }
 
 
                 
@@ -538,17 +545,50 @@ namespace SchoolManagement.Teacher
         }
         #endregion
 
-        
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:-02 Dec 2015
+         * Purpose:- clear lower part after save or click on clear button
+         * StartTime:-
+         * EndTime:-
+         */
+        #region--------------------------------------------------------ClearLowerPart()-------------------------------------------
+        private void ClearLowerPart()
+        {
+            k = 0;
+            cmbBranch.SelectedValue = "0";
+            dgBatch.DataContext = null;
+            //cmbSubject.SelectedValue = "0";
 
-       
+        }
+        #endregion
 
-       #region------------------------------------------------------------------------
-       private void CheckedDetails()
-       {
-           
-           
-       }
-       #endregion
+        /*
+         * CreatedBy:-PriTesh D. Sortee
+         * Created Date:-02 Dec 2015
+         * Purpose:- Bind Subject On Brach Selection change
+         * StartTime:-
+         * EndTime:-
+         */
+        #region---------------------------------------cmbBranch_SelectionChanged----------------------------------------------
+        private void cmbBranch_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (cmbBranch.SelectedValue != "0")
+                {
+                    BindSubject();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        #endregion
+
+
+
     }
 }
 
