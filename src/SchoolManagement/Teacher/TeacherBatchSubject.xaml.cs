@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Controls.Primitives;
 using System.Data;
 using BusinessLayer;
 
@@ -71,7 +72,7 @@ namespace SchoolManagement.Teacher
         {
             try
             {
-                if (cmbTeacher.SelectedValue != "0")
+                if (cmbTeacher.SelectedValue.ToString() != "0")
                 {
                     if (btnGo.Content.ToString() == "Go")
                     {
@@ -310,7 +311,7 @@ namespace SchoolManagement.Teacher
                      if(cmbSubject.SelectedValue.ToString()!="0")
                      {
                          BindBatch();
-                         CheckCheckBoxes();
+                         
                      }
                      else
                      {
@@ -347,6 +348,20 @@ namespace SchoolManagement.Teacher
              {
                  dgBatch.DataContext = null;
                  dgBatch.DataContext = ds.Tables[0].DefaultView;
+
+                 for (int i = 0; i < ds.Tables[0].Rows.Count;i++ )
+                 {
+                     if (ds.Tables[0].Rows[i][3].ToString()=="True")
+                     {
+                         ID[k] = i;
+                         k++;
+                     }
+
+                     
+                 }
+
+
+                 
              }
              else
              {
@@ -366,13 +381,13 @@ namespace SchoolManagement.Teacher
         #region---------------------------------------------------Validate()---------------------------------------------------------------
         private bool Validate()
          {
-            if (cmbBranch.SelectedItem.ToString()=="Select" || cmbBranch.SelectedValue=="0" )
+            if (cmbBranch.SelectedValue.ToString()=="0" )
             {
                 MessageBox.Show("Please Select Branch.","Info",MessageBoxButton.OK,MessageBoxImage.Warning);
                 cmbBranch.Focus();
                 return false;
             }
-            else if (cmbSubject.SelectedItem.ToString() == "Select" || cmbSubject.SelectedValue == "0")
+            else if ( cmbSubject.SelectedValue.ToString() == "0")
             {
                 MessageBox.Show("Please Select Subject", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
                 cmbSubject.Focus();
@@ -404,6 +419,7 @@ namespace SchoolManagement.Teacher
             UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
             Active = 1;
             IsDeleted = 0;
+            
             for (int j=0;j<k;j++)
             {
                 if (ID[j]!=0)
@@ -427,7 +443,8 @@ namespace SchoolManagement.Teacher
             if (cnt == k)
             {
                 MessageBox.Show("Save Sucessfully...!!!", "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
-
+                cmbBranch.SelectedValue = "0";
+                cmbSubject.SelectedValue = "0";
             }
             else
             {
@@ -449,16 +466,16 @@ namespace SchoolManagement.Teacher
         {
             try
             {
+                CheckedDetails();
+                object item = dgBatch.SelectedItem;
 
+                int i = Convert.ToInt32(((System.Data.DataRowView)(dgBatch.CurrentItem)).Row.ItemArray[0].ToString());
+                {
+                    ID[k] = i;
+                    k++;
+
+                }
             
-            object item = dgBatch.SelectedItem;
-
-            int i= Convert.ToInt32(((System.Data.DataRowView)(dgBatch.CurrentItem)).Row.ItemArray[0].ToString());
-            {
-                ID[k]=i;
-               k++;
-                
-            }
             }
             catch (Exception ex)
             {
@@ -523,26 +540,15 @@ namespace SchoolManagement.Teacher
 
         
 
-       private void CheckCheckBoxes()
-        {
-
-           
-
-           if (dgBatch.Items.Count > 0)
-           {
-               for (int i = 0; i <= dgBatch.Items.Count; i++)
-               {
-                   object item = dgBatch.Items[i];
-                   //int up = Convert.ToInt32(((System.Data.DataRowView)(dgBatch.CurrentItem)).Row.ItemArray[0]);
-                   var abc = dgBatch.Columns[1].GetCellContent(item) as CheckBox;
-                   abc.IsChecked = true;
-                   
-               }
-
-           }
-        }
-
        
+
+       #region------------------------------------------------------------------------
+       private void CheckedDetails()
+       {
+           
+           
+       }
+       #endregion
     }
 }
 

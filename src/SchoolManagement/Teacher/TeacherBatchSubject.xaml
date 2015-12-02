@@ -32,7 +32,7 @@
                                                 </DataGridTemplateColumn.Header>                   
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <CheckBox Name="chkDiscontinue"  IsChecked="{Binding Mybool}" Checked="chkDiscontinue_Checked" Unchecked="chkDiscontinue_Unchecked" Click="chkDiscontinue_Click" CommandParameter="{Binding BatchSubjectID}"/>
+                                                        <CheckBox Name="chkDiscontinue"  IsChecked="{Binding Path=mybool,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Checked="chkDiscontinue_Checked" Unchecked="chkDiscontinue_Unchecked" Click="chkDiscontinue_Click" CommandParameter="{Binding BatchSubjectID}" />
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>
