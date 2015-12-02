@@ -153,6 +153,9 @@ namespace SchoolManagement.Teacher
         {
             try
             {
+                this.WindowState = WindowState.Maximized;
+                this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
+                this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
                 DisableLowerPart();
                 BindTeacher();
                 BindBranch();
@@ -588,7 +591,7 @@ namespace SchoolManagement.Teacher
         #endregion
 
 
-
+         
     }
 }
 
