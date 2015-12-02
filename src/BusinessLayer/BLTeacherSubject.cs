@@ -16,10 +16,16 @@ namespace BusinessLayer
             return ds;
         }
 
-        public string SaveTeacherSubject(int TeacherID, int BatchsubjectID, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
+        public string SaveTeacherSubject(int TeacherID, int BatchsubjectID, int UpdatedByUserID, string UpdatedDate, string IsActive, int IsDeleted)
         {
             string Result = objTeacherSubject.SaveTeacherSubject(TeacherID, BatchsubjectID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
             return Result;
+        }
+
+        public DataSet GetBranchSubject(int BranchID)
+        {
+            DataSet ds = objTeacherSubject.GetBranchSubject(BranchID);
+            return ds;
         }
     }
 }
