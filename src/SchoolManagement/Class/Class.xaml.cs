@@ -90,9 +90,9 @@ namespace SchoolManagement.Class
                  MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
                  clearFields();
                  ClearData();
-                 BindBranchName();
-                 cbBranchName.IsEnabled = true;
-                 btnGo.Content = "Go";
+                 //BindBranchName();
+                 //cbBranchName.IsEnabled = true;
+                 //btnGo.Content = "Go";
             }
             else
             {
@@ -252,9 +252,9 @@ namespace SchoolManagement.Class
                 {
                     SetParameters();
                     DeleteClass();
-                    BindBranchName();
-                    cbBranchName.IsEnabled = true;
-                    btnGo.Content = "Go";
+                    //BindBranchName();
+                    //cbBranchName.IsEnabled = true;
+                    //btnGo.Content = "Go";
                 }
             }
             catch (Exception ex)
@@ -471,11 +471,11 @@ namespace SchoolManagement.Class
                     DataSet ds = obj_AddClass.SearchClass(txtSearchClass.Text);
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        dgCopy.ItemsSource = ds.Tables[0].DefaultView;
+                        dgCopy.DataContext = ds.Tables[0].DefaultView;
                     }
                     else
                     {
-                        dgCopy.ItemsSource = null;
+                        dgCopy.DataContext = null;
                         MessageBox.Show("No Data Available");
                         clearFields();
                     }
@@ -561,6 +561,7 @@ namespace SchoolManagement.Class
                         //    gbInfo.IsEnabled = true;
                         //    txtClassName.Focus();
                         //}
+                        
                         btnGo.Content = "Change";
                         cbBranchName.IsEnabled = false;
                     }
@@ -570,9 +571,12 @@ namespace SchoolManagement.Class
                         clearFields();
                         BindBranchName();
                         btnGo.Content = "Go";
+                        
+                        
+                        dgvClass.DataContext = null;
                         dgBranchCls.DataContext = null;
-                       // dgvClass.DataContext = null;
                         dgCopy.DataContext = null;
+                        
                     }
                 }
                 else
@@ -723,7 +727,7 @@ namespace SchoolManagement.Class
             if (ds.Tables[0].Rows.Count > 0)
             {
                 dgCopy.DataContext = null;
-                dgCopy.ItemsSource = ds.Tables[0].DefaultView;
+                dgCopy.DataContext = ds.Tables[0].DefaultView;
             }
             else
             {
