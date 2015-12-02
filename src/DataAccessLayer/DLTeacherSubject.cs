@@ -31,8 +31,9 @@ namespace DataAccessLayer
             conn.Close();
             return ds;
         }
+        
 
-        public string SaveTeacherSubject(int TeacherID, int BatchsubjectID, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
+        public string SaveTeacherSubject(int TeacherID, int BatchsubjectID, int UpdatedByUserID, string UpdatedDate, string IsActive, int IsDeleted)
         {
             string Result = null;
             conn = con.getConnection();
@@ -52,6 +53,25 @@ namespace DataAccessLayer
             Result = cmd.ExecuteScalar().ToString();
             conn.Close();
             return Result;
+        }
+
+        public DataSet GetBranchSubject(int BranchID)
+        {
+            conn = con.getConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("GetBranchSubject_SP", conn);
+
+
+            cmd.Parameters.AddWithValue("@BranchID", BranchID);
+            
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
         }
     }
 }
