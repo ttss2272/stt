@@ -59,12 +59,11 @@ namespace DataAccessLayer
             string Result = null;
             conn = con.getConnection();
             SqlCommand cmd = new SqlCommand("DeleteClass_SP", conn);
-            cmd.CommandType = CommandType.StoredProcedure;
-
+			cmd.CommandType = CommandType.StoredProcedure;			
             cmd.Parameters.AddWithValue("@ClassID", ClassID);
             cmd.Parameters.AddWithValue("@UpdatedByUserID", UpdatedByUserID);
             cmd.Parameters.AddWithValue("@UpdatedDate", UpdatedDate);
-
+            
             conn.Open();
             Result = cmd.ExecuteScalar().ToString();
             conn.Close();
