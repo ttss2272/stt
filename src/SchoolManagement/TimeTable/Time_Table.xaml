@@ -82,7 +82,7 @@
                 <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding }"  Margin="105,8,0,0" Name="cbClassName" VerticalAlignment="Top" Width="160" SelectionChanged="cbClassName_SelectionChanged" />
                 <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="86,9,0,0" Name="label4" VerticalAlignment="Top" />
                 <Label Content="Batch Name" Height="28" Margin="323,5,191,0" Name="label5" VerticalAlignment="Top" />
-                <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding }" Margin="422,8,0,0" Name="cbBatchName" VerticalAlignment="Top" Width="160" SelectionChanged="cbBatchName_SelectionChanged" />
+                <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}"  Margin="422,8,0,0" Name="cbBatchName" VerticalAlignment="Top" Width="160" SelectionChanged="cbBatchName_SelectionChanged" />
                 <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="404,8,0,0" Name="label6" VerticalAlignment="Top" />
                 <Label Content="Room Name" Height="28" HorizontalAlignment="Left" Margin="320,41,0,0" Name="label8" VerticalAlignment="Top" />
                 <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="422,40,0,0" Name="cbRoomName" VerticalAlignment="Top" Width="160" />
