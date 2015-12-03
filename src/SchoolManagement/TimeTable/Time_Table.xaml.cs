@@ -204,12 +204,13 @@ namespace SchoolManagement.TimeTable
 
         /*
         * Created By:-
-        * Updated By:- 
+        * Updated By:- PriTesh D. Sortee
         * Created Date:-
-        * Updated Date:- 
+        * Updated Date:- 03 Dec 2015
         * Purpose:-
+         * Updated:- Enabled Radio Button AND Calender on go button
         */
-        #region----------------------------EnableDropdown()---------------------------
+        #region----------------------------EnableUpperPart()---------------------------
         private void EnableUpperPart()
         {
             cbBranchName.IsEnabled = true;
@@ -746,10 +747,11 @@ namespace SchoolManagement.TimeTable
         #endregion
         /*
         * Created By:-
-        * Updated By:- 
+        * Updated By:-PriTesh D. Sortee 
         * Created Date:-
-        * Updated Date:- 
+        * Updated Date:- 03 Dec 2015
         * Purpose:-
+        * Updated :- Disable Radio buttons and Calender 
         */
         #region--------------------------------------------------DisableUpperPart()--------------------------------------------------
         private void DisableUpperPart()
