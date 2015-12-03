@@ -62,23 +62,27 @@
         </StackPanel>
         <GroupBox Header="Time Table Details" Height="137" HorizontalAlignment="Left" Margin="229,38,0,0" Name="gbTTDetails" VerticalAlignment="Top" Width="600">
             <Grid>
-                <ComboBox Height="23" ItemsSource="{Binding}" Margin="172,12,238,79" Name="cbBranchName" Width="178" SelectionChanged="cbBranchName_SelectionChanged" />
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="97*"/>
+                    <ColumnDefinition Width="99*"/>
+                </Grid.ColumnDefinitions>
+                <ComboBox Height="23" ItemsSource="{Binding}" Margin="172,12,238,79" Name="cbBranchName" Width="178" SelectionChanged="cbBranchName_SelectionChanged" Grid.ColumnSpan="2" />
                 <Label Content="Branch Name" Height="28" HorizontalAlignment="Left" Margin="77,10,0,0" Name="label1" VerticalAlignment="Top" />
-                <Button Content="Go" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="263,79,0,0" Name="btnGo" VerticalAlignment="Top" Width="47" Click="btnGo_Click_1" />
+                <Button Content="Go" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="263,79,0,0" Name="btnGo" VerticalAlignment="Top" Width="47" Click="btnGo_Click_1" Grid.ColumnSpan="2" />
                 <RadioButton Content="Class Wise" Height="16" HorizontalAlignment="Left" Margin="104,51,0,0" Name="rdoClassWise" VerticalAlignment="Top" Checked="rdoClassWise_Checked" />
-                <RadioButton Content="Room Wise" Height="20" HorizontalAlignment="Right" Margin="0,51,272,0" Name="rdoRoomWise" VerticalAlignment="Top" Checked="rdoRoomWise_Checked_1" />
-                <RadioButton Content="Teacher Wise" Height="16" HorizontalAlignment="Left" Margin="380,52,0,0" Name="rdoTeacherWise" VerticalAlignment="Top" Checked="rdoTeacherWise_Checked" />
-                <DatePicker Height="25" HorizontalAlignment="Left" Margin="453,10,0,0" Name="dpTTStartDate" VerticalAlignment="Top" Width="115" />
-                <Label Content="W.E.F" Height="28" HorizontalAlignment="Left" Margin="403,9,0,0" Name="label50" VerticalAlignment="Top" />
+                <RadioButton Content="Room Wise" Height="20" HorizontalAlignment="Right" Margin="0,51,272,0" Name="rdoRoomWise" VerticalAlignment="Top" Checked="rdoRoomWise_Checked_1" Grid.ColumnSpan="2" />
+                <RadioButton Content="Teacher Wise" Height="16" HorizontalAlignment="Left" Margin="89.149,52,0,0" Name="rdoTeacherWise" VerticalAlignment="Top" Checked="rdoTeacherWise_Checked" Grid.Column="1" />
+                <DatePicker Height="25" HorizontalAlignment="Left" Margin="162.149,10,0,0" Name="dpTTStartDate" VerticalAlignment="Top" Width="115" Grid.Column="1" />
+                <Label Content="W.E.F" Height="28" HorizontalAlignment="Left" Margin="112.149,9,0,0" Name="label50" VerticalAlignment="Top" Grid.Column="1" />
             </Grid>
         </GroupBox>
         <GroupBox Header="" Height="160" HorizontalAlignment="Left" Margin="229,175,0,0" Name="gbSame" VerticalAlignment="Top" Width="600">
             <Grid>
                 <Label Content="Class Name" Height="28" HorizontalAlignment="Left" Margin="7,5,0,0" Name="label3" VerticalAlignment="Top" />
-                <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="105,8,0,0" Name="cbClassName" VerticalAlignment="Top" Width="160" SelectionChanged="cbClassName_SelectionChanged" />
+                <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding }"  Margin="105,8,0,0" Name="cbClassName" VerticalAlignment="Top" Width="160" SelectionChanged="cbClassName_SelectionChanged" />
                 <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="86,9,0,0" Name="label4" VerticalAlignment="Top" />
                 <Label Content="Batch Name" Height="28" Margin="323,5,191,0" Name="label5" VerticalAlignment="Top" />
-                <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="422,8,0,0" Name="cbBatchName" VerticalAlignment="Top" Width="160" SelectionChanged="cbBatchName_SelectionChanged" />
+                <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding }" Margin="422,8,0,0" Name="cbBatchName" VerticalAlignment="Top" Width="160" SelectionChanged="cbBatchName_SelectionChanged" />
                 <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="404,8,0,0" Name="label6" VerticalAlignment="Top" />
                 <Label Content="Room Name" Height="28" HorizontalAlignment="Left" Margin="320,41,0,0" Name="label8" VerticalAlignment="Top" />
                 <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="422,40,0,0" Name="cbRoomName" VerticalAlignment="Top" Width="160" />
