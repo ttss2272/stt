@@ -74,7 +74,7 @@ namespace SchoolManagement.Branch
         private void SaveDetails()
         {
             string Result = obj_AddBranch.SaveBranch(BranchID, BranchName, BranchCode, InstituteName, Logo, CreatedByUserID, UpdatedByUserID, UpdatedDate, IsActive,IsDelete);
-            if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
+            if (Result == "Save Sucessfully...!!!")
             {
                 string name = System.IO.Path.GetFileName(filepath);
                 //txtUploadPath.Text = name;
@@ -82,6 +82,11 @@ namespace SchoolManagement.Branch
 
                 File.Copy(filepath, destinationPath, true);
                 MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
+                ClearFields();
+            }
+            else if (Result == "Updated Sucessfully...!!!")
+            {
+                MessageBox.Show(Result, "Update SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
                 ClearFields();
             }
             else
@@ -518,6 +523,7 @@ namespace SchoolManagement.Branch
         #region-------------WindowLoaded------------------------------------
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
            BindGridview();
            cmbBindInstitute.Visibility = Visibility.Hidden;
            CountBranch();
@@ -536,7 +542,7 @@ namespace SchoolManagement.Branch
                 {
                     cmbSelectType.Text = "Branch";
                     cmbSelectType.IsEnabled = false;
-                    cmbBindInstitute.SelectedValue = "0";
+                    cmbBindInstitute.SelectedIndex = 0;
                 }
                 else
                 {
@@ -567,13 +573,14 @@ namespace SchoolManagement.Branch
                 txtInstituteName.Visibility = Visibility.Visible;
                 
             }
-           // cmbBindInstitute.SelectedIndex = 0;
+           cmbBindInstitute.SelectedIndex = 0;
         }
 
         private void bindInstituteName()
         {
            try
             {
+                cmbBindInstitute.SelectedIndex = 0;
                 DataSet ds = obj_AddBranch.BindInstituteName();
                 if (ds.Tables[0].Rows.Count > 0)
                 {
