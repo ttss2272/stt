@@ -51,6 +51,7 @@
                         <DataGridTextColumn Binding="{Binding UserName}" Header="Username" Width="100"></DataGridTextColumn>
                         <DataGridTextColumn Binding="{Binding Password}" Header="Password" Width="100"></DataGridTextColumn>
                         <DataGridTextColumn Binding="{Binding UserTypeName}" Header="User Type" Width="50"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Status}" Header="Status" Width="100"></DataGridTextColumn>
                     </DataGrid.Columns>
                     <DataGrid.ItemContainerStyle>
                         <Style TargetType="DataGridRow">
