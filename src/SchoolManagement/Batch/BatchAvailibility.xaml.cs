@@ -114,6 +114,16 @@ namespace SchoolManagement.Batch
                     cmbBatch.IsEnabled = false;
                     cmbBranch.IsEnabled = false;
                     Clears();
+                    DataSet ds = objBatch.GetBatchAvailableDetail(Convert.ToInt32(cmbBatch.SelectedValue));
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+
+                        btnSave.Content = "Update";
+                    }
+                    else
+                    {
+                        btnSave.Content = "Save";
+                    }
                     GetBatchAvailableDetails(Convert.ToInt32(cmbBatch.SelectedValue));
                 }
 
@@ -1325,7 +1335,7 @@ namespace SchoolManagement.Batch
                                     break;
                                 }
                         }
-
+                        daycheckcount = cnt;
                         if (cnn == 7)
                         {
                             chkAvailSameTime.IsChecked = true;
@@ -1350,14 +1360,14 @@ namespace SchoolManagement.Batch
 
                         }
                     }
-                    if (numId == Convert.ToInt32(cmbBatch.SelectedValue))
-                    {
-                        btnSave.Content = "Update";
-                    }
-                    else
-                    {
-                        btnSave.Content = "Save";
-                    }
+                    //if (numId == Convert.ToInt32(cmbBatch.SelectedValue))
+                    //{
+                    //    btnSave.Content = "Update";
+                    //}
+                    //else
+                    //{
+                    //    btnSave.Content = "Save";
+                    //}
                 }
                 else
                 {
