@@ -47,12 +47,13 @@
             <DataGrid AutoGenerateColumns="False" Height="147" Name="dgTimeSlot" HorizontalAlignment="Left" Width="556" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="true">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding BranchLectureDetailID}" Header="" Visibility="Hidden"></DataGridTextColumn>
-                    <DataGridTextColumn Header="BranchName" Width="145" Binding="{Binding BranchName}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="DayName" Width="145" Binding="{Binding DayName}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="SlotStartTime" Width="155" Binding="{Binding LectureStartTime }"></DataGridTextColumn>
-                    <DataGridTextColumn Header="SlotEndTime" Width="155" Binding="{Binding LectureEndTime}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="BranchName" Width="110" Binding="{Binding BranchName}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="DayName" Width="110" Binding="{Binding DayName}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="SlotStartTime" Width="110" Binding="{Binding LectureStartTime }"></DataGridTextColumn>
+                    <DataGridTextColumn Header="SlotEndTime" Width="110" Binding="{Binding LectureEndTime}"></DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding StartTime}" Header="StartTime" Visibility="Hidden"></DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding EndTime}" Header="EndTime" Visibility="Hidden"></DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Status}" Width="110" Header="Status"></DataGridTextColumn>
                 </DataGrid.Columns>
                 <DataGrid.ItemContainerStyle>
                     <Style TargetType="DataGridRow">
