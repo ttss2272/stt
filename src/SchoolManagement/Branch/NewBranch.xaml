@@ -41,9 +41,10 @@
 
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding BranchID}" Header="Branch ID" Visibility="Hidden"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding InstituteName}" Header="Institute Name" FontWeight="Bold" Width="200"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding BranchName}" Header="Branch Name" FontWeight="Bold" Width="200"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding BranchCode}" Header="Branch Code" FontWeight="Bold" Width="100"></DataGridTextColumn>                        
+                        <DataGridTextColumn Binding="{Binding InstituteName}" Header="Institute Name" FontWeight="Bold" Width="160"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding BranchName}" Header="Branch Name" FontWeight="Bold" Width="125"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding BranchCode}" Header="Branch Code" FontWeight="Bold" Width="100"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Status}" Header="Status" FontWeight="Bold" Width="100"></DataGridTextColumn>
                     </DataGrid.Columns>
                     <DataGrid.ItemContainerStyle>
                         <Style TargetType="DataGridRow">
