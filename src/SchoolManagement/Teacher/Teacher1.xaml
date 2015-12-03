@@ -75,7 +75,7 @@
                                 <DataGridTextColumn Binding="{Binding TeacherShortName}" Header="Short Name" Width="100"></DataGridTextColumn>
                                 <DataGridTextColumn Binding="{Binding FreeTimeStart}" Header="Free Time Start" Width="*"></DataGridTextColumn>
                                 <DataGridTextColumn Binding="{Binding FreeTimeEnd}" Header="Free Time End" Width="*"></DataGridTextColumn>
-                                    <!--<DataGridTextColumn Binding="{Binding IsActive}" Header="Status" Width="*"></DataGridTextColumn>-->
+                                <DataGridTextColumn Binding="{Binding status}" Header="Status" Width="*"></DataGridTextColumn>
 
                                 </DataGrid.Columns>
                             <DataGrid.ItemContainerStyle>
