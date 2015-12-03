@@ -22,7 +22,7 @@
                     </DataGrid>
                 </GroupBox>
                 <Button Content="Copy" Height="50" VerticalAlignment="Center" Width="59" HorizontalAlignment="Center" Visibility="Hidden" />
-                <GroupBox Header="Teacher Avalaible Days" Height="357" VerticalAlignment="Top" Width="733" Margin="0,3,0,0">
+                <GroupBox Header="Teacher Avalaible Days" Height="357" VerticalAlignment="Top" Width="733" Margin="0,3,0,0" Name="gbTeacherAvalDay">
                     <Grid Margin="0,6,0,-5">
                         <CheckBox Content="Available All Days" HorizontalAlignment="Left" Margin="24,50,0,0" VerticalAlignment="Top" Width="125" Name="chkAvailAllDay" Click="chkAvailAllDay_Click"/>
                         <CheckBox Content="Same Time" HorizontalAlignment="Left" Margin="167,52,0,0" VerticalAlignment="Top" Name="chkAvailSameTime" Width="96" Click="chkAvailSameTime_Click"/>
@@ -218,7 +218,7 @@
                 <Label Content="Teacher" HorizontalAlignment="Left" Margin="388,14,0,0" VerticalAlignment="Top" Width="74" FontWeight="Bold"/>
                 <ComboBox HorizontalAlignment="Left" Margin="488,14,0,0" VerticalAlignment="Top" Width="175" Height="28"  Name="cmbTeacher" ItemsSource="{Binding}">
                 </ComboBox>
-                <Button Content="Go" HorizontalAlignment="Left" Margin="0,18,351,0" VerticalAlignment="Top" Width="75" Name="btnSearch" FontWeight="Bold" Click="btnSearch_Click"/>
+                <Button Content="Go" HorizontalAlignment="Left" Margin="700,19,0,0" VerticalAlignment="Top" Width="75" Name="btnSearch" FontWeight="Bold" Click="btnSearch_Click"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="" HorizontalAlignment="Left" Margin="403,520,0,0" BorderBrush="White"  VerticalAlignment="Top" Width="240" Height="50">
