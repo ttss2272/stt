@@ -61,7 +61,8 @@ namespace SchoolManagement
             {
                 MessageBox.Show("Welcome.......!!!!");
                 Home objHome = new Home();
-
+                Login1 loginForm = new Login1();
+                loginForm.Close();
                 objHome.Show();
 
 
