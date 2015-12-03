@@ -119,6 +119,16 @@ namespace SchoolManagement.Room
                     cmbRoom.IsEnabled = false;
                     cmbBranch.IsEnabled = false;
                     Clears();
+                    DataSet ds = objRoom.GetRoomAvailableDetail(Convert.ToInt32(cmbRoom.SelectedValue));
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+
+                        btnSave.Content = "Update";
+                    }
+                    else
+                    {
+                        btnSave.Content = "Save";
+                    }
                     GetRoomAvailableDetails(Convert.ToInt32(cmbRoom.SelectedValue));
                 }
 
@@ -1332,7 +1342,7 @@ namespace SchoolManagement.Room
                                     break;
                                 }
                         }
-
+                        daycheckcount = cnt;
                         if (cnn == 7)
                         {
                             chkAvailSameTime.IsChecked = true;
@@ -1358,14 +1368,14 @@ namespace SchoolManagement.Room
                         }
 
                     }
-                    if(numId == Convert.ToInt32(cmbRoom.SelectedValue))
-                    {
-                    btnSave.Content = "Update";
-                    }
-                    else
-                    {
-                      btnSave.Content ="Save";
-                    }
+                    //if(numId == Convert.ToInt32(cmbRoom.SelectedValue))
+                    //{
+                    //btnSave.Content = "Update";
+                    //}
+                    //else
+                    //{
+                    //  btnSave.Content ="Save";
+                    //}
                 }
                 else
                 {
