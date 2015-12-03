@@ -348,7 +348,8 @@ namespace SchoolManagement.Subject
                 //string Id = (grdvSubject.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                 string SubName = (grdvSubject.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
                 string ShortName = (grdvSubject.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
-
+                string Status = (grdvSubject.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
+               
                 DataSet ds = objSubject.GetSubjectDetail(SubName, ShortName);
                 if (ds.Tables.Count > 0)
                 {

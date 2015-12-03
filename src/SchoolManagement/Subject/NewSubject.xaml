@@ -35,9 +35,9 @@
                 <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Height="195" Width="477" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" Name="grdvSubject" CanUserResizeColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding SubjectID}" Header="Subject ID" Visibility="Hidden"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding SubjectName}" Header="Subject Name" Width="241"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding SubjectShortName}" Header="Subject Short Name" Width="233"></DataGridTextColumn>
-
+                        <DataGridTextColumn Binding="{Binding SubjectName}" Header="Subject Name" Width="150"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding SubjectShortName}" Header="Subject Short Name" Width="180"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Status}" Header="Satus" Width="200"></DataGridTextColumn>
                     </DataGrid.Columns>
                     <DataGrid.ItemContainerStyle>
                         <Style TargetType="DataGridRow">
