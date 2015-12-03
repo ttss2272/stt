@@ -36,7 +36,7 @@ namespace SchoolManagement.Teacher
         string [] EndTime;
         string[] s;
 
-        int TeacherID, UpdatedByUserID, Active, IsDeleted;
+        int TeacherID, UpdatedByUserID, Active, IsDeleted,Glob;
         string Day, FinalStartTime, FinalEndTime, UpdatedDate;
         #endregion
 
@@ -86,6 +86,7 @@ namespace SchoolManagement.Teacher
             UncheckAllCheckBoxes();
             EnableDropdown();
             btnSave.Content = "Save";
+            gbTeacherAvalDay.IsEnabled= false;
         }
         #endregion
 
@@ -158,7 +159,19 @@ namespace SchoolManagement.Teacher
                 else
                 {
                     cmbTeacher.IsEnabled = false;
+                    gbTeacherAvalDay.IsEnabled =true;
                     Clears();
+                    DataSet ds = objTeacher.GetTeacherAvailableDetail(Convert.ToInt32( cmbTeacher.SelectedValue));
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+
+                        btnSave.Content = "Update";
+                    }
+                    else
+                    {
+                        btnSave.Content = "Save";
+                    }
+
                     GetTeacherAvailableDetails(Convert.ToInt32(cmbTeacher.SelectedValue));
                 }
 
@@ -1407,14 +1420,6 @@ namespace SchoolManagement.Teacher
                                     break;
                                 }
                         }
-                        if (numId == Convert.ToInt32(cmbTeacher.SelectedValue))
-                        {
-                            btnSave.Content = "Update";
-                        }
-                        else
-                        {
-                            btnSave.Content = "Save";
-                        }
                         daycheckcount = cnt;
                         if (cnn == 7)
                         {
@@ -1439,10 +1444,18 @@ namespace SchoolManagement.Teacher
                             DisableDropdown();
                             
                         }
-
-                        
+                          
                     }
-
+                    
+                    //if (num == Convert.ToInt32(cmbTeacher.SelectedValue))
+                    //{
+                    //    btnSave.Content = "Update";
+                    //}
+                    //else
+                    //{
+                    //    btnSave.Content = "Save";
+                    //}
+                    
                 }
                 else
                 {
@@ -1689,6 +1702,7 @@ namespace SchoolManagement.Teacher
             {
                 object item = dgTeacherAvail.SelectedItem;
                 int UpID = Convert.ToInt32(((System.Data.DataRowView)(dgTeacherAvail.CurrentItem)).Row.ItemArray[0].ToString());
+              
                 Clears();   
                 GetTeacherAvailableDetails(UpID);  
             }
@@ -1718,6 +1732,18 @@ namespace SchoolManagement.Teacher
         #region--------------------------------------------------------validate()---------------------------------------------------------------
         private bool validate()
         {
+            if (cmbTeacher.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please Select Teacher Name ...");
+                cmbTeacher.Focus();
+                return false;
+            }
+            else if (gbTeacherAvalDay.IsEnabled == false)
+            {
+                MessageBox.Show("Please Click on Go ...");
+                btnSearch.Focus();
+                return false;
+            }
             if (cmbTeacher.SelectedValue.ToString() != "0")
             {
                 if (MondayValidate())
