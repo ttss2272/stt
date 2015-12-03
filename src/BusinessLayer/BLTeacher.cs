@@ -60,10 +60,10 @@ namespace BusinessLayer
             return ds;
         }
 
-        public DataSet BindTeacherOnTimeTable(int TeacherSubjectID)
+        public DataSet BindTeacherOnTimeTable(int SubjectID,int BatchID)
         {
             {
-                DataSet ds = objTeacher.BindTeacherOnTimeTable(TeacherSubjectID);
+                DataSet ds = objTeacher.BindTeacherOnTimeTable(SubjectID,BatchID);
                 return ds;
             }
 
