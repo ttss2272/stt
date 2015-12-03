@@ -38,6 +38,10 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+       * Created Date :- 21 Nov 2015
+       * Purpose:- Global Declaration*/
+
         #region---------------------------------Declare variables Globally-------------------------------------
         BLBatch objBatch = new BLBatch();
         BLAddBranch obj_Branch = new BLAddBranch();
@@ -52,10 +56,15 @@ namespace SchoolManagement.Batch
         string Day, FinalStartTime, FinalEndTime, UpdatedDate;
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+       * Created Date :- 21 Nov 2015
+       * Purpose:- Clear Fields*/
+
         #region-----------------------------------------------ClearFields()-----------------------------------------------------------
         private void ClearFields()
         {
             cmbBatch.IsEnabled = true;
+            cmbBranch.IsEnabled = true;
             BindBranchName();
             BindBatch();
             BindHours();
@@ -68,6 +77,9 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+       * Created Date :- 21 Nov 2015
+       * Purpose:- Clear Hours/Min*/
 
         #region---------------------------------------------------------Clears()-------------------------------------------------------
         private void Clears()
@@ -83,6 +95,9 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+       * Created Date :- 21 Nov 2015
+       * Purpose:- Go Button coding*/
 
         #region-----------btnGo-------------------------------
         private void btnSearch_Click(object sender, RoutedEventArgs e)
@@ -97,6 +112,7 @@ namespace SchoolManagement.Batch
                 {
                     gbbtavaday.IsEnabled = true;
                     cmbBatch.IsEnabled = false;
+                    cmbBranch.IsEnabled = false;
                     Clears();
                     GetBatchAvailableDetails(Convert.ToInt32(cmbBatch.SelectedValue));
                 }
@@ -108,6 +124,10 @@ namespace SchoolManagement.Batch
             }
         }
         #endregion
+
+        /* Created By:- Pranjali Vidhate
+       * Created Date :- 21 Nov 2015
+       * Purpose:- Save Button Coding*/
 
         #region--------------------------btnSave_Click---------------------------
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -127,6 +147,10 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+       * Created Date :- 21 Nov 2015
+       * Purpose:- Clear Button Coding*/
+
         #region---------------------------clearButton----------------------------
         private void btnSave_Copy_Click(object sender, RoutedEventArgs e)
         {
@@ -140,6 +164,10 @@ namespace SchoolManagement.Batch
             }
         }
         #endregion
+
+        /* Created By:- Pranjali Vidhate
+       * Created Date :- 21 Nov 2015
+       * Purpose:- SetParameters*/
 
         #region-------------------------------------------------------Setparameters()-------------------------------------------------------
         private void SetParameters()
@@ -430,6 +458,9 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+       * Created Date :- 21 Nov 2015
+       * Purpose:- Bind Batch according to Branch*/
 
         #region---------------------------------bindBatch()------------------------------------
         private void BindBatch()
@@ -450,6 +481,10 @@ namespace SchoolManagement.Batch
             }
         }
         #endregion
+
+        /* Created By:- Pranjali Vidhate
+       * Created Date :- 21 Nov 2015
+       * Purpose:- Bind Branch*/
 
         #region-------------bindbranch()---------------------------------------------------------------------------------
 
@@ -478,6 +513,9 @@ namespace SchoolManagement.Batch
 
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+       * Created Date :- 21 Nov 2015
+       * Purpose:- bind Timing*/
 
         #region---------------------------------------------------BindTiming------------------------------------------------------------------
         /*
@@ -707,6 +745,10 @@ namespace SchoolManagement.Batch
         #endregion
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+       * Created Date :- 21 Nov 2015
+       * Purpose:- Same time Coding*/
+
         #region-----------------------CheckSameTime--------------------------------------------------------------
         private void chkAvailSameTime_Click(object sender, RoutedEventArgs e)
         {
@@ -727,6 +769,10 @@ namespace SchoolManagement.Batch
             }
         }
         #endregion
+
+        /* Created By:- Pranjali Vidhate
+       * Created Date :- 21 Nov 2015
+       * Purpose:- CheckBoxes Coding*/
 
         #region----------------------------------------------------------------CheckBoxes()---------------------------------------------------
 
@@ -993,6 +1039,10 @@ namespace SchoolManagement.Batch
 
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+       * Created Date :- 21 Nov 2015
+       * Purpose:- DisebleDropdown Coding*/
+
         #region----------------------------------------------------------------DisebleDropdown()-----------------------------------------------
         private void DisableDropdown()
         {
@@ -1034,6 +1084,9 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+       * Created Date :- 21 Nov 2015
+       * Purpose:- EnableDropdown Coding*/
 
         #region----------------------------------------------------------------EnableDropdown()------------------------------------------------
         private void EnableDropdown()
@@ -1076,6 +1129,9 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+       * Created Date :- 21 Nov 2015
+       * Purpose:- BindGrid Coding*/
 
         #region---------------------------------------------------------------BindGrid()-------------------------------------------------------
         private void BindGrid()
@@ -1090,6 +1146,10 @@ namespace SchoolManagement.Batch
 
         }
         #endregion
+
+        /* Created By:- Pranjali Vidhate
+       * Created Date :- 21 Nov 2015
+       * Purpose:- GetBatchAvailable Details*/
 
         #region---------------------------------------------------------GetBatchAvailableDetails()-------------------------------------------
         private void GetBatchAvailableDetails(int numId)
@@ -1308,6 +1368,10 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+       * Created Date :- 21 Nov 2015
+       * Purpose:- Check All Days*/
+
         #region---------------------------------------------------------CheckAllDays()-----------------------------------------------------------
         private void CheckAllDays()
         {
@@ -1321,6 +1385,10 @@ namespace SchoolManagement.Batch
             daycheckcount = 7;
         }
         #endregion
+
+        /* Created By:- Pranjali Vidhate
+       * Created Date :- 21 Nov 2015
+       * Purpose:- Uncheck All Days*/
 
         #region-------------------------------------------------------UncheckAllDays()------------------------------------------------------------
         private void UnchekAllDays()
@@ -1336,7 +1404,9 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
-
+        /* Created By:- Pranjali Vidhate
+       * Created Date :- 21 Nov 2015
+       * Purpose:- Row Double Click(copy) Coding*/
         #region----------------------------------------Row Double Click()-------------------------------------------------------------------
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -1354,6 +1424,9 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+       * Created Date :- 21 Nov 2015
+       * Purpose:- Validate All Fields*/
 
         #region-------------------------------------------------------Validation()----------------------------------------------------------
         /*
@@ -1856,7 +1929,10 @@ namespace SchoolManagement.Batch
 
         #endregion
 
-        
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 21 Nov 2015
+        * Purpose:- Coding For StartHr_Selectionchange*/
+
         #region-----------------chkStartHrs_SelectionChanged-------------------------
         private void chkStartHrs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -1884,6 +1960,10 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 21 Nov 2015
+        * Purpose:- Coding For StartMin_Selectionchange*/
+
         #region------------------chkStartMin_SelectionChanged--------------------
         private void chkStartMin_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -1909,6 +1989,10 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 21 Nov 2015
+        * Purpose:- Coding For EndHr_Selectionchange*/
+
         #region------------------chkEndhrs_SelectionChanged-----------------
         private void chkEndhrs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -1931,6 +2015,10 @@ namespace SchoolManagement.Batch
             }
         }
         #endregion
+
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 21 Nov 2015
+        * Purpose:- Coding For EndMin_Selectionchange*/
 
         #region--------------EndMin_SelectionChanged--------------
         private void EndMin_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1957,7 +2045,10 @@ namespace SchoolManagement.Batch
             }
         }
         #endregion
-        
+
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 21 Nov 2015
+        * Purpose:- Coding for Uncheck all checkBoxes*/
 
         #region--------------------------------unchekcall ChekcBoxes-----------------------------------
         private void UncheckAllCheckBoxes()
@@ -1975,6 +2066,9 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 21 Nov 2015
+        * Purpose:- Coding For Branch_Selectionchange*/
 
         #region-----------------------------cmbBranch_SelectionChanged------------------------
         private void cmbBranch_SelectionChanged(object sender, SelectionChangedEventArgs e)
