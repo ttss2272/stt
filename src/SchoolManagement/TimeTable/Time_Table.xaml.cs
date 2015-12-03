@@ -1116,10 +1116,10 @@ namespace SchoolManagement.TimeTable
             }
             else if (rdoTeacherWise.IsChecked == true)
             {
-                canvasRoomWise.Visibility = Visibility.Hidden;
+                canvasRoomWise.Visibility = Visibility.Collapsed;
                 gbSame.Visibility = Visibility.Hidden;
                 canvasTeacherWise.Visibility = Visibility.Visible;
-                canvasTeacherWise.Margin = new Thickness(235, 160, 0, 0);
+                canvasTeacherWise.Margin = new Thickness(235,160,0,0);
                 BindTeacher();
                 //BindClassName();
                 
