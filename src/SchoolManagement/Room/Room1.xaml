@@ -62,13 +62,14 @@
         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Height="162" HorizontalAlignment="Left" Margin="37,356,0,0" Name="dgRoom" VerticalAlignment="Top" Width="759" IsReadOnly="True" CanUserResizeColumns="False" ItemsSource="{Binding}" FontWeight="Bold">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding RoomID}" Header="RoomID" Visibility="Hidden"></DataGridTextColumn>
-                <DataGridTextColumn  Header="BranchName" Width="145" Binding="{Binding BranchName}"></DataGridTextColumn>
-                <DataGridTextColumn Header="RoomName" Width="145" Binding="{Binding RoomName}"></DataGridTextColumn>
-                <DataGridTextColumn Header="ShortName" Width="155" Binding="{Binding RoomShortName}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Color" Width="155" Binding="{Binding RoomColor}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Capacity" Width="155" Binding="{Binding Capacity}"></DataGridTextColumn>
+                <DataGridTextColumn  Header="BranchName" Width="135" Binding="{Binding BranchName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="RoomName" Width="135" Binding="{Binding RoomName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="ShortName" Width="135" Binding="{Binding RoomShortName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Color" Width="105" Binding="{Binding RoomColor}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Capacity" Width="105" Binding="{Binding Capacity}"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding FreeStartTime}" Header="FreeStartTime" Visibility="Hidden"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding FreeEndTime}" Header="FreeEndTime" Visibility="Hidden"></DataGridTextColumn>
+                <DataGridTextColumn Header="Status" Width="145" Binding="{Binding Status}"></DataGridTextColumn>
             </DataGrid.Columns>
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
