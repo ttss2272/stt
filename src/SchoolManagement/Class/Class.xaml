@@ -51,9 +51,9 @@
                     <Button Content="Search" FontWeight="SemiBold" Height="27" HorizontalAlignment="Left" Margin="369,11,0,0" Name="btnSearch" TabIndex="7" VerticalAlignment="Top" Width="83" Click="btnSearch_Click" />
                 </Grid>
             </GroupBox>
-            <GroupBox Header="Result" Height="251" Name="gbResult" Width="800">
+            <GroupBox Header="Result" Height="251" Name="gbResult" Width="850">
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Name="dgvClass" IsReadOnly="True" CanUserResizeColumns="False" ItemsSource="{Binding}" Margin="196,16,333,12">
+                    <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Name="dgvClass" IsReadOnly="True" CanUserResizeColumns="False" ItemsSource="{Binding}" Margin="189,16,394,12">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding ClassID}" Header="ClassID" Visibility="Hidden"></DataGridTextColumn>
                             <DataGridTextColumn Header="BranchName" Width="80" Binding="{Binding BranchName}" Visibility="Hidden"></DataGridTextColumn>
@@ -64,7 +64,7 @@
                             <DataGridTextColumn Header="BranchID" Width="80" Binding="{Binding BranchID}" Visibility="Hidden"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid >
-                    <DataGrid AutoGenerateColumns="False" Height="200" HorizontalAlignment="Left" Margin="22,16,0,0" Name="dgBranchCls" VerticalAlignment="Top" Width="163" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" ItemsSource="{Binding}">
+                    <DataGrid AutoGenerateColumns="False" Height="200" HorizontalAlignment="Left" Margin="15,16,0,0" Name="dgBranchCls" VerticalAlignment="Top" Width="163" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" ItemsSource="{Binding}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="BranchName" Width="80" Binding="{Binding BranchName}"></DataGridTextColumn>
                             <DataGridTextColumn Header="No.of Classes" Width="80" Binding="{Binding NoOfClass}"></DataGridTextColumn>
@@ -76,8 +76,8 @@
                             </Style>
                         </DataGrid.ItemContainerStyle> 
                     </DataGrid>
-                    <Button Content="Copy" Height="23" HorizontalAlignment="Left" Margin="461,108,0,0" Name="btnCopy" VerticalAlignment="Top" Width="49" FontWeight="Bold" Click="btnCopy_Click" />
-                    <DataGrid AutoGenerateColumns="False" Height="200" HorizontalAlignment="Left" Margin="517,18,0,0" Name="dgCopy" VerticalAlignment="Top" Width="258" CanUserAddRows="False" IsReadOnly="True" ItemsSource="{Binding}" CanUserDeleteRows="False" CanUserResizeColumns="False">
+                    <Button Content="Copy" Height="23" HorizontalAlignment="Left" Margin="452,105,0,0" Name="btnCopy" VerticalAlignment="Top" Width="49" FontWeight="Bold" Click="btnCopy_Click" />
+                    <DataGrid AutoGenerateColumns="False" Height="200" HorizontalAlignment="Left" Margin="512,16,0,0" Name="dgCopy" VerticalAlignment="Top" Width="320" CanUserAddRows="False" IsReadOnly="True" ItemsSource="{Binding}" CanUserDeleteRows="False" CanUserResizeColumns="False" >
                         <DataGrid.Columns>
                            <DataGridTextColumn Binding="{Binding ClassID}" Header="ClassID" Visibility="Hidden"></DataGridTextColumn>
                              <DataGridTextColumn Header="BranchName" Width="80" Binding="{Binding BranchName}" Visibility="Hidden"></DataGridTextColumn>
@@ -85,6 +85,7 @@
                             <DataGridTextColumn Header="ShortName" Width="70" Binding="{Binding ClassShortName}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Board" Width="60" Binding="{Binding Board}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Color" Width="60" Binding="{Binding Color}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Status" Width="60" Binding="{Binding Status}"></DataGridTextColumn>
                             <DataGridTextColumn Header="BranchID" Width="80" Binding="{Binding BranchID}" Visibility="Hidden"></DataGridTextColumn>
                         </DataGrid.Columns>
                         <DataGrid.ItemContainerStyle>

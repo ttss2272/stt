@@ -419,11 +419,13 @@ namespace SchoolManagement.Class
             try
             {
                  object item =  dgCopy.SelectedItem;
+                  string BranchName = Convert.ToString(((System.Data.DataRowView)(dgCopy.CurrentItem)).Row.ItemArray[0].ToString());
                  string ClassName = Convert.ToString(((System.Data.DataRowView)(dgCopy.CurrentItem)).Row.ItemArray[1].ToString());
                  string ShortName = Convert.ToString(((System.Data.DataRowView)(dgCopy.CurrentItem)).Row.ItemArray[2].ToString());
                  string Board = Convert.ToString(((System.Data.DataRowView)(dgCopy.CurrentItem)).Row.ItemArray[3].ToString());
                  string Color = Convert.ToString(((System.Data.DataRowView)(dgCopy.CurrentItem)).Row.ItemArray[4].ToString());
                  int BranchID = Convert.ToInt32(((System.Data.DataRowView)(dgCopy.CurrentItem)).Row.ItemArray[5].ToString());
+                // string act = Convert.ToString(((System.Data.DataRowView)(dgCopy.CurrentItem)).Row.ItemArray[6].ToString());
 
                 DataSet ds = obj_AddClass.GetClassDetail(ClassName, ShortName,Board,Color,BranchID);
                 if (ds.Tables.Count > 0)
@@ -439,19 +441,19 @@ namespace SchoolManagement.Class
 
                         int act = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
                         int del = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDeleted"]);
-                        if (act == 1 && del == 0)
+                        if (act == 1 && del== 0)
                         {
                             rdoActive.IsChecked = true;
                         }
-                        else if (act == 0 && del == 0)
+                        else if(act ==0 && del ==1)
                         {
                             rdoDeActive.IsChecked = true;
                         }
                         btndelete.IsEnabled = true;
                         btnadd.Content = "Update";
                         gbInfo.IsEnabled = true;
-                    }
-                }
+                     }
+               }
             }
             catch (Exception ex)
             {
@@ -469,6 +471,7 @@ namespace SchoolManagement.Class
                 if (!string.IsNullOrEmpty(txtSearchClass.Text.Trim()))
                 {
                     DataSet ds = obj_AddClass.SearchClass(txtSearchClass.Text);
+
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         dgCopy.DataContext = ds.Tables[0].DefaultView;
@@ -742,5 +745,7 @@ namespace SchoolManagement.Class
             GetBranchClassCount();
             GetCopyClass(Convert.ToInt32(cbBranchName.SelectedValue));
         }
+
+        
     }
 }
