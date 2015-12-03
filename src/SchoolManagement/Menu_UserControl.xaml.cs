@@ -139,7 +139,21 @@ namespace SchoolManagement
             ObjBatchSubject_Sub.Show();
         }
 
+        /*
+         * Created By:- PriTesh D. Sortee
+         * Created Date:- 02 Dec 2015
+         * Purpose:- To Give Link to Teacher batch Subject
+         */
+        #region------------------------------------------------TeacherBatch Subject-----------------------------------
+        private void menuTeacherSubject_Click(object sender, RoutedEventArgs e)
+        {
+            Teacher.TeacherBatchSubject objTeacherBatchSubject = new Teacher.TeacherBatchSubject();
+            Close();
+            objTeacherBatchSubject.Show();
+        }
+        #endregion
 
-        
+
+
     }
 }

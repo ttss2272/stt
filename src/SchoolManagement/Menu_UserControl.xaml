@@ -23,6 +23,7 @@
                 <MenuItem Header="Batch Availability" Name="menuBatchAvailability" Click="menuBatchAvailability_Click" />
                 <MenuItem Header="Batch Subject" Name="menuBatchSubject" Click="menuBatchSubject_Click" />
                 <MenuItem Header="Branch Distance" Name="menuBranchDistance" Click="menuBranchDistance_Click_1" />
+                <MenuItem Header="Teacher Subject To Batch" Name="menuTeacherSubject" Click="menuTeacherSubject_Click"></MenuItem>
             </MenuItem>
             <MenuItem Header="Time_Table" Width="90" Height="30" Click="MenuItem_Click_1">
                 <MenuItem Header="Time Table" Name="menuTimeTable"/>
