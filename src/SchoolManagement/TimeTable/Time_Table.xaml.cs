@@ -20,9 +20,18 @@ namespace SchoolManagement.TimeTable
     /// <summary>
     /// Interaction logic for Time_Table.xaml
     /// </summary>
-    #region-------------------Varible Declartion--------------
+    
     public partial class Time_Table : Window
     {
+       /*
+        * Created By:-
+        * Updated By:- PriTesh D. Sortee
+        * Created Date:-
+        * Updated Date:- 03 Dec 2015
+        * Purpose:
+        * 
+        */
+        #region-------------------------------------------------------Declare Variables---------------------------------------------
         BLTimeTable objTimeTable = new BLTimeTable();
         BLAddBranch obj_Branch = new BLAddBranch();
         BLAddClass obj_Class = new BLAddClass();
@@ -36,7 +45,15 @@ namespace SchoolManagement.TimeTable
         String UpdatedDate, LectStartTime, LectEndTime, SlotTime, Day;
         DateTime TTStartDate;
 
-    #endregion
+        #endregion
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:
+        * 
+        */
 
         #region--------------Time_Table------------------
         public Time_Table()
@@ -48,7 +65,14 @@ namespace SchoolManagement.TimeTable
             ClearFields();
         }
         #endregion
-
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        * 
+        */
         #region-----------------btnSave_Click------------
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
@@ -75,7 +99,14 @@ namespace SchoolManagement.TimeTable
             }
         }
         #endregion
-
+        
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
         #region---------------------------------Setparamerter()-------------------------------------------
         public void Setparameter()
         {
@@ -108,6 +139,7 @@ namespace SchoolManagement.TimeTable
         }
         #endregion
 
+
         /*     #region-------------cmbDayName_Items-------------------------------
         private void cmbDayName_Items()
         {
@@ -123,6 +155,14 @@ namespace SchoolManagement.TimeTable
         }
         #endregion */
 
+
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
         #region-------------------------------ClearFields()----------------------------------------
         public void ClearFields()
         {
@@ -162,6 +202,13 @@ namespace SchoolManagement.TimeTable
         }
         #endregion
 
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
         #region----------------------------EnableDropdown()---------------------------
         private void EnableUpperPart()
         {
@@ -176,6 +223,12 @@ namespace SchoolManagement.TimeTable
             cbTimeSlot.IsEnabled = false;
             btnSave.IsEnabled = false;
             btnClear.IsEnabled = false;
+            //Enable Radio Button
+            rdoClassWise.IsEnabled = true;
+            rdoRoomWise.IsEnabled = true;
+            rdoTeacherWise.IsEnabled = true;
+            //Enable Calender
+            dpTTStartDate.IsEnabled = true;
             btnGo.Content = "Go";
             cbClassName1.IsEnabled = false;
             cbClassName2.IsEnabled = false;
@@ -194,6 +247,13 @@ namespace SchoolManagement.TimeTable
         }
         #endregion
 
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
         #region-------------bindbranch()-----------
         private void BindBranchName()
         {
@@ -220,6 +280,13 @@ namespace SchoolManagement.TimeTable
 
         #endregion
 
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
         #region------------------------BindClassName()---------------------------------------
         private void BindClassName()
         {
@@ -263,6 +330,13 @@ namespace SchoolManagement.TimeTable
         }
         #endregion
 
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
         #region------------------------BindSubjectName()---------------------------------
         private void BindSubjectName()
         {
@@ -306,6 +380,13 @@ namespace SchoolManagement.TimeTable
         }
         #endregion
 
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
         #region------------------------BindBatchName()---------------------------------
         private void BindBatchName()
         {
@@ -349,6 +430,13 @@ namespace SchoolManagement.TimeTable
         }
         #endregion
 
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
         #region-----------------BindTeacher()----------------------------------
         private void BindTeacher()
         {
@@ -385,6 +473,13 @@ namespace SchoolManagement.TimeTable
         }
         #endregion
 
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
         #region----------------BindRoom()----------------------------
         private void BindRoom()
         {
@@ -428,6 +523,13 @@ namespace SchoolManagement.TimeTable
         }
         #endregion
 
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
         #region------------BindTimeSlot---------------
         private void BindTimeSlot()
         {
@@ -460,6 +562,13 @@ namespace SchoolManagement.TimeTable
         }
         #endregion
 
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
 
         #region------------BindDay----------------------
         private void BindDay()
@@ -513,6 +622,13 @@ namespace SchoolManagement.TimeTable
             }
         }
         #endregion
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
 
         #region-----------------Window_Loaded----------------------
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -521,15 +637,21 @@ namespace SchoolManagement.TimeTable
             canvasRoomWise.Visibility = Visibility.Hidden;
             BindBranchName();
             //cmbDayName.SelectedIndex = 0;
-            BindSubjectName();
-            BindBatchName();
-            BindTeacher();
-            BindRoom();
-            BindDay();
-            BindTimeSlot();
+            //BindSubjectName();
+            //BindBatchName();
+            //BindTeacher();
+            //BindRoom();
+            //BindDay();
+            //BindTimeSlot();
         }
         #endregion
-
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
         #region-----------------------------------Validation------------------------------------------
         public bool Validate()
         {
@@ -587,7 +709,13 @@ namespace SchoolManagement.TimeTable
             }
         }
         #endregion
-
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
         #region-------------------------------Go()--------------------------------------------------
         private void btnGo_Click_1(object sender, RoutedEventArgs e)
         {
@@ -616,7 +744,13 @@ namespace SchoolManagement.TimeTable
             }
         }
         #endregion
-
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
         #region--------------------------------------------------DisableUpperPart()--------------------------------------------------
         private void DisableUpperPart()
         {
@@ -631,6 +765,13 @@ namespace SchoolManagement.TimeTable
             cbTimeSlot.IsEnabled = true;
             btnSave.IsEnabled = true;
             btnClear.IsEnabled = true;
+            //Disable radio button
+            rdoTeacherWise.IsEnabled = false;
+            rdoRoomWise.IsEnabled = false;
+            rdoClassWise.IsEnabled = false;
+            //Disable Calender
+            dpTTStartDate.IsEnabled = false;
+
             btnGo.Content = "Change";
             cbClassName1.IsEnabled = true;
             cbBatchName1.IsEnabled = true;
@@ -646,9 +787,53 @@ namespace SchoolManagement.TimeTable
             cbDay2.IsEnabled = true;
             cbTeacherName2.IsEnabled = true;
             cbTimeSlot2.IsEnabled = true;
+            
+            //checked if class wise view checked
+            if (rdoClassWise.IsChecked== true)
+            {
+                canvasTeacherWise.Visibility = Visibility.Hidden;
+                canvasRoomWise.Visibility = Visibility.Hidden;
+                gbSame.Visibility = Visibility.Visible;
+            }
+            //chekced if Room wise view checked
+            if (rdoRoomWise.IsChecked==true)
+            {
+                canvasTeacherWise.Visibility = Visibility.Hidden;
+                gbSame.Visibility = Visibility.Hidden;
+                canvasRoomWise.Visibility = Visibility.Visible;
+                canvasRoomWise.Margin = new Thickness(235, 160, 0, 0);
+                BindClassName();
+                BindTeacher();
+                BindTimeSlot();
+                BindBatchName();
+                BindSubjectName();
+                BindDay();
+                BindRoom();
+            }
+
+            //checked if Teacher Wise view Checked
+            if (rdoTeacherWise.IsChecked==true)
+            {
+                canvasRoomWise.Visibility = Visibility.Hidden;
+                gbSame.Visibility = Visibility.Hidden;
+                canvasTeacherWise.Visibility = Visibility.Visible;
+                canvasTeacherWise.Margin = new Thickness(235, -140, 0, 0);
+                BindClassName();
+                BindTeacher();
+                BindTimeSlot();
+                BindBatchName();
+                BindSubjectName();
+                BindDay();
+            }
         }
         #endregion
-
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
         #region---------------------------------------------------------Clears()-------------------------------------------------------
         private void ClearData()
         {
@@ -669,7 +854,13 @@ namespace SchoolManagement.TimeTable
             //EnableDropdown();
         }
         #endregion
-
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
         #region-------------------btnClear_Click-----------------
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
@@ -683,18 +874,31 @@ namespace SchoolManagement.TimeTable
             }
         }
         #endregion
-
+        /*
+        * Created By:-
+        * Updated By:- PriTesh D. Sortee
+        * Created Date:-
+        * Updated Date:- 03 Dec 2015
+        * Purpose:-
+         * Update Purpose:- Change Branch selection changed
+        */
         #region---------cbBranchName_SelectionChanged------------
         private void cbBranchName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbBranchName.SelectedValue != "0")
-            {
-                BindClassName();
-                BindRoom();
-            }
+            //if (cbBranchName.SelectedValue != "0")
+            //{
+            //    BindClassName();
+            //    BindRoom();
+            //}
         }
         #endregion
-
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
         #region-----------cbClassName_SelectionChanged------------
         private void cbClassName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -704,7 +908,13 @@ namespace SchoolManagement.TimeTable
             }
         }
         #endregion
-
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
         #region--------------cbBatchName_SelectionChanged
         private void cbBatchName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -729,54 +939,106 @@ namespace SchoolManagement.TimeTable
         //    }
         // }
 
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
+        #region--------------------------------------cbSubjectName_SelectionChanged---------------------------------
         private void cbSubjectName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BindTeacher();
         }
+        #endregion
 
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
+        #region-------------------------------------cmbDayName_SelectionChanged-----------------------------------------
         private void cmbDayName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BindTimeSlot();
         }
+        #endregion
 
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
+        #region-------------------------------------rdoclasswise_Checked----------------------------------------------------
         private void rdoClassWise_Checked(object sender, RoutedEventArgs e)
         {
-            canvasTeacherWise.Visibility = Visibility.Hidden;
-            canvasRoomWise.Visibility = Visibility.Hidden;
-            gbSame.Visibility = Visibility.Visible;
+            //canvasTeacherWise.Visibility = Visibility.Hidden;
+            //canvasRoomWise.Visibility = Visibility.Hidden;
+            //gbSame.Visibility = Visibility.Visible;
 
         }
-
+        #endregion
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
+        #region--------------------------------------rdoRoomWise_Checked-----------------------------------------------
         private void rdoRoomWise_Checked_1(object sender, RoutedEventArgs e)
         {
-            canvasTeacherWise.Visibility = Visibility.Hidden;
-            gbSame.Visibility = Visibility.Hidden;
-            canvasRoomWise.Visibility = Visibility.Visible;
-            canvasRoomWise.Margin = new Thickness(235, 160, 0, 0);
-            BindClassName();
-            BindTeacher();
-            BindTimeSlot();
-            BindBatchName();
-            BindSubjectName();
-            BindDay();
-            BindRoom();
+            //canvasTeacherWise.Visibility = Visibility.Hidden;
+            //gbSame.Visibility = Visibility.Hidden;
+            //canvasRoomWise.Visibility = Visibility.Visible;
+            //canvasRoomWise.Margin = new Thickness(235, 160, 0, 0);
+            //BindClassName();
+            //BindTeacher();
+            //BindTimeSlot();
+            //BindBatchName();
+            //BindSubjectName();
+            //BindDay();
+            //BindRoom();
 
         }
+        #endregion
 
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
+        #region------------------------------------------rdoTeacherWise_Chekced------------------------------------------
         private void rdoTeacherWise_Checked(object sender, RoutedEventArgs e)
         {
-            canvasRoomWise.Visibility = Visibility.Hidden;
-            gbSame.Visibility = Visibility.Hidden;
-            canvasTeacherWise.Visibility = Visibility.Visible;
-            canvasTeacherWise.Margin = new Thickness(235, -140, 0, 0);
-            BindClassName();
-            BindTeacher();
-            BindTimeSlot();
-            BindBatchName();
-            BindSubjectName();
-            BindDay();
+            //canvasRoomWise.Visibility = Visibility.Hidden;
+            //gbSame.Visibility = Visibility.Hidden;
+            //canvasTeacherWise.Visibility = Visibility.Visible;
+            //canvasTeacherWise.Margin = new Thickness(235, -140, 0, 0);
+            //BindClassName();
+            //BindTeacher();
+            //BindTimeSlot();
+            //BindBatchName();
+            //BindSubjectName();
+            //BindDay();
         }
+        #endregion
 
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
+        #region-------------------------------------------ClassName_SelectionChanged---------------------------------------
         private void cbClassName1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbClassName1.SelectedValue != "0")
@@ -784,7 +1046,16 @@ namespace SchoolManagement.TimeTable
                 BindBatchName();
             }
         }
+        #endregion
 
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
+        #region----------------------------------------------cbSubjectName1_SelectionChanged------------------------------------
         private void cbSubjectName1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbSubjectName1.SelectedValue != "0")
@@ -792,7 +1063,15 @@ namespace SchoolManagement.TimeTable
                 BindTeacher();
             }
         }
-
+        #endregion
+        /*
+        * Created By:-
+        * Updated By:- 
+        * Created Date:-
+        * Updated Date:- 
+        * Purpose:-
+        */
+        #region--------------------------------------------cbTeacherName_SelectionChanged---------------------------------------------
         private void cbTeacherName1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbTeacherName1.SelectedValue != "0")
@@ -800,6 +1079,7 @@ namespace SchoolManagement.TimeTable
 
             }
         }
+        #endregion
     }
 }
     
