@@ -214,7 +214,7 @@
                     </GroupBox>
                 </DockPanel>
             </GroupBox>
-            <GroupBox Header="Search Room" HorizontalAlignment="Stretch" Margin="10,44,0,0" VerticalAlignment="Top"  Height="81">
+            <GroupBox Header="Search Batch" HorizontalAlignment="Stretch" Margin="10,44,0,0" VerticalAlignment="Top"  Height="81">
                 <Grid>
 
                     <Label Content="Batch" HorizontalAlignment="Left" Margin="388,14,0,0" VerticalAlignment="Top" Width="74" FontWeight="Bold"/>

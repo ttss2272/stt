@@ -58,12 +58,13 @@
                 <DataGridTextColumn Header="BatchCode" Width="100" Binding="{Binding BatchCode}"></DataGridTextColumn>
                 <DataGridTextColumn Header="LectureDurTime" Width="100" Binding="{Binding LectureDuration}"></DataGridTextColumn>
                 <DataGridTextColumn Header="LunchBreak" Width="100" Binding="{Binding IsLunchBreak}"></DataGridTextColumn>
-                <DataGridTextColumn Header="LunchBreakStartTime" Width="100" Binding="{Binding LunchBreakStartTime}"></DataGridTextColumn>
-                <DataGridTextColumn Header="LunchBreakEndTime" Width="100" Binding="{Binding LunchBreakEndTime}"></DataGridTextColumn>
+                <DataGridTextColumn Header="BreakStartTime" Width="100" Binding="{Binding LunchBreakStartTime}"></DataGridTextColumn>
+                <DataGridTextColumn Header="BreakEndTime" Width="100" Binding="{Binding LunchBreakEndTime}"></DataGridTextColumn>
                 <DataGridTextColumn Header="MaxLectureDay" Width="100" Binding="{Binding MaxNoLecturesDay}"></DataGridTextColumn>
                 <DataGridTextColumn Header="MaxLectureWeek" Width="100" Binding="{Binding MaxNoLecturesWeek}"></DataGridTextColumn>
                 <DataGridTextColumn Header="MoreThanOneLec" Width="100" Binding="{Binding IsAllowMoreThanOneLectInBatch}"></DataGridTextColumn>
                 <DataGridTextColumn Header="MaxLectureRow" Width="100" Binding="{Binding MaxNoOfLecureInRow}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Status" Width="100" Binding="{Binding Status}"></DataGridTextColumn>
             </DataGrid.Columns>
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
