@@ -419,7 +419,7 @@ namespace SchoolManagement.Class
             try
             {
                  object item =  dgCopy.SelectedItem;
-                  string BranchName = Convert.ToString(((System.Data.DataRowView)(dgCopy.CurrentItem)).Row.ItemArray[0].ToString());
+                 string BranchName = Convert.ToString(((System.Data.DataRowView)(dgCopy.CurrentItem)).Row.ItemArray[0].ToString());
                  string ClassName = Convert.ToString(((System.Data.DataRowView)(dgCopy.CurrentItem)).Row.ItemArray[1].ToString());
                  string ShortName = Convert.ToString(((System.Data.DataRowView)(dgCopy.CurrentItem)).Row.ItemArray[2].ToString());
                  string Board = Convert.ToString(((System.Data.DataRowView)(dgCopy.CurrentItem)).Row.ItemArray[3].ToString());
