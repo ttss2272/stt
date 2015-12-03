@@ -66,6 +66,7 @@ namespace SchoolManagement.Room
         private void ClearFields()
         {
             cmbRoom.IsEnabled = true;
+            cmbBranch.IsEnabled = true;
             BindBranchName();
             BindRoom();
             BindHours();
@@ -116,6 +117,7 @@ namespace SchoolManagement.Room
                 {
                     gbrmavaday.IsEnabled = true;
                     cmbRoom.IsEnabled = false;
+                    cmbBranch.IsEnabled = false;
                     Clears();
                     GetRoomAvailableDetails(Convert.ToInt32(cmbRoom.SelectedValue));
                 }
@@ -131,7 +133,7 @@ namespace SchoolManagement.Room
 
         /* Created By:- Pranjali Vidhate
         * Created Date :- 19 Nov 2015
-        * Purpose:- To Save Room*/
+        * Purpose:- To Save Room Availability*/
 
         #region-------------------------------Save Details----------------------------------------
         private void btnSave_Click(object sender, RoutedEventArgs e)

@@ -50,7 +50,7 @@ namespace SchoolManagement.Room
         public bool Validate()
         {
 
-            if (cmbBranchName.SelectedIndex == -1)
+            if (cmbBranchName.SelectedIndex == 0)
             {
                 MessageBox.Show("Please Select Branch Name...");
                 cmbBranchName.Focus();
