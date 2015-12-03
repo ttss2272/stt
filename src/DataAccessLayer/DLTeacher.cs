@@ -174,7 +174,7 @@ namespace DataAccessLayer
             return ds;
         }
 
-        public DataSet BindTeacherOnTimeTable(int TeacherSubjectID)
+        public DataSet BindTeacherOnTimeTable(int SubjectID,int BatchID)
         {
             conn = con.getConnection();
             conn.Open();
@@ -182,7 +182,8 @@ namespace DataAccessLayer
             SqlCommand cmd = new SqlCommand("BindTeacherDropDown_SP", conn);
 
 
-            cmd.Parameters.AddWithValue("@TeacherSubjectID", TeacherSubjectID);
+            cmd.Parameters.AddWithValue("@SubjectID", SubjectID);
+            cmd.Parameters.AddWithValue("@BatchID", BatchID);
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
