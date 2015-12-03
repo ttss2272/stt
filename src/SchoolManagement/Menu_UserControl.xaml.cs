@@ -147,9 +147,17 @@ namespace SchoolManagement
         #region------------------------------------------------TeacherBatch Subject-----------------------------------
         private void menuTeacherSubject_Click(object sender, RoutedEventArgs e)
         {
-            Teacher.TeacherBatchSubject objTeacherBatchSubject = new Teacher.TeacherBatchSubject();
-            Close();
-            objTeacherBatchSubject.Show();
+            try
+            {
+                Teacher.TeacherBatchSubject objTeacherBatchSubject = new Teacher.TeacherBatchSubject();
+                Close();
+                objTeacherBatchSubject.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
         #endregion
 
