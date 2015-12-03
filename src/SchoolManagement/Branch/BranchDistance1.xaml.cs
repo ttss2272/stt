@@ -36,6 +36,9 @@ namespace SchoolManagement.Branch
             ClearFields();
         }
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 23  Nov 2015
+        * Purpose:- clear Fields*/
 
         #region-------------------------------ClearFields()----------------------------------------
         public void ClearFields()
@@ -56,6 +59,9 @@ namespace SchoolManagement.Branch
 
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 23  Nov 2015
+        * Purpose:- Validate All Fields*/
 
         #region-----------------------------------Validation------------------------------------------
         public bool Validate()
@@ -86,6 +92,9 @@ namespace SchoolManagement.Branch
 
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 23  Nov 2015
+        * Purpose:- SetParameters*/
 
         #region---------------------------------Setparamerter()-------------------------------------------
         public void Setparameter()
@@ -109,6 +118,9 @@ namespace SchoolManagement.Branch
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 23  Nov 2015
+        * Purpose:- Validate All Fields*/
 
         #region-------------------------------------Save()---------------------------------------------------
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -136,6 +148,10 @@ namespace SchoolManagement.Branch
             }
         }
         #endregion
+
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 23  Nov 2015
+        * Purpose:- Go Button Coding*/
 
         #region-------------------------------Go()--------------------------------------------------
 
@@ -181,6 +197,10 @@ namespace SchoolManagement.Branch
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 23  Nov 2015
+        * Purpose:- Bind Distance Grid */
+
         #region-------------------------BindDistance()-------------------------------------------------
 
         public void BindDistance()
@@ -204,6 +224,9 @@ namespace SchoolManagement.Branch
 
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 23  Nov 2015
+        * Purpose:- Bind Branch*/
 
         #region---------------------------BindBranch()-------------------------------------------------
 
@@ -254,6 +277,9 @@ namespace SchoolManagement.Branch
 
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 23  Nov 2015
+        * Purpose:- Branch Selection Change*/
 
         #region----------------------CmbBranch_SelectionChnaged()-------------------------------------------
         private void cmbFromBranch_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -279,6 +305,10 @@ namespace SchoolManagement.Branch
         }
 
         #endregion
+
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 24  Nov 2015
+        * Purpose:- GridView Click coding*/
 
         #region------------------------------GridViewClick()---------------------------------------------
         private void RowDouble_click(object sender, MouseButtonEventArgs e)
@@ -347,6 +377,10 @@ namespace SchoolManagement.Branch
             }
         }
         #endregion
+
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 24  Nov 2015
+        * Purpose:- Delete Distance*/
 
         #region------------------------------Delete()-------------------------------------------------
         private void btnDelete_Click(object sender, RoutedEventArgs e)
