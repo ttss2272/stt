@@ -45,15 +45,23 @@ namespace DataAccessLayer
             return ds;
         }
 
-        public DataSet BindTimeSlot(int BatchAvailableID, int BatchID, int Day)
+        public DataSet BindTimeSlot(int BatchAvailableID, int BatchID, int Day, int RoomAvailableID, int RoomID, int Day1, int TeacherAvailableID, int TeacherID, int Day2)
         {
             conn = con.getConnection();
             conn.Open();
 
             SqlCommand cmd = new SqlCommand("BindTimeSlotDropDown_SP", conn);
             cmd.Parameters.AddWithValue("@BatchAvailableID", BatchAvailableID);
-            cmd.Parameters.AddWithValue("@BatchID", BatchID);
+            cmd.Parameters.AddWithValue("@BatchID", BatchID);           
             cmd.Parameters.AddWithValue("@Day", Day);
+
+            cmd.Parameters.AddWithValue("@RoomAvailableID", RoomAvailableID);
+            cmd.Parameters.AddWithValue("@RoomID", RoomID);
+            cmd.Parameters.AddWithValue("@Day1", Day1);
+
+            cmd.Parameters.AddWithValue("@TeacherAvailableID", TeacherAvailableID);
+            cmd.Parameters.AddWithValue("@TeacherID", TeacherID);
+            cmd.Parameters.AddWithValue("@Day2", Day2);
             cmd.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
