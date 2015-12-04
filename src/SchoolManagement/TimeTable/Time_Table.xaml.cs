@@ -41,7 +41,7 @@ namespace SchoolManagement.TimeTable
         BLRoom objRoom = new BLRoom();
 
 
-        int TimeTableID, BatchID, RoomID, ClassID, TeacherID, TeacherSubjectID, SubjectID, BranchID, BatchAvailableID, UpID, UpdatedByUserID, IsActive, IsDeleted;
+        int TimeTableID, BatchID, RoomID, ClassID, TeacherID, TeacherSubjectID, SubjectID, BranchID, BatchAvailableID, UpID, TimeTableDetailID, UpdatedByUserID, IsActive, IsDeleted;
         String UpdatedDate, LectStartTime, LectEndTime, SlotTime, Day;
         DateTime TTStartDate;
 
@@ -81,8 +81,8 @@ namespace SchoolManagement.TimeTable
                 if (Validate())
                 {
                     Setparameter();
-                    string Result = objTimeTable.SaveTimeTable(TimeTableID, TTStartDate, BatchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
-                    if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
+                    string Result = objTimeTable.SaveTimeTable(TimeTableID, TimeTableDetailID, TTStartDate, BatchID, RoomID, Day, LectStartTime, LectEndTime, TeacherSubjectID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
+                    if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                     {
                         MessageBox.Show(Result, "Save Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
                         ClearFields();
@@ -111,15 +111,16 @@ namespace SchoolManagement.TimeTable
         public void Setparameter()
         {
             TimeTableID = UpID;
-            BranchID = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
-            ClassID = Convert.ToInt32(cbClassName.SelectedValue.ToString());
+            TimeTableDetailID = UpID;
+            //BranchID = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
+            //ClassID = Convert.ToInt32(cbClassName.SelectedValue.ToString());
             BatchID = Convert.ToInt32(cbBatchName.SelectedValue.ToString());
             TTStartDate = Convert.ToDateTime(dpTTStartDate.SelectedDate.Value.Date.ToString());
             TeacherSubjectID = Convert.ToInt32(cbSubjectName.SelectedValue.ToString());
             RoomID = Convert.ToInt32(cbRoomName.SelectedValue.ToString());
             TeacherID = Convert.ToInt32(cbTeacherName.SelectedValue.ToString());
-            Day = cmbDayName.SelectedValue.ToString();
-            SlotTime = cbTimeSlot.SelectedValue.ToString();
+            Day = cmbDayName.Text;
+            SlotTime = cbTimeSlot.Text;
             string[] a = SlotTime.Split('-');
             LectStartTime = a[0];
             LectEndTime = a[1];
