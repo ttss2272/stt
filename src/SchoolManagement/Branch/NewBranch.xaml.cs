@@ -538,7 +538,7 @@ namespace SchoolManagement.Branch
             try
             {
                 DataSet ds = obj_AddBranch.GetBranchCount();
-                if (ds.Tables[0].Rows.Count > 0)
+                if (ds.Tables[0].Rows.Count > 1)
                 {
                     cmbSelectType.Text = "Branch";
                     cmbSelectType.IsEnabled = false;
