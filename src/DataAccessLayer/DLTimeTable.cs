@@ -71,7 +71,7 @@ namespace DataAccessLayer
         }
 
 
-        public string SaveTimeTable(int TimeTableID, int TimeTableDetailID, string TTStartDate, int BatchID, int RoomID, string Day, string LectStartTime, string LectEndTime, int TeacherSubjectID, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
+        public string SaveTimeTable(int TimeTableID, int TimeTableDetailID, DateTime TTStartDate, int BatchID, int RoomID, string Day, string LectStartTime, string LectEndTime, int TeacherSubjectID, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
         {
             string Result = null;
 
