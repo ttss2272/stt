@@ -42,8 +42,8 @@ namespace SchoolManagement.TimeTable
 
 
         int TimeTableID, BatchID, RoomID, ClassID, TeacherID, TeacherSubjectID, SubjectID, BranchID, BatchAvailableID, UpID, TimeTableDetailID, UpdatedByUserID, IsActive, IsDeleted;
-        String UpdatedDate, LectStartTime, LectEndTime, SlotTime, Day;
-        DateTime TTStartDate;
+        string UpdatedDate, LectStartTime, LectEndTime, SlotTime, Day;
+        string TTStartDate;
 
         #endregion
         /*
@@ -86,6 +86,7 @@ namespace SchoolManagement.TimeTable
                     {
                         MessageBox.Show(Result, "Save Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
                         ClearFields();
+                        BindGridviewTimeTable();
                     }
                     else
                     {
@@ -117,7 +118,7 @@ namespace SchoolManagement.TimeTable
                 //BranchID = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
                 //ClassID = Convert.ToInt32(cbClassName.SelectedValue.ToString());
                 BatchID = Convert.ToInt32(cbBatchName.SelectedValue.ToString());
-                TTStartDate = Convert.ToDateTime(dpTTStartDate.SelectedDate.Value.Date.ToString());
+                TTStartDate =dpTTStartDate.SelectedDate.Value.Date.ToString();
                 TeacherSubjectID = Convert.ToInt32(cbSubjectName.SelectedValue.ToString());
                 RoomID = Convert.ToInt32(cbRoomName.SelectedValue.ToString());
                 TeacherID = Convert.ToInt32(cbTeacherName.SelectedValue.ToString());
@@ -147,7 +148,7 @@ namespace SchoolManagement.TimeTable
                 //BranchID = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
                 //ClassID = Convert.ToInt32(cbClassName.SelectedValue.ToString());
                 BatchID = Convert.ToInt32(cbBatchName1.SelectedValue.ToString());
-                TTStartDate = Convert.ToDateTime(dpTTStartDate.SelectedDate.Value.Date.ToString());
+                TTStartDate = dpTTStartDate.SelectedDate.Value.Date.ToString();
                 TeacherSubjectID = Convert.ToInt32(cbSubjectName1.SelectedValue.ToString());
                 RoomID = Convert.ToInt32(cbRoomName1.SelectedValue.ToString());
                 TeacherID = Convert.ToInt32(cbTeacherName1.SelectedValue.ToString());
@@ -176,7 +177,7 @@ namespace SchoolManagement.TimeTable
                 //BranchID = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
                 //ClassID = Convert.ToInt32(cbClassName.SelectedValue.ToString());
                 BatchID = Convert.ToInt32(cbBatchName2.SelectedValue.ToString());
-                TTStartDate = Convert.ToDateTime(dpTTStartDate.SelectedDate.Value.Date.ToString());
+                TTStartDate = dpTTStartDate.SelectedDate.Value.Date.ToString();
                 TeacherSubjectID = Convert.ToInt32(cbSubjectName2.SelectedValue.ToString());
                 RoomID = Convert.ToInt32(cbRoomName2.SelectedValue.ToString());
                 TeacherID = Convert.ToInt32(cbTeacherName2.SelectedValue.ToString());
@@ -1220,6 +1221,19 @@ namespace SchoolManagement.TimeTable
         * Updated Date:- 
         * Purpose:-Get All details According To branch And Type Of View
         */
+
+        #region-----------BindGridviewTimeTable-------------------------
+        private void BindGridviewTimeTable()
+        {
+            DataSet ds = objTimeTable.BindGridTimeTable();
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                dgTimeTable.DataContext = null;
+                dgTimeTable.ItemsSource = ds.Tables[0].DefaultView;
+            }
+            dgTimeTable.Items.Refresh();
+        }
+        #endregion
 
         #region----------------------------------------------GetDetails()-------------------------------------------------------
         private void GetDetails()
