@@ -110,34 +110,96 @@ namespace SchoolManagement.TimeTable
         #region---------------------------------Setparamerter()-------------------------------------------
         public void Setparameter()
         {
-            TimeTableID = UpID;
-            TimeTableDetailID = UpID;
-            //BranchID = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
-            //ClassID = Convert.ToInt32(cbClassName.SelectedValue.ToString());
-            BatchID = Convert.ToInt32(cbBatchName.SelectedValue.ToString());
-            TTStartDate = Convert.ToDateTime(dpTTStartDate.SelectedDate.Value.Date.ToString());
-            TeacherSubjectID = Convert.ToInt32(cbSubjectName.SelectedValue.ToString());
-            RoomID = Convert.ToInt32(cbRoomName.SelectedValue.ToString());
-            TeacherID = Convert.ToInt32(cbTeacherName.SelectedValue.ToString());
-            Day = cmbDayName.Text;
-            SlotTime = cbTimeSlot.Text;
-            string[] a = SlotTime.Split('-');
-            LectStartTime = a[0];
-            LectEndTime = a[1];
-            UpdatedByUserID = 1;
-            UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-            if (rdoActive.IsChecked == true)
+            if (rdoClassWise.IsChecked == true)
             {
-                IsActive = 1;
-                IsDeleted = 0;
-            }
-            else if (rdoInActive.IsChecked == true)
-            {
-                IsActive = 0;
-                IsDeleted = 0;
-            }
+                TimeTableID = UpID;
+                TimeTableDetailID = UpID;
+                //BranchID = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
+                //ClassID = Convert.ToInt32(cbClassName.SelectedValue.ToString());
+                BatchID = Convert.ToInt32(cbBatchName.SelectedValue.ToString());
+                TTStartDate = Convert.ToDateTime(dpTTStartDate.SelectedDate.Value.Date.ToString());
+                TeacherSubjectID = Convert.ToInt32(cbSubjectName.SelectedValue.ToString());
+                RoomID = Convert.ToInt32(cbRoomName.SelectedValue.ToString());
+                TeacherID = Convert.ToInt32(cbTeacherName.SelectedValue.ToString());
+                Day = cmbDayName.Text;
+                SlotTime = cbTimeSlot.Text;
+                string[] a = SlotTime.Split('-');
+                LectStartTime = a[0];
+                LectEndTime = a[1];
+                UpdatedByUserID = 1;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                if (rdoActive.IsChecked == true)
+                {
+                    IsActive = 1;
+                    IsDeleted = 0;
+                }
+                else if (rdoInActive.IsChecked == true)
+                {
+                    IsActive = 0;
+                    IsDeleted = 0;
+                }
 
-        }
+            }
+            if (rdoRoomWise.IsChecked == true)
+            {
+                TimeTableID = UpID;
+                TimeTableDetailID = UpID;
+                //BranchID = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
+                //ClassID = Convert.ToInt32(cbClassName.SelectedValue.ToString());
+                BatchID = Convert.ToInt32(cbBatchName1.SelectedValue.ToString());
+                TTStartDate = Convert.ToDateTime(dpTTStartDate.SelectedDate.Value.Date.ToString());
+                TeacherSubjectID = Convert.ToInt32(cbSubjectName1.SelectedValue.ToString());
+                RoomID = Convert.ToInt32(cbRoomName1.SelectedValue.ToString());
+                TeacherID = Convert.ToInt32(cbTeacherName1.SelectedValue.ToString());
+                Day = cbDay.Text;
+                SlotTime = cbTimeSlot1.Text;
+                string[] a = SlotTime.Split('-');
+                LectStartTime = a[0];
+                LectEndTime = a[1];
+                UpdatedByUserID = 1;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                if (rdoActive1.IsChecked == true)
+                {
+                    IsActive = 1;
+                    IsDeleted = 0;
+                }
+                else if (rdoInActive1.IsChecked == false)
+                {
+                    IsActive = 0;
+                    IsDeleted = 0;
+                }
+            }
+            if (rdoTeacherWise.IsChecked == true)
+            {
+                TimeTableID = UpID;
+                TimeTableDetailID = UpID;
+                //BranchID = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
+                //ClassID = Convert.ToInt32(cbClassName.SelectedValue.ToString());
+                BatchID = Convert.ToInt32(cbBatchName2.SelectedValue.ToString());
+                TTStartDate = Convert.ToDateTime(dpTTStartDate.SelectedDate.Value.Date.ToString());
+                TeacherSubjectID = Convert.ToInt32(cbSubjectName2.SelectedValue.ToString());
+                RoomID = Convert.ToInt32(cbRoomName2.SelectedValue.ToString());
+                TeacherID = Convert.ToInt32(cbTeacherName2.SelectedValue.ToString());
+                Day = cbDay2.Text;
+                SlotTime = cbTimeSlot2.Text;
+                string[] a = SlotTime.Split('-');
+                LectStartTime = a[0];
+                LectEndTime = a[1];
+                UpdatedByUserID = 1;
+                UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                if (rdoActive2.IsChecked == true)
+                {
+                    IsActive = 1;
+                    IsDeleted = 0;
+                }
+                else if (rdoInActive2.IsChecked == false)
+                {
+                    IsActive = 0;
+                    IsDeleted = 0;
+                }
+            }
+        }        
+        
         #endregion
 
 
@@ -1206,6 +1268,7 @@ namespace SchoolManagement.TimeTable
         }
         #endregion
 
+        #region---------------cbRoomName1_SelectionChanged--------------
         private void cbRoomName1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbRoomName1.SelectedValue != "0" && cbRoomName1.SelectedIndex != 0)
@@ -1213,7 +1276,9 @@ namespace SchoolManagement.TimeTable
                 BindClassName();
             }
         }
+        #endregion
 
+        #region-----------cbBatchName1_SelectionChanged-------------
         private void cbBatchName1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbBatchName1.SelectedValue.ToString() != "0" && cbBatchName1.SelectedIndex != 0)
@@ -1221,34 +1286,39 @@ namespace SchoolManagement.TimeTable
                 BindSubjectName();
             }
         }
+        #endregion
 
+        #region-----------cbDay_SelectionChanged---------------
         private void cbDay_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbDay.SelectedValue.ToString() != "0" && cbDay.SelectedIndex != 0)
             {
                 BindTimeSlot();
             }
-
         }
+        #endregion
 
+        #region-------------cbClassName2_SelectionChanged-------------
         private void cbClassName2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbClassName2.SelectedValue.ToString() != "0" && cbClassName2.SelectedIndex != 0)
             {
                 BindBatchName();
             }
-
         }
+        #endregion
 
+        #region----------cbBatchName2_SelectionChanged-----------
         private void cbBatchName2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbBatchName2.SelectedValue.ToString() != "0" && cbBatchName2.SelectedIndex != 0)
             {
                 BindSubjectName();
             }
-
         }
+        #endregion
 
+        #region-----------cbTeacherName2_SelectionChanged-----------
         private void cbTeacherName2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbTeacherName2.SelectedValue.ToString() != "0" && cbTeacherName2.SelectedIndex != 0)
@@ -1256,7 +1326,9 @@ namespace SchoolManagement.TimeTable
                 BindDay();
             }
         }
+        #endregion
 
+        #region-----------cbDay2_SelectionChanged-------------
         private void cbDay2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbDay2.SelectedValue.ToString() != "0" && cbDay2.SelectedIndex != 0)
@@ -1264,7 +1336,7 @@ namespace SchoolManagement.TimeTable
                 BindTimeSlot();
             }
         }
-
+        #endregion
     }
 }
     
