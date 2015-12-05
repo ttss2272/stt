@@ -11,7 +11,7 @@ namespace BusinessLayer
     {
         DLTimeTable objTimeTable = new DLTimeTable();
 
-        public string SaveTimeTable(int TimeTableID,int TimeTableDetailID,DateTime TTStartDate, int BatchID,int RoomID,string Day,string LectStartTime,string LectEndTime,int TeacherSubjectID,int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
+        public string SaveTimeTable(int TimeTableID,int TimeTableDetailID,string TTStartDate, int BatchID,int RoomID,string Day,string LectStartTime,string LectEndTime,int TeacherSubjectID,int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
         {
             string Result = objTimeTable.SaveTimeTable(TimeTableID, TimeTableDetailID, TTStartDate, BatchID, RoomID, Day, LectStartTime, LectEndTime, TeacherSubjectID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
             return Result;
@@ -33,6 +33,12 @@ namespace BusinessLayer
         {
             DataSet ds = objTimeTable.BindTimeSlot(BatchAvailableID,BatchID,Day,RoomAvailableID,RoomID,Day1,TeacherAvailableID,TeacherID,Day2);
                 return ds;
+        }
+        
+        public DataSet BindGridTimeTable()
+        {
+            DataSet ds = objTimeTable.BindGridTimeTable();
+            return ds;
         }
     }
 }
