@@ -113,7 +113,8 @@
         </GroupBox>
         <DataGrid AutoGenerateColumns="False" Height="155" HorizontalAlignment="Left" Margin="228,415,0,0" Name="dgTimeTable" ItemsSource="{Binding}" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" VerticalAlignment="Top" Width="600">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding TimeTableID}" Header="Teacher ID" Visibility="Hidden"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding TimeTableID}" Header="TimeTableID" Visibility="Hidden"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding TimeTableDetailID}" Header="TimeTableDetailID" Visibility="Hidden"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding BranchName}" Header="Branch Name" Width="250"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding TimeTableStartDate}" Header="Time Table Start Date" Width="250"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding ClassName}" Header="Class Name" Width="250"></DataGridTextColumn>
@@ -124,8 +125,16 @@
                 <DataGridTextColumn Binding="{Binding Day}" Header="Day" Width="250"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding LectStartTime}" Header="Lect Start Time" Width="160"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding LectEndTime}" Header="Lect End Time" Width="250"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding IsActive}" Header="Active" Width="160" Visibility="Hidden"/>
+                <DataGridTextColumn Binding="{Binding IsDeleted}" Header="Delete" Width="160" Visibility="Hidden"/>
                 <DataGridTextColumn Binding="{Binding Status}" Header="Status" Width="160"></DataGridTextColumn>
-            </DataGrid.Columns>                   
+            </DataGrid.Columns>
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
+                </Style>
+            </DataGrid.ItemContainerStyle> 
+
         </DataGrid>
             
     </Grid>
