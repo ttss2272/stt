@@ -6,57 +6,59 @@
         <StackPanel>
             <my:Menu_UserControl HorizontalAlignment="Left" x:Name="menu_UserControl1" VerticalAlignment="Top" />
         </StackPanel>
-        <GroupBox Header="Subject" HorizontalAlignment="Left" Margin="6,32,6,0" VerticalAlignment="Top" Height="143" Width="479" Name="grpMain">
-            <Grid>
-                <Label Content="Subject Name" HorizontalAlignment="Left" Margin="33,10,0,0" VerticalAlignment="Top" Width="87" Name="lblSubjectname"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="205,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="163" Name="txtSubjectName" TextChanged="txtSubjectName_TextChanged" TabIndex="1"/>
-                <Label Content="Subject Short Name" HorizontalAlignment="Left" Margin="33,50,0,0" VerticalAlignment="Top" Width="124" Name="lblSubShortName"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="205,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="163" Name="txtSubjectShortName" TextChanged="txtSubjectShortName_TextChanged" TabIndex="2"/>
-                <Label Content="lblhdn" HorizontalAlignment="Left" Margin="406,9,0,0" VerticalAlignment="Top" Visibility="Collapsed"/>
-                <RadioButton Content="Active" HorizontalAlignment="Left" Margin="204,88,0,0" VerticalAlignment="Top" GroupName="Status" IsChecked="True" Name="cmbActive" TabIndex="3"/>
-                <RadioButton Content="InActive" HorizontalAlignment="Left" Margin="306,88,0,0" VerticalAlignment="Top" GroupName="Status" Name="cmbDelete" TabIndex="4"/>
-                <Label Content="Status" HorizontalAlignment="Left" Margin="35,81,0,0" VerticalAlignment="Top" Width="71" Name="lblStatus"/>
-                <Label Content="*" HorizontalAlignment="Left" Margin="178,10,0,0" VerticalAlignment="Top" ToolTip="Mednatory" FontWeight="Bold" Foreground="Red"/>
-                <Label Content="*" HorizontalAlignment="Left" Margin="178,50,0,0" VerticalAlignment="Top" ToolTip="Mednatory" FontWeight="Bold" Foreground="Red" RenderTransformOrigin="0.4,2.077"/>
-                <Label Content="*" HorizontalAlignment="Left" Margin="178,81,0,0" VerticalAlignment="Top" ToolTip="Mednatory" FontWeight="Bold" Foreground="Red" RenderTransformOrigin="0.4,2.077"/>
+        <Grid HorizontalAlignment="Center">
+            <GroupBox Header="Subject" HorizontalAlignment="Left" Margin="6,32,6,0" VerticalAlignment="Top" Height="143" Width="479" Name="grpMain">
+                <Grid>
+                    <Label Content="Subject Name" HorizontalAlignment="Left" Margin="33,10,0,0" VerticalAlignment="Top" Width="87" Name="lblSubjectname"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="205,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="163" Name="txtSubjectName" TextChanged="txtSubjectName_TextChanged" TabIndex="1"/>
+                    <Label Content="Subject Short Name" HorizontalAlignment="Left" Margin="33,50,0,0" VerticalAlignment="Top" Width="124" Name="lblSubShortName"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="205,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="163" Name="txtSubjectShortName" TextChanged="txtSubjectShortName_TextChanged" TabIndex="2"/>
+                    <Label Content="lblhdn" HorizontalAlignment="Left" Margin="406,9,0,0" VerticalAlignment="Top" Visibility="Collapsed"/>
+                    <RadioButton Content="Active" HorizontalAlignment="Left" Margin="204,88,0,0" VerticalAlignment="Top" GroupName="Status" IsChecked="True" Name="cmbActive" TabIndex="3"/>
+                    <RadioButton Content="InActive" HorizontalAlignment="Left" Margin="306,88,0,0" VerticalAlignment="Top" GroupName="Status" Name="cmbDelete" TabIndex="4"/>
+                    <Label Content="Status" HorizontalAlignment="Left" Margin="35,81,0,0" VerticalAlignment="Top" Width="71" Name="lblStatus"/>
+                    <Label Content="*" HorizontalAlignment="Left" Margin="178,10,0,0" VerticalAlignment="Top" ToolTip="Mednatory" FontWeight="Bold" Foreground="Red"/>
+                    <Label Content="*" HorizontalAlignment="Left" Margin="178,50,0,0" VerticalAlignment="Top" ToolTip="Mednatory" FontWeight="Bold" Foreground="Red" RenderTransformOrigin="0.4,2.077"/>
+                    <Label Content="*" HorizontalAlignment="Left" Margin="178,81,0,0" VerticalAlignment="Top" ToolTip="Mednatory" FontWeight="Bold" Foreground="Red" RenderTransformOrigin="0.4,2.077"/>
 
-            </Grid>
-        </GroupBox>
-
-
-        <Button Content="Save" HorizontalAlignment="Left" Margin="93,189,0,0" VerticalAlignment="Top" Width="75" Name="btnSave" FontWeight="SemiBold" Click="btnSave_Click" TabIndex="5" Height="30" />
-        <Button Content="Clear" HorizontalAlignment="Left" Margin="322,189,0,0" VerticalAlignment="Top" Width="75" Name="btnClear" FontWeight="SemiBold" Height="30" Click="btnClear_Click" TabIndex="6"/>
+                </Grid>
+            </GroupBox>
 
 
-
-
-        <GroupBox Header="Subject List" HorizontalAlignment="left" Margin="0,279,2,0" VerticalAlignment="Top" Height="217" Width="489">
-            <Grid>
-                <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Height="195" Width="477" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" Name="grdvSubject" CanUserResizeColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding SubjectID}" Header="Subject ID" Visibility="Hidden"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding SubjectName}" Header="Subject Name" Width="150"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding SubjectShortName}" Header="Subject Short Name" Width="180"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding Status}" Header="Satus" Width="200"></DataGridTextColumn>
-                    </DataGrid.Columns>
-                    <DataGrid.ItemContainerStyle>
-                        <Style TargetType="DataGridRow">
-                            <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
-                        </Style>
-                    </DataGrid.ItemContainerStyle>
-
-                </DataGrid>
+            <Button Content="Save" HorizontalAlignment="Left" Margin="93,189,0,0" VerticalAlignment="Top" Width="75" Name="btnSave" FontWeight="SemiBold" Click="btnSave_Click" TabIndex="5" Height="30" />
+            <Button Content="Clear" HorizontalAlignment="Left" Margin="322,189,0,0" VerticalAlignment="Top" Width="75" Name="btnClear" FontWeight="SemiBold" Height="30" Click="btnClear_Click" TabIndex="6"/>
 
 
 
-            </Grid>
-        </GroupBox>
-        <Button Content="Delete" HorizontalAlignment="Left" Margin="203,189,0,0" VerticalAlignment="Top" Width="83" Height="30" Name="btnDelete" FontWeight="SemiBold" Click="btnDelete_Click"/>
-        <Label Content="Search Subject" HorizontalAlignment="Left" Margin="40,252,0,0" VerticalAlignment="Top" Width="96" Name="lblSearch" />
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="178,256,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="143" Name="txtSearchSubject"/>
-        <Button Content="Search" HorizontalAlignment="Left" Margin="366,252,0,0" VerticalAlignment="Top" Width="83" Height="27" Name="btnSearch" FontWeight="SemiBold" Click="btnSearch_Click" TabIndex="7"/>
-        <!--<StackPanel>
+
+            <GroupBox Header="Subject List" HorizontalAlignment="left" Margin="0,279,2,0" VerticalAlignment="Top" Height="217" Width="489">
+                <Grid>
+                    <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Height="195" Width="477" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" Name="grdvSubject" CanUserResizeColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding SubjectID}" Header="Subject ID" Visibility="Hidden"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding SubjectName}" Header="Subject Name" Width="150"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding SubjectShortName}" Header="Subject Short Name" Width="180"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Status}" Header="Satus" Width="200"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                        <DataGrid.ItemContainerStyle>
+                            <Style TargetType="DataGridRow">
+                                <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
+                            </Style>
+                        </DataGrid.ItemContainerStyle>
+
+                    </DataGrid>
+
+
+
+                </Grid>
+            </GroupBox>
+            <Button Content="Delete" HorizontalAlignment="Left" Margin="203,189,0,0" VerticalAlignment="Top" Width="83" Height="30" Name="btnDelete" FontWeight="SemiBold" Click="btnDelete_Click"/>
+            <Label Content="Search Subject" HorizontalAlignment="Left" Margin="40,252,0,0" VerticalAlignment="Top" Width="96" Name="lblSearch" />
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="178,256,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="143" Name="txtSearchSubject"/>
+            <Button Content="Search" HorizontalAlignment="Left" Margin="366,252,0,0" VerticalAlignment="Top" Width="83" Height="27" Name="btnSearch" FontWeight="SemiBold" Click="btnSearch_Click" TabIndex="7"/>
+            <!--<StackPanel>
             <my:Menu_UserControl HorizontalAlignment="Left" x:Name="menu_UserControl1" VerticalAlignment="Top" />
         </StackPanel>-->
+        </Grid>
     </Grid>
 </Window>
