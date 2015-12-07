@@ -75,21 +75,6 @@ namespace SchoolManagement.User
                 txtEmailID.Focus();
                 return false;
             }
-            else if (txtEmailID.Text != "")
-            {
-                string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
-                @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
-                @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
-                Regex re = new Regex(strRegex);
-                if (re.IsMatch(txtEmailID.Text))
-                    return (true);
-                else
-                {
-                    MessageBox.Show("Please Enter Poper Email ID");
-                    txtEmailID.Focus();
-                    return (false);
-                }
-            }
             else if (string.IsNullOrEmpty(txtContactNo.Text) || string.IsNullOrWhiteSpace(txtContactNo.Text))
             {
                 MessageBox.Show("Please Enter contact Number..");
@@ -99,7 +84,7 @@ namespace SchoolManagement.User
             else if (txtContactNo.Text.Length != 0 && txtContactNo.Text.Length < 10)
             {
                 MessageBox.Show("Contact Number Must Be 10 Digits..");
-                txtLoginID.Focus();
+                txtContactNo.Focus();
                 return false;
             }
             else if (System.Text.RegularExpressions.Regex.IsMatch(txtContactNo.Text, "[^0-9]"))
@@ -125,6 +110,21 @@ namespace SchoolManagement.User
             {
                 MessageBox.Show("Please Select User Type", "User Type", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
+            }
+            else if (txtEmailID.Text != "")
+            {
+                string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
+                @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+                @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+                Regex re = new Regex(strRegex);
+                if (re.IsMatch(txtEmailID.Text))
+                    return (true);
+                else
+                {
+                    MessageBox.Show("Please Enter Poper Email ID");
+                    txtEmailID.Focus();
+                    return (false);
+                }
             }
             else
             {
@@ -398,8 +398,8 @@ namespace SchoolManagement.User
                 txtLoginID.Text = ((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[5].ToString();
                 txtPassword.Password = ((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[6].ToString();
                 cmbUserType.SelectedValue = ((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[9].ToString();
-                bool act = Convert.ToBoolean(((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[10].ToString());
-                bool del = Convert.ToBoolean(((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[11].ToString());
+                bool act = Convert.ToBoolean(((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[11].ToString());
+                bool del = Convert.ToBoolean(((System.Data.DataRowView)(gvUser.CurrentItem)).Row.ItemArray[12].ToString());
 
                 if (act == true && del == false)
                 {

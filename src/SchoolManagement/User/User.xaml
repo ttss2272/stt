@@ -50,8 +50,8 @@
                         <DataGridTextColumn Binding="{Binding EmailID}" Header="Email ID" Width="150"></DataGridTextColumn>
                         <DataGridTextColumn Binding="{Binding ContactNo}" Header="Contact Number" Width="80"></DataGridTextColumn>
                         <DataGridTextColumn Binding="{Binding UserName}" Header="Username" Width="100"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding Password}" Header="Password" Width="100"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding UserTypeName}" Header="User Type" Width="50"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Password}" Header="Password" Width="100" Visibility="Hidden"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding UserType}" Header="User Type" Width="50"></DataGridTextColumn>
                         <DataGridTextColumn Binding="{Binding Status}" Header="Status" Width="100"></DataGridTextColumn>
                     </DataGrid.Columns>
                     <DataGrid.ItemContainerStyle>
