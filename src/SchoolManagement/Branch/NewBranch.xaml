@@ -6,6 +6,7 @@
         <StackPanel>
             <my:Menu_UserControl HorizontalAlignment="Left" x:Name="menu_UserControl1" VerticalAlignment="Top" />
         </StackPanel>
+        <Grid HorizontalAlignment="Center">
         <GroupBox Header="Branch Details" Height="271" HorizontalAlignment="Left" Margin="12,42,0,0" Name="groupBox1" VerticalAlignment="Top" Width="683">
             <Grid Height="240">
                 <Label Content="Branch Name" FontSize="13" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="54,90,0,0" Name="lblInstName" VerticalAlignment="Top" />
@@ -68,6 +69,6 @@
         <Label Content="Search Branch" HorizontalAlignment="Left" Margin="155,394,0,0" Name="lblSearch" VerticalAlignment="Top" Width="96" FontWeight="Bold" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="271,396,0,0" Name="txtSearchBranch" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" TabIndex="11" />
         <Button Content="Search" FontWeight="SemiBold" Height="27" HorizontalAlignment="Left" Margin="433,394,0,0" Name="btnSearch" TabIndex="12" VerticalAlignment="Top" Width="83" Click="btnSearch_Click" />
-        
+        </Grid>
     </Grid>
 </Window>

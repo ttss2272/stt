@@ -30,6 +30,7 @@ namespace SchoolManagement.Branch
             this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
             this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
         }
+        
         /*
       * Created By:- Sameer Shinde
       * Ctreated Date :- 5 Nov 2015
@@ -41,6 +42,7 @@ namespace SchoolManagement.Branch
         string BranchName, BranchCode, InstituteName, Logo, UpdatedDate, strName, imageName, targetPath,fileName;
         string filepath;
         #endregion
+        
         /*
        * Created By:- Sameer Shinde
        * Ctreated Date :- 5 Nov 2015
@@ -65,6 +67,7 @@ namespace SchoolManagement.Branch
             }
         }
         #endregion
+        
         /*
        * Created By:- Sameer Shinde
        * Ctreated Date :- 5 Nov 2015
@@ -95,6 +98,7 @@ namespace SchoolManagement.Branch
             }
         }
         #endregion
+        
         /*
        * Created By:- Sameer Shinde
        * Ctreated Date :- 5 Nov 2015
@@ -117,6 +121,7 @@ namespace SchoolManagement.Branch
             btnDelete.IsEnabled = false;
         }
         #endregion
+        
         /*
        * Created By:- Sameer Shinde
        * Ctreated Date :- 5 Nov 2015
@@ -152,6 +157,7 @@ namespace SchoolManagement.Branch
             IsDelete = 0;
         }
         #endregion
+        
         /*
        * Created By:- Sameer Shinde
        * Ctreated Date :- 5 Nov 2015
@@ -208,6 +214,7 @@ namespace SchoolManagement.Branch
             }
         }
         #endregion
+        
         /*
        * Created By:- Sameer Shinde
        * Ctreated Date :- 5 Nov 2015
@@ -237,6 +244,7 @@ namespace SchoolManagement.Branch
             }
         }
         #endregion
+        
         /*
        * Created By:- Sameer Shinde
        * Ctreated Date :- 5 Nov 2015
@@ -267,6 +275,7 @@ namespace SchoolManagement.Branch
             }
         }
         #endregion
+        
         /*
        * Created By:- Sameer Shinde
        * Ctreated Date :- 5 Nov 2015
@@ -282,6 +291,7 @@ namespace SchoolManagement.Branch
             }
         }
         #endregion
+        
         /*
        * Created By:- Sameer Shinde
        * Ctreated Date :- 5 Nov 2015
@@ -372,6 +382,7 @@ namespace SchoolManagement.Branch
             return appStartPath;
         }
         #endregion
+        
         /*
        * Created By:- Sameer Shinde
        * Ctreated Date :- 5 Nov 2015
@@ -404,6 +415,7 @@ namespace SchoolManagement.Branch
             }
         }
         #endregion
+        
         /*
        * Created By:- Sameer Shinde
        * Ctreated Date :- 5 Nov 2015
@@ -436,6 +448,7 @@ namespace SchoolManagement.Branch
             }
         }
         #endregion
+      
         /*
        * Created By:- Sameer Shinde
        * Ctreated Date :- 5 Nov 2015
@@ -449,7 +462,8 @@ namespace SchoolManagement.Branch
 
         #endregion
       
-   /* Created By:- Sameer Shinde
+   
+        /* Created By:- Sameer Shinde
    * Created Date :- 5 Nov 2015
    * Purpose:- griddview cell click
    */
@@ -514,7 +528,8 @@ namespace SchoolManagement.Branch
             }
         }
         #endregion
-          /*
+    
+        /*
        * Created By:- Sameer Shinde
        * Created Date :- 5 Nov 2015
        * Purpose:- Window Load event
@@ -596,7 +611,8 @@ namespace SchoolManagement.Branch
         }
         
         #endregion
-          /*
+      
+        /*
        * Created By:- Sameer Shinde
        * Created Date :- 6 Nov 2015
        * Purpose:- Search Branch name
@@ -635,33 +651,62 @@ namespace SchoolManagement.Branch
         }
         #endregion
 
+        /*
+         * Updated By :- PriTesh D. Sortee
+         * Updated Date :- 07 Dec 2015
+         * Purpose:- Add try Catch block
+         */
+        #region------------------------------------------cmbSelect type_Selection Changed--------------------------------------
         private void cmbSelectType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DisplayInstituteNameField();
+            try
+            {
+                DisplayInstituteNameField();
+            }
+            catch (Exception ex)
+            {
+                 MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
-
+        #endregion
+        
+        /*
+         * Updated By :- PriTesh D. Sortee
+         * Updated Date :- 07 Dec 2015
+         * Purpose:- txtbranchcode textchanged Add Try CatchBlock
+         */
+        #region-----------------------------------txtBrachcode_textChanged--------------------------------------
         private void txtBranchCode_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (txtBranchCode.Text != "")
+            try
             {
-                if (txtBranchCode.Text.Length > 0 && txtBranchCode.Text.Length == 1)
+                if (txtBranchCode.Text != "")
                 {
-                    if (System.Text.RegularExpressions.Regex.IsMatch(txtBranchCode.Text, "^[a-zA-Z]"))
+                    if (txtBranchCode.Text.Length > 0 && txtBranchCode.Text.Length == 1)
                     {
-                       // MessageBox.Show("Please Enter Branch Code in Alphabate and Number", "Branch Code", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Please Enter First Characerter Alphabate", "Branch Code", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        txtBranchCode.Text = "";
-                        txtBranchCode.Focus();
-                    }
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtBranchCode.Text, "^[a-zA-Z]"))
+                        {
+                            // MessageBox.Show("Please Enter Branch Code in Alphabate and Number", "Branch Code", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please Enter First Characerter Alphabate", "Branch Code", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtBranchCode.Text = "";
+                            txtBranchCode.Focus();
+                        }
 
+                    }
                 }
             }
-        }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
 
-        
-        
+        }
+        #endregion
+
+
     }
 }
