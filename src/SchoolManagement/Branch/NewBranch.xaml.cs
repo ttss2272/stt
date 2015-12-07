@@ -118,6 +118,7 @@ namespace SchoolManagement.Branch
             rbtnActive.IsChecked = true;
             btnSave.Content = "Save";
             txtSearchBranch.Text = "";
+            BindGridview();
             btnDelete.IsEnabled = false;
         }
         #endregion
