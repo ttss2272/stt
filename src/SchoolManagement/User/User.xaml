@@ -40,7 +40,7 @@
                 <PasswordBox Height="23" HorizontalAlignment="Left" Margin="173,150,0,0" Name="txtPassword" VerticalAlignment="Top" Width="200" />
             </Grid>
         </GroupBox>
-            <GroupBox Header="User List" HorizontalAlignment="left" Margin="14,436,14,0" VerticalAlignment="Top" Height="211" Width="550">
+            <GroupBox Header="User List" HorizontalAlignment="left" Margin="10,437,0,0" VerticalAlignment="Top" Height="211" Width="550">
              <Grid>
                 <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Height="190" Width="auto" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" Name="gvUser" CanUserResizeColumns="False">
                     <DataGrid.Columns>
