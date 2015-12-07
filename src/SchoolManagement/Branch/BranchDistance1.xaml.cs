@@ -486,5 +486,32 @@ namespace SchoolManagement.Branch
         }
         #endregion
 
+        private void txtDistTime_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (txtDistTime.Text != "")
+                {
+                    if (txtDistTime.Text.Length > 0)
+                    {
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtDistTime.Text, "^[0-9]+$"))
+                        {
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please Enter Only Numbers", "Distance", MessageBoxButton.OK, MessageBoxImage.Information);
+                            txtDistTime.Text = "";
+                            txtDistTime.Focus();
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
     }
 }

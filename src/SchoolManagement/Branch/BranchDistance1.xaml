@@ -27,7 +27,7 @@
                     <Grid>
                         <Label Content="Distance In Min." FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="6,8,0,0" Name="label4" VerticalAlignment="Top" Width="106" />
                         <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFEB3030" Height="28" HorizontalAlignment="Left" Margin="100,8,0,0" Name="label5" VerticalAlignment="Top" Width="31" />
-                        <TextBox Height="30" HorizontalAlignment="Right" Margin="0,8,16,0" Name="txtDistTime" VerticalAlignment="Top" Width="120" />
+                        <TextBox Height="30" HorizontalAlignment="Right" Margin="0,8,16,0" Name="txtDistTime" VerticalAlignment="Top" Width="120" TextChanged="txtDistTime_TextChanged" />
                     </Grid>
                 </GroupBox>
             </Grid>
