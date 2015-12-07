@@ -6,6 +6,7 @@
        <StackPanel>
                 <my:Menu_UserControl HorizontalAlignment="Left" x:Name="menu_UserControl1" VerticalAlignment="Top" />
             </StackPanel>
+        <Grid HorizontalAlignment="Center">
             <GroupBox Header="BranchDistance" Height="230" HorizontalAlignment="Left" Margin="32,30,0,0" Name="groupBox1" VerticalAlignment="Top" Width="611">
                 <Grid>
                     <ComboBox Height="28" HorizontalAlignment="Left" Margin="162,20,0,0" Name="cmbFromBranch" VerticalAlignment="Top" Width="92" ItemsSource="{Binding}" SelectionChanged="cmbFromBranch_SelectionChanged" />
@@ -47,5 +48,6 @@
                 </Style>
             </DataGrid.ItemContainerStyle> 
             </DataGrid>
+        </Grid>
     </Grid>
 </Window>

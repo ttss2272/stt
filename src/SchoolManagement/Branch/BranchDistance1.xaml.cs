@@ -22,20 +22,39 @@ namespace SchoolManagement.Branch
     /// </summary>
     public partial class BranchDistance1 : Window
     {
+        /* Created By:- 
+        * Created Date :-
+        * Purpose:- 
+        */
+        #region------------------------------------------------------Declare Variables------------------------------------------------
         BLAddBranch objBranch = new BLAddBranch();
 
         int BranchDistanceID, UpdatedByUserID, IsActive, IsDeleted, ToBranchID, FromBranchID, UpID, DistanceTime, BranchDistID;
         String UpdatedDate;
+        #endregion
 
+        /* Created By:- 
+        * Created Date :-
+        * Purpose:- 
+        */
+        #region----------------------------------------------------------main()-------------------------------------------------
         public BranchDistance1()
         {
-            InitializeComponent();
-            this.WindowState = WindowState.Maximized;
-            this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
-            this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
-            ClearFields();
+            try
+            {
+                InitializeComponent();
+                this.WindowState = WindowState.Maximized;
+                this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
+                this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
+                ClearFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
-
+        #endregion
         /* Created By:- Pranjali Vidhate
         * Created Date :- 23  Nov 2015
         * Purpose:- clear Fields*/
@@ -423,20 +442,49 @@ namespace SchoolManagement.Branch
         }
         #endregion
 
+        /*
+         * Updated BY:- 
+         * Updated Date :-
+         * Update Purpose:-
+         */
+        #region-----------------------------------------Window_Loaded-------------------------------------
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            BindDistance();
-            rdbActive.IsChecked = true;
-            btnDelete.IsEnabled = false;
-            cmbToBranch.IsEnabled = false;
-            gbDist.IsEnabled = false;
+            try
+            {
+                BindDistance();
+                rdbActive.IsChecked = true;
+                btnDelete.IsEnabled = false;
+                cmbToBranch.IsEnabled = false;
+                gbDist.IsEnabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
+        #endregion
 
-
+        /*
+         * Updated BY:- PriTesh D. Sortee
+         * Updated Date :-07 Dec 2015
+         * Update Purpose:-Add Try CatchBlock
+         */
+        #region-------------------------------------------btnClear_Click--------------------------------
         private void btnclear_Click(object sender, RoutedEventArgs e)
         {
-            ClearFields();
+            try
+            {
+                ClearFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
         }
+        #endregion
 
     }
 }
