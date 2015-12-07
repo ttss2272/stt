@@ -38,17 +38,32 @@ namespace SchoolManagement.Batch
         BLAddClass obj_Class = new BLAddClass();
 
         #endregion
-       
+        /*
+     * Created By:- 
+     * Ctreated Date :- 
+     * StartTime:-
+     * EndTime:-
+     * Purpose:- 
+     */
+        #region---------------------------------main()--------------------------------------------
         public Batch()
         {
-            InitializeComponent();
-            this.WindowState = WindowState.Maximized;
-            this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
-            this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
-            clearFields();
+            try
+            {
+                InitializeComponent();
+                this.WindowState = WindowState.Maximized;
+                this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
+                this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
+                clearFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
 
         }
-
+        #endregion
         /*
      * Created By:- Pravin
      * Ctreated Date :- 5 Nov 2015
@@ -119,6 +134,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+         * Created By:- 
+         * Ctreated Date :- 
+         * StartTime:-PM
+         * EndTime:-PM
+         * Purpose:- 
+         */
         #region-------------------------------------------MaxLectPerDay---------------------------------
         private void MaxLectPerDay()
         {
@@ -172,6 +194,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+         * Created By:- 
+         * Ctreated Date :- 
+         * StartTime:-PM
+         * EndTime:-PM
+         * Purpose:- 
+         */
         #region-------------------------------------------------SetParameters()-------------------------------------
         private void SetParameters()
         {
@@ -334,7 +363,13 @@ namespace SchoolManagement.Batch
               }
         }
         #endregion
-
+        /*
+         * Created By:- 
+         * Ctreated Date :- 
+         * StartTime:-PM
+         * EndTime:-PM
+         * Purpose:- 
+         */
         #region-------------------------------------------BindTimingHrs---------------------------------
         private void TimingHrs()
         {
@@ -365,6 +400,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+         * Created By:- 
+         * Ctreated Date :- 
+         * StartTime:-PM
+         * EndTime:-PM
+         * Purpose:- 
+         */
         #region-------------------------------------------BindTimingMins---------------------------------
         private void TimingMin()
         {
@@ -391,6 +433,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+         * Created By:- 
+         * Ctreated Date :- 
+         * StartTime:-PM
+         * EndTime:-PM
+         * Purpose:- 
+         */
         #region--------------------select()-------------------
         private void select()
         {
@@ -405,6 +454,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+         * Created By:- 
+         * Ctreated Date :- 
+         * StartTime:-PM
+         * EndTime:-PM
+         * Purpose:- 
+         */
         #region-----------------------------clearFields()------------------------------------------
 
         private void clearFields()
@@ -448,6 +504,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+         * Created By:- 
+         * Ctreated Date :- 
+         * StartTime:-PM
+         * EndTime:-PM
+         * Purpose:- 
+         */
         #region----------------------txtBatchName_TextChanged----------------------------
         private void txtBatchName_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -477,6 +540,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+         * Created By:- 
+         * Ctreated Date :- 
+         * StartTime:-PM
+         * EndTime:-PM
+         * Purpose:- 
+         */
         #region----------------------------------grvBatchBind------------------------------
         private void BindGridview()
         {
@@ -494,7 +564,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
-
+        /*
+         * Created By:- 
+         * Ctreated Date :- 
+         * StartTime:-PM
+         * EndTime:-PM
+         * Purpose:- 
+         */
 
         #region------------------------BindClassName()---------------------------------------
         private void BindClassName()
@@ -524,6 +600,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+         * Created By:- 
+         * Ctreated Date :- 
+         * StartTime:-PM
+         * EndTime:-PM
+         * Purpose:- 
+         */
          #region--------------------------------------Delete button click()-------------------------------------
         private void btndelete_Click(object sender, RoutedEventArgs e)
         {                    
@@ -547,6 +630,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+         * Created By:- 
+         * Ctreated Date :- 
+         * StartTime:-PM
+         * EndTime:-PM
+         * Purpose:- 
+         */
         #region----------------------------DeleteBatch()----------------------------------
         private void DeleteBatch()
         {
@@ -575,6 +665,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+         * Created By:- 
+         * Ctreated Date :- 
+         * StartTime:-PM
+         * EndTime:-PM
+         * Purpose:- 
+         */
         #region--------------------------------------gridview cell click()-------------------------------------
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -674,6 +771,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+         * Created By:- 
+         * Ctreated Date :- 
+         * StartTime:-PM
+         * EndTime:-PM
+         * Purpose:- 
+         */
         #region------------------------btnSearch_Click----------------------
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
@@ -708,24 +812,47 @@ namespace SchoolManagement.Batch
         }
                     
         #endregion
-
+        
+        /*
+         * Created By:- 
+         * Ctreated Date :- 
+         * StartTime:-PM
+         * EndTime:-PM
+         * Purpose:- 
+         */
+        #region---------------------------------Window_Loaded-------------------------------------------
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            clearFields();
-            BindClassName();                                              
-            btnDelete.IsEnabled = false;
-            BindYesNo();
-            if (cmbTimeStartHrs.SelectedValue.ToString() == "Select") 
+            try
             {
-                cmbTimeStartHrs.IsEnabled = false;
-                cmbTimeStartMin.IsEnabled = false;
-                cmbTimeEndHrs.IsEnabled = false;
-                cmbTimeEndMin.IsEnabled = false;
+                clearFields();
+                BindClassName();
+                btnDelete.IsEnabled = false;
+                BindYesNo();
+                if (cmbTimeStartHrs.SelectedValue.ToString() == "Select")
+                {
+                    cmbTimeStartHrs.IsEnabled = false;
+                    cmbTimeStartMin.IsEnabled = false;
+                    cmbTimeEndHrs.IsEnabled = false;
+                    cmbTimeEndMin.IsEnabled = false;
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
 
 
         }
-
+        #endregion
+        /*
+         * Created By:- 
+         * Ctreated Date :- 
+         * StartTime:-PM
+         * EndTime:-PM
+         * Purpose:- 
+         */
         #region-------------------------------------------BindYesNo---------------------------------
         private void BindYesNo()
         {           
@@ -743,6 +870,14 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+         * Created By:- 
+         * Ctreated Date :- 
+         * StartTime:-PM
+         * EndTime:-PM
+         * Purpose:- 
+         */
+        #region-------------------------------------------txtBatchCode_textChanged-----------------------------
         private void txtBatchCode_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
@@ -769,7 +904,15 @@ namespace SchoolManagement.Batch
                 MessageBox.Show(ex.Message.ToString());
             }
         }
+        #endregion
 
+        /*
+         * Created By:- 
+         * Ctreated Date :- 
+         * StartTime:-PM
+         * EndTime:-PM
+         * Purpose:- 
+         */
         #region---------------------------txtlecDuration_TextChanged-----------------------
         private void txtlecDuration_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -799,40 +942,65 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+         * Created By:- 
+         * Ctreated Date :- 
+         * StartTime:-PM
+         * EndTime:-PM
+         * Purpose:- 
+         */
+        #region---------------------------------------cbLunchBreak_SelectionChanged----------------------------
         private void cbLunchBreak_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-             if (cbLunchBreak.SelectedIndex == 2 ) 
+            try
             {
-                cmbTimeStartHrs.IsEnabled = false;
-                cmbTimeStartMin.IsEnabled = false;
-                cmbTimeEndHrs.IsEnabled = false;
-                cmbTimeEndMin.IsEnabled = false;
-                cmbTimeStartHrs.SelectedIndex = 0;
-                cmbTimeStartMin.SelectedIndex = 0;
-                cmbTimeEndHrs.SelectedIndex = 0;
-                cmbTimeEndMin.SelectedIndex = 0;
-            }
-             else if (cbLunchBreak.SelectedIndex == 1) 
-            {
-                cmbTimeStartHrs.IsEnabled = true;
-                cmbTimeStartMin.IsEnabled = true;
-                cmbTimeEndHrs.IsEnabled = true;
-                cmbTimeEndMin.IsEnabled = true;
-            }
+                if (cbLunchBreak.SelectedIndex == 2)
+                {
+                    cmbTimeStartHrs.IsEnabled = false;
+                    cmbTimeStartMin.IsEnabled = false;
+                    cmbTimeEndHrs.IsEnabled = false;
+                    cmbTimeEndMin.IsEnabled = false;
+                    cmbTimeStartHrs.SelectedIndex = 0;
+                    cmbTimeStartMin.SelectedIndex = 0;
+                    cmbTimeEndHrs.SelectedIndex = 0;
+                    cmbTimeEndMin.SelectedIndex = 0;
+                }
+                else if (cbLunchBreak.SelectedIndex == 1)
+                {
+                    cmbTimeStartHrs.IsEnabled = true;
+                    cmbTimeStartMin.IsEnabled = true;
+                    cmbTimeEndHrs.IsEnabled = true;
+                    cmbTimeEndMin.IsEnabled = true;
+                }
 
-             else if (cbLunchBreak.SelectedIndex == 0)
-             {
-                 cmbTimeStartHrs.IsEnabled = false;
-                 cmbTimeStartMin.IsEnabled = false;
-                 cmbTimeEndHrs.IsEnabled = false;
-                 cmbTimeEndMin.IsEnabled = false;
-                 cmbTimeStartHrs.SelectedIndex = 0;
-                 cmbTimeStartMin.SelectedIndex = 0;
-                 cmbTimeEndHrs.SelectedIndex = 0;
-                 cmbTimeEndMin.SelectedIndex = 0;
-             }
+                else if (cbLunchBreak.SelectedIndex == 0)
+                {
+                    cmbTimeStartHrs.IsEnabled = false;
+                    cmbTimeStartMin.IsEnabled = false;
+                    cmbTimeEndHrs.IsEnabled = false;
+                    cmbTimeEndMin.IsEnabled = false;
+                    cmbTimeStartHrs.SelectedIndex = 0;
+                    cmbTimeStartMin.SelectedIndex = 0;
+                    cmbTimeEndHrs.SelectedIndex = 0;
+                    cmbTimeEndMin.SelectedIndex = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+             
            
         }
+        #endregion
+        /*
+         * Created By:- 
+         * Ctreated Date :- 
+         * StartTime:-PM
+         * EndTime:-PM
+         * Purpose:- 
+         */
         #region-------------------------txtlecDuration_KeyDown---------------------------------------------------------
         private void txtlecDuration_KeyDown(object sender, KeyEventArgs e)
         {
