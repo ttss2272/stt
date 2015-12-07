@@ -544,43 +544,45 @@ namespace SchoolManagement.TimeTable
                         cbTeacherName.SelectedValuePath = ds.Tables[0].Columns["TeacherSubjectID"].ToString();
                         cbTeacherName.SelectedValue = "0";
                         cbTeacherName.DataContext = ds.Tables[0].DefaultView;
-                    }
+                }
+
             }
-                if (rdoRoomWise.IsChecked == true)
-                {
+            if (rdoRoomWise.IsChecked == true)
+            {
                     int SubID = Convert.ToInt32(cbSubjectName1.SelectedValue);
                    int BatID = Convert.ToInt32(cbBatchName1.SelectedValue);
                    DataSet ds = objTeacher.BindTeacherOnTimeTable(SubID,BatID);
 
-                if (ds.Tables[0].Rows.Count > 0)
-                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
                 
-                        //cbTeacherName.DataContext = null;
+                            //cbTeacherName.DataContext = null;
                     
-                        cbTeacherName1.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
-                        cbTeacherName1.SelectedValuePath = ds.Tables[0].Columns["TeacherSubjectID"].ToString();
-                        cbTeacherName1.SelectedValue = "0";
-                        cbTeacherName1.DataContext = ds.Tables[0].DefaultView;
+                            cbTeacherName1.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
+                            cbTeacherName1.SelectedValuePath = ds.Tables[0].Columns["TeacherSubjectID"].ToString();
+                            cbTeacherName1.SelectedValue = "0";
+                            cbTeacherName1.DataContext = ds.Tables[0].DefaultView;
                     }
-                }
+
+            }
                 if (rdoTeacherWise.IsChecked == true)
                 {
                      int SubID = Convert.ToInt32(cbSubjectName2.SelectedValue);
                     int BatID = Convert.ToInt32(cbBatchName2.SelectedValue);
                     DataSet ds = objTeacher.BindTeacherOnTimeTable(SubID,BatID);
 
-                if (ds.Tables[0].Rows.Count > 0)
-                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
                 
-                        //cbTeacherName.DataContext = null;
+                            //cbTeacherName.DataContext = null;
                     
-                        cbTeacherName2.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
-                        cbTeacherName2.SelectedValuePath = ds.Tables[0].Columns["TeacherSubjectID"].ToString();
-                        cbTeacherName2.SelectedValue = "0";
-                        cbTeacherName2.DataContext = ds.Tables[0].DefaultView;
-                    }
-                }
-            }
+                            cbTeacherName2.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
+                            cbTeacherName2.SelectedValuePath = ds.Tables[0].Columns["TeacherSubjectID"].ToString();
+                            cbTeacherName2.SelectedValue = "0";
+                            cbTeacherName2.DataContext = ds.Tables[0].DefaultView;
+                     }
+              }
+       
         }
         #endregion
 
@@ -598,6 +600,7 @@ namespace SchoolManagement.TimeTable
             {
                 
                 BranchID = Convert.ToInt32(cbBranchName.SelectedValue);
+
                 DataSet ds = objRoom.BindRoomDropDown(BranchID);
 
                 if (ds.Tables[0].Rows.Count > 0)
@@ -818,47 +821,158 @@ namespace SchoolManagement.TimeTable
                 cbBranchName.Focus();
                 return false;
             }
-            else if (cbClassName.SelectedIndex == 0)
+            else if (dpTTStartDate.Text == "")
             {
-                MessageBox.Show("Please Select Class Name");
-                cbClassName.Focus();
+                MessageBox.Show("Please Select TimeTable StartDate");
+                dpTTStartDate.Focus();
                 return false;
             }
-            else if (cbSubjectName.SelectedIndex == 0)
+            if (rdoClassWise.IsChecked == true)
             {
-                MessageBox.Show("Please Select Subject Name");
-                cbSubjectName.Focus();
-                return false;
+                if (cbClassName.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Please Select Class Name");
+                    cbClassName.Focus();
+                    return false;
+                }
+                else if (cbSubjectName.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Please Select Subject Name");
+                    cbSubjectName.Focus();
+                    return false;
+                }
+                else if (cbBatchName.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Please Select Batch Name");
+                    cbBatchName.Focus();
+                    return false;
+                }
+                else if (cbTeacherName.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Please Select Teacher Name");
+                    cbTeacherName.Focus();
+                    return false;
+                }
+                else if (cbRoomName.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Please Select Room Name");
+                    cbRoomName.Focus();
+                    return false;
+                }
+                else if (cmbDayName.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Please Select Day");
+                    cmbDayName.Focus();
+                    return false;
+                }
+                else if (cbTimeSlot.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Please Select Time from TimeSlot");
+                    cbTimeSlot.Focus();
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
-            else if (cbBatchName.SelectedIndex == 0)
+            else if (rdoRoomWise.IsChecked == true)
             {
-                MessageBox.Show("Please Select Batch Name");
-                cbBatchName.Focus();
-                return false;
+                if (cbClassName1.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Please Select Class Name");
+                    cbClassName1.Focus();
+                    return false;
+                }
+                else if (cbSubjectName1.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Please Select Subject Name");
+                    cbSubjectName1.Focus();
+                    return false;
+                }
+                else if (cbBatchName1.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Please Select Batch Name");
+                    cbBatchName1.Focus();
+                    return false;
+                }
+                else if (cbTeacherName1.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Please Select Teacher Name");
+                    cbTeacherName1.Focus();
+                    return false;
+                }
+                else if (cbRoomName1.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Please Select Room Name");
+                    cbRoomName1.Focus();
+                    return false;
+                }
+                else if (cbDay.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Please Select Day");
+                    cbDay.Focus();
+                    return false;
+                }
+                else if (cbTimeSlot1.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Please Select Time from TimeSlot");
+                    cbTimeSlot1.Focus();
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
-            else if (cbTeacherName.SelectedIndex == 0)
+            else if (rdoTeacherWise.IsChecked == true)
             {
-                MessageBox.Show("Please Select Teacher Name");
-                cbTeacherName.Focus();
-                return false;
-            }
-            else if (cbRoomName.SelectedIndex == 0)
-            {
-                MessageBox.Show("Please Select Room Name");
-                cbRoomName.Focus();
-                return false;
-            }
-            else if (cmbDayName.SelectedIndex == 0)
-            {
-                MessageBox.Show("Please Select Day");
-                cmbDayName.Focus();
-                return false;
-            }
-            else if (cbTimeSlot.SelectedIndex == 0)
-            {
-                MessageBox.Show("Please Select Time from TimeSlot");
-                cbTimeSlot.Focus();
-                return false;
+                if (cbClassName2.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Please Select Class Name");
+                    cbClassName2.Focus();
+                    return false;
+                }
+                else if (cbSubjectName2.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Please Select Subject Name");
+                    cbSubjectName2.Focus();
+                    return false;
+                }
+                else if (cbBatchName2.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Please Select Batch Name");
+                    cbBatchName2.Focus();
+                    return false;
+                }
+                else if (cbTeacherName2.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Please Select Teacher Name");
+                    cbTeacherName2.Focus();
+                    return false;
+                }
+                else if (cbRoomName2.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Please Select Room Name");
+                    cbRoomName2.Focus();
+                    return false;
+                }
+                else if (cbDay2.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Please Select Day");
+                    cbDay2.Focus();
+                    return false;
+                }
+                else if (cbTimeSlot2.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Please Select Time from TimeSlot");
+                    cbTimeSlot2.Focus();
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
             else
             {
