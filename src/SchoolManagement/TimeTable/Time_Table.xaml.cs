@@ -23,14 +23,14 @@ namespace SchoolManagement.TimeTable
     
     public partial class Time_Table : Window
     {
-       /*
-        * Created By:-pravin
-        * Updated By:- PriTesh D. Sortee
-        * Created Date:-
-        * Updated Date:- 03 Dec 2015
-        * Purpose:
-        * 
-        */
+        /*
+         * Created By:-pravin
+         * Updated By:- PriTesh D. Sortee
+         * Created Date:-03 Dec 2015
+         * Updated Date:- 03 Dec 2015
+         * Purpose:
+         * 
+         */
         #region-------------------------------------------------------Declare Variables---------------------------------------------
         BLTimeTable objTimeTable = new BLTimeTable();
         BLAddBranch obj_Branch = new BLAddBranch();
@@ -49,7 +49,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:-pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-03 Dec 2015
         * Updated Date:- 
         * Purpose:
         * 
@@ -68,7 +68,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:-Pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-04 Dec 2015
         * Updated Date:- 
         * Purpose:-
         * 
@@ -100,11 +100,11 @@ namespace SchoolManagement.TimeTable
             }
         }
         #endregion
-        
+
         /*
         * Created By:-Pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-04 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -201,29 +201,12 @@ namespace SchoolManagement.TimeTable
             }
         }        
         
-        #endregion
-
-
-        /*     #region-------------cmbDayName_Items-------------------------------
-        private void cmbDayName_Items()
-        {
-            cmbDayName.Items.Add("Select");
-            cmbDayName.Items.Add("Monday");
-            cmbDayName.Items.Add("Tuesday");
-            cmbDayName.Items.Add("Wednesday");
-            cmbDayName.Items.Add("Thursday");
-            cmbDayName.Items.Add("Friday");
-            cmbDayName.Items.Add("Saturday");
-            cmbDayName.SelectedIndex = 0;
-
-        }
-        #endregion */
-
+        #endregion       
 
         /*
         * Created By:-Pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-03 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -234,6 +217,7 @@ namespace SchoolManagement.TimeTable
             cbBranchName.IsEnabled = true;
             EnableUpperPart();
             cbBranchName.SelectedIndex = 0;
+            dpTTStartDate.Text = "";
             cbClassName.SelectedIndex = 0;
             cbBatchName.SelectedIndex = 0;
             cbTimeSlot.SelectedIndex = 0;
@@ -315,7 +299,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:-Pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-03 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -354,7 +338,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:-Pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-03 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -369,7 +353,7 @@ namespace SchoolManagement.TimeTable
                 {
                     if (rdoClassWise.IsChecked == true)
                     {
-                        cbClassName.DataContext = null;
+                        //cbClassName.DataContext = null;
                         cbClassName.DisplayMemberPath = ds.Tables[0].Columns["ClassName"].ToString();
                         cbClassName.SelectedValuePath = ds.Tables[0].Columns["ClassID"].ToString();
                         cbClassName.SelectedValue = "0";
@@ -378,7 +362,7 @@ namespace SchoolManagement.TimeTable
                     }
                     if (rdoRoomWise.IsChecked == true)
                     {
-                        cbClassName1.DataContext = null;
+                        //cbClassName1.DataContext = null;
                         cbClassName1.DisplayMemberPath = ds.Tables[0].Columns["ClassName"].ToString();
                         cbClassName1.SelectedValuePath = ds.Tables[0].Columns["ClassID"].ToString();
                         cbClassName1.SelectedValue = "0";
@@ -387,7 +371,7 @@ namespace SchoolManagement.TimeTable
                     }
                     if (rdoTeacherWise.IsChecked == true)
                     {
-                        cbClassName2.DataContext = null;
+                        //cbClassName2.DataContext = null;
                         cbClassName2.DisplayMemberPath = ds.Tables[0].Columns["ClassName"].ToString();
                         cbClassName2.SelectedValuePath = ds.Tables[0].Columns["ClassID"].ToString();
                         cbClassName2.SelectedValue = "0";
@@ -407,7 +391,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:-Pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-03 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -422,7 +406,7 @@ namespace SchoolManagement.TimeTable
                         DataSet ds = obj_Subject.loadSubjectName(BatchID);
                         if (ds.Tables[0].Rows.Count > 0)
                         {
-                            cbSubjectName.DataContext = null;
+                            //cbSubjectName.DataContext = null;
                             cbSubjectName.DisplayMemberPath = ds.Tables[0].Columns["SubjectName"].ToString();
                             cbSubjectName.SelectedValuePath = ds.Tables[0].Columns["SubjectID"].ToString();
                             cbSubjectName.DataContext = ds.Tables[0].DefaultView;
@@ -435,7 +419,7 @@ namespace SchoolManagement.TimeTable
                         DataSet ds = obj_Subject.loadSubjectName(BatchID);
                         if (ds.Tables[0].Rows.Count > 0)
                         {
-                            cbSubjectName1.DataContext = null;
+                           // cbSubjectName1.DataContext = null;
                             cbSubjectName1.DisplayMemberPath = ds.Tables[0].Columns["SubjectName"].ToString();
                             cbSubjectName1.SelectedValuePath = ds.Tables[0].Columns["SubjectID"].ToString();
                             cbSubjectName1.DataContext = ds.Tables[0].DefaultView;
@@ -448,7 +432,7 @@ namespace SchoolManagement.TimeTable
                          DataSet ds = obj_Subject.loadSubjectName(BatchID);
                          if (ds.Tables[0].Rows.Count > 0)
                         {
-                            cbSubjectName2.DataContext = null;
+                            //cbSubjectName2.DataContext = null;
                             cbSubjectName2.DisplayMemberPath = ds.Tables[0].Columns["SubjectName"].ToString();
                             cbSubjectName2.SelectedValuePath = ds.Tables[0].Columns["SubjectID"].ToString();
                             cbSubjectName2.DataContext = ds.Tables[0].DefaultView;
@@ -468,7 +452,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:-Pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-03 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -487,7 +471,7 @@ namespace SchoolManagement.TimeTable
                          DataSet ds = obj_Batch.loadBatchName(ClassID);
                          if (ds.Tables[0].Rows.Count > 0)
                          {
-                            cbBatchName.DataContext = null;
+                            //cbBatchName.DataContext = null;
                             cbBatchName.DisplayMemberPath = ds.Tables[0].Columns["BatchName"].ToString();
                             cbBatchName.SelectedValuePath = ds.Tables[0].Columns["BatchID"].ToString();
                             cbBatchName.SelectedValue = "0";
@@ -501,7 +485,7 @@ namespace SchoolManagement.TimeTable
                          DataSet ds = obj_Batch.loadBatchName(ClassID);
                          if (ds.Tables[0].Rows.Count > 0)
                          {
-                            cbBatchName1.DataContext = null;
+                            //cbBatchName1.DataContext = null;
                             cbBatchName1.DisplayMemberPath = ds.Tables[0].Columns["BatchName"].ToString();
                             cbBatchName1.SelectedValuePath = ds.Tables[0].Columns["BatchID"].ToString();
                             cbBatchName1.SelectedValue = "0";
@@ -516,7 +500,7 @@ namespace SchoolManagement.TimeTable
                          DataSet ds = obj_Batch.loadBatchName(ClassID);
                          if (ds.Tables[0].Rows.Count > 0)
                          {
-                            cbBatchName2.DataContext = null;
+                            //cbBatchName2.DataContext = null;
                             cbBatchName2.DisplayMemberPath = ds.Tables[0].Columns["BatchName"].ToString();
                             cbBatchName2.SelectedValuePath = ds.Tables[0].Columns["BatchID"].ToString();
                             cbBatchName2.SelectedValue = "0";
@@ -538,7 +522,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:- Pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-03 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -553,7 +537,7 @@ namespace SchoolManagement.TimeTable
             {
                 if (rdoClassWise.IsChecked == true)
                 {
-                    cbTeacherName.DataContext = null;
+                    //cbTeacherName.DataContext = null;
                     
                     cbTeacherName.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
                     cbTeacherName.SelectedValuePath = ds.Tables[0].Columns["TeacherID"].ToString();
@@ -562,7 +546,7 @@ namespace SchoolManagement.TimeTable
                 }
                 if (rdoRoomWise.IsChecked == true)
                 {
-                    cbTeacherName1.DataContext = null;
+                    //cbTeacherName1.DataContext = null;
                     
                     cbTeacherName1.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
                     cbTeacherName1.SelectedValuePath = ds.Tables[0].Columns["TeacherID"].ToString();
@@ -571,7 +555,7 @@ namespace SchoolManagement.TimeTable
                 }
                 if (rdoTeacherWise.IsChecked == true)
                 {
-                    cbTeacherName2.DataContext = null;
+                    //cbTeacherName2.DataContext = null;
                     
                     cbTeacherName2.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
                     cbTeacherName2.SelectedValuePath = ds.Tables[0].Columns["TeacherID"].ToString();
@@ -585,7 +569,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:- Pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-03 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -602,7 +586,7 @@ namespace SchoolManagement.TimeTable
                 {
                     if (rdoClassWise.IsChecked == true)
                     {
-                        cbRoomName.DataContext = null;
+                        //cbRoomName.DataContext = null;
                         cbRoomName.DisplayMemberPath = ds.Tables[0].Columns["RoomName"].ToString();
                         cbRoomName.SelectedValuePath = ds.Tables[0].Columns["RoomID"].ToString();
                         cbRoomName.SelectedValue = "0";
@@ -611,7 +595,7 @@ namespace SchoolManagement.TimeTable
                     }
                     if (rdoRoomWise.IsChecked == true)
                     {
-                        cbRoomName1.DataContext = null;
+                        //cbRoomName1.DataContext = null;
                         cbRoomName1.DisplayMemberPath = ds.Tables[0].Columns["RoomName"].ToString();
                         cbRoomName1.SelectedValuePath = ds.Tables[0].Columns["RoomID"].ToString();
                         cbRoomName1.SelectedValue = "0";
@@ -620,7 +604,7 @@ namespace SchoolManagement.TimeTable
                     }
                     if (rdoTeacherWise.IsChecked == true)
                     {
-                        cbRoomName2.DataContext = null;
+                        //cbRoomName2.DataContext = null;
                         cbRoomName2.DisplayMemberPath = ds.Tables[0].Columns["RoomName"].ToString();
                         cbRoomName2.SelectedValuePath = ds.Tables[0].Columns["RoomID"].ToString();
                         cbRoomName2.SelectedValue = "0";
@@ -639,7 +623,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:- Pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-04 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -658,7 +642,7 @@ namespace SchoolManagement.TimeTable
                         DataSet ds = objTimeTable.BindTimeSlot(BatchAvailableID, BatchID, Day,0,0,0,0,0,0);
                         if (ds.Tables[0].Rows.Count > 0)
                         {
-                            cbTimeSlot.DataContext = null;
+                            //cbTimeSlot.DataContext = null;
                             cbTimeSlot.DisplayMemberPath = ds.Tables[0].Columns["TimeSlot"].ToString();
                             cbTimeSlot.SelectedValuePath = ds.Tables[0].Columns["BatchAvailableID"].ToString();
                             cbTimeSlot.DataContext = ds.Tables[0].DefaultView;
@@ -677,7 +661,7 @@ namespace SchoolManagement.TimeTable
                         DataSet ds = objTimeTable.BindTimeSlot(0,0,0,RoomAvailableID, RoomID, Day,0,0,0);
                         if (ds.Tables[0].Rows.Count > 0)
                         {
-                            cbTimeSlot1.DataContext = null;
+                            //cbTimeSlot1.DataContext = null;
                             cbTimeSlot1.DisplayMemberPath = ds.Tables[0].Columns["TimeSlot"].ToString();
                             cbTimeSlot1.SelectedValuePath = ds.Tables[0].Columns["RoomAvailableID"].ToString();
                             cbTimeSlot1.DataContext = ds.Tables[0].DefaultView;
@@ -696,7 +680,7 @@ namespace SchoolManagement.TimeTable
                         DataSet ds = objTimeTable.BindTimeSlot(0,0,0,0,0,0,TeacherAvailableID, TeacherID, Day);
                         if (ds.Tables[0].Rows.Count > 0)
                         {
-                            cbTimeSlot2.DataContext = null;
+                            //cbTimeSlot2.DataContext = null;
                             cbTimeSlot2.DisplayMemberPath = ds.Tables[0].Columns["TimeSlot"].ToString();
                             cbTimeSlot2.SelectedValuePath = ds.Tables[0].Columns["TeacherAvailableID"].ToString();
                             cbTimeSlot2.DataContext = ds.Tables[0].DefaultView;
@@ -716,7 +700,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:- Pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-04 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -732,7 +716,7 @@ namespace SchoolManagement.TimeTable
                     DataSet ds = objTimeTable.BindDay(BatchID, 0, 0);
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        cmbDayName.DataContext = null;
+                        //cmbDayName.DataContext = null;
                         cmbDayName.DisplayMemberPath = ds.Tables[0].Columns["Day"].ToString();
                         cmbDayName.SelectedValuePath = ds.Tables[0].Columns["BatchAvailableID"].ToString();
                         cmbDayName.SelectedValue = "0";
@@ -746,7 +730,7 @@ namespace SchoolManagement.TimeTable
                     DataSet ds = objTimeTable.BindDay(0, RoomID, 0);
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        cbDay.DataContext = null;
+                        //cbDay.DataContext = null;
                         cbDay.DisplayMemberPath = ds.Tables[0].Columns["Day"].ToString();
                         cbDay.SelectedValuePath = ds.Tables[0].Columns["RoomAvailableID"].ToString();
                         cbDay.SelectedValue = "0";
@@ -761,7 +745,7 @@ namespace SchoolManagement.TimeTable
                     DataSet ds = objTimeTable.BindDay(0, 0, TeacherID);
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        cbDay2.DataContext = null;
+                        //cbDay2.DataContext = null;
                         cbDay2.DisplayMemberPath = ds.Tables[0].Columns["Day"].ToString();
                         cbDay2.SelectedValuePath = ds.Tables[0].Columns["TeacherAvailableID"].ToString();
                         cbDay2.SelectedValue = "0";
@@ -779,7 +763,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:- Pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-03 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -803,7 +787,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:- Pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-03 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -864,11 +848,11 @@ namespace SchoolManagement.TimeTable
             }
         }
         #endregion
-        
+
         /*
         * Created By:- Pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-04 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -953,7 +937,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:- Pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-04 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -981,7 +965,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:- Pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-04 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -1002,7 +986,7 @@ namespace SchoolManagement.TimeTable
         * Created By:- Pravin
         * Updated By:- PriTesh D. Sortee
         * Created Date:-
-        * Updated Date:- 03 Dec 2015
+        * Updated Date:- 05 Dec 2015
         * Purpose:-
          * Update Purpose:- Change Branch selection changed
         */
@@ -1019,7 +1003,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:- Pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-05 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -1027,6 +1011,7 @@ namespace SchoolManagement.TimeTable
         private void cbClassName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbClassName.SelectedValue.ToString() != "0" && cbClassName.SelectedItem.ToString()!="Select" && cbClassName.SelectedValue!=null)
+            //if(cbClassName.SelectedItem.ToString()!="Select")
             {
                 BindBatchName();
             }
@@ -1035,7 +1020,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:- Pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-05 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -1066,7 +1051,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:- Pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-05 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -1085,7 +1070,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:-Pravin    
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-05 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -1102,7 +1087,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:- Pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-05 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -1118,7 +1103,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:-Pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-05 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -1143,7 +1128,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:-Pravin
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-05 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -1166,7 +1151,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:-Pravin    
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-05 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -1184,7 +1169,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:-Pravin    
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-05 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -1201,7 +1186,7 @@ namespace SchoolManagement.TimeTable
         /*
         * Created By:-Pravin    
         * Updated By:- 
-        * Created Date:-
+        * Created Date:-05 Dec 2015
         * Updated Date:- 
         * Purpose:-
         */
@@ -1214,15 +1199,15 @@ namespace SchoolManagement.TimeTable
             }
         }
         #endregion
-
+        
         /*
-        * Created By:-PriTesh D. Sortee
+        * Created By:-Pravin
         * Updated By:- 
-        * Created Date:- 03 Dec 2015
+        * Created Date:- 05 Dec 2015
         * Updated Date:- 
-        * Purpose:-Get All details According To branch And Type Of View
+        * Purpose:- bind grid view of Timetable form
         */
-
+      
         #region-----------BindGridviewTimeTable-------------------------
         private void BindGridviewTimeTable()
         {
@@ -1235,6 +1220,14 @@ namespace SchoolManagement.TimeTable
             dgTimeTable.Items.Refresh();
         }
         #endregion
+
+        /*
+        * Created By:-PriTesh D. Sortee
+        * Updated By:- 
+        * Created Date:- 03 Dec 2015
+        * Updated Date:- 
+        * Purpose:-Get All details According To branch And Type Of View
+        */
 
         #region----------------------------------------------GetDetails()-------------------------------------------------------
         private void GetDetails()
@@ -1282,6 +1275,14 @@ namespace SchoolManagement.TimeTable
             }
         }
         #endregion
+
+        /*
+        * Created By:-Pravin
+        * Updated By:- 
+        * Created Date:- 05 Dec 2015
+        * Updated Date:- 
+        * Purpose:- Combobox room selection change
+        */
 
         #region---------------cbRoomName1_SelectionChanged--------------
         private void cbRoomName1_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1353,7 +1354,13 @@ namespace SchoolManagement.TimeTable
         }
         #endregion
 
-
+        /*
+        * Created By:-Pravin
+        * Updated By:- 
+        * Created Date:- 05 Dec 2015
+        * Updated Date:- 
+        * Purpose:- Grid view Cell Click Event for update data
+        */
         #region--------------------------------------gridview cell click()-------------------------------------
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
