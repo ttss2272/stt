@@ -43,7 +43,7 @@ namespace SchoolManagement.TimeTable
 
         int TimeTableID, BatchID, RoomID, ClassID, TeacherID, TeacherSubjectID, SubjectID, BranchID, BatchAvailableID, UpID,UPID, TimeTableDetailID, UpdatedByUserID, IsActive, IsDeleted;
         String UpdatedDate, LectStartTime, LectEndTime, SlotTime, Day;
-        DateTime TTStartDate;
+       // DateTime TTStartDate;
 
         #endregion
         /*
