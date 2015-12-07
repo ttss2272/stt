@@ -123,9 +123,9 @@ namespace SchoolManagement.TimeTable
                 //  string [] b = Date.Split(' ');
               //  Date = b[0];
                // TTStartDate =Convert.ToDateTime(Date.ToString());
-                TeacherSubjectID = Convert.ToInt32(cbSubjectName.SelectedValue.ToString());
+                TeacherSubjectID = Convert.ToInt32(cbTeacherName.SelectedValue.ToString());
                 RoomID = Convert.ToInt32(cbRoomName.SelectedValue.ToString());
-                TeacherID = Convert.ToInt32(cbTeacherName.SelectedValue.ToString());
+               // TeacherID = Convert.ToInt32(cbTeacherName.SelectedValue.ToString());
                 Day = cmbDayName.Text;
                 SlotTime = cbTimeSlot.Text;
                 string[] a = SlotTime.Split('-');
@@ -544,7 +544,7 @@ namespace SchoolManagement.TimeTable
                     //cbTeacherName.DataContext = null;
                     
                     cbTeacherName.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
-                    cbTeacherName.SelectedValuePath = ds.Tables[0].Columns["TeacherID"].ToString();
+                    cbTeacherName.SelectedValuePath = ds.Tables[0].Columns["TeacherSubjectID"].ToString();
                     cbTeacherName.SelectedValue = "0";
                     cbTeacherName.DataContext = ds.Tables[0].DefaultView;
                 }
@@ -553,7 +553,7 @@ namespace SchoolManagement.TimeTable
                     //cbTeacherName1.DataContext = null;
                     
                     cbTeacherName1.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
-                    cbTeacherName1.SelectedValuePath = ds.Tables[0].Columns["TeacherID"].ToString();
+                    cbTeacherName1.SelectedValuePath = ds.Tables[0].Columns["TeacherSubjectID"].ToString();
                     cbTeacherName1.SelectedValue = "0";
                     cbTeacherName1.DataContext = ds.Tables[0].DefaultView;
                 }
@@ -562,7 +562,7 @@ namespace SchoolManagement.TimeTable
                     //cbTeacherName2.DataContext = null;
                     
                     cbTeacherName2.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
-                    cbTeacherName2.SelectedValuePath = ds.Tables[0].Columns["TeacherID"].ToString();
+                    cbTeacherName2.SelectedValuePath = ds.Tables[0].Columns["TeacherSubjectID"].ToString();
                     cbTeacherName2.SelectedValue = "0";
                     cbTeacherName2.DataContext = ds.Tables[0].DefaultView;
                 }
