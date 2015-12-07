@@ -20,60 +20,128 @@ namespace SchoolManagement
     /// </summary>
     public partial class Login1 : Window
     {
-        public Login1()
-        {
-            InitializeComponent();
-        }
+        /*
+         * Created By:- 
+         * Created Date:-
+         * Purpose:- Declare Variables Globally
+         */
+        #region----------------------------------------------Variables------------------------------
         BLLogin obj_Login = new BLLogin();
         Home objHome = new Home();
         string Username, Password, Expirydate;
+        #endregion
+
+        /*
+         * Created By:-
+         * Created Date:-
+         * Purpose:-
+         * 
+         */
+        #region----------------------------------------main()-----------------------------------------
+        public Login1()
+        {
+            try
+            {
+                InitializeComponent();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        #endregion
+        
 
         /*
          * Name:-Sameer A. Shinde
          * Date:-03/12/2015
          * Purpose:-Login Button check user id and Password
+         * Updated By : PriTesh D. Sortee
+         * Updated Date : 07 Dec 2015
+         * Purpose : Get Login Data properly
          */
         #region----------------------------------btnLogin_Click()-----------------------------------------------
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            Username = txtUserName.Text;
-            Password = txtPassword.ToString();
-            DateTime currentdate = DateTime.Now;
-            DataSet ds = obj_Login.GetLoginDetails();
-            if (ds.Tables[0].Rows.Count > 0)
+            try
             {
-                Username = ds.Tables[0].Rows[0]["LoginUserName"].ToString();
-                Password = ds.Tables[0].Rows[0]["Password"].ToString();
-                Expirydate = ds.Tables[0].Rows[0]["ExpiryDate"].ToString();
-            }
-            DateTime expirydate = Convert.ToDateTime(Expirydate);
-            if (currentdate == expirydate)
-            {
-                MessageBox.Show("Your Application Is Going to Expire Today..!!! Please Contact your Support");
-                objHome.Show();
-            }
-            else if (currentdate > expirydate)
-            {
-                MessageBox.Show("Sorry...Your Application Is Expired....!!! Please Contact your Support");
-                objHome.Close();
-            }
-            else
-            {
-                MessageBox.Show("Welcome.......!!!!");
-                Home objHome = new Home();
-                Login1 loginForm = new Login1();
-                loginForm.Close();
-                objHome.Show();
+                Username = txtUserName.Text;
+                Password = txtPassword.Password;
+                string CurrentDate = DateTime.Now.ToString("yyyy-MM-dd");
+                DataSet ds = obj_Login.GetLoginDetails(Username, Password, CurrentDate);
+                txtUserName.Text = "";
+                txtPassword.Password = "";
+                if (ds.Tables[0].Rows.Count > 0)
+                {
 
+                    if ("Welcome" == ds.Tables[0].Rows[0][0].ToString())
+                    {
+                        if (Convert.ToInt32(ds.Tables[0].Rows[0][1]) >= 0)
+                        {
+
+                            if (Convert.ToInt32(ds.Tables[0].Rows[0][1]) == 0)
+                            {
+
+                                MessageBox.Show("Your Application is Going to Expired Today", "Expired Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                            else if (Convert.ToInt32(ds.Tables[0].Rows[0][1]) <= 7)
+                            {
+                                MessageBox.Show("Your Application is Going to Expired In " + ds.Tables[0].Rows[0][1].ToString() + " Days", "Expired Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                            objHome.Show();
+                            this.Close();
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Your Application is Expired", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            Application.Current.Shutdown();
+
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show(ds.Tables[0].Rows[0][0].ToString(), "Login Faild", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        txtUserName.Focus();
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Login Name Or Password Is Wrong", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    txtUserName.Focus();
+                }
 
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+            
+            
            
         }
         #endregion
 
+        /*
+         * Updated By: PriTesh D. Sortee
+         * Updated Date :07 Dec 2015
+         * Updated Purpose: Add Try catch Block
+         */
+        #region----------------------------------btnCancel_Click----------------------------------------------
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            try
+            {
+                Application.Current.Shutdown();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
+        #endregion
     }
 }
