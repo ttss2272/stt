@@ -6,7 +6,8 @@
         <StackPanel>
             <my:Menu_UserControl HorizontalAlignment="Left" x:Name="menu_UserControl1" VerticalAlignment="Top" />
         </StackPanel>
-        <GroupBox Header="User Details" HorizontalAlignment="left" Margin="0,64,0,0" VerticalAlignment="Top" Height="307" Width="550
+        <Grid HorizontalAlignment="Center">
+            <GroupBox Header="User Details" HorizontalAlignment="left" Margin="0,64,0,0" VerticalAlignment="Top" Height="307" Width="550
                   " Name="grpMain">
             <Grid Height="287">
                 <Label Content="Full Name" HorizontalAlignment="Left" Margin="33,6,0,0" VerticalAlignment="Top" Width="87" Name="lblFullname"/>
@@ -39,8 +40,8 @@
                 <PasswordBox Height="23" HorizontalAlignment="Left" Margin="173,150,0,0" Name="txtPassword" VerticalAlignment="Top" Width="200" />
             </Grid>
         </GroupBox>
-        <GroupBox Header="User List" HorizontalAlignment="left" Margin="14,436,14,0" VerticalAlignment="Top" Height="211" Width="550">
-            <Grid>
+            <GroupBox Header="User List" HorizontalAlignment="left" Margin="14,436,14,0" VerticalAlignment="Top" Height="211" Width="550">
+             <Grid>
                 <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Height="190" Width="auto" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" Name="gvUser" CanUserResizeColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding UserID}" Header="User ID" Visibility="Hidden"></DataGridTextColumn>
@@ -60,11 +61,12 @@
                     </DataGrid.ItemContainerStyle>
                 </DataGrid>
             </Grid>
-        </GroupBox>
-        <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="left" Margin="14,382,14,0" Name="stackPanel1" VerticalAlignment="Top" Width="550">
+            </GroupBox>
+            <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="left" Margin="14,382,14,0" Name="stackPanel1" VerticalAlignment="Top" Width="550">
             <Label Content="Search User" Height="28" Width="96" Margin="50,0,0,0" Name="lblSearch" />
             <TextBox Height="23" Name="txtSearchUser" Width="200" TabIndex="13" />
             <Button Content="Search" Margin="30,0,0,0" Width="75" Height="27" Name="btnSearch" FontWeight="SemiBold" Click="btnSearch_Click" TabIndex="14" />
         </StackPanel>
+        </Grid>
     </Grid>
 </Window>

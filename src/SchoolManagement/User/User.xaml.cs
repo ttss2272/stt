@@ -21,6 +21,12 @@ namespace SchoolManagement.User
     /// </summary>
     public partial class User : Window
     {
+        /*
+         * Created by:- 
+         * Created Date:-
+         * Purpose
+         */
+        #region------------------------------------------------main()----------------------------------------------------------
         public User()
         {
             InitializeComponent();
@@ -29,12 +35,24 @@ namespace SchoolManagement.User
             this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
             ClearFields();
         }
-
+        #endregion
+        
+        /*
+         * Created by:- 
+         * Created Date:-
+         * Purpose
+         */
+        #region----------------------------------------------Variables Declaration---------------------------------------------
         BLUser obj_User = new BLUser();
 
         int UserID, IsActive, IsDeleted, UserTypeID = 0, UpID;
         string UserName, ContactNo, Address, MailId, LoginName, Password, UpdatedDate;
-
+        #endregion
+        /*
+         * Created by:- 
+         * Created Date:-
+         * Purpose
+         */
         #region---------------------------Validate()-----------------------------------------
         public bool Validate()
         {
@@ -115,6 +133,12 @@ namespace SchoolManagement.User
         }
         #endregion
 
+        /*
+         * Created by:- 
+         * Created Date:-
+         * Purpose
+         */
+        #region------------------------------------------------btnSave_Click----------------------------------------------------
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
                 try
@@ -133,7 +157,14 @@ namespace SchoolManagement.User
                 }
             
         }
+        #endregion
 
+        /*
+         * Created by:- 
+         * Created Date:-
+         * Purpose
+         */
+        #region--------------------------------------------------SaveUpdateUser()-----------------------------------------------
         private void SaveUpdateUser()
         {
             string Result = obj_User.SaveUser(UserID, UserName, ContactNo, Address, MailId, LoginName, Password, UpdatedDate, UserTypeID, IsActive, IsDeleted);
@@ -148,7 +179,14 @@ namespace SchoolManagement.User
                 MessageBox.Show(Result, "Error To Save", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+        #endregion
 
+        /*
+         * Created by:- 
+         * Created Date:-
+         * Purpose
+         */
+        #region---------------------------------------------------SetParameters()-----------------------------------------------
         private void SetParameters()
         {
             UserID = UpID;
@@ -171,7 +209,14 @@ namespace SchoolManagement.User
                 IsDeleted = 0;
             }
         }
+        #endregion
 
+        /*
+         * Created by:- 
+         * Created Date:-
+         * Purpose
+         */
+        #region---------------------------------------------------BindUserType()-------------------------------------------------
         private void BindUserType()
         {
             try
@@ -190,7 +235,14 @@ namespace SchoolManagement.User
                 MessageBox.Show(ex.Message.ToString());
             }
         }
+        #endregion
 
+        /*
+         * Created by:- 
+         * Created Date:-
+         * Purpose
+         */
+        #region---------------------------------------------------btnDelete_Click------------------------------------------------
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -210,7 +262,14 @@ namespace SchoolManagement.User
                 MessageBox.Show(ex.Message.ToString(), "Exception Error");
             }
         }
+        #endregion
 
+        /*
+         * Created by:- 
+         * Created Date:-
+         * Purpose
+         */
+        #region--------------------------------------------------DeleteUser()----------------------------------------------------
         private void DeleteUser()
         {
             if (UpID != 0)
@@ -234,7 +293,14 @@ namespace SchoolManagement.User
 
             }
         }
+        #endregion
 
+        /*
+         * Created by:- 
+         * Created Date:-
+         * Purpose
+         */
+        #region-------------------------------------------------btnClear_Click()-------------------------------------------------
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -246,7 +312,14 @@ namespace SchoolManagement.User
                 MessageBox.Show(ex.Message.ToString(), "Exception Error");
             }
         }
+        #endregion
 
+        /*
+         * Created by:- 
+         * Created Date:-
+         * Purpose
+         */
+        #region-------------------------------------------------ClearFields()----------------------------------------------------
         private void ClearFields()
         {
             UpID = 0;
@@ -263,7 +336,14 @@ namespace SchoolManagement.User
             btnSave.Content = "Save";
             BindUserType();
         }
+        #endregion
 
+        /*
+         * Created by:- 
+         * Created Date:-
+         * Purpose
+         */
+        #region---------------------------------------------------btnSearch_Click------------------------------------------------
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -275,7 +355,14 @@ namespace SchoolManagement.User
                 MessageBox.Show(ex.Message.ToString(), "Exception Error");
             }
         }
+        #endregion
 
+        /*
+         * Created by:- 
+         * Created Date:-
+         * Purpose
+         */
+        #region---------------------------------------------------BindUserGrid()-------------------------------------------------
         private void bindUserGrid()
         {
             DataSet ds = obj_User.GetUser(0, txtSearchUser.Text);
@@ -286,11 +373,18 @@ namespace SchoolManagement.User
             else
             {
                 gvUser.ItemsSource = null;
-                MessageBox.Show("Data Not Found", "Message");
-                ClearFields();
+                //MessageBox.Show("Data Not Found", "Message");
+                //ClearFields();
             }
         }
+        #endregion
 
+        /*
+         * Created by:- 
+         * Created Date:-
+         * Purpose
+         */
+        #region------------------------------------------------RowDouble_Click---------------------------------------------------
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             try
@@ -323,7 +417,7 @@ namespace SchoolManagement.User
                 MessageBox.Show(ex.Message.ToString(), "Exception Error");
             }
         }
-
+        #endregion
         /* Created By:- Pranjali Vidhate
     * Created Date :- 20 Nov 2015
     * Purpose:- Vaidation for text check */
