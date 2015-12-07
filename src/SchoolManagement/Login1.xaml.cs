@@ -43,6 +43,7 @@ namespace SchoolManagement
             try
             {
                 InitializeComponent();
+                txtUserName.Focus();
             }
             catch (Exception ex)
             {
@@ -65,53 +66,72 @@ namespace SchoolManagement
         {
             try
             {
-                Username = txtUserName.Text;
-                Password = txtPassword.Password;
-                string CurrentDate = DateTime.Now.ToString("yyyy-MM-dd");
-                DataSet ds = obj_Login.GetLoginDetails(Username, Password, CurrentDate);
-                txtUserName.Text = "";
-                txtPassword.Password = "";
-                if (ds.Tables[0].Rows.Count > 0)
+                if (txtUserName.Text != "")
                 {
-
-                    if ("Welcome" == ds.Tables[0].Rows[0][0].ToString())
+                    if (txtPassword.Password != "")
                     {
-                        if (Convert.ToInt32(ds.Tables[0].Rows[0][1]) >= 0)
+                        Username = txtUserName.Text;
+                        Password = txtPassword.Password;
+                        string CurrentDate = DateTime.Now.ToString("yyyy-MM-dd");
+                        DataSet ds = obj_Login.GetLoginDetails(Username, Password, CurrentDate);
+                        txtUserName.Text = "";
+                        txtPassword.Password = "";
+                        if (ds.Tables[0].Rows.Count > 0)
                         {
 
-                            if (Convert.ToInt32(ds.Tables[0].Rows[0][1]) == 0)
+                            if ("Welcome" == ds.Tables[0].Rows[0][0].ToString())
                             {
+                                if (Convert.ToInt32(ds.Tables[0].Rows[0][1]) >= 0)
+                                {
 
-                                MessageBox.Show("Your Application is Going to Expired Today", "Expired Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    if (Convert.ToInt32(ds.Tables[0].Rows[0][1]) == 0)
+                                    {
+
+                                        MessageBox.Show("Your Application is Going to Expired Today", "Expired Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    }
+                                    else if (Convert.ToInt32(ds.Tables[0].Rows[0][1]) <= 7)
+                                    {
+                                        MessageBox.Show("Your Application is Going to Expired In " + ds.Tables[0].Rows[0][1].ToString() + " Days", "Expired Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    }
+                                    objHome.Show();
+                                    this.Close();
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Your Application is Expired", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                    Application.Current.Shutdown();
+
+                                }
+
                             }
-                            else if (Convert.ToInt32(ds.Tables[0].Rows[0][1]) <= 7)
+                            else
                             {
-                                MessageBox.Show("Your Application is Going to Expired In " + ds.Tables[0].Rows[0][1].ToString() + " Days", "Expired Info", MessageBoxButton.OK, MessageBoxImage.Information);
-                            }
-                            objHome.Show();
-                            this.Close();
+                                MessageBox.Show(ds.Tables[0].Rows[0][0].ToString(), "Login Faild", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                txtUserName.Focus();
 
+                            }
                         }
                         else
                         {
-                            MessageBox.Show("Your Application is Expired", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
-                            Application.Current.Shutdown();
-
+                            MessageBox.Show("Login Name Or Password Is Wrong", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtUserName.Focus();
                         }
-
                     }
                     else
                     {
-                        MessageBox.Show(ds.Tables[0].Rows[0][0].ToString(), "Login Faild", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        txtUserName.Focus();
-
+                        MessageBox.Show("Please Enter Password", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        txtPassword.Focus();
                     }
-                }
+               }
+                
                 else
                 {
-                    MessageBox.Show("Login Name Or Password Is Wrong", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Please Enter User Name", "", MessageBoxButton.OK, MessageBoxImage.Warning);
                     txtUserName.Focus();
+
                 }
+
 
             }
             catch (Exception ex)
