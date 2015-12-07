@@ -529,38 +529,56 @@ namespace SchoolManagement.TimeTable
         #region-----------------BindTeacher()----------------------------------
         private void BindTeacher()
         {
-            int SubID = Convert.ToInt32(cbSubjectName.SelectedValue);
-            int BatID = Convert.ToInt32(cbBatchName.SelectedValue);
-            DataSet ds = objTeacher.BindTeacherOnTimeTable(SubjectID,BatID);
-
-            if (ds.Tables[0].Rows.Count > 0)
+            if (rdoClassWise.IsChecked == true)
             {
-                if (rdoClassWise.IsChecked == true)
+                int SubID = Convert.ToInt32(cbSubjectName.SelectedValue);
+                int BatID = Convert.ToInt32(cbBatchName.SelectedValue);
+                DataSet ds = objTeacher.BindTeacherOnTimeTable(SubID,BatID);
+
+                if (ds.Tables[0].Rows.Count > 0)
                 {
-                    //cbTeacherName.DataContext = null;
+                
+                        //cbTeacherName.DataContext = null;
                     
-                    cbTeacherName.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
-                    cbTeacherName.SelectedValuePath = ds.Tables[0].Columns["TeacherSubjectID"].ToString();
-                    cbTeacherName.SelectedValue = "0";
-                    cbTeacherName.DataContext = ds.Tables[0].DefaultView;
-                }
+                        cbTeacherName.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
+                        cbTeacherName.SelectedValuePath = ds.Tables[0].Columns["TeacherSubjectID"].ToString();
+                        cbTeacherName.SelectedValue = "0";
+                        cbTeacherName.DataContext = ds.Tables[0].DefaultView;
+                    }
+            }
                 if (rdoRoomWise.IsChecked == true)
                 {
-                    //cbTeacherName1.DataContext = null;
+                    int SubID = Convert.ToInt32(cbSubjectName1.SelectedValue);
+                   int BatID = Convert.ToInt32(cbBatchName1.SelectedValue);
+                   DataSet ds = objTeacher.BindTeacherOnTimeTable(SubID,BatID);
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                
+                        //cbTeacherName.DataContext = null;
                     
-                    cbTeacherName1.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
-                    cbTeacherName1.SelectedValuePath = ds.Tables[0].Columns["TeacherSubjectID"].ToString();
-                    cbTeacherName1.SelectedValue = "0";
-                    cbTeacherName1.DataContext = ds.Tables[0].DefaultView;
+                        cbTeacherName1.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
+                        cbTeacherName1.SelectedValuePath = ds.Tables[0].Columns["TeacherSubjectID"].ToString();
+                        cbTeacherName1.SelectedValue = "0";
+                        cbTeacherName1.DataContext = ds.Tables[0].DefaultView;
+                    }
                 }
                 if (rdoTeacherWise.IsChecked == true)
                 {
-                    //cbTeacherName2.DataContext = null;
+                     int SubID = Convert.ToInt32(cbSubjectName2.SelectedValue);
+                    int BatID = Convert.ToInt32(cbBatchName2.SelectedValue);
+                    DataSet ds = objTeacher.BindTeacherOnTimeTable(SubID,BatID);
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                
+                        //cbTeacherName.DataContext = null;
                     
-                    cbTeacherName2.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
-                    cbTeacherName2.SelectedValuePath = ds.Tables[0].Columns["TeacherSubjectID"].ToString();
-                    cbTeacherName2.SelectedValue = "0";
-                    cbTeacherName2.DataContext = ds.Tables[0].DefaultView;
+                        cbTeacherName2.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
+                        cbTeacherName2.SelectedValuePath = ds.Tables[0].Columns["TeacherSubjectID"].ToString();
+                        cbTeacherName2.SelectedValue = "0";
+                        cbTeacherName2.DataContext = ds.Tables[0].DefaultView;
+                    }
                 }
             }
         }
