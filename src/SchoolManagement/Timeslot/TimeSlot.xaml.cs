@@ -115,7 +115,7 @@ namespace SchoolManagement.Timeslot
             }
             else if ((Convert.ToInt32(cmbSHr.Text) == Convert.ToInt32(cmbEHr.Text)) && (Convert.ToInt32(cmbSMin.Text) >= Convert.ToInt32(cmbEMin.Text)))
             {
-                MessageBox.Show("End Minute Time of Open Time Is Must Be Greater Than End Time...");
+                MessageBox.Show("End Minute Time of Open Time Is Must Be Greater Than End Time...", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 cmbEMin.Focus();
                 return false;
 
@@ -128,26 +128,26 @@ namespace SchoolManagement.Timeslot
             }
              else if ((Convert.ToInt32(cmbSSHr.Text) == Convert.ToInt32(cmbSEHr.Text)) && (Convert.ToInt32(cmbSSMin.Text) >= Convert.ToInt32(cmbSEMin.Text)))
              {
-                 MessageBox.Show("End Minute Time of Slot Time Is Must Be Greater Than End Time...");
+                 MessageBox.Show("End Minute Time of Slot Time Is Must Be Greater Than End Time...", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                  cmbSSHr.Focus();
                  return false;
              }
             else if (Convert.ToInt32(cmbSHr.SelectedItem.ToString()) > Convert.ToInt32(cmbSSHr.SelectedItem.ToString())) 
             {
-                MessageBox.Show("Please Enter Slot Start Time With in Open Time...");
+                MessageBox.Show("Please Enter Slot Start Time With in Open Time...", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 cmbSSHr.Focus();
                 return false;
             }
             else if (Convert.ToInt32(cmbEHr.SelectedItem.ToString()) < Convert.ToInt32(cmbSEHr.SelectedItem.ToString()))
             {
-                MessageBox.Show("Please Enter Slot End Time With in Open Time...");
+                MessageBox.Show("Please Enter Slot End Time With in Open Time...", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 cmbSEHr.Focus();
                 return false;
 
             }
             else if (rdbActive.IsChecked == false && rdbInactive.IsChecked == false)
             {
-                MessageBox.Show("Please Select Status...");
+                MessageBox.Show("Please Select Status...", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
             else
@@ -710,30 +710,30 @@ namespace SchoolManagement.Timeslot
                             cmbEHr.Text = b[0];
                             cmbEMin.Text = b[1];
 
-                            string SlotStartTime = ds.Tables[0].Rows[0]["LectureStartTime"].ToString();
-                            string[] c = SlotStartTime.Split(':');
-                            cmbSSHr.Text = c[0];
-                            cmbSSMin.Text = c[1];
+                            //string SlotStartTime = ds.Tables[0].Rows[0]["LectureStartTime"].ToString();
+                            //string[] c = SlotStartTime.Split(':');
+                            //cmbSSHr.Text = c[0];
+                            //cmbSSMin.Text = c[1];
 
 
-                            string SlotEndTime = ds.Tables[0].Rows[0]["LectureEndTime"].ToString();
-                            string[] d = SlotEndTime.Split(':');
-                            cmbSEHr.Text = d[0];
-                            cmbSEMin.Text = d[1];
+                            //string SlotEndTime = ds.Tables[0].Rows[0]["LectureEndTime"].ToString();
+                            //string[] d = SlotEndTime.Split(':');
+                            //cmbSEHr.Text = d[0];
+                            //cmbSEMin.Text = d[1];
 
-                            IsActive = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
-                            IsDeleted = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDelete"]);
-                            if (IsActive == 1 && IsDeleted == 0)
-                            {
+                            //IsActive = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
+                            //IsDeleted = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDelete"]);
+                            //if (IsActive == 1 && IsDeleted == 0)
+                            //{
                                 rdbActive.IsChecked = true;
-                            }
-                            else if (IsActive == 0 && IsDeleted == 0)
-                            {
-                                rdbInactive.IsChecked = true;
-                            }
-                            btnDelete.IsEnabled = true;
+                            //}
+                            //else if (IsActive == 0 && IsDeleted == 0)
+                            //{
+                             //   rdbInactive.IsChecked = true;
+                            //}
+                            //btnDelete.IsEnabled = true;
                             // btnAdd.Content = "Update";
-                            BindFullGrid();
+                            //BindFullGrid();
                         }
                     }
                    // else { BindFullGrid(); }
