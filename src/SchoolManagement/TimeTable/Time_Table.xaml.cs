@@ -42,7 +42,7 @@ namespace SchoolManagement.TimeTable
 
 
         int TimeTableID, BatchID, RoomID, ClassID, TeacherID, TeacherSubjectID, SubjectID, BranchID, BatchAvailableID, UpID,UPID, TimeTableDetailID, UpdatedByUserID, IsActive, IsDeleted;
-        string UpdatedDate, LectStartTime, LectEndTime, SlotTime, Day,Date;
+        String UpdatedDate, LectStartTime, LectEndTime, SlotTime, Day;
         DateTime TTStartDate;
 
         #endregion
@@ -81,7 +81,7 @@ namespace SchoolManagement.TimeTable
                 if (Validate())
                 {
                     Setparameter();
-                    string Result = objTimeTable.SaveTimeTable(TimeTableID, TimeTableDetailID, Date, BatchID, RoomID, Day, LectStartTime, LectEndTime, TeacherSubjectID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
+                    string Result = objTimeTable.SaveTimeTable(TimeTableID, TimeTableDetailID, TTStartDate, BatchID, RoomID, Day, LectStartTime, LectEndTime, TeacherSubjectID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
                     if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                     {
                         MessageBox.Show(Result, "Save Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -118,10 +118,10 @@ namespace SchoolManagement.TimeTable
                 //BranchID = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
                 //ClassID = Convert.ToInt32(cbClassName.SelectedValue.ToString());
                 BatchID = Convert.ToInt32(cbBatchName.SelectedValue.ToString());
-                Date = dpTTStartDate.SelectedDate.Value.ToString("yyyy-MM-dd");
-                TeacherSubjectID = Convert.ToInt32(cbTeacherName.SelectedValue.ToString());
+                TTStartDate = Convert.ToDateTime(dpTTStartDate.SelectedDate.Value.Date.ToString());
+                TeacherSubjectID = Convert.ToInt32(cbSubjectName.SelectedValue.ToString());
                 RoomID = Convert.ToInt32(cbRoomName.SelectedValue.ToString());
-               // TeacherID = Convert.ToInt32(cbTeacherName.SelectedValue.ToString());
+                TeacherID = Convert.ToInt32(cbTeacherName.SelectedValue.ToString());
                 Day = cmbDayName.Text;
                 SlotTime = cbTimeSlot.Text;
                 string[] a = SlotTime.Split('-');
@@ -148,10 +148,10 @@ namespace SchoolManagement.TimeTable
                 //BranchID = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
                 //ClassID = Convert.ToInt32(cbClassName.SelectedValue.ToString());
                 BatchID = Convert.ToInt32(cbBatchName1.SelectedValue.ToString());
-                Date = dpTTStartDate.SelectedDate.Value.ToString("yyyy-MM-dd");
+                TTStartDate = Convert.ToDateTime(dpTTStartDate.SelectedDate.Value.Date.ToString());
+                TeacherSubjectID = Convert.ToInt32(cbSubjectName1.SelectedValue.ToString());
                 RoomID = Convert.ToInt32(cbRoomName1.SelectedValue.ToString());
-                TeacherSubjectID = Convert.ToInt32(cbTeacherName1.SelectedValue.ToString());
-                //TeacherID = Convert.ToInt32(cbTeacherName1.SelectedValue.ToString());
+                TeacherID = Convert.ToInt32(cbTeacherName1.SelectedValue.ToString());
                 Day = cbDay.Text;
                 SlotTime = cbTimeSlot1.Text;
                 string[] a = SlotTime.Split('-');
@@ -177,10 +177,10 @@ namespace SchoolManagement.TimeTable
                 //BranchID = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
                 //ClassID = Convert.ToInt32(cbClassName.SelectedValue.ToString());
                 BatchID = Convert.ToInt32(cbBatchName2.SelectedValue.ToString());
-                Date = dpTTStartDate.SelectedDate.Value.ToString("yyyy-MM-dd");
-                TeacherSubjectID = Convert.ToInt32(cbTeacherName2.SelectedValue.ToString()); 
+                TTStartDate = Convert.ToDateTime(dpTTStartDate.SelectedDate.Value.Date.ToString("dd/MM/yyyy"));
+                TeacherSubjectID = Convert.ToInt32(cbSubjectName2.SelectedValue.ToString());
                 RoomID = Convert.ToInt32(cbRoomName2.SelectedValue.ToString());
-                //TeacherID = Convert.ToInt32(cbTeacherName2.SelectedValue.ToString());
+                TeacherID = Convert.ToInt32(cbTeacherName2.SelectedValue.ToString());
                 Day = cbDay2.Text;
                 SlotTime = cbTimeSlot2.Text;
                 string[] a = SlotTime.Split('-');
@@ -533,56 +533,75 @@ namespace SchoolManagement.TimeTable
             {
                 int SubID = Convert.ToInt32(cbSubjectName.SelectedValue);
                 int BatID = Convert.ToInt32(cbBatchName.SelectedValue);
-                DataSet ds = objTeacher.BindTeacherOnTimeTable(SubID,BatID);
+                DataSet ds = objTeacher.BindTeacherOnTimeTable(SubID, BatID);
 
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                
-                        //cbTeacherName.DataContext = null;
-                    
-                        cbTeacherName.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
-                        cbTeacherName.SelectedValuePath = ds.Tables[0].Columns["TeacherSubjectID"].ToString();
-                        cbTeacherName.SelectedValue = "0";
-                        cbTeacherName.DataContext = ds.Tables[0].DefaultView;
+
+                    //cbTeacherName.DataContext = null;
+
+                    cbTeacherName.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
+                    cbTeacherName.SelectedValuePath = ds.Tables[0].Columns["TeacherSubjectID"].ToString();
+                    cbTeacherName.SelectedValue = "0";
+                    cbTeacherName.DataContext = ds.Tables[0].DefaultView;
                 }
 
             }
             if (rdoRoomWise.IsChecked == true)
             {
-                    int SubID = Convert.ToInt32(cbSubjectName1.SelectedValue);
-                   int BatID = Convert.ToInt32(cbBatchName1.SelectedValue);
-                   DataSet ds = objTeacher.BindTeacherOnTimeTable(SubID,BatID);
+                int SubID = Convert.ToInt32(cbSubjectName1.SelectedValue);
+                int BatID = Convert.ToInt32(cbBatchName1.SelectedValue);
+                DataSet ds = objTeacher.BindTeacherOnTimeTable(SubID, BatID);
 
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                
-                            //cbTeacherName.DataContext = null;
-                    
-                            cbTeacherName1.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
-                            cbTeacherName1.SelectedValuePath = ds.Tables[0].Columns["TeacherSubjectID"].ToString();
-                            cbTeacherName1.SelectedValue = "0";
-                            cbTeacherName1.DataContext = ds.Tables[0].DefaultView;
-                    }
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+
+                    //cbTeacherName.DataContext = null;
+
+                    cbTeacherName1.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
+                    cbTeacherName1.SelectedValuePath = ds.Tables[0].Columns["TeacherSubjectID"].ToString();
+                    cbTeacherName1.SelectedValue = "0";
+                    cbTeacherName1.DataContext = ds.Tables[0].DefaultView;
+                }
 
             }
-                if (rdoTeacherWise.IsChecked == true)
-                {
-                     int SubID = Convert.ToInt32(cbSubjectName2.SelectedValue);
-                    int BatID = Convert.ToInt32(cbBatchName2.SelectedValue);
-                    DataSet ds = objTeacher.BindTeacherOnTimeTable(SubID,BatID);
+            if (rdoTeacherWise.IsChecked == true)
+            {
+                int SubID = Convert.ToInt32(cbSubjectName2.SelectedValue);
+                int BatID = Convert.ToInt32(cbBatchName2.SelectedValue);
+                DataSet ds = objTeacher.BindTeacherOnTimeTable(SubID, BatID);
 
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                
-                            //cbTeacherName.DataContext = null;
-                    
-                            cbTeacherName2.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
-                            cbTeacherName2.SelectedValuePath = ds.Tables[0].Columns["TeacherSubjectID"].ToString();
-                            cbTeacherName2.SelectedValue = "0";
-                            cbTeacherName2.DataContext = ds.Tables[0].DefaultView;
-                     }
-              }
-       
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+
+                    //cbTeacherName.DataContext = null;
+
+                    cbTeacherName2.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
+                    cbTeacherName2.SelectedValuePath = ds.Tables[0].Columns["TeacherSubjectID"].ToString();
+                    cbTeacherName2.SelectedValue = "0";
+                    cbTeacherName2.DataContext = ds.Tables[0].DefaultView;
+                }
+            }
+
+        }
+        #endregion
+
+        #region---------------------------------------------------BindTeacher()-------------------------------------------------------------
+        private void BindTeacher1()
+        {
+            DataSet ds = objTeacher.BindTeacherDropDown(0);
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                cbTeacherName.DataContext = null;
+
+                cbTeacherName.DataContext = ds.Tables[0].DefaultView;
+                cbTeacherName.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
+                cbTeacherName.SelectedValuePath = ds.Tables[0].Columns["TeacherID"].ToString();
+
+
+                cbTeacherName.SelectedValue = "0";
+            }
         }
         #endregion
 
@@ -600,7 +619,6 @@ namespace SchoolManagement.TimeTable
             {
                 
                 BranchID = Convert.ToInt32(cbBranchName.SelectedValue);
-
                 DataSet ds = objRoom.BindRoomDropDown(BranchID);
 
                 if (ds.Tables[0].Rows.Count > 0)
@@ -996,19 +1014,20 @@ namespace SchoolManagement.TimeTable
                 if (cbBranchName.SelectedValue.ToString() != "0" && cbBranchName.SelectedItem.ToString() != "Select")
                 {
                     if (dpTTStartDate.Text != "")
+                    //dpTTStartDate.Focus();
                     {
-                    if (btnGo.Content.ToString() == "Go")
-                    {
-                        DisableUpperPart();
-                        GetDetails();
-                        
+                        if (btnGo.Content.ToString() == "Go")
+                        {
+                            DisableUpperPart();
+                            GetDetails();
+
+                        }
+                        else if (btnGo.Content.ToString() == "Change")
+                        {
+                            EnableUpperPart();
+                            ClearData();
+                        }
                     }
-                    else if (btnGo.Content.ToString() == "Change")
-                    {
-                        EnableUpperPart();
-                        ClearData();
-                    }
-                }
                     else
                     {
                         dpTTStartDate.Focus();
@@ -1081,7 +1100,7 @@ namespace SchoolManagement.TimeTable
         * Updated Date:- 
         * Purpose:-
         */
-        #region---------------------------------------------------------Clears()-------------------------------------------------------
+        #region-----------------------------------------------Clears()-------------------------------------------------------
         private void ClearData()
         {
             cbClassName.DataContext = null;
@@ -1233,11 +1252,10 @@ namespace SchoolManagement.TimeTable
         */
         #region-------------------------------------rdoclasswise_Checked----------------------------------------------------
         private void rdoClassWise_Checked(object sender, RoutedEventArgs e)
-        {
+        {           
             //canvasTeacherWise.Visibility = Visibility.Hidden;
             //canvasRoomWise.Visibility = Visibility.Hidden;
             //gbSame.Visibility = Visibility.Visible;
-
         }
         #endregion
         /*
@@ -1506,41 +1524,41 @@ namespace SchoolManagement.TimeTable
         {
             try
             {
-               // DisableUpperPart();
-                object item = dgTimeTable.SelectedItem;
-                //int TimeTableID = Convert.ToInt32(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[0].ToString());
+                gbSame.IsEnabled = true;
+                DisableUpperPart();
+                object item = dgTimeTable.SelectedIndex;
                 UpID = Convert.ToInt32(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[0].ToString());
-               // UPID = Convert.ToInt32(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[0].ToString());
+                UPID = Convert.ToInt32(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[0].ToString());
                 cbBranchName.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[1].ToString());
                 dpTTStartDate.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[2].ToString());
-                cbClassName.SelectedValue = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[3].ToString());
-                cbBatchName.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[4].ToString());
-                cbRoomName.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[5].ToString());
-                cbSubjectName.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[6].ToString());
-                cbTeacherName.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[7].ToString());
-                cmbDayName.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[11].ToString());
-                string a = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[12].ToString());
-                string b = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[13].ToString());
-                cbTimeSlot.Text = (a +"-"+ b);
-                int act = Convert.ToInt32(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[9].ToString());
-               // int del = Convert.ToInt32(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[10].ToString());
-                //int TimeTableDetailID = Convert.ToInt32(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[16].ToString());
-
-                if (act == 1)
+                if (rdoClassWise.IsChecked == true)
                 {
-                    rdoActive.IsChecked = true;
-                }
-                else if (act == 0 )
-                {
-                    rdoInActive.IsChecked = true;
-                }
+                    cbClassName.SelectedValue = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[3].ToString());
+                    cbBatchName.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[4].ToString());
+                    cbRoomName.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[5].ToString());
+                    cbSubjectName.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[6].ToString());
+                    cbTeacherName.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[7].ToString());
+                    cmbDayName.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[11].ToString());
+                    string a = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[12].ToString());
+                    string b = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[13].ToString());
+                    cbTimeSlot.Text = (a + "-" + b);
+                    int act = Convert.ToInt32(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[9].ToString());
 
-                btnSave.Content = "Update";
-                gbSame.IsEnabled = true;
+                    if (act == 1)
+                    {
+                        rdoActive.IsChecked = true;
+                    }
+                    else if (act == 0)
+                    {
+                        rdoInActive.IsChecked = true;
+                    }
+
+                    btnSave.Content = "Update";
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString(),"Exception Error");
+                MessageBox.Show(ex.Message.ToString(), "Exception Error");
             }
         }
         #endregion                    
