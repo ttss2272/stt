@@ -485,7 +485,12 @@ namespace SchoolManagement.Branch
 
         }
         #endregion
-
+        /*
+         * Created By:- Pranjali Vidhate
+         * Created date:- 07 Dec 2015
+         * Purpose:- Time accepet only numbers
+         */
+        #region-----------------------------------------------txtDistTIme_TextChanged-------------------------------------
         private void txtDistTime_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
@@ -512,6 +517,7 @@ namespace SchoolManagement.Branch
                 MessageBox.Show(ex.ToString());
             }
         }
+        #endregion
 
     }
 }
