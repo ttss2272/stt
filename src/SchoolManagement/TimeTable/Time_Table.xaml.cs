@@ -995,6 +995,8 @@ namespace SchoolManagement.TimeTable
             {
                 if (cbBranchName.SelectedValue.ToString() != "0" && cbBranchName.SelectedItem.ToString() != "Select")
                 {
+                    if (dpTTStartDate.Text != "")
+                    {
                     if (btnGo.Content.ToString() == "Go")
                     {
                         DisableUpperPart();
@@ -1007,9 +1009,15 @@ namespace SchoolManagement.TimeTable
                         ClearData();
                     }
                 }
+                    else
+                    {
+                        dpTTStartDate.Focus();
+                        MessageBox.Show("Please Select Time Table Start Date");
+                    }
+                }
                 else
                 {
-                    MessageBox.Show("Please Select Branch Name");
+                    MessageBox.Show("Please select Branch Name");
                 }
             }
             catch (Exception ex)
