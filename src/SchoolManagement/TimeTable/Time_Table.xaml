@@ -72,7 +72,7 @@
                 <RadioButton Content="Class Wise" Height="16" HorizontalAlignment="Left" Margin="104,51,0,0" Name="rdoClassWise" VerticalAlignment="Top" Checked="rdoClassWise_Checked" />
                 <RadioButton Content="Room Wise" Height="20" HorizontalAlignment="Right" Margin="0,51,272,0" Name="rdoRoomWise" VerticalAlignment="Top" Checked="rdoRoomWise_Checked_1" Grid.ColumnSpan="2" />
                 <RadioButton Content="Teacher Wise" Height="16" HorizontalAlignment="Left" Margin="89.149,52,0,0" Name="rdoTeacherWise" VerticalAlignment="Top" Checked="rdoTeacherWise_Checked" Grid.Column="1" />
-                <DatePicker Height="25" HorizontalAlignment="Left" Margin="162.149,10,0,0" Name="dpTTStartDate" VerticalAlignment="Top" Width="115" Grid.Column="1" />
+                <DatePicker Height="25" HorizontalAlignment="Left" Margin="162.149,10,0,0" Name="dpTTStartDate" VerticalAlignment="Top" Width="115" Grid.Column="1" SelectedDate="{Binding Date, StringFormat=dd/MM/yyyy}" />
                 <Label Content="W.E.F" Height="28" HorizontalAlignment="Left" Margin="112.149,9,0,0" Name="label50" VerticalAlignment="Top" Grid.Column="1" />
             </Grid>
         </GroupBox>
@@ -111,7 +111,7 @@
                 <Button Content="Clear" FontWeight="Bold" Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="388,10,0,0" Name="btnClear" TabIndex="16" VerticalAlignment="Top" Width="75" Click="btnClear_Click" />
             </Grid>
         </GroupBox>
-        <DataGrid AutoGenerateColumns="False" Height="155" HorizontalAlignment="Left" Margin="228,415,0,0" Name="dgTimeTable" ItemsSource="{Binding}" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" VerticalAlignment="Top" Width="600">
+        <DataGrid AutoGenerateColumns="False" Height="155" HorizontalAlignment="Left" Margin="228,415,0,0" Name="dgTimeTable" ItemsSource="{Binding}" IsReadOnly="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" VerticalAlignment="Top" Width="600">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding TimeTableID}" Header="TimeTableID" Visibility="Hidden"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding TimeTableDetailID}" Header="TimeTableDetailID" Visibility="Hidden"></DataGridTextColumn>

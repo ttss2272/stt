@@ -42,7 +42,7 @@ namespace SchoolManagement.TimeTable
 
 
         int TimeTableID, BatchID, RoomID, ClassID, TeacherID, TeacherSubjectID, SubjectID, BranchID, BatchAvailableID, UpID,UPID, TimeTableDetailID, UpdatedByUserID, IsActive, IsDeleted;
-        String UpdatedDate, LectStartTime, LectEndTime, SlotTime, Day;
+        string UpdatedDate, LectStartTime, LectEndTime, SlotTime, Day,Date;
         DateTime TTStartDate;
 
         #endregion
@@ -81,7 +81,7 @@ namespace SchoolManagement.TimeTable
                 if (Validate())
                 {
                     Setparameter();
-                    string Result = objTimeTable.SaveTimeTable(TimeTableID, TimeTableDetailID, TTStartDate, BatchID, RoomID, Day, LectStartTime, LectEndTime, TeacherSubjectID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
+                    string Result = objTimeTable.SaveTimeTable(TimeTableID, TimeTableDetailID, Date, BatchID, RoomID, Day, LectStartTime, LectEndTime, TeacherSubjectID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
                     if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                     {
                         MessageBox.Show(Result, "Save Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -118,7 +118,11 @@ namespace SchoolManagement.TimeTable
                 //BranchID = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
                 //ClassID = Convert.ToInt32(cbClassName.SelectedValue.ToString());
                 BatchID = Convert.ToInt32(cbBatchName.SelectedValue.ToString());
-                TTStartDate = Convert.ToDateTime(dpTTStartDate.SelectedDate.Value.Date.ToString());
+                Date = dpTTStartDate.SelectedDate.Value.ToString("yyyy-MM-dd");
+              
+                //  string [] b = Date.Split(' ');
+              //  Date = b[0];
+               // TTStartDate =Convert.ToDateTime(Date.ToString());
                 TeacherSubjectID = Convert.ToInt32(cbSubjectName.SelectedValue.ToString());
                 RoomID = Convert.ToInt32(cbRoomName.SelectedValue.ToString());
                 TeacherID = Convert.ToInt32(cbTeacherName.SelectedValue.ToString());
@@ -1366,12 +1370,11 @@ namespace SchoolManagement.TimeTable
         {
             try
             {
-                gbSame.IsEnabled = true;
-                DisableUpperPart();
+               // DisableUpperPart();
                 object item = dgTimeTable.SelectedItem;
                 //int TimeTableID = Convert.ToInt32(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[0].ToString());
                 UpID = Convert.ToInt32(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[0].ToString());
-                UPID = Convert.ToInt32(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[0].ToString());
+               // UPID = Convert.ToInt32(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[0].ToString());
                 cbBranchName.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[1].ToString());
                 dpTTStartDate.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[2].ToString());
                 cbClassName.SelectedValue = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[3].ToString());
@@ -1397,7 +1400,7 @@ namespace SchoolManagement.TimeTable
                 }
 
                 btnSave.Content = "Update";
-                
+                gbSame.IsEnabled = true;
             }
             catch (Exception ex)
             {
