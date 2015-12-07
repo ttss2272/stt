@@ -6,6 +6,7 @@
        <StackPanel>
             <my:Menu_UserControl HorizontalAlignment="Left" x:Name="menu_UserControl1" VerticalAlignment="Top" />
         </StackPanel>
+        <Grid HorizontalAlignment="Center">
         <GroupBox Header="Room" Height="320" HorizontalAlignment="Left" Margin="31,30,0,0" Name="groupBox1" VerticalAlignment="Top" Width="771">
             <Grid>
                 <Label Content="Room Name" Height="28" HorizontalAlignment="Left" Margin="57,54,0,0" Name="label1" VerticalAlignment="Top" Width="108" FontWeight="Bold" />
@@ -78,5 +79,6 @@
             </DataGrid.ItemContainerStyle>
 
         </DataGrid >
+        </Grid>
     </Grid>
 </Window>

@@ -23,6 +23,12 @@ namespace SchoolManagement.Room
     /// </summary>
     public partial class Room1 : Window
     {
+        /*
+         * Created By:-
+         * Created Date:-
+         * Purpose
+         */
+        #region--------------------------------------Decalre Vatriables---------------------------------
         BLRoom obj_Room = new BLRoom();
         BLAddBranch obj_Branch = new BLAddBranch();
 
@@ -30,18 +36,32 @@ namespace SchoolManagement.Room
         int IsAllow,MaxLectDay,MaxLectWeek,MaxLectRow,SHr,SMin,EHr,EMin;
         string RoomName, ShortName, Color1, UpdatedDate,Sign=":",n="0",m="1";
         DateTime StartTime, EndTime;
+        #endregion
 
-
+        /*
+         * Created By:-
+         * Created Date:-
+         * Purpose
+         */
+        #region---------------------------------------main()---------------------------------------
         public Room1()
         {
-            InitializeComponent();
-            this.WindowState = WindowState.Maximized;
-            this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
-            this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
-            clearFields();
+            try
+            {
+                InitializeComponent();
+                this.WindowState = WindowState.Maximized;
+                this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
+                this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
+                clearFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
 
         }
-
+        #endregion
         /* Created By:- Pranjali Vidhate
         * Created Date :- 4 Nov 2015
         * Purpose:- Validate All Fields*/
@@ -414,19 +434,35 @@ namespace SchoolManagement.Room
 
         }
       #endregion
-        
+
+        /*
+         * Created By:-
+         * Created Date:-
+         * Purpose
+         */
+        #region-----------------------------------------Window_Loaded--------------------------------
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            BindFullGrid();
-            rdbActive.IsChecked = true;
-            cmbCapacity_Items();
-            cmbSHr_Items();
-            cmbSMin_Items();
-            cmbEHr_Items();
-            cmbEMin_Items();
-            cmbAllowLect.SelectedIndex = 0;
-            btnDelete.IsEnabled = false;
+            try
+            {
+                BindFullGrid();
+                rdbActive.IsChecked = true;
+                cmbCapacity_Items();
+                cmbSHr_Items();
+                cmbSMin_Items();
+                cmbEHr_Items();
+                cmbEMin_Items();
+                cmbAllowLect.SelectedIndex = 0;
+                btnDelete.IsEnabled = false;
+            }
+            catch (Exception ex)
+            {
+                
+                 MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
+        #endregion
 
         /* Created By:- Sameer Shinde
         * Created Date :- 6 Nov 2015
@@ -726,11 +762,25 @@ namespace SchoolManagement.Room
         }
         #endregion
 
+        /*
+         * Created By :- 
+         * Created Date:- 
+         * Purpose
+         */
+        #region-------------------------------------------btnClear_Click------------------------------------
         private void btnclear_Click(object sender, RoutedEventArgs e)
         {
-            clearFields();
-        }
+            try
+            {
+                clearFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
 
+        }
+        #endregion
     }
  
  }
