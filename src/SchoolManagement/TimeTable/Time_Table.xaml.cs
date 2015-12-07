@@ -119,10 +119,6 @@ namespace SchoolManagement.TimeTable
                 //ClassID = Convert.ToInt32(cbClassName.SelectedValue.ToString());
                 BatchID = Convert.ToInt32(cbBatchName.SelectedValue.ToString());
                 Date = dpTTStartDate.SelectedDate.Value.ToString("yyyy-MM-dd");
-              
-                //  string [] b = Date.Split(' ');
-              //  Date = b[0];
-               // TTStartDate =Convert.ToDateTime(Date.ToString());
                 TeacherSubjectID = Convert.ToInt32(cbTeacherName.SelectedValue.ToString());
                 RoomID = Convert.ToInt32(cbRoomName.SelectedValue.ToString());
                // TeacherID = Convert.ToInt32(cbTeacherName.SelectedValue.ToString());
@@ -152,10 +148,10 @@ namespace SchoolManagement.TimeTable
                 //BranchID = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
                 //ClassID = Convert.ToInt32(cbClassName.SelectedValue.ToString());
                 BatchID = Convert.ToInt32(cbBatchName1.SelectedValue.ToString());
-                TTStartDate = Convert.ToDateTime(dpTTStartDate.SelectedDate.Value.Date.ToString());
-                TeacherSubjectID = Convert.ToInt32(cbSubjectName1.SelectedValue.ToString());
+                Date = dpTTStartDate.SelectedDate.Value.ToString("yyyy-MM-dd");
                 RoomID = Convert.ToInt32(cbRoomName1.SelectedValue.ToString());
-                TeacherID = Convert.ToInt32(cbTeacherName1.SelectedValue.ToString());
+                TeacherSubjectID = Convert.ToInt32(cbTeacherName1.SelectedValue.ToString());
+                //TeacherID = Convert.ToInt32(cbTeacherName1.SelectedValue.ToString());
                 Day = cbDay.Text;
                 SlotTime = cbTimeSlot1.Text;
                 string[] a = SlotTime.Split('-');
@@ -181,10 +177,10 @@ namespace SchoolManagement.TimeTable
                 //BranchID = Convert.ToInt32(cbBranchName.SelectedValue.ToString());
                 //ClassID = Convert.ToInt32(cbClassName.SelectedValue.ToString());
                 BatchID = Convert.ToInt32(cbBatchName2.SelectedValue.ToString());
-                TTStartDate = Convert.ToDateTime(dpTTStartDate.SelectedDate.Value.Date.ToString("dd/MM/yyyy"));
-                TeacherSubjectID = Convert.ToInt32(cbSubjectName2.SelectedValue.ToString());
+                Date = dpTTStartDate.SelectedDate.Value.ToString("yyyy-MM-dd");
+                TeacherSubjectID = Convert.ToInt32(cbTeacherName2.SelectedValue.ToString()); 
                 RoomID = Convert.ToInt32(cbRoomName2.SelectedValue.ToString());
-                TeacherID = Convert.ToInt32(cbTeacherName2.SelectedValue.ToString());
+                //TeacherID = Convert.ToInt32(cbTeacherName2.SelectedValue.ToString());
                 Day = cbDay2.Text;
                 SlotTime = cbTimeSlot2.Text;
                 string[] a = SlotTime.Split('-');
