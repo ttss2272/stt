@@ -22,7 +22,12 @@ namespace SchoolManagement.Timeslot
     /// </summary>
     public partial class TmeSlot : Window
     {
-
+        /*
+         * Created by:-
+         * Created Date:-
+         * Purpose:-
+         */
+        #region---------------------------------------------------------Decalre Variables--------------------------------
         BLTimeSlot obj_TSlot = new BLTimeSlot();
         BLAddBranch obj_Branch = new BLAddBranch();
 
@@ -30,16 +35,32 @@ namespace SchoolManagement.Timeslot
         int SHr, SMin, EHr, EMin, SSHr, SSMin, SEHr,SEMin;
         string DayName,UpdatedDate, Sign = ":", n = "0",m="1";
         DateTime StartTime, EndTime, SlotStartTime, SlotEndTime;
+        #endregion
 
+        /*
+         * Created date:-
+         * created by:-
+         * Purpose
+         */
+        #region----------------------------------------------------Time Slot-------------------------------------------
         public TmeSlot()
         {
-            InitializeComponent();
-            this.WindowState = WindowState.Maximized;
-            this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
-            this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
-            clearFields();
+            try
+            {
+                InitializeComponent();
+                this.WindowState = WindowState.Maximized;
+                this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
+                this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
+                clearFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
            
         }
+        #endregion
 
         /* Created By:- Pranjali Vidhate
       * Created Date :- 17 Nov 2015
@@ -487,23 +508,37 @@ namespace SchoolManagement.Timeslot
         }
         #endregion
 
-
+        /*
+         * Created By:- 
+         * Created Date:- 
+         * Purpose:-
+         */
+        #region--------------------------------------Window_Loaded-------------------------------
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            try
+            {
 
-            BindFullGrid();
-            rdbActive.IsChecked = true;
-            btnDelete.IsEnabled = false;
-            cmbDayName_Items();
-            cmbSHr_Items();
-            cmbSMin_Items();
-            cmbEHr_Items();
-            cmbEMin_Items();
-            cmbSSHr_Items();
-            cmbSSMin_Items();
-            cmbSEHr_Items();
-            cmbSEMin_Items();
+                BindFullGrid();
+                rdbActive.IsChecked = true;
+                btnDelete.IsEnabled = false;
+                cmbDayName_Items();
+                cmbSHr_Items();
+                cmbSMin_Items();
+                cmbEHr_Items();
+                cmbEMin_Items();
+                cmbSSHr_Items();
+                cmbSSMin_Items();
+                cmbSEHr_Items();
+                cmbSEMin_Items();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
         }
+        #endregion
 
         /* Created By:- pranjali vidhate
        * Created Date :- 18 Nov 2015
@@ -573,10 +608,25 @@ namespace SchoolManagement.Timeslot
         }
         #endregion
 
+        /*
+         * Created by:-
+         * Created date:-
+         * pupose:-
+         */
+        #region-----------------------------------------------btnClear_Clik----------------------------------
         private void btnclear_Click(object sender, RoutedEventArgs e)
         {
-            clearFields();
+            try
+            {
+                clearFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
+        #endregion
 
         /* Created By:- pranjali vidhate
        * Created Date :- 18 Nov 2015
@@ -632,7 +682,11 @@ namespace SchoolManagement.Timeslot
 
         #endregion
 
-
+        /*
+         * Created by:-
+         * Created date:-
+         * pupose:-
+         */
         #region------------------------------DaySelectionChanged----------------------------
         private void cmbDayName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

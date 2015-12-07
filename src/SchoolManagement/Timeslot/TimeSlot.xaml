@@ -5,62 +5,64 @@
     <Grid>
         <StackPanel >
             <my:Menu_UserControl HorizontalAlignment="Left" x:Name="menu_UserControl1" VerticalAlignment="Top" />
-            <GroupBox Header="TimeSlot" HorizontalAlignment="Left" Height="273" Name="groupBox1" Width="550">
-                <Grid>
-                    <Label Content="Branch Name" Height="28" HorizontalAlignment="Left" Margin="37,22,0,0" Name="label1" VerticalAlignment="Top" Width="121" FontWeight="Bold" />
-                    <ComboBox Height="28" HorizontalAlignment="Left" Margin="199,22,0,0" Name="cmbBranchName" VerticalAlignment="Top" Width="145" ItemsSource="{Binding }" />
-                    <Label Content="Open Time" Height="28" HorizontalAlignment="Left" Margin="37,90,0,0" Name="label2" VerticalAlignment="Top" Width="121" FontWeight="Bold" />
-                    <Label Content="Day Name" Height="28" HorizontalAlignment="Left" Margin="37,56,0,0" Name="label3" VerticalAlignment="Top" Width="121" FontWeight="Bold" />
-                    <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFEB3030" Height="28" HorizontalAlignment="Left" Margin="162,22,0,0" Name="label6" VerticalAlignment="Top" Width="31" />
-                    <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFEB3030" Height="28" HorizontalAlignment="Left" Margin="162,90,0,0" Name="label4" VerticalAlignment="Top" Width="31" />
-                    <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFEB3030" Height="28" HorizontalAlignment="Left" Margin="162,56,0,0" Name="label5" VerticalAlignment="Top" Width="31" />
-                    <ComboBox Height="28" HorizontalAlignment="Left" Margin="199,61,0,0" Name="cmbDayName" VerticalAlignment="Top" Width="145" ItemsSource="{Binding }" SelectionChanged="cmbDayName_SelectionChanged" />
-                    <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="199,95,0,0" Name="cmbSHr" TabIndex="9" VerticalAlignment="Top" Width="49" />
-                    <Label Content="Hr" FontWeight="Bold" Height="28" HorizontalAlignment="Right" Margin="0,94,269,0" Name="label21" VerticalAlignment="Top" />
-                    <Label Content="Min" FontWeight="Bold" Height="28" HorizontalAlignment="Right" Margin="0,94,193,0" Name="label22" VerticalAlignment="Top" />
-                    <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="266,95,0,0" Name="cmbSMin" TabIndex="10" VerticalAlignment="Top" Width="49" />
-                    <Label Content="To" FontWeight="Bold" Height="28" HorizontalAlignment="Right" Margin="0,95,171,0" Name="label23" VerticalAlignment="Top" />
-                    <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="373,0,0,132" Name="cmbEHr" TabIndex="11" VerticalAlignment="Bottom" Width="49" />
-                    <Label Content="Hr" FontWeight="Bold" Height="28" HorizontalAlignment="Right" Margin="0,94,95,0" Name="label24" VerticalAlignment="Top" />
-                    <Label Content="Min" FontWeight="Bold" Height="28" HorizontalAlignment="Right" Margin="0,94,20,0" Name="label25" VerticalAlignment="Top" />
-                    <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="439,95,0,0" Name="cmbEMin" TabIndex="12" VerticalAlignment="Top" Width="49" />
-                    <Label Content="Slot Time" Height="28" HorizontalAlignment="Left" Margin="37,124,0,0" Name="label7" VerticalAlignment="Top" Width="121" FontWeight="Bold" />
-                    <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFEB3030" Height="28" HorizontalAlignment="Left" Margin="162,128,0,0" Name="label8" VerticalAlignment="Top" Width="31" />
-                    <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding }" Margin="199,129,0,0" Name="cmbSSHr" TabIndex="9" VerticalAlignment="Top" Width="49" />
-                    <Label Content="Hr" FontWeight="Bold" Height="28" HorizontalAlignment="Right" Margin="0,128,269,0" Name="label9" VerticalAlignment="Top" />
-                    <Label Content="Min" FontWeight="Bold" Height="28" HorizontalAlignment="Right" Margin="0,128,193,0" Name="label10" VerticalAlignment="Top" />
-                    <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding }" Margin="266,129,0,0" Name="cmbSSMin" TabIndex="10" VerticalAlignment="Top" Width="49" />
-                    <Label Content="To" FontWeight="Bold" Height="28" HorizontalAlignment="Right" Margin="0,129,171,0" Name="label11" VerticalAlignment="Top" />
-                    <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="373,0,0,98" Name="cmbSEHr" TabIndex="11" VerticalAlignment="Bottom" Width="49" />
-                    <Label Content="Hr" FontWeight="Bold" Height="28" HorizontalAlignment="Right" Margin="0,128,95,0" Name="label12" VerticalAlignment="Top" />
-                    <Label Content="Min" FontWeight="Bold" Height="28" HorizontalAlignment="Right" Margin="0,128,20,0" Name="label13" VerticalAlignment="Top" />
-                    <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="439,129,0,0" Name="cmbSEMin" TabIndex="12" VerticalAlignment="Top" Width="49" />
-                    <Label Content="Status" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="37,158,0,0" Name="label14" VerticalAlignment="Top" Width="108" />
-                    <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFE83030" Height="28" HorizontalAlignment="Left" Margin="162,164,0,0" Name="label15" VerticalAlignment="Top" Width="31" />
-                    <RadioButton Content="Acative" FontWeight="Bold" Height="16" HorizontalAlignment="Left" Margin="199,170,0,0" Name="rdbActive" VerticalAlignment="Top" />
-                    <RadioButton Content="InAcative" FontWeight="Bold" Height="16" HorizontalAlignment="Left" Margin="272,170,0,0" Name="rdbInactive" VerticalAlignment="Top" />
-                    <Button Content="Save" FontWeight="Bold" Height="31" HorizontalAlignment="Left" Margin="129,198,0,0" Name="btnAdd" TabIndex="14" VerticalAlignment="Top" Width="75" Click="btnAdd_Click" />
-                    <Button Content="Delete" FontWeight="Bold" Height="31" HorizontalAlignment="Left" Margin="251,198,0,0" Name="btnDelete" TabIndex="16" VerticalAlignment="Top" Width="75" Click="btnDelete_Click" />
-                    <Button Content="Clear" FontWeight="Bold" Height="31" HorizontalAlignment="Left" Margin="382,198,0,0" Name="btnclear" TabIndex="17" VerticalAlignment="Top" Width="75" Click="btnclear_Click" />
-                </Grid>
-            </GroupBox>
-            <DataGrid AutoGenerateColumns="False" Height="147" Name="dgTimeSlot" HorizontalAlignment="Left" Width="556" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="true">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding BranchLectureDetailID}" Header="" Visibility="Hidden"></DataGridTextColumn>
-                    <DataGridTextColumn Header="BranchName" Width="110" Binding="{Binding BranchName}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="DayName" Width="110" Binding="{Binding DayName}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="SlotStartTime" Width="110" Binding="{Binding LectureStartTime }"></DataGridTextColumn>
-                    <DataGridTextColumn Header="SlotEndTime" Width="110" Binding="{Binding LectureEndTime}"></DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding StartTime}" Header="StartTime" Visibility="Hidden"></DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding EndTime}" Header="EndTime" Visibility="Hidden"></DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding Status}" Width="110" Header="Status"></DataGridTextColumn>
-                </DataGrid.Columns>
-                <DataGrid.ItemContainerStyle>
-                    <Style TargetType="DataGridRow">
-                        <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick" HandledEventsToo="True" />
-                    </Style>
-                </DataGrid.ItemContainerStyle>
-            </DataGrid>
+            <Grid HorizontalAlignment="Center">
+                <GroupBox Header="TimeSlot" HorizontalAlignment="Left" Height="273" Name="groupBox1" Width="550">
+                    <Grid>
+                        <Label Content="Branch Name" Height="28" HorizontalAlignment="Left" Margin="37,22,0,0" Name="label1" VerticalAlignment="Top" Width="121" FontWeight="Bold" />
+                        <ComboBox Height="28" HorizontalAlignment="Left" Margin="199,22,0,0" Name="cmbBranchName" VerticalAlignment="Top" Width="145" ItemsSource="{Binding }" />
+                        <Label Content="Open Time" Height="28" HorizontalAlignment="Left" Margin="37,90,0,0" Name="label2" VerticalAlignment="Top" Width="121" FontWeight="Bold" />
+                        <Label Content="Day Name" Height="28" HorizontalAlignment="Left" Margin="37,56,0,0" Name="label3" VerticalAlignment="Top" Width="121" FontWeight="Bold" />
+                        <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFEB3030" Height="28" HorizontalAlignment="Left" Margin="162,22,0,0" Name="label6" VerticalAlignment="Top" Width="31" />
+                        <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFEB3030" Height="28" HorizontalAlignment="Left" Margin="162,90,0,0" Name="label4" VerticalAlignment="Top" Width="31" />
+                        <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFEB3030" Height="28" HorizontalAlignment="Left" Margin="162,56,0,0" Name="label5" VerticalAlignment="Top" Width="31" />
+                        <ComboBox Height="28" HorizontalAlignment="Left" Margin="199,61,0,0" Name="cmbDayName" VerticalAlignment="Top" Width="145" ItemsSource="{Binding }" SelectionChanged="cmbDayName_SelectionChanged" />
+                        <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="199,95,0,0" Name="cmbSHr" TabIndex="9" VerticalAlignment="Top" Width="49" />
+                        <Label Content="Hr" FontWeight="Bold" Height="28" HorizontalAlignment="Right" Margin="0,94,269,0" Name="label21" VerticalAlignment="Top" />
+                        <Label Content="Min" FontWeight="Bold" Height="28" HorizontalAlignment="Right" Margin="0,94,193,0" Name="label22" VerticalAlignment="Top" />
+                        <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="266,95,0,0" Name="cmbSMin" TabIndex="10" VerticalAlignment="Top" Width="49" />
+                        <Label Content="To" FontWeight="Bold" Height="28" HorizontalAlignment="Right" Margin="0,95,171,0" Name="label23" VerticalAlignment="Top" />
+                        <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="373,0,0,132" Name="cmbEHr" TabIndex="11" VerticalAlignment="Bottom" Width="49" />
+                        <Label Content="Hr" FontWeight="Bold" Height="28" HorizontalAlignment="Right" Margin="0,94,95,0" Name="label24" VerticalAlignment="Top" />
+                        <Label Content="Min" FontWeight="Bold" Height="28" HorizontalAlignment="Right" Margin="0,94,20,0" Name="label25" VerticalAlignment="Top" />
+                        <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="439,95,0,0" Name="cmbEMin" TabIndex="12" VerticalAlignment="Top" Width="49" />
+                        <Label Content="Slot Time" Height="28" HorizontalAlignment="Left" Margin="37,124,0,0" Name="label7" VerticalAlignment="Top" Width="121" FontWeight="Bold" />
+                        <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFEB3030" Height="28" HorizontalAlignment="Left" Margin="162,128,0,0" Name="label8" VerticalAlignment="Top" Width="31" />
+                        <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding }" Margin="199,129,0,0" Name="cmbSSHr" TabIndex="9" VerticalAlignment="Top" Width="49" />
+                        <Label Content="Hr" FontWeight="Bold" Height="28" HorizontalAlignment="Right" Margin="0,128,269,0" Name="label9" VerticalAlignment="Top" />
+                        <Label Content="Min" FontWeight="Bold" Height="28" HorizontalAlignment="Right" Margin="0,128,193,0" Name="label10" VerticalAlignment="Top" />
+                        <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding }" Margin="266,129,0,0" Name="cmbSSMin" TabIndex="10" VerticalAlignment="Top" Width="49" />
+                        <Label Content="To" FontWeight="Bold" Height="28" HorizontalAlignment="Right" Margin="0,129,171,0" Name="label11" VerticalAlignment="Top" />
+                        <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="373,0,0,98" Name="cmbSEHr" TabIndex="11" VerticalAlignment="Bottom" Width="49" />
+                        <Label Content="Hr" FontWeight="Bold" Height="28" HorizontalAlignment="Right" Margin="0,128,95,0" Name="label12" VerticalAlignment="Top" />
+                        <Label Content="Min" FontWeight="Bold" Height="28" HorizontalAlignment="Right" Margin="0,128,20,0" Name="label13" VerticalAlignment="Top" />
+                        <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="439,129,0,0" Name="cmbSEMin" TabIndex="12" VerticalAlignment="Top" Width="49" />
+                        <Label Content="Status" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="37,158,0,0" Name="label14" VerticalAlignment="Top" Width="108" />
+                        <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFE83030" Height="28" HorizontalAlignment="Left" Margin="162,164,0,0" Name="label15" VerticalAlignment="Top" Width="31" />
+                        <RadioButton Content="Acative" FontWeight="Bold" Height="16" HorizontalAlignment="Left" Margin="199,170,0,0" Name="rdbActive" VerticalAlignment="Top" />
+                        <RadioButton Content="InAcative" FontWeight="Bold" Height="16" HorizontalAlignment="Left" Margin="272,170,0,0" Name="rdbInactive" VerticalAlignment="Top" />
+                        <Button Content="Save" FontWeight="Bold" Height="31" HorizontalAlignment="Left" Margin="129,198,0,0" Name="btnAdd" TabIndex="14" VerticalAlignment="Top" Width="75" Click="btnAdd_Click" />
+                        <Button Content="Delete" FontWeight="Bold" Height="31" HorizontalAlignment="Left" Margin="251,198,0,0" Name="btnDelete" TabIndex="16" VerticalAlignment="Top" Width="75" Click="btnDelete_Click" />
+                        <Button Content="Clear" FontWeight="Bold" Height="31" HorizontalAlignment="Left" Margin="382,198,0,0" Name="btnclear" TabIndex="17" VerticalAlignment="Top" Width="75" Click="btnclear_Click" />
+                    </Grid>
+                </GroupBox>
+                <DataGrid AutoGenerateColumns="False" Height="147" Name="dgTimeSlot" HorizontalAlignment="Left" Width="550" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="true" Margin="0,292,0,-166">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding BranchLectureDetailID}" Header="" Visibility="Hidden"></DataGridTextColumn>
+                        <DataGridTextColumn Header="BranchName" Width="110" Binding="{Binding BranchName}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="DayName" Width="110" Binding="{Binding DayName}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="SlotStartTime" Width="110" Binding="{Binding LectureStartTime }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="SlotEndTime" Width="110" Binding="{Binding LectureEndTime}"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding StartTime}" Header="StartTime" Visibility="Hidden"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding EndTime}" Header="EndTime" Visibility="Hidden"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Status}" Width="110" Header="Status"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                    <DataGrid.ItemContainerStyle>
+                        <Style TargetType="DataGridRow">
+                            <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick" HandledEventsToo="True" />
+                        </Style>
+                    </DataGrid.ItemContainerStyle>
+                </DataGrid>
+            </Grid>
         </StackPanel>
     </Grid>
 </Window>
