@@ -71,7 +71,7 @@ namespace DataAccessLayer
         }
 
 
-        public string SaveTimeTable(int TimeTableID, int TimeTableDetailID, DateTime TTStartDate, int BatchID, int RoomID, string Day, string LectStartTime, string LectEndTime, int TeacherSubjectID, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
+        public string SaveTimeTable(int TimeTableID, int TimeTableDetailID, string Date, int BatchID, int RoomID, string Day, string LectStartTime, string LectEndTime, int TeacherSubjectID, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
         {
             string Result = null;
 
@@ -81,7 +81,7 @@ namespace DataAccessLayer
 
             cmd.Parameters.AddWithValue("@TimeTableID", TimeTableID);
             cmd.Parameters.AddWithValue("@TimeTableDetailID", TimeTableDetailID);
-            cmd.Parameters.AddWithValue("@TimeTableStartDate", TTStartDate);
+            cmd.Parameters.AddWithValue("@TimeTableStartDate", Date);
             cmd.Parameters.AddWithValue("@BatchID", BatchID);
             cmd.Parameters.AddWithValue("@RoomID", RoomID);
             cmd.Parameters.AddWithValue("@Day", Day);
