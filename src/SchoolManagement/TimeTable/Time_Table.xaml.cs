@@ -178,9 +178,9 @@ namespace SchoolManagement.TimeTable
                 //ClassID = Convert.ToInt32(cbClassName.SelectedValue.ToString());
                 BatchID = Convert.ToInt32(cbBatchName2.SelectedValue.ToString());
                 Date = dpTTStartDate.SelectedDate.Value.ToString("yyyy-MM-dd");
-                TeacherSubjectID = Convert.ToInt32(cbTeacherName.SelectedValue.ToString());
+                TeacherSubjectID = Convert.ToInt32(cbSubjectName2.SelectedValue.ToString());
                 RoomID = Convert.ToInt32(cbRoomName2.SelectedValue.ToString());
-                TeacherID = Convert.ToInt32(cbTeacherName2.SelectedValue.ToString());
+               // TeacherID = Convert.ToInt32(cbTeacherName2.SelectedValue.ToString());
                 Day = cbDay2.Text;
                 SlotTime = cbTimeSlot2.Text;
                 string[] a = SlotTime.Split('-');
@@ -426,19 +426,19 @@ namespace SchoolManagement.TimeTable
                             cbSubjectName1.SelectedValue = "0";
                        }
                     }
-                    if (rdoTeacherWise.IsChecked == true)
-                    {
-                         BatchID = Convert.ToInt32(cbBatchName2.SelectedValue);
-                         DataSet ds = obj_Subject.loadSubjectName(BatchID);
-                         if (ds.Tables[0].Rows.Count > 0)
-                        {
-                            //cbSubjectName2.DataContext = null;
-                            cbSubjectName2.DisplayMemberPath = ds.Tables[0].Columns["SubjectName"].ToString();
-                            cbSubjectName2.SelectedValuePath = ds.Tables[0].Columns["SubjectID"].ToString();
-                            cbSubjectName2.DataContext = ds.Tables[0].DefaultView;
-                            cbSubjectName2.SelectedValue = "0";
-                       }
-                   }
+                   // if (rdoTeacherWise.IsChecked == true)
+                   // {
+                   //      BatchID = Convert.ToInt32(cbBatchName2.SelectedValue);
+                   //      DataSet ds = obj_Subject.loadSubjectName(BatchID);
+                   //      if (ds.Tables[0].Rows.Count > 0)
+                   //     {
+                   //         //cbSubjectName2.DataContext = null;
+                   //         cbSubjectName2.DisplayMemberPath = ds.Tables[0].Columns["SubjectName"].ToString();
+                   //         cbSubjectName2.SelectedValuePath = ds.Tables[0].Columns["SubjectID"].ToString();
+                   //         cbSubjectName2.DataContext = ds.Tables[0].DefaultView;
+                   //         cbSubjectName2.SelectedValue = "0";
+                   //    }
+                   //}
                 
             }
             catch (Exception ex)
@@ -448,6 +448,24 @@ namespace SchoolManagement.TimeTable
 
         }
         #endregion
+
+        #region---------------------------------------------------BindTeacher()-------------------------------------------------------------
+        private void BindSubjectName1()
+        {
+            BatchID = Convert.ToInt32(cbBatchName2.SelectedValue);
+            TeacherID = Convert.ToInt32(cbTeacherName2.SelectedValue);
+            DataSet ds = obj_Subject.BindSubjectName1(BatchID,TeacherID);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                //cbSubjectName2.DataContext = null;
+                cbSubjectName2.DisplayMemberPath = ds.Tables[0].Columns["SubjectName"].ToString();
+                cbSubjectName2.SelectedValuePath = ds.Tables[0].Columns["TeacherSubjectID"].ToString();
+                cbSubjectName2.DataContext = ds.Tables[0].DefaultView;
+                cbSubjectName2.SelectedValue = "0";
+            }
+        }
+        #endregion
+
 
         /*
         * Created By:-Pravin
@@ -595,12 +613,11 @@ namespace SchoolManagement.TimeTable
             {
                 cbTeacherName2.DataContext = null;
 
-                cbTeacherName2.DataContext = ds.Tables[0].DefaultView;
+                
                 cbTeacherName2.DisplayMemberPath = ds.Tables[0].Columns["TeacherName"].ToString();
                 cbTeacherName2.SelectedValuePath = ds.Tables[0].Columns["TeacherID"].ToString();
-
-
                 cbTeacherName2.SelectedValue = "0";
+                cbTeacherName2.DataContext = ds.Tables[0].DefaultView; 
             }
         }
         #endregion
@@ -786,7 +803,7 @@ namespace SchoolManagement.TimeTable
                     {
                         //cbDay2.DataContext = null;
                         cbDay2.DisplayMemberPath = ds.Tables[0].Columns["Day"].ToString();
-                        cbDay2.SelectedValuePath = ds.Tables[0].Columns["TeacherID"].ToString();
+                        cbDay2.SelectedValuePath = ds.Tables[0].Columns["TeacherAvailableID"].ToString();
                         cbDay2.SelectedValue = "0";
                         cbDay2.DataContext = ds.Tables[0].DefaultView;
                         
@@ -814,6 +831,7 @@ namespace SchoolManagement.TimeTable
             canvasRoomWise.Visibility = Visibility.Hidden;
             BindBranchName();
             BindGridviewTimeTable();
+            dpTTStartDate.DisplayDateStart = DateTime.Today;
             //cmbDayName.SelectedIndex = 0;
             //BindSubjectName();
             //BindBatchName();
@@ -1435,7 +1453,7 @@ namespace SchoolManagement.TimeTable
         #endregion
 
         /*
-        * Created By:-Pravin
+        * Created By:-Pravin & pranjali
         * Updated By:- 
         * Created Date:- 05 Dec 2015
         * Updated Date:- 
@@ -1487,7 +1505,7 @@ namespace SchoolManagement.TimeTable
         {
             if (cbBatchName2.SelectedValue.ToString() != "0" && cbBatchName2.SelectedIndex != 0)
             {
-                BindSubjectName();
+                BindSubjectName1();
             }
         }
         #endregion
