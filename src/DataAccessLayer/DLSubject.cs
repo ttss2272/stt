@@ -155,5 +155,22 @@ namespace DataAccessLayer
             con.Close();
             return ds;
         }
+
+        public DataSet BindSubjectName1(int BatchID, int TeacherID)
+        {
+            con = conn.getConnection();
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("BindSubjectName1_SP", con);
+            cmd.Parameters.AddWithValue("@BatchID", BatchID);
+            cmd.Parameters.AddWithValue("@TeacherID",TeacherID);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+
+            da.Fill(ds);
+            con.Close();
+            return ds;
+        }
     }
 }
