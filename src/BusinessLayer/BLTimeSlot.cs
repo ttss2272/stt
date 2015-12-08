@@ -30,6 +30,11 @@ namespace BusinessLayer
             return Result;
         }
 
+        public DataSet CheckTimeSlotAvail(int BranchID, string Day, string SlotStartTime, string SlotEndTime)
+        {
+            DataSet ds = obj_TSlot.CheckTimeSlotAvail(BranchID, Day, SlotStartTime, SlotEndTime);
+            return ds;
+        }
 
     }
 }
