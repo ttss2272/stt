@@ -32,7 +32,7 @@ namespace SchoolManagement.Timeslot
         BLAddBranch obj_Branch = new BLAddBranch();
 
         int BranchLectureDetailID, BranchID, UpdatedByUserID, IsActive, IsDeleted, UpID;
-        int SHr, SMin, EHr, EMin, SSHr, SSMin, SEHr,SEMin;
+        int SHr, SMin, EHr, EMin, SSHr, SSMin, SEHr,SEMin,ret;
         string DayName,UpdatedDate, Sign = ":", n = "0",m="1";
         DateTime StartTime, EndTime, SlotStartTime, SlotEndTime;
         #endregion
@@ -145,9 +145,15 @@ namespace SchoolManagement.Timeslot
                 return false;
 
             }
+            
+
             else if (rdbActive.IsChecked == false && rdbInactive.IsChecked == false)
             {
                 MessageBox.Show("Please Select Status...", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+                else if (!CheckTimeSlot())
+            {
                 return false;
             }
             else
@@ -725,7 +731,7 @@ namespace SchoolManagement.Timeslot
                             //IsDeleted = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDelete"]);
                             //if (IsActive == 1 && IsDeleted == 0)
                             //{
-                                rdbActive.IsChecked = true;
+                               // rdbActive.IsChecked = true;
                             //}
                             //else if (IsActive == 0 && IsDeleted == 0)
                             //{
@@ -733,7 +739,7 @@ namespace SchoolManagement.Timeslot
                             //}
                             //btnDelete.IsEnabled = true;
                             // btnAdd.Content = "Update";
-                            //BindFullGrid();
+                            BindFullGrid();
                         }
                     }
                    // else { BindFullGrid(); }
@@ -742,6 +748,57 @@ namespace SchoolManagement.Timeslot
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
+
+        /*
+         * Created By:- PriTesh D. Sortee
+         * Created Date:- 08 Dec 2015
+         * Purpose :- Check available timeslot already assign to other 
+         */
+        #region------------------------------------------------Timeslot Checking()-------------------------------------
+        private bool CheckTimeSlot()
+        {
+            string SlotStartTimeHr=cmbSSHr.SelectedValue.ToString();
+            string SlotStartTimeMin=cmbSSMin.SelectedValue.ToString();
+            string SSTime =SlotStartTimeHr+":"+ SlotStartTimeMin;
+         
+            string SlotEndTimeHr=cmbSSHr.SelectedValue.ToString();
+            string SlotEndTimeMin=cmbSSMin.SelectedValue.ToString();
+            string SSEndTime =SlotEndTimeHr+":"+ SlotEndTimeMin;
+            DataSet ds = obj_TSlot.CheckTimeSlotAvail(Convert.ToInt32( cmbBranchName.SelectedValue), cmbDayName.SelectedItem.ToString(), SSTime, SSEndTime);
+            
+            if (ds.Tables[0].Rows.Count>0)
+            {
+               ret= Convert.ToInt32( ds.Tables[0].Rows[0][0]);
+
+            }
+            
+            if(ret==1)
+            {
+              MessageBoxResult Result=  MessageBox.Show("This TimeSlot is already Exist do you want to changed it","Duplication",MessageBoxButton.YesNo,MessageBoxImage.Warning);
+              if (Result == MessageBoxResult.No)
+              {
+                  return false;
+              }
+              else if (Result == MessageBoxResult.Yes)
+              {
+                  return true;
+              }
+              else
+              {
+                  return false;
+              }
+            }
+            else if(ret==2)
+            {
+                MessageBox.Show("You Can't Create This Time slot please Create Another Time Slot", "Duplication", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
         #endregion
