@@ -763,9 +763,9 @@ namespace SchoolManagement.Timeslot
             string SlotStartTimeHr=cmbSSHr.SelectedValue.ToString();
             string SlotStartTimeMin=cmbSSMin.SelectedValue.ToString();
             string SSTime =SlotStartTimeHr+":"+ SlotStartTimeMin;
-         
-            string SlotEndTimeHr=cmbSSHr.SelectedValue.ToString();
-            string SlotEndTimeMin=cmbSSMin.SelectedValue.ToString();
+
+            string SlotEndTimeHr = cmbSEHr.SelectedValue.ToString();
+            string SlotEndTimeMin = cmbSEMin.SelectedValue.ToString();
             string SSEndTime =SlotEndTimeHr+":"+ SlotEndTimeMin;
             DataSet ds = obj_TSlot.CheckTimeSlotAvail(Convert.ToInt32( cmbBranchName.SelectedValue), cmbDayName.SelectedItem.ToString(), SSTime, SSEndTime);
             
