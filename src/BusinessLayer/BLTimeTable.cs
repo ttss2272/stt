@@ -11,9 +11,9 @@ namespace BusinessLayer
     {
         DLTimeTable objTimeTable = new DLTimeTable();
 
-        public string SaveTimeTable(int TimeTableID,int TimeTableDetailID,string Date, int BatchID,int RoomID,string Day,string LectStartTime,string LectEndTime,int TeacherSubjectID,int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
+        public string SaveTimeTable(int TimeTableID,int TimeTableDetailID,string Date, int BatchID,int RoomID,string Day,string LectStartTime,string LectEndTime,int TeacherSubjectID,int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted,string ViewType)
         {
-            string Result = objTimeTable.SaveTimeTable(TimeTableID, TimeTableDetailID, Date, BatchID, RoomID, Day, LectStartTime, LectEndTime, TeacherSubjectID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
+            string Result = objTimeTable.SaveTimeTable(TimeTableID, TimeTableDetailID, Date, BatchID, RoomID, Day, LectStartTime, LectEndTime, TeacherSubjectID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted,ViewType);
             return Result;
         }
 
