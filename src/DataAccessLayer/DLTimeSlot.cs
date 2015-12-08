@@ -74,5 +74,24 @@ namespace DataAccessLayer
             return Result;
 
         }
+
+        public DataSet CheckTimeSlotAvail(int BranchID, string Day, string SlotStartTime,string SlotEndTime)
+        {
+            conn = con.getConnection();
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("CheckTimeSlot_SP", conn);
+            cmd.Parameters.AddWithValue("@BranchID", BranchID);
+            cmd.Parameters.AddWithValue("@Day", Day);
+            cmd.Parameters.AddWithValue("@SlotStartTime", SlotStartTime);
+            cmd.Parameters.AddWithValue("@SlotEndTime", SlotEndTime);
+
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            conn.Close();
+            return ds;
+        }
     }
 }
