@@ -42,7 +42,7 @@ namespace SchoolManagement.TimeTable
 
 
         int TimeTableID, BatchID, RoomID, ClassID, TeacherID, TeacherSubjectID, SubjectID, BranchID, BatchAvailableID, UpID,UPID, TimeTableDetailID, UpdatedByUserID, IsActive, IsDeleted;
-        String UpdatedDate, LectStartTime, LectEndTime, SlotTime, Day,Date;
+        String UpdatedDate, LectStartTime, LectEndTime, SlotTime, Day,Date,ViewType;
        // DateTime TTStartDate;
 
         #endregion
@@ -81,7 +81,7 @@ namespace SchoolManagement.TimeTable
                 if (Validate())
                 {
                     Setparameter();
-                    string Result = objTimeTable.SaveTimeTable(TimeTableID, TimeTableDetailID,Date, BatchID, RoomID, Day, LectStartTime, LectEndTime, TeacherSubjectID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
+                    string Result = objTimeTable.SaveTimeTable(TimeTableID, TimeTableDetailID,Date, BatchID, RoomID, Day, LectStartTime, LectEndTime, TeacherSubjectID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted,ViewType);
                     if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                     {
                         MessageBox.Show(Result, "Save Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -129,6 +129,7 @@ namespace SchoolManagement.TimeTable
                 LectEndTime = a[1];
                 UpdatedByUserID = 1;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                ViewType = "ClassWise";
                 if (rdoActive.IsChecked == true)
                 {
                     IsActive = 1;
@@ -159,6 +160,7 @@ namespace SchoolManagement.TimeTable
                 LectEndTime = a[1];
                 UpdatedByUserID = 1;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                ViewType = "RoomWise";
                 if (rdoActive1.IsChecked == true)
                 {
                     IsActive = 1;
@@ -188,6 +190,7 @@ namespace SchoolManagement.TimeTable
                 LectEndTime = a[1];
                 UpdatedByUserID = 1;
                 UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                ViewType = "TeacherWise";
                 if (rdoActive2.IsChecked == true)
                 {
                     IsActive = 1;
@@ -1463,7 +1466,7 @@ namespace SchoolManagement.TimeTable
         #region---------------cbRoomName1_SelectionChanged--------------
         private void cbRoomName1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbRoomName1.SelectedValue != "0" && cbRoomName1.SelectedIndex != 0)
+            if (cbRoomName1.SelectedValue.ToString() != "0" && cbRoomName1.SelectedIndex != 0)
             {
                 BindClassName();
             }
@@ -1532,9 +1535,9 @@ namespace SchoolManagement.TimeTable
 
         /*
         * Created By:-Pravin
-        * Updated By:- 
+        * Updated By:- Pranjali
         * Created Date:- 05 Dec 2015
-        * Updated Date:- 
+        * Updated Date:- 08 Dec 2015
         * Purpose:- Grid view Cell Click Event for update data
         */
         #region--------------------------------------gridview cell click()-------------------------------------
@@ -1542,37 +1545,80 @@ namespace SchoolManagement.TimeTable
         {
             try
             {
-                gbSame.IsEnabled = true;
-                //DisableUpperPart();
-                object item = dgTimeTable.SelectedIndex;
+               // gbSame.IsEnabled = true;
+               // DisableUpperPart();
+                object item = dgTimeTable.SelectedItem;
                 UpID = Convert.ToInt32(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[0].ToString());
-               // UPID = Convert.ToInt32(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[0].ToString());
+                UPID = Convert.ToInt32(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[17].ToString());
                 cbBranchName.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[1].ToString());
                 dpTTStartDate.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[2].ToString());
+
+                string view = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[15].ToString());
+                if (view == "ClassWise")
+                {
+                    rdoClassWise.IsChecked = true;
+                }
+                else if (view == "RoomWise")
+                {
+                    rdoRoomWise.IsChecked = true;
+                }
+                else if (view == "TeacherWise")
+                {
+                    rdoTeacherWise.IsChecked = true;
+                }
+                GetDetails();
                 if (rdoClassWise.IsChecked == true)
                 {
-                    cbClassName.SelectedValue = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[3].ToString());
+                    BindClassName();
+                    cbClassName.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[3].ToString());
                     cbBatchName.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[4].ToString());
-                    cbRoomName.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[5].ToString());
                     cbSubjectName.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[6].ToString());
-                    cbTeacherName.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[7].ToString());
+                    cbRoomName.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[5].ToString());
+                    TeacherSubjectID = Convert.ToInt32(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[20].ToString());
+                    cbTeacherName.SelectedValue = TeacherSubjectID;
                     cmbDayName.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[11].ToString());
-                    string a = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[12].ToString());
-                    string b = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[13].ToString());
-                    cbTimeSlot.Text = (a + "-" + b);
-                    int act = Convert.ToInt32(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[9].ToString());
-
-                    if (act == 1)
-                    {
-                        rdoActive.IsChecked = true;
-                    }
-                    else if (act == 0)
-                    {
-                        rdoInActive.IsChecked = true;
-                    }
-
-                    btnSave.Content = "Update";
+                    cbTimeSlot.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[12].ToString());
                 }
+
+                if (rdoRoomWise.IsChecked == true)
+                {
+                    BindRoom();
+                    cbRoomName1.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[5].ToString());
+                    cbClassName1.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[3].ToString());
+                    cbBatchName1.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[4].ToString());
+                    
+                    cbSubjectName1.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[6].ToString());
+                    TeacherSubjectID = Convert.ToInt32(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[20].ToString());
+                    cbTeacherName1.SelectedValue = TeacherSubjectID;
+                    cbDay.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[11].ToString());
+                    cbTimeSlot1.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[12].ToString());
+                }
+
+                if (rdoTeacherWise.IsChecked == true)
+                {
+                    BindTeacher1();
+                   // cbTeacherName2.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[7].ToString());
+                    cbClassName2.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[3].ToString());
+                    cbBatchName2.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[4].ToString());
+                    cbRoomName2.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[5].ToString());
+                    cbSubjectName2.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[6].ToString());
+                    cbDay2.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[11].ToString());
+                    cbTimeSlot2.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[12].ToString());
+                }
+
+                int act = Convert.ToInt32(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[9].ToString());
+
+                if (act == 1)
+                {
+                    rdoActive.IsChecked = true;
+                }
+                else if (act == 0)
+                {
+                    rdoInActive.IsChecked = true;
+                }
+                    
+                btnSave.Content = "Update";
+                
             }
             catch (Exception ex)
             {
@@ -1580,6 +1626,7 @@ namespace SchoolManagement.TimeTable
             }
         }
         #endregion                    
+
     }
 }
     

@@ -111,7 +111,7 @@
                 <Button Content="Clear" FontWeight="Bold" Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="388,10,0,0" Name="btnClear" TabIndex="16" VerticalAlignment="Top" Width="75" Click="btnClear_Click" />
             </Grid>
         </GroupBox>
-        <DataGrid AutoGenerateColumns="False" Height="155" HorizontalAlignment="Left" Margin="228,415,0,0" Name="dgTimeTable" ItemsSource="{Binding}" IsReadOnly="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" VerticalAlignment="Top" Width="600">
+        <DataGrid AutoGenerateColumns="False" Height="155" HorizontalAlignment="Left" Margin="228,415,0,0" Name="dgTimeTable" ItemsSource="{Binding}" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" VerticalAlignment="Top" Width="600">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding TimeTableID}" Header="TimeTableID" Visibility="Hidden"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding TimeTableDetailID}" Header="TimeTableDetailID" Visibility="Hidden"></DataGridTextColumn>
@@ -123,11 +123,13 @@
                 <DataGridTextColumn Binding="{Binding SubjectName}" Header="Subject Name" Width="160"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding TeacherName}" Header="Teacher Name" Width="160"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding Day}" Header="Day" Width="250"></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding LectStartTime}" Header="Lect Start Time" Width="160"></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding LectEndTime}" Header="Lect End Time" Width="250"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding TimeSlot}" Header="TimeSlot" Width="250"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding LectStartTime}" Header="Lect Start Time" Width="160" Visibility="Hidden"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding LectEndTime}" Header="Lect End Time" Width="250" Visibility="Hidden"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding IsActive}" Header="Active" Width="160" Visibility="Hidden"/>
                 <DataGridTextColumn Binding="{Binding IsDeleted}" Header="Delete" Width="160" Visibility="Hidden"/>
                 <DataGridTextColumn Binding="{Binding Status}" Header="Status" Width="160"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding ViewType}" Header="ViewType" Width="160"></DataGridTextColumn>
             </DataGrid.Columns>
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
