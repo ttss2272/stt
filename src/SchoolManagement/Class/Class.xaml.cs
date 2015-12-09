@@ -445,7 +445,7 @@ namespace SchoolManagement.Class
                         {
                             rdoActive.IsChecked = true;
                         }
-                        else if(act ==0 && del ==1)
+                        else if(act ==0 && del ==0)
                         {
                             rdoDeActive.IsChecked = true;
                         }
