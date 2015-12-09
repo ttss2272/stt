@@ -169,7 +169,7 @@ namespace SchoolManagement.Branch
         {
             
             
-            if ((txtInstituteName.Text.Trim() == "") && (cmbBindInstitute.Text==""))
+            if ((txtInstituteName.Text.Trim() == "") && (cmbBindInstitute.SelectedIndex == 0))
             {
                 MessageBox.Show("Please Enter Institute Name.", "Institute Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 if (txtInstituteName.IsVisible == true)
