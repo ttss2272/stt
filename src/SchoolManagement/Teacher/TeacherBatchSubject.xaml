@@ -17,7 +17,7 @@
 
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="-8,72,-3,0" VerticalAlignment="Top" Width="388" Height="266">
+                            <GroupBox Header="BatchSubject" HorizontalAlignment="Left" Margin="-8,72,-3,0" VerticalAlignment="Top" Width="388" Height="266">
                                 <Grid>
                                     <Label Content="Branch" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" Name="lblBranch"/>
                                     <ComboBox HorizontalAlignment="Left" Margin="73,14,0,0" VerticalAlignment="Top" Width="102" Name="cmbBranch" ItemsSource="{Binding}" SelectionChanged="cmbBranch_SelectionChanged"/>
