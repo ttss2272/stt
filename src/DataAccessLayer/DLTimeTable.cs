@@ -115,5 +115,24 @@ namespace DataAccessLayer
             conn.Close();
             return ds;
         }
+
+        public DataSet Validate(string TeacherShortName,int ClassRoomID,string LectStartTime,string LectEndTime,string Day,int BatchID)
+        {
+            conn = con.getConnection();
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("ValidateTimeTable_SP", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@TeacherShortName", TeacherShortName);
+            cmd.Parameters.AddWithValue("@ClassRoomID", ClassRoomID);
+            cmd.Parameters.AddWithValue("@LectStartTime", LectStartTime);
+            cmd.Parameters.AddWithValue("@LectEndTime",LectEndTime);
+            cmd.Parameters.AddWithValue("@Day",Day);
+            cmd.Parameters.AddWithValue("@BatchID", BatchID);
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            sqlDa.Fill(ds);
+            conn.Close();
+            return ds;
+        }
     }
 }
