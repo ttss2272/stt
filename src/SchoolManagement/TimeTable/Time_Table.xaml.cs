@@ -1690,7 +1690,7 @@ namespace SchoolManagement.TimeTable
             try
             {
                // gbSame.IsEnabled = true;
-               // DisableUpperPart();
+                 DisableUpperPart();
                 object item = dgTimeTable.SelectedItem;
                 UpID = Convert.ToInt32(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[0].ToString());
                 UPID = Convert.ToInt32(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[17].ToString());
@@ -1730,7 +1730,6 @@ namespace SchoolManagement.TimeTable
                     cbRoomName1.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[5].ToString());
                     cbClassName1.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[3].ToString());
                     cbBatchName1.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[4].ToString());
-                    
                     cbSubjectName1.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[6].ToString());
                     TeacherSubjectID = Convert.ToInt32(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[20].ToString());
                     cbTeacherName1.SelectedValue = TeacherSubjectID;
@@ -1741,7 +1740,7 @@ namespace SchoolManagement.TimeTable
                 if (rdoTeacherWise.IsChecked == true)
                 {
                     BindTeacher1();
-                   // cbTeacherName2.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[7].ToString());
+                    cbTeacherName2.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[7].ToString());
                     cbClassName2.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[3].ToString());
                     cbBatchName2.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[4].ToString());
                     cbRoomName2.Text = Convert.ToString(((System.Data.DataRowView)(dgTimeTable.CurrentItem)).Row.ItemArray[5].ToString());
