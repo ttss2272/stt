@@ -23,8 +23,8 @@ namespace SchoolManagement.Timeslot
     public partial class TmeSlot : Window
     {
         /*
-         * Created by:-
-         * Created Date:-
+         * Created by:- Pranjali Vidhate
+         * Created Date:- 17 Nov 2015
          * Purpose:-
          */
         #region---------------------------------------------------------Decalre Variables--------------------------------
@@ -38,8 +38,8 @@ namespace SchoolManagement.Timeslot
         #endregion
 
         /*
-         * Created date:-
-         * created by:-
+         * Created date:- Pranjali Vidhate
+         * created by:- 17 Nov 2015
          * Purpose
          */
         #region----------------------------------------------------Time Slot-------------------------------------------
@@ -793,8 +793,14 @@ namespace SchoolManagement.Timeslot
             }
             else if(ret==2)
             {
-                MessageBox.Show("You Can't Create This Time slot please Create Another Time Slot", "Duplication", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+               MessageBoxResult Result = MessageBox.Show("Do You want To Save/Update", "TimeSlot", MessageBoxButton.YesNo, MessageBoxImage.Question);
+               if (Result == MessageBoxResult.Yes)
+               {
+                   return true;
+               }
+               else { return false; }
+              //  MessageBox.Show("You Can't Create This Time slot please Create Another Time Slot", "Duplication", MessageBoxButton.OK, MessageBoxImage.Warning);
+              //  return false;
             }
             else
             {
