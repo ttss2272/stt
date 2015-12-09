@@ -82,12 +82,12 @@ namespace SchoolManagement
             objSubject.Show();
         }
 
-        private void menuTimeSlot_Click(object sender, RoutedEventArgs e)
-        {
-            Timeslot.TmeSlot  objTimeSlot = new Timeslot.TmeSlot ();
-            Close();
-            objTimeSlot.Show();
-        }
+        //private void menuTimeSlot_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Timeslot.TmeSlot  objTimeSlot = new Timeslot.TmeSlot ();
+        //    Close();
+        //    objTimeSlot.Show();
+        //}
 
         private void menuTeacherAvailability_Click(object sender, RoutedEventArgs e)
         {

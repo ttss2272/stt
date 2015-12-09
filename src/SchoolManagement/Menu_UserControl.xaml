@@ -15,7 +15,7 @@
                 <MenuItem Header="Room" Name="menuRoom" Click="menuRoom_Click"/>
                 <MenuItem Header="Batch" Name="menuBatch" Click="menuBatch_Click"/>
                 <MenuItem Header="Subject" Name="menuSubject" Click="menuSubject_Click"/>
-                <MenuItem Header="TimeSlot" Name="menuTimeSlot" Click="menuTimeSlot_Click"/>
+               <!-- <MenuItem Header="TimeSlot" Name="menuTimeSlot" Click="menuTimeSlot_Click"/> -->
             </MenuItem>
             <MenuItem Header="Transaction" Width="90" Height="30">
                 <MenuItem Header="Teacher Availability" Name="menuTeacherAvailability" Click="menuTeacherAvailability_Click"/>
