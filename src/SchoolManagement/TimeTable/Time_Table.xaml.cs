@@ -80,6 +80,7 @@ namespace SchoolManagement.TimeTable
             {
                 if (Validate())
                 {
+                    //ValiateTime();
                     Setparameter();
                     string Result = objTimeTable.SaveTimeTable(TimeTableID, TimeTableDetailID,Date, BatchID, RoomID, Day, LectStartTime, LectEndTime, TeacherSubjectID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted,ViewType);
                     if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
@@ -914,6 +915,10 @@ namespace SchoolManagement.TimeTable
                     cbTimeSlot.Focus();
                     return false;
                 }
+                else if(!ValiateTime())
+                {
+                    return false;
+                }
                 else
                 {
                     return true;
@@ -962,6 +967,10 @@ namespace SchoolManagement.TimeTable
                     MessageBox.Show("Please Select Time from TimeSlot");
                     cbTimeSlot1.Focus();
                     return false;
+                }
+                else if (ValiateTime())
+                {
+                    return true;
                 }
                 else
                 {
@@ -1012,6 +1021,10 @@ namespace SchoolManagement.TimeTable
                     cbTimeSlot2.Focus();
                     return false;
                 }
+                else if (ValiateTime())
+                {
+                    return true;
+                }
                 else
                 {
                     return true;
@@ -1049,6 +1062,9 @@ namespace SchoolManagement.TimeTable
                         }
                         else if (btnGo.Content.ToString() == "Change")
                         {
+                            Time_Table tt = new Time_Table();
+                            Close();
+                            tt.Show();
                             EnableUpperPart();
                             ClearData();
                         }
@@ -1769,6 +1785,108 @@ namespace SchoolManagement.TimeTable
             }
         }
         #endregion                    
+
+        /*
+        * Created By:-PriTesh D. Sortee
+        * Updated By:-
+        * Created Date:- 09 Dec 2015
+        * Updated Date:- 
+        * Purpose:- validate to not overlap timing
+        */
+        #region-----------------------------------------ValidateTime()------------------------------------------
+        private bool ValiateTime()
+        {
+            if (rdoClassWise.IsChecked == true)
+            {
+                string[] TeacherShortName = cbTeacherName.Text.ToString().Split('[');
+                string s = TeacherShortName[1];
+                s = s.Remove(s.Length - 1);
+
+                int ClID = Convert.ToInt32(cbClassName.SelectedValue);
+
+                string SlTime = cbTimeSlot.Text;
+                string[] a = SlTime.Split('-');
+                string LecStTime = a[0];
+                string LecEnTime = a[1];
+                string d = cmbDayName.Text;
+                int BtID = Convert.ToInt32(cbBatchName.SelectedValue);
+
+                DataSet ds = objTimeTable.Validate(s, ClID, LecStTime, LecEnTime, d, BtID);
+                if (ds.Tables[0].Rows[0][0] == "OK")
+                {
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show(ds.Tables[0].Rows[0][0].ToString(),"Error",MessageBoxButton.OK,MessageBoxImage.Warning);
+
+                    return false;
+
+                }
+            }
+            else if (rdoRoomWise.IsChecked == true)
+            {
+                string[] TeacherShortName = cbTeacherName1.Text.ToString().Split('[');
+                string s = TeacherShortName[1];
+                s = s.Remove(s.Length - 1);
+
+                int ClID = Convert.ToInt32(cbClassName1.SelectedValue);
+
+                string SlTime = cbTimeSlot.Text;
+                string[] a = SlTime.Split('-');
+                string LecStTime = a[0];
+                string LecEnTime = a[1];
+                string d = cbDay.Text;
+                int BtID = Convert.ToInt32(cbBatchName1.SelectedValue);
+
+                DataSet ds = objTimeTable.Validate(s, ClID, LecStTime, LecEnTime, d, BtID);
+                if (ds.Tables[0].Rows[0][0] == "OK")
+                {
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show(ds.Tables[0].Rows[0][0].ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return false;
+
+                }
+            }
+
+            else if (rdoTeacherWise.IsChecked == true)
+            {
+                string[] TeacherShortName = cbTeacherName2.Text.ToString().Split('[');
+                string s = TeacherShortName[1];
+                s = s.Remove(s.Length - 1);
+
+                int ClID = Convert.ToInt32(cbClassName.SelectedValue);
+
+                string SlTime = cbTimeSlot2.Text;
+                string[] a = SlTime.Split('-');
+                string LecStTime = a[0];
+                string LecEnTime = a[1];
+                string d = cbDay2.Text;
+                int BtID = Convert.ToInt32(cbBatchName2.SelectedValue);
+
+                DataSet ds = objTimeTable.Validate(s, ClID, LecStTime, LecEnTime, d, BtID);
+                if (ds.Tables[0].Rows[0][0] == "OK")
+                {
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show(ds.Tables[0].Rows[0][0].ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return false;
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please Select At Least One Type", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+ 
+        }
+        #endregion--------------------------------------
 
     }
 }
