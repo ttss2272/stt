@@ -40,5 +40,11 @@ namespace BusinessLayer
             DataSet ds = objTimeTable.BindGridTimeTable();
             return ds;
         }
+
+        public DataSet Validate(string TeacherShortName, int ClassRoomID, string LectStartTime, string LectEndTime, string Day, int BatchID)
+        {
+            DataSet ds = objTimeTable.Validate(TeacherShortName,ClassRoomID,LectStartTime,LectEndTime,Day,BatchID);
+            return ds;
+        }
     }
 }
