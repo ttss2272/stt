@@ -85,8 +85,11 @@ namespace SchoolManagement.TimeTable
                     if ((Result == "Save Sucessfully...!!!") || (Result == "Updated Sucessfully...!!!"))
                     {
                         MessageBox.Show(Result, "Save Sucessfull", MessageBoxButton.OK, MessageBoxImage.Information);
-                        ClearFields();
-                        BindGridviewTimeTable();
+                        Time_Table tt = new Time_Table();
+                        Close();
+                        tt.Show();
+                        //ClearFields();
+                        //BindGridviewTimeTable();
                     }
                     else
                     {
@@ -412,8 +415,9 @@ namespace SchoolManagement.TimeTable
                             //cbSubjectName.DataContext = null;
                             cbSubjectName.DisplayMemberPath = ds.Tables[0].Columns["SubjectName"].ToString();
                             cbSubjectName.SelectedValuePath = ds.Tables[0].Columns["SubjectID"].ToString();
-                            cbSubjectName.DataContext = ds.Tables[0].DefaultView;
+                            
                             cbSubjectName.SelectedValue = "0";
+                            cbSubjectName.DataContext = ds.Tables[0].DefaultView;
                        }
                    }
                     if (rdoRoomWise.IsChecked == true)
@@ -1154,7 +1158,10 @@ namespace SchoolManagement.TimeTable
         {
             try
             {
-                ClearFields();
+                Time_Table tt = new Time_Table();
+                Close();
+                tt.Show();
+                //ClearFields();
             }
             catch (Exception ex)
             {
@@ -1190,11 +1197,26 @@ namespace SchoolManagement.TimeTable
         #region-----------cbClassName_SelectionChanged------------
         private void cbClassName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbClassName.SelectedValue.ToString() != "0" && cbClassName.SelectedItem.ToString()!="Select" && cbClassName.SelectedValue!=null)
-            //if(cbClassName.SelectedItem.ToString()!="Select")
+            try
             {
-                BindBatchName();
+                if (cbClassName.SelectedValue.ToString() != "0" && cbClassName.SelectedItem.ToString() != "Select" && cbClassName.SelectedValue != null)
+                //if(cbClassName.SelectedItem.ToString()!="Select")
+                {
+                    //cbTimeSlot.DataContext = null;
+                    //cmbDayName.SelectedValue = "0";
+                    //cbTeacherName.SelectedValue = "0";
+                    //cbRoomName.SelectedValue = "0";
+                    //cbSubjectName.SelectedValue ="0";
+                    //cbBatchName = null;
+                    BindBatchName();
+                    cbClassName.IsEnabled = false;
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
         #endregion
         /*
@@ -1207,11 +1229,25 @@ namespace SchoolManagement.TimeTable
         #region--------------------------------------cbBatchName_SelectionChanged--------------------------------------
         private void cbBatchName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbBatchName.SelectedValue.ToString() != "0" && cbBatchName.SelectedItem.ToString()!="Select" && cbBatchName.SelectedValue!=null)
+            try
             {
-                BindSubjectName();
-                //BindDay();
+                if (cbBatchName.SelectedValue.ToString() != "0" && cbBatchName.SelectedItem.ToString() != "Select" && cbBatchName.SelectedValue != null)
+                {
+                    //cbTimeSlot.DataContext = null;
+                    //cmbDayName.SelectedValue = "0";
+                    //cbTeacherName.SelectedValue = "0";
+                    //cbRoomName.SelectedValue = "0";
+
+                    BindSubjectName();
+                    cbBatchName.IsEnabled = false;
+                    //BindDay();
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
 
         #endregion
@@ -1238,12 +1274,26 @@ namespace SchoolManagement.TimeTable
         #region--------------------------------------cbSubjectName_SelectionChanged---------------------------------
         private void cbSubjectName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbSubjectName.SelectedValue!="0" && cbSubjectName.SelectedValue.ToString()!="0")
+            try
             {
-                BindRoom();
-                BindTeacher();
-                BindDay();
+                if (cbSubjectName.SelectedValue != "0" && cbSubjectName.SelectedValue.ToString() != "0")
+                {
+                    //cbTimeSlot.DataContext = null;
+                    //cmbDayName.SelectedValue = "0";
+                    //cbTeacherName.SelectedValue = "0";
+                    //cbRoomName.SelectedValue = "0";
+
+                    BindRoom();
+                    BindTeacher();
+                    BindDay();
+                    cbSubjectName.IsEnabled = false;
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
         #endregion
 
@@ -1257,10 +1307,18 @@ namespace SchoolManagement.TimeTable
         #region-------------------------------------cmbDayName_SelectionChanged-----------------------------------------
         private void cmbDayName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cmbDayName.SelectedValue != "0" && cmbDayName.SelectedValue.ToString()!="0")
+            try
             {
-                BindTimeSlot();
+                if (cmbDayName.SelectedValue != "0" && cmbDayName.SelectedValue.ToString() != "0" && cmbDayName.SelectedValue != null)
+                {
+                    BindTimeSlot();
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
         #endregion
 
@@ -1334,14 +1392,22 @@ namespace SchoolManagement.TimeTable
         * Updated Date:- 
         * Purpose:-
         */
-        #region-------------------------------------------ClassName_SelectionChanged---------------------------------------
+        #region-------------------------------------------ClassName1_SelectionChanged---------------------------------------
         private void cbClassName1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-            if (cbClassName1.SelectedValue.ToString() != "0" && cbClassName1.SelectedIndex!=0)
+            try
             {
-                BindBatchName();
+                if (cbClassName1.SelectedValue.ToString() != "0" && cbClassName1.SelectedIndex != 0)
+                {
+                    BindBatchName();
+                    cbClassName1.IsEnabled = false;
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
         #endregion
 
@@ -1355,11 +1421,20 @@ namespace SchoolManagement.TimeTable
         #region----------------------------------------------cbSubjectName1_SelectionChanged------------------------------------
         private void cbSubjectName1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbSubjectName1.SelectedValue.ToString() != "0" && cbSubjectName1.SelectedIndex != 0)
+            try
             {
-                BindTeacher();
-                BindDay();
+                if (cbSubjectName1.SelectedValue.ToString() != "0" && cbSubjectName1.SelectedIndex != 0)
+                {
+                    BindTeacher();
+                    BindDay();
+                    cbSubjectName1.IsEnabled = false;
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
         #endregion
         /*
@@ -1369,13 +1444,21 @@ namespace SchoolManagement.TimeTable
         * Updated Date:- 
         * Purpose:-
         */
-        #region--------------------------------------------cbTeacherName_SelectionChanged---------------------------------------------
+        #region--------------------------------------------cbTeacherName1_SelectionChanged---------------------------------------------
         private void cbTeacherName1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbTeacherName1.SelectedValue != "0")
+            try
             {
+                if (cbTeacherName1.SelectedValue != "0")
+                {
 
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
         #endregion
         
@@ -1466,70 +1549,131 @@ namespace SchoolManagement.TimeTable
         #region---------------cbRoomName1_SelectionChanged--------------
         private void cbRoomName1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbRoomName1.SelectedValue.ToString() != "0" && cbRoomName1.SelectedIndex != 0)
+            try
             {
-                BindClassName();
+                if (cbRoomName1.SelectedValue.ToString() != "0" && cbRoomName1.SelectedIndex != 0)
+                {
+                    BindClassName();
+                    cbRoomName1.IsEnabled = false;
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
         #endregion
 
         #region-----------cbBatchName1_SelectionChanged-------------
         private void cbBatchName1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbBatchName1.SelectedValue.ToString() != "0" && cbBatchName1.SelectedIndex != 0)
+            try
             {
-                BindSubjectName();
+                if (cbBatchName1.SelectedValue.ToString() != "0" && cbBatchName1.SelectedIndex != 0)
+                {
+                    BindSubjectName();
+                    cbBatchName1.IsEnabled = false;
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
         #endregion
 
         #region-----------cbDay_SelectionChanged---------------
         private void cbDay_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbDay.SelectedValue.ToString() != "0" && cbDay.SelectedIndex != 0)
+            try
             {
-                BindTimeSlot();
+                if (cbDay.SelectedValue.ToString() != "0" && cbDay.SelectedIndex != 0)
+                {
+                    BindTimeSlot();
+                }
             }
+            catch (Exception ex )
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
         #endregion
 
         #region-------------cbClassName2_SelectionChanged-------------
         private void cbClassName2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbClassName2.SelectedValue.ToString() != "0" && cbClassName2.SelectedIndex != 0)
+            try
             {
-                BindBatchName();
+                if (cbClassName2.SelectedValue.ToString() != "0" && cbClassName2.SelectedIndex != 0)
+                {
+                    BindBatchName();
+                    cbClassName2.IsEnabled = false;
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
         #endregion
 
         #region----------cbBatchName2_SelectionChanged-----------
         private void cbBatchName2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbBatchName2.SelectedValue.ToString() != "0" && cbBatchName2.SelectedIndex != 0)
+            try
             {
-                BindSubjectName1();
+                if (cbBatchName2.SelectedValue.ToString() != "0" && cbBatchName2.SelectedIndex != 0)
+                {
+                    BindSubjectName1();
+                    cbBatchName2.IsEnabled = false;
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
         #endregion
 
         #region-----------cbTeacherName2_SelectionChanged-----------
         private void cbTeacherName2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbTeacherName2.SelectedValue.ToString() != "0" && cbTeacherName2.SelectedIndex != 0)
+            try
             {
-                BindDay();
+                if (cbTeacherName2.SelectedValue.ToString() != "0" && cbTeacherName2.SelectedIndex != 0)
+                {
+                    BindDay();
+                    cbTeacherName2.IsEnabled = false;
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
         #endregion
 
         #region-----------cbDay2_SelectionChanged-------------
         private void cbDay2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbDay2.SelectedValue.ToString() != "0" && cbDay2.SelectedIndex != 0)
+            try
             {
-                BindTimeSlot();
+                if (cbDay2.SelectedValue.ToString() != "0" && cbDay2.SelectedIndex != 0)
+                {
+                    BindTimeSlot();
+                }
             }
+            catch (Exception ex)
+            {
+                 MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
         #endregion
 
