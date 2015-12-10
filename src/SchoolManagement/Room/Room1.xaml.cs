@@ -763,10 +763,9 @@ namespace SchoolManagement.Room
         #endregion
 
         /*
-         * Created By :- 
-         * Created Date:- 
-         * Purpose
-         */
+         * Created By :- Pranjali Vidhate
+         * Created Date:- 20 Nov 2015
+         * Purpose:- To Clear all fields         */
         #region-------------------------------------------btnClear_Click------------------------------------
         private void btnclear_Click(object sender, RoutedEventArgs e)
         {
