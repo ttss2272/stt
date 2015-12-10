@@ -23,7 +23,7 @@
                                     <ComboBox HorizontalAlignment="Left" Margin="73,14,0,0" VerticalAlignment="Top" Width="102" Name="cmbBranch" ItemsSource="{Binding}" SelectionChanged="cmbBranch_SelectionChanged"/>
                                     <Label Content="Subject" HorizontalAlignment="Left" Margin="188,14,0,0" VerticalAlignment="Top" Name="lblSubject"/>
                                     <ComboBox HorizontalAlignment="Left" Margin="243,14,0,0" VerticalAlignment="Top" Width="102" Name="cmbSubject" ItemsSource="{Binding}" SelectionChanged="cmbSubject_SelectionChanged"/>
-                                    <DataGrid HorizontalAlignment="Left" Margin="73,45,0,0" VerticalAlignment="Top" Height="138" Width="224" Name="dgBatch" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False"  ItemsSource="{Binding}" SelectionChanged="dgBatch_SelectionChanged">
+                                    <DataGrid HorizontalAlignment="Left" Margin="73,45,0,0" VerticalAlignment="Top" Height="138" Width="224" Name="dgBatch" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False"  ItemsSource="{Binding}" >
                                         <DataGrid.Columns>
 
                                             <DataGridTemplateColumn Width="50">
