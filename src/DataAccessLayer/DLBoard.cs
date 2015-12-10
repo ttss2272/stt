@@ -69,5 +69,22 @@ namespace DataAccessLayer
             conn.Close();
             return Result;
         }
+
+        public DataSet GetBoard()
+        {
+            conn = con.getConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("GetBoard_SP",conn);
+            cmd.CommandType= CommandType.StoredProcedure;
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+
+            da.Fill(ds);
+            conn.Close();
+
+            return ds;
+        }
     }
 }
