@@ -30,5 +30,11 @@ namespace BusinessLayer
             string Result = ObjBoard.DeleteBoard(BoardID, UpDatedByUserID, UpDatedDate);
             return Result;
          }
+
+         public DataSet GetBoard()
+         {
+             DataSet ds = ObjBoard.GetBoard();
+             return ds;
+         }
     }
 }
