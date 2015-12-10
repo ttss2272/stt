@@ -133,6 +133,7 @@ namespace SchoolManagement.Teacher
             try
             {
                 ClearLowerPart();
+                BindTeacherSubject();
             }
             catch (Exception ex)
             {
