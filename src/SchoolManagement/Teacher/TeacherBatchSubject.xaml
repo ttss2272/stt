@@ -48,16 +48,16 @@
 
                                 </Grid>
                             </GroupBox>
-                            <DataGrid Name="DgTeacherSubject" HorizontalAlignment="Left" Margin="10,328,0,0" VerticalAlignment="Top" Height="137" Width="357" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" ItemsSource="{Binding}">
+                            <DataGrid Name="DgTeacherSubject" HorizontalAlignment="Left" Margin="10,328,0,0" VerticalAlignment="Top" Height="137" Width="357" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" ItemsSource="{Binding}" AutoGenerateColumns="False">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="TeacherID" Binding="{Binding TeahcerID}" Visibility="Collapsed"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Teacher Name" Binding="{Binding TeahcerName}"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="BranchID" Binding="{Binding BranchID}" Visibility="Collapsed"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Branch Name" Binding="{Binding BranchName}"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="BatchID" Binding="{Binding BatchID}" Visibility="Collapsed"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Batch Name" Binding="{Binding BatchName}"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="SubjectID" Binding="{Binding SubjectID}" Visibility="Collapsed"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Subject" Binding="{Binding Subject}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="TeacherID" Binding="{Binding TeahcerID}" Visibility="Hidden"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Teacher Name" Binding="{Binding TeacherName}" Width="110"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="BranchID" Binding="{Binding BranchID}" Visibility="Hidden"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Branch Name" Binding="{Binding BranchName}" Width="100"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="BatchID" Binding="{Binding BatchID}" Visibility="Hidden"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Batch Name" Binding="{Binding BatchName}" Width="100"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="SubjectID" Binding="{Binding SubjectID}" Visibility="Hidden"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Subject Name" Binding="{Binding SubjectName}" Width="100"></DataGridTextColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 

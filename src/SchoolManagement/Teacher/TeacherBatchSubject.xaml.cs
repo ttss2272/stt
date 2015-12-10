@@ -77,6 +77,7 @@ namespace SchoolManagement.Teacher
                     if (btnGo.Content.ToString() == "Go")
                     {
                         EnableLowerPart();
+                        BindTeacherSubject();
                     }
                     else if (btnGo.Content.ToString() == "Change")
                     {
@@ -159,7 +160,7 @@ namespace SchoolManagement.Teacher
                 DisableLowerPart();
                 BindTeacher();
                 BindBranch();
-                
+                BindTeacherSubject();
                 
             }
             catch (Exception ex)
@@ -590,10 +591,45 @@ namespace SchoolManagement.Teacher
         }
         #endregion
 
-        
+        /*
+         * CreatedBy:-Pranjali Vidhate
+         * Created Date:-10 Dec 2015
+         * Purpose:- Bind TeacherSubject
+         * StartTime:-
+         * EndTime:-
+         */
+        #region------------------------------BindTeacherSubject---------------------------------------------------------
+        public void BindTeacherSubject()
+        {
+            try
+            {
+                if (cmbTeacher.SelectedValue.ToString() != "0")
+                {
+                    DataSet ds = objTeacherSubject.BindTeacherSubject(Convert.ToInt32(cmbTeacher.SelectedValue.ToString()));
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        DgTeacherSubject.ItemsSource = ds.Tables[0].DefaultView;
+                    }
+                }
+                else
+                {
+                    DataSet ds = objTeacherSubject.BindTeacherSubject(0);
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        DgTeacherSubject.ItemsSource = ds.Tables[0].DefaultView;
+                    }
+                }
+                
+                DgTeacherSubject.Items.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        #endregion
 
 
-         
     }
 }
 
