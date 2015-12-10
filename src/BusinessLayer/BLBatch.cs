@@ -111,5 +111,11 @@ namespace BusinessLayer
             DataSet ds = obj_Batch.loadBatchName(ClassID);
             return ds;
         }
+
+        public int GetMaxBatchID()
+        {
+            int MaxBatchId = obj_Batch.GetMaxBatchID();
+            return MaxBatchId;
+        }
     }
 }
