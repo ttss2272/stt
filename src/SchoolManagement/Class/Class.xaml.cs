@@ -32,8 +32,10 @@ namespace SchoolManagement.Class
         #region------------------------Declare Variables Globally()--------------------
         int ClassID, BranchID, UpdatedByUserID, IsActive, IsDeleted, UpID,TempID;
         string ClassName, ShortName, UpdatedDate, Color, Board;
+
         BLAddClass obj_AddClass = new BLAddClass();
         BLAddBranch obj_Branch = new BLAddBranch();
+        BLBoard objBoard = new BLBoard();
         #endregion
 
         #region------------------- public Class()------------------------------
@@ -504,6 +506,7 @@ namespace SchoolManagement.Class
             BindBranchName();
             cbBranchName.SelectedIndex = 0;
            // BindGridview();
+            GetBoard();
             btndelete.IsEnabled = false;
             
         }
@@ -740,12 +743,43 @@ namespace SchoolManagement.Class
         }
         #endregion
 
+        /* Created By:- pranjali Vidhate
+        * Created Date :- 28 Nov 2015
+        * Purpose:- Display BarnchGrid & CopyGird content*/
+
+        #region---------------------------------ClearData()------------------------------------------
         public void ClearData()
         {
             GetBranchClassCount();
             GetCopyClass(Convert.ToInt32(cbBranchName.SelectedValue));
         }
+        #endregion
 
-        
+        /* Created By:- pranjali Vidhate
+        * Created Date :- 28 Nov 2015
+        * Purpose:-  Bind BoardDropDown*/
+
+        #region------------------------------BindBoard()------------------------------------------------
+        public void GetBoard()
+        {
+            try
+            {
+                DataSet ds = objBoard.GetBoard();
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    cbBoard.DataContext = null;
+                    cbBoard.DisplayMemberPath = ds.Tables[0].Columns["BoardName"].ToString();
+                    cbBoard.SelectedValuePath = ds.Tables[0].Columns["BoardID"].ToString();
+                    cbBoard.DataContext = ds.Tables[0].DefaultView;
+                    cbBoard.SelectedValue = "0";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        #endregion
     }
 }

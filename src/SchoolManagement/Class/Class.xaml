@@ -27,10 +27,10 @@
                             <Label Content="Color" Height="28" HorizontalAlignment="Left" Margin="36,108,0,0" Name="lblColor" VerticalAlignment="Top" />
                             <TextBox Height="24" HorizontalAlignment="Right" Margin="0,108,83,0" Name="txtcolor" VerticalAlignment="Top" Width="178" TextChanged="txtcolor_TextChanged" />
                             <Label Content="Board" Height="28" HorizontalAlignment="Left" Margin="32,78,0,0" Name="iblboard" VerticalAlignment="Top" />
-                            <ComboBox Height="23" HorizontalAlignment="Left" Margin="110,78,0,0" Name="cbBoard" VerticalAlignment="Top" Width="178">
-                                <ComboBoxItem IsSelected="True" Content="Select" />
+                            <ComboBox Height="23" HorizontalAlignment="Left" Margin="110,78,0,0" Name="cbBoard" VerticalAlignment="Top" Width="178" ItemsSource="{Binding}">
+                               <!-- <ComboBoxItem IsSelected="True" Content="Select" />
                                 <ComboBoxItem Content="CBSC Board" />
-                                <ComboBoxItem Content="ICSC Board" />
+                                <ComboBoxItem Content="ICSC Board" /> -->
                             </ComboBox>
                             <Label Content="*" Height="20" HorizontalAlignment="Left" Margin="89,6,0,0" Name="lblStar" VerticalAlignment="Top" Foreground="Red" FontWeight="Bold" />
                             <Label Content="*" Height="20" HorizontalAlignment="Left" Margin="91,40,0,0" Name="label1" VerticalAlignment="Top" Foreground="Red" FontWeight="Bold" />
