@@ -311,5 +311,18 @@ namespace DataAccessLayer
             conn.Close();
             return ds;
         }
+
+        public int GetMaxBatchID()
+        {
+            int MaxBatchID;
+            conn = con.getConnection();
+            SqlCommand cmd = new SqlCommand("GetMaxBatchID_SP", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            conn.Open();
+            MaxBatchID =Convert.ToInt32(cmd.ExecuteScalar().ToString());
+            conn.Close();
+            return MaxBatchID;
+ 
+        }
     }
 }
