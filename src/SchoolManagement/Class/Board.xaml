@@ -1,0 +1,48 @@
+﻿<Window x:Class="SchoolManagement.Board"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Board" Height="554" Width="617" Loaded="Window_Loaded" xmlns:my="clr-namespace:SchoolManagement">
+    <Grid>
+        <StackPanel>
+            <my:Menu_UserControl HorizontalAlignment="Left" x:Name="menu_UserControl1" VerticalAlignment="Top" />    
+        </StackPanel>
+        <Grid HorizontalAlignment="Center" Margin="60,36,60,0">
+            <GroupBox Header="Board Details" Height="129" Name="gbBoard" Width="335" Margin="11,16,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Grid>
+                    <Label Content="Board Name" FontWeight="Bold" HorizontalAlignment="Left" Margin="6,15,0,56" Name="label2" Width="108" />
+                    <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFF51F1F" Height="28" HorizontalAlignment="Left" Margin="96,15,0,0" Name="label8" VerticalAlignment="Top" Width="31" />
+                    <TextBox Height="28" HorizontalAlignment="Left" Margin="133,15,0,0" Name="txtBoardName" TabIndex="2" VerticalAlignment="Top" Width="157" Grid.ColumnSpan="2" TextChanged="txtBoardName_TextChanged" />
+                    <Label Content="Status" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="6,57,0,0" Name="label7" VerticalAlignment="Top" Width="108" />
+                    <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFE83030" Height="28" HorizontalAlignment="Left" Margin="96,56,0,0" Name="label12" VerticalAlignment="Top" Width="31" />
+                    <RadioButton Content="Acative" FontWeight="Bold" Height="16" HorizontalAlignment="Left" Margin="133,63,0,0" Name="rdbActive" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+                    <RadioButton Content="InAcative" FontWeight="Bold" Height="16" HorizontalAlignment="Left" Margin="218,62,0,0" Name="rdbInactive" VerticalAlignment="Top" />
+                </Grid>
+            </GroupBox>
+            <Button Background="#FFDDDDDD" Content="Save" FontWeight="Bold" Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="16,160,0,0" Name="btnAdd" TabIndex="14" VerticalAlignment="Top" Width="80" Click="btnAdd_Click" />
+            <Button Background="#FFDDDDDD" Content="Delete" FontWeight="Bold" Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="138,160,0,0" Name="btnDelete" TabIndex="16" VerticalAlignment="Top" Width="75" Click="btnDelete_Click" />
+            <Button Background="#FFDDDDDD" Content="Clear" FontWeight="Bold" Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="264,160,0,0" Name="btnclear" TabIndex="17" VerticalAlignment="Top" Width="75" Click="btnclear_Click" />
+            <GroupBox Header="Search" Height="78" HorizontalAlignment="Left" Margin="17,205,0,0" Name="groupBox1" VerticalAlignment="Top" Width="329">
+                <Grid>
+                    <Label Content="Board Name" Height="28" HorizontalAlignment="Left" Margin="11,11,0,0" Name="label1" VerticalAlignment="Top" FontWeight="Bold" />
+                    <TextBox Height="24" HorizontalAlignment="Left" Margin="98,15,0,0" Name="txtSearch" VerticalAlignment="Top" Width="120" />
+                    <Button Content="Search" Height="25" HorizontalAlignment="Left" Margin="235,14,0,0" Name="btnSearch" VerticalAlignment="Top" Width="75" FontWeight="Bold" Click="btnSearch_Click" />
+                </Grid>
+            </GroupBox>
+            <DataGrid AutoGenerateColumns="False" Height="129" HorizontalAlignment="Left" Margin="14,294,0,0" Name="dgBoard" VerticalAlignment="Top" Width="335" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" ItemsSource="{Binding}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="BoardID" Binding="{Binding BoardId}" Visibility="Hidden" />
+                    <DataGridTextColumn Header="Board Name" Binding="{Binding BoardName}" Width="170" />
+                    <DataGridTextColumn Header="IsActive" Binding="{Binding IsActive}" Visibility="Hidden" />
+                    <DataGridTextColumn Header="IsDeleted" Binding="{Binding IsDeleted}" Visibility="Hidden" />
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="170" />
+                </DataGrid.Columns>
+                <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick" HandledEventsToo ="True"></EventSetter>
+                </Style>
+            </DataGrid.ItemContainerStyle> 
+            </DataGrid>
+        </Grid>
+
+    </Grid>
+</Window>
