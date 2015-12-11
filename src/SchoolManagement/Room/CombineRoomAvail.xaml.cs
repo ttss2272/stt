@@ -678,6 +678,22 @@ namespace SchoolManagement.Room
            // btnSave.Content = "Save";
            // gbrmavaday.IsEnabled = false;
         }
+
+
+           #region---------------------------------------------------------Clears()-------------------------------------------------------
+        private void Clears()
+        {
+
+            BindHours();
+            BindMinutes();
+            BindGrid();
+            UncheckAllCheckBoxes();
+            gbSameTime.Visibility = Visibility.Hidden;
+            EnableDropdown();
+
+        }
+        #endregion
+
         #endregion
 
         /* Created By:- Pranjali Vidhate
@@ -1216,11 +1232,14 @@ namespace SchoolManagement.Room
             {
 
                 object item = dgRoom.SelectedItem;
-                string BranchName = (dgRoom.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
-                string RoomName = (dgRoom.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
-                string ShortName = (dgRoom.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
+                string BranchName = Convert.ToString(((System.Data.DataRowView)(dgRoom.CurrentItem)).Row.ItemArray[4].ToString());
+                string RoomName = Convert.ToString(((System.Data.DataRowView)(dgRoom.CurrentItem)).Row.ItemArray[1].ToString());
+                string ShortName = Convert.ToString(((System.Data.DataRowView)(dgRoom.CurrentItem)).Row.ItemArray[2].ToString());
                // string Color = (dgRoom.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
-                string Capacity = (dgRoom.SelectedCells[5].Column.GetCellContent(item) as TextBlock).Text;
+                string Capacity = Convert.ToString(((System.Data.DataRowView)(dgRoom.CurrentItem)).Row.ItemArray[6].ToString());
+                int UpID = Convert.ToInt32(((System.Data.DataRowView)(dgRoom.CurrentItem)).Row.ItemArray[0].ToString());
+                Clears();
+                GetRoomAvailableDetails(UpID);
 
                 DataSet ds = obj_Room.BindFullGrid(0, BranchName, RoomName);
                 if (ds.Tables.Count > 0)
@@ -2334,6 +2353,214 @@ namespace SchoolManagement.Room
 
         }
         #endregion
+
+
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- To Get Room Avaailibility*/
+
+        #region---------------------------------------------------------GetRoomAvailableDetails()-------------------------------------------
+        private void GetRoomAvailableDetails(int numId)
+        {
+            cnn = 0;
+            
+                DataSet ds = obj_Room.GetRoomAvailableDetail(numId);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    int cnt = ds.Tables[0].Rows.Count;
+                    string s;
+                    if (cnt == 7)
+                    {
+                        chkAvailAllDay.IsChecked = true;
+                        CheckAllDays();
+                        gbSameTime.Visibility = Visibility.Visible;
+                    }
+                    for (int i = 0; i < cnt; i++)
+                    {
+                        s = ds.Tables[0].Rows[i]["Day"].ToString();
+
+                        if ((ds.Tables[0].Rows[0]["StartTime"].ToString() == ds.Tables[0].Rows[i]["StartTime"].ToString()) && (ds.Tables[0].Rows[0]["EndTime"].ToString() == ds.Tables[0].Rows[i]["EndTime"].ToString()))
+                        {
+                            cnn++;
+
+                        }
+                        switch (s)
+                        {
+                            case ("Mon"):
+                                {
+                                    tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
+                                    string[] StartTime = tmpStartTime.Split(':');
+                                    chkStartHrs1.Text = StartTime[0];
+                                    //if (StartTime[1] == "00")
+                                    //{ chkStartMin1.Text = "0"; }
+                                    //else
+                                    { chkStartMin1.Text = StartTime[1]; }
+
+                                    tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
+                                    string[] EndTime = tmpEndTime.Split(':');
+                                    chkEndhrs1.Text = EndTime[0];
+                                    //if (EndTime[1] == "00")
+                                    //{ EndMin1.Text = "0"; }
+                                    //else
+                                    { EndMin1.Text = EndTime[1]; }
+                                    chkMon.IsChecked = true;
+                                    break;
+                                }
+                            case ("Tue"):
+                                {
+                                    tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
+                                    string[] StartTime = tmpStartTime.Split(':');
+                                    chkStartHrs2.Text = StartTime[0];
+                                    //if (StartTime[1] == "00")
+                                    //{ chkStartMin2.Text = "0"; }
+                                    //else
+                                    { chkStartMin2.Text = StartTime[1]; }
+
+                                    tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
+                                    string[] EndTime = tmpEndTime.Split(':');
+                                    chkEndhrs2.Text = EndTime[0];
+                                    //if (EndTime[1] == "00")
+                                    //{ EndMin2.Text = "0"; }
+                                    //else
+                                    { EndMin2.Text = EndTime[1]; }
+                                    chkTue.IsChecked = true;
+                                    break;
+                                }
+                            case ("Wed"):
+                                {
+                                    tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
+                                    string[] StartTime = tmpStartTime.Split(':');
+                                    chkStartHrs3.Text = StartTime[0];
+                                    //if (StartTime[1] == "00")
+                                    //{ chkStartMin3.Text = "0"; }
+                                    //else
+                                    { chkStartMin3.Text = StartTime[1]; }
+
+                                    tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
+                                    string[] EndTime = tmpEndTime.Split(':');
+                                    chkEndhrs3.Text = EndTime[0];
+                                    //if (EndTime[1] == "00")
+                                    //{ EndMin3.Text = "0"; }
+                                    //else
+                                    { EndMin3.Text = EndTime[1]; }
+                                    chkWed.IsChecked = true;
+                                    break;
+                                }
+                            case ("Thru"):
+                                {
+                                    tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
+                                    string[] StartTime = tmpStartTime.Split(':');
+                                    chkStartHrs4.Text = StartTime[0];
+                                    //if (StartTime[1] == "00")
+                                    //{ chkStartMin4.Text = "0"; }
+                                    //else
+                                    { chkStartMin4.Text = StartTime[1]; }
+
+                                    tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
+                                    string[] EndTime = tmpEndTime.Split(':');
+                                    chkEndhrs4.Text = EndTime[0];
+                                    //if (EndTime[1] == "00")
+                                    //{ EndMin4.Text = "0"; }
+                                    //else
+                                    { EndMin4.Text = EndTime[1]; }
+                                    chkThru.IsChecked = true;
+                                    break;
+                                }
+
+                            case ("Fri"):
+                                {
+                                    tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
+                                    string[] StartTime = tmpStartTime.Split(':');
+                                    chkStartHrs5.Text = StartTime[0];
+                                    //if (StartTime[1] == "00")
+                                    //{ chkStartMin5.Text = "0"; }
+                                    //else
+                                    { chkStartMin5.Text = StartTime[1]; }
+
+                                    tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
+                                    string[] EndTime = tmpEndTime.Split(':');
+                                    chkEndhrs5.Text = EndTime[0];
+                                    //if (EndTime[1] == "00")
+                                    //{ EndMin5.Text = "0"; }
+                                    //else
+                                    { EndMin5.Text = EndTime[1]; }
+                                    chkFri.IsChecked = true;
+                                    break;
+                                }
+                            case ("Sat"):
+                                {
+                                    tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
+                                    string[] StartTime = tmpStartTime.Split(':');
+                                    chkStartHrs6.Text = StartTime[0];
+                                    //if (StartTime[1] == "00")
+                                    //{ chkStartMin6.Text = "0"; }
+                                    //else
+                                    { chkStartMin6.Text = StartTime[1]; }
+
+                                    tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
+                                    string[] EndTime = tmpEndTime.Split(':');
+                                    chkEndhrs6.Text = EndTime[0];
+                                    //if (EndTime[1] == "00")
+                                    //{ EndMin6.Text = "0"; }
+                                    //else
+                                    { EndMin6.Text = EndTime[1]; }
+                                    chkSat.IsChecked = true;
+                                    break;
+                                }
+                            case ("Sun"):
+                                {
+                                    tmpStartTime = ds.Tables[0].Rows[i]["StartTime"].ToString();
+                                    string[] StartTime = tmpStartTime.Split(':');
+                                    chkStartHrs7.Text = StartTime[0];
+                                    //if (StartTime[1] == "00")
+                                    //{ chkStartMin7.Text = "0"; }
+                                    //else
+                                    { chkStartMin7.Text = StartTime[1]; }
+
+                                    tmpEndTime = ds.Tables[0].Rows[i]["EndTime"].ToString();
+                                    string[] EndTime = tmpEndTime.Split(':');
+                                    chkEndhrs7.Text = EndTime[0];
+                                    //if (EndTime[1] == "00")
+                                    //{ EndMin7.Text = "0"; }
+                                    //else
+                                    { EndMin7.Text = EndTime[1]; }
+                                    chkSun.IsChecked = true;
+                                    break;
+                                }
+                        }
+                        daycheckcount = cnt;
+                        if (cnn == 7)
+                        {
+                            chkAvailSameTime.IsChecked = true;
+
+                            tmpStartTime = ds.Tables[0].Rows[0]["StartTime"].ToString();
+                            string[] StartTime = tmpStartTime.Split(':');
+                            chkStartHrs.Text = StartTime[0].ToString();
+                            //if (StartTime[1] == "00")
+                            //{ chkStartMin.Text = "0"; }
+                            //else
+                            { chkStartMin.Text = StartTime[1]; }
+
+                            tmpEndTime = ds.Tables[0].Rows[0]["EndTime"].ToString();
+                            string[] EndTime = tmpEndTime.Split(':');
+                            chkEndhrs.Text = EndTime[0];
+                            //if (EndTime[1] == "00")
+                            //{ EndMin.Text = "0"; }
+                            //else
+                            { EndMin.Text = EndTime[1]; }
+
+                            DisableDropdown();
+
+                        }
+
+                    }
+                
+                
+            }
+
+        }
+        #endregion
+
 
     }
 }

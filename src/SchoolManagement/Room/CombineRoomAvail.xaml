@@ -265,7 +265,8 @@
                 <DataGridTextColumn Header="Capacity" Width="105" Binding="{Binding Capacity}"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding FreeStartTime}" Header="FreeStartTime" Visibility="Hidden"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding FreeEndTime}" Header="FreeEndTime" Visibility="Hidden"></DataGridTextColumn>
-                <DataGridTextColumn Header="Status" Width="145" Binding="{Binding Status}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Status" Width="125" Binding="{Binding Status}"></DataGridTextColumn>
+                <DataGridTextColumn Header="No.Of Days Available" Width="145" Binding="{Binding NoOfDaysAvailable}"></DataGridTextColumn>
             </DataGrid.Columns>
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
