@@ -43,7 +43,7 @@ namespace SchoolManagement.Room
 
         #endregion
 
-
+        #region---------------------------------------Main()----------------------------------------------------------------------
         public CombineRoomAvail()
         {
             try
@@ -59,6 +59,7 @@ namespace SchoolManagement.Room
                 MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+        #endregion
 
         /* Created By:- Pranjali Vidhate
         * Created Date :- 4 Nov 2015
@@ -741,6 +742,9 @@ namespace SchoolManagement.Room
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 4 Nov 2015
+        * Purpose:- Set Parameters for RoomAvailabitity*/
 
             #region--------------------------------RoomAvailability------------------------------------
         private void SetRoomAvaiParameters()
@@ -1030,7 +1034,9 @@ namespace SchoolManagement.Room
         }
             #endregion
 
-        
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 5 Nov 2015
+        * Purpose:- Add Room Details */
 
 
         #region---------------AddRoom()--------------------------------------
@@ -1043,16 +1049,8 @@ namespace SchoolManagement.Room
                     SetParameters();
                     Result1 = obj_Room.saveAddRoom(RoomID, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted, MaxLectDay, MaxLectWeek, MaxLectRow, StartTime1, EndTime1, IsAllow);
                     SetRoomAvaiParameters();
-                    //if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
-                    //{
-                    //    MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
-                       clearFields();
-                       BindGrid();
-                    //}
-                    //else
-                    //{
-                    //    MessageBox.Show(Result, "Error To Save", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    //}
+                    clearFields();
+                    BindGrid();
                 }
             }
 
@@ -1150,7 +1148,7 @@ namespace SchoolManagement.Room
             int i;
             for (i = 1; i <= 9; i++)
             {
-                cmbSHr.Items.Add(n + i.ToString());
+                cmbSHr.Items.Add(n1 + i.ToString());
 
             }
             cmbSHr.Items.Add("10");
@@ -1187,7 +1185,7 @@ namespace SchoolManagement.Room
             int i;
             for (i = 1; i <= 9; i++)
             {
-                cmbEHr.Items.Add(n + i.ToString());
+                cmbEHr.Items.Add(n1 + i.ToString());
 
             }
             cmbEHr.Items.Add("10");
@@ -1237,7 +1235,7 @@ namespace SchoolManagement.Room
                 string ShortName = Convert.ToString(((System.Data.DataRowView)(dgRoom.CurrentItem)).Row.ItemArray[2].ToString());
                // string Color = (dgRoom.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
                 string Capacity = Convert.ToString(((System.Data.DataRowView)(dgRoom.CurrentItem)).Row.ItemArray[6].ToString());
-                int UpID = Convert.ToInt32(((System.Data.DataRowView)(dgRoom.CurrentItem)).Row.ItemArray[0].ToString());
+                UpID = Convert.ToInt32(((System.Data.DataRowView)(dgRoom.CurrentItem)).Row.ItemArray[0].ToString());
                 Clears();
                 GetRoomAvailableDetails(UpID);
 
@@ -2561,6 +2559,38 @@ namespace SchoolManagement.Room
         }
         #endregion
 
+
+        #region-----------------------------------------Copy()-----------------------------------------------------------------------
+        private void btnCopy_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (cmbBranchName.SelectedValue.ToString() != "0" && cmbBranchName.SelectedItem.ToString() != "Select")
+                {
+                    if (dgRoomAvail.SelectedItems.Count == 1)
+                    {
+                        object item = dgRoomAvail.SelectedItem;
+                        int UpID = Convert.ToInt32(((System.Data.DataRowView)(dgRoomAvail.SelectedItem)).Row.ItemArray[0].ToString());
+                        Clears();
+                        GetRoomAvailableDetails(UpID);
+                    
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please Select At Least One Subject", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please Select Batch First", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        #endregion
 
     }
 }

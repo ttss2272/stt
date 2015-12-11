@@ -2085,7 +2085,9 @@ namespace SchoolManagement.Room
         private void cmbBranch_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BindRoom();
-        }   
+        }
+
+         
 
     }
 }
