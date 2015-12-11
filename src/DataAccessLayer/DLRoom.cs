@@ -14,9 +14,9 @@ namespace DataAccessLayer
         SqlConnection conn = new SqlConnection();
         DBConnection con = new DBConnection();
 
-        public string saveAddRoom(int RoomId, string RoomName, string ShortName, string Color1, int Capacity, int BranchID, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted, int MaxLectday, int MaxLectWeek, int MaxLectRow, DateTime STime, DateTime ETime, int IsAllow)
+        public int saveAddRoom(int RoomId, string RoomName, string ShortName, string Color1, int Capacity, int BranchID, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted, int MaxLectday, int MaxLectWeek, int MaxLectRow, DateTime STime, DateTime ETime, int IsAllow)
         {
-            string result = null;
+            int result = 0;
             conn = con.getConnection();
             SqlCommand cmd = new SqlCommand("SaveRoom_SP", conn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -39,7 +39,7 @@ namespace DataAccessLayer
             cmd.Parameters.AddWithValue("@ETime", ETime);
             cmd.Parameters.AddWithValue("@IsAllow", IsAllow);
             conn.Open();
-            result = cmd.ExecuteScalar().ToString();
+            result = Convert.ToInt32( cmd.ExecuteScalar().ToString());
             conn.Close();
             return result;
 
