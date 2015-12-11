@@ -258,16 +258,16 @@ namespace SchoolManagement.Room
                 if (Validate())
                 {
                     SetParameters();
-                    string Result = obj_Room.saveAddRoom(RoomId, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted,MaxLectDay,MaxLectWeek,MaxLectRow,StartTime,EndTime,IsAllow);
-                    if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
-                    {
-                        MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
-                        clearFields();
-                    }
-                    else
-                    {
-                        MessageBox.Show(Result, "Error To Save", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
+                    int Result = obj_Room.saveAddRoom(RoomId, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted,MaxLectDay,MaxLectWeek,MaxLectRow,StartTime,EndTime,IsAllow);
+                    //if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
+                    //{
+                    //    MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
+                    //    clearFields();
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show(Result, "Error To Save", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    //}
                 }
             }
 
