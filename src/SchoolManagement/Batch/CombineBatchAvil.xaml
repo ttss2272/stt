@@ -48,7 +48,7 @@
                     <Label Content="*" FontWeight="Bold" Foreground="Red" Height="22" HorizontalAlignment="Left" Margin="370,97,0,0" Name="label18" VerticalAlignment="Top" />
                     <Label Content="*" FontWeight="Bold" Foreground="Red" Height="22" HorizontalAlignment="Left" Margin="370,47,0,0" Name="label19" VerticalAlignment="Top" />
                     <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="88,41,0,0" Name="label20" VerticalAlignment="Top" />
-                    <ComboBox HorizontalAlignment="Left" Margin="109,41,0,0" Name="cbLunchBreak" TabIndex="9" VerticalAlignment="Top" Width="123" SelectionChanged="cbLunchBreak_SelectionChanged_1" />
+                    <ComboBox HorizontalAlignment="Left" Margin="109,44,0,0" Name="cbLunchBreak" TabIndex="9" VerticalAlignment="Top" Width="123" SelectionChanged="cbLunchBreak_SelectionChanged_1" />
                     <ComboBox HorizontalAlignment="Left" Margin="386,47,0,0" Name="cballowlect" TabIndex="9" VerticalAlignment="Top" Width="152" />
                     <Label Content="Min" Height="28" HorizontalAlignment="Left" Margin="1178,13,0,0" Name="label21" VerticalAlignment="Top" />
                     <Label Content="Lunch Break " Height="28" HorizontalAlignment="Left" Margin="10,47,0,0" Name="label22" VerticalAlignment="Top" />
@@ -58,13 +58,13 @@
                     <Label Content="Lecure In Row" Height="28" HorizontalAlignment="Left" Margin="276,101,0,0" Name="label26" VerticalAlignment="Top" />
                 </Grid>
             </GroupBox>
-            <GroupBox Header="" Height="373" Name="groupBox3" Width="1213">
-                <Grid Height="344">
+            <GroupBox Header="" Height="332" Name="groupBox3" Width="1213">
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="314*" />
                     </Grid.RowDefinitions>
-                    <GroupBox Header="Batch Availaible" Margin="429,0,9,42" Name="gbbtavaday" Grid.RowSpan="2">
+                    <GroupBox Header="Batch Availaible" Margin="429,0,9,6" Name="gbbtavaday" Grid.RowSpan="2">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="53*" />
@@ -86,7 +86,7 @@
                                     <Label Content="From" Height="26" HorizontalAlignment="Left" Margin="6,3,0,0" RenderTransformOrigin="-8.739,0.577" VerticalAlignment="Top" Width="37" />
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Header="Time" Height="55" HorizontalAlignment="Left" Margin="58,6,0,0" VerticalAlignment="Top" Width="299" Grid.Row="1">
+                            <GroupBox Header="Time" Height="55" HorizontalAlignment="Left" Margin="58,0,0,0" VerticalAlignment="Top" Width="299" Grid.Row="1">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
@@ -109,7 +109,7 @@
                                     <Label Content="From" Height="26" HorizontalAlignment="Left" Margin="2,3,0,0" RenderTransformOrigin="-8.739,0.577" VerticalAlignment="Top" Width="37" />
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Grid.Row="1" Header="Time" Height="55" HorizontalAlignment="Left" Margin="414,5,0,0" VerticalAlignment="Top" Width="304">
+                            <GroupBox Header="Time" Height="55" HorizontalAlignment="Left" Margin="414,48,0,0" VerticalAlignment="Top" Width="304" Grid.RowSpan="2">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
@@ -132,7 +132,7 @@
                                     <Label Content="From" Height="26" HorizontalAlignment="Left" Margin="-1,3,0,0" RenderTransformOrigin="-8.739,0.577" VerticalAlignment="Top" Width="37" />
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Grid.Row="1" Header="Time" Height="55" HorizontalAlignment="Left" Margin="55,61,0,0" VerticalAlignment="Top" Width="299">
+                            <GroupBox Grid.Row="1" Header="Time" Height="55" HorizontalAlignment="Left" Margin="55,55,0,0" VerticalAlignment="Top" Width="299">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
@@ -155,7 +155,7 @@
                                     <Label Content="From" Height="26" HorizontalAlignment="Left" Margin="1,3,0,0" RenderTransformOrigin="-8.739,0.577" VerticalAlignment="Top" Width="37" />
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Grid.Row="1" Header="Time" Height="55" HorizontalAlignment="Left" Margin="413,60,0,0" VerticalAlignment="Top" Width="304">
+                            <GroupBox Grid.Row="1" Header="Time" Height="55" HorizontalAlignment="Left" Margin="413,54,0,0" VerticalAlignment="Top" Width="304">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
@@ -178,7 +178,7 @@
                                     <Label Content="From" Height="26" HorizontalAlignment="Left" Margin="-1,3,0,0" RenderTransformOrigin="-8.739,0.577" VerticalAlignment="Top" Width="37" />
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Grid.Row="1" Header="Time" Height="55" HorizontalAlignment="Left" Margin="58,117,0,0" VerticalAlignment="Top" Width="299">
+                            <GroupBox Grid.Row="1" Header="Time" Height="55" HorizontalAlignment="Left" Margin="58,111,0,0" VerticalAlignment="Top" Width="299">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
@@ -201,7 +201,7 @@
                                     <Label Content="From" Height="26" HorizontalAlignment="Left" Margin="0,3,0,0" RenderTransformOrigin="-8.739,0.577" VerticalAlignment="Top" Width="37" />
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Grid.Row="1" Header="Time" Height="55" HorizontalAlignment="Left" Margin="413,117,0,0" VerticalAlignment="Top" Width="304">
+                            <GroupBox Grid.Row="1" Header="Time" Height="55" HorizontalAlignment="Left" Margin="413,111,0,0" VerticalAlignment="Top" Width="304">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
@@ -224,7 +224,7 @@
                                     <Label Content="From" Height="26" HorizontalAlignment="Left" Margin="0,3,0,0" RenderTransformOrigin="-8.739,0.577" VerticalAlignment="Top" Width="37" />
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Grid.Row="1" Header="Time" Height="55" HorizontalAlignment="Left" Margin="58,173,0,0" VerticalAlignment="Top" Width="299">
+                            <GroupBox Grid.Row="1" Header="Time" Height="55" HorizontalAlignment="Left" Margin="58,167,0,0" VerticalAlignment="Top" Width="299">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
@@ -247,16 +247,16 @@
                                     <Label Content="From" Height="26" HorizontalAlignment="Left" Margin="0,3,0,0" RenderTransformOrigin="-8.739,0.577" VerticalAlignment="Top" Width="37" />
                                 </Grid>
                             </GroupBox>
-                            <CheckBox Content="Mon" Grid.Row="1" HorizontalAlignment="Left" Margin="11,28,0,0" Name="chkMon" VerticalAlignment="Top" Click="chkMon_Click_1" />
-                            <CheckBox Content="Tue" Grid.Row="1" HorizontalAlignment="Left" Margin="372,32,0,0" Name="chkTue" VerticalAlignment="Top" Click="chkTue_Click_1" />
-                            <CheckBox Content="Wed" Grid.Row="1" HorizontalAlignment="Left" Margin="11,86,0,0" Name="chkWed" VerticalAlignment="Top" Click="chkWed_Click_1" />
-                            <CheckBox Content="Thru" Grid.Row="1" HorizontalAlignment="Left" Margin="367,86,0,0" Name="chkThru" VerticalAlignment="Top" Click="chkThru_Click_1" />
-                            <CheckBox Content="Fri" Grid.Row="1" HorizontalAlignment="Left" Margin="11,140,0,0" Name="chkFri" VerticalAlignment="Top" Click="chkFri_Click_1" />
-                            <CheckBox Content="Sat" Grid.Row="1" HorizontalAlignment="Left" Margin="371,141,0,0" Name="chkSat" VerticalAlignment="Top" Click="chkSat_Click_1" />
-                            <CheckBox Content="Sun" Grid.Row="1" HorizontalAlignment="Left" Margin="10,202,0,0" Name="chkSun" VerticalAlignment="Top" Click="chkSun_Click_1" />
+                            <CheckBox Content="Mon" Grid.Row="1" HorizontalAlignment="Left" Margin="11,22,0,0" Name="chkMon" VerticalAlignment="Top" Click="chkMon_Click_1" />
+                            <CheckBox Content="Tue" Grid.Row="1" HorizontalAlignment="Left" Margin="372,26,0,0" Name="chkTue" VerticalAlignment="Top" Click="chkTue_Click_1" />
+                            <CheckBox Content="Wed" Grid.Row="1" HorizontalAlignment="Left" Margin="11,80,0,0" Name="chkWed" VerticalAlignment="Top" Click="chkWed_Click_1" />
+                            <CheckBox Content="Thru" Grid.Row="1" HorizontalAlignment="Left" Margin="367,80,0,0" Name="chkThru" VerticalAlignment="Top" Click="chkThru_Click_1" />
+                            <CheckBox Content="Fri" Grid.Row="1" HorizontalAlignment="Left" Margin="11,134,0,0" Name="chkFri" VerticalAlignment="Top" Click="chkFri_Click_1" />
+                            <CheckBox Content="Sat" Grid.Row="1" HorizontalAlignment="Left" Margin="371,135,0,0" Name="chkSat" VerticalAlignment="Top" Click="chkSat_Click_1" />
+                            <CheckBox Content="Sun" Grid.Row="1" HorizontalAlignment="Left" Margin="10,196,0,0" Name="chkSun" VerticalAlignment="Top" Click="chkSun_Click_1" />
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Batch Availaible Details " Height="306" Margin="10,-1,0,0" VerticalAlignment="Top" Width="321" Grid.RowSpan="2" HorizontalAlignment="Left">
+                    <GroupBox Header="Batch Availaible Details " Height="312" Margin="10,-1,0,0" VerticalAlignment="Top" Width="321" Grid.RowSpan="2" HorizontalAlignment="Left">
                         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" HorizontalAlignment="Stretch" IsReadOnly="True" ItemsSource="{Binding}" Margin="0,0,0,2" Name="dgBatchAvail" VerticalAlignment="Stretch" Width="307">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding BatchID}" Header="Batch ID" Visibility="Hidden" />
@@ -273,17 +273,15 @@
                     <Button Content="Copy" Grid.Row="1" Height="50" HorizontalAlignment="Right" Margin="0,161,789,148" VerticalAlignment="Center" Visibility="Hidden" Width="59" />
                 </Grid>
             </GroupBox>
-            <GroupBox Header="" Height="69" Name="groupBox1" Width="573">
+            <GroupBox Header="" Height="65" Name="groupBox1" Width="573">
                 <Grid>
-                    <Button Click="btnadd_Click" Content="Save" Height="30" HorizontalAlignment="Left" Margin="107,8,0,0" Name="btnadd" VerticalAlignment="Top" Width="75" />
-                    <Button Click="btndelete_Click" Content="Delete" Height="30" HorizontalAlignment="Left" Margin="228,8,0,0" Name="btnDelete" VerticalAlignment="Top" Width="75" />
-                    <Button Click="btncancel_Click" Content="Clear" Height="30" HorizontalAlignment="Left" Margin="351,8,0,0" Name="btnClose" VerticalAlignment="Top" Width="75" />
+                    <Button Click="btnadd_Click" Content="Save" Height="30" HorizontalAlignment="Left" Margin="107,8,0,0" Name="btnadd" VerticalAlignment="Top" Width="75" FontWeight="Black"/>
+                    <Button Click="btndelete_Click" Content="Delete" Height="30" HorizontalAlignment="Left" Margin="228,8,0,0" Name="btnDelete" VerticalAlignment="Top" Width="75" FontWeight="Black" />
+                    <Button Click="btncancel_Click" Content="Clear" Height="30" HorizontalAlignment="Left" Margin="351,8,0,0" Name="btnClose" VerticalAlignment="Top" Width="75" FontWeight="Black" />
                 </Grid>
             </GroupBox>
-            <GroupBox Header="" Height="232" Name="groupBox5" Width="949">
-                
-                <Grid>
-                    <DataGrid AutoGenerateColumns="False" Height="200" CanUserResizeColumns="False" HorizontalAlignment="Left" Margin="10,10,0,0" Name="dgvBatch" VerticalAlignment="Top" Width="921" ItemsSource="{Binding}" >
+                    <Grid Height="123" Width="1135" HorizontalAlignment="Center">
+                    <DataGrid AutoGenerateColumns="False" Height="103" CanUserResizeColumns="False" HorizontalAlignment="Left" Margin="10,10,0,0" Name="dgvBatch" VerticalAlignment="Top" Width="1119" ItemsSource="{Binding}" CanUserAddRows="False" >
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding BatchID}" Header="BatchID" Visibility="Hidden" />
                             <DataGridTextColumn Binding="{Binding ClassName}" Header="ClassName" Width="100" />
@@ -305,7 +303,7 @@
                         </DataGrid.ItemContainerStyle>
                     </DataGrid>
                 </Grid>
-            </GroupBox>
+           
         </StackPanel>
     </Grid>
 </Window>
