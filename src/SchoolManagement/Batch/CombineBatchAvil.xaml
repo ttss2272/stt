@@ -281,7 +281,7 @@
                 </Grid>
             </GroupBox>
                     <Grid Height="123" Width="1135" HorizontalAlignment="Center">
-                    <DataGrid AutoGenerateColumns="False" Height="103" CanUserResizeColumns="False" HorizontalAlignment="Left" Margin="10,10,0,0" Name="dgvBatch" VerticalAlignment="Top" Width="1119" ItemsSource="{Binding}" CanUserAddRows="False" >
+                    <DataGrid AutoGenerateColumns="False" Height="103" CanUserResizeColumns="False" HorizontalAlignment="Left" Margin="10,10,0,0" Name="dgvBatch" VerticalAlignment="Top" Width="1119" ItemsSource="{Binding}" CanUserAddRows="False" IsReadOnly="True" >
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding BatchID}" Header="BatchID" Visibility="Hidden" />
                             <DataGridTextColumn Binding="{Binding ClassName}" Header="ClassName" Width="100" />
