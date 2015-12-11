@@ -4,36 +4,13 @@
         Title="CombineBatchAvil" Height="1000" Width="1348" Loaded="Window_Loaded" xmlns:my="clr-namespace:SchoolManagement">
     <Grid>
 
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" Height="172" HorizontalAlignment="Left" IsReadOnly="True" ItemsSource="{Binding}" Margin="26,761,0,0" Name="dgvBatch" VerticalAlignment="Top" Width="1200">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding BatchID}" Header="BatchID" Visibility="Hidden" />
-                <DataGridTextColumn Binding="{Binding ClassName}" Header="ClassName" Width="100" />
-                <DataGridTextColumn Binding="{Binding BatchName}" Header="BatchName" Width="100" />
-                <DataGridTextColumn Binding="{Binding BatchCode}" Header="BatchCode" Width="100" />
-                <DataGridTextColumn Binding="{Binding LectureDuration}" Header="LectureDurTime" Width="100" />
-                <DataGridTextColumn Binding="{Binding IsLunchBreak}" Header="LunchBreak" Width="100" />
-                <DataGridTextColumn Binding="{Binding LunchBreakStartTime}" Header="BreakStartTime" Width="100" />
-                <DataGridTextColumn Binding="{Binding LunchBreakEndTime}" Header="BreakEndTime" Width="100" />
-                <DataGridTextColumn Binding="{Binding MaxNoLecturesDay}" Header="MaxLectureDay" Width="100" />
-                <DataGridTextColumn Binding="{Binding MaxNoLecturesWeek}" Header="MaxLectureWeek" Width="100" />
-                <DataGridTextColumn Binding="{Binding IsAllowMoreThanOneLectInBatch}" Header="MoreThanOneLec" Width="100" />
-                <DataGridTextColumn Binding="{Binding MaxNoOfLecureInRow}" Header="MaxLectureRow" Width="100" />
-                <DataGridTextColumn Binding="{Binding Status}" Header="Status" Width="100" />
-            </DataGrid.Columns>
-            <DataGrid.ItemContainerStyle>
-                <Style TargetType="DataGridRow">
-                    <EventSetter Event="Control.MouseDoubleClick" HandledEventsToo="True" Handler="Row_DoubleClick" />
-                </Style>
-            </DataGrid.ItemContainerStyle>
-        </DataGrid>
-        
-        <Label Content="Search Batch" HorizontalAlignment="Left" Margin="449,729,0,0" Name="lblSearch" VerticalAlignment="Top" Width="81" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="543,731,0,0" Name="txtSearchBatch" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" />
-        <Button Content="Search" FontWeight="SemiBold" Height="27" HorizontalAlignment="Left" Margin="711,729,0,0" Name="btnSearch" TabIndex="7" VerticalAlignment="Top" Width="83" />
+             
+       
         <StackPanel>
         <my:Menu_UserControl HorizontalAlignment="Left" x:Name="menu_UserControl1" VerticalAlignment="Top" />
-            <GroupBox Header="" Name="groupBox2" Width="1222" Height="205">
-                <Grid Height="179">
+
+            <GroupBox Header="" Name="groupBox2" Width="1222" Height="162">
+                <Grid Height="139">
                     <Label Content="Batch Name" Height="26" Margin="289,11,843,0" Name="lblClassName" VerticalAlignment="Top" />
                     <TextBox Height="23" HorizontalAlignment="Right" Margin="0,13,672,0" Name="txtBatchName" VerticalAlignment="Top" Width="152" />
                     <Label Content="Batch Code" Height="28" Margin="568,10,572,0" Name="lblshortname" VerticalAlignment="Top" />
@@ -44,45 +21,45 @@
                     <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="109,10,0,0" Name="cbClassName" VerticalAlignment="Top" Width="123" />
                     <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="88,10,0,0" Name="label7" VerticalAlignment="Top" />
                     <Label Content="Lecture Duration Time" Height="28" HorizontalAlignment="Left" Margin="842,10,0,0" Name="label2" VerticalAlignment="Top" />
-                    <Label Content="Is there any" Height="28" HorizontalAlignment="Left" Margin="11,49,0,0" Name="label3" VerticalAlignment="Top" />
-                    <RadioButton Content="Active" Height="16" HorizontalAlignment="Left" Margin="659,125,0,0" Name="rdoActive" VerticalAlignment="Top" />
-                    <RadioButton Content="InActive" Height="16" HorizontalAlignment="Left" Margin="750,126,0,0" Name="rdoDeActive" VerticalAlignment="Top" />
-                    <Label Content="Status" Height="28" HorizontalAlignment="Left" Margin="587,120,0,0" Name="label4" VerticalAlignment="Top" />
-                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="22" HorizontalAlignment="Left" Margin="638,125,0,0" Name="label5" VerticalAlignment="Top" />
+                    <Label Content="Is there any" Height="28" HorizontalAlignment="Left" Margin="11,33,0,0" Name="label3" VerticalAlignment="Top" />
+                    <RadioButton Content="Active" Height="16" HorizontalAlignment="Left" Margin="659,97,0,0" Name="rdoActive" VerticalAlignment="Top" />
+                    <RadioButton Content="InActive" Height="16" HorizontalAlignment="Left" Margin="750,98,0,0" Name="rdoDeActive" VerticalAlignment="Top" />
+                    <Label Content="Status" Height="28" HorizontalAlignment="Left" Margin="587,92,0,0" Name="label4" VerticalAlignment="Top" />
+                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="22" HorizontalAlignment="Left" Margin="638,97,0,0" Name="label5" VerticalAlignment="Top" />
                     <TextBox Height="26" HorizontalAlignment="Left" Margin="1001,12,0,0" MaxLength="0" Name="txtlecDuration" VerticalAlignment="Top" Width="178" />
-                    <Label Content="Lunch Break" Height="28" HorizontalAlignment="Left" Margin="11,97,0,0" Name="label8" VerticalAlignment="Top" />
-                    <ComboBox Height="23" ItemsSource="{Binding}" Margin="109,102,1043,0" Name="cmbTimeStartHrs" VerticalAlignment="Top" />
-                    <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="185,102,0,0" Name="cmbTimeStartMin" VerticalAlignment="Top" Width="58" />
-                    <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="109,149,0,0" Name="cmbTimeEndHrs" VerticalAlignment="Top" Width="58" />
-                    <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="185,149,0,0" Name="cmbTimeEndMin" VerticalAlignment="Top" Width="58" />
-                    <Label Content="To" Height="28" HorizontalAlignment="Left" Margin="156,126,0,0" Name="label9" VerticalAlignment="Top" />
-                    <Label Content="Max No of" Height="28" HorizontalAlignment="Left" Margin="566,54,0,0" Name="label10" VerticalAlignment="Top" />
+                    <Label Content="Lunch Break" HorizontalAlignment="Left" Margin="11,69,0,0" Name="label8" Height="28" VerticalAlignment="Top" />
+                    <ComboBox Height="23" ItemsSource="{Binding}" Margin="109,74,1043,0" Name="cmbTimeStartHrs" VerticalAlignment="Top" />
+                    <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="185,74,0,0" Name="cmbTimeStartMin" VerticalAlignment="Top" Width="58" />
+                    <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="109,106,0,0" Name="cmbTimeEndHrs" VerticalAlignment="Top" Width="58" />
+                    <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="185,106,0,0" Name="cmbTimeEndMin" VerticalAlignment="Top" Width="58" />
+                    <Label Content="To" Height="28" HorizontalAlignment="Left" Margin="164,84,0,0" Name="label9" VerticalAlignment="Top" />
+                    <Label Content="Max No of" Height="28" HorizontalAlignment="Left" Margin="566,38,0,0" Name="label10" VerticalAlignment="Top" />
                     <Label Content="Max No of" HorizontalAlignment="Left" Margin="887,47,0,172" Name="label11" />
-                    <Label Content="Is Allow More Than " Height="25" HorizontalAlignment="Left" Margin="252,54,0,0" Name="label12" VerticalAlignment="Top" />
-                    <Label Content="One Lecture In Batch " Height="28" HorizontalAlignment="Left" Margin="247,72,0,0" Name="label13" VerticalAlignment="Top" />
-                    <Label Content="Max No Of" Height="28" HorizontalAlignment="Left" Margin="276,110,0,0" Name="label14" VerticalAlignment="Top" />
-                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="22" HorizontalAlignment="Left" Margin="91,103,0,0" Name="label15" VerticalAlignment="Top" />
+                    <Label Content="Is Allow More Than " Height="25" HorizontalAlignment="Left" Margin="252,38,0,0" Name="label12" VerticalAlignment="Top" />
+                    <Label Content="One Lecture In Batch " Height="28" HorizontalAlignment="Left" Margin="247,56,0,0" Name="label13" VerticalAlignment="Top" />
+                    <Label Content="Max No Of" Height="28" HorizontalAlignment="Left" Margin="276,82,0,0" Name="label14" VerticalAlignment="Top" />
+                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="22" HorizontalAlignment="Left" Margin="91,75,0,0" Name="label15" VerticalAlignment="Top" />
                     <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="969,12,0,0" Name="label16" VerticalAlignment="Top" />
-                    <ComboBox Height="23" HorizontalAlignment="Left" Margin="658,59,0,0" Name="cbmaxlecperday" VerticalAlignment="Top" Width="179" />
-                    <ComboBox Height="23" HorizontalAlignment="Left" Margin="1001,60,0,0" Name="cbmaxlecperweek" VerticalAlignment="Top" Width="178" />
-                    <ComboBox Height="23" HorizontalAlignment="Left" Margin="386,119,0,0" Name="cbmaxlectperrow" VerticalAlignment="Top" Width="152" />
-                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="22" HorizontalAlignment="Left" Margin="638,60,0,0" Name="label6" VerticalAlignment="Top" />
-                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="969,62,0,0" Name="label17" VerticalAlignment="Top" />
-                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="22" HorizontalAlignment="Left" Margin="370,125,0,0" Name="label18" VerticalAlignment="Top" />
-                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="22" HorizontalAlignment="Left" Margin="370,63,0,0" Name="label19" VerticalAlignment="Top" />
-                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="88,57,0,0" Name="label20" VerticalAlignment="Top" />
-                    <ComboBox HorizontalAlignment="Left" Margin="109,57,0,0" Name="cbLunchBreak" TabIndex="9" VerticalAlignment="Top" Width="123" SelectionChanged="cbLunchBreak_SelectionChanged_1" />
-                    <ComboBox HorizontalAlignment="Left" Margin="386,63,0,0" Name="cballowlect" TabIndex="9" VerticalAlignment="Top" Width="152" />
+                    <ComboBox Height="23" HorizontalAlignment="Left" Margin="658,43,0,0" Name="cbmaxlecperday" VerticalAlignment="Top" Width="179" />
+                    <ComboBox Height="23" HorizontalAlignment="Left" Margin="1001,44,0,0" Name="cbmaxlecperweek" VerticalAlignment="Top" Width="178" />
+                    <ComboBox Height="23" HorizontalAlignment="Left" Margin="386,91,0,0" Name="cbmaxlectperrow" VerticalAlignment="Top" Width="152" />
+                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="22" HorizontalAlignment="Left" Margin="638,44,0,0" Name="label6" VerticalAlignment="Top" />
+                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="969,46,0,0" Name="label17" VerticalAlignment="Top" />
+                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="22" HorizontalAlignment="Left" Margin="370,97,0,0" Name="label18" VerticalAlignment="Top" />
+                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="22" HorizontalAlignment="Left" Margin="370,47,0,0" Name="label19" VerticalAlignment="Top" />
+                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="88,41,0,0" Name="label20" VerticalAlignment="Top" />
+                    <ComboBox HorizontalAlignment="Left" Margin="109,41,0,0" Name="cbLunchBreak" TabIndex="9" VerticalAlignment="Top" Width="123" SelectionChanged="cbLunchBreak_SelectionChanged_1" />
+                    <ComboBox HorizontalAlignment="Left" Margin="386,47,0,0" Name="cballowlect" TabIndex="9" VerticalAlignment="Top" Width="152" />
                     <Label Content="Min" Height="28" HorizontalAlignment="Left" Margin="1178,13,0,0" Name="label21" VerticalAlignment="Top" />
-                    <Label Content="Lunch Break " Height="28" HorizontalAlignment="Left" Margin="10,63,0,0" Name="label22" VerticalAlignment="Top" />
-                    <Label Content="Time " Height="28" Margin="36,110,1135,0" Name="label23" VerticalAlignment="Top" />
-                    <Label Content="Lecture Day" Height="28" HorizontalAlignment="Left" Margin="564,70,0,0" Name="label24" VerticalAlignment="Top" />
-                    <Label Content="Lecture Week" Height="28" HorizontalAlignment="Left" Margin="887,60,0,0" Name="label25" VerticalAlignment="Top" />
-                    <Label Content="Lecure In Row" Height="28" HorizontalAlignment="Left" Margin="276,129,0,0" Name="label26" VerticalAlignment="Top" />
+                    <Label Content="Lunch Break " Height="28" HorizontalAlignment="Left" Margin="10,47,0,0" Name="label22" VerticalAlignment="Top" />
+                    <Label Content="Time " Height="28" Margin="36,82,1135,0" Name="label23" VerticalAlignment="Top" />
+                    <Label Content="Lecture Day" Height="28" HorizontalAlignment="Left" Margin="564,54,0,0" Name="label24" VerticalAlignment="Top" />
+                    <Label Content="Lecture Week" Height="28" HorizontalAlignment="Left" Margin="887,44,0,0" Name="label25" VerticalAlignment="Top" />
+                    <Label Content="Lecure In Row" Height="28" HorizontalAlignment="Left" Margin="276,101,0,0" Name="label26" VerticalAlignment="Top" />
                 </Grid>
             </GroupBox>
-            <GroupBox Header="" Height="387" Name="groupBox3" Width="1213">
-                <Grid Height="348">
+            <GroupBox Header="" Height="373" Name="groupBox3" Width="1213">
+                <Grid Height="344">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="314*" />
@@ -270,16 +247,16 @@
                                     <Label Content="From" Height="26" HorizontalAlignment="Left" Margin="0,3,0,0" RenderTransformOrigin="-8.739,0.577" VerticalAlignment="Top" Width="37" />
                                 </Grid>
                             </GroupBox>
-                            <CheckBox Content="Mon" Grid.Row="1" HorizontalAlignment="Left" Margin="11,28,0,0" Name="chkMon" VerticalAlignment="Top" Click="chkMon_Click" />
-                            <CheckBox Content="Tue" Grid.Row="1" HorizontalAlignment="Left" Margin="372,32,0,0" Name="chkTue" VerticalAlignment="Top" />
-                            <CheckBox Content="Wed" Grid.Row="1" HorizontalAlignment="Left" Margin="11,86,0,0" Name="chkWed" VerticalAlignment="Top" />
-                            <CheckBox Content="Thru" Grid.Row="1" HorizontalAlignment="Left" Margin="367,86,0,0" Name="chkThru" VerticalAlignment="Top" />
-                            <CheckBox Content="Fri" Grid.Row="1" HorizontalAlignment="Left" Margin="11,140,0,0" Name="chkFri" VerticalAlignment="Top" />
-                            <CheckBox Content="Sat" Grid.Row="1" HorizontalAlignment="Left" Margin="371,141,0,0" Name="chkSat" VerticalAlignment="Top" />
-                            <CheckBox Content="Sun" Grid.Row="1" HorizontalAlignment="Left" Margin="10,202,0,0" Name="chkSun" VerticalAlignment="Top" />
+                            <CheckBox Content="Mon" Grid.Row="1" HorizontalAlignment="Left" Margin="11,28,0,0" Name="chkMon" VerticalAlignment="Top" Click="chkMon_Click_1" />
+                            <CheckBox Content="Tue" Grid.Row="1" HorizontalAlignment="Left" Margin="372,32,0,0" Name="chkTue" VerticalAlignment="Top" Click="chkTue_Click_1" />
+                            <CheckBox Content="Wed" Grid.Row="1" HorizontalAlignment="Left" Margin="11,86,0,0" Name="chkWed" VerticalAlignment="Top" Click="chkWed_Click_1" />
+                            <CheckBox Content="Thru" Grid.Row="1" HorizontalAlignment="Left" Margin="367,86,0,0" Name="chkThru" VerticalAlignment="Top" Click="chkThru_Click_1" />
+                            <CheckBox Content="Fri" Grid.Row="1" HorizontalAlignment="Left" Margin="11,140,0,0" Name="chkFri" VerticalAlignment="Top" Click="chkFri_Click_1" />
+                            <CheckBox Content="Sat" Grid.Row="1" HorizontalAlignment="Left" Margin="371,141,0,0" Name="chkSat" VerticalAlignment="Top" Click="chkSat_Click_1" />
+                            <CheckBox Content="Sun" Grid.Row="1" HorizontalAlignment="Left" Margin="10,202,0,0" Name="chkSun" VerticalAlignment="Top" Click="chkSun_Click_1" />
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Batch Availaible Details " Height="306" Margin="10,-1,864,0" VerticalAlignment="Top" Width="329" Grid.RowSpan="2">
+                    <GroupBox Header="Batch Availaible Details " Height="306" Margin="10,-1,0,0" VerticalAlignment="Top" Width="321" Grid.RowSpan="2" HorizontalAlignment="Left">
                         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" HorizontalAlignment="Stretch" IsReadOnly="True" ItemsSource="{Binding}" Margin="0,0,0,2" Name="dgBatchAvail" VerticalAlignment="Stretch" Width="307">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding BatchID}" Header="Batch ID" Visibility="Hidden" />
@@ -301,6 +278,32 @@
                     <Button Click="btnadd_Click" Content="Save" Height="30" HorizontalAlignment="Left" Margin="107,8,0,0" Name="btnadd" VerticalAlignment="Top" Width="75" />
                     <Button Click="btndelete_Click" Content="Delete" Height="30" HorizontalAlignment="Left" Margin="228,8,0,0" Name="btnDelete" VerticalAlignment="Top" Width="75" />
                     <Button Click="btncancel_Click" Content="Clear" Height="30" HorizontalAlignment="Left" Margin="351,8,0,0" Name="btnClose" VerticalAlignment="Top" Width="75" />
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="" Height="232" Name="groupBox5" Width="949">
+                
+                <Grid>
+                    <DataGrid AutoGenerateColumns="False" Height="200" CanUserResizeColumns="False" HorizontalAlignment="Left" Margin="10,10,0,0" Name="dgvBatch" VerticalAlignment="Top" Width="921" ItemsSource="{Binding}" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding BatchID}" Header="BatchID" Visibility="Hidden" />
+                            <DataGridTextColumn Binding="{Binding ClassName}" Header="ClassName" Width="100" />
+                            <DataGridTextColumn Binding="{Binding BatchName}" Header="BatchName" Width="100" />
+                            <DataGridTextColumn Binding="{Binding BatchCode}" Header="BatchCode" Width="100" />
+                            <DataGridTextColumn Binding="{Binding LectureDuration}" Header="LectureDurTime" Width="100" />
+                            <DataGridTextColumn Binding="{Binding IsLunchBreak}" Header="LunchBreak" Width="100" />
+                            <DataGridTextColumn Binding="{Binding LunchBreakStartTime}" Header="BreakStartTime" Width="100" />
+                            <DataGridTextColumn Binding="{Binding LunchBreakEndTime}" Header="BreakEndTime" Width="100" />
+                            <DataGridTextColumn Binding="{Binding MaxNoLecturesDay}" Header="MaxLectureDay" Width="100" />
+                            <DataGridTextColumn Binding="{Binding MaxNoLecturesWeek}" Header="MaxLectureWeek" Width="100" />
+                            <DataGridTextColumn Binding="{Binding IsAllowMoreThanOneLectInBatch}" Header="MoreThanOneLec" Width="100" />
+                            <DataGridTextColumn Binding="{Binding MaxNoOfLecureInRow}" Header="MaxLectureRow" Width="100" />
+                        </DataGrid.Columns>
+                        <DataGrid.ItemContainerStyle>
+                            <Style TargetType="DataGridRow">
+                                <EventSetter Event="Control.MouseDoubleClick" HandledEventsToo="True" Handler="Row_DoubleClick" />
+                            </Style>
+                        </DataGrid.ItemContainerStyle>
+                    </DataGrid>
                 </Grid>
             </GroupBox>
         </StackPanel>

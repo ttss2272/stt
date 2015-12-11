@@ -70,7 +70,6 @@ namespace SchoolManagement.Batch
             txtBatchName.Text = "";
             txtBatchCode.Text = "";
             txtlecDuration.Text = "";
-            txtSearchBatch.Text = "";
             cmbTimeStartMin.Items.Clear();
             cmbTimeEndMin.Items.Clear();
             TimingHrs();
@@ -83,7 +82,7 @@ namespace SchoolManagement.Batch
             MaxLectPerWeek1();
             BindYesNo();
             UpID = 0;
-            //BindGridview();
+            BindGridview();
             rdoActive.IsChecked = true;
             rdoDeActive.IsChecked = false;
             btnDelete.IsEnabled = false;
@@ -102,7 +101,7 @@ namespace SchoolManagement.Batch
             /* Batch Avialibilty ClearFields*/
             BindHours();
             BindMinutes();
-            
+            BindBatchAvailGrid();
             UncheckAllCheckBoxes();
             EnableDropdown();
             if (chkAvailSameTime.IsChecked == true)
@@ -115,6 +114,19 @@ namespace SchoolManagement.Batch
             }
            // gbbtavaday.IsEnabled = false;
 
+
+        }
+        #endregion
+        #region---------------------------------------------------------------BindBatchAvailGrid()-------------------------------------------------------
+        private void BindBatchAvailGrid()
+        {
+            DataSet ds = objBatch.BindBatchAvail();
+
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                dgBatchAvail.DataContext = null;
+                dgBatchAvail.DataContext = ds.Tables[0].DefaultView;
+            }
 
         }
         #endregion
@@ -1144,34 +1156,34 @@ namespace SchoolManagement.Batch
         #region------------------------btnSearch_Click----------------------
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                if (!string.IsNullOrEmpty(txtSearchBatch.Text.Trim()))
-                {
-                    DataSet ds = obj_Batch.SearchBatch(txtSearchBatch.Text);
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        dgvBatch.ItemsSource = ds.Tables[0].DefaultView;
-                    }
-                    else
-                    {
-                        dgvBatch.ItemsSource = null;
-                        MessageBox.Show("No Data Available");
-                        clearFields();
-                    }
+            //try
+            //{
+            //    if (!string.IsNullOrEmpty(txtSearchBatch.Text.Trim()))
+            //    {
+            //        DataSet ds = obj_Batch.SearchBatch(txtSearchBatch.Text);
+            //        if (ds.Tables[0].Rows.Count > 0)
+            //        {
+            //            dgvBatch.ItemsSource = ds.Tables[0].DefaultView;
+            //        }
+            //        else
+            //        {
+            //            dgvBatch.ItemsSource = null;
+            //            MessageBox.Show("No Data Available");
+            //            clearFields();
+            //        }
 
-                }
-                else
-                {
-                    MessageBox.Show("Please Enter Batch Name", "Message", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    txtSearchBatch.Focus();
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Please Enter Batch Name", "Message", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //        txtSearchBatch.Focus();
 
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message.ToString());
+            //}
         }
 
         #endregion
@@ -1450,11 +1462,6 @@ namespace SchoolManagement.Batch
         #endregion
 
        
-
-        private void cbClassName_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
         #region--------------------------btncancel_Click-----------------------------
         private void btncancel_Click(object sender, RoutedEventArgs e)
         {
@@ -1718,108 +1725,7 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
-        #region---------------------------------------------------ChkFri------------------------------------------------
-        private void chkFri_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (chkFri.IsChecked == true)
-                {
-                    ++daycheckcount;
-                }
-                else if (chkFri.IsChecked == false)
-                {
-                    --daycheckcount;
-                    chkStartHrs5.SelectedIndex = 0;
-                    chkStartMin5.SelectedIndex = 0;
-                    chkEndhrs5.SelectedIndex = 0;
-                    EndMin5.SelectedIndex = 0;
-                }
-                if (daycheckcount == 7)
-                {
-                    chkAvailAllDay.IsChecked = true;
-                }
-                else
-                {
-                    chkAvailAllDay.IsChecked = false;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-        #endregion
-
-        #region---------------------------------------------------ChkMon------------------------------------------------
-        private void chkMon_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (chkMon.IsChecked == true)
-                {
-                    ++daycheckcount;
-                }
-                else if (chkMon.IsChecked == false)
-                {
-                    --daycheckcount;
-                    chkStartHrs1.SelectedIndex = 0;
-                    chkStartMin1.SelectedIndex = 0;
-                    chkEndhrs1.SelectedIndex = 0;
-                    EndMin1.SelectedIndex = 0;
-                }
-                if (daycheckcount == 7)
-                {
-                    chkAvailAllDay.IsChecked = true;
-                }
-                else
-                {
-                    chkAvailAllDay.IsChecked = false;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-        #endregion
-
-        #region---------------------------------------------------ChkSat------------------------------------------------
-        private void chkSat_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (chkSat.IsChecked == true)
-                {
-                    ++daycheckcount;
-                }
-                else if (chkSat.IsChecked == false)
-                {
-                    --daycheckcount;
-                    chkStartHrs6.SelectedIndex = 0;
-                    chkStartMin6.SelectedIndex = 0;
-                    chkEndhrs6.SelectedIndex = 0;
-                    EndMin6.SelectedIndex = 0;
-                }
-                if (daycheckcount == 7)
-                {
-                    chkAvailAllDay.IsChecked = true;
-                }
-                else
-                {
-                    chkAvailAllDay.IsChecked = false;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-        #endregion
-
+                 
         #region-----------------chkStartHrs_SelectionChanged-------------------------
         private void chkStartHrs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -1872,142 +1778,8 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
-        #region---------------------------------------------------ChkSun------------------------------------------------
-        private void chkSun_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (chkSun.IsChecked == true)
-                {
-                    ++daycheckcount;
-                }
-                else if (chkSun.IsChecked == false)
-                {
-                    --daycheckcount;
-                    chkStartHrs7.SelectedIndex = 0;
-                    chkStartMin7.SelectedIndex = 0;
-                    chkEndhrs7.SelectedIndex = 0;
-                    EndMin7.SelectedIndex = 0;
-                }
-                if (daycheckcount == 7)
-                {
-                    chkAvailAllDay.IsChecked = true;
-                }
-                else
-                {
-                    chkAvailAllDay.IsChecked = false;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-        #endregion
-
-        #region---------------------------------------------------ChkThru------------------------------------------------
-        private void chkThru_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (chkThru.IsChecked == true)
-                {
-                    ++daycheckcount;
-                }
-                else if (chkThru.IsChecked == false)
-                {
-                    --daycheckcount;
-                    chkStartHrs4.SelectedIndex = 0;
-                    chkStartMin4.SelectedIndex = 0;
-                    chkEndhrs4.SelectedIndex = 0;
-                    EndMin4.SelectedIndex = 0;
-                }
-                if (daycheckcount == 7)
-                {
-                    chkAvailAllDay.IsChecked = true;
-                }
-                else
-                {
-                    chkAvailAllDay.IsChecked = false;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-        #endregion
-
-        #region---------------------------------------------------ChkTue------------------------------------------------
-        private void chkTue_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (chkTue.IsChecked == true)
-                {
-                    ++daycheckcount;
-                }
-                else if (chkTue.IsChecked == false)
-                {
-                    --daycheckcount;
-                    chkStartHrs2.SelectedIndex = 0;
-                    chkStartMin2.SelectedIndex = 0;
-                    chkEndhrs2.SelectedIndex = 0;
-                    EndMin2.SelectedIndex = 0;
-                }
-                if (daycheckcount == 7)
-                {
-                    chkAvailAllDay.IsChecked = true;
-                }
-                else
-                {
-                    chkAvailAllDay.IsChecked = false;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-        #endregion
-
-        #region---------------------------------------------------Chkwed------------------------------------------------
-        private void chkWed_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (chkWed.IsChecked == true)
-                {
-                    ++daycheckcount;
-                }
-                else if (chkWed.IsChecked == false)
-                {
-                    --daycheckcount;
-                    chkStartHrs3.SelectedIndex = 0;
-                    chkStartMin3.SelectedIndex = 0;
-                    chkEndhrs3.SelectedIndex = 0;
-                    EndMin3.SelectedIndex = 0;
-                }
-                if (daycheckcount == 7)
-                {
-                    chkAvailAllDay.IsChecked = true;
-                }
-                else
-                {
-                    chkAvailAllDay.IsChecked = false;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-        #endregion
-
+        
+                       
         #region--------------EndMin_SelectionChanged--------------
         private void EndMin_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -2390,6 +2162,7 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        #region-----------------------------------------chkAvailSameTime_Click----------------------------------------------------
         private void chkAvailSameTime_Click_1(object sender, RoutedEventArgs e)
         {
             if (chkAvailSameTime.IsChecked == true)
@@ -2405,6 +2178,7 @@ namespace SchoolManagement.Batch
                 
             }
         }
+        #endregion
         #region---------------------------------------------------Chkallday------------------------------------------------
         private void chkAvailAllDay_Click_1(object sender, RoutedEventArgs e)
         {
@@ -2429,10 +2203,244 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
-        
+        #region---------------------------------------------------ChkMon------------------------------------------------
+        private void chkMon_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (chkMon.IsChecked == true)
+                {
+                    ++daycheckcount;
+                }
+                else if (chkMon.IsChecked == false)
+                {
+                    --daycheckcount;
+                    chkStartHrs1.SelectedIndex = 0;
+                    chkStartMin1.SelectedIndex = 0;
+                    chkEndhrs1.SelectedIndex = 0;
+                    EndMin1.SelectedIndex = 0;
+                }
+                if (daycheckcount == 7)
+                {
+                    chkAvailAllDay.IsChecked = true;
+                }
+                else
+                {
+                    chkAvailAllDay.IsChecked = false;
+                }
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
 
+        }
+        #endregion
 
+        #region---------------------------------------------------ChkTue------------------------------------------------
+        private void chkTue_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (chkTue.IsChecked == true)
+                {
+                    ++daycheckcount;
+                }
+                else if (chkTue.IsChecked == false)
+                {
+                    --daycheckcount;
+                    chkStartHrs2.SelectedIndex = 0;
+                    chkStartMin2.SelectedIndex = 0;
+                    chkEndhrs2.SelectedIndex = 0;
+                    EndMin2.SelectedIndex = 0;
+                }
+                if (daycheckcount == 7)
+                {
+                    chkAvailAllDay.IsChecked = true;
+                }
+                else
+                {
+                    chkAvailAllDay.IsChecked = false;
+                }
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        #endregion
+
+        #region---------------------------------------------------Chkwed------------------------------------------------
+        private void chkWed_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (chkWed.IsChecked == true)
+                {
+                    ++daycheckcount;
+                }
+                else if (chkWed.IsChecked == false)
+                {
+                    --daycheckcount;
+                    chkStartHrs3.SelectedIndex = 0;
+                    chkStartMin3.SelectedIndex = 0;
+                    chkEndhrs3.SelectedIndex = 0;
+                    EndMin3.SelectedIndex = 0;
+                }
+                if (daycheckcount == 7)
+                {
+                    chkAvailAllDay.IsChecked = true;
+                }
+                else
+                {
+                    chkAvailAllDay.IsChecked = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
+
+        #region---------------------------------------------------ChkThru------------------------------------------------
+        private void chkThru_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (chkThru.IsChecked == true)
+                {
+                    ++daycheckcount;
+                }
+                else if (chkThru.IsChecked == false)
+                {
+                    --daycheckcount;
+                    chkStartHrs4.SelectedIndex = 0;
+                    chkStartMin4.SelectedIndex = 0;
+                    chkEndhrs4.SelectedIndex = 0;
+                    EndMin4.SelectedIndex = 0;
+                }
+                if (daycheckcount == 7)
+                {
+                    chkAvailAllDay.IsChecked = true;
+                }
+                else
+                {
+                    chkAvailAllDay.IsChecked = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
+
+        #region---------------------------------------------------ChkFri------------------------------------------------
+        private void chkFri_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (chkFri.IsChecked == true)
+                {
+                    ++daycheckcount;
+                }
+                else if (chkFri.IsChecked == false)
+                {
+                    --daycheckcount;
+                    chkStartHrs5.SelectedIndex = 0;
+                    chkStartMin5.SelectedIndex = 0;
+                    chkEndhrs5.SelectedIndex = 0;
+                    EndMin5.SelectedIndex = 0;
+                }
+                if (daycheckcount == 7)
+                {
+                    chkAvailAllDay.IsChecked = true;
+                }
+                else
+                {
+                    chkAvailAllDay.IsChecked = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
+
+        #region---------------------------------------------------ChkSat------------------------------------------------
+        private void chkSat_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (chkSat.IsChecked == true)
+                {
+                    ++daycheckcount;
+                }
+                else if (chkSat.IsChecked == false)
+                {
+                    --daycheckcount;
+                    chkStartHrs6.SelectedIndex = 0;
+                    chkStartMin6.SelectedIndex = 0;
+                    chkEndhrs6.SelectedIndex = 0;
+                    EndMin6.SelectedIndex = 0;
+                }
+                if (daycheckcount == 7)
+                {
+                    chkAvailAllDay.IsChecked = true;
+                }
+                else
+                {
+                    chkAvailAllDay.IsChecked = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
+
+        #region---------------------------------------------------ChkSun------------------------------------------------
+        private void chkSun_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (chkSun.IsChecked == true)
+                {
+                    ++daycheckcount;
+                }
+                else if (chkSun.IsChecked == false)
+                {
+                    --daycheckcount;
+                    chkStartHrs7.SelectedIndex = 0;
+                    chkStartMin7.SelectedIndex = 0;
+                    chkEndhrs7.SelectedIndex = 0;
+                    EndMin7.SelectedIndex = 0;
+                }
+                if (daycheckcount == 7)
+                {
+                    chkAvailAllDay.IsChecked = true;
+                }
+                else
+                {
+                    chkAvailAllDay.IsChecked = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
     }
 }
