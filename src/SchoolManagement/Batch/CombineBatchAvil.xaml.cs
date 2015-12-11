@@ -30,7 +30,7 @@ namespace SchoolManagement.Batch
         #region------------------------Declare Variables Globally()--------------------
         int BatchID,ResultCount,MaxBatchID, UpdatedByUserID, IsActive, IsDeleted, ClassID, UpID, LectureDuration, IsLunchBreak, MaxNoLecturesDay, MaxNoLecturesWeek, IsAllowMoreThanOneLectInBatch, MaxNoOfLecureInRow;
         string BatchName, BatchCode, UpdatedDate, LunchBreakStartTime, LunchBreakEndTime, n = "0", m = "1";
-        int daycheckcount = 0,cnn;
+        int daycheckcount = 0,cnn,NoOfAvailDays;
         BLBatch obj_Batch = new BLBatch();
         BLAddClass obj_Class = new BLAddClass();
 
@@ -117,6 +117,21 @@ namespace SchoolManagement.Batch
 
         }
         #endregion
+
+        #region---------------------------------------------------------Clears()-------------------------------------------------------
+        private void Clears()
+        {
+
+            BindHours();
+            BindMinutes();
+            BindBatchAvailGrid();
+            UncheckAllCheckBoxes();
+            gbSameTime.Visibility = Visibility.Hidden;
+            EnableDropdown();
+
+        }
+        #endregion
+
         #region---------------------------------------------------------------BindBatchAvailGrid()-------------------------------------------------------
         private void BindBatchAvailGrid()
         {
@@ -2660,6 +2675,47 @@ namespace SchoolManagement.Batch
             
 
         }
+        #endregion
+
+        #region--------------------------------------btnCopy_Click--------------------------------------------
+        private void btnCopy_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                
+                if (cbClassName.SelectedValue.ToString() != "0" && cbClassName.SelectedItem.ToString() != "Select")
+                {
+                    if (dgBatchAvail.SelectedItems.Count ==1)
+                    {
+                        for (int i = 0; i < dgBatchAvail.SelectedItems.Count; i++)
+                        {
+                            
+                            System.Data.DataRowView selectedFile = (System.Data.DataRowView)dgBatchAvail.SelectedItems[i];
+                            BatchID = Convert.ToInt32(selectedFile.Row.ItemArray[0]);
+                            Clears();
+                            GetBatchAvailableDetails(BatchID);                       
+                                                      
+                        }
+                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please Select At Least One Class Name", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please Select Class Name First", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception");
+            }
+  
+        }
+
         #endregion
     }
 }

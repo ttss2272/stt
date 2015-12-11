@@ -270,7 +270,8 @@
                             </DataGrid.ItemContainerStyle>
                         </DataGrid>
                     </GroupBox>
-                    <Button Content="Copy" Grid.Row="1" Height="50" HorizontalAlignment="Right" Margin="0,161,789,148" VerticalAlignment="Center" Visibility="Hidden" Width="59" />
+                    
+                    <Button Content="Copy" Height="39" HorizontalAlignment="Left" Margin="344,135,0,0" Name="btnCopy" VerticalAlignment="Top" Width="75" Grid.Row="1" Click="btnCopy_Click" FontWeight="Black" />
                 </Grid>
             </GroupBox>
             <GroupBox Header="" Height="65" Name="groupBox1" Width="573">
@@ -302,7 +303,7 @@
                             </Style>
                         </DataGrid.ItemContainerStyle>
                     </DataGrid>
-                </Grid>
+            </Grid>
            
         </StackPanel>
     </Grid>
