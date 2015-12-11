@@ -12,9 +12,9 @@ namespace BusinessLayer
         DLRoom obj_Room = new DLRoom();
 
 
-        public string saveAddRoom(int RoomId, string RoomName, string ShortName, string Color1, int Capacity, int BranchID, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted,int MaxLectday,int MaxLectWeek,int MaxLectRow,DateTime STime,DateTime ETime,int IsAllow)
+        public int saveAddRoom(int RoomId, string RoomName, string ShortName, string Color1, int Capacity, int BranchID, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted,int MaxLectday,int MaxLectWeek,int MaxLectRow,DateTime STime,DateTime ETime,int IsAllow)
         {
-            string result = obj_Room.saveAddRoom(RoomId, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted,MaxLectday,MaxLectWeek,MaxLectRow,STime,ETime,IsAllow);
+            int result = obj_Room.saveAddRoom(RoomId, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted,MaxLectday,MaxLectWeek,MaxLectRow,STime,ETime,IsAllow);
             return result;
         }
 
