@@ -44,7 +44,7 @@
         
             <GroupBox Header="Teacher Avalaible Days" Name="gbTeacherAvalDay" Width="733" Margin="508,184,37,0" Height="318" VerticalAlignment="Top">
                 <Grid Height="287">
-                    <CheckBox Click="chkAvailAllDay_Click" Content="Available All Days" HorizontalAlignment="Left" Margin="24,20,0,0" Name="chkAvailAllDay" VerticalAlignment="Top" Width="125" />
+                    <CheckBox Click="chkAvailAllDay_Click" Content="Available All Days" HorizontalAlignment="Left" Margin="20,20,0,0" Name="chkAvailAllDay" VerticalAlignment="Top" Width="125" />
                     <CheckBox Click="chkAvailSameTime_Click" Content="Same Time" HorizontalAlignment="Left" Margin="167,22,0,0" Name="chkAvailSameTime" VerticalAlignment="Top" Width="96" />
                 <GroupBox Header="Time" Height="55" HorizontalAlignment="Left" Margin="272,4,0,0" Name="gbSameTime" VerticalAlignment="Top" Visibility="Visible" Width="441">
                         <Grid>
