@@ -381,6 +381,7 @@ namespace SchoolManagement.Teacher
                     SetParameters();
                     DeleteTeacher();
                     BindGrid();
+                    BindGridTeachAvail();
                 }
 
             }
@@ -443,7 +444,7 @@ namespace SchoolManagement.Teacher
             BindGridTeachAvail();
             UncheckAllCheckBoxes();
             EnableDropdown();
-            gbTeacherAvalDay.IsEnabled = false;
+           // gbTeacherAvalDay.IsEnabled = false;
         }
         #endregion
 
@@ -2461,6 +2462,7 @@ namespace SchoolManagement.Teacher
         {
             try
             {
+               
                 object item = dgvTeacher.SelectedItem;
                 UPID = Convert.ToInt32(((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[0].ToString());
                 txtName.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[1].ToString();
@@ -2665,21 +2667,44 @@ namespace SchoolManagement.Teacher
         #region----------------------------------------Row Double Click()-------------------------------------------------------------------
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
+            
+        }
+        #endregion
+        #region---------------------------------------btnCopy_Click--------------------------------------
+        private void btnCopy_Click(object sender, RoutedEventArgs e)
+        {
             try
             {
-                object item = dgTeacherAvail.SelectedItem;
-                int UpID = Convert.ToInt32(((System.Data.DataRowView)(dgTeacherAvail.CurrentItem)).Row.ItemArray[0].ToString());
 
-                Clears();
-               GetTeacherAvailableDetails(UpID);
+
+                if (dgTeacherAvail.SelectedItems.Count == 1)
+                    {
+                        for (int i = 0; i < dgTeacherAvail.SelectedItems.Count; i++)
+                        {
+
+                            System.Data.DataRowView selectedFile = (System.Data.DataRowView)dgTeacherAvail.SelectedItems[i];
+                            TeacherID = Convert.ToInt32(selectedFile.Row.ItemArray[0]);
+                            Clears();
+                            GetTeacherAvailableDetails(TeacherID);
+
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please Select At Least One Class Name", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                
+                
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString(), "Exception Error");
+                MessageBox.Show(ex.Message.ToString(), "Exception");
             }
         }
-        #endregion
 
+        #endregion
 
     }
 }
