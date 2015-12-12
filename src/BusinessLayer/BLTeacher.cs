@@ -68,5 +68,11 @@ namespace BusinessLayer
             }
 
         }
+
+        public int GetMaxTeacherID()
+        {
+            int MaxTeacherID = objTeacher.GetMaxTeacherID();
+            return MaxTeacherID;
+        }
     }
 }
