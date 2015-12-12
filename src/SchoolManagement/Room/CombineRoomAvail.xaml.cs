@@ -1144,7 +1144,7 @@ namespace SchoolManagement.Room
         #region--------------LoadHrMin()-----------------------------------
         private void cmbSHr_Items()
         {
-            cmbSHr.Items.Add("select");
+            cmbSHr.Items.Add("HR");
             int i;
             for (i = 1; i <= 9; i++)
             {
@@ -1167,7 +1167,7 @@ namespace SchoolManagement.Room
         }
         private void cmbSMin_Items()
         {
-            cmbSMin.Items.Add("select");
+            cmbSMin.Items.Add("Min");
             int i;
             cmbSMin.Items.Add("00");
             cmbSMin.Items.Add("05");
@@ -1181,7 +1181,7 @@ namespace SchoolManagement.Room
         }
         private void cmbEHr_Items()
         {
-            cmbEHr.Items.Add("select");
+            cmbEHr.Items.Add("HR");
             int i;
             for (i = 1; i <= 9; i++)
             {
@@ -1204,7 +1204,7 @@ namespace SchoolManagement.Room
         }
         private void cmbEMin_Items()
         {
-            cmbEMin.Items.Add("select");
+            cmbEMin.Items.Add("Min");
             int i;
             cmbEMin.Items.Add("00");
             cmbEMin.Items.Add("05");
@@ -2559,13 +2559,16 @@ namespace SchoolManagement.Room
         }
         #endregion
 
+        /* Created By:- Pranjali Vidhate
+        * Created Date :- 19 Nov 2015
+        * Purpose:- To copy Featuers of other Room*/
 
         #region-----------------------------------------Copy()-----------------------------------------------------------------------
         private void btnCopy_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (cmbBranchName.SelectedValue.ToString() != "0" && cmbBranchName.SelectedItem.ToString() != "Select")
+                if (cmbBranchName.SelectedValue.ToString() != "0")
                 {
                     if (dgRoomAvail.SelectedItems.Count == 1)
                     {
@@ -2577,12 +2580,12 @@ namespace SchoolManagement.Room
                     }
                     else
                     {
-                        MessageBox.Show("Please Select At Least One Subject", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Please Select Row from Copy Grid", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Please Select Batch First", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Please Select Branch First", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             catch (Exception ex)
