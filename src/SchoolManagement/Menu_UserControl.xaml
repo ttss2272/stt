@@ -18,9 +18,9 @@
                <!-- <MenuItem Header="TimeSlot" Name="menuTimeSlot" Click="menuTimeSlot_Click"/> -->
             </MenuItem>
             <MenuItem Header="Transaction" Width="90" Height="30">
-                <MenuItem Header="Teacher Availability" Name="menuTeacherAvailability" Click="menuTeacherAvailability_Click"/>
+                <!--<MenuItem Header="Teacher Availability" Name="menuTeacherAvailability" Click="menuTeacherAvailability_Click"/>
                 <MenuItem Header="Room Availability" Name="menuRoomAvailability" Click="menuRoomAvailability_Click" />
-                <MenuItem Header="Batch Availability" Name="menuBatchAvailability" Click="menuBatchAvailability_Click" />
+                <MenuItem Header="Batch Availability" Name="menuBatchAvailability" Click="menuBatchAvailability_Click" />-->
                 <MenuItem Header="Batch Subject" Name="menuBatchSubject" Click="menuBatchSubject_Click" />
                 <MenuItem Header="Branch Distance" Name="menuBranchDistance" Click="menuBranchDistance_Click_1" />
                 <MenuItem Header="Teacher Subject To Batch" Name="menuTeacherSubject" Click="menuTeacherSubject_Click"></MenuItem>

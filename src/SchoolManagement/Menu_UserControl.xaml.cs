@@ -49,21 +49,21 @@ namespace SchoolManagement
 
         private void menuTeachers_Click(object sender, RoutedEventArgs e)
         {
-            Teacher.Teacher1 objTeacher = new Teacher.Teacher1();
+            Teacher.CombineTeacherAvail objTeacher = new Teacher.CombineTeacherAvail();
             Close();
             objTeacher.Show();
         }
 
         private void menuRoom_Click(object sender, RoutedEventArgs e)
         {
-            Room.Room1 objRoom = new Room.Room1();
+            Room.CombineRoomAvail objRoom = new Room.CombineRoomAvail();
             Close();
             objRoom.Show();
         }
 
         private void menuBatch_Click(object sender, RoutedEventArgs e)
         {
-            Batch.Batch objBatch = new Batch.Batch();
+            Batch.CombineBatchAvil objBatch = new Batch.CombineBatchAvil();
             Close();
             objBatch.Show();
         }
@@ -91,21 +91,21 @@ namespace SchoolManagement
 
         private void menuTeacherAvailability_Click(object sender, RoutedEventArgs e)
         {
-            Teacher.TeacherAvailibility objTeacher = new Teacher.TeacherAvailibility();
-            Close();
-            objTeacher.Show();
+            //Teacher.TeacherAvailibility objTeacher = new Teacher.TeacherAvailibility();
+            //Close();
+            //objTeacher.Show();
         }
         private void menuRoomAvailability_Click(object sender, RoutedEventArgs e)
         {
-            Room.RoomAvailibility ObjRoom = new Room.RoomAvailibility();
-            Close();
-            ObjRoom.Show();
+    //Room.RoomAvailibility ObjRoom = new Room.RoomAvailibility();
+    //Close();
+    //ObjRoom.Show();
         }
         private void menuBatchAvailability_Click(object sender, RoutedEventArgs e)
         {
-            Batch.BatchAvailibility ObjBatch = new Batch.BatchAvailibility();
-            Close();
-            ObjBatch.Show();
+            //Batch.BatchAvailibility ObjBatch = new Batch.BatchAvailibility();
+            //Close();
+            //ObjBatch.Show();
         }       
 
         private void menuBranchDistance_Click_1(object sender, RoutedEventArgs e)
