@@ -2700,7 +2700,7 @@ namespace SchoolManagement.Batch
                     }
                     else
                     {
-                        MessageBox.Show("Please Select At Least One Class Name", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Please Select Row From Grid", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
                 else

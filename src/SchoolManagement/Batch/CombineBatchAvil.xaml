@@ -255,7 +255,7 @@
                             <CheckBox Content="Sun" Grid.Row="1" HorizontalAlignment="Left" Margin="10,196,0,0" Name="chkSun" VerticalAlignment="Top" Click="chkSun_Click_1" />
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Batch Availaible Details " Height="312" Margin="10,-1,0,0" VerticalAlignment="Top" Width="321" Grid.RowSpan="2" HorizontalAlignment="Left">
+                    <GroupBox Header="Batch Availaible Details For Copy " Height="312" Margin="10,-1,0,0" VerticalAlignment="Top" Width="321" Grid.RowSpan="2" HorizontalAlignment="Left">
                         <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" HorizontalAlignment="Stretch" IsReadOnly="True" ItemsSource="{Binding}" Margin="0,0,0,2" Name="dgBatchAvail" VerticalAlignment="Stretch" Width="307">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding BatchID}" Header="Batch ID" Visibility="Hidden" />
