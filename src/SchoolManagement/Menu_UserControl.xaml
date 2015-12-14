@@ -11,9 +11,9 @@
             <MenuItem Header="Master" Width="70" Height="30">
                 <MenuItem Header="Institute" Name="menuInstitute" Click="menuInstitute_Click"/>
                 <MenuItem Header="Class" Name="menuClass" Click="menuClass_Click"/>
-                <MenuItem Header="Teacher" Name="menuTeachers" Click="menuTeachers_Click"/>
-                <MenuItem Header="Room" Name="menuRoom" Click="menuRoom_Click"/>
                 <MenuItem Header="Batch" Name="menuBatch" Click="menuBatch_Click"/>
+                <MenuItem Header="Room" Name="menuRoom" Click="menuRoom_Click"/>
+                <MenuItem Header="Teacher" Name="menuTeachers" Click="menuTeachers_Click"/>
                 <MenuItem Header="Subject" Name="menuSubject" Click="menuSubject_Click"/>
                <!-- <MenuItem Header="TimeSlot" Name="menuTimeSlot" Click="menuTimeSlot_Click"/> -->
             </MenuItem>
@@ -22,8 +22,9 @@
                 <MenuItem Header="Room Availability" Name="menuRoomAvailability" Click="menuRoomAvailability_Click" />
                 <MenuItem Header="Batch Availability" Name="menuBatchAvailability" Click="menuBatchAvailability_Click" />-->
                 <MenuItem Header="Batch Subject" Name="menuBatchSubject" Click="menuBatchSubject_Click" />
-                <MenuItem Header="Branch Distance" Name="menuBranchDistance" Click="menuBranchDistance_Click_1" />
                 <MenuItem Header="Teacher Subject To Batch" Name="menuTeacherSubject" Click="menuTeacherSubject_Click"></MenuItem>
+                <MenuItem Header="Branch Distance" Name="menuBranchDistance" Click="menuBranchDistance_Click_1" />
+                
             </MenuItem>
             <MenuItem Header="Time_Table" Width="90" Height="30" Click="MenuItem_Click_1">
                 <MenuItem Header="Time Table" Name="menuTimeTable"/>
