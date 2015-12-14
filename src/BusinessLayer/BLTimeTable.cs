@@ -46,5 +46,11 @@ namespace BusinessLayer
             DataSet ds = objTimeTable.Validate(TeacherShortName,ClassRoomID,LectStartTime,LectEndTime,Day,BatchID);
             return ds;
         }
+
+        public DataSet Test()
+        {
+            DataSet ds= objTimeTable.Test();
+            return ds;
+        }
     }
 }
