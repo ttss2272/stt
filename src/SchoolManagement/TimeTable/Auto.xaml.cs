@@ -63,6 +63,7 @@ namespace SchoolManagement.TimeTable
             try
             {
                 BindBranch();
+                dtDatePick.DisplayDateStart = DateTime.Today;
             }
             catch (Exception ex)
             {
