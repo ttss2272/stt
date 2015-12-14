@@ -50,7 +50,7 @@
             </Grid>
         </GroupBox>
         <Grid>
-            <GroupBox Header="Room Avalaible Days" Height="311"  Width="733"  Name="gbrmavaday" Margin="0,158,4,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <GroupBox Header="Room Avalaible Days" Height="311"  Width="729"  Name="gbrmavaday" Margin="0,158,65,0" HorizontalAlignment="Right" VerticalAlignment="Top">
                 <Grid Margin="0,6,0,-5">
                     <CheckBox Content="Available All Days" HorizontalAlignment="Left" Margin="24,25,0,0" VerticalAlignment="Top" Width="125" Name="chkAvailAllDay" Click="chkAvailAllDay_Click"/>
                     <CheckBox Content="Same Time" HorizontalAlignment="Left" Margin="167,25,0,0" VerticalAlignment="Top" Name="chkAvailSameTime" Width="96" Click="chkAvailSameTime_Click" />
@@ -239,11 +239,11 @@
                     <CheckBox Content="Sun" HorizontalAlignment="Left" Margin="6,248,0,0" VerticalAlignment="Top" Name="chkSun" Click="chkSun_Click" />
                 </Grid>
             </GroupBox>
-            <GroupBox Header="Room Availaible Details For Copy " Height="306" VerticalAlignment="Top"  DockPanel.Dock="left" Margin="37,155,854,0">
+            <GroupBox Header="Room Availaible Details For Copy " Height="306" VerticalAlignment="Top"  DockPanel.Dock="left" Margin="37,155,912,0">
                 <DataGrid HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="0,0,0,2" Name="dgRoomAvail" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding RoomID}" Header="Room ID" Visibility="Hidden"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding RoomName}" Header="Name" Width="250"></DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding RoomName}" Header="Name" Width="200"></DataGridTextColumn>
                         <DataGridTextColumn Binding="{Binding NoOfDaysAvailaible}" Header="No of Available Days" Width="200"></DataGridTextColumn>
 
                     </DataGrid.Columns>
@@ -255,7 +255,7 @@
 
                 </DataGrid>
             </GroupBox>
-            <GroupBox Header="" Height="87" HorizontalAlignment="Left" Margin="519,271,0,0" Name="groupBox3" VerticalAlignment="Top" Width="88">
+            <GroupBox Header="" Height="87" HorizontalAlignment="Left" Margin="466,271,0,0" Name="groupBox3" VerticalAlignment="Top" Width="88">
                 <Grid>
                     <Button Content="Copy" Name="btnCopy" Width="52" HorizontalAlignment="Left" Margin="13,10,0,9" Click="btnCopy_Click" TabIndex="13"/>
                 </Grid>
