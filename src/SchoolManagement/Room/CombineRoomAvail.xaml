@@ -257,7 +257,7 @@
             </GroupBox>
             <GroupBox Header="" Height="87" HorizontalAlignment="Left" Margin="519,271,0,0" Name="groupBox3" VerticalAlignment="Top" Width="88">
                 <Grid>
-                    <Button Content="Copy" Name="btnCopy" Width="52" HorizontalAlignment="Left" Margin="11,10,0,9" Click="btnCopy_Click" TabIndex="13"/>
+                    <Button Content="Copy" Name="btnCopy" Width="52" HorizontalAlignment="Left" Margin="13,10,0,9" Click="btnCopy_Click" TabIndex="13"/>
                 </Grid>
             </GroupBox>
         </Grid>
