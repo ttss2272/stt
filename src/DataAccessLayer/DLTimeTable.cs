@@ -134,5 +134,22 @@ namespace DataAccessLayer
             conn.Close();
             return ds;
         }
+
+        public DataSet Test()
+        {
+            conn = con.getConnection();
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("Test_Sp", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter sqlda = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+
+            sqlda.Fill(ds);
+            conn.Close();
+            return ds;
+
+        }
+
     }
 }
