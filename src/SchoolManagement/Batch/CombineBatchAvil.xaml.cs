@@ -2718,6 +2718,11 @@ namespace SchoolManagement.Batch
 
         #endregion
 
+        private void rdoActive_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     
 
     }
