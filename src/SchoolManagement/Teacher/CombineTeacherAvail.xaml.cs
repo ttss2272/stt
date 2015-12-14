@@ -2684,9 +2684,9 @@ namespace SchoolManagement.Teacher
                         {
 
                             System.Data.DataRowView selectedFile = (System.Data.DataRowView)dgTeacherAvail.SelectedItems[i];
-                            TeacherID = Convert.ToInt32(selectedFile.Row.ItemArray[0]);
+                            UPID = Convert.ToInt32(selectedFile.Row.ItemArray[0]);
                             Clears();
-                            GetTeacherAvailableDetails(TeacherID);
+                            GetTeacherAvailableDetails(UPID);
 
                         }
 
