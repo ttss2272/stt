@@ -587,12 +587,12 @@ namespace SchoolManagement.Class
                 }
                 else
                 {
-                    MessageBox.Show("Please Select Branch");
+                    MessageBox.Show("Please Select Branch","Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(),"Exception",MessageBoxButton.OK,MessageBoxImage.Warning);
             }
         }
         #endregion
