@@ -611,6 +611,12 @@ namespace SchoolManagement.Teacher
                     {
                         DgTeacherSubject.ItemsSource = ds.Tables[0].DefaultView;
                     }
+                    else
+                    {
+                        DgTeacherSubject.ItemsSource = null;
+                        MessageBox.Show("No Data Present for This Teacher");
+                    }
+                    DgTeacherSubject.Items.Refresh();
                 }
                 else
                 {
