@@ -87,19 +87,19 @@ namespace SchoolManagement.Branch
         {
             if (cmbFromBranch.SelectedIndex == 0)
             {
-                MessageBox.Show("Please Select FromBranch Name");
+                MessageBox.Show("Please Select FromBranch Name","Error",MessageBoxButton.OK,MessageBoxImage.Warning);
                 cmbFromBranch.Focus();
                 return false;
             }
             else if (cmbToBranch.SelectedIndex == 0)
             {
-                MessageBox.Show("Please Select ToBranch Name");
+                MessageBox.Show("Please Select ToBranch Name", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 cmbToBranch.Focus();
                 return false;
             }
             else if (gbDist.IsEnabled == true && string.IsNullOrEmpty(txtDistTime.Text))
             {
-                MessageBox.Show("Please Enter Distance In Time");
+                MessageBox.Show("Please Enter Distance In Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 txtDistTime.Focus();
                 return false;
             }
@@ -163,7 +163,7 @@ namespace SchoolManagement.Branch
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(),"Exception",MessageBoxButton.OK,MessageBoxImage.Warning);
             }
         }
         #endregion
@@ -211,7 +211,7 @@ namespace SchoolManagement.Branch
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(),"Exception",MessageBoxButton.OK,MessageBoxImage.Warning);
             }
         }
         #endregion
@@ -237,7 +237,7 @@ namespace SchoolManagement.Branch
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(),"Exception",MessageBoxButton.OK,MessageBoxImage.Warning);
             }
         }
 
@@ -267,7 +267,7 @@ namespace SchoolManagement.Branch
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(),"Exception",MessageBoxButton.OK,MessageBoxImage.Warning);
             }
         }
 
@@ -289,7 +289,7 @@ namespace SchoolManagement.Branch
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
         }
@@ -303,8 +303,17 @@ namespace SchoolManagement.Branch
         #region----------------------CmbBranch_SelectionChnaged()-------------------------------------------
         private void cmbFromBranch_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            cmbToBranch.IsEnabled = true;
-            BindToBranchName();
+            try
+            {
+                cmbToBranch.IsEnabled = true;
+                BindToBranchName();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
             //if (btnAdd.Content.ToString() == "Update")
             //{
             //    if (cmbToBranch.SelectedValue.ToString() == "0")
@@ -391,8 +400,7 @@ namespace SchoolManagement.Branch
             }
             catch (Exception ex)
             {
-
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(),"Exception",MessageBoxButton.OK,MessageBoxImage.Warning);
             }
         }
         #endregion
@@ -415,7 +423,7 @@ namespace SchoolManagement.Branch
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(),"Exception",MessageBoxButton.OK,MessageBoxImage.Warning);
             }
         }
 
@@ -514,7 +522,7 @@ namespace SchoolManagement.Branch
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion
