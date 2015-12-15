@@ -2481,7 +2481,7 @@ namespace SchoolManagement.Teacher
             else
             {
                 dgvTeacher.ItemsSource = null;
-                MessageBox.Show("Data Not Found", "Message");
+               // MessageBox.Show("Data Not Found", "Message");
 
             }
         }
