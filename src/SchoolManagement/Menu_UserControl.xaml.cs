@@ -40,6 +40,14 @@ namespace SchoolManagement
             objInstitute.Show();
         }
 
+        private void menuBoard_Click(object sender, RoutedEventArgs e)
+        {
+            Board objBoard = new Board();
+           // Class.Board objBoard = new Class.Board();
+            Close();
+            objBoard.Show();
+        }
+
         private void menuClass_Click(object sender, RoutedEventArgs e)
         {
             Class.Class objClass = new Class.Class();
@@ -161,6 +169,7 @@ namespace SchoolManagement
         }
         #endregion
 
+      
 
 
     }

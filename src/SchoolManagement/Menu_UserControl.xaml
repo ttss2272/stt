@@ -10,6 +10,7 @@
             <MenuItem Header="Home" Name="menuHome" Click="menuHome_Click" Width="70" Height="30" />
             <MenuItem Header="Master" Width="70" Height="30">
                 <MenuItem Header="Institute" Name="menuInstitute" Click="menuInstitute_Click"/>
+                <MenuItem Header="Board" Name="menuBoard" Click="menuBoard_Click" />
                 <MenuItem Header="Class" Name="menuClass" Click="menuClass_Click"/>
                 <MenuItem Header="Batch" Name="menuBatch" Click="menuBatch_Click"/>
                 <MenuItem Header="Room" Name="menuRoom" Click="menuRoom_Click"/>
