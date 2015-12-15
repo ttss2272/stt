@@ -12,9 +12,9 @@ namespace DataAccessLayer
         DBConnection con = new DBConnection();
         SqlConnection conn = new SqlConnection();
 
-        public string SaveTeacher(int TeacherID, string TeacherName, string TeacherSurname, string TeacherShortName,  int MaxNoOfMovesInBranch, int MaxLecturePerDay, int MaxLectPerWeek, int IsMoreThanOneLecture, int MaxNoOfLectInRow, int IsFirstLecture, int IsLastLecture, string FreeTimeStart, string FreeTimeEnd, int UpdatedByUserID, string UpdatedDate, int Active, int IsDeleted)
+        public int SaveTeacher(int TeacherID, string TeacherName, string TeacherSurname, string TeacherShortName,  int MaxNoOfMovesInBranch, int MaxLecturePerDay, int MaxLectPerWeek, int IsMoreThanOneLecture, int MaxNoOfLectInRow, int IsFirstLecture, int IsLastLecture, string FreeTimeStart, string FreeTimeEnd, int UpdatedByUserID, string UpdatedDate, int Active, int IsDeleted)
         {
-            string Result = null;
+            int Result = 0;
             conn = con.getConnection();
             SqlCommand cmd = new SqlCommand("SaveTeacher_SP", conn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -40,7 +40,7 @@ namespace DataAccessLayer
 
 
             conn.Open();
-            Result = cmd.ExecuteScalar().ToString();
+            Result = Convert.ToInt32( cmd.ExecuteScalar().ToString());
             conn.Close();
             return Result;
         }
