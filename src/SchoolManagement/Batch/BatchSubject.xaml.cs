@@ -210,28 +210,36 @@ namespace SchoolManagement.Batch
         {
             try
             {
-                if (cmbBatch.SelectedValue.ToString() !="0"&& cmbBatch.SelectedItem.ToString()!="Select")
+                if (cmbBranch.SelectedValue.ToString() != "0" && cmbBranch.SelectedItem.ToString() != "Select")
                 {
-                    if (btnGo.Content.ToString() == "Go")
+                    if (cmbBatch.SelectedValue.ToString() != "0" && cmbBatch.SelectedItem.ToString() != "Select")
                     {
-                        GetBatchSubject();
-                        DisableUpperPart();
-                        GetBatchSubjectCount();
-                        
+                        if (btnGo.Content.ToString() == "Go")
+                        {
+                            GetBatchSubject();
+                            DisableUpperPart();
+                            GetBatchSubjectCount();
+
+                        }
+                        else if (btnGo.Content.ToString() == "Change")
+                        {
+                            EnableUpperPart();
+                            ClearData();
+                            grvBatchSubjectcountDetail.DataContext = null;
+                            gdvBatchSubjectcount.DataContext = null;
+                            gdvSubject.DataContext = null;
+
+                        }
                     }
-                    else if(btnGo.Content.ToString()=="Change")
+
+                    else
                     {
-                        EnableUpperPart();
-                        ClearData();
-                        grvBatchSubjectcountDetail.DataContext = null;
-                        gdvBatchSubjectcount.DataContext = null;
-                        gdvSubject.DataContext = null;
-                        
+                        MessageBox.Show("Please Select Batch.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Please Select Batch.");
+                    MessageBox.Show("Please Select Branch.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning); 
                 }
             }
             catch (Exception ex)
