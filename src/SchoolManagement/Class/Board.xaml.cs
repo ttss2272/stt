@@ -271,7 +271,7 @@ namespace SchoolManagement
                 {
                     if (txtBoardName.Text.Length > 0)
                     {
-                        if (System.Text.RegularExpressions.Regex.IsMatch(txtBoardName.Text, "^[a-zA-Z]+$"))
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtBoardName.Text, "^[a-zA-Z ]+$"))
                         {
 
                         }
