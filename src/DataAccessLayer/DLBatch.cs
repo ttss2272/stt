@@ -14,9 +14,9 @@ namespace DataAccessLayer
         SqlConnection conn = new SqlConnection();
         DBConnection con = new DBConnection();
 
-        public string saveBatch(int BatchID, int ClassID, string BatchName, string BatchCode, int LectureDuration, int IsLunchBreak, string LunchBreakStartTime, string LunchBreakEndTime, int MaxNoLecturesDay, int MaxNoLecturesWeek, int IsAllowMoreThanOneLectInBatch, int MaxNoOfLecureInRow, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
+        public int saveBatch(int BatchID, int ClassID, string BatchName, string BatchCode, int LectureDuration, int IsLunchBreak, string LunchBreakStartTime, string LunchBreakEndTime, int MaxNoLecturesDay, int MaxNoLecturesWeek, int IsAllowMoreThanOneLectInBatch, int MaxNoOfLecureInRow, int UpdatedByUserID, string UpdatedDate, int IsActive, int IsDeleted)
         {
-            string result = null;
+            int result = 0;
             conn = con.getConnection();
             SqlCommand cmd = new SqlCommand("SaveBatch_SP", conn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -38,7 +38,7 @@ namespace DataAccessLayer
             cmd.Parameters.AddWithValue("@IsAllowMoreThanOneLectInBatch", IsAllowMoreThanOneLectInBatch);
             cmd.Parameters.AddWithValue("@MaxNoOfLecureInRow", MaxNoOfLecureInRow);
             conn.Open();
-            result = cmd.ExecuteScalar().ToString();
+            result =Convert.ToInt32(cmd.ExecuteScalar().ToString());
             conn.Close();
             return result;
         }
