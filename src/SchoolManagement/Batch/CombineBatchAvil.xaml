@@ -1,7 +1,7 @@
 ﻿<Window x:Class="SchoolManagement.Batch.CombineBatchAvil"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="CombineBatchAvil" Height="1000" Width="1348" Loaded="Window_Loaded" xmlns:my="clr-namespace:SchoolManagement">
+        Title="Batch" Height="1000" Width="1348" Loaded="Window_Loaded" xmlns:my="clr-namespace:SchoolManagement">
     <Grid>
 
              
@@ -262,11 +262,6 @@
                                 <DataGridTextColumn Binding="{Binding BatchName}" Header="Name" Width="180" />
                                 <DataGridTextColumn Binding="{Binding NoOfDaysAvailaible}" Header="No of Available Days" Width="125" />
                             </DataGrid.Columns>
-                            <DataGrid.ItemContainerStyle>
-                                <Style TargetType="DataGridRow">
-                                    <EventSetter Event="Control.MouseDoubleClick" Handler="Row_DoubleClick" />
-                                </Style>
-                            </DataGrid.ItemContainerStyle>
                         </DataGrid>
                     </GroupBox>
                     

@@ -28,7 +28,7 @@ namespace SchoolManagement.Batch
         * Purpose:- Declare Global Variables
         */
         #region------------------------Declare Variables Globally()--------------------
-        int BatchID,ResultCount,MaxBatchID, UpdatedByUserID, IsActive, IsDeleted, ClassID, UpID, LectureDuration, IsLunchBreak, MaxNoLecturesDay, MaxNoLecturesWeek, IsAllowMoreThanOneLectInBatch, MaxNoOfLecureInRow;
+        int BatchID, result1,ResultCount, MaxBatchID, UpdatedByUserID, IsActive, IsDeleted, ClassID, UpID, LectureDuration, IsLunchBreak, MaxNoLecturesDay, MaxNoLecturesWeek, IsAllowMoreThanOneLectInBatch, MaxNoOfLecureInRow;
         string BatchName, BatchCode, UpdatedDate, LunchBreakStartTime, LunchBreakEndTime, n = "0", m = "1";
         int daycheckcount = 0,cnn,NoOfAvailDays;
         BLBatch obj_Batch = new BLBatch();
@@ -1266,7 +1266,9 @@ namespace SchoolManagement.Batch
                 string ClassName = (dgvBatch.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
                 string BatchName = (dgvBatch.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
                 string BatchCode = (dgvBatch.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
-
+                Clears();
+                GetBatchAvailableDetails(UpID);
+               
 
                 DataSet ds = obj_Batch.GetBatchDetail(BatchName, BatchCode);
                 if (ds.Tables.Count > 0)
@@ -1346,7 +1348,7 @@ namespace SchoolManagement.Batch
                         //BatchAvail
                         btnDelete.IsEnabled = true;
                         btnadd.Content = "Update";
-                        GetBatchAvailableDetails(UpID);
+                       
                        
                     }
                 }
@@ -1877,7 +1879,8 @@ namespace SchoolManagement.Batch
                 if (Validate())
                 {
                     SetParameters();
-                    SaveDetails();
+                    //SaveDetails();
+                   result1 = obj_Batch.saveBatch(BatchID, ClassID, BatchName, BatchCode, LectureDuration, IsLunchBreak, LunchBreakStartTime, LunchBreakEndTime, MaxNoLecturesDay, MaxNoLecturesWeek, IsAllowMoreThanOneLectInBatch, MaxNoOfLecureInRow, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
                     SetParametersForAvailability();
                 }
             }
@@ -1890,18 +1893,21 @@ namespace SchoolManagement.Batch
         #region--------------------------------------SaveDetails()-------------------------------------
         private void SaveDetails()
         {
-            string result = obj_Batch.saveBatch(BatchID, ClassID, BatchName, BatchCode, LectureDuration, IsLunchBreak, LunchBreakStartTime, LunchBreakEndTime, MaxNoLecturesDay, MaxNoLecturesWeek, IsAllowMoreThanOneLectInBatch, MaxNoOfLecureInRow, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
-            if (result == "Save Sucessfully...!!!" || result == "Updated Sucessfully...!!!")
-            {
-                //MessageBox.Show(result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
-                //clearFields();
-                ResultCount = 0;
-                 MaxBatchID = objBatch.GetMaxBatchID();
-            }
-            else
-            {
-                MessageBox.Show(result, "Error To Save", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+            //string result = obj_Batch.saveBatch(BatchID, ClassID, BatchName, BatchCode, LectureDuration, IsLunchBreak, LunchBreakStartTime, LunchBreakEndTime, MaxNoLecturesDay, MaxNoLecturesWeek, IsAllowMoreThanOneLectInBatch, MaxNoOfLecureInRow, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
+            //if (result == "Save Sucessfully...!!!" || result == "Updated Sucessfully...!!!")
+            //{
+            //    //MessageBox.Show(result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
+            //    //clearFields();
+            //    ResultCount = 0;
+            //    if (result == "Save Sucessfully...!!!")
+            //    {
+            //        MaxBatchID = objBatch.GetMaxBatchID();
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show(result, "Error To Save", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //}
         }
         #endregion       
 
@@ -1912,8 +1918,8 @@ namespace SchoolManagement.Batch
             
             if (chkMon.IsChecked == true)
             {
-
-                BatchID = MaxBatchID;
+                
+                BatchID = result1;
                 Day = chkMon.Content.ToString();
                 FinalStartTime = chkStartHrs1.Text + ":";
                 FinalStartTime += chkStartMin1.Text;
@@ -1931,7 +1937,7 @@ namespace SchoolManagement.Batch
             }
             else if (chkMon.IsChecked == false)
             {
-                BatchID = MaxBatchID;
+                BatchID = result1;
                 Day = chkMon.Content.ToString();
                 FinalStartTime = "00:00:00";
                 FinalEndTime = "00:00:00";
@@ -1948,7 +1954,7 @@ namespace SchoolManagement.Batch
             }
             if (chkTue.IsChecked == true)
             {
-                BatchID = MaxBatchID;
+                BatchID = result1;
                 Day = chkTue.Content.ToString();
                 FinalStartTime = chkStartHrs2.Text + ":";
                 FinalStartTime += chkStartMin2.Text;
@@ -1966,7 +1972,7 @@ namespace SchoolManagement.Batch
             }
             else if (chkTue.IsChecked == false)
             {
-                BatchID = MaxBatchID;
+                BatchID = result1;
                 Day = chkTue.Content.ToString();
                 FinalStartTime = "00:00:00";
                 FinalEndTime = "00:00:00";
@@ -1983,7 +1989,7 @@ namespace SchoolManagement.Batch
             }
             if (chkWed.IsChecked == true)
             {
-                BatchID = MaxBatchID;
+                BatchID = result1;
                 Day = chkWed.Content.ToString();
                 FinalStartTime = chkStartHrs3.Text + ":";
                 FinalStartTime += chkStartMin3.Text;
@@ -2002,7 +2008,7 @@ namespace SchoolManagement.Batch
             }
             else if (chkWed.IsChecked == false)
             {
-                BatchID = MaxBatchID;
+                BatchID = result1;
                 Day = chkWed.Content.ToString();
                 FinalStartTime = "00:00:00";
                 FinalEndTime = "00:00:00";
@@ -2020,7 +2026,7 @@ namespace SchoolManagement.Batch
             }
             if (chkThru.IsChecked == true)
             {
-                BatchID = MaxBatchID;
+                BatchID = result1;
                 Day = chkThru.Content.ToString();
                 FinalStartTime = chkStartHrs4.Text + ":";
                 FinalStartTime += chkStartMin4.Text;
@@ -2039,7 +2045,7 @@ namespace SchoolManagement.Batch
             }
             else if (chkThru.IsChecked == false)
             {
-                BatchID = MaxBatchID;
+                BatchID = result1;
                 Day = chkThru.Content.ToString();
                 FinalStartTime = "00:00:00";
                 FinalEndTime = "00:00:00";
@@ -2057,7 +2063,7 @@ namespace SchoolManagement.Batch
             }
             if (chkFri.IsChecked == true)
             {
-                BatchID = MaxBatchID;
+                BatchID = result1;
                 Day = chkFri.Content.ToString();
                 FinalStartTime = chkStartHrs5.Text + ":";
                 FinalStartTime += chkStartMin5.Text;
@@ -2076,7 +2082,7 @@ namespace SchoolManagement.Batch
             }
             else if (chkFri.IsChecked == false)
             {
-                BatchID = MaxBatchID;
+                BatchID = result1;
                 Day = chkFri.Content.ToString();
                 FinalStartTime = "00:00:00";
                 FinalEndTime = "00:00:00";
@@ -2094,7 +2100,7 @@ namespace SchoolManagement.Batch
             }
             if (chkSat.IsChecked == true)
             {
-                BatchID = MaxBatchID;
+                BatchID = result1;
                 Day = chkSat.Content.ToString();
                 FinalStartTime = chkStartHrs6.Text + ":";
                 FinalStartTime += chkStartMin6.Text;
@@ -2113,7 +2119,7 @@ namespace SchoolManagement.Batch
             }
             else if (chkSat.IsChecked == false)
             {
-                BatchID = MaxBatchID;
+                BatchID = result1;
                 Day = chkSat.Content.ToString();
                 FinalStartTime = "00:00:00";
                 FinalEndTime = "00:00:00";
@@ -2131,7 +2137,7 @@ namespace SchoolManagement.Batch
             }
             if (chkSun.IsChecked == true)
             {
-                BatchID = MaxBatchID;
+                BatchID = result1;
                 Day = chkSun.Content.ToString();
                 FinalStartTime = chkStartHrs7.Text + ":";
                 FinalStartTime += chkStartMin7.Text;
@@ -2150,7 +2156,7 @@ namespace SchoolManagement.Batch
             }
             else if (chkSun.IsChecked == false)
             {
-                BatchID = MaxBatchID;
+                BatchID = result1;
                 Day = chkSun.Content.ToString();
                 FinalStartTime = "00:00:00";
                 FinalEndTime = "00:00:00";
@@ -2723,6 +2729,7 @@ namespace SchoolManagement.Batch
 
         }
 
+       
     
 
     }
