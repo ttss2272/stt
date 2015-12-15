@@ -1916,7 +1916,7 @@ namespace SchoolManagement.Batch
         #region-------------------------------------------------------SetParametersForAvailability()-------------------------------------------------------
         private void SetParametersForAvailability()
         {
-            
+            ResultCount = 0;
             if (chkMon.IsChecked == true)
             {
                 
