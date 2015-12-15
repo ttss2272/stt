@@ -1266,6 +1266,7 @@ namespace SchoolManagement.Batch
                 string ClassName = (dgvBatch.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
                 string BatchName = (dgvBatch.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
                 string BatchCode = (dgvBatch.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
+                UpID = Convert.ToInt32(((System.Data.DataRowView)(dgvBatch.CurrentItem)).Row.ItemArray[1].ToString());
                 Clears();
                 GetBatchAvailableDetails(UpID);
                
@@ -2724,11 +2725,8 @@ namespace SchoolManagement.Batch
 
         #endregion
 
-        private void rdoActive_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+        
+        
        
     
 
