@@ -1111,7 +1111,7 @@ namespace SchoolManagement.Batch
             else
             {
                 dgvBatch.ItemsSource = null;
-                MessageBox.Show("Data Not Found", "Message");
+                //MessageBox.Show("Data Not Found", "Message");
             }
             dgvBatch.Items.Refresh();
         }
