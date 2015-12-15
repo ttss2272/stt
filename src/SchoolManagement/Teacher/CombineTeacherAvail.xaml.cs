@@ -1237,6 +1237,7 @@ namespace SchoolManagement.Teacher
         #region---------------------------------------------------------GetTeacherAvailableDetails()-------------------------------------------
         private void GetTeacherAvailableDetails(int numId)
         {
+            cnn = 0;
             DataSet ds = objTeacher.GetTeacherAvailableDetail(numId);
             if (ds.Tables[0].Rows.Count > 0)
             {
