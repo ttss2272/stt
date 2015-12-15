@@ -32,7 +32,7 @@ namespace SchoolManagement.Teacher
         #endregion
 
         #region---------------------------------Declare variables Globally-------------------------------------
-        int TeacherID, UPID, MaxNoOfMovesInBranch, MaxLecturePerDay, MaxLectPerWeek, MaxNoOfLectInRow, Active, IsDeleted, IsMoreThanOneLecture, IsFirstLecture, IsLastLecture, UpdatedByUserID;
+        int TeacherID, Result1, UPID, MaxNoOfMovesInBranch, MaxLecturePerDay, MaxLectPerWeek, MaxNoOfLectInRow, Active, IsDeleted, IsMoreThanOneLecture, IsFirstLecture, IsLastLecture, UpdatedByUserID;
         string TeacherName, TeacherSurname, TeacherShortName, StartFreeTimeHrs, StartFreeTimeMin, EndFreeTimeHrs, EndFreeTimeMin, FreeTimeStart, FreeTimeEnd, UpdatedDate, n = "0";
         BLTeacher objTeacher = new BLTeacher();
 
@@ -69,7 +69,8 @@ namespace SchoolManagement.Teacher
                 if (Validate())
                 {
                     SetParameters();
-                    SaveDetails();
+                   // SaveDetails();
+                     Result1 = objTeacher.SaveTeacher(TeacherID, TeacherName, TeacherSurname, TeacherShortName, MaxNoOfMovesInBranch, MaxLecturePerDay, MaxLectPerWeek, IsMoreThanOneLecture, MaxNoOfLectInRow, IsFirstLecture, IsLastLecture, FreeTimeStart, FreeTimeEnd, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
                     SetParametersForAvailability();
                 }
             }
@@ -94,7 +95,7 @@ namespace SchoolManagement.Teacher
 
             if (chkMon.IsChecked == true)
             {
-                TeacherID = MaxTeacherID;
+                TeacherID = Result1;
                 Day = chkMon.Content.ToString();
                 FinalStartTime = chkStartHrs1.Text + ":";
                 FinalStartTime += chkStartMin1.Text;
@@ -112,7 +113,7 @@ namespace SchoolManagement.Teacher
             }
             else if (chkMon.IsChecked == false)
             {
-                TeacherID = MaxTeacherID;
+                TeacherID = Result1;
                 Day = chkMon.Content.ToString();
                 FinalStartTime = "00:00:00";
                 FinalEndTime = "00:00:00";
@@ -129,7 +130,7 @@ namespace SchoolManagement.Teacher
             }
             if (chkTue.IsChecked == true)
             {
-                TeacherID = MaxTeacherID;
+                TeacherID = Result1;
                 Day = chkTue.Content.ToString();
                 FinalStartTime = chkStartHrs2.Text + ":";
                 FinalStartTime += chkStartMin2.Text;
@@ -147,7 +148,7 @@ namespace SchoolManagement.Teacher
             }
             else if (chkTue.IsChecked == false)
             {
-                TeacherID = MaxTeacherID;
+                TeacherID = Result1;
                 Day = chkTue.Content.ToString();
                 FinalStartTime = "00:00:00";
                 FinalEndTime = "00:00:00";
@@ -164,7 +165,7 @@ namespace SchoolManagement.Teacher
             }
             if (chkWed.IsChecked == true)
             {
-                TeacherID = MaxTeacherID;
+                TeacherID = Result1;
                 Day = chkWed.Content.ToString();
                 FinalStartTime = chkStartHrs3.Text + ":";
                 FinalStartTime += chkStartMin3.Text;
@@ -183,7 +184,7 @@ namespace SchoolManagement.Teacher
             }
             else if (chkWed.IsChecked == false)
             {
-                TeacherID = MaxTeacherID;
+                TeacherID = Result1;
                 Day = chkWed.Content.ToString();
                 FinalStartTime = "00:00:00";
                 FinalEndTime = "00:00:00";
@@ -201,7 +202,7 @@ namespace SchoolManagement.Teacher
             }
             if (chkThru.IsChecked == true)
             {
-                TeacherID = MaxTeacherID;
+                TeacherID = Result1;
                 Day = chkThru.Content.ToString();
                 FinalStartTime = chkStartHrs4.Text + ":";
                 FinalStartTime += chkStartMin4.Text;
@@ -220,7 +221,7 @@ namespace SchoolManagement.Teacher
             }
             else if (chkThru.IsChecked == false)
             {
-                TeacherID = MaxTeacherID;
+                TeacherID = Result1;
                 Day = chkThru.Content.ToString();
                 FinalStartTime = "00:00:00";
                 FinalEndTime = "00:00:00";
@@ -238,7 +239,7 @@ namespace SchoolManagement.Teacher
             }
             if (chkFri.IsChecked == true)
             {
-                TeacherID = MaxTeacherID;
+                TeacherID = Result1;
                 Day = chkFri.Content.ToString();
                 FinalStartTime = chkStartHrs5.Text + ":";
                 FinalStartTime += chkStartMin5.Text;
@@ -257,7 +258,7 @@ namespace SchoolManagement.Teacher
             }
             else if (chkFri.IsChecked == false)
             {
-                TeacherID = MaxTeacherID;
+                TeacherID = Result1;
                 Day = chkFri.Content.ToString();
                 FinalStartTime = "00:00:00";
                 FinalEndTime = "00:00:00";
@@ -275,7 +276,7 @@ namespace SchoolManagement.Teacher
             }
             if (chkSat.IsChecked == true)
             {
-                TeacherID = MaxTeacherID;
+                TeacherID = Result1;
                 Day = chkSat.Content.ToString();
                 FinalStartTime = chkStartHrs6.Text + ":";
                 FinalStartTime += chkStartMin6.Text;
@@ -294,7 +295,7 @@ namespace SchoolManagement.Teacher
             }
             else if (chkSat.IsChecked == false)
             {
-                TeacherID = MaxTeacherID;
+                TeacherID = Result1;
                 Day = chkSat.Content.ToString();
                 FinalStartTime = "00:00:00";
                 FinalEndTime = "00:00:00";
@@ -312,7 +313,7 @@ namespace SchoolManagement.Teacher
             }
             if (chkSun.IsChecked == true)
             {
-                TeacherID = MaxTeacherID;
+                TeacherID = Result1;
                 Day = chkSun.Content.ToString();
                 FinalStartTime = chkStartHrs7.Text + ":";
                 FinalStartTime += chkStartMin7.Text;
@@ -331,7 +332,7 @@ namespace SchoolManagement.Teacher
             }
             else if (chkSun.IsChecked == false)
             {
-                TeacherID = MaxTeacherID;
+                TeacherID = Result1;
                 Day = chkSun.Content.ToString();
                 FinalStartTime = "00:00:00";
                 FinalEndTime = "00:00:00";
@@ -2412,17 +2413,17 @@ namespace SchoolManagement.Teacher
         #region---------------------------------------------SaveDeltails()-------------------------------------------
         private void SaveDetails()
         {
-            string Result = objTeacher.SaveTeacher(TeacherID, TeacherName, TeacherSurname, TeacherShortName, MaxNoOfMovesInBranch, MaxLecturePerDay, MaxLectPerWeek, IsMoreThanOneLecture, MaxNoOfLectInRow, IsFirstLecture, IsLastLecture, FreeTimeStart, FreeTimeEnd, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
-            if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
-            {
-                //MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
-                //ClearFields();
-                MaxTeacherID = objTeacher.GetMaxTeacherID();
-            }
-            else
-            {
-                MessageBox.Show(Result, "Error To Save", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+            //string Result = objTeacher.SaveTeacher(TeacherID, TeacherName, TeacherSurname, TeacherShortName, MaxNoOfMovesInBranch, MaxLecturePerDay, MaxLectPerWeek, IsMoreThanOneLecture, MaxNoOfLectInRow, IsFirstLecture, IsLastLecture, FreeTimeStart, FreeTimeEnd, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
+            //if (Result == "Save Sucessfully...!!!" || Result == "Updated Sucessfully...!!!")
+            //{
+            //    //MessageBox.Show(Result, "Save SucessFull", MessageBoxButton.OK, MessageBoxImage.Information);
+            //    //ClearFields();
+            //    MaxTeacherID = objTeacher.GetMaxTeacherID();
+            //}
+            //else
+            //{
+            //    MessageBox.Show(Result, "Error To Save", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //}
         }
         #endregion
 
@@ -2684,7 +2685,7 @@ namespace SchoolManagement.Teacher
                         {
 
                             System.Data.DataRowView selectedFile = (System.Data.DataRowView)dgTeacherAvail.SelectedItems[i];
-                            UPID = Convert.ToInt32(selectedFile.Row.ItemArray[0]);
+                            int UPID = Convert.ToInt32(selectedFile.Row.ItemArray[0]);
                             Clears();
                             GetTeacherAvailableDetails(UPID);
 
