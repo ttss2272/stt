@@ -94,18 +94,7 @@ namespace SchoolManagement.Room
             //    MessageBox.Show("Please Enter Color Detail..");
             //    txtColor.Focus();
             //    return false;
-            //}
-            else if (cmbCapacity.SelectedIndex == 0)
-            {
-                MessageBox.Show("Please Select Room Capacity...");
-                cmbCapacity.Focus();
-                return false;
-            }
-            else if (rdbActive.IsChecked == false && rdbInactive.IsChecked == false)
-            {
-                MessageBox.Show("Please Select Status...");
-                return false;
-            }
+            //}           
             else if (string.IsNullOrEmpty(txtLectDay.Text))
             {
                 MessageBox.Show("Please Enter No. Of Lect/Day..");
@@ -124,24 +113,30 @@ namespace SchoolManagement.Room
                 txtLectWeek.Text = "";
                 txtLectWeek.Focus();
                 return false;
-
-            }
+            }            
             else if (string.IsNullOrEmpty(txtLectRow.Text))
             {
                 MessageBox.Show("Please Enter No. Of Lect In Row..");
                 txtLectRow.Focus();
                 return false;
             }
+            else if (Convert.ToInt32(txtLectDay.Text) < Convert.ToInt32(txtLectRow.Text))
+            {
+                MessageBox.Show("Please Enter Lect/Day Greater than Lect/Row");
+                txtLectDay.Text = "";
+                txtLectDay.Focus();
+                return false;
+            }
             else if (cmbSHr.SelectedIndex == 0 || cmbSMin.SelectedIndex == 0)
             {
-                MessageBox.Show("Please Select start Time...");
+                MessageBox.Show("Please Select  Break Start Time...");
                 cmbSHr.Focus();
                 return false;
             }
 
             else if (cmbEHr.SelectedIndex == 0 || cmbEMin.SelectedIndex == 0)
             {
-                MessageBox.Show("Please Select End Time...");
+                MessageBox.Show("Please Select Break End Time...");
                 cmbEHr.Focus();
                 return false;
             }
@@ -157,6 +152,17 @@ namespace SchoolManagement.Room
                 cmbEMin.Focus();
                 return false;
 
+            }
+            else if (cmbCapacity.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please Select Room Capacity...");
+                cmbCapacity.Focus();
+                return false;
+            }
+            else if (rdbActive.IsChecked == false && rdbInactive.IsChecked == false)
+            {
+                MessageBox.Show("Please Select Status...");
+                return false;
             }
             else if (cmbAllowLect.SelectedIndex == 0)
             {

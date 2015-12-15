@@ -21,18 +21,18 @@
                 <TextBox Height="28" HorizontalAlignment="Left" Margin="873,8,0,0" Name="txtShortName" VerticalAlignment="Top" Width="157" TextChanged="txtShortName_TextChanged" TabIndex="3" />
                 <ComboBox Height="28" HorizontalAlignment="Left" Margin="174,78,0,0" Name="cmbCapacity" VerticalAlignment="Top" Width="157" ItemsSource="{Binding}" TabIndex="11" />
                 <Label Content="Status" Height="28" HorizontalAlignment="Left" Margin="357,77,0,0" Name="label7" VerticalAlignment="Top" Width="108" FontWeight="Bold" />
-                <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFE83030" Height="28" HorizontalAlignment="Left" Margin="494,79,0,0" Name="label12" VerticalAlignment="Top" Width="31" />
-                <RadioButton Content="Acative" Height="16" HorizontalAlignment="Left" Margin="538,85,0,0" Name="rdbActive" VerticalAlignment="Top" FontWeight="Bold" />
-                <RadioButton Content="InAcative" Height="16" HorizontalAlignment="Left" Margin="623,85,0,0" Name="rdbInactive" VerticalAlignment="Top" FontWeight="Bold" />
+                <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFE83030" Height="28" HorizontalAlignment="Left" Margin="494,78,0,0" Name="label12" VerticalAlignment="Top" Width="31" />
+                <RadioButton Content="Acative" Height="16" HorizontalAlignment="Left" Margin="538,84,0,0" Name="rdbActive" VerticalAlignment="Top" FontWeight="Bold" />
+                <RadioButton Content="InAcative" Height="16" HorizontalAlignment="Left" Margin="623,84,0,0" Name="rdbInactive" VerticalAlignment="Top" FontWeight="Bold" />
                 <Label Content="Max No. Of Lect/Day" Height="28" HorizontalAlignment="Left" Margin="11,41,0,0" Name="label13" VerticalAlignment="Top" Width="129" FontWeight="Bold" />
                 <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFF51F1F" Height="28" HorizontalAlignment="Right" Margin="0,42,1085,0" Name="label16" VerticalAlignment="Top" Width="31" />
                 <TextBox Height="28" HorizontalAlignment="Left" Margin="174,42,0,0" Name="txtLectDay" VerticalAlignment="Top" Width="157" TextChanged="txtLectDay_TextChanged" TabIndex="3" />
                 <Label Content="Max No. Of Lect/Week" Height="28" HorizontalAlignment="Left" Margin="355,43,0,0" Name="label14" VerticalAlignment="Top" Width="143" FontWeight="Bold" />
                 <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFF51F1F" Height="28" HorizontalAlignment="Left" Margin="494,43,0,0" Name="label15" VerticalAlignment="Top" Width="31" />
-                <TextBox Height="28" HorizontalAlignment="Right" Margin="0,44,556,0" Name="txtLectWeek" VerticalAlignment="Top" Width="157" TextChanged="txtLectWeek_TextChanged" TabIndex="4" />
+                <TextBox Height="28" HorizontalAlignment="Right" Margin="0,42,556,0" Name="txtLectWeek" VerticalAlignment="Top" Width="157" TextChanged="txtLectWeek_TextChanged" TabIndex="4" />
                 <Label Content="Max No. Of Lect/Row" Height="28" HorizontalAlignment="Left" Margin="718,46,0,0" Name="label17" VerticalAlignment="Top" Width="131" FontWeight="Bold" />
                 <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFF51F1F" Height="28" HorizontalAlignment="Left" Margin="835,46,0,0" Name="label18" VerticalAlignment="Top" Width="31" />
-                <TextBox Height="28" HorizontalAlignment="Right" Margin="0,46,223,0" Name="txtLectRow" VerticalAlignment="Top" Width="157" TextChanged="txtLectRow_TextChanged" TabIndex="5" />
+                <TextBox Height="28" HorizontalAlignment="Right" Margin="0,42,223,0" Name="txtLectRow" VerticalAlignment="Top" Width="157" TextChanged="txtLectRow_TextChanged" TabIndex="5" />
                 <Label Content="Break Time" Height="28" HorizontalAlignment="Left" Margin="1041,7,0,0" Name="label19" VerticalAlignment="Top" Width="90" FontWeight="Bold" />
                 <Label Content="*" FlowDirection="RightToLeft" Foreground="#FFF51F1F" Height="28" HorizontalAlignment="Left" Margin="1099,8,0,0" Name="label20" VerticalAlignment="Top" Width="31" />
                 <ComboBox Height="23" HorizontalAlignment="Left" Margin="1132,8,0,0" Name="cmbSHr" VerticalAlignment="Top" Width="49" ItemsSource="{Binding}" TabIndex="7" />
@@ -41,7 +41,7 @@
                 <ComboBox Height="23" HorizontalAlignment="Left" Margin="1132,0,0,33" Name="cmbEHr" VerticalAlignment="Bottom" Width="49" ItemsSource="{Binding}" TabIndex="9" />
                 <ComboBox Height="23" HorizontalAlignment="Left" Margin="1196,50,0,0" Name="cmbEMin" VerticalAlignment="Top" Width="49" ItemsSource="{Binding}" TabIndex="10" />
                 <Label Content="More Than 1 Lect In Batch" Height="28" HorizontalAlignment="Left" Margin="716,79,0,0" Name="label26" VerticalAlignment="Top" FontWeight="Bold" />
-                <ComboBox Height="23" HorizontalAlignment="Left" Margin="907,79,0,0" Name="cmbAllowLect" VerticalAlignment="Top" Width="97" TabIndex="12">
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="907,80,0,0" Name="cmbAllowLect" VerticalAlignment="Top" Width="97" TabIndex="12">
                     <ComboBoxItem Content="select" />
                     <ComboBoxItem Content="Yes" />
                     <ComboBoxItem Content="No" />
@@ -261,18 +261,18 @@
                 </Grid>
             </GroupBox>
         </Grid>
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Height="162" HorizontalAlignment="Center" Margin="243,530,308,0" Name="dgRoom" VerticalAlignment="Top" Width="763" IsReadOnly="True" CanUserResizeColumns="False" ItemsSource="{Binding}" FontWeight="Bold">
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Height="162" HorizontalAlignment="Center" Margin="243,530,347,0" Name="dgRoom" VerticalAlignment="Top" Width="724" IsReadOnly="True" CanUserResizeColumns="False" ItemsSource="{Binding}" FontWeight="Bold">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding RoomID}" Header="RoomID" Visibility="Hidden"></DataGridTextColumn>
-                <DataGridTextColumn  Header="BranchName" Width="135" Binding="{Binding BranchName}"></DataGridTextColumn>
-                <DataGridTextColumn Header="RoomName" Width="135" Binding="{Binding RoomName}"></DataGridTextColumn>
-                <DataGridTextColumn Header="ShortName" Width="135" Binding="{Binding RoomShortName}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Color" Width="105" Binding="{Binding RoomColor}" Visibility="Hidden"></DataGridTextColumn>
-                <DataGridTextColumn Header="Capacity" Width="105" Binding="{Binding Capacity}"></DataGridTextColumn>
+                <DataGridTextColumn  Header="BranchName" Width="145" Binding="{Binding BranchName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="RoomName" Width="145" Binding="{Binding RoomName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="ShortName" Width="145" Binding="{Binding RoomShortName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Color" Width="145" Binding="{Binding RoomColor}" Visibility="Hidden"></DataGridTextColumn>
+                <DataGridTextColumn Header="Capacity" Width="145" Binding="{Binding Capacity}"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding FreeStartTime}" Header="FreeStartTime" Visibility="Hidden"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding FreeEndTime}" Header="FreeEndTime" Visibility="Hidden"></DataGridTextColumn>
-                <DataGridTextColumn Header="Status" Width="125" Binding="{Binding Status}"></DataGridTextColumn>
-                <DataGridTextColumn Header="No.Of Days Available" Width="145" Binding="{Binding NoOfDaysAvailable}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Status" Width="145" Binding="{Binding Status}"></DataGridTextColumn>
+              <!--  <DataGridTextColumn Header="No.Of Days Available" Width="145" Binding="{Binding NoOfDaysAvailable}"></DataGridTextColumn> -->
             </DataGrid.Columns>
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
