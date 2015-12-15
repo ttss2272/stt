@@ -435,6 +435,8 @@ namespace SchoolManagement.Teacher
             MaxLectInRow();
             UPID = 0;
             BindGrid();
+            rdbActive.IsChecked = true;
+            rdbInActive.IsChecked = false;
             btnDelete.IsEnabled = false;
             btnSave.Content = "Save";
 
@@ -1406,7 +1408,7 @@ namespace SchoolManagement.Teacher
 
                         tmpStartTime = ds.Tables[0].Rows[0]["StartTime"].ToString();
                         string[] StartTime = tmpStartTime.Split(':');
-                        chkStartHrs.Text = StartTime[0].ToString();
+                        chkStartHrs.Text = StartTime[0];
                         //if (StartTime[1] == "00")
                         //{ chkStartMin.Text = "0"; }
                         //else
@@ -2463,13 +2465,14 @@ namespace SchoolManagement.Teacher
         private void Row_DoubleClick1(object sender, MouseButtonEventArgs e)
         {
             try
-            {
-               
+            {               
                 object item = dgvTeacher.SelectedItem;
                 UPID = Convert.ToInt32(((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[0].ToString());
                 txtName.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[1].ToString();
                 txtSurname.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[2].ToString();
                 txtShortName.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[3].ToString();
+                Clears();
+                GetTeacherAvailableDetails(UPID);
                 string time = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[4].ToString();
                 string[] a = time.Split(':');
                 cmbFreeTimeStartHrs.Text = a[0];
@@ -2532,7 +2535,7 @@ namespace SchoolManagement.Teacher
                 }
                 btnDelete.IsEnabled = true;
                 btnSave.Content = "Update";
-                GetTeacherAvailableDetails(UPID);
+               
             }
             catch (Exception ex)
             {
@@ -2666,12 +2669,9 @@ namespace SchoolManagement.Teacher
          * StartTime:-
          * EndTime:-
          */
-        #region----------------------------------------Row Double Click()-------------------------------------------------------------------
-        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            
-        }
-        #endregion
+       
+
+
         #region---------------------------------------btnCopy_Click--------------------------------------
         private void btnCopy_Click(object sender, RoutedEventArgs e)
         {

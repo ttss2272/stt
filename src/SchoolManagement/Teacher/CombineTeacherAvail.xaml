@@ -239,11 +239,11 @@
                         <DataGridTextColumn Binding="{Binding TeacherName}" Header="Name" Width="220" />
                         <DataGridTextColumn Binding="{Binding NoOfDaysAvailaible}" Header="No of Available Days" Width="160" />
                     </DataGrid.Columns>
-                    <DataGrid.ItemContainerStyle>
+                <!--    <DataGrid.ItemContainerStyle>
                         <Style TargetType="DataGridRow">
                             <EventSetter Event="Control.MouseDoubleClick" Handler="Row_DoubleClick" />
                         </Style>
-                    </DataGrid.ItemContainerStyle>
+                    </DataGrid.ItemContainerStyle> -->
                 </DataGrid>
             </Grid>
     </GroupBox>
