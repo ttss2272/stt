@@ -37,15 +37,27 @@ namespace SchoolManagement.Class
         BLAddBranch obj_Branch = new BLAddBranch();
         BLBoard objBoard = new BLBoard();
         #endregion
-
+        /*
+         * Created By:- 
+         * Created Date:-
+         * Purpose
+         */
         #region------------------- public Class()------------------------------
         public Class()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
             this.WindowState = WindowState.Maximized;
             this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
             this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
             clearFields();   
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(),"Exception",MessageBoxButton.OK,MessageBoxImage.Warning);
+            }
+            
         }
 
         #endregion
@@ -71,7 +83,7 @@ namespace SchoolManagement.Class
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
             }            
         }
         #endregion
@@ -119,7 +131,7 @@ namespace SchoolManagement.Class
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         
@@ -243,7 +255,11 @@ namespace SchoolManagement.Class
             dgvClass.ItemsSource = null;
         }
         #endregion                    
-
+        /*
+         * Created By:- 
+         * Created Date:-
+         * Purpose
+         */
         #region-------------------------btndelete_Click-------------------------------
         private void btndelete_Click(object sender, RoutedEventArgs e)
         {
@@ -266,7 +282,11 @@ namespace SchoolManagement.Class
             }
         }
         #endregion
-
+        /*
+         * Created By:- 
+         * Created Date:-
+         * Purpose
+         */
         #region----------------------------DeleteClass()----------------------------------
         private void DeleteClass()
         {
@@ -327,7 +347,7 @@ namespace SchoolManagement.Class
             catch (Exception ex)
 
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion
@@ -364,7 +384,7 @@ namespace SchoolManagement.Class
             catch (Exception ex)
 
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         
@@ -389,7 +409,11 @@ namespace SchoolManagement.Class
         }
         #endregion
 
-
+        /*
+         * Created By:- 
+         * Created Date:-
+         * Purpose
+         */
         #region------------------------BindBranchName()---------------------------------------
         private void BindBranchName()
         {
@@ -409,12 +433,17 @@ namespace SchoolManagement.Class
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             
         }
         #endregion
 
+        /*
+         * Created By:- 
+         * Created Date:-
+         * Purpose
+         */
         #region--------------------------------------gridview cell click()-------------------------------------
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -460,11 +489,16 @@ namespace SchoolManagement.Class
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.Message.ToString(),"Exception Error");
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion
 
+        /*
+         * Created By:- 
+         * Created Date:-
+         * Purpose
+         */
         #region-------------------------btnSearch_Click--------------------------
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
@@ -495,22 +529,43 @@ namespace SchoolManagement.Class
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(),"Exception",MessageBoxButton.OK,MessageBoxImage.Warning);
             }
         }
         #endregion
 
+        /*
+         * Created By:- 
+         * Created Date:-
+         * Purpose
+         */
+        #region------------------------------------------Window_Loaded-----------------------------------------
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-           // clearFields();
-            BindBranchName();
-            cbBranchName.SelectedIndex = 0;
-           // BindGridview();
-            GetBoard();
-            btndelete.IsEnabled = false;
+            try
+            {
+                // clearFields();
+                BindBranchName();
+                cbBranchName.SelectedIndex = 0;
+                // BindGridview();
+                GetBoard();
+                btndelete.IsEnabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            }
+           
             
         }
+        #endregion
 
+        /*
+         * Created By:- 
+         * Created Date:-
+         * Purpose
+         */
         #region-----------------------------------TextValidation()--------------------------------------------------
         private void txtcolor_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -535,7 +590,7 @@ namespace SchoolManagement.Class
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion
@@ -777,7 +832,7 @@ namespace SchoolManagement.Class
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(),"Exception",MessageBoxButton.OK,MessageBoxImage.Warning);
             }
         }
         #endregion
