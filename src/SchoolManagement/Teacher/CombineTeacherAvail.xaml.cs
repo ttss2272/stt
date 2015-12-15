@@ -1879,43 +1879,68 @@ namespace SchoolManagement.Teacher
                 cmbLastLect.Focus();
                 return false;
             }
-            else if (cmbFreeTimeStartHrs.SelectedValue.ToString() == "Select")
-            {
-                MessageBox.Show("Please Select Free Time Hours", "Free Time Hours", MessageBoxButton.OK, MessageBoxImage.Warning);
-                cmbFreeTimeStartHrs.Focus();
-                return false;
-            }
-            else if (cmbFreeTimeStartMin.SelectedValue.ToString() == "Select")
-            {
-                MessageBox.Show("Please Select Free Time Minutes", "Free Time Minutes", MessageBoxButton.OK, MessageBoxImage.Warning);
-                cmbFreeTimeStartMin.Focus();
-                return false;
-            }
-            else if (cmbFreeTimeEndHrs.SelectedValue.ToString() == "Select")
-            {
-                MessageBox.Show("Please Select Free Time Hours", "Free Time Hours", MessageBoxButton.OK, MessageBoxImage.Warning);
-                cmbFreeTimeEndHrs.Focus();
-                return false;
-            }
-            else if (cmbFreeTimeEndMin.SelectedValue.ToString() == "Select")
-            {
-                MessageBox.Show("Please Select Free Time Minutes", "Free Time Minutes", MessageBoxButton.OK, MessageBoxImage.Warning);
-                cmbFreeTimeEndMin.Focus();
-                return false;
-            }
-            else if (Convert.ToInt32(cmbFreeTimeStartHrs.SelectedValue) > Convert.ToInt32(cmbFreeTimeEndHrs.SelectedValue))
-            {
-                MessageBox.Show("Free Time Start Hour is less or equals to End hours", "Free Time", MessageBoxButton.OK, MessageBoxImage.Warning);
-                cmbFreeTimeStartHrs.Focus();
-                return false;
-            }
-            else if ((Convert.ToInt32(cmbFreeTimeStartHrs.SelectedValue) == Convert.ToInt32(cmbFreeTimeEndHrs.SelectedValue)) && (Convert.ToInt32(cmbFreeTimeStartMin.SelectedValue) >= Convert.ToInt32(cmbFreeTimeEndMin.SelectedValue)))
-            {
-                MessageBox.Show("Free Time End Minutes must be greater than Start time", "Free Time", MessageBoxButton.OK, MessageBoxImage.Warning);
-                cmbFreeTimeEndMin.Focus();
-                return false;
-            }
+            //else if (cmbFreeTimeStartHrs.SelectedValue.ToString() == "Select")
+            //{
+            //    MessageBox.Show("Please Select Free Time Hours", "Free Time Hours", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //    cmbFreeTimeStartHrs.Focus();
+            //    return false;
+            //}
+            //else if (cmbFreeTimeStartMin.SelectedValue.ToString() == "Select")
+            //{
+            //    MessageBox.Show("Please Select Free Time Minutes", "Free Time Minutes", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //    cmbFreeTimeStartMin.Focus();
+            //    return false;
+            //}
+            //else if (cmbFreeTimeEndHrs.SelectedValue.ToString() == "Select")
+            //{
+            //    MessageBox.Show("Please Select Free Time Hours", "Free Time Hours", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //    cmbFreeTimeEndHrs.Focus();
+            //    return false;
+            //}
+            //else if (cmbFreeTimeEndMin.SelectedValue.ToString() == "Select")
+            //{
+            //    MessageBox.Show("Please Select Free Time Minutes", "Free Time Minutes", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //    cmbFreeTimeEndMin.Focus();
+            //    return false;
 
+            else if (cmbFreeTimeStartHrs.SelectedValue.ToString() != "Select")
+            {
+                if (cmbFreeTimeStartMin.SelectedValue.ToString() != "Select")
+                {
+                    if (cmbFreeTimeEndHrs.SelectedValue.ToString() != "Select")
+                    {
+                        if (cmbFreeTimeEndMin.SelectedValue.ToString() != "Select")
+                        {
+                            if (Convert.ToInt32(cmbFreeTimeStartHrs.SelectedValue) > Convert.ToInt32(cmbFreeTimeEndHrs.SelectedValue))
+                            {
+                                MessageBox.Show("Free Time Start Hour is less or equals to End hours", "Free Time", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                cmbFreeTimeStartHrs.Focus();
+                                return false;
+                            }
+                        }
+                    }
+                  }
+                }
+                 if (cmbFreeTimeStartHrs.SelectedValue.ToString() != "Select")
+                {
+                    if (cmbFreeTimeStartMin.SelectedValue.ToString() != "Select")
+                    {
+                        if (cmbFreeTimeEndHrs.SelectedValue.ToString() != "Select")
+                        {
+                            if (cmbFreeTimeEndMin.SelectedValue.ToString() != "Select")
+                            {
+
+                                if ((Convert.ToInt32(cmbFreeTimeStartHrs.SelectedValue) == Convert.ToInt32(cmbFreeTimeEndHrs.SelectedValue)) && (Convert.ToInt32(cmbFreeTimeStartMin.SelectedValue) >= Convert.ToInt32(cmbFreeTimeEndMin.SelectedValue)))
+                                {
+                                    MessageBox.Show("Free Time End Minutes must be greater than Start time", "Free Time", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                    cmbFreeTimeEndMin.Focus();
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            
                 if (MondayValidate())
                 {
                     if (TuesdayValidate())
@@ -1934,12 +1959,12 @@ namespace SchoolManagement.Teacher
                                             { return true; }
                                             else
                                             {
-                                                if(btnSave.Content.ToString() == "Save")
+                                                if (btnSave.Content.ToString() == "Save")
                                                 {
-                                                MessageBox.Show("Select At Least One Day.","Info",MessageBoxButton.OK,MessageBoxImage.Warning);
-                                                return false;
+                                                    MessageBox.Show("Select At Least One Day.", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                                    return false;
                                                 }
-                                                else { return true;}
+                                                else { return true; }
                                             }
                                         }
 
@@ -1961,13 +1986,13 @@ namespace SchoolManagement.Teacher
                     else
                     { return false; }
                 }
-                  
-          
-            else
-            {
-                return false;
-            }
 
+
+                else
+                {
+                    return false;
+                }
+            
         }
         #endregion
 
@@ -2390,12 +2415,19 @@ namespace SchoolManagement.Teacher
             {
                 IsLastLecture = 0;
             }
+            if (cmbFreeTimeStartHrs.SelectedValue.ToString() == "Select" && cmbFreeTimeStartMin.SelectedValue.ToString() == "Select" && cmbFreeTimeEndHrs.SelectedValue.ToString() == "Select" && cmbFreeTimeEndMin.SelectedValue.ToString() == "Select")
+            {
+                FreeTimeStart = "00:00:00";
+                FreeTimeEnd = "00:00:00";
+            }
+            else
+            {
+                FreeTimeStart = cmbFreeTimeStartHrs.SelectedValue.ToString();
+                FreeTimeStart += ":" + cmbFreeTimeStartMin.SelectedValue.ToString();
 
-            FreeTimeStart = cmbFreeTimeStartHrs.SelectedValue.ToString();
-            FreeTimeStart += ":" + cmbFreeTimeStartMin.SelectedValue.ToString();
-
-            FreeTimeEnd = cmbFreeTimeEndHrs.SelectedValue.ToString();
-            FreeTimeEnd += ":" + cmbFreeTimeEndMin.SelectedValue.ToString();
+                FreeTimeEnd = cmbFreeTimeEndHrs.SelectedValue.ToString();
+                FreeTimeEnd += ":" + cmbFreeTimeEndMin.SelectedValue.ToString();
+            }
             UpdatedByUserID = 1;
             UpdatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
 
@@ -2477,17 +2509,30 @@ namespace SchoolManagement.Teacher
                 string time = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[4].ToString();
                 string[] a = time.Split(':');
                 cmbFreeTimeStartHrs.Text = a[0];
-                //if (a[1] == "00")
-                //{ cmbFreeTimeStartMin.Text = "0"; }
-                //else
+                if (a[0] == "00")
+                { cmbFreeTimeStartHrs.SelectedIndex = 0; }
+                else
+                { cmbFreeTimeStartHrs.Text = a[0]; }
+
+                cmbFreeTimeStartMin.Text = a[1];
+                if (a[0]=="00"&&a[1] == "00")
+                { cmbFreeTimeStartMin.SelectedIndex = 0; }
+                else
                 { cmbFreeTimeStartMin.Text = a[1]; }
+
 
                 string ENDtime = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[5].ToString();
                 string[] b = ENDtime.Split(':');
                 cmbFreeTimeEndHrs.Text = b[0];
-                //if (b[1] == "00")
-                //{ cmbFreeTimeEndMin.Text = "0"; }
-                //else
+                if (a[0] == "00")
+                { cmbFreeTimeEndHrs.SelectedIndex = 0; }
+                else
+                { cmbFreeTimeEndHrs.Text = b[0]; }
+
+                cmbFreeTimeEndMin.Text = b[1];
+                if (b[0] == "00" && b[1] == "00")
+                { cmbFreeTimeEndMin.SelectedIndex = 0; }
+                else
                 { cmbFreeTimeEndMin.Text = b[1]; }
 
                 cmbMaxMoves.Text = ((System.Data.DataRowView)(dgvTeacher.CurrentItem)).Row.ItemArray[6].ToString();
