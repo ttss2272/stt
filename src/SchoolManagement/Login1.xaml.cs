@@ -120,14 +120,14 @@ namespace SchoolManagement
                     }
                     else
                     {
-                        MessageBox.Show("Please Enter Password", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Please Enter Password", "Password", MessageBoxButton.OK, MessageBoxImage.Warning);
                         txtPassword.Focus();
                     }
                }
                 
                 else
                 {
-                    MessageBox.Show("Please Enter User Name", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Please Enter User Name", "User Name", MessageBoxButton.OK, MessageBoxImage.Warning);
                     txtUserName.Focus();
 
                 }
@@ -136,7 +136,7 @@ namespace SchoolManagement
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(),"Exception",MessageBoxButton.OK,MessageBoxImage.Warning);
             }
             
             
