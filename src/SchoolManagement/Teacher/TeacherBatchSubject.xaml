@@ -8,8 +8,8 @@
             <StackPanel  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10" Height="539">
                 <GroupBox VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="539" Header="Add Teacher Subject" >
                     <GroupBox Header="" HorizontalAlignment="Stretch" Margin="10,10,10,10">
-                        <Grid HorizontalAlignment="Center">
-                            <GroupBox Header="Teacher" HorizontalAlignment="Left" Margin="-7,10,-4,0" VerticalAlignment="Top" Width="388" Height="62">
+                        <Grid HorizontalAlignment="Center" Margin="31,0,33,0" Width="431">
+                            <GroupBox Header="Teacher" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="388" Height="62">
                                 <Grid>
                                     <Label Content="Teacher" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Name="lblName"/>
                                     <ComboBox HorizontalAlignment="Left" Margin="95,14,0,0" VerticalAlignment="Top" Width="130" Name="cmbTeacher" ItemsSource="{Binding}"/>
@@ -17,7 +17,7 @@
 
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Header="BatchSubject" HorizontalAlignment="Left" Margin="-8,72,-3,0" VerticalAlignment="Top" Width="388" Height="251">
+                            <GroupBox Header="BatchSubject" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top" Width="388" Height="251">
                                 <Grid>
                                     <Label Content="Branch" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" Name="lblBranch"/>
                                     <ComboBox HorizontalAlignment="Left" Margin="73,14,0,0" VerticalAlignment="Top" Width="102" Name="cmbBranch" ItemsSource="{Binding}" SelectionChanged="cmbBranch_SelectionChanged"/>
@@ -48,7 +48,7 @@
 
                                 </Grid>
                             </GroupBox>
-                            <DataGrid Name="DgTeacherSubject" HorizontalAlignment="Left" Margin="10,328,0,0" VerticalAlignment="Top" Height="137" Width="357" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" ItemsSource="{Binding}" AutoGenerateColumns="False">
+                            <DataGrid Name="DgTeacherSubject" HorizontalAlignment="Left" Margin="0,328,0,0" VerticalAlignment="Top" Height="137" Width="421" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" ItemsSource="{Binding}" AutoGenerateColumns="False">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="TeacherID" Binding="{Binding TeahcerID}" Visibility="Hidden"></DataGridTextColumn>
                                     <DataGridTextColumn Header="Teacher Name" Binding="{Binding TeacherName}" Width="110"></DataGridTextColumn>
