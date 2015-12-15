@@ -153,7 +153,7 @@ namespace SchoolManagement.User
 
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message.ToString(), "Exception Error");
+                    MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             
         }
@@ -232,7 +232,7 @@ namespace SchoolManagement.User
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion
@@ -259,7 +259,7 @@ namespace SchoolManagement.User
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString(), "Exception Error");
+                MessageBox.Show(ex.Message.ToString(), ,"Exception",MessageBoxButton.OK,MessageBoxImage.Warning);
             }
         }
         #endregion
@@ -289,7 +289,7 @@ namespace SchoolManagement.User
             }
             else
             {
-                MessageBox.Show("Please Select Subject From Subject", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Please Select User", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
 
             }
         }
@@ -309,7 +309,7 @@ namespace SchoolManagement.User
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString(), "Exception Error");
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion
@@ -352,7 +352,7 @@ namespace SchoolManagement.User
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString(), "Exception Error");
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion
@@ -414,7 +414,7 @@ namespace SchoolManagement.User
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString(), "Exception Error");
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         #endregion
@@ -446,7 +446,7 @@ namespace SchoolManagement.User
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(),"Exception",MessageBoxButton.OK,MessageBoxImage.Warning);
             }
         }
 
@@ -473,7 +473,7 @@ namespace SchoolManagement.User
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
