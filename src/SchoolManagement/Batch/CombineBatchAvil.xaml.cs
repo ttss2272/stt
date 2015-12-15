@@ -44,6 +44,13 @@ namespace SchoolManagement.Batch
         string[] s;
 
         #endregion
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Main Function
+        */
         #region---------------------------------main()--------------------------------------------
         public CombineBatchAvil()
         {
@@ -62,6 +69,13 @@ namespace SchoolManagement.Batch
             }
         }
         #endregion
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Clear Fields
+        */
         #region-----------------------------clearFields()------------------------------------------
 
         private void clearFields()
@@ -117,6 +131,13 @@ namespace SchoolManagement.Batch
 
         }
         #endregion
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Clears Availibity Drop down
+        */
 
         #region---------------------------------------------------------Clears()-------------------------------------------------------
         private void Clears()
@@ -131,6 +152,13 @@ namespace SchoolManagement.Batch
 
         }
         #endregion
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Bind Batch Available Grid
+        */
 
         #region---------------------------------------------------------------BindBatchAvailGrid()-------------------------------------------------------
         private void BindBatchAvailGrid()
@@ -146,7 +174,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
-
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Set Parameter for Save Batch Master Details
+        */
         #region-------------------------------------------------SetParameters()-------------------------------------
         private void SetParameters()
         {
@@ -194,6 +228,13 @@ namespace SchoolManagement.Batch
             }
         }
         #endregion
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Apply Validation to all controls
+        */
 
         #region---------------------------Validate()-----------------------------------------
         public bool Validate()
@@ -355,6 +396,14 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Validate Day
+        */
+        #region-----------------------------------------Validate Day---------------------------------------------------------------------
         #region-------------------------------------------------------Monday Validate()---------------------------------------------------------
         private bool MondayValidate()
         {
@@ -716,6 +765,14 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        #endregion
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Bind Hours to drop down
+        */
         #region---------------------------------------------------BindHours------------------------------------------------
         private void BindHours()
         {
@@ -819,6 +876,13 @@ namespace SchoolManagement.Batch
 
         }
         #endregion
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Bind Minutes to drop down
+        */
 
         #region---------------------------------------------------BindMinutes------------------------------------------------
         private void BindMinutes()
@@ -928,6 +992,14 @@ namespace SchoolManagement.Batch
 
         #endregion
 
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Uncheck all check boxes
+        */
+
         #region--------------------------------unchekcall ChekcBoxes-----------------------------------
         private void UncheckAllCheckBoxes()
         {
@@ -944,7 +1016,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
-
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Bind Timing
+        */
         #region-------------------------------------------BindTimingHrs---------------------------------
         private void TimingHrs()
         {
@@ -1040,6 +1118,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Bind Yes No
+        */
         #region-------------------------------------------BindYesNo---------------------------------
         private void BindYesNo()
         {
@@ -1057,6 +1142,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Set selected index 0 of drop down
+        */
         #region--------------------select()-------------------
         private void select()
         {
@@ -1070,6 +1162,13 @@ namespace SchoolManagement.Batch
             cbClassName.SelectedIndex = 0;
         }
         #endregion
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- validate on text change event
+        */
 
         #region----------------------txtBatchName_TextChanged----------------------------
         private void txtBatchName_TextChanged(object sender, TextChangedEventArgs e)
@@ -1099,6 +1198,13 @@ namespace SchoolManagement.Batch
             }
         }
         #endregion
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Bind Batch Data Grid
+        */
 
         #region----------------------------------grvBatchBind------------------------------
         private void BindGridview()
@@ -1117,6 +1223,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Delete Batch
+        */
         #region--------------------------------------Delete button click()-------------------------------------
         private void btndelete_Click(object sender, RoutedEventArgs e)
         {
@@ -1140,6 +1253,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Defination of delete batch 
+        */
         #region----------------------------DeleteBatch()----------------------------------
         private void DeleteBatch()
         {
@@ -1202,6 +1322,13 @@ namespace SchoolManagement.Batch
         }
 
         #endregion
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Window loaded event
+        */
         #region-----------------------Window_Loaded()-------------------------------------------------------
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -1228,6 +1355,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Bind Class name to drop down
+        */
         #region------------------------BindClassName()---------------------------------------
         private void BindClassName()
         {
@@ -1255,6 +1389,14 @@ namespace SchoolManagement.Batch
 
         }
         #endregion
+
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Data grid double click row click for update
+        */
 
         #region--------------------------------------gridview cell click()-------------------------------------
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
@@ -1362,6 +1504,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Apply validation in text change event
+        */
         #region-------------------------------------------txtBatchCode_textChanged-----------------------------
         private void txtBatchCode_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -1483,7 +1632,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
-       
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Cancel button click
+        */
         #region--------------------------btncancel_Click-----------------------------
         private void btncancel_Click(object sender, RoutedEventArgs e)
         {
@@ -1497,6 +1652,13 @@ namespace SchoolManagement.Batch
             }
         }
         #endregion
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Check all days check box
+        */
 
         #region---------------------------------------------------Chkallday------------------------------------------------
         private void chkAvailAllDay_Click(object sender, RoutedEventArgs e)
@@ -1891,6 +2053,13 @@ namespace SchoolManagement.Batch
             }
         }
         #endregion
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Save code
+        */
         #region--------------------------------------SaveDetails()-------------------------------------
         private void SaveDetails()
         {
@@ -1912,7 +2081,13 @@ namespace SchoolManagement.Batch
         }
         #endregion       
 
-
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Set parameter for batch availability
+        */
         #region-------------------------------------------------------SetParametersForAvailability()-------------------------------------------------------
         private void SetParametersForAvailability()
         {
@@ -2684,6 +2859,13 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 10 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Copy from data grid to save or update data 
+        */
         #region--------------------------------------btnCopy_Click--------------------------------------------
         private void btnCopy_Click(object sender, RoutedEventArgs e)
         {
