@@ -11,50 +11,50 @@
 
             <GroupBox Header="" Name="groupBox2" Width="1222" Height="162">
                 <Grid Height="139">
-                    <Label Content="Batch Name" Height="26" Margin="289,11,0,0" Name="lblClassName" VerticalAlignment="Top" FontWeight="Black" HorizontalAlignment="Left" Width="78" />
-                    <TextBox Height="23" HorizontalAlignment="Right" Margin="0,10,672,0" Name="txtBatchName" VerticalAlignment="Top" Width="152" TabIndex="2"/>
-                    <Label Content="Batch Code" Height="28" Margin="582,10,551,0" Name="lblshortname" VerticalAlignment="Top" FontWeight="Black"/>
+                    <Label Content="Batch Name" Height="26" Margin="289,09,0,0" Name="lblClassName" VerticalAlignment="Top" FontWeight="Black" HorizontalAlignment="Left" Width="78" />
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="386,10,0,0" Name="txtBatchName" VerticalAlignment="Top" Width="152" TabIndex="2"/>
+                    <Label Content="Batch Code" Height="28" Margin="582,09,551,0" Name="lblshortname" VerticalAlignment="Top" FontWeight="Black"/>
                     <TextBox Height="23" Margin="0,10,363,0" Name="txtBatchCode" VerticalAlignment="Top" HorizontalAlignment="Right" Width="178" TabIndex="3"/>
-                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="370,13,0,0" Name="lblStar" VerticalAlignment="Top" />
-                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="653,14,0,0" Name="label1" VerticalAlignment="Top" />
-                    <Label Content="Class Name" Height="28" Margin="13,6,0,0" Name="lblBranchName" VerticalAlignment="Top" HorizontalAlignment="Left" Width="78" FontWeight="Black"/>
+                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="370,11,0,0" Name="lblStar" VerticalAlignment="Top" />
+                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="653,11,0,0" Name="label1" VerticalAlignment="Top" />
+                    <Label Content="Class Name" Height="28" Margin="13,09,0,0" Name="lblBranchName" VerticalAlignment="Top" HorizontalAlignment="Left" Width="78" FontWeight="Black"/>
                     <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="109,10,0,0" Name="cbClassName" VerticalAlignment="Top" Width="123" TabIndex="1"/>
-                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="91,10,0,0" Name="label7" VerticalAlignment="Top" />
-                    <Label Content="Lecture Duration Time" Height="28" HorizontalAlignment="Left" Margin="849,10,0,0" Name="label2" VerticalAlignment="Top" FontWeight="Black"/>
+                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="91,11,0,0" Name="label7" VerticalAlignment="Top" />
+                    <Label Content="Lecture Duration Time" Height="28" HorizontalAlignment="Left" Margin="849,9,0,0" Name="label2" VerticalAlignment="Top" FontWeight="Black"/>
                     <Label Content="Is there any" Height="28" HorizontalAlignment="Left" Margin="906,38,0,0" Name="label3" VerticalAlignment="Top" FontWeight="Black"/>
-                    <RadioButton Content="Active" Height="16" HorizontalAlignment="Left" Margin="386,87,0,0" Name="rdoActive" VerticalAlignment="Top" FontWeight="Black"/>
-                    <RadioButton Content="InActive" Height="16" HorizontalAlignment="Left" Margin="448,87,0,0" Name="rdoDeActive" VerticalAlignment="Top" FontWeight="Black"/>
+                    <RadioButton Content="Active" Height="16" HorizontalAlignment="Left" Margin="386,90,0,0" Name="rdoActive" VerticalAlignment="Top" FontWeight="Black"/>
+                    <RadioButton Content="InActive" Height="16" HorizontalAlignment="Left" Margin="448,90,0,0" Name="rdoDeActive" VerticalAlignment="Top" FontWeight="Black"/>
                     <Label Content="Status" Height="28" HorizontalAlignment="Left" Margin="315,81,0,0" Name="label4" VerticalAlignment="Top" FontWeight="Black"/>
-                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="22" HorizontalAlignment="Left" Margin="370,84,0,0" Name="label5" VerticalAlignment="Top" />
+                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="22" HorizontalAlignment="Left" Margin="370,87,0,0" Name="label5" VerticalAlignment="Top" />
                     <TextBox Height="26" HorizontalAlignment="Left" Margin="1001,10,0,0" MaxLength="0" Name="txtlecDuration" VerticalAlignment="Top" Width="178" TabIndex="4"/>
-                    <Label Content="Lunch Break" HorizontalAlignment="Left" Margin="900,0,0,37" Name="label8" Height="28" VerticalAlignment="Bottom" FontWeight="Black"/>
-                    <ComboBox Height="23" ItemsSource="{Binding}" Margin="1001,79,151,0" Name="cmbTimeStartHrs" VerticalAlignment="Top" TabIndex="9"/>
-                    <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="1077,79,0,0" Name="cmbTimeStartMin" VerticalAlignment="Top" Width="58" TabIndex="10"/>
+                    <Label Content="Lunch Break" HorizontalAlignment="Left" Margin="900,0,0,33" Name="label8" Height="28" VerticalAlignment="Bottom" FontWeight="Black"/>
+                    <ComboBox Height="23" ItemsSource="{Binding}" Margin="1001,83,0,0" Name="cmbTimeStartHrs" VerticalAlignment="Top" TabIndex="9" HorizontalAlignment="Left" Width="58" />
+                    <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="1077,83,0,0" Name="cmbTimeStartMin" VerticalAlignment="Top" Width="58" TabIndex="10"/>
                     <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="1001,111,0,0" Name="cmbTimeEndHrs" VerticalAlignment="Top" Width="58" TabIndex="11"/>
                     <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="1077,111,0,0" Name="cmbTimeEndMin" VerticalAlignment="Top" Width="58" TabIndex="12"/>
                     <Label Content="To" Height="28" HorizontalAlignment="Left" Margin="1055,91,0,0" Name="label9" VerticalAlignment="Top" FontWeight="Black"/>
-                    <Label Content="Lectures/Day" Height="28" HorizontalAlignment="Left" Margin="7,44,0,0" Name="label10" VerticalAlignment="Top" FontWeight="Black"/>
+                    <Label Content="Lectures/Day" Height="28" HorizontalAlignment="Left" Margin="7,46,0,0" Name="label10" VerticalAlignment="Top" FontWeight="Black"/>
                     <Label Content="Max No of" HorizontalAlignment="Left" Margin="330,44,0,95" Name="label11" />
                     <Label Content="Is Allow More Than " Height="25" HorizontalAlignment="Left" Margin="540,38,0,0" Name="label12" VerticalAlignment="Top" FontWeight="Black"/>
                     <Label Content="One Lecture In Batch " HorizontalAlignment="Left" Margin="535,54,0,57" Name="label13" FontWeight="Black"/>
-                    <Label Content="Max No Of" HorizontalAlignment="Left" Margin="9,75,0,36" Name="label14" FontWeight="Black"/>
-                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="22" HorizontalAlignment="Left" Margin="980,80,0,0" Name="label15" VerticalAlignment="Top" />
+                    <Label Content="Max No Of" HorizontalAlignment="Left" Margin="9,78,0,33" Name="label14" FontWeight="Black"/>
+                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="22" HorizontalAlignment="Left" Margin="980,87,0,0" Name="label15" VerticalAlignment="Top" />
                     <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Right" Margin="0,11,215,0" Name="label16" VerticalAlignment="Top" />
                     <ComboBox Height="23" HorizontalAlignment="Left" Margin="109,49,0,0" Name="cbmaxlecperday" VerticalAlignment="Top" Width="123" TabIndex="5"/>
                     <ComboBox Height="23" Margin="386,49,0,0" Name="cbmaxlecperweek" VerticalAlignment="Top" TabIndex="6" HorizontalAlignment="Left" Width="152" />
                     <ComboBox Height="23" HorizontalAlignment="Left" Margin="109,83,0,0" Name="cbmaxlectperrow" VerticalAlignment="Top" Width="123" TabIndex="13"/>
                     <Label Content="*" FontWeight="Bold" Foreground="Red" Height="22" HorizontalAlignment="Left" Margin="91,49,0,0" Name="label6" VerticalAlignment="Top" />
-                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="370,48,0,0" Name="label17" VerticalAlignment="Top" />
+                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="370,49,0,0" Name="label17" VerticalAlignment="Top" />
                     <Label Content="*" FontWeight="Bold" Foreground="Red" Height="22" HorizontalAlignment="Left" Margin="91,87,0,0" Name="label18" VerticalAlignment="Top" />
                     <Label Content="*" FontWeight="Bold" Foreground="Red" Height="22" HorizontalAlignment="Left" Margin="653,49,0,0" Name="label19" VerticalAlignment="Top" />
-                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="980,48,0,0" Name="label20" VerticalAlignment="Top" />
+                    <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Right" Margin="0,49,215,0" Name="label20" VerticalAlignment="Top" />
                     <ComboBox HorizontalAlignment="Left" Margin="1001,49,0,0" Name="cbLunchBreak" TabIndex="8" VerticalAlignment="Top" Width="130" SelectionChanged="cbLunchBreak_SelectionChanged_1" />
                     <ComboBox HorizontalAlignment="Left" Margin="669,49,0,0" Name="cballowlect" TabIndex="7" VerticalAlignment="Top" Width="177"/>
                     <Label Content="Min" Height="28" HorizontalAlignment="Left" Margin="1178,9,0,0" Name="label21" VerticalAlignment="Top" FontWeight="Black"/>
                     <Label Content="Lunch Break " Height="28" HorizontalAlignment="Left" Margin="903,53,0,0" Name="label22" VerticalAlignment="Top" FontWeight="Black"/>
-                    <Label Content="Time " Height="28" Margin="926,87,246,0" Name="label23" VerticalAlignment="Top" FontWeight="Black"/>
-                    <Label Content="Lectures/Week" Height="28" HorizontalAlignment="Left" Margin="272,44,0,0" Name="label25" VerticalAlignment="Top" FontWeight="Black"/>
-                    <Label Content="Lecure In Row" Height="28" HorizontalAlignment="Left" Margin="2,88,0,0" Name="label26" VerticalAlignment="Top" FontWeight="Black"/>
+                    <Label Content="Time " Height="28" Margin="926,92,246,0" Name="label23" VerticalAlignment="Top" FontWeight="Black"/>
+                    <Label Content="Lectures/Week" Height="28" HorizontalAlignment="Left" Margin="272,46,0,0" Name="label25" VerticalAlignment="Top" FontWeight="Black"/>
+                    <Label Content="Lecure In Row" Height="28" HorizontalAlignment="Left" Margin="2,90,0,0" Name="label26" VerticalAlignment="Top" FontWeight="Black"/>
                 </Grid>
             </GroupBox>
             <GroupBox Header="" Height="332" Name="groupBox3" Width="1213">
