@@ -284,6 +284,18 @@ namespace SchoolManagement.Room
                     return false;
 
                 }
+                else if ((Convert.ToInt32(chkStartHrs1.SelectedItem.ToString())) == (Convert.ToInt32(cmbSHr.SelectedItem.ToString())) || (Convert.ToInt32(chkEndhrs1.SelectedItem.ToString())) == (Convert.ToInt32(cmbEHr.SelectedItem.ToString())))
+                {
+                    MessageBox.Show("Please Enter Available Time Not In Between Break Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartHrs1.Focus();
+                    return false; 
+                }
+                //else if ((Convert.ToInt32(chkStartHrs1.SelectedItem.ToString())) < (Convert.ToInt32(cmbSHr.SelectedItem.ToString())) || (Convert.ToInt32(chkEndhrs1.SelectedItem.ToString())) > (Convert.ToInt32(cmbEHr.SelectedItem.ToString())))
+                //{
+                //    MessageBox.Show("Please Enter Available Time Not In Between Break Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                //    chkStartHrs1.Focus();
+                //    return false;
+                //}
                 else
                 { return true; }
 
@@ -343,6 +355,12 @@ namespace SchoolManagement.Room
                     return false;
 
                 }
+                else if ((Convert.ToInt32(chkStartHrs2.SelectedItem.ToString())) == (Convert.ToInt32(cmbSHr.SelectedItem.ToString())) || (Convert.ToInt32(chkEndhrs2.SelectedItem.ToString())) == (Convert.ToInt32(cmbEHr.SelectedItem.ToString())))
+                {
+                    MessageBox.Show("Please Enter Available Time Not In Between Break Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartHrs2.Focus();
+                    return false;
+                }
                 else
                 { return true; }
             }
@@ -400,6 +418,12 @@ namespace SchoolManagement.Room
                     EndMin3.Focus();
                     return false;
 
+                }
+                else if ((Convert.ToInt32(chkStartHrs3.SelectedItem.ToString())) == (Convert.ToInt32(cmbSHr.SelectedItem.ToString())) || (Convert.ToInt32(chkEndhrs3.SelectedItem.ToString())) == (Convert.ToInt32(cmbEHr.SelectedItem.ToString())))
+                {
+                    MessageBox.Show("Please Enter Available Time Not In Between Break Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartHrs3.Focus();
+                    return false;
                 }
                 else
                 { return true; }
@@ -460,6 +484,12 @@ namespace SchoolManagement.Room
                     return false;
 
                 }
+                else if ((Convert.ToInt32(chkStartHrs4.SelectedItem.ToString())) == (Convert.ToInt32(cmbSHr.SelectedItem.ToString())) || (Convert.ToInt32(chkEndhrs4.SelectedItem.ToString())) == (Convert.ToInt32(cmbEHr.SelectedItem.ToString())))
+                {
+                    MessageBox.Show("Please Enter Available Time Not In Between Break Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartHrs4.Focus();
+                    return false;
+                }
                 else
                 { return true; }
             }
@@ -519,6 +549,12 @@ namespace SchoolManagement.Room
                     return false;
 
                 }
+                else if ((Convert.ToInt32(chkStartHrs5.SelectedItem.ToString())) == (Convert.ToInt32(cmbSHr.SelectedItem.ToString())) || (Convert.ToInt32(chkEndhrs5.SelectedItem.ToString())) == (Convert.ToInt32(cmbEHr.SelectedItem.ToString())))
+                {
+                    MessageBox.Show("Please Enter Available Time Not In Between Break Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartHrs5.Focus();
+                    return false;
+                }
                 else
                 { return true; }
             }
@@ -577,6 +613,12 @@ namespace SchoolManagement.Room
                     return false;
 
                 }
+                else if ((Convert.ToInt32(chkStartHrs6.SelectedItem.ToString())) == (Convert.ToInt32(cmbSHr.SelectedItem.ToString())) || (Convert.ToInt32(chkEndhrs6.SelectedItem.ToString())) == (Convert.ToInt32(cmbEHr.SelectedItem.ToString())))
+                {
+                    MessageBox.Show("Please Enter Available Time Not In Between Break Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartHrs6.Focus();
+                    return false;
+                }
                 else
                 { return true; }
             }
@@ -634,6 +676,12 @@ namespace SchoolManagement.Room
                     EndMin7.Focus();
                     return false;
 
+                }
+                else if ((Convert.ToInt32(chkStartHrs7.SelectedItem.ToString())) == (Convert.ToInt32(cmbSHr.SelectedItem.ToString())) || (Convert.ToInt32(chkEndhrs7.SelectedItem.ToString())) == (Convert.ToInt32(cmbEHr.SelectedItem.ToString())))
+                {
+                    MessageBox.Show("Please Enter Available Time Not In Between Break Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartHrs7.Focus();
+                    return false;
                 }
                 else
                 { return true; }
