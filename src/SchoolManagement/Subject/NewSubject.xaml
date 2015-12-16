@@ -33,7 +33,7 @@
 
             <GroupBox Header="Subject List" HorizontalAlignment="left" Margin="0,279,2,0" VerticalAlignment="Top" Height="217" Width="489">
                 <Grid>
-                    <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Height="195" Width="477" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" Name="grdvSubject" CanUserResizeColumns="False">
+                    <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Height="195" Width="477" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" Name="grdvSubject" CanUserResizeColumns="False" HorizontalScrollBarVisibility="Disabled">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding SubjectID}" Header="Subject ID" Visibility="Hidden"></DataGridTextColumn>
                             <DataGridTextColumn Binding="{Binding SubjectName}" Header="Subject Name" Width="150"></DataGridTextColumn>
