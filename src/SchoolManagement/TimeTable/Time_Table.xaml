@@ -109,6 +109,7 @@
             <Grid>
                 <Button Content="Save" FontWeight="Bold" Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="130,10,0,0" Name="btnSave" TabIndex="14" VerticalAlignment="Top" Width="80" Click="btnSave_Click" />
                 <Button Content="Clear" FontWeight="Bold" Foreground="Black" Height="31" HorizontalAlignment="Left" Margin="388,10,0,0" Name="btnClear" TabIndex="16" VerticalAlignment="Top" Width="75" Click="btnClear_Click" />
+                <Button Content="Delete All" HorizontalAlignment="Left" Margin="248,10,0,0" VerticalAlignment="Top" Width="75" Height="31" Foreground="Black" FontWeight="Black" Click="Button_Click" Name="btnDeleteAll"/>
             </Grid>
         </GroupBox>
         <DataGrid AutoGenerateColumns="False" Height="155" HorizontalAlignment="Left" Margin="228,415,0,0" Name="dgTimeTable" ItemsSource="{Binding}" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" VerticalAlignment="Top" Width="600">
@@ -135,10 +136,10 @@
                 <Style TargetType="DataGridRow">
                     <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
                 </Style>
-            </DataGrid.ItemContainerStyle> 
+            </DataGrid.ItemContainerStyle>
 
         </DataGrid>
-            
+
     </Grid>
-        
+
 </Window>

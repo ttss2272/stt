@@ -223,7 +223,7 @@ namespace SchoolManagement.TimeTable
             UpID = 0;
             cbBranchName.IsEnabled = true;
             EnableUpperPart();
-            cbBranchName.SelectedIndex = 0;
+            cbBranchName.SelectedValue = "0";
             dpTTStartDate.Text = "";
             cbClassName.SelectedIndex = 0;
             cbBatchName.SelectedIndex = 0;
@@ -1072,12 +1072,12 @@ namespace SchoolManagement.TimeTable
                     else
                     {
                         dpTTStartDate.Focus();
-                        MessageBox.Show("Please Select Time Table Start Date");
+                        MessageBox.Show("Please Select Time Table Start Date","Info",MessageBoxButton.OK,MessageBoxImage.Warning);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Please select Branch Name");
+                    MessageBox.Show("Please select Branch Name", "Info", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             catch (Exception ex)
@@ -1888,6 +1888,30 @@ namespace SchoolManagement.TimeTable
         }
         #endregion--------------------------------------
 
+        /*
+        * Created By:-PriTesh D. Sortee
+        * Updated By:-
+        * Created Date:- 10 Dec 2015
+        * Updated Date:- 
+        * Purpose:- Delete button Click
+        */
+        #region-----------------------------------------------Click Delete Button-----------------------------------
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MessageBoxResult rst = MessageBox.Show("Do You Really Want To Delete All Records","Deleting Record",MessageBoxButton.YesNo,MessageBoxImage.Question);
+                if (rst.Equals( MessageBoxResult.Yes))
+                {
+ 
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        #endregion
     }
 }
     

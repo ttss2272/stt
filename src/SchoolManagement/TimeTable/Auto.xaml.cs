@@ -302,5 +302,14 @@ namespace SchoolManagement.TimeTable
         }
 
 
+        private void SSC_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            var x = (int)e.HorizontalOffset;
+            var y = (int)e.VerticalOffset;
+            var coords = string.Format("{0},{1}", x, y);
+            //ScrollDetails.Content = coords;
+        }
+
+
     }
 }
