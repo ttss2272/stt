@@ -60,7 +60,7 @@
                             <DataGrid HorizontalAlignment="Left" Margin="308,279,0,0" VerticalAlignment="Top" Height="205" Width="205" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" AutoGenerateColumns="False" Name="grvBatchSubjectcountDetail" ItemsSource="{Binding}">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding SubjectID}" Header="SubjectID" Visibility="Hidden"></DataGridTextColumn>
-                                    <DataGridTextColumn Binding="{Binding SubjectName}" Header="SubjectName"></DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding SubjectName}" Header="Subject Name"></DataGridTextColumn>
                                     <DataGridTextColumn Binding="{Binding  FrequencyPerDay}" Header="Lect/Day"></DataGridTextColumn>
                                     <DataGridTextColumn Binding="{Binding FrequencyPerWeek}" Header="Lect/Week"></DataGridTextColumn>
 

@@ -550,6 +550,8 @@ namespace SchoolManagement.Batch
             cmbSubject.IsEnabled = false;
             cmbFreqPerDay.IsEnabled = false;
             cmbFreqPerWeek.IsEnabled = false;
+            btnAddAll.IsEnabled = false;
+            btnAddSingle.IsEnabled = false;
 
             btnSave.IsEnabled = false;
             btnClear.IsEnabled = false;
@@ -577,6 +579,8 @@ namespace SchoolManagement.Batch
             cmbSubject.IsEnabled = true;
             cmbFreqPerDay.IsEnabled = true;
             cmbFreqPerWeek.IsEnabled = true;
+            btnAddAll.IsEnabled = true;
+            btnAddSingle.IsEnabled = true;
 
             btnSave.IsEnabled = true;
             btnClear.IsEnabled = true;
