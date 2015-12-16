@@ -1540,35 +1540,6 @@ namespace SchoolManagement.Batch
         }
         #endregion
 
-        #region---------------------------txtlecDuration_TextChanged-----------------------
-        private void txtlecDuration_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                if (txtlecDuration.Text != "")
-                {
-                    if (txtlecDuration.Text.Length > 0)
-                    {
-                        if (System.Text.RegularExpressions.Regex.IsMatch(txtlecDuration.Text, "^[0-9]+$"))
-                        {
-                        }
-                        else
-                        {
-                            MessageBox.Show("Please Enter Only Numbers", "Lect. Duration", MessageBoxButton.OK, MessageBoxImage.Warning);
-                            txtlecDuration.Text = "";
-                            txtlecDuration.Focus();
-                        }
-
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
-        }
-        #endregion
-
         #region---------------------------------------cbLunchBreak_SelectionChanged----------------------------
         private void cbLunchBreak_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -2907,12 +2878,44 @@ namespace SchoolManagement.Batch
 
         #endregion
 
+        /*
+        * Created By:- Sameer
+        * Ctreated Date :- 16 Dec 2015
+        * StartTime:-
+        * EndTime:-
+        * Purpose:- Apply validation to accept only numbers 
+        */
         
+        #region---------------------------txtlecDuration_TextChanged-----------------------
+        private void txtlecDuration_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (txtlecDuration.Text != "")
+                {
+                    if (txtlecDuration.Text.Length > 0)
+                    {
+                        if (System.Text.RegularExpressions.Regex.IsMatch(txtlecDuration.Text, "^[0-9]+$"))
+                        {
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please Enter Only Numbers", "Lect. Duration", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            txtlecDuration.Text = "";
+                            txtlecDuration.Focus();
+                        }
 
-        
-        
-       
-    
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+
+        }
+        #endregion
+
 
     }
 }

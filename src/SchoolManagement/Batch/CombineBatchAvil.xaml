@@ -12,9 +12,9 @@
             <GroupBox Header="" Name="groupBox2" Width="1222" Height="162">
                 <Grid Height="139">
                     <Label Content="Batch Name" Height="26" Margin="289,09,0,0" Name="lblClassName" VerticalAlignment="Top" FontWeight="Black" HorizontalAlignment="Left" Width="78" />
-                    <TextBox Height="23" HorizontalAlignment="Left" Margin="386,10,0,0" Name="txtBatchName" VerticalAlignment="Top" Width="152" TabIndex="2"/>
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="386,10,0,0" Name="txtBatchName" VerticalAlignment="Top" Width="152" TabIndex="2" TextChanged="txtBatchName_TextChanged" />
                     <Label Content="Batch Code" Height="28" Margin="582,09,551,0" Name="lblshortname" VerticalAlignment="Top" FontWeight="Black"/>
-                    <TextBox Height="23" Margin="669,10,0,0" Name="txtBatchCode" VerticalAlignment="Top" HorizontalAlignment="Left" Width="178" TabIndex="3" />
+                    <TextBox Height="23" Margin="669,10,0,0" Name="txtBatchCode" VerticalAlignment="Top" HorizontalAlignment="Left" Width="178" TabIndex="3" TextChanged="txtBatchCode_TextChanged"/>
                     <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="370,11,0,0" Name="lblStar" VerticalAlignment="Top" />
                     <Label Content="*" FontWeight="Bold" Foreground="Red" Height="20" HorizontalAlignment="Left" Margin="653,11,0,0" Name="label1" VerticalAlignment="Top" />
                     <Label Content="Class Name" Height="28" Margin="13,09,0,0" Name="lblBranchName" VerticalAlignment="Top" HorizontalAlignment="Left" Width="78" FontWeight="Black"/>
@@ -26,7 +26,7 @@
                     <RadioButton Content="InActive" Height="16" HorizontalAlignment="Left" Margin="448,90,0,0" Name="rdoDeActive" VerticalAlignment="Top" FontWeight="Black"/>
                     <Label Content="Status" Height="28" HorizontalAlignment="Left" Margin="315,85,0,0" Name="label4" VerticalAlignment="Top" FontWeight="Black"/>
                     <Label Content="*" FontWeight="Bold" Foreground="Red" Height="22" HorizontalAlignment="Left" Margin="370,87,0,0" Name="label5" VerticalAlignment="Top" />
-                    <TextBox Height="26" HorizontalAlignment="Left" Margin="1001,10,0,0" MaxLength="0" Name="txtlecDuration" VerticalAlignment="Top" Width="178" TabIndex="4"/>
+                    <TextBox Height="26" HorizontalAlignment="Left" Margin="1001,10,0,0" MaxLength="0" Name="txtlecDuration" VerticalAlignment="Top" Width="178" TabIndex="4" TextChanged="txtlecDuration_TextChanged_1" />
                     <Label Content="Lunch Break" HorizontalAlignment="Left" Margin="900,0,0,33" Name="label8" Height="28" VerticalAlignment="Bottom" FontWeight="Black"/>
                     <ComboBox Height="23" ItemsSource="{Binding}" Margin="1001,83,0,0" Name="cmbTimeStartHrs" VerticalAlignment="Top" TabIndex="11" HorizontalAlignment="Left" Width="58" />
                     <ComboBox Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="1077,83,0,0" Name="cmbTimeStartMin" VerticalAlignment="Top" Width="58" TabIndex="12"/>
@@ -272,7 +272,7 @@
                 <Grid>
                     <Button Click="btnadd_Click" Content="Save" Height="30" HorizontalAlignment="Left" Margin="107,8,0,0" Name="btnadd" VerticalAlignment="Top" Width="75" FontWeight="Black" TabIndex="16"/>
                     <Button Click="btndelete_Click" Content="Delete" Height="30" HorizontalAlignment="Left" Margin="228,8,0,0" Name="btnDelete" VerticalAlignment="Top" Width="75" FontWeight="Black" TabIndex="17"/>
-                    <Button Click="btncancel_Click" Content="Clear" Height="30" HorizontalAlignment="Left" Margin="351,8,0,0" Name="btnClose" VerticalAlignment="Top" Width="75" FontWeight="Black" TabIndex="17"/>
+                    <Button Click="btncancel_Click" Content="Clear" Height="30" HorizontalAlignment="Left" Margin="351,8,0,0" Name="btnClose" VerticalAlignment="Top" Width="75" FontWeight="Black" TabIndex="18"/>
                 </Grid>
             </GroupBox>
                     <Grid Height="123" Width="1135" HorizontalAlignment="Center">
