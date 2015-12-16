@@ -2099,7 +2099,14 @@ namespace SchoolManagement.Batch
                     SetParameters();
                     //SaveDetails();
                    result1 = obj_Batch.saveBatch(BatchID, ClassID, BatchName, BatchCode, LectureDuration, IsLunchBreak, LunchBreakStartTime, LunchBreakEndTime, MaxNoLecturesDay, MaxNoLecturesWeek, IsAllowMoreThanOneLectInBatch, MaxNoOfLecureInRow, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted);
-                    SetParametersForAvailability();
+                   if (result1 == 0)
+                   {
+                       MessageBox.Show("Batch Name or Batch code Duplicate", "Error to Save Batch",MessageBoxButton.OK,MessageBoxImage.Warning);
+                   }
+                   else
+                   {
+                       SetParametersForAvailability();
+                   }
                 }
             }
             catch (Exception ex)
