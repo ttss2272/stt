@@ -23,6 +23,7 @@ namespace SchoolManagement.Branch
     /// </summary>
     public partial class NewBranch : Window
     {
+        #region---------------------------------------------------------Main()--------------------------------------
         public NewBranch()
         {
             InitializeComponent();
@@ -30,7 +31,7 @@ namespace SchoolManagement.Branch
             this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
             this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
         }
-        
+        #endregion
         /*
       * Created By:- Sameer Shinde
       * Ctreated Date :- 5 Nov 2015
@@ -487,13 +488,28 @@ namespace SchoolManagement.Branch
                         UpID = Convert.ToInt32(ds.Tables[0].Rows[0]["BranchID"]);
                         txtBranchName.Text = ds.Tables[0].Rows[0]["BranchName"].ToString();
                         txtBranchCode.Text= ds.Tables[0].Rows[0]["BranchCode"].ToString();
+                        cmbSelectType.Text = "Branch";
                         //txtInstituteName.Text = ds.Tables[0].Rows[0]["InstituteName"].ToString();
                         txtInstituteName.Visibility = Visibility.Hidden;
                         cmbBindInstitute.Visibility = Visibility.Visible;
                         cmbBindInstitute.Margin = new Thickness(172, 50, 311, 0);
                        
                         cmbBindInstitute.Text = ds.Tables[0].Rows[0]["InstituteName"].ToString();
-                        cmbSelectType.Text = "Branch";
+
+                        int act = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
+                        int del = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDeleted"]);
+                        if (act == 1 && del == 0)
+                        {
+                            rbtnActive.IsChecked = true;
+                        }
+                        else if (act == 0 && del == 0)
+                        {
+                            rbtnInactive.IsChecked = true;
+                        }
+
+                        btnDelete.IsEnabled = true;
+                        btnSave.Content = "Update";
+
                         txtUploadPath.Text = ds.Tables[0].Rows[0]["Logo"].ToString();
                             
             
@@ -505,27 +521,17 @@ namespace SchoolManagement.Branch
                         logo.BeginInit();
                         BitmapImage btm = new BitmapImage(new Uri(destinationPath, UriKind.Relative));
                         logo.UriSource = new Uri(destinationPath + txtUploadPath.Text);
+                        
                         logo.EndInit();
+                        
                         this.image1.Source = logo;
-                        int act = Convert.ToInt32(ds.Tables[0].Rows[0]["IsActive"]);
-                        int del = Convert.ToInt32(ds.Tables[0].Rows[0]["IsDeleted"]);
-                        if (act == 1 && del == 0)
-                        {
-                            rbtnActive.IsChecked = true;
-                        }
-                        else if (act == 0 && del == 0)
-                        {
-                            rbtnInactive.IsChecked = true;
-                        }
-                     
-                        btnDelete.IsEnabled = true;
-                        btnSave.Content = "Update";
+                        
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(),"Exception",MessageBoxButton.OK,MessageBoxImage.Warning);
             }
         }
         #endregion
@@ -589,7 +595,7 @@ namespace SchoolManagement.Branch
                 txtInstituteName.Visibility = Visibility.Visible;
                 
             }
-           cmbBindInstitute.SelectedIndex = 0;
+           cmbBindInstitute.SelectedValue ="Select";
         }
 
         private void bindInstituteName()
@@ -603,6 +609,7 @@ namespace SchoolManagement.Branch
                     cmbBindInstitute.DataContext = ds.Tables[0].DefaultView;
                     cmbBindInstitute.DisplayMemberPath = ds.Tables[0].Columns["InstituteName"].ToString();
                     cmbBindInstitute.SelectedValuePath = ds.Tables[0].Columns["InstituteName"].ToString();
+                    
                 }
             }
             catch (Exception ex)
