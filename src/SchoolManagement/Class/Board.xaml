@@ -28,7 +28,7 @@
                     <Button Content="Search" Height="25" HorizontalAlignment="Left" Margin="235,14,0,0" Name="btnSearch" VerticalAlignment="Top" Width="75" FontWeight="Bold" Click="btnSearch_Click" />
                 </Grid>
             </GroupBox>
-            <DataGrid AutoGenerateColumns="False" Height="129" HorizontalAlignment="Left" Margin="14,294,0,0" Name="dgBoard" VerticalAlignment="Top" Width="335" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" ItemsSource="{Binding}">
+            <DataGrid AutoGenerateColumns="False" Height="129" HorizontalAlignment="Left" Margin="14,294,0,0" Name="dgBoard" VerticalAlignment="Top" Width="335" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" ItemsSource="{Binding}" HorizontalScrollBarVisibility="Disabled">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="BoardID" Binding="{Binding BoardId}" Visibility="Hidden" />
                     <DataGridTextColumn Header="Board Name" Binding="{Binding BoardName}" Width="170" />
