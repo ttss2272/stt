@@ -32,7 +32,7 @@
                 </GroupBox>
             </Grid>
             </GroupBox>
-            <DataGrid AutoGenerateColumns="False" Height="180" HorizontalAlignment="Left" Margin="75,267,0,0" Name="dgDistanceTime" VerticalAlignment="Top" Width="500" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" IsReadOnly="True" ItemsSource="{Binding}" FontWeight="Bold">
+            <DataGrid AutoGenerateColumns="False" Height="180" HorizontalAlignment="Left" Margin="75,267,0,0" Name="dgDistanceTime" VerticalAlignment="Top" Width="500" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" IsReadOnly="True" ItemsSource="{Binding}" FontWeight="Bold" HorizontalScrollBarVisibility="Disabled">
                 <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding BranchDistanceID}" Header="BranchDistance" Visibility="Hidden"/>
                 <DataGridTextColumn Binding="{Binding FromBranch}" Header="From Branch" Width="120"/>

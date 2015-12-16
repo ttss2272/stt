@@ -63,8 +63,8 @@ namespace SchoolManagement.Branch
         public void ClearFields()
         {
             UpID = 0;
-            cmbFromBranch.SelectedIndex = 0;
-            cmbToBranch.SelectedIndex = 0;
+            cmbFromBranch.SelectedValue = "0";
+            cmbToBranch.SelectedValue ="0";
             txtDistTime.Text = "";
             btnAdd.Content = "Save";
             btnDelete.IsEnabled = false;
@@ -85,13 +85,13 @@ namespace SchoolManagement.Branch
         #region-----------------------------------Validation------------------------------------------
         public bool Validate()
         {
-            if (cmbFromBranch.SelectedIndex == 0)
+            if (cmbFromBranch.SelectedValue == "0" || cmbFromBranch.SelectedValue.ToString()=="0")
             {
                 MessageBox.Show("Please Select FromBranch Name","Error",MessageBoxButton.OK,MessageBoxImage.Warning);
                 cmbFromBranch.Focus();
                 return false;
             }
-            else if (cmbToBranch.SelectedIndex == 0)
+            else if (cmbToBranch.SelectedValue == "0" || cmbToBranch.SelectedValue.ToString()=="0")
             {
                 MessageBox.Show("Please Select ToBranch Name", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 cmbToBranch.Focus();
@@ -109,6 +109,35 @@ namespace SchoolManagement.Branch
             }
         }
 
+        #endregion
+
+        /*
+         * Created by:- Pritesh D. Sortee
+         * Created Date :-16 Dec 2015
+         * Purpose Validate on Go Button
+         * 
+         */
+        #region--------------------------------------------GoValidate()-------------------------------------------
+        public bool GoValidate()
+        {
+            if (cmbFromBranch.SelectedValue == "0" || cmbFromBranch.SelectedValue.ToString() == "0")
+            {
+                MessageBox.Show("Please Select FromBranch Name", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cmbFromBranch.Focus();
+                return false;
+            }
+            else if (cmbToBranch.SelectedValue == "0" || cmbToBranch.SelectedValue.ToString() == "0")
+            {
+                MessageBox.Show("Please Select ToBranch Name", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cmbToBranch.Focus();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+        }
         #endregion
 
         /* Created By:- Pranjali Vidhate
@@ -178,7 +207,7 @@ namespace SchoolManagement.Branch
         {
             try
             {
-                if (Validate())
+                if (GoValidate())
                 {
                     DataSet ds = objBranch.BindDistance(0, Convert.ToInt32(cmbFromBranch.SelectedValue), Convert.ToInt32(cmbToBranch.SelectedValue));
 
@@ -205,6 +234,8 @@ namespace SchoolManagement.Branch
                     {
                         MessageBox.Show("This Is The First Entry For Selected Branch", "Branch", MessageBoxButton.OK, MessageBoxImage.Information);
                         gbDist.IsEnabled = true;
+                        txtDistTime.Text = "";
+                        btnAdd.Content = "Save";
                         txtDistTime.Focus();
                     }
                 }
