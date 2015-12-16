@@ -71,7 +71,14 @@ namespace SchoolManagement.Teacher
                     SetParameters();
                    // SaveDetails();
                      Result1 = objTeacher.SaveTeacher(TeacherID, TeacherName, TeacherSurname, TeacherShortName, MaxNoOfMovesInBranch, MaxLecturePerDay, MaxLectPerWeek, IsMoreThanOneLecture, MaxNoOfLectInRow, IsFirstLecture, IsLastLecture, FreeTimeStart, FreeTimeEnd, UpdatedByUserID, UpdatedDate, Active, IsDeleted);
-                    SetParametersForAvailability();
+                     if (Result1 == 0)
+                     {
+                         MessageBox.Show("Teacher Short Name Duplicate", "Error to Save Teacher", MessageBoxButton.OK, MessageBoxImage.Warning);
+                     }
+                     else
+                     {
+                         SetParametersForAvailability();
+                     }
                 }
             }
             catch (Exception ex)
