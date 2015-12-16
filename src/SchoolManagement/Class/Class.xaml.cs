@@ -241,10 +241,11 @@ namespace SchoolManagement.Class
             txtShortName.Text = "";            
             txtcolor.Text = "";
             txtSearchClass.Text = "";
-            cbBoard.SelectedIndex = 0;
+            cbBoard.SelectedValue = "0";
             rdoActive.IsChecked = true;
             rdoDeActive.IsChecked = false;
             btndelete.IsEnabled = false;
+            //BindBranchName();
            // gbInfo.IsEnabled = false;
             btnGo.IsEnabled = true;
           //  cbBranchName.IsEnabled = true;
@@ -424,9 +425,10 @@ namespace SchoolManagement.Class
 
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    cbBranchName.DataContext = ds.Tables[0].DefaultView;
+                    cbBranchName.DataContext = null;
                     cbBranchName.DisplayMemberPath = ds.Tables[0].Columns["BranchName"].ToString();
                     cbBranchName.SelectedValuePath = ds.Tables[0].Columns["BranchID"].ToString();
+                    cbBranchName.DataContext = ds.Tables[0].DefaultView;
                     cbBranchName.SelectedValue = "0";
                 }
 
@@ -546,7 +548,7 @@ namespace SchoolManagement.Class
             {
                 // clearFields();
                 BindBranchName();
-                cbBranchName.SelectedIndex = 0;
+                //cbBranchName.SelectedIndex = 0;
                 // BindGridview();
                 GetBoard();
                 btndelete.IsEnabled = false;
