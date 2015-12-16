@@ -615,7 +615,7 @@ namespace SchoolManagement.Teacher
                     else
                     {
                         DgTeacherSubject.ItemsSource = null;
-                        MessageBox.Show("No Data Present for This Teacher");
+                        //MessageBox.Show("No Data Present for This Teacher");
                     }
                     DgTeacherSubject.Items.Refresh();
                 }
