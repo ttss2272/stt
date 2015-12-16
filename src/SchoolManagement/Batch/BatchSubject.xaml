@@ -17,7 +17,7 @@
                             <Label Content="Batch" HorizontalAlignment="Left" Margin="387,14,0,0" VerticalAlignment="Top" Name="lblBatch"/>
                             <ComboBox HorizontalAlignment="Left" Margin="448,14,0,0" VerticalAlignment="Top" Width="120" Name="cmbBatch" ItemsSource="{Binding}"/>
                             <Button Content="Go" HorizontalAlignment="Left" Margin="323,53,0,0" VerticalAlignment="Top" Width="75" Height="25" RenderTransformOrigin="0.533,0.12" FontWeight="Bold" Click="Button_Click" Name="btnGo"/>
-                            <DataGrid HorizontalAlignment="Left" Margin="10,279,0,0" VerticalAlignment="Top" Width="287" Height="205" Name="gdvBatchSubjectcount" ItemsSource="{Binding}" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+                            <DataGrid HorizontalAlignment="Left" Margin="10,279,0,0" VerticalAlignment="Top" Width="287" Height="205" Name="gdvBatchSubjectcount" ItemsSource="{Binding}" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Disabled">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding BranchID}" Header="Branch ID" Visibility="Hidden"></DataGridTextColumn>
                                     <DataGridTextColumn Binding="{Binding BatchID}" Header="Batch ID" Visibility="Hidden"></DataGridTextColumn>
@@ -31,7 +31,7 @@
                                     </Style>
                                 </DataGrid.ItemContainerStyle>
                             </DataGrid>
-                            <DataGrid HorizontalAlignment="Left" Margin="584,279,0,0" VerticalAlignment="Top" Height="205" Width="266" Name="gdvSubject" ItemsSource="{Binding}" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+                            <DataGrid HorizontalAlignment="Left" Margin="584,279,0,0" VerticalAlignment="Top" Height="205" Width="266" Name="gdvSubject" ItemsSource="{Binding}" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Disabled">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding BatchSubjectID}" Header="Batch subject ID" Visibility="Hidden"></DataGridTextColumn>
                                     <DataGridTextColumn Binding="{Binding SubjectID}" Header="SubjectID" Visibility="Hidden"></DataGridTextColumn>
