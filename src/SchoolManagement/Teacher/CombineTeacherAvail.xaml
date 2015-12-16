@@ -15,7 +15,7 @@
                 <ColumnDefinition Width="108*" />
                 <ColumnDefinition Width="1170*" />
             </Grid.ColumnDefinitions>
-            <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" HorizontalAlignment="Left" IsReadOnly="True" Name="dgvTeacher" Width="682" Margin="0,1,0,6" Grid.ColumnSpan="2">
+            <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" HorizontalAlignment="Left" IsReadOnly="True" Name="dgvTeacher" Width="682" Margin="0,1,0,6" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Disabled">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding TeacherID}" Header="Teacher ID" Visibility="Hidden" />
                     <DataGridTextColumn Binding="{Binding TeacherName}" Header="Name" Width="100" />
@@ -233,7 +233,7 @@
         
         <GroupBox Header="Teacher Availaible Details For Copy " Margin="2,182,876,0" Width="400" Height="321" VerticalAlignment="Top">
                   <Grid>
-                <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" HorizontalAlignment="Stretch" IsReadOnly="True" ItemsSource="{Binding}" Margin="0,0,0,6" Name="dgTeacherAvail" VerticalAlignment="Stretch" Width="380">
+                <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" HorizontalAlignment="Stretch" IsReadOnly="True" ItemsSource="{Binding}" Margin="0,0,0,6" Name="dgTeacherAvail" VerticalAlignment="Stretch" Width="380" HorizontalScrollBarVisibility="Disabled">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding TeacherID}" Header="Teacher ID" Visibility="Hidden" />
                         <DataGridTextColumn Binding="{Binding TeacherName}" Header="Name" Width="220" />
