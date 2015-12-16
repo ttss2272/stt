@@ -155,6 +155,7 @@ namespace SchoolManagement
             try
             {
                 Application.Current.Shutdown();
+                
             }
             catch (Exception ex)
             {

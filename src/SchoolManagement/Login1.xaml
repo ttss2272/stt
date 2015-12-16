@@ -1,9 +1,9 @@
 ﻿<Window x:Class="SchoolManagement.Login1"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Login" Height="295" Width="523" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Login" Height="295" Width="523" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/Icon/2.ico">
     <Grid>
-        <GroupBox Header="Login" Height="154" HorizontalAlignment="Left" Margin="61,22,0,0" Name="groupBox1" VerticalAlignment="Top" Width="395">
+        <GroupBox Header="Login" Height="154" HorizontalAlignment="Left" Margin="61,22,0,0" Name="groupBox1" VerticalAlignment="Top" Width="395" FontWeight="Black">
             <Grid>
                 <Label Content="User Name" FontSize="13" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="49,37,0,0" Name="lblInstName" VerticalAlignment="Top" />
                 <TextBox AcceptsTab="False" Height="23" HorizontalAlignment="Right" Margin="0,37,43,0" Name="txtUserName" TabIndex="1" VerticalAlignment="Top" Width="187" />
