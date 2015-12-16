@@ -56,7 +56,7 @@ namespace SchoolManagement.Branch
             {
                 if (Validate())
                 {
-                    Validate();
+                    //Validate();
                     SetParameters();
                     SaveDetails();
                     BindGridview();
@@ -168,9 +168,9 @@ namespace SchoolManagement.Branch
         #region------------------Validate()-----------------
         private bool Validate()
         {
-            
-            
-            if ((txtInstituteName.Text.Trim() == "") && (cmbBindInstitute.SelectedIndex == 0))
+         //(txtInstituteName.Text.Trim() == "") && (cmbBindInstitute.SelectedIndex == 0) &&   
+
+            if ((txtInstituteName.Text.Trim() == "") && (cmbBindInstitute.SelectedValue.ToString() == "Select"))
             {
                 MessageBox.Show("Please Enter Institute Name.", "Institute Name Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 if (txtInstituteName.IsVisible == true)
