@@ -37,7 +37,7 @@
                     <ComboBox Height="23" HorizontalAlignment="Left" Margin="173,180,0,0" Name="cmbUserType" VerticalAlignment="Top" Width="146" ItemsSource="{Binding}" TabIndex="7" />
                     <Label Content="User Type" Height="28" HorizontalAlignment="Left" Margin="33,175,0,0" Name="label5" VerticalAlignment="Top" />
                     <Label Content="*" FontWeight="Bold" Foreground="Red" HorizontalAlignment="Left" Margin="154,180,0,0" RenderTransformOrigin="0.4,2.077" ToolTip="Mednatory" VerticalAlignment="Top" />
-                    <PasswordBox Height="23" HorizontalAlignment="Left" Margin="173,150,0,0" Name="txtPassword" VerticalAlignment="Top" Width="200" />
+                    <PasswordBox Height="23" HorizontalAlignment="Left" Margin="173,150,0,0" Name="txtPassword" VerticalAlignment="Top" Width="200" TabIndex="6" />
                 </Grid>
             </GroupBox>
             <GroupBox Header="User List" HorizontalAlignment="Center" Margin="10,437,10,0" VerticalAlignment="Top" Height="211" Width="775">
