@@ -800,7 +800,7 @@ namespace SchoolManagement.Room
         * Created Date :- 4 Nov 2015
         * Purpose:- Set Parameters for RoomAvailabitity*/
 
-            #region--------------------------------RoomAvailability------------------------------------
+        #region--------------------------------RoomAvailability------------------------------------
         private void SetRoomAvaiParameters()
         {
             int ResultCount = 0;
