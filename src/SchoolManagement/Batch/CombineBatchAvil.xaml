@@ -290,7 +290,8 @@
                             <DataGridTextColumn Binding="{Binding MaxNoLecturesWeek}" Header="MaxLectureWeek" Width="100" />
                             <DataGridTextColumn Binding="{Binding IsAllowMoreThanOneLectInBatch}" Header="MoreThanOneLec" Width="100" />
                             <DataGridTextColumn Binding="{Binding MaxNoOfLecureInRow}" Header="MaxLectureRow" Width="100" />
-                        </DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Status}" Header="Status" Width="100" />
+                    </DataGrid.Columns>
                         <DataGrid.ItemContainerStyle>
                             <Style TargetType="DataGridRow">
                                 <EventSetter Event="Control.MouseDoubleClick" HandledEventsToo="True" Handler="Row_DoubleClick" />
