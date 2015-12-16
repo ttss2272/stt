@@ -111,6 +111,7 @@ namespace SchoolManagement.Teacher
                 if (Validate())
                 {
                     SetParameters();
+                    BindTeacherSubject();
                 }
             }
             catch (Exception ex)
