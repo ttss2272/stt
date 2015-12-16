@@ -131,7 +131,7 @@
                                     <Label Content="From" Height="26" HorizontalAlignment="Left" Margin="-1,3,0,0" RenderTransformOrigin="-8.739,0.577" VerticalAlignment="Top" Width="37" />
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Grid.Row="1" Header="Time" Height="55" HorizontalAlignment="Left" Margin="55,55,0,0" VerticalAlignment="Top" Width="299">
+                            <GroupBox Grid.Row="1" Header="Time" Height="55" HorizontalAlignment="Left" Margin="57,55,0,0" VerticalAlignment="Top" Width="299">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
