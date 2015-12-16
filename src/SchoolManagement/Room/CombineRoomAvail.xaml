@@ -240,7 +240,7 @@
                 </Grid>
             </GroupBox>
             <GroupBox Header="Room Availaible Details For Copy " Height="306" VerticalAlignment="Top"  DockPanel.Dock="left" Margin="37,155,912,0">
-                <DataGrid HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="0,0,0,2" Name="dgRoomAvail" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False">
+                <DataGrid HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Margin="0,0,0,2" Name="dgRoomAvail" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="False" HorizontalScrollBarVisibility="Disabled">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding RoomID}" Header="Room ID" Visibility="Hidden"></DataGridTextColumn>
                         <DataGridTextColumn Binding="{Binding RoomName}" Header="Name" Width="200"></DataGridTextColumn>
@@ -261,7 +261,7 @@
                 </Grid>
             </GroupBox>
         </Grid>
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Height="162" HorizontalAlignment="Center" Margin="243,530,347,0" Name="dgRoom" VerticalAlignment="Top" Width="724" IsReadOnly="True" CanUserResizeColumns="False" ItemsSource="{Binding}" FontWeight="Bold">
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Height="162" HorizontalAlignment="Center" Margin="243,530,347,0" Name="dgRoom" VerticalAlignment="Top" Width="724" IsReadOnly="True" CanUserResizeColumns="False" ItemsSource="{Binding}" FontWeight="Bold" HorizontalScrollBarVisibility="Disabled">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding RoomID}" Header="RoomID" Visibility="Hidden"></DataGridTextColumn>
                 <DataGridTextColumn  Header="BranchName" Width="145" Binding="{Binding BranchName}"></DataGridTextColumn>
