@@ -1102,7 +1102,14 @@ namespace SchoolManagement.Room
                 {
                     SetParameters();
                     Result1 = obj_Room.saveAddRoom(RoomID, RoomName, ShortName, Color1, Capacity, BranchID, UpdatedByUserID, UpdatedDate, IsActive, IsDeleted, MaxLectDay, MaxLectWeek, MaxLectRow, StartTime1, EndTime1, IsAllow);
-                    SetRoomAvaiParameters();
+                    if (Result1 == 0)
+                    {
+                        MessageBox.Show("RoomName/RoomShortName Duplication","Error To Save Details",MessageBoxButton.OK,MessageBoxImage.Error);
+                    }
+                    else
+                    {
+                        SetRoomAvaiParameters();
+                    }
                     clearFields();
                     BindGrid();
                 }
