@@ -91,7 +91,7 @@
                                         <ColumnDefinition />
                                         <ColumnDefinition Width="0*" />
                                     </Grid.ColumnDefinitions>
-                                    <ComboBox Height="23" HorizontalAlignment="Left" Margin="45,4,0,0" Name="chkStartHrs1" VerticalAlignment="Top" Width="52" />
+                                    <ComboBox Height="23" HorizontalAlignment="Left" Margin="45,4,0,0" Name="chkStartHrs1" VerticalAlignment="Top" Width="52"/>
                                     <ComboBox Height="22" HorizontalAlignment="Left" Margin="105,5,0,0" Name="chkStartMin1" VerticalAlignment="Top" Width="52" />
                                     <Label Content="To" Height="26" HorizontalAlignment="Left" Margin="155,3,0,0" VerticalAlignment="Top" Width="23" />
                                     <ComboBox Height="22" HorizontalAlignment="Left" Margin="178,5,0,0" Name="chkEndhrs1" VerticalAlignment="Top" Width="52" />

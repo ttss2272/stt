@@ -447,6 +447,17 @@ namespace SchoolManagement.Batch
                     return false;
 
                 }
+                 else if(cbLunchBreak.SelectedValue.ToString()=="Yes")
+                    {
+                     if ((Convert.ToInt32(chkStartHrs1.SelectedItem.ToString())) == (Convert.ToInt32(cmbTimeStartHrs.SelectedItem.ToString())) || (Convert.ToInt32(chkEndhrs1.SelectedItem.ToString())) == (Convert.ToInt32(cmbTimeEndHrs.SelectedItem.ToString())))
+                     {
+                         MessageBox.Show("Please Enter Available Time Not In Between Break Time", "Select Wrong Time In Monday Availability", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartHrs1.Focus();
+                    return false;
+                     }
+                     else
+                     { return true; }
+                    }
                 else
                 { return true; }
 
@@ -497,6 +508,19 @@ namespace SchoolManagement.Batch
                     MessageBox.Show("End Minute Time Is Must Be Greater Than End Time", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     EndMin2.Focus();
                     return false;
+
+                }
+                else if (cbLunchBreak.SelectedValue.ToString() == "Yes")
+                {
+
+                    if ((Convert.ToInt32(chkStartHrs2.SelectedItem.ToString())) == (Convert.ToInt32(cmbTimeStartHrs.SelectedItem.ToString())) || (Convert.ToInt32(chkEndhrs2.SelectedItem.ToString())) == (Convert.ToInt32(cmbTimeEndHrs.SelectedItem.ToString())))
+                    {
+                        MessageBox.Show("Please Enter Available Time Not In Between Break Time", "Select Wrong Time In Tuesday Availability", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        chkStartHrs1.Focus();
+                        return false;
+                    }
+                    else
+                    { return true; }
 
                 }
                 else
@@ -550,6 +574,18 @@ namespace SchoolManagement.Batch
                     return false;
 
                 }
+                    else if (cbLunchBreak.SelectedValue.ToString() == "Yes")
+                {
+
+                    if ((Convert.ToInt32(chkStartHrs3.SelectedItem.ToString())) == (Convert.ToInt32(cmbTimeStartHrs.SelectedItem.ToString())) || (Convert.ToInt32(chkEndhrs3.SelectedItem.ToString())) == (Convert.ToInt32(cmbTimeEndHrs.SelectedItem.ToString())))
+                    {
+                        MessageBox.Show("Please Enter Available Time Not In Between Break Time", "Select Wrong Time In Wednesday Availability", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    chkStartHrs1.Focus();
+                    return false;
+                    }
+                  else
+                    { return true; }
+                }
                 else
                 { return true; }
             }
@@ -601,6 +637,18 @@ namespace SchoolManagement.Batch
                     EndMin4.Focus();
                     return false;
 
+                }
+                else if (cbLunchBreak.SelectedValue.ToString() == "Yes")
+                {
+
+                    if ((Convert.ToInt32(chkStartHrs4.SelectedItem.ToString())) == (Convert.ToInt32(cmbTimeStartHrs.SelectedItem.ToString())) || (Convert.ToInt32(chkEndhrs4.SelectedItem.ToString())) == (Convert.ToInt32(cmbTimeEndHrs.SelectedItem.ToString())))
+                    {
+                        MessageBox.Show("Please Enter Available Time Not In Between Break Time", "Select Wrong Time In Thursday Availability", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        chkStartHrs1.Focus();
+                        return false;
+                    }
+                    else
+                    { return true;}
                 }
                 else
                 { return true; }
@@ -654,6 +702,18 @@ namespace SchoolManagement.Batch
                     return false;
 
                 }
+                else if (cbLunchBreak.SelectedValue.ToString() == "Yes")
+                {
+
+                    if ((Convert.ToInt32(chkStartHrs5.SelectedItem.ToString())) == (Convert.ToInt32(cmbTimeStartHrs.SelectedItem.ToString())) || (Convert.ToInt32(chkEndhrs5.SelectedItem.ToString())) == (Convert.ToInt32(cmbTimeEndHrs.SelectedItem.ToString())))
+                    {
+                        MessageBox.Show("Please Enter Available Time Not In Between Break Time", "Select Wrong Time In Friday Availability", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        chkStartHrs1.Focus();
+                        return false;
+                    }
+                    else
+                    { return true; }
+                }
                 else
                 { return true; }
             }
@@ -669,26 +729,26 @@ namespace SchoolManagement.Batch
             {
                 if (chkStartHrs6.SelectedItem.ToString() == "HRS")
                 {
-                    MessageBox.Show("Please Select Start Hours From Friday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Please Select Start Hours From Saturday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     chkStartHrs6.Focus();
                     return false;
                 }
                 else if (chkStartMin6.SelectedItem.ToString() == "Min")
                 {
-                    MessageBox.Show("Please Select Minutes From Friday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Please Select Minutes From Saturday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     chkStartMin6.Focus();
                     return false;
 
                 }
                 else if (chkEndhrs6.SelectedItem.ToString() == "HRS")
                 {
-                    MessageBox.Show("Please Select End Hours From Friday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Please Select End Hours From Saturday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     chkEndhrs6.Focus();
                     return false;
                 }
                 else if (EndMin6.SelectedItem.ToString() == "Min")
                 {
-                    MessageBox.Show("Please Select End Minutes From Friday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Please Select End Minutes From Saturday", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     EndMin6.Focus();
                     return false;
                 }
@@ -704,6 +764,18 @@ namespace SchoolManagement.Batch
                     EndMin6.Focus();
                     return false;
 
+                }
+                else if (cbLunchBreak.SelectedValue.ToString() == "Yes")
+                {
+
+                    if ((Convert.ToInt32(chkStartHrs6.SelectedItem.ToString())) == (Convert.ToInt32(cmbTimeStartHrs.SelectedItem.ToString())) || (Convert.ToInt32(chkEndhrs6.SelectedItem.ToString())) == (Convert.ToInt32(cmbTimeEndHrs.SelectedItem.ToString())))
+                    {
+                        MessageBox.Show("Please Enter Available Time Not In Between Break Time", "Select Wrong Time In Saturday Availability", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        chkStartHrs1.Focus();
+                        return false;
+                    }
+                    else
+                    { return true; }
                 }
                 else
                 { return true; }
@@ -755,6 +827,18 @@ namespace SchoolManagement.Batch
                     EndMin7.Focus();
                     return false;
 
+                }
+                else if (cbLunchBreak.SelectedValue.ToString() == "Yes")
+                {
+
+                    if ((Convert.ToInt32(chkStartHrs7.SelectedItem.ToString())) == (Convert.ToInt32(cmbTimeStartHrs.SelectedItem.ToString())) || (Convert.ToInt32(chkEndhrs7.SelectedItem.ToString())) == (Convert.ToInt32(cmbTimeEndHrs.SelectedItem.ToString())))
+                    {
+                        MessageBox.Show("Please Enter Available Time Not In Between Break Time", "Select Wrong Time In Sunday Availability", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        chkStartHrs1.Focus();
+                        return false;
+                    }
+                    else
+                    { return true; }
                 }
                 else
                 { return true; }
